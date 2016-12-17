@@ -21,6 +21,8 @@ $RECYCLE.BIN/
 # Operating System Files
 # =========================
 
+Source/.vs/
+
 # OSX
 # =========================
 
@@ -42,7 +44,6 @@ $RECYCLE.BIN/
 # Directories potentially created on remote AFP share
 .AppleDB
 .AppleDesktop
-Source/.vs
 Network Trash Folder
 Temporary Items
 .apdisk
