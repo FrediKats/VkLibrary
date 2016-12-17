@@ -50,8 +50,7 @@ class JMethods:
 
             # Create template
             values = grouping[method_group]
-            heading = """
-using System;
+            heading = """using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -142,8 +141,10 @@ namespace VkLib.Methods
                 string += "{} {} = null{}".format(
                     json_type,
                     value["name"],
-                    ", " if len(variables) - 1 > index else ") {\n"
+                    ", " if len(variables) - 1 > index else ")\n        {\n"
                 )
+        else:
+            string += ")\n        {\n"
         return string
 
     @classmethod
@@ -337,8 +338,7 @@ class JObjects:
 if __name__ == "__main__":
 
     # Parse methods
-    j_methods = JMethods('api/methods.json')
-    j_objects = JObjects('api/objects.json')
-    # print(j_methods.result)
+    j_methods = JMethods('JSONSchema/methods.json')
+    j_objects = JObjects('JSONSchema/objects.json')
 
 

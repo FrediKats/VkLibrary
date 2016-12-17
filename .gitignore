@@ -47,3 +47,8 @@ Source/.vs/
 Network Trash Folder
 Temporary Items
 .apdisk
+
+TestApp/
+VkLib.Core/obj
+VkLib.Core/bin
+VkLib.Core/.vs
