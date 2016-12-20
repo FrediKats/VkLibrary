@@ -10,7 +10,7 @@ namespace VkLib.Types.Ads
         /// Rules paragraph
         /// </summary>
         [JsonProperty("paragraph")]
-        public string Paragraph_ { get; set; }
+        public string Paragraph { get; set; }
 
     }
 }

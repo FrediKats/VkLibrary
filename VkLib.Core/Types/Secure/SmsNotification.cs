@@ -7,22 +7,22 @@ namespace VkLib.Types.Secure
     public class SmsNotification
     {
         /// <summary>
-        /// Messsage text
-        /// </summary>
-        [JsonProperty("message")]
-        public string Message { get; set; }
-
-        /// <summary>
         /// User ID
         /// </summary>
         [JsonProperty("user_id")]
-        public int? UserId_ { get; set; }
+        public int? UserId { get; set; }
+
+        /// <summary>
+        /// Date when message has been sent in Unixtime
+        /// </summary>
+        [JsonProperty("date")]
+        public int? Date { get; set; }
 
         /// <summary>
         /// Application ID
         /// </summary>
         [JsonProperty("app_id")]
-        public int? AppId_ { get; set; }
+        public int? AppId { get; set; }
 
         /// <summary>
         /// Notification ID
@@ -31,10 +31,10 @@ namespace VkLib.Types.Secure
         public int? Id { get; set; }
 
         /// <summary>
-        /// Date when message has been sent in Unixtime
+        /// Messsage text
         /// </summary>
-        [JsonProperty("date")]
-        public int? Date { get; set; }
+        [JsonProperty("message")]
+        public string Message { get; set; }
 
     }
 }

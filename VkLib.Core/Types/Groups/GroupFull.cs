@@ -7,124 +7,34 @@ namespace VkLib.Types.Groups
     public class GroupFull : VkLib.Types.Groups.Group
     {
         /// <summary>
-        /// Property
+        /// Information whether current user is subscribed
         /// </summary>
-        [JsonProperty("contacts")]
-        public IEnumerable<VkLib.Types.Groups.ContactsItem> Contacts { get; set; }
-
-        /// <summary>
-        /// Community members number
-        /// </summary>
-        [JsonProperty("members_count")]
-        public int? MembersCount_ { get; set; }
-
-        /// <summary>
-        /// Main section of community
-        /// </summary>
-        [JsonProperty("main_section")]
-        public int? MainSection_ { get; set; }
-
-        /// <summary>
-        /// Information whether community is banned
-        /// </summary>
-        [JsonProperty("deactivated")]
-        public string Deactivated { get; set; }
-
-        /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("counters")]
-        public VkLib.Types.Groups.CountersGroup Counters { get; set; }
-
-        /// <summary>
-        /// Type of group, start date of event or category of public page
-        /// </summary>
-        [JsonProperty("activity")]
-        public string Activity { get; set; }
+        [JsonProperty("is_subscribed")]
+        public int? IsSubscribed { get; set; }
 
         /// <summary>
         /// Information whether current user can post on community's wall
         /// </summary>
         [JsonProperty("can_post")]
-        public int? CanPost_ { get; set; }
+        public int? CanPost { get; set; }
 
         /// <summary>
-        /// Community description
+        /// Start date of event in Unixtime
         /// </summary>
-        [JsonProperty("description")]
-        public string Description { get; set; }
-
-        /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("country")]
-        public VkLib.Types.Base.Country Country { get; set; }
-
-        /// <summary>
-        /// Information whether current user can upload video
-        /// </summary>
-        [JsonProperty("can_upload_video")]
-        public int? CanUploadVideo { get; set; }
-
-        /// <summary>
-        /// Information whether current user can send a message to community
-        /// </summary>
-        [JsonProperty("can_message")]
-        public int? CanMessage_ { get; set; }
-
-        /// <summary>
-        /// Information whether community is verified
-        /// </summary>
-        [JsonProperty("verified")]
-        public int? Verified { get; set; }
-
-        /// <summary>
-        /// Community status
-        /// </summary>
-        [JsonProperty("status")]
-        public string Status { get; set; }
-
-        /// <summary>
-        /// Information whether community is in faves
-        /// </summary>
-        [JsonProperty("is_favorite")]
-        public int? IsFavorite_ { get; set; }
-
-        /// <summary>
-        /// Information whether current user is subscribed
-        /// </summary>
-        [JsonProperty("is_subscribed")]
-        public int? IsSubscribed_ { get; set; }
-
-        /// <summary>
-        /// Current user's member status
-        /// </summary>
-        [JsonProperty("member_status")]
-        public int? MemberStatus_ { get; set; }
-
-        /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("city")]
-        public VkLib.Types.Base.Object City { get; set; }
-
-        /// <summary>
-        /// Community's website
-        /// </summary>
-        [JsonProperty("site")]
-        public string Site { get; set; }
+        [JsonProperty("start_date")]
+        public int? StartDate { get; set; }
 
         /// <summary>
         /// Information whether age limit
         /// </summary>
         [JsonProperty("age_limits")]
-        public int? AgeLimits_ { get; set; }
+        public int? AgeLimits { get; set; }
 
         /// <summary>
-        /// Information whether current user can create topic
+        /// Main section of community
         /// </summary>
-        [JsonProperty("can_create_topic")]
-        public int? CanCreateTopic { get; set; }
+        [JsonProperty("main_section")]
+        public int? MainSection { get; set; }
 
         /// <summary>
         /// Information whether current user can send a message to community
@@ -139,16 +49,118 @@ namespace VkLib.Types.Groups
         public int? MainAlbumId { get; set; }
 
         /// <summary>
-        /// Start date of event in Unixtime
+        /// Finish date of event in Unixtime
         /// </summary>
-        [JsonProperty("start_date")]
-        public int? StartDate_ { get; set; }
+        [JsonProperty("finish_date")]
+        public int? FinishDate { get; set; }
+
+        /// <summary>
+        /// Information whether current user can upload video
+        /// </summary>
+        [JsonProperty("can_upload_video")]
+        public int? CanUploadVideo { get; set; }
+
+        /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("city")]
+        public VkLib.Types.Base.Object City { get; set; }
+
+        /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("contacts")]
+        public IEnumerable<VkLib.Types.Groups.ContactsItem> Contacts { get; set; }
 
         /// <summary>
         /// Community's main wiki page title
         /// </summary>
         [JsonProperty("wiki_page")]
-        public string WikiPage_ { get; set; }
+        public string WikiPage { get; set; }
+
+        /// <summary>
+        /// Community status
+        /// </summary>
+        [JsonProperty("status")]
+        public string Status { get; set; }
+
+        /// <summary>
+        /// Information whether current user can send a message to community
+        /// </summary>
+        [JsonProperty("can_message")]
+        public int? CanMessage { get; set; }
+
+        /// <summary>
+        /// Information whether current user can see all posts on community's wall
+        /// </summary>
+        [JsonProperty("can_see_all_posts")]
+        public int? CanSeeAllPosts { get; set; }
+
+        /// <summary>
+        /// Community members number
+        /// </summary>
+        [JsonProperty("members_count")]
+        public int? MembersCount { get; set; }
+
+        /// <summary>
+        /// Type of group, start date of event or category of public page
+        /// </summary>
+        [JsonProperty("activity")]
+        public string Activity { get; set; }
+
+        /// <summary>
+        /// Information whether community is verified
+        /// </summary>
+        [JsonProperty("verified")]
+        public int? Verified { get; set; }
+
+        /// <summary>
+        /// Current user's member status
+        /// </summary>
+        [JsonProperty("member_status")]
+        public int? MemberStatus { get; set; }
+
+        /// <summary>
+        /// Information whether community is banned
+        /// </summary>
+        [JsonProperty("deactivated")]
+        public string Deactivated { get; set; }
+
+        /// <summary>
+        /// Fixed post ID
+        /// </summary>
+        [JsonProperty("fixed_post")]
+        public int? FixedPost { get; set; }
+
+        /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("counters")]
+        public VkLib.Types.Groups.CountersGroup Counters { get; set; }
+
+        /// <summary>
+        /// Community's website
+        /// </summary>
+        [JsonProperty("site")]
+        public string Site { get; set; }
+
+        /// <summary>
+        /// Community description
+        /// </summary>
+        [JsonProperty("description")]
+        public string Description { get; set; }
+
+        /// <summary>
+        /// Information whether current user can create topic
+        /// </summary>
+        [JsonProperty("can_create_topic")]
+        public int? CanCreateTopic { get; set; }
+
+        /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("links")]
+        public IEnumerable<VkLib.Types.Groups.LinksItem> Links { get; set; }
 
         /// <summary>
         /// Property
@@ -159,26 +171,14 @@ namespace VkLib.Types.Groups
         /// <summary>
         /// Property
         /// </summary>
-        [JsonProperty("links")]
-        public IEnumerable<VkLib.Types.Groups.LinksItem> Links { get; set; }
+        [JsonProperty("country")]
+        public VkLib.Types.Base.Country Country { get; set; }
 
         /// <summary>
-        /// Fixed post ID
+        /// Information whether community is in faves
         /// </summary>
-        [JsonProperty("fixed_post")]
-        public int? FixedPost_ { get; set; }
-
-        /// <summary>
-        /// Finish date of event in Unixtime
-        /// </summary>
-        [JsonProperty("finish_date")]
-        public int? FinishDate_ { get; set; }
-
-        /// <summary>
-        /// Information whether current user can see all posts on community's wall
-        /// </summary>
-        [JsonProperty("can_see_all_posts")]
-        public int? CanSeeAllPosts { get; set; }
+        [JsonProperty("is_favorite")]
+        public int? IsFavorite { get; set; }
 
     }
 }

@@ -7,6 +7,24 @@ namespace VkLib.Types.Groups
     public class GroupCategoryFull
     {
         /// <summary>
+        /// Pages number
+        /// </summary>
+        [JsonProperty("page_count")]
+        public int? PageCount { get; set; }
+
+        /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("subcategories")]
+        public IEnumerable<VkLib.Types.Groups.GroupCategory> Subcategories { get; set; }
+
+        /// <summary>
+        /// Category ID
+        /// </summary>
+        [JsonProperty("id")]
+        public int? Id { get; set; }
+
+        /// <summary>
         /// Property
         /// </summary>
         [JsonProperty("page_previews")]
@@ -17,24 +35,6 @@ namespace VkLib.Types.Groups
         /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; }
-
-        /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("subcategories")]
-        public IEnumerable<VkLib.Types.Groups.GroupCategory> Subcategories { get; set; }
-
-        /// <summary>
-        /// Pages number
-        /// </summary>
-        [JsonProperty("page_count")]
-        public int? PageCount { get; set; }
-
-        /// <summary>
-        /// Category ID
-        /// </summary>
-        [JsonProperty("id")]
-        public int? Id { get; set; }
 
     }
 }

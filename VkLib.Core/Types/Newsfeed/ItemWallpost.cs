@@ -15,14 +15,32 @@ namespace VkLib.Types.Newsfeed
         /// <summary>
         /// Property
         /// </summary>
-        [JsonProperty("reposts")]
-        public VkLib.Types.Base.RepostsInfo Reposts { get; set; }
+        [JsonProperty("copy_history")]
+        public IEnumerable<VkLib.Types.Wall.Wallpost> CopyHistory { get; set; }
+
+        /// <summary>
+        /// Post type
+        /// </summary>
+        [JsonProperty("post_type")]
+        public string PostType { get; set; }
+
+        /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("post_source")]
+        public VkLib.Types.Wall.PostSource PostSource { get; set; }
 
         /// <summary>
         /// Post ID
         /// </summary>
         [JsonProperty("post_id")]
-        public int? PostId_ { get; set; }
+        public int? PostId { get; set; }
+
+        /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("comments")]
+        public VkLib.Types.Base.CommentsInfo Comments { get; set; }
 
         /// <summary>
         /// Post text
@@ -33,38 +51,20 @@ namespace VkLib.Types.Newsfeed
         /// <summary>
         /// Property
         /// </summary>
-        [JsonProperty("attachments")]
-        public IEnumerable<VkLib.Types.Wall.WallpostAttachment> Attachments { get; set; }
-
-        /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("comments")]
-        public VkLib.Types.Base.CommentsInfo Comments { get; set; }
-
-        /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("post_source")]
-        public VkLib.Types.Wall.PostSource PostSource_ { get; set; }
-
-        /// <summary>
-        /// Property
-        /// </summary>
         [JsonProperty("likes")]
         public VkLib.Types.Base.LikesInfo Likes { get; set; }
 
         /// <summary>
         /// Property
         /// </summary>
-        [JsonProperty("copy_history")]
-        public IEnumerable<VkLib.Types.Wall.Wallpost> CopyHistory_ { get; set; }
+        [JsonProperty("reposts")]
+        public VkLib.Types.Base.RepostsInfo Reposts { get; set; }
 
         /// <summary>
-        /// Post type
+        /// Property
         /// </summary>
-        [JsonProperty("post_type")]
-        public string PostType_ { get; set; }
+        [JsonProperty("attachments")]
+        public IEnumerable<VkLib.Types.Wall.WallpostAttachment> Attachments { get; set; }
 
     }
 }

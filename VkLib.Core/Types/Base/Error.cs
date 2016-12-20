@@ -7,6 +7,12 @@ namespace VkLib.Types.Base
     public class Error
     {
         /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("request_params")]
+        public IEnumerable<VkLib.Types.Base.RequestParam> RequestParams { get; set; }
+
+        /// <summary>
         /// Error message
         /// </summary>
         [JsonProperty("error_msg")]
@@ -17,12 +23,6 @@ namespace VkLib.Types.Base
         /// </summary>
         [JsonProperty("error_code")]
         public int? ErrorCode { get; set; }
-
-        /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("request_params")]
-        public IEnumerable<VkLib.Types.Base.RequestParam> RequestParams { get; set; }
 
     }
 }

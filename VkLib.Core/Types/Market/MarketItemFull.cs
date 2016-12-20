@@ -7,22 +7,16 @@ namespace VkLib.Types.Market
     public class MarketItemFull : VkLib.Types.Market.MarketItem
     {
         /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("photos")]
-        public IEnumerable<VkLib.Types.Photos.Photo> Photos { get; set; }
-
-        /// <summary>
         /// Views number
         /// </summary>
         [JsonProperty("views_count")]
         public int? ViewsCount { get; set; }
 
         /// <summary>
-        /// Information whether current use can repost the item
+        /// Property
         /// </summary>
-        [JsonProperty("can_repost")]
-        public int? CanRepost { get; set; }
+        [JsonProperty("likes")]
+        public VkLib.Types.Base.Likes Likes { get; set; }
 
         /// <summary>
         /// Information whether current use can comment the item
@@ -31,10 +25,16 @@ namespace VkLib.Types.Market
         public int? CanComment { get; set; }
 
         /// <summary>
+        /// Information whether current use can repost the item
+        /// </summary>
+        [JsonProperty("can_repost")]
+        public int? CanRepost { get; set; }
+
+        /// <summary>
         /// Property
         /// </summary>
-        [JsonProperty("likes")]
-        public VkLib.Types.Base.Likes Likes { get; set; }
+        [JsonProperty("photos")]
+        public IEnumerable<VkLib.Types.Photos.Photo> Photos { get; set; }
 
     }
 }

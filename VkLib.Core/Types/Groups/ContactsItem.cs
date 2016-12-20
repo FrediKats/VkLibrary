@@ -7,12 +7,6 @@ namespace VkLib.Types.Groups
     public class ContactsItem
     {
         /// <summary>
-        /// Contact description
-        /// </summary>
-        [JsonProperty("desc")]
-        public string Desc { get; set; }
-
-        /// <summary>
         /// Contact phone
         /// </summary>
         [JsonProperty("phone")]
@@ -28,7 +22,13 @@ namespace VkLib.Types.Groups
         /// User ID
         /// </summary>
         [JsonProperty("user_id")]
-        public int? UserId_ { get; set; }
+        public int? UserId { get; set; }
+
+        /// <summary>
+        /// Contact description
+        /// </summary>
+        [JsonProperty("desc")]
+        public string Desc { get; set; }
 
     }
 }

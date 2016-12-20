@@ -10,7 +10,7 @@ namespace VkLib.Types.Ads
         /// Object ID
         /// </summary>
         [JsonProperty("ad_id")]
-        public int? AdId_ { get; set; }
+        public int? AdId { get; set; }
 
     }
 }

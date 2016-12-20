@@ -7,12 +7,6 @@ namespace VkLib.Types.Docs
     public class DocPreviewVideo
     {
         /// <summary>
-        /// Video's width in pixels
-        /// </summary>
-        [JsonProperty("width")]
-        public int? Width { get; set; }
-
-        /// <summary>
         /// Video URL
         /// </summary>
         [JsonProperty("src")]
@@ -23,6 +17,12 @@ namespace VkLib.Types.Docs
         /// </summary>
         [JsonProperty("filesize")]
         public int? Filesize { get; set; }
+
+        /// <summary>
+        /// Video's width in pixels
+        /// </summary>
+        [JsonProperty("width")]
+        public int? Width { get; set; }
 
         /// <summary>
         /// Video's height in pixels

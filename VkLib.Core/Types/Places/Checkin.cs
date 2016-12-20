@@ -7,28 +7,22 @@ namespace VkLib.Types.Places
     public class Checkin
     {
         /// <summary>
-        /// Date when the checkin has been added in Unixtime
-        /// </summary>
-        [JsonProperty("date")]
-        public int? Date_ { get; set; }
-
-        /// <summary>
         /// Place latitude
         /// </summary>
         [JsonProperty("latitude")]
-        public uint? Latitude_ { get; set; }
+        public uint? Latitude { get; set; }
 
         /// <summary>
-        /// Comment text
+        /// Checkin ID
         /// </summary>
-        [JsonProperty("text")]
-        public string Text_ { get; set; }
+        [JsonProperty("id")]
+        public int? Id { get; set; }
 
         /// <summary>
-        /// URL of the place's icon
+        /// Place ID
         /// </summary>
-        [JsonProperty("place_icon")]
-        public string PlaceIcon { get; set; }
+        [JsonProperty("place_id")]
+        public int? PlaceId { get; set; }
 
         /// <summary>
         /// User ID
@@ -40,31 +34,7 @@ namespace VkLib.Types.Places
         /// Distance to the place
         /// </summary>
         [JsonProperty("distance")]
-        public int? Distance_ { get; set; }
-
-        /// <summary>
-        /// Place longitude
-        /// </summary>
-        [JsonProperty("longitude")]
-        public uint? Longitude_ { get; set; }
-
-        /// <summary>
-        /// Place title
-        /// </summary>
-        [JsonProperty("place_title")]
-        public string PlaceTitle { get; set; }
-
-        /// <summary>
-        /// Place type
-        /// </summary>
-        [JsonProperty("place_type")]
-        public string PlaceType { get; set; }
-
-        /// <summary>
-        /// City ID
-        /// </summary>
-        [JsonProperty("place_city")]
-        public int? PlaceCity { get; set; }
+        public int? Distance { get; set; }
 
         /// <summary>
         /// Country ID
@@ -73,16 +43,46 @@ namespace VkLib.Types.Places
         public int? PlaceCountry { get; set; }
 
         /// <summary>
-        /// Place ID
+        /// Comment text
         /// </summary>
-        [JsonProperty("place_id")]
-        public int? PlaceId { get; set; }
+        [JsonProperty("text")]
+        public string Text { get; set; }
 
         /// <summary>
-        /// Checkin ID
+        /// Place longitude
         /// </summary>
-        [JsonProperty("id")]
-        public int? Id_ { get; set; }
+        [JsonProperty("longitude")]
+        public uint? Longitude { get; set; }
+
+        /// <summary>
+        /// Date when the checkin has been added in Unixtime
+        /// </summary>
+        [JsonProperty("date")]
+        public int? Date { get; set; }
+
+        /// <summary>
+        /// Place type
+        /// </summary>
+        [JsonProperty("place_type")]
+        public string PlaceType { get; set; }
+
+        /// <summary>
+        /// Place title
+        /// </summary>
+        [JsonProperty("place_title")]
+        public string PlaceTitle { get; set; }
+
+        /// <summary>
+        /// City ID
+        /// </summary>
+        [JsonProperty("place_city")]
+        public int? PlaceCity { get; set; }
+
+        /// <summary>
+        /// URL of the place's icon
+        /// </summary>
+        [JsonProperty("place_icon")]
+        public string PlaceIcon { get; set; }
 
     }
 }

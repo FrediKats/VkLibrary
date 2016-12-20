@@ -7,10 +7,10 @@ namespace VkLib.Types.Groups
     public class CountersGroup
     {
         /// <summary>
-        /// Photos number
+        /// Videos number
         /// </summary>
-        [JsonProperty("photos")]
-        public int? Photos { get; set; }
+        [JsonProperty("videos")]
+        public int? Videos { get; set; }
 
         /// <summary>
         /// Topics number
@@ -19,16 +19,16 @@ namespace VkLib.Types.Groups
         public int? Topics { get; set; }
 
         /// <summary>
-        /// Market items number
-        /// </summary>
-        [JsonProperty("market")]
-        public int? Market { get; set; }
-
-        /// <summary>
         /// Photo albums number
         /// </summary>
         [JsonProperty("albums")]
         public int? Albums { get; set; }
+
+        /// <summary>
+        /// Photos number
+        /// </summary>
+        [JsonProperty("photos")]
+        public int? Photos { get; set; }
 
         /// <summary>
         /// Audios number
@@ -37,16 +37,16 @@ namespace VkLib.Types.Groups
         public int? Audios { get; set; }
 
         /// <summary>
+        /// Market items number
+        /// </summary>
+        [JsonProperty("market")]
+        public int? Market { get; set; }
+
+        /// <summary>
         /// Docs number
         /// </summary>
         [JsonProperty("docs")]
         public int? Docs { get; set; }
-
-        /// <summary>
-        /// Videos number
-        /// </summary>
-        [JsonProperty("videos")]
-        public int? Videos { get; set; }
 
     }
 }

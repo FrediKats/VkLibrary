@@ -7,28 +7,28 @@ namespace VkLib.Types.Notifications
     public class Feedback
     {
         /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("geo")]
-        public VkLib.Types.Base.Geo Geo_ { get; set; }
-
-        /// <summary>
         /// Wall owner's ID
         /// </summary>
         [JsonProperty("to_id")]
         public int? ToId { get; set; }
 
         /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("attachments")]
+        public IEnumerable<VkLib.Types.Wall.WallpostAttachment> Attachments { get; set; }
+
+        /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("likes")]
+        public VkLib.Types.Base.LikesInfo Likes { get; set; }
+
+        /// <summary>
         /// Item ID
         /// </summary>
         [JsonProperty("id")]
-        public int? Id_ { get; set; }
-
-        /// <summary>
-        /// Reply text
-        /// </summary>
-        [JsonProperty("text")]
-        public string Text_ { get; set; }
+        public int? Id { get; set; }
 
         /// <summary>
         /// Reply author's ID
@@ -39,14 +39,14 @@ namespace VkLib.Types.Notifications
         /// <summary>
         /// Property
         /// </summary>
-        [JsonProperty("attachments")]
-        public IEnumerable<VkLib.Types.Wall.WallpostAttachment> Attachments_ { get; set; }
+        [JsonProperty("geo")]
+        public VkLib.Types.Base.Geo Geo { get; set; }
 
         /// <summary>
-        /// Property
+        /// Reply text
         /// </summary>
-        [JsonProperty("likes")]
-        public VkLib.Types.Base.LikesInfo Likes_ { get; set; }
+        [JsonProperty("text")]
+        public string Text { get; set; }
 
     }
 }

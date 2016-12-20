@@ -7,16 +7,28 @@ namespace VkLib.Types.Ads
     public class Campaign
     {
         /// <summary>
+        /// Campaign start time, as Unixtime
+        /// </summary>
+        [JsonProperty("start_time")]
+        public int? StartTime { get; set; }
+
+        /// <summary>
+        /// Campaign status
+        /// </summary>
+        [JsonProperty("status")]
+        public int? Status { get; set; }
+
+        /// <summary>
+        /// Campaign type
+        /// </summary>
+        [JsonProperty("type")]
+        public string Type { get; set; }
+
+        /// <summary>
         /// Campaign title
         /// </summary>
         [JsonProperty("name")]
-        public int? Name_ { get; set; }
-
-        /// <summary>
-        /// Campaign ID
-        /// </summary>
-        [JsonProperty("id")]
-        public int? Id_ { get; set; }
+        public int? Name { get; set; }
 
         /// <summary>
         /// Campaign's total limit, rubles
@@ -25,22 +37,10 @@ namespace VkLib.Types.Ads
         public string AllLimit { get; set; }
 
         /// <summary>
-        /// Campaign stop time, as Unixtime
+        /// Campaign ID
         /// </summary>
-        [JsonProperty("stop_time")]
-        public int? StopTime { get; set; }
-
-        /// <summary>
-        /// Campaign start time, as Unixtime
-        /// </summary>
-        [JsonProperty("start_time")]
-        public int? StartTime { get; set; }
-
-        /// <summary>
-        /// Campaign type
-        /// </summary>
-        [JsonProperty("type")]
-        public string Type_ { get; set; }
+        [JsonProperty("id")]
+        public int? Id { get; set; }
 
         /// <summary>
         /// Campaign's day limit, rubles
@@ -49,10 +49,10 @@ namespace VkLib.Types.Ads
         public string DayLimit { get; set; }
 
         /// <summary>
-        /// Campaign status
+        /// Campaign stop time, as Unixtime
         /// </summary>
-        [JsonProperty("status")]
-        public int? Status_ { get; set; }
+        [JsonProperty("stop_time")]
+        public int? StopTime { get; set; }
 
     }
 }

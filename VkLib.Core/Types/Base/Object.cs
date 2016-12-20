@@ -10,13 +10,13 @@ namespace VkLib.Types.Base
         /// Object ID
         /// </summary>
         [JsonProperty("id")]
-        public int? Id_ { get; set; }
+        public int? Id { get; set; }
 
         /// <summary>
         /// Object title
         /// </summary>
         [JsonProperty("title")]
-        public string Title_ { get; set; }
+        public string Title { get; set; }
 
     }
 }

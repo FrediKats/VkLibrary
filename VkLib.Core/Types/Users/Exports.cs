@@ -9,20 +9,20 @@ namespace VkLib.Types.Users
         /// <summary>
         /// Property
         /// </summary>
-        [JsonProperty("livejournal")]
-        public int? Livejournal_ { get; set; }
+        [JsonProperty("twitter")]
+        public int? Twitter { get; set; }
 
         /// <summary>
         /// Property
         /// </summary>
         [JsonProperty("facebook")]
-        public int? Facebook_ { get; set; }
+        public int? Facebook { get; set; }
 
         /// <summary>
         /// Property
         /// </summary>
-        [JsonProperty("twitter")]
-        public int? Twitter_ { get; set; }
+        [JsonProperty("livejournal")]
+        public int? Livejournal { get; set; }
 
     }
 }

@@ -10,13 +10,13 @@ namespace VkLib.Types.Status
         /// Property
         /// </summary>
         [JsonProperty("audio")]
-        public VkLib.Types.Audio.AudioFull Audio_ { get; set; }
+        public VkLib.Types.Audio.AudioFull Audio { get; set; }
 
         /// <summary>
         /// Status text
         /// </summary>
         [JsonProperty("text")]
-        public string Text_ { get; set; }
+        public string Text { get; set; }
 
     }
 }

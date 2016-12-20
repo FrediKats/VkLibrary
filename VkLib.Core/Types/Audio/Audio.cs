@@ -7,16 +7,10 @@ namespace VkLib.Types.Audio
     public class Audio
     {
         /// <summary>
-        /// Artist name
-        /// </summary>
-        [JsonProperty("artist")]
-        public string Artist_ { get; set; }
-
-        /// <summary>
         /// Audio ID
         /// </summary>
         [JsonProperty("id")]
-        public int? Id_ { get; set; }
+        public int? Id { get; set; }
 
         /// <summary>
         /// Audio owner's ID
@@ -25,22 +19,28 @@ namespace VkLib.Types.Audio
         public int? OwnerId { get; set; }
 
         /// <summary>
+        /// Access key for the audio
+        /// </summary>
+        [JsonProperty("access_key")]
+        public string AccessKey { get; set; }
+
+        /// <summary>
         /// URL of mp3 file
         /// </summary>
         [JsonProperty("url")]
-        public string Url_ { get; set; }
+        public string Url { get; set; }
 
         /// <summary>
         /// Title
         /// </summary>
         [JsonProperty("title")]
-        public string Title_ { get; set; }
+        public string Title { get; set; }
 
         /// <summary>
-        /// Access key for the audio
+        /// Artist name
         /// </summary>
-        [JsonProperty("access_key")]
-        public string AccessKey { get; set; }
+        [JsonProperty("artist")]
+        public string Artist { get; set; }
 
     }
 }

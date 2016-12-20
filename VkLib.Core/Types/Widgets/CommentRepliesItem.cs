@@ -7,30 +7,6 @@ namespace VkLib.Types.Widgets
     public class CommentRepliesItem
     {
         /// <summary>
-        /// User ID
-        /// </summary>
-        [JsonProperty("uid")]
-        public int? Uid { get; set; }
-
-        /// <summary>
-        /// Comment text
-        /// </summary>
-        [JsonProperty("text")]
-        public string Text { get; set; }
-
-        /// <summary>
-        /// Comment ID
-        /// </summary>
-        [JsonProperty("cid")]
-        public int? Cid { get; set; }
-
-        /// <summary>
-        /// Date when the comment has been added in Unixtime
-        /// </summary>
-        [JsonProperty("date")]
-        public int? Date { get; set; }
-
-        /// <summary>
         /// Property
         /// </summary>
         [JsonProperty("likes")]
@@ -41,6 +17,30 @@ namespace VkLib.Types.Widgets
         /// </summary>
         [JsonProperty("user")]
         public VkLib.Types.Users.UserFull User { get; set; }
+
+        /// <summary>
+        /// User ID
+        /// </summary>
+        [JsonProperty("uid")]
+        public int? Uid { get; set; }
+
+        /// <summary>
+        /// Date when the comment has been added in Unixtime
+        /// </summary>
+        [JsonProperty("date")]
+        public int? Date { get; set; }
+
+        /// <summary>
+        /// Comment ID
+        /// </summary>
+        [JsonProperty("cid")]
+        public int? Cid { get; set; }
+
+        /// <summary>
+        /// Comment text
+        /// </summary>
+        [JsonProperty("text")]
+        public string Text { get; set; }
 
     }
 }

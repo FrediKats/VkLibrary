@@ -7,16 +7,16 @@ namespace VkLib.Types.Ads
     public class Users
     {
         /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("accesses")]
-        public IEnumerable<VkLib.Types.Ads.Accesses> Accesses_ { get; set; }
-
-        /// <summary>
         /// User ID
         /// </summary>
         [JsonProperty("user_id")]
         public int? UserId { get; set; }
+
+        /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("accesses")]
+        public IEnumerable<VkLib.Types.Ads.Accesses> Accesses { get; set; }
 
     }
 }

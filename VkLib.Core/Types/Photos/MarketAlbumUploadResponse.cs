@@ -13,16 +13,16 @@ namespace VkLib.Types.Photos
         public string Hash { get; set; }
 
         /// <summary>
-        /// Upload server number
-        /// </summary>
-        [JsonProperty("server")]
-        public int? Server { get; set; }
-
-        /// <summary>
         /// Uploaded photo data
         /// </summary>
         [JsonProperty("photo")]
         public string Photo { get; set; }
+
+        /// <summary>
+        /// Upload server number
+        /// </summary>
+        [JsonProperty("server")]
+        public int? Server { get; set; }
 
         /// <summary>
         /// Community ID

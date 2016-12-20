@@ -7,22 +7,10 @@ namespace VkLib.Types.Messages
     public class AttachmentsHistory
     {
         /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("link")]
-        public VkLib.Types.Base.Link Link { get; set; }
-
-        /// <summary>
         /// Attachments type
         /// </summary>
         [JsonProperty("type")]
         public string Type { get; set; }
-
-        /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("video")]
-        public VkLib.Types.Video.Video Video { get; set; }
 
         /// <summary>
         /// Property
@@ -35,6 +23,18 @@ namespace VkLib.Types.Messages
         /// </summary>
         [JsonProperty("photo")]
         public VkLib.Types.Photos.Photo Photo { get; set; }
+
+        /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("video")]
+        public VkLib.Types.Video.Video Video { get; set; }
+
+        /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("link")]
+        public VkLib.Types.Base.Link Link { get; set; }
 
         /// <summary>
         /// Property

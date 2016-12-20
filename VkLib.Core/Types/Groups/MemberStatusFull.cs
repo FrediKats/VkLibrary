@@ -13,10 +13,10 @@ namespace VkLib.Types.Groups
         public int? UserId { get; set; }
 
         /// <summary>
-        /// Information whether user has send request to the group
+        /// Information whether user has been invited to the group
         /// </summary>
-        [JsonProperty("request")]
-        public int? Request { get; set; }
+        [JsonProperty("invitation")]
+        public int? Invitation { get; set; }
 
         /// <summary>
         /// Information whether user is a member of the group
@@ -25,10 +25,10 @@ namespace VkLib.Types.Groups
         public int? Member { get; set; }
 
         /// <summary>
-        /// Information whether user has been invited to the group
+        /// Information whether user has send request to the group
         /// </summary>
-        [JsonProperty("invitation")]
-        public int? Invitation { get; set; }
+        [JsonProperty("request")]
+        public int? Request { get; set; }
 
     }
 }

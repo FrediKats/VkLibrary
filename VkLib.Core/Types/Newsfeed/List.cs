@@ -13,22 +13,22 @@ namespace VkLib.Types.Newsfeed
         public int? NoReposts { get; set; }
 
         /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("source_ids")]
+        public IEnumerable<int?> SourceIds { get; set; }
+
+        /// <summary>
         /// List ID
         /// </summary>
         [JsonProperty("id")]
-        public int? Id_ { get; set; }
+        public int? Id { get; set; }
 
         /// <summary>
         /// List title
         /// </summary>
         [JsonProperty("title")]
-        public string Title_ { get; set; }
-
-        /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("source_ids")]
-        public IEnumerable<int?> SourceIds { get; set; }
+        public string Title { get; set; }
 
     }
 }

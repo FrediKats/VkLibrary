@@ -9,14 +9,14 @@ namespace VkLib.Types.Messages
         /// <summary>
         /// Property
         /// </summary>
-        [JsonProperty("link")]
-        public VkLib.Types.Base.Link Link { get; set; }
+        [JsonProperty("sticker")]
+        public VkLib.Types.Base.Sticker Sticker { get; set; }
 
         /// <summary>
         /// Property
         /// </summary>
-        [JsonProperty("video")]
-        public VkLib.Types.Video.Video Video { get; set; }
+        [JsonProperty("wall")]
+        public VkLib.Types.Wall.WallpostAttached Wall { get; set; }
 
         /// <summary>
         /// Property
@@ -27,14 +27,20 @@ namespace VkLib.Types.Messages
         /// <summary>
         /// Property
         /// </summary>
-        [JsonProperty("photo")]
-        public VkLib.Types.Photos.Photo Photo { get; set; }
+        [JsonProperty("wall_reply")]
+        public VkLib.Types.Wall.WallComment WallReply { get; set; }
 
         /// <summary>
         /// Property
         /// </summary>
-        [JsonProperty("wall_reply")]
-        public VkLib.Types.Wall.WallComment WallReply_ { get; set; }
+        [JsonProperty("video")]
+        public VkLib.Types.Video.Video Video { get; set; }
+
+        /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("link")]
+        public VkLib.Types.Base.Link Link { get; set; }
 
         /// <summary>
         /// Property
@@ -45,32 +51,26 @@ namespace VkLib.Types.Messages
         /// <summary>
         /// Property
         /// </summary>
-        [JsonProperty("market")]
-        public VkLib.Types.Market.MarketItem Market { get; set; }
-
-        /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("sticker")]
-        public VkLib.Types.Base.Sticker Sticker { get; set; }
-
-        /// <summary>
-        /// Property
-        /// </summary>
         [JsonProperty("gift")]
         public VkLib.Types.Gifts.Layout Gift { get; set; }
-
-        /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("wall")]
-        public VkLib.Types.Wall.WallpostAttached Wall { get; set; }
 
         /// <summary>
         /// Attachment type
         /// </summary>
         [JsonProperty("type")]
         public string Type { get; set; }
+
+        /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("photo")]
+        public VkLib.Types.Photos.Photo Photo { get; set; }
+
+        /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("market")]
+        public VkLib.Types.Market.MarketItem Market { get; set; }
 
         /// <summary>
         /// Property

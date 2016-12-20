@@ -10,7 +10,7 @@ namespace VkLib.Types.Groups
         /// User ID
         /// </summary>
         [JsonProperty("user_id")]
-        public int? UserId_ { get; set; }
+        public int? UserId { get; set; }
 
         /// <summary>
         /// Information whether user is a member of the group

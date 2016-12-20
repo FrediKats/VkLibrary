@@ -7,22 +7,22 @@ namespace VkLib.Types.Stats
     public class City
     {
         /// <summary>
-        /// City name
-        /// </summary>
-        [JsonProperty("name")]
-        public string Name_ { get; set; }
-
-        /// <summary>
         /// Visitors number
         /// </summary>
         [JsonProperty("visitors")]
-        public int? Visitors_ { get; set; }
+        public int? Visitors { get; set; }
+
+        /// <summary>
+        /// City name
+        /// </summary>
+        [JsonProperty("name")]
+        public string Name { get; set; }
 
         /// <summary>
         /// City ID
         /// </summary>
         [JsonProperty("value")]
-        public int? Value_ { get; set; }
+        public int? Value { get; set; }
 
     }
 }

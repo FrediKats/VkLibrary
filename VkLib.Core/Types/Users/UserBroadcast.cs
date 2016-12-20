@@ -10,7 +10,7 @@ namespace VkLib.Types.Users
         /// Property
         /// </summary>
         [JsonProperty("status_audio")]
-        public VkLib.Types.Audio.AudioFull StatusAudio_ { get; set; }
+        public VkLib.Types.Audio.AudioFull StatusAudio { get; set; }
 
     }
 }

@@ -10,7 +10,7 @@ namespace VkLib.Types.Ads
         /// URL
         /// </summary>
         [JsonProperty("redirect_url")]
-        public string RedirectUrl_ { get; set; }
+        public string RedirectUrl { get; set; }
 
         /// <summary>
         /// Link status

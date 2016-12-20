@@ -9,20 +9,20 @@ namespace VkLib.Types.Ads
         /// <summary>
         /// Property
         /// </summary>
-        [JsonProperty("stats")]
-        public VkLib.Types.Ads.StatsFormat Stats_ { get; set; }
+        [JsonProperty("type")]
+        public string Type { get; set; }
 
         /// <summary>
         /// Property
         /// </summary>
-        [JsonProperty("type")]
-        public string Type_ { get; set; }
+        [JsonProperty("stats")]
+        public VkLib.Types.Ads.StatsFormat Stats_ { get; set; }
 
         /// <summary>
         /// Object ID
         /// </summary>
         [JsonProperty("id")]
-        public int? Id_ { get; set; }
+        public int? Id { get; set; }
 
     }
 }

@@ -7,12 +7,6 @@ namespace VkLib.Types.Oauth
     public class Error
     {
         /// <summary>
-        /// Error description
-        /// </summary>
-        [JsonProperty("error_description")]
-        public string ErrorDescription { get; set; }
-
-        /// <summary>
         /// URI for validation
         /// </summary>
         [JsonProperty("redirect_uri")]
@@ -23,6 +17,12 @@ namespace VkLib.Types.Oauth
         /// </summary>
         [JsonProperty("error")]
         public string Error_ { get; set; }
+
+        /// <summary>
+        /// Error description
+        /// </summary>
+        [JsonProperty("error_description")]
+        public string ErrorDescription { get; set; }
 
     }
 }

@@ -10,13 +10,13 @@ namespace VkLib.Types.Orders
         /// Currency name
         /// </summary>
         [JsonProperty("currency")]
-        public string Currency_ { get; set; }
+        public string Currency { get; set; }
 
         /// <summary>
         /// Property
         /// </summary>
         [JsonProperty("amounts")]
-        public IEnumerable<VkLib.Types.Orders.AmountItem> Amounts_ { get; set; }
+        public IEnumerable<VkLib.Types.Orders.AmountItem> Amounts { get; set; }
 
     }
 }

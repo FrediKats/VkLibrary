@@ -10,13 +10,13 @@ namespace VkLib.Types.Ads
         /// Property
         /// </summary>
         [JsonProperty("paragraphs")]
-        public IEnumerable<VkLib.Types.Ads.Paragraphs> Paragraphs_ { get; set; }
+        public IEnumerable<VkLib.Types.Ads.Paragraphs> Paragraphs { get; set; }
 
         /// <summary>
         /// Comment
         /// </summary>
         [JsonProperty("title")]
-        public string Title_ { get; set; }
+        public string Title { get; set; }
 
     }
 }

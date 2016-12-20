@@ -7,22 +7,16 @@ namespace VkLib.Types.Pages
     public class WikipageVersion
     {
         /// <summary>
-        /// Date when the page has been edited in Unixtime
-        /// </summary>
-        [JsonProperty("edited")]
-        public int? Edited { get; set; }
-
-        /// <summary>
         /// Last editor name
         /// </summary>
         [JsonProperty("editor_name")]
-        public string EditorName_ { get; set; }
+        public string EditorName { get; set; }
 
         /// <summary>
-        /// Last editor ID
+        /// Page size in bytes
         /// </summary>
-        [JsonProperty("editor_id")]
-        public int? EditorId_ { get; set; }
+        [JsonProperty("length")]
+        public int? Length { get; set; }
 
         /// <summary>
         /// Version ID
@@ -31,10 +25,16 @@ namespace VkLib.Types.Pages
         public int? Id { get; set; }
 
         /// <summary>
-        /// Page size in bytes
+        /// Last editor ID
         /// </summary>
-        [JsonProperty("length")]
-        public int? Length { get; set; }
+        [JsonProperty("editor_id")]
+        public int? EditorId { get; set; }
+
+        /// <summary>
+        /// Date when the page has been edited in Unixtime
+        /// </summary>
+        [JsonProperty("edited")]
+        public int? Edited { get; set; }
 
     }
 }

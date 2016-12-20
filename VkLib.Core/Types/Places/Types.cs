@@ -10,19 +10,19 @@ namespace VkLib.Types.Places
         /// URL of the place's icon
         /// </summary>
         [JsonProperty("icon")]
-        public string Icon_ { get; set; }
+        public string Icon { get; set; }
 
         /// <summary>
         /// Place type ID
         /// </summary>
         [JsonProperty("id")]
-        public int? Id_ { get; set; }
+        public int? Id { get; set; }
 
         /// <summary>
         /// Place type title
         /// </summary>
         [JsonProperty("title")]
-        public int? Title_ { get; set; }
+        public int? Title { get; set; }
 
     }
 }

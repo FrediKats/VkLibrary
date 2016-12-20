@@ -7,22 +7,10 @@ namespace VkLib.Types.Users
     public class UserCounters
     {
         /// <summary>
-        /// Photos number
+        /// Online friends number
         /// </summary>
-        [JsonProperty("photos")]
-        public int? Photos { get; set; }
-
-        /// <summary>
-        /// Number of videos with user
-        /// </summary>
-        [JsonProperty("user_videos")]
-        public int? UserVideos_ { get; set; }
-
-        /// <summary>
-        /// Friends number
-        /// </summary>
-        [JsonProperty("friends")]
-        public int? Friends { get; set; }
+        [JsonProperty("online_friends")]
+        public int? OnlineFriends { get; set; }
 
         /// <summary>
         /// Albums number
@@ -31,22 +19,34 @@ namespace VkLib.Types.Users
         public int? Albums { get; set; }
 
         /// <summary>
-        /// Audios number
+        /// Number of photos with user
         /// </summary>
-        [JsonProperty("audios")]
-        public int? Audios { get; set; }
-
-        /// <summary>
-        /// Notes number
-        /// </summary>
-        [JsonProperty("notes")]
-        public int? Notes { get; set; }
+        [JsonProperty("user_photos")]
+        public int? UserPhotos { get; set; }
 
         /// <summary>
         /// Subscriptions number
         /// </summary>
         [JsonProperty("subscriptions")]
         public int? Subscriptions { get; set; }
+
+        /// <summary>
+        /// Gifts number
+        /// </summary>
+        [JsonProperty("gifts")]
+        public int? Gifts { get; set; }
+
+        /// <summary>
+        /// Number of videos with user
+        /// </summary>
+        [JsonProperty("user_videos")]
+        public int? UserVideos { get; set; }
+
+        /// <summary>
+        /// Followers number
+        /// </summary>
+        [JsonProperty("followers")]
+        public int? Followers { get; set; }
 
         /// <summary>
         /// Public pages number
@@ -61,34 +61,34 @@ namespace VkLib.Types.Users
         public int? Videos { get; set; }
 
         /// <summary>
-        /// Online friends number
+        /// Photos number
         /// </summary>
-        [JsonProperty("online_friends")]
-        public int? OnlineFriends_ { get; set; }
+        [JsonProperty("photos")]
+        public int? Photos { get; set; }
 
         /// <summary>
-        /// Followers number
+        /// Audios number
         /// </summary>
-        [JsonProperty("followers")]
-        public int? Followers { get; set; }
+        [JsonProperty("audios")]
+        public int? Audios { get; set; }
 
         /// <summary>
-        /// Number of photos with user
+        /// Friends number
         /// </summary>
-        [JsonProperty("user_photos")]
-        public int? UserPhotos_ { get; set; }
+        [JsonProperty("friends")]
+        public int? Friends { get; set; }
+
+        /// <summary>
+        /// Notes number
+        /// </summary>
+        [JsonProperty("notes")]
+        public int? Notes { get; set; }
 
         /// <summary>
         /// Communities number
         /// </summary>
         [JsonProperty("groups")]
         public int? Groups { get; set; }
-
-        /// <summary>
-        /// Gifts number
-        /// </summary>
-        [JsonProperty("gifts")]
-        public int? Gifts { get; set; }
 
     }
 }

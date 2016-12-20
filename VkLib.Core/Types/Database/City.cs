@@ -7,22 +7,22 @@ namespace VkLib.Types.Database
     public class City : VkLib.Types.Base.Object
     {
         /// <summary>
+        /// Region title
+        /// </summary>
+        [JsonProperty("region")]
+        public string Region { get; set; }
+
+        /// <summary>
         /// Area title
         /// </summary>
         [JsonProperty("area")]
-        public string Area_ { get; set; }
+        public string Area { get; set; }
 
         /// <summary>
         /// Information whether the city is included in important cities list
         /// </summary>
         [JsonProperty("important")]
-        public int? Important_ { get; set; }
-
-        /// <summary>
-        /// Region title
-        /// </summary>
-        [JsonProperty("region")]
-        public string Region_ { get; set; }
+        public int? Important { get; set; }
 
     }
 }

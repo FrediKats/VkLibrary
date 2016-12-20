@@ -10,25 +10,25 @@ namespace VkLib.Types.Apps
         /// Score number
         /// </summary>
         [JsonProperty("score")]
-        public int? Score_ { get; set; }
+        public int? Score { get; set; }
+
+        /// <summary>
+        /// Level
+        /// </summary>
+        [JsonProperty("level")]
+        public int? Level { get; set; }
+
+        /// <summary>
+        /// Points number
+        /// </summary>
+        [JsonProperty("points")]
+        public int? Points { get; set; }
 
         /// <summary>
         /// User ID
         /// </summary>
         [JsonProperty("user_id")]
         public int? UserId { get; set; }
-
-        /// <summary>
-        /// Level
-        /// </summary>
-        [JsonProperty("level")]
-        public int? Level_ { get; set; }
-
-        /// <summary>
-        /// Points number
-        /// </summary>
-        [JsonProperty("points")]
-        public int? Points_ { get; set; }
 
     }
 }

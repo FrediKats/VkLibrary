@@ -10,13 +10,13 @@ namespace VkLib.Types.Stats
         /// Visitors number
         /// </summary>
         [JsonProperty("visitors")]
-        public int? Visitors_ { get; set; }
+        public int? Visitors { get; set; }
 
         /// <summary>
         /// Sex
         /// </summary>
         [JsonProperty("value")]
-        public string Value_ { get; set; }
+        public string Value { get; set; }
 
     }
 }

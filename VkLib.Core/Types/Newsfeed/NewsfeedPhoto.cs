@@ -13,22 +13,22 @@ namespace VkLib.Types.Newsfeed
         public VkLib.Types.Base.ObjectCount Comments { get; set; }
 
         /// <summary>
-        /// Information whether current user can repost the photo
+        /// Property
         /// </summary>
-        [JsonProperty("can_repost")]
-        public int? CanRepost_ { get; set; }
+        [JsonProperty("likes")]
+        public VkLib.Types.Base.Likes Likes { get; set; }
 
         /// <summary>
         /// Information whether current user can comment the photo
         /// </summary>
         [JsonProperty("can_comment")]
-        public int? CanComment_ { get; set; }
+        public int? CanComment { get; set; }
 
         /// <summary>
-        /// Property
+        /// Information whether current user can repost the photo
         /// </summary>
-        [JsonProperty("likes")]
-        public VkLib.Types.Base.Likes Likes { get; set; }
+        [JsonProperty("can_repost")]
+        public int? CanRepost { get; set; }
 
     }
 }

@@ -10,25 +10,25 @@ namespace VkLib.Types.Wall
         /// Property
         /// </summary>
         [JsonProperty("geo")]
-        public VkLib.Types.Base.Geo Geo_ { get; set; }
+        public VkLib.Types.Base.Geo Geo { get; set; }
 
         /// <summary>
-        /// Post signer ID
+        /// Property
         /// </summary>
-        [JsonProperty("signer_id")]
-        public int? SignerId { get; set; }
+        [JsonProperty("attachments")]
+        public IEnumerable<VkLib.Types.Wall.WallpostAttachment> Attachments { get; set; }
+
+        /// <summary>
+        /// Date of publishing in Unixtime
+        /// </summary>
+        [JsonProperty("date")]
+        public int? Date { get; set; }
 
         /// <summary>
         /// Post ID
         /// </summary>
         [JsonProperty("id")]
-        public int? Id_ { get; set; }
-
-        /// <summary>
-        /// Post text
-        /// </summary>
-        [JsonProperty("text")]
-        public string Text_ { get; set; }
+        public int? Id { get; set; }
 
         /// <summary>
         /// Wall owner's ID
@@ -39,20 +39,14 @@ namespace VkLib.Types.Wall
         /// <summary>
         /// Property
         /// </summary>
-        [JsonProperty("attachments")]
-        public IEnumerable<VkLib.Types.Wall.WallpostAttachment> Attachments_ { get; set; }
+        [JsonProperty("post_source")]
+        public VkLib.Types.Wall.PostSource PostSource { get; set; }
 
         /// <summary>
-        /// Date of publishing in Unixtime
+        /// Post text
         /// </summary>
-        [JsonProperty("date")]
-        public int? Date_ { get; set; }
-
-        /// <summary>
-        /// Post author ID
-        /// </summary>
-        [JsonProperty("from_id")]
-        public int? FromId { get; set; }
+        [JsonProperty("text")]
+        public string Text { get; set; }
 
         /// <summary>
         /// Property
@@ -61,10 +55,16 @@ namespace VkLib.Types.Wall
         public string PostType { get; set; }
 
         /// <summary>
-        /// Property
+        /// Post signer ID
         /// </summary>
-        [JsonProperty("post_source")]
-        public VkLib.Types.Wall.PostSource PostSource { get; set; }
+        [JsonProperty("signer_id")]
+        public int? SignerId { get; set; }
+
+        /// <summary>
+        /// Post author ID
+        /// </summary>
+        [JsonProperty("from_id")]
+        public int? FromId { get; set; }
 
     }
 }

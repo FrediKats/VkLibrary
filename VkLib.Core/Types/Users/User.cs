@@ -7,10 +7,22 @@ namespace VkLib.Types.Users
     public class User : VkLib.Types.Users.UserMin
     {
         /// <summary>
-        /// URL of square photo of the user with 100 pixels in width
+        /// User sex
         /// </summary>
-        [JsonProperty("photo_100")]
-        public string Photo100 { get; set; }
+        [JsonProperty("sex")]
+        public int? Sex { get; set; }
+
+        /// <summary>
+        /// URL of square photo of the user with 50 pixels in width
+        /// </summary>
+        [JsonProperty("photo_50")]
+        public string Photo50 { get; set; }
+
+        /// <summary>
+        /// Information whether the user is online
+        /// </summary>
+        [JsonProperty("online")]
+        public int? Online { get; set; }
 
         /// <summary>
         /// Domain name of the user's page
@@ -19,22 +31,10 @@ namespace VkLib.Types.Users
         public string ScreenName { get; set; }
 
         /// <summary>
-        /// User sex
+        /// URL of square photo of the user with 100 pixels in width
         /// </summary>
-        [JsonProperty("sex")]
-        public int? Sex_ { get; set; }
-
-        /// <summary>
-        /// Information whether the user is online
-        /// </summary>
-        [JsonProperty("online")]
-        public int? Online_ { get; set; }
-
-        /// <summary>
-        /// URL of square photo of the user with 50 pixels in width
-        /// </summary>
-        [JsonProperty("photo_50")]
-        public string Photo50 { get; set; }
+        [JsonProperty("photo_100")]
+        public string Photo100 { get; set; }
 
     }
 }

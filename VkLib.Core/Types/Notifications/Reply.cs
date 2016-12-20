@@ -10,19 +10,19 @@ namespace VkLib.Types.Notifications
         /// Date when the reply has been created in Unixtime
         /// </summary>
         [JsonProperty("date")]
-        public int? Date_ { get; set; }
+        public int? Date { get; set; }
 
         /// <summary>
         /// Reply ID
         /// </summary>
         [JsonProperty("id")]
-        public int? Id_ { get; set; }
+        public int? Id { get; set; }
 
         /// <summary>
         /// Reply text
         /// </summary>
         [JsonProperty("text")]
-        public int? Text_ { get; set; }
+        public int? Text { get; set; }
 
     }
 }

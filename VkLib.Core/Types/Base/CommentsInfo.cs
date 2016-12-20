@@ -16,7 +16,7 @@ namespace VkLib.Types.Base
         /// Information whether current user can comment the post
         /// </summary>
         [JsonProperty("can_post")]
-        public int? CanPost_ { get; set; }
+        public int? CanPost { get; set; }
 
     }
 }

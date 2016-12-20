@@ -7,10 +7,10 @@ namespace VkLib.Types.Market
     public class MarketCategory
     {
         /// <summary>
-        /// Category name
+        /// Property
         /// </summary>
-        [JsonProperty("name")]
-        public string Name { get; set; }
+        [JsonProperty("section")]
+        public VkLib.Types.Market.Section Section { get; set; }
 
         /// <summary>
         /// Category ID
@@ -19,10 +19,10 @@ namespace VkLib.Types.Market
         public int? Id { get; set; }
 
         /// <summary>
-        /// Property
+        /// Category name
         /// </summary>
-        [JsonProperty("section")]
-        public VkLib.Types.Market.Section Section { get; set; }
+        [JsonProperty("name")]
+        public string Name { get; set; }
 
     }
 }

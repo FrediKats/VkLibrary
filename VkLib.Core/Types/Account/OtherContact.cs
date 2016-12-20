@@ -10,7 +10,7 @@ namespace VkLib.Types.Account
         /// Mutual friends count
         /// </summary>
         [JsonProperty("common_count")]
-        public int? CommonCount_ { get; set; }
+        public int? CommonCount { get; set; }
 
         /// <summary>
         /// Contact

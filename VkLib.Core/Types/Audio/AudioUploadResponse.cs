@@ -13,6 +13,12 @@ namespace VkLib.Types.Audio
         public string Audio { get; set; }
 
         /// <summary>
+        /// Uploading hash
+        /// </summary>
+        [JsonProperty("hash")]
+        public string Hash { get; set; }
+
+        /// <summary>
         /// Redirect URL
         /// </summary>
         [JsonProperty("redirect")]
@@ -23,12 +29,6 @@ namespace VkLib.Types.Audio
         /// </summary>
         [JsonProperty("server")]
         public int? Server { get; set; }
-
-        /// <summary>
-        /// Uploading hash
-        /// </summary>
-        [JsonProperty("hash")]
-        public string Hash { get; set; }
 
     }
 }

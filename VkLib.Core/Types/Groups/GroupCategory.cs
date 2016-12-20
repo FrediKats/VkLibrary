@@ -7,12 +7,6 @@ namespace VkLib.Types.Groups
     public class GroupCategory
     {
         /// <summary>
-        /// Category name
-        /// </summary>
-        [JsonProperty("name")]
-        public string Name { get; set; }
-
-        /// <summary>
         /// Property
         /// </summary>
         [JsonProperty("subcategories")]
@@ -23,6 +17,12 @@ namespace VkLib.Types.Groups
         /// </summary>
         [JsonProperty("id")]
         public int? Id { get; set; }
+
+        /// <summary>
+        /// Category name
+        /// </summary>
+        [JsonProperty("name")]
+        public string Name { get; set; }
 
     }
 }

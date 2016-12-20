@@ -13,34 +13,10 @@ namespace VkLib.Types.Places
         public string Address { get; set; }
 
         /// <summary>
-        /// Place ID
+        /// Place latitude
         /// </summary>
-        [JsonProperty("id")]
-        public int? Id { get; set; }
-
-        /// <summary>
-        /// City ID
-        /// </summary>
-        [JsonProperty("city")]
-        public int? City { get; set; }
-
-        /// <summary>
-        /// Date of the place creation in Unixtime
-        /// </summary>
-        [JsonProperty("created")]
-        public int? Created { get; set; }
-
-        /// <summary>
-        /// Country ID
-        /// </summary>
-        [JsonProperty("country")]
-        public int? Country { get; set; }
-
-        /// <summary>
-        /// URL of the place's icon
-        /// </summary>
-        [JsonProperty("icon")]
-        public string Icon { get; set; }
+        [JsonProperty("latitude")]
+        public uint? Latitude { get; set; }
 
         /// <summary>
         /// Checkins number
@@ -49,10 +25,16 @@ namespace VkLib.Types.Places
         public int? Checkins { get; set; }
 
         /// <summary>
-        /// Place longitude
+        /// Place ID
         /// </summary>
-        [JsonProperty("longitude")]
-        public uint? Longitude { get; set; }
+        [JsonProperty("id")]
+        public int? Id { get; set; }
+
+        /// <summary>
+        /// Community ID
+        /// </summary>
+        [JsonProperty("group_id")]
+        public int? GroupId { get; set; }
 
         /// <summary>
         /// Distance to the place
@@ -61,34 +43,52 @@ namespace VkLib.Types.Places
         public int? Distance { get; set; }
 
         /// <summary>
-        /// Place type
-        /// </summary>
-        [JsonProperty("type")]
-        public string Type { get; set; }
-
-        /// <summary>
-        /// URL of the community's photo
-        /// </summary>
-        [JsonProperty("group_photo")]
-        public string GroupPhoto_ { get; set; }
-
-        /// <summary>
-        /// Community ID
-        /// </summary>
-        [JsonProperty("group_id")]
-        public int? GroupId_ { get; set; }
-
-        /// <summary>
         /// Place title
         /// </summary>
         [JsonProperty("title")]
         public string Title { get; set; }
 
         /// <summary>
-        /// Place latitude
+        /// URL of the community's photo
         /// </summary>
-        [JsonProperty("latitude")]
-        public uint? Latitude { get; set; }
+        [JsonProperty("group_photo")]
+        public string GroupPhoto { get; set; }
+
+        /// <summary>
+        /// Country ID
+        /// </summary>
+        [JsonProperty("country")]
+        public int? Country { get; set; }
+
+        /// <summary>
+        /// Place longitude
+        /// </summary>
+        [JsonProperty("longitude")]
+        public uint? Longitude { get; set; }
+
+        /// <summary>
+        /// Place type
+        /// </summary>
+        [JsonProperty("type")]
+        public string Type { get; set; }
+
+        /// <summary>
+        /// Date of the place creation in Unixtime
+        /// </summary>
+        [JsonProperty("created")]
+        public int? Created { get; set; }
+
+        /// <summary>
+        /// URL of the place's icon
+        /// </summary>
+        [JsonProperty("icon")]
+        public string Icon { get; set; }
+
+        /// <summary>
+        /// City ID
+        /// </summary>
+        [JsonProperty("city")]
+        public int? City { get; set; }
 
     }
 }

@@ -7,12 +7,6 @@ namespace VkLib.Types.Messages
     public class LongpollParams
     {
         /// <summary>
-        /// Key
-        /// </summary>
-        [JsonProperty("key")]
-        public string Key { get; set; }
-
-        /// <summary>
         /// Server URL
         /// </summary>
         [JsonProperty("server")]
@@ -23,6 +17,12 @@ namespace VkLib.Types.Messages
         /// </summary>
         [JsonProperty("ts")]
         public int? Ts { get; set; }
+
+        /// <summary>
+        /// Key
+        /// </summary>
+        [JsonProperty("key")]
+        public string Key { get; set; }
 
     }
 }

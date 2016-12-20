@@ -7,6 +7,18 @@ namespace VkLib.Types.Ads
     public class Account
     {
         /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("access_role")]
+        public string AccessRole { get; set; }
+
+        /// <summary>
+        /// Account type
+        /// </summary>
+        [JsonProperty("account_type")]
+        public string AccountType { get; set; }
+
+        /// <summary>
         /// Information whether account is active
         /// </summary>
         [JsonProperty("account_status")]
@@ -17,18 +29,6 @@ namespace VkLib.Types.Ads
         /// </summary>
         [JsonProperty("account_id")]
         public int? AccountId { get; set; }
-
-        /// <summary>
-        /// Account type
-        /// </summary>
-        [JsonProperty("account_type")]
-        public string AccountType { get; set; }
-
-        /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("access_role")]
-        public string AccessRole { get; set; }
 
     }
 }

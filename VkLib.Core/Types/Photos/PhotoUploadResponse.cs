@@ -7,16 +7,10 @@ namespace VkLib.Types.Photos
     public class PhotoUploadResponse
     {
         /// <summary>
-        /// Uploaded photos data
+        /// Album ID
         /// </summary>
-        [JsonProperty("photos_list")]
-        public string PhotosList { get; set; }
-
-        /// <summary>
-        /// Uploading hash
-        /// </summary>
-        [JsonProperty("hash")]
-        public string Hash { get; set; }
+        [JsonProperty("aid")]
+        public int? Aid { get; set; }
 
         /// <summary>
         /// Upload server number
@@ -25,10 +19,16 @@ namespace VkLib.Types.Photos
         public int? Server { get; set; }
 
         /// <summary>
-        /// Album ID
+        /// Uploading hash
         /// </summary>
-        [JsonProperty("aid")]
-        public int? Aid { get; set; }
+        [JsonProperty("hash")]
+        public string Hash { get; set; }
+
+        /// <summary>
+        /// Uploaded photos data
+        /// </summary>
+        [JsonProperty("photos_list")]
+        public string PhotosList { get; set; }
 
     }
 }

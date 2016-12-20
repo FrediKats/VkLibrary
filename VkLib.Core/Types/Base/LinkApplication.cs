@@ -16,7 +16,7 @@ namespace VkLib.Types.Base
         /// Application Id
         /// </summary>
         [JsonProperty("app_id")]
-        public uint? AppId_ { get; set; }
+        public uint? AppId { get; set; }
 
     }
 }

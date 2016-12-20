@@ -7,10 +7,22 @@ namespace VkLib.Types.Users
     public class Military
     {
         /// <summary>
+        /// Unit name
+        /// </summary>
+        [JsonProperty("unit")]
+        public string Unit { get; set; }
+
+        /// <summary>
         /// Unit ID
         /// </summary>
         [JsonProperty("unit_id")]
         public int? UnitId { get; set; }
+
+        /// <summary>
+        /// Till year
+        /// </summary>
+        [JsonProperty("until")]
+        public int? Until { get; set; }
 
         /// <summary>
         /// Country ID
@@ -22,19 +34,7 @@ namespace VkLib.Types.Users
         /// From year
         /// </summary>
         [JsonProperty("from")]
-        public int? From_ { get; set; }
-
-        /// <summary>
-        /// Till year
-        /// </summary>
-        [JsonProperty("until")]
-        public int? Until_ { get; set; }
-
-        /// <summary>
-        /// Unit name
-        /// </summary>
-        [JsonProperty("unit")]
-        public string Unit_ { get; set; }
+        public int? From { get; set; }
 
     }
 }

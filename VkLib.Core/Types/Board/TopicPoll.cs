@@ -16,25 +16,19 @@ namespace VkLib.Types.Board
         /// Information whether the poll is closed
         /// </summary>
         [JsonProperty("is_closed")]
-        public int? IsClosed_ { get; set; }
+        public int? IsClosed { get; set; }
 
         /// <summary>
-        /// Poll owner's ID
+        /// Poll question
         /// </summary>
-        [JsonProperty("owner_id")]
-        public int? OwnerId_ { get; set; }
+        [JsonProperty("question")]
+        public string Question { get; set; }
 
         /// <summary>
         /// Poll ID
         /// </summary>
         [JsonProperty("poll_id")]
-        public int? PollId_ { get; set; }
-
-        /// <summary>
-        /// Current user's answer ID
-        /// </summary>
-        [JsonProperty("answer_id")]
-        public int? AnswerId_ { get; set; }
+        public int? PollId { get; set; }
 
         /// <summary>
         /// Property
@@ -49,10 +43,16 @@ namespace VkLib.Types.Board
         public int? Created { get; set; }
 
         /// <summary>
-        /// Poll question
+        /// Current user's answer ID
         /// </summary>
-        [JsonProperty("question")]
-        public string Question { get; set; }
+        [JsonProperty("answer_id")]
+        public int? AnswerId { get; set; }
+
+        /// <summary>
+        /// Poll owner's ID
+        /// </summary>
+        [JsonProperty("owner_id")]
+        public int? OwnerId { get; set; }
 
     }
 }

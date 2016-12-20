@@ -7,10 +7,10 @@ namespace VkLib.Types.Photos
     public class PhotoSizes
     {
         /// <summary>
-        /// Width in px
+        /// URL of the image
         /// </summary>
-        [JsonProperty("width")]
-        public int? Width { get; set; }
+        [JsonProperty("src")]
+        public string Src { get; set; }
 
         /// <summary>
         /// Size type
@@ -19,10 +19,10 @@ namespace VkLib.Types.Photos
         public string Type { get; set; }
 
         /// <summary>
-        /// URL of the image
+        /// Width in px
         /// </summary>
-        [JsonProperty("src")]
-        public string Src { get; set; }
+        [JsonProperty("width")]
+        public int? Width { get; set; }
 
         /// <summary>
         /// Height in px

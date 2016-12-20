@@ -16,7 +16,7 @@ namespace VkLib.Types.Audio
         /// Lyrics text
         /// </summary>
         [JsonProperty("text")]
-        public string Text_ { get; set; }
+        public string Text { get; set; }
 
     }
 }

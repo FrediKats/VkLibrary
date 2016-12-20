@@ -9,8 +9,8 @@ namespace VkLib.Types.Users
         /// <summary>
         /// Property
         /// </summary>
-        [JsonProperty("crop")]
-        public VkLib.Types.Users.CropPhotoCrop Crop { get; set; }
+        [JsonProperty("rect")]
+        public VkLib.Types.Users.CropPhotoRect Rect { get; set; }
 
         /// <summary>
         /// Property
@@ -21,8 +21,8 @@ namespace VkLib.Types.Users
         /// <summary>
         /// Property
         /// </summary>
-        [JsonProperty("rect")]
-        public VkLib.Types.Users.CropPhotoRect Rect { get; set; }
+        [JsonProperty("crop")]
+        public VkLib.Types.Users.CropPhotoCrop Crop { get; set; }
 
     }
 }

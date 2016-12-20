@@ -9,6 +9,12 @@ namespace VkLib.Types.Account
         /// <summary>
         /// Property
         /// </summary>
+        [JsonProperty("contact")]
+        public string Contact { get; set; }
+
+        /// <summary>
+        /// Property
+        /// </summary>
         [JsonProperty("sort_num")]
         public int? SortNum { get; set; }
 
@@ -17,12 +23,6 @@ namespace VkLib.Types.Account
         /// </summary>
         [JsonProperty("request_sent")]
         public int? RequestSent { get; set; }
-
-        /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("contact")]
-        public string Contact { get; set; }
 
     }
 }

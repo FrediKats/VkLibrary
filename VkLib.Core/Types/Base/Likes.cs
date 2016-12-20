@@ -10,7 +10,7 @@ namespace VkLib.Types.Base
         /// Likes number
         /// </summary>
         [JsonProperty("count")]
-        public int? Count_ { get; set; }
+        public int? Count { get; set; }
 
         /// <summary>
         /// Information whether current user likes the photo

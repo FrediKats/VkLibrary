@@ -203,7 +203,7 @@ class JObjects:
         ls.pop(0)
         if len(ls) == 1 and ls[0] == name:
             camel_name += "_"
-        elif len(ls) == len(name.split("_")):
+        elif ls == name.split("_"):
             camel_name += "_"
 
         # Write text

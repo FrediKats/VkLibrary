@@ -22,7 +22,7 @@ namespace VkLib.Types.Market
         /// Market album owner's ID
         /// </summary>
         [JsonProperty("owner_id")]
-        public int? OwnerId_ { get; set; }
+        public int? OwnerId { get; set; }
 
         /// <summary>
         /// Property
@@ -31,16 +31,16 @@ namespace VkLib.Types.Market
         public VkLib.Types.Photos.Photo Photo { get; set; }
 
         /// <summary>
+        /// Date when album has been updated last time in Unixtime
+        /// </summary>
+        [JsonProperty("updated_time")]
+        public int? UpdatedTime { get; set; }
+
+        /// <summary>
         /// Market album title
         /// </summary>
         [JsonProperty("title")]
         public string Title { get; set; }
-
-        /// <summary>
-        /// Date when album has been updated last time in Unixtime
-        /// </summary>
-        [JsonProperty("updated_time")]
-        public int? UpdatedTime_ { get; set; }
 
     }
 }

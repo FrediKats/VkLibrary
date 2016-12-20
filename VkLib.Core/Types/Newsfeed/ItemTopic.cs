@@ -22,7 +22,7 @@ namespace VkLib.Types.Newsfeed
         /// Topic post ID
         /// </summary>
         [JsonProperty("post_id")]
-        public int? PostId_ { get; set; }
+        public int? PostId { get; set; }
 
         /// <summary>
         /// Post text

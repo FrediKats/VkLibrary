@@ -13,16 +13,10 @@ namespace VkLib.Types.Market
         public int? Availability { get; set; }
 
         /// <summary>
-        /// URL of the preview image
+        /// Property
         /// </summary>
-        [JsonProperty("thumb_photo")]
-        public string ThumbPhoto_ { get; set; }
-
-        /// <summary>
-        /// Date when the item has been created in Unixtime
-        /// </summary>
-        [JsonProperty("date")]
-        public int? Date { get; set; }
+        [JsonProperty("category")]
+        public VkLib.Types.Market.MarketCategory Category { get; set; }
 
         /// <summary>
         /// Item ID
@@ -31,22 +25,10 @@ namespace VkLib.Types.Market
         public int? Id { get; set; }
 
         /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("price")]
-        public VkLib.Types.Market.Price Price { get; set; }
-
-        /// <summary>
         /// Item owner's ID
         /// </summary>
         [JsonProperty("owner_id")]
-        public int? OwnerId_ { get; set; }
-
-        /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("category")]
-        public VkLib.Types.Market.MarketCategory Category { get; set; }
+        public int? OwnerId { get; set; }
 
         /// <summary>
         /// Item description
@@ -55,10 +37,28 @@ namespace VkLib.Types.Market
         public string Description { get; set; }
 
         /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("price")]
+        public VkLib.Types.Market.Price Price { get; set; }
+
+        /// <summary>
+        /// Date when the item has been created in Unixtime
+        /// </summary>
+        [JsonProperty("date")]
+        public int? Date { get; set; }
+
+        /// <summary>
         /// Item title
         /// </summary>
         [JsonProperty("title")]
         public string Title { get; set; }
+
+        /// <summary>
+        /// URL of the preview image
+        /// </summary>
+        [JsonProperty("thumb_photo")]
+        public string ThumbPhoto { get; set; }
 
     }
 }

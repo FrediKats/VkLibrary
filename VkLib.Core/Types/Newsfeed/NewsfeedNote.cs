@@ -19,16 +19,16 @@ namespace VkLib.Types.Newsfeed
         public int? Id { get; set; }
 
         /// <summary>
+        /// integer
+        /// </summary>
+        [JsonProperty("owner_id")]
+        public int? OwnerId { get; set; }
+
+        /// <summary>
         /// Note title
         /// </summary>
         [JsonProperty("title")]
         public string Title { get; set; }
-
-        /// <summary>
-        /// integer
-        /// </summary>
-        [JsonProperty("owner_id")]
-        public int? OwnerId_ { get; set; }
 
     }
 }

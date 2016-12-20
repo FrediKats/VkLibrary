@@ -7,24 +7,6 @@ namespace VkLib.Types.Widgets
     public class WidgetPage
     {
         /// <summary>
-        /// page_id parameter value
-        /// </summary>
-        [JsonProperty("page_id")]
-        public string PageId_ { get; set; }
-
-        /// <summary>
-        /// Date when widgets on the page has been initialized firstly in Unixtime
-        /// </summary>
-        [JsonProperty("date")]
-        public int? Date { get; set; }
-
-        /// <summary>
-        /// Page ID
-        /// </summary>
-        [JsonProperty("id")]
-        public int? Id { get; set; }
-
-        /// <summary>
         /// Property
         /// </summary>
         [JsonProperty("comments")]
@@ -37,10 +19,28 @@ namespace VkLib.Types.Widgets
         public VkLib.Types.Base.ObjectCount Likes { get; set; }
 
         /// <summary>
-        /// Page absolute URL
+        /// Page ID
         /// </summary>
-        [JsonProperty("url")]
-        public string Url { get; set; }
+        [JsonProperty("id")]
+        public int? Id { get; set; }
+
+        /// <summary>
+        /// Page description
+        /// </summary>
+        [JsonProperty("description")]
+        public string Description { get; set; }
+
+        /// <summary>
+        /// Date when widgets on the page has been initialized firstly in Unixtime
+        /// </summary>
+        [JsonProperty("date")]
+        public int? Date { get; set; }
+
+        /// <summary>
+        /// page_id parameter value
+        /// </summary>
+        [JsonProperty("page_id")]
+        public string PageId { get; set; }
 
         /// <summary>
         /// URL of the preview image
@@ -49,10 +49,10 @@ namespace VkLib.Types.Widgets
         public string Photo { get; set; }
 
         /// <summary>
-        /// Page description
+        /// Page absolute URL
         /// </summary>
-        [JsonProperty("description")]
-        public string Description { get; set; }
+        [JsonProperty("url")]
+        public string Url { get; set; }
 
         /// <summary>
         /// Page title

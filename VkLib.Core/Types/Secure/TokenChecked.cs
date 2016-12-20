@@ -7,12 +7,6 @@ namespace VkLib.Types.Secure
     public class TokenChecked
     {
         /// <summary>
-        /// User ID
-        /// </summary>
-        [JsonProperty("user_id")]
-        public int? UserId_ { get; set; }
-
-        /// <summary>
         /// Date when access_token will expire in Unixtime
         /// </summary>
         [JsonProperty("expire")]
@@ -23,6 +17,12 @@ namespace VkLib.Types.Secure
         /// </summary>
         [JsonProperty("date")]
         public int? Date { get; set; }
+
+        /// <summary>
+        /// User ID
+        /// </summary>
+        [JsonProperty("user_id")]
+        public int? UserId { get; set; }
 
         /// <summary>
         /// Returns if successfully processed

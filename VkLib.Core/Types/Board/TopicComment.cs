@@ -7,6 +7,12 @@ namespace VkLib.Types.Board
     public class TopicComment
     {
         /// <summary>
+        /// Date when the comment has been added in Unixtime
+        /// </summary>
+        [JsonProperty("date")]
+        public int? Date { get; set; }
+
+        /// <summary>
         /// Comment ID
         /// </summary>
         [JsonProperty("id")]
@@ -22,25 +28,19 @@ namespace VkLib.Types.Board
         /// Author ID
         /// </summary>
         [JsonProperty("from_id")]
-        public int? FromId_ { get; set; }
+        public int? FromId { get; set; }
+
+        /// <summary>
+        /// Real position of the comment
+        /// </summary>
+        [JsonProperty("real_offset")]
+        public int? RealOffset { get; set; }
 
         /// <summary>
         /// Property
         /// </summary>
         [JsonProperty("attachments")]
         public IEnumerable<VkLib.Types.Wall.CommentAttachment> Attachments { get; set; }
-
-        /// <summary>
-        /// Real position of the comment
-        /// </summary>
-        [JsonProperty("real_offset")]
-        public int? RealOffset_ { get; set; }
-
-        /// <summary>
-        /// Date when the comment has been added in Unixtime
-        /// </summary>
-        [JsonProperty("date")]
-        public int? Date { get; set; }
 
     }
 }

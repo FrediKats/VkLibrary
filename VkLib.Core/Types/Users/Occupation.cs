@@ -7,22 +7,22 @@ namespace VkLib.Types.Users
     public class Occupation
     {
         /// <summary>
-        /// Name of occupation
+        /// ID of school, university, company group
         /// </summary>
-        [JsonProperty("name")]
-        public string Name_ { get; set; }
+        [JsonProperty("id")]
+        public int? Id { get; set; }
 
         /// <summary>
         /// Type of occupation
         /// </summary>
         [JsonProperty("type")]
-        public string Type_ { get; set; }
+        public string Type { get; set; }
 
         /// <summary>
-        /// ID of school, university, company group
+        /// Name of occupation
         /// </summary>
-        [JsonProperty("id")]
-        public int? Id_ { get; set; }
+        [JsonProperty("name")]
+        public string Name { get; set; }
 
     }
 }

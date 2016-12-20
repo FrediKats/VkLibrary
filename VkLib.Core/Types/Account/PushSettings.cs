@@ -10,13 +10,7 @@ namespace VkLib.Types.Account
         /// Time until that notifications are disabled in Unixtime
         /// </summary>
         [JsonProperty("disabled_until")]
-        public int? DisabledUntil_ { get; set; }
-
-        /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("conversations")]
-        public VkLib.Types.Account.PushConversations Conversations { get; set; }
+        public int? DisabledUntil { get; set; }
 
         /// <summary>
         /// Information whether notifications are disabled
@@ -29,6 +23,12 @@ namespace VkLib.Types.Account
         /// </summary>
         [JsonProperty("settings")]
         public VkLib.Types.Account.PushParams Settings { get; set; }
+
+        /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("conversations")]
+        public VkLib.Types.Account.PushConversations Conversations { get; set; }
 
     }
 }

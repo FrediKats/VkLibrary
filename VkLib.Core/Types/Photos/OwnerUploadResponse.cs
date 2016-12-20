@@ -7,10 +7,10 @@ namespace VkLib.Types.Photos
     public class OwnerUploadResponse
     {
         /// <summary>
-        /// Uploading hash
+        /// Uploaded photo data
         /// </summary>
-        [JsonProperty("hash")]
-        public string Hash { get; set; }
+        [JsonProperty("photo")]
+        public string Photo { get; set; }
 
         /// <summary>
         /// Upload server number
@@ -19,10 +19,10 @@ namespace VkLib.Types.Photos
         public int? Server { get; set; }
 
         /// <summary>
-        /// Uploaded photo data
+        /// Uploading hash
         /// </summary>
-        [JsonProperty("photo")]
-        public string Photo { get; set; }
+        [JsonProperty("hash")]
+        public string Hash { get; set; }
 
     }
 }

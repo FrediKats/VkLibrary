@@ -7,28 +7,22 @@ namespace VkLib.Types.Wall
     public class CommentAttachment
     {
         /// <summary>
-        /// Attachment type
-        /// </summary>
-        [JsonProperty("type")]
-        public string Type { get; set; }
-
-        /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("note")]
-        public VkLib.Types.Wall.AttachedNote Note { get; set; }
-
-        /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("link")]
-        public VkLib.Types.Base.Link Link { get; set; }
-
-        /// <summary>
         /// Property
         /// </summary>
         [JsonProperty("market_market_album")]
         public VkLib.Types.Market.MarketAlbum MarketMarketAlbum { get; set; }
+
+        /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("page")]
+        public VkLib.Types.Pages.WikipageFull Page { get; set; }
+
+        /// <summary>
+        /// Attachment type
+        /// </summary>
+        [JsonProperty("type")]
+        public string Type { get; set; }
 
         /// <summary>
         /// Property
@@ -39,14 +33,8 @@ namespace VkLib.Types.Wall
         /// <summary>
         /// Property
         /// </summary>
-        [JsonProperty("page")]
-        public VkLib.Types.Pages.WikipageFull Page { get; set; }
-
-        /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("video")]
-        public VkLib.Types.Video.Video Video { get; set; }
+        [JsonProperty("note")]
+        public VkLib.Types.Wall.AttachedNote Note { get; set; }
 
         /// <summary>
         /// Property
@@ -65,6 +53,18 @@ namespace VkLib.Types.Wall
         /// </summary>
         [JsonProperty("photo")]
         public VkLib.Types.Photos.Photo Photo { get; set; }
+
+        /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("video")]
+        public VkLib.Types.Video.Video Video { get; set; }
+
+        /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("link")]
+        public VkLib.Types.Base.Link Link { get; set; }
 
         /// <summary>
         /// Property

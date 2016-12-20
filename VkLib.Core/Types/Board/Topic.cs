@@ -13,6 +13,12 @@ namespace VkLib.Types.Board
         public int? CreatedBy { get; set; }
 
         /// <summary>
+        /// Comments number
+        /// </summary>
+        [JsonProperty("comments")]
+        public int? Comments { get; set; }
+
+        /// <summary>
         /// Information whether the topic is closed
         /// </summary>
         [JsonProperty("is_closed")]
@@ -22,25 +28,7 @@ namespace VkLib.Types.Board
         /// Topic ID
         /// </summary>
         [JsonProperty("id")]
-        public int? Id_ { get; set; }
-
-        /// <summary>
-        /// ID of user who updated the topic
-        /// </summary>
-        [JsonProperty("updated_by")]
-        public int? UpdatedBy { get; set; }
-
-        /// <summary>
-        /// Comments number
-        /// </summary>
-        [JsonProperty("comments")]
-        public int? Comments_ { get; set; }
-
-        /// <summary>
-        /// Date when the topic has been created in Unixtime
-        /// </summary>
-        [JsonProperty("created")]
-        public int? Created_ { get; set; }
+        public int? Id { get; set; }
 
         /// <summary>
         /// Information whether the topic is fixed
@@ -49,16 +37,28 @@ namespace VkLib.Types.Board
         public int? IsFixed { get; set; }
 
         /// <summary>
+        /// ID of user who updated the topic
+        /// </summary>
+        [JsonProperty("updated_by")]
+        public int? UpdatedBy { get; set; }
+
+        /// <summary>
+        /// Date when the topic has been created in Unixtime
+        /// </summary>
+        [JsonProperty("created")]
+        public int? Created { get; set; }
+
+        /// <summary>
         /// Topic title
         /// </summary>
         [JsonProperty("title")]
-        public string Title_ { get; set; }
+        public string Title { get; set; }
 
         /// <summary>
         /// Date when the topic has been updated in Unixtime
         /// </summary>
         [JsonProperty("updated")]
-        public int? Updated_ { get; set; }
+        public int? Updated { get; set; }
 
     }
 }

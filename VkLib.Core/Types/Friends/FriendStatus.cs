@@ -16,19 +16,19 @@ namespace VkLib.Types.Friends
         /// Information whether request is unviewed
         /// </summary>
         [JsonProperty("read_state")]
-        public int? ReadState_ { get; set; }
-
-        /// <summary>
-        /// Message sent with request
-        /// </summary>
-        [JsonProperty("request_message")]
-        public string RequestMessage_ { get; set; }
+        public int? ReadState { get; set; }
 
         /// <summary>
         /// User ID
         /// </summary>
         [JsonProperty("user_id")]
-        public int? UserId_ { get; set; }
+        public int? UserId { get; set; }
+
+        /// <summary>
+        /// Message sent with request
+        /// </summary>
+        [JsonProperty("request_message")]
+        public string RequestMessage { get; set; }
 
         /// <summary>
         /// Friend status with the user

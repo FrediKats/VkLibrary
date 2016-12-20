@@ -7,22 +7,10 @@ namespace VkLib.Types.Messages
     public class Chat
     {
         /// <summary>
-        /// Shows that user has been kicked from the chat
+        /// Chat creator ID
         /// </summary>
-        [JsonProperty("kicked")]
-        public int? Kicked_ { get; set; }
-
-        /// <summary>
-        /// Shows that user has been left the chat
-        /// </summary>
-        [JsonProperty("left")]
-        public int? Left_ { get; set; }
-
-        /// <summary>
-        /// Chat ID
-        /// </summary>
-        [JsonProperty("id")]
-        public int? Id_ { get; set; }
+        [JsonProperty("admin_id")]
+        public int? AdminId { get; set; }
 
         /// <summary>
         /// Property
@@ -31,28 +19,40 @@ namespace VkLib.Types.Messages
         public VkLib.Types.Messages.ChatPushSettings PushSettings { get; set; }
 
         /// <summary>
+        /// Shows that user has been left the chat
+        /// </summary>
+        [JsonProperty("left")]
+        public int? Left { get; set; }
+
+        /// <summary>
+        /// Chat type
+        /// </summary>
+        [JsonProperty("type")]
+        public string Type { get; set; }
+
+        /// <summary>
         /// URL of the preview image with 100 px in width
         /// </summary>
         [JsonProperty("photo_100")]
         public string Photo100 { get; set; }
 
         /// <summary>
-        /// Chat creator ID
+        /// Shows that user has been kicked from the chat
         /// </summary>
-        [JsonProperty("admin_id")]
-        public int? AdminId { get; set; }
+        [JsonProperty("kicked")]
+        public int? Kicked { get; set; }
+
+        /// <summary>
+        /// Chat ID
+        /// </summary>
+        [JsonProperty("id")]
+        public int? Id { get; set; }
 
         /// <summary>
         /// URL of the preview image with 50 px in width
         /// </summary>
         [JsonProperty("photo_50")]
         public string Photo50 { get; set; }
-
-        /// <summary>
-        /// Chat type
-        /// </summary>
-        [JsonProperty("type")]
-        public string Type_ { get; set; }
 
         /// <summary>
         /// URL of the preview image with 200 px in width
@@ -64,13 +64,13 @@ namespace VkLib.Types.Messages
         /// Chat title
         /// </summary>
         [JsonProperty("title")]
-        public string Title_ { get; set; }
+        public string Title { get; set; }
 
         /// <summary>
         /// Property
         /// </summary>
         [JsonProperty("users")]
-        public IEnumerable<int?> Users_ { get; set; }
+        public IEnumerable<int?> Users { get; set; }
 
     }
 }

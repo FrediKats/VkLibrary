@@ -7,16 +7,16 @@ namespace VkLib.Types.Users
     public class UserMin
     {
         /// <summary>
-        /// Returns if a profile is deleted or blocked
-        /// </summary>
-        [JsonProperty("deactivated")]
-        public string Deactivated { get; set; }
-
-        /// <summary>
         /// User last name
         /// </summary>
         [JsonProperty("last_name")]
-        public string LastName_ { get; set; }
+        public string LastName { get; set; }
+
+        /// <summary>
+        /// User first name
+        /// </summary>
+        [JsonProperty("first_name")]
+        public string FirstName { get; set; }
 
         /// <summary>
         /// Returns if a profile is hidden.
@@ -31,10 +31,10 @@ namespace VkLib.Types.Users
         public int? Id { get; set; }
 
         /// <summary>
-        /// User first name
+        /// Returns if a profile is deleted or blocked
         /// </summary>
-        [JsonProperty("first_name")]
-        public string FirstName_ { get; set; }
+        [JsonProperty("deactivated")]
+        public string Deactivated { get; set; }
 
     }
 }

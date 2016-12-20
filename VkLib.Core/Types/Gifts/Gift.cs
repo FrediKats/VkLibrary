@@ -7,22 +7,10 @@ namespace VkLib.Types.Gifts
     public class Gift
     {
         /// <summary>
-        /// Comment text
+        /// Date when gist has been sent in Unixtime
         /// </summary>
-        [JsonProperty("message")]
-        public string Message_ { get; set; }
-
-        /// <summary>
-        /// Gift privacy
-        /// </summary>
-        [JsonProperty("privacy")]
-        public int? Privacy_ { get; set; }
-
-        /// <summary>
-        /// Gift ID
-        /// </summary>
-        [JsonProperty("id")]
-        public int? Id_ { get; set; }
+        [JsonProperty("date")]
+        public int? Date { get; set; }
 
         /// <summary>
         /// Property
@@ -31,22 +19,34 @@ namespace VkLib.Types.Gifts
         public VkLib.Types.Gifts.Layout Gift_ { get; set; }
 
         /// <summary>
-        /// Date when gist has been sent in Unixtime
+        /// Gift ID
         /// </summary>
-        [JsonProperty("date")]
-        public int? Date_ { get; set; }
+        [JsonProperty("id")]
+        public int? Id { get; set; }
 
         /// <summary>
-        /// Gift sender ID
+        /// Comment text
         /// </summary>
-        [JsonProperty("from_id")]
-        public int? FromId { get; set; }
+        [JsonProperty("message")]
+        public string Message { get; set; }
 
         /// <summary>
         /// Hash
         /// </summary>
         [JsonProperty("gift_hash")]
         public string GiftHash { get; set; }
+
+        /// <summary>
+        /// Gift privacy
+        /// </summary>
+        [JsonProperty("privacy")]
+        public int? Privacy { get; set; }
+
+        /// <summary>
+        /// Gift sender ID
+        /// </summary>
+        [JsonProperty("from_id")]
+        public int? FromId { get; set; }
 
     }
 }

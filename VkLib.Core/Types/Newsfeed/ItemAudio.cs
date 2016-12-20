@@ -16,7 +16,7 @@ namespace VkLib.Types.Newsfeed
         /// Post ID
         /// </summary>
         [JsonProperty("post_id")]
-        public int? PostId_ { get; set; }
+        public int? PostId { get; set; }
 
     }
 }

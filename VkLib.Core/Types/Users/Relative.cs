@@ -10,13 +10,13 @@ namespace VkLib.Types.Users
         /// Relative type
         /// </summary>
         [JsonProperty("type")]
-        public string Type_ { get; set; }
+        public string Type { get; set; }
 
         /// <summary>
         /// Relative ID
         /// </summary>
         [JsonProperty("id")]
-        public int? Id_ { get; set; }
+        public int? Id { get; set; }
 
     }
 }

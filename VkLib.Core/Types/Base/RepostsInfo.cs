@@ -16,7 +16,7 @@ namespace VkLib.Types.Base
         /// Information whether current user has reposted the post
         /// </summary>
         [JsonProperty("user_reposted")]
-        public int? UserReposted_ { get; set; }
+        public int? UserReposted { get; set; }
 
     }
 }

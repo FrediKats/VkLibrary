@@ -7,16 +7,10 @@ namespace VkLib.Types.Video
     public class SaveResult
     {
         /// <summary>
-        /// Video description
-        /// </summary>
-        [JsonProperty("description")]
-        public string Description { get; set; }
-
-        /// <summary>
         /// Video owner ID
         /// </summary>
         [JsonProperty("owner_id")]
-        public int? OwnerId_ { get; set; }
+        public int? OwnerId { get; set; }
 
         /// <summary>
         /// Video title
@@ -28,13 +22,19 @@ namespace VkLib.Types.Video
         /// URL for the video uploading
         /// </summary>
         [JsonProperty("upload_url")]
-        public string UploadUrl_ { get; set; }
+        public string UploadUrl { get; set; }
+
+        /// <summary>
+        /// Video description
+        /// </summary>
+        [JsonProperty("description")]
+        public string Description { get; set; }
 
         /// <summary>
         /// Video ID
         /// </summary>
         [JsonProperty("video_id")]
-        public int? VideoId_ { get; set; }
+        public int? VideoId { get; set; }
 
     }
 }
