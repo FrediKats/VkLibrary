@@ -22,12 +22,12 @@ namespace VkLib.Methods
         /// Returns a list of advertising accounts.
         /// Docs: <see href="https://vk.com/dev/ads.getAccounts">ads.getAccounts</see>
         /// </summary>
-        public async Task<object> GetAccounts()
+        public async Task<IEnumerable<VkLib.Types.Ads.Account>> GetAccounts()
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
 
-            return await _vkontakte.GetAsync<object>("ads.getAccounts", parameters);
+            return await _vkontakte.GetAsync<IEnumerable<VkLib.Types.Ads.Account>>("ads.getAccounts", parameters);
         }
 
         /// <summary>
@@ -35,14 +35,14 @@ namespace VkLib.Methods
         /// Docs: <see href="https://vk.com/dev/ads.getClients">ads.getClients</see>
         /// </summary>
         /// <param name="account_id">Advertising account ID.</param>
-        public async Task<object> GetClients(int? account_id = null)
+        public async Task<IEnumerable<VkLib.Types.Ads.Client>> GetClients(int? account_id = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (account_id != null)
                 parameters.Add("account_id", account_id.ToString());
 
-            return await _vkontakte.GetAsync<object>("ads.getClients", parameters);
+            return await _vkontakte.GetAsync<IEnumerable<VkLib.Types.Ads.Client>>("ads.getClients", parameters);
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace VkLib.Methods
         /// </summary>
         /// <param name="account_id">Advertising account ID.</param>
         /// <param name="data">Serialized JSON array of objects that describe created campaigns. Description of 'client_specification' objects see below.</param>
-        public async Task<object> CreateClients(int? account_id = null, string data = null)
+        public async Task<IEnumerable<int?>> CreateClients(int? account_id = null, string data = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -60,7 +60,7 @@ namespace VkLib.Methods
             if (data != null)
                 parameters.Add("data", data);
 
-            return await _vkontakte.GetAsync<object>("ads.createClients", parameters);
+            return await _vkontakte.GetAsync<IEnumerable<int?>>("ads.createClients", parameters);
         }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace VkLib.Methods
         /// </summary>
         /// <param name="account_id">Advertising account ID.</param>
         /// <param name="data">Serialized JSON array of objects that describe changes in clients. Description of 'client_mod' objects see below.</param>
-        public async Task<object> UpdateClients(int? account_id = null, string data = null)
+        public async Task<int?> UpdateClients(int? account_id = null, string data = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -78,7 +78,7 @@ namespace VkLib.Methods
             if (data != null)
                 parameters.Add("data", data);
 
-            return await _vkontakte.GetAsync<object>("ads.updateClients", parameters);
+            return await _vkontakte.GetAsync<int?>("ads.updateClients", parameters);
         }
 
         /// <summary>
@@ -87,7 +87,7 @@ namespace VkLib.Methods
         /// </summary>
         /// <param name="account_id">Advertising account ID.</param>
         /// <param name="ids">Serialized JSON array with IDs of deleted clients.</param>
-        public async Task<object> DeleteClients(int? account_id = null, string ids = null)
+        public async Task<int?> DeleteClients(int? account_id = null, string ids = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -96,7 +96,7 @@ namespace VkLib.Methods
             if (ids != null)
                 parameters.Add("ids", ids);
 
-            return await _vkontakte.GetAsync<object>("ads.deleteClients", parameters);
+            return await _vkontakte.GetAsync<int?>("ads.deleteClients", parameters);
         }
 
         /// <summary>
@@ -107,7 +107,7 @@ namespace VkLib.Methods
         /// <param name="client_id">'For advertising agencies'. ID of the client advertising campaigns are retrieved from.</param>
         /// <param name="include_deleted">Flag that specifies whether archived ads shall be shown.; *0 — show only active campaigns;; *1 — show all campaigns.;</param>
         /// <param name="campaign_ids">Filter of advertising campaigns to show. ; Serialized JSON array with campaign IDs. Only campaigns that exist in 'campaign_ids' and belong to the specified advertising account will be shown. If the parameter is null, all campaigns will be shown.;</param>
-        public async Task<object> GetCampaigns(int? account_id = null, int? client_id = null, bool? include_deleted = null, string campaign_ids = null)
+        public async Task<IEnumerable<VkLib.Types.Ads.Campaign>> GetCampaigns(int? account_id = null, int? client_id = null, bool? include_deleted = null, string campaign_ids = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -120,7 +120,7 @@ namespace VkLib.Methods
             if (campaign_ids != null)
                 parameters.Add("campaign_ids", campaign_ids);
 
-            return await _vkontakte.GetAsync<object>("ads.getCampaigns", parameters);
+            return await _vkontakte.GetAsync<IEnumerable<VkLib.Types.Ads.Campaign>>("ads.getCampaigns", parameters);
         }
 
         /// <summary>
@@ -129,7 +129,7 @@ namespace VkLib.Methods
         /// </summary>
         /// <param name="account_id">Advertising account ID.</param>
         /// <param name="data">Serialized JSON array of objects that describe created campaigns. Description of 'campaign_specification' objects see below.</param>
-        public async Task<object> CreateCampaigns(int? account_id = null, string data = null)
+        public async Task<IEnumerable<int?>> CreateCampaigns(int? account_id = null, string data = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -138,7 +138,7 @@ namespace VkLib.Methods
             if (data != null)
                 parameters.Add("data", data);
 
-            return await _vkontakte.GetAsync<object>("ads.createCampaigns", parameters);
+            return await _vkontakte.GetAsync<IEnumerable<int?>>("ads.createCampaigns", parameters);
         }
 
         /// <summary>
@@ -147,7 +147,7 @@ namespace VkLib.Methods
         /// </summary>
         /// <param name="account_id">Advertising account ID.</param>
         /// <param name="data">Serialized JSON array of objects that describe changes in campaigns. Description of 'campaign_mod' objects see below.</param>
-        public async Task<object> UpdateCampaigns(int? account_id = null, string data = null)
+        public async Task<int?> UpdateCampaigns(int? account_id = null, string data = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -156,7 +156,7 @@ namespace VkLib.Methods
             if (data != null)
                 parameters.Add("data", data);
 
-            return await _vkontakte.GetAsync<object>("ads.updateCampaigns", parameters);
+            return await _vkontakte.GetAsync<int?>("ads.updateCampaigns", parameters);
         }
 
         /// <summary>
@@ -165,7 +165,7 @@ namespace VkLib.Methods
         /// </summary>
         /// <param name="account_id">Advertising account ID.</param>
         /// <param name="ids">Serialized JSON array with IDs of deleted campaigns.</param>
-        public async Task<object> DeleteCampaigns(int? account_id = null, string ids = null)
+        public async Task<int?> DeleteCampaigns(int? account_id = null, string ids = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -174,7 +174,7 @@ namespace VkLib.Methods
             if (ids != null)
                 parameters.Add("ids", ids);
 
-            return await _vkontakte.GetAsync<object>("ads.deleteCampaigns", parameters);
+            return await _vkontakte.GetAsync<int?>("ads.deleteCampaigns", parameters);
         }
 
         /// <summary>
@@ -188,7 +188,7 @@ namespace VkLib.Methods
         /// <param name="ad_ids">Filter by ads. ; Serialized JSON array with ad IDs. If the parameter is null, all ads will be shown.;</param>
         /// <param name="limit">Limit of number of returned ads. Used only if ad_ids parameter is null, and 'campaign_ids' parameter contains ID of only one campaign.</param>
         /// <param name="offset">Offset. Used in the same cases as 'limit' parameter.</param>
-        public async Task<object> GetAds(int? account_id = null, int? client_id = null, bool? include_deleted = null, string campaign_ids = null, string ad_ids = null, int? limit = null, int? offset = null)
+        public async Task<IEnumerable<VkLib.Types.Ads.Ad>> GetAds(int? account_id = null, int? client_id = null, bool? include_deleted = null, string campaign_ids = null, string ad_ids = null, int? limit = null, int? offset = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -207,7 +207,7 @@ namespace VkLib.Methods
             if (offset != null)
                 parameters.Add("offset", offset.ToString());
 
-            return await _vkontakte.GetAsync<object>("ads.getAds", parameters);
+            return await _vkontakte.GetAsync<IEnumerable<VkLib.Types.Ads.Ad>>("ads.getAds", parameters);
         }
 
         /// <summary>
@@ -221,7 +221,7 @@ namespace VkLib.Methods
         /// <param name="ad_ids">Filter by ads.; Serialized JSON array with ad IDs. If the parameter is null, all ads will be shown.;</param>
         /// <param name="limit">Limit of number of returned ads. Used only if 'ad_ids' parameter is null, and 'campaign_ids' parameter contains ID of only one campaign.</param>
         /// <param name="offset">Offset. Used in the same cases as 'limit' parameter.</param>
-        public async Task<object> GetAdsLayout(int? account_id = null, int? client_id = null, bool? include_deleted = null, string campaign_ids = null, string ad_ids = null, int? limit = null, int? offset = null)
+        public async Task<IEnumerable<VkLib.Types.Ads.AdLayout>> GetAdsLayout(int? account_id = null, int? client_id = null, bool? include_deleted = null, string campaign_ids = null, string ad_ids = null, int? limit = null, int? offset = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -240,7 +240,7 @@ namespace VkLib.Methods
             if (offset != null)
                 parameters.Add("offset", offset.ToString());
 
-            return await _vkontakte.GetAsync<object>("ads.getAdsLayout", parameters);
+            return await _vkontakte.GetAsync<IEnumerable<VkLib.Types.Ads.AdLayout>>("ads.getAdsLayout", parameters);
         }
 
         /// <summary>
@@ -254,7 +254,7 @@ namespace VkLib.Methods
         /// <param name="ad_ids">Filter by ads.; Serialized JSON array with ad IDs. If the parameter is null, all ads will be shown.</param>
         /// <param name="limit">Limit of number of returned ads. Used only if 'ad_ids' parameter is null, and 'campaign_ids' parameter contains ID of only one campaign.</param>
         /// <param name="offset">Offset needed to return a specific subset of results.</param>
-        public async Task<object> GetAdsTargeting(int? account_id = null, int? client_id = null, bool? include_deleted = null, string campaign_ids = null, string ad_ids = null, int? limit = null, int? offset = null)
+        public async Task<IEnumerable<VkLib.Types.Ads.TargSettings>> GetAdsTargeting(int? account_id = null, int? client_id = null, bool? include_deleted = null, string campaign_ids = null, string ad_ids = null, int? limit = null, int? offset = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -273,7 +273,7 @@ namespace VkLib.Methods
             if (offset != null)
                 parameters.Add("offset", offset.ToString());
 
-            return await _vkontakte.GetAsync<object>("ads.getAdsTargeting", parameters);
+            return await _vkontakte.GetAsync<IEnumerable<VkLib.Types.Ads.TargSettings>>("ads.getAdsTargeting", parameters);
         }
 
         /// <summary>
@@ -282,7 +282,7 @@ namespace VkLib.Methods
         /// </summary>
         /// <param name="account_id">Advertising account ID.</param>
         /// <param name="data">Serialized JSON array of objects that describe created ads. Description of 'ad_specification' objects see below.</param>
-        public async Task<object> CreateAds(int? account_id = null, string data = null)
+        public async Task<IEnumerable<int?>> CreateAds(int? account_id = null, string data = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -291,7 +291,7 @@ namespace VkLib.Methods
             if (data != null)
                 parameters.Add("data", data);
 
-            return await _vkontakte.GetAsync<object>("ads.createAds", parameters);
+            return await _vkontakte.GetAsync<IEnumerable<int?>>("ads.createAds", parameters);
         }
 
         /// <summary>
@@ -300,7 +300,7 @@ namespace VkLib.Methods
         /// </summary>
         /// <param name="account_id">Advertising account ID.</param>
         /// <param name="data">Serialized JSON array of objects that describe changes in ads. Description of 'ad_edit_specification' objects see below.</param>
-        public async Task<object> UpdateAds(int? account_id = null, string data = null)
+        public async Task<IEnumerable<int?>> UpdateAds(int? account_id = null, string data = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -309,7 +309,7 @@ namespace VkLib.Methods
             if (data != null)
                 parameters.Add("data", data);
 
-            return await _vkontakte.GetAsync<object>("ads.updateAds", parameters);
+            return await _vkontakte.GetAsync<IEnumerable<int?>>("ads.updateAds", parameters);
         }
 
         /// <summary>
@@ -318,7 +318,7 @@ namespace VkLib.Methods
         /// </summary>
         /// <param name="account_id">Advertising account ID.</param>
         /// <param name="ids">Serialized JSON array with ad IDs.</param>
-        public async Task<object> DeleteAds(int? account_id = null, string ids = null)
+        public async Task<IEnumerable<int?>> DeleteAds(int? account_id = null, string ids = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -327,7 +327,7 @@ namespace VkLib.Methods
             if (ids != null)
                 parameters.Add("ids", ids);
 
-            return await _vkontakte.GetAsync<object>("ads.deleteAds", parameters);
+            return await _vkontakte.GetAsync<IEnumerable<int?>>("ads.deleteAds", parameters);
         }
 
         /// <summary>
@@ -338,7 +338,7 @@ namespace VkLib.Methods
         /// <param name="link_type">Object type:; *'community' — community;; *'post' — community post;; *'application' — VK application;; *'video' — video;; *'site' — external site.</param>
         /// <param name="link_url">Object URL.</param>
         /// <param name="campaign_id">Campaign ID</param>
-        public async Task<object> CheckLink(int? account_id = null, string link_type = null, string link_url = null, int? campaign_id = null)
+        public async Task<VkLib.Types.Ads.LinkStatus> CheckLink(int? account_id = null, string link_type = null, string link_url = null, int? campaign_id = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -351,7 +351,7 @@ namespace VkLib.Methods
             if (campaign_id != null)
                 parameters.Add("campaign_id", campaign_id.ToString());
 
-            return await _vkontakte.GetAsync<object>("ads.checkLink", parameters);
+            return await _vkontakte.GetAsync<VkLib.Types.Ads.LinkStatus>("ads.checkLink", parameters);
         }
 
         /// <summary>
@@ -364,7 +364,7 @@ namespace VkLib.Methods
         /// <param name="period">Data grouping by dates:; *day — statistics by days;; *month — statistics by months;; *overall — overall statistics.; 'date_from' and 'date_to' parameters set temporary limits.</param>
         /// <param name="date_from">Date to show statistics from. For different value of 'period' different date format is used:; *day: YYYY-MM-DD, example: 2011-09-27 — September 27, 2011; **0 — day it was created on;; *month: YYYY-MM, example: 2011-09 — September 2011; **0 — month it was created in;; *overall: 0.;</param>
         /// <param name="date_to">Date to show statistics to. For different value of 'period' different date format is used:; *day: YYYY-MM-DD, example: 2011-09-27 — September 27, 2011; **0 — current day;; *month: YYYY-MM, example: 2011-09 — September 2011; **0 — current month;; *overall: 0.</param>
-        public async Task<object> GetStatistics(int? account_id = null, string ids_type = null, string ids = null, string period = null, string date_from = null, string date_to = null)
+        public async Task<IEnumerable<VkLib.Types.Ads.Stats>> GetStatistics(int? account_id = null, string ids_type = null, string ids = null, string period = null, string date_from = null, string date_to = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -381,7 +381,7 @@ namespace VkLib.Methods
             if (date_to != null)
                 parameters.Add("date_to", date_to);
 
-            return await _vkontakte.GetAsync<object>("ads.getStatistics", parameters);
+            return await _vkontakte.GetAsync<IEnumerable<VkLib.Types.Ads.Stats>>("ads.getStatistics", parameters);
         }
 
         /// <summary>
@@ -394,7 +394,7 @@ namespace VkLib.Methods
         /// <param name="period">Data grouping by dates:; *day — statistics by days;; *month — statistics by months;; *overall — overall statistics.; 'date_from' and 'date_to' parameters set temporary limits.</param>
         /// <param name="date_from">Date to show statistics from. For different value of 'period' different date format is used:; *day: YYYY-MM-DD, example: 2011-09-27 — September 27, 2011; **0 — day it was created on;; *month: YYYY-MM, example: 2011-09 — September 2011; **0 — month it was created in;; *overall: 0.</param>
         /// <param name="date_to">Date to show statistics to. For different value of 'period' different date format is used:; *day: YYYY-MM-DD, example: 2011-09-27 — September 27, 2011; **0 — current day;; *month: YYYY-MM, example: 2011-09 — September 2011; **0 — current month;; *overall: 0.</param>
-        public async Task<object> GetDemographics(int? account_id = null, string ids_type = null, string ids = null, string period = null, string date_from = null, string date_to = null)
+        public async Task<IEnumerable<VkLib.Types.Ads.DemoStats>> GetDemographics(int? account_id = null, string ids_type = null, string ids = null, string period = null, string date_from = null, string date_to = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -411,7 +411,7 @@ namespace VkLib.Methods
             if (date_to != null)
                 parameters.Add("date_to", date_to);
 
-            return await _vkontakte.GetAsync<object>("ads.getDemographics", parameters);
+            return await _vkontakte.GetAsync<IEnumerable<VkLib.Types.Ads.DemoStats>>("ads.getDemographics", parameters);
         }
 
         /// <summary>
@@ -420,7 +420,7 @@ namespace VkLib.Methods
         /// </summary>
         /// <param name="account_id">Advertising account ID.</param>
         /// <param name="ads_ids">Ads IDS separated by comma.</param>
-        public async Task<object> GetAdsPostsReach(int? account_id = null, string ads_ids = null)
+        public async Task<IEnumerable<VkLib.Types.Ads.PostStats>> GetAdsPostsReach(int? account_id = null, string ads_ids = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -429,7 +429,7 @@ namespace VkLib.Methods
             if (ads_ids != null)
                 parameters.Add("ads_ids", ads_ids);
 
-            return await _vkontakte.GetAsync<object>("ads.getAdsPostsReach", parameters);
+            return await _vkontakte.GetAsync<IEnumerable<VkLib.Types.Ads.PostStats>>("ads.getAdsPostsReach", parameters);
         }
 
         /// <summary>
@@ -437,14 +437,14 @@ namespace VkLib.Methods
         /// Docs: <see href="https://vk.com/dev/ads.getBudget">ads.getBudget</see>
         /// </summary>
         /// <param name="account_id">Advertising account ID.</param>
-        public async Task<object> GetBudget(int? account_id = null)
+        public async Task<int?> GetBudget(int? account_id = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (account_id != null)
                 parameters.Add("account_id", account_id.ToString());
 
-            return await _vkontakte.GetAsync<object>("ads.getBudget", parameters);
+            return await _vkontakte.GetAsync<int?>("ads.getBudget", parameters);
         }
 
         /// <summary>
@@ -452,14 +452,14 @@ namespace VkLib.Methods
         /// Docs: <see href="https://vk.com/dev/ads.getOfficeUsers">ads.getOfficeUsers</see>
         /// </summary>
         /// <param name="account_id">Advertising account ID.</param>
-        public async Task<object> GetOfficeUsers(int? account_id = null)
+        public async Task<IEnumerable<VkLib.Types.Ads.Users>> GetOfficeUsers(int? account_id = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (account_id != null)
                 parameters.Add("account_id", account_id.ToString());
 
-            return await _vkontakte.GetAsync<object>("ads.getOfficeUsers", parameters);
+            return await _vkontakte.GetAsync<IEnumerable<VkLib.Types.Ads.Users>>("ads.getOfficeUsers", parameters);
         }
 
         /// <summary>
@@ -468,7 +468,7 @@ namespace VkLib.Methods
         /// </summary>
         /// <param name="account_id">Advertising account ID.</param>
         /// <param name="data">Serialized JSON array of objects that describe added managers. Description of 'user_specification' objects see below.</param>
-        public async Task<object> AddOfficeUsers(int? account_id = null, string data = null)
+        public async Task<bool?> AddOfficeUsers(int? account_id = null, string data = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -477,7 +477,7 @@ namespace VkLib.Methods
             if (data != null)
                 parameters.Add("data", data);
 
-            return await _vkontakte.GetAsync<object>("ads.addOfficeUsers", parameters);
+            return await _vkontakte.GetAsync<bool?>("ads.addOfficeUsers", parameters);
         }
 
         /// <summary>
@@ -486,7 +486,7 @@ namespace VkLib.Methods
         /// </summary>
         /// <param name="account_id">Advertising account ID.</param>
         /// <param name="ids">Serialized JSON array with IDs of deleted managers.</param>
-        public async Task<object> RemoveOfficeUsers(int? account_id = null, string ids = null)
+        public async Task<bool?> RemoveOfficeUsers(int? account_id = null, string ids = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -495,7 +495,7 @@ namespace VkLib.Methods
             if (ids != null)
                 parameters.Add("ids", ids);
 
-            return await _vkontakte.GetAsync<object>("ads.removeOfficeUsers", parameters);
+            return await _vkontakte.GetAsync<bool?>("ads.removeOfficeUsers", parameters);
         }
 
         /// <summary>
@@ -509,7 +509,7 @@ namespace VkLib.Methods
         /// <param name="ad_platform">Platforms to use for ad showing. Possible values:; (for 'ad_format' = '1'); *'0' — VK and partner sites;; *'1' — VK only.; (for 'ad_format' = '9'); *'all' — all platforms;; *'desktop' — desktop version;; *'mobile' — mobile version and apps.</param>
         /// <param name="link_url">URL for the advertised object.</param>
         /// <param name="link_domain">Domain of the advertised object.</param>
-        public async Task<object> GetTargetingStats(int? account_id = null, string criteria = null, int? ad_id = null, int? ad_format = null, string ad_platform = null, string link_url = null, string link_domain = null)
+        public async Task<VkLib.Types.Ads.TargStats> GetTargetingStats(int? account_id = null, string criteria = null, int? ad_id = null, int? ad_format = null, string ad_platform = null, string link_url = null, string link_domain = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -528,7 +528,7 @@ namespace VkLib.Methods
             if (link_domain != null)
                 parameters.Add("link_domain", link_domain);
 
-            return await _vkontakte.GetAsync<object>("ads.getTargetingStats", parameters);
+            return await _vkontakte.GetAsync<VkLib.Types.Ads.TargStats>("ads.getTargetingStats", parameters);
         }
 
         /// <summary>
@@ -541,7 +541,7 @@ namespace VkLib.Methods
         /// <param name="country">ID of the country objects are searched in.</param>
         /// <param name="cities">IDs of cities where objects are searched in, separated with a comma.</param>
         /// <param name="lang">Language of the returned string values. Supported languages:; *ru — Russian;; *ua — Ukrainian;; *en — English.;</param>
-        public async Task<object> GetSuggestions(string section = null, string ids = null, string q = null, int? country = null, string cities = null, string lang = null)
+        public async Task<IEnumerable<VkLib.Types.Ads.TargSuggestions>> GetSuggestions(string section = null, string ids = null, string q = null, int? country = null, string cities = null, string lang = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -558,7 +558,7 @@ namespace VkLib.Methods
             if (lang != null)
                 parameters.Add("lang", lang);
 
-            return await _vkontakte.GetAsync<object>("ads.getSuggestions", parameters);
+            return await _vkontakte.GetAsync<IEnumerable<VkLib.Types.Ads.TargSuggestions>>("ads.getSuggestions", parameters);
         }
 
         /// <summary>
@@ -566,14 +566,14 @@ namespace VkLib.Methods
         /// Docs: <see href="https://vk.com/dev/ads.getCategories">ads.getCategories</see>
         /// </summary>
         /// <param name="lang">Language. The full list of supported languages is [vk.com/dev/api_requests|here].</param>
-        public async Task<object> GetCategories(string lang = null)
+        public async Task<IEnumerable<VkLib.Types.Ads.Category>> GetCategories(string lang = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (lang != null)
                 parameters.Add("lang", lang);
 
-            return await _vkontakte.GetAsync<object>("ads.getCategories", parameters);
+            return await _vkontakte.GetAsync<IEnumerable<VkLib.Types.Ads.Category>>("ads.getCategories", parameters);
         }
 
         /// <summary>
@@ -581,26 +581,26 @@ namespace VkLib.Methods
         /// Docs: <see href="https://vk.com/dev/ads.getUploadURL">ads.getUploadURL</see>
         /// </summary>
         /// <param name="ad_format">Ad format:; *1 — image and text;; *2 — big image;; *3 — exclusive format;; *4 — community, square image;; *7 — special app format.</param>
-        public async Task<object> GetUploadURL(int? ad_format = null)
+        public async Task<string> GetUploadURL(int? ad_format = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (ad_format != null)
                 parameters.Add("ad_format", ad_format.ToString());
 
-            return await _vkontakte.GetAsync<object>("ads.getUploadURL", parameters);
+            return await _vkontakte.GetAsync<string>("ads.getUploadURL", parameters);
         }
 
         /// <summary>
         /// Returns URL to upload an ad video to.
         /// Docs: <see href="https://vk.com/dev/ads.getVideoUploadURL">ads.getVideoUploadURL</see>
         /// </summary>
-        public async Task<object> GetVideoUploadURL()
+        public async Task<string> GetVideoUploadURL()
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
 
-            return await _vkontakte.GetAsync<object>("ads.getVideoUploadURL", parameters);
+            return await _vkontakte.GetAsync<string>("ads.getVideoUploadURL", parameters);
         }
 
         /// <summary>
@@ -608,14 +608,14 @@ namespace VkLib.Methods
         /// Docs: <see href="https://vk.com/dev/ads.getFloodStats">ads.getFloodStats</see>
         /// </summary>
         /// <param name="account_id">Advertising account ID.</param>
-        public async Task<object> GetFloodStats(int? account_id = null)
+        public async Task<VkLib.Types.Ads.FloodStats> GetFloodStats(int? account_id = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (account_id != null)
                 parameters.Add("account_id", account_id.ToString());
 
-            return await _vkontakte.GetAsync<object>("ads.getFloodStats", parameters);
+            return await _vkontakte.GetAsync<VkLib.Types.Ads.FloodStats>("ads.getFloodStats", parameters);
         }
 
         /// <summary>
@@ -624,7 +624,7 @@ namespace VkLib.Methods
         /// </summary>
         /// <param name="account_id">Advertising account ID.</param>
         /// <param name="ad_id">Ad ID.</param>
-        public async Task<object> GetRejectionReason(int? account_id = null, int? ad_id = null)
+        public async Task<VkLib.Types.Ads.RejectReason> GetRejectionReason(int? account_id = null, int? ad_id = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -633,7 +633,7 @@ namespace VkLib.Methods
             if (ad_id != null)
                 parameters.Add("ad_id", ad_id.ToString());
 
-            return await _vkontakte.GetAsync<object>("ads.getRejectionReason", parameters);
+            return await _vkontakte.GetAsync<VkLib.Types.Ads.RejectReason>("ads.getRejectionReason", parameters);
         }
 
         /// <summary>
@@ -645,7 +645,7 @@ namespace VkLib.Methods
         /// <param name="name">Name of the target group — a string up to 64 characters long.</param>
         /// <param name="domain">Domain of the site where user accounting code will be placed.</param>
         /// <param name="lifetime">'For groups with auditory created with pixel code only.'; ; Number of days after that users will be automatically removed from the group. '0' — not to remove users.;</param>
-        public async Task<object> CreateTargetGroup(int? account_id = null, int? client_id = null, string name = null, string domain = null, int? lifetime = null)
+        public async Task<VkLib.Responses.Ads.CreateTargetGroupResponse> CreateTargetGroup(int? account_id = null, int? client_id = null, string name = null, string domain = null, int? lifetime = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -660,7 +660,7 @@ namespace VkLib.Methods
             if (lifetime != null)
                 parameters.Add("lifetime", lifetime.ToString());
 
-            return await _vkontakte.GetAsync<object>("ads.createTargetGroup", parameters);
+            return await _vkontakte.GetAsync<VkLib.Responses.Ads.CreateTargetGroupResponse>("ads.createTargetGroup", parameters);
         }
 
         /// <summary>
@@ -673,7 +673,7 @@ namespace VkLib.Methods
         /// <param name="name">New name of the target group — a string up to 64 characters long.</param>
         /// <param name="domain">Domain of the site where user accounting code will be placed.</param>
         /// <param name="lifetime">'Only for the groups that get audience from sites with user accounting code.'; Time in days when users added to a retarget group will be automatically excluded from it. ; '0' – automatic exclusion is off.</param>
-        public async Task<object> UpdateTargetGroup(int? account_id = null, int? client_id = null, int? target_group_id = null, string name = null, string domain = null, int? lifetime = null)
+        public async Task<int> UpdateTargetGroup(int? account_id = null, int? client_id = null, int? target_group_id = null, string name = null, string domain = null, int? lifetime = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -690,7 +690,7 @@ namespace VkLib.Methods
             if (lifetime != null)
                 parameters.Add("lifetime", lifetime.ToString());
 
-            return await _vkontakte.GetAsync<object>("ads.updateTargetGroup", parameters);
+            return await _vkontakte.GetAsync<int>("ads.updateTargetGroup", parameters);
         }
 
         /// <summary>
@@ -700,7 +700,7 @@ namespace VkLib.Methods
         /// <param name="account_id">Advertising account ID.</param>
         /// <param name="client_id">'Only for advertising agencies.' ; ID of the client with the advertising account where the group will be created.;</param>
         /// <param name="target_group_id">Group ID.</param>
-        public async Task<object> DeleteTargetGroup(int? account_id = null, int? client_id = null, int? target_group_id = null)
+        public async Task<int> DeleteTargetGroup(int? account_id = null, int? client_id = null, int? target_group_id = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -711,7 +711,7 @@ namespace VkLib.Methods
             if (target_group_id != null)
                 parameters.Add("target_group_id", target_group_id.ToString());
 
-            return await _vkontakte.GetAsync<object>("ads.deleteTargetGroup", parameters);
+            return await _vkontakte.GetAsync<int>("ads.deleteTargetGroup", parameters);
         }
 
         /// <summary>
@@ -721,7 +721,7 @@ namespace VkLib.Methods
         /// <param name="account_id">Advertising account ID.</param>
         /// <param name="client_id">'Only for advertising agencies.'; ID of the client with the advertising account where the group will be created.;</param>
         /// <param name="extended">'1' — to return pixel code.</param>
-        public async Task<object> GetTargetGroups(int? account_id = null, int? client_id = null, bool? extended = null)
+        public async Task<IEnumerable<VkLib.Types.Ads.TargetGroup>> GetTargetGroups(int? account_id = null, int? client_id = null, bool? extended = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -732,7 +732,7 @@ namespace VkLib.Methods
             if (extended != null)
                 parameters.Add("extended", extended.ToString());
 
-            return await _vkontakte.GetAsync<object>("ads.getTargetGroups", parameters);
+            return await _vkontakte.GetAsync<IEnumerable<VkLib.Types.Ads.TargetGroup>>("ads.getTargetGroups", parameters);
         }
 
         /// <summary>
@@ -743,7 +743,7 @@ namespace VkLib.Methods
         /// <param name="client_id">'Only for advertising agencies.' ; ID of the client with the advertising account where the group will be created.;</param>
         /// <param name="target_group_id">Target group ID.</param>
         /// <param name="contacts">List of phone numbers, emails or user IDs separated with a comma.</param>
-        public async Task<object> ImportTargetContacts(int? account_id = null, int? client_id = null, int? target_group_id = null, string contacts = null)
+        public async Task<int?> ImportTargetContacts(int? account_id = null, int? client_id = null, int? target_group_id = null, string contacts = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -756,7 +756,7 @@ namespace VkLib.Methods
             if (contacts != null)
                 parameters.Add("contacts", contacts);
 
-            return await _vkontakte.GetAsync<object>("ads.importTargetContacts", parameters);
+            return await _vkontakte.GetAsync<int?>("ads.importTargetContacts", parameters);
         }
 
     }

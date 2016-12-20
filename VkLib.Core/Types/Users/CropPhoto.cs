@@ -1,5 +1,6 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Users 
 {
@@ -9,19 +10,19 @@ namespace VkLib.Types.Users
         /// Property
         /// </summary>
         [JsonProperty("crop")]
-        public CropPhotoCrop Crop { get; set; }
+        public VkLib.Types.Users.CropPhotoCrop Crop { get; set; }
 
         /// <summary>
         /// Property
         /// </summary>
         [JsonProperty("photo")]
-        public Photo Photo { get; set; }
+        public VkLib.Types.Photos.Photo Photo { get; set; }
 
         /// <summary>
         /// Property
         /// </summary>
         [JsonProperty("rect")]
-        public CropPhotoRect Rect { get; set; }
+        public VkLib.Types.Users.CropPhotoRect Rect { get; set; }
 
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Base 
 {
@@ -9,7 +10,7 @@ namespace VkLib.Types.Base
         /// Count of reviews
         /// </summary>
         [JsonProperty("reviews_count")]
-        public int? ReviewsCount { get; set; }
+        public int? ReviewsCount_ { get; set; }
 
         /// <summary>
         /// Count of stars

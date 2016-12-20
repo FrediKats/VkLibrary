@@ -1,33 +1,22 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Notifications 
 {
     public class NotificationsComment
     {
         /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("post")]
+        public VkLib.Types.Wall.Wallpost Post { get; set; }
+
+        /// <summary>
         /// Comment ID
         /// </summary>
         [JsonProperty("id")]
         public int? Id { get; set; }
-
-        /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("video")]
-        public Video Video { get; set; }
-
-        /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("photo")]
-        public Photo Photo { get; set; }
-
-        /// <summary>
-        /// Date when the comment has been added in Unixtime
-        /// </summary>
-        [JsonProperty("date")]
-        public int? Date { get; set; }
 
         /// <summary>
         /// Comment text
@@ -36,22 +25,34 @@ namespace VkLib.Types.Notifications
         public string Text { get; set; }
 
         /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("topic")]
-        public Topic Topic { get; set; }
-
-        /// <summary>
         /// Author ID
         /// </summary>
         [JsonProperty("owner_id")]
-        public int? OwnerId { get; set; }
+        public int? OwnerId_ { get; set; }
 
         /// <summary>
         /// Property
         /// </summary>
-        [JsonProperty("post")]
-        public Wallpost Post { get; set; }
+        [JsonProperty("topic")]
+        public VkLib.Types.Board.Topic Topic { get; set; }
+
+        /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("video")]
+        public VkLib.Types.Video.Video Video { get; set; }
+
+        /// <summary>
+        /// Date when the comment has been added in Unixtime
+        /// </summary>
+        [JsonProperty("date")]
+        public int? Date { get; set; }
+
+        /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("photo")]
+        public VkLib.Types.Photos.Photo Photo { get; set; }
 
     }
 }

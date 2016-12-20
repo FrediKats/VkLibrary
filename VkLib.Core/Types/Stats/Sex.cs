@@ -1,5 +1,6 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Stats 
 {
@@ -9,13 +10,13 @@ namespace VkLib.Types.Stats
         /// Visitors number
         /// </summary>
         [JsonProperty("visitors")]
-        public int? Visitors { get; set; }
+        public int? Visitors_ { get; set; }
 
         /// <summary>
         /// Sex
         /// </summary>
         [JsonProperty("value")]
-        public string Value { get; set; }
+        public string Value_ { get; set; }
 
     }
 }

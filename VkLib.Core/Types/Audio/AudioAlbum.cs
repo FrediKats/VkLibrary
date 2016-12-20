@@ -1,5 +1,6 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Audio 
 {
@@ -21,7 +22,7 @@ namespace VkLib.Types.Audio
         /// Album owner's ID
         /// </summary>
         [JsonProperty("owner_id")]
-        public int? OwnerId { get; set; }
+        public int? OwnerId_ { get; set; }
 
     }
 }

@@ -1,27 +1,16 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Video 
 {
     public class VideoTag
     {
         /// <summary>
-        /// Tag ID
+        /// ID of the tag creator
         /// </summary>
-        [JsonProperty("id")]
-        public int? Id { get; set; }
-
-        /// <summary>
-        /// Tag description
-        /// </summary>
-        [JsonProperty("tagged_name")]
-        public string TaggedName { get; set; }
-
-        /// <summary>
-        /// Information whether tha tag is reviewed
-        /// </summary>
-        [JsonProperty("viewed")]
-        public BoolInt Viewed { get; set; }
+        [JsonProperty("placer_id")]
+        public int? PlacerId_ { get; set; }
 
         /// <summary>
         /// Date when tag has been added in Unixtime
@@ -30,16 +19,28 @@ namespace VkLib.Types.Video
         public int? Date { get; set; }
 
         /// <summary>
-        /// ID of the tag creator
+        /// Tag ID
         /// </summary>
-        [JsonProperty("placer_id")]
-        public int? PlacerId { get; set; }
+        [JsonProperty("id")]
+        public int? Id { get; set; }
 
         /// <summary>
         /// Tagged user ID
         /// </summary>
         [JsonProperty("user_id")]
-        public int? UserId { get; set; }
+        public int? UserId_ { get; set; }
+
+        /// <summary>
+        /// Information whether tha tag is reviewed
+        /// </summary>
+        [JsonProperty("viewed")]
+        public int? Viewed { get; set; }
+
+        /// <summary>
+        /// Tag description
+        /// </summary>
+        [JsonProperty("tagged_name")]
+        public string TaggedName_ { get; set; }
 
     }
 }

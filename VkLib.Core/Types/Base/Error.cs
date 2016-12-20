@@ -1,16 +1,11 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Base 
 {
     public class Error
     {
-        /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("request_params")]
-        public IEnumerable<RequestParam> RequestParams { get; set; }
-
         /// <summary>
         /// Error message
         /// </summary>
@@ -22,6 +17,12 @@ namespace VkLib.Types.Base
         /// </summary>
         [JsonProperty("error_code")]
         public int? ErrorCode { get; set; }
+
+        /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("request_params")]
+        public IEnumerable<VkLib.Types.Base.RequestParam> RequestParams { get; set; }
 
     }
 }

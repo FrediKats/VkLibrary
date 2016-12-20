@@ -26,7 +26,7 @@ namespace VkLib.Methods
         /// <param name="app_id">Application ID.</param>
         /// <param name="date_from">Latest datestamp (in Unix time) of statistics to return.</param>
         /// <param name="date_to">End datestamp (in Unix time) of statistics to return.</param>
-        public async Task<object> Get(int? group_id = null, int? app_id = null, string date_from = null, string date_to = null)
+        public async Task<IEnumerable<VkLib.Types.Stats.Period>> Get(int? group_id = null, int? app_id = null, string date_from = null, string date_to = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -39,19 +39,19 @@ namespace VkLib.Methods
             if (date_to != null)
                 parameters.Add("date_to", date_to);
 
-            return await _vkontakte.GetAsync<object>("stats.get", parameters);
+            return await _vkontakte.GetAsync<IEnumerable<VkLib.Types.Stats.Period>>("stats.get", parameters);
         }
 
         /// <summary>
         /// 
         /// Docs: <see href="https://vk.com/dev/stats.trackVisitor">stats.trackVisitor</see>
         /// </summary>
-        public async Task<object> TrackVisitor()
+        public async Task<int> TrackVisitor()
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
 
-            return await _vkontakte.GetAsync<object>("stats.trackVisitor", parameters);
+            return await _vkontakte.GetAsync<int>("stats.trackVisitor", parameters);
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace VkLib.Methods
         /// </summary>
         /// <param name="owner_id">post owner community id. Specify with "-" sign.</param>
         /// <param name="post_id">wall post id. Note that stats are available only for '300' last (newest) posts on a community wall.</param>
-        public async Task<object> GetPostReach(int? owner_id = null, int? post_id = null)
+        public async Task<IEnumerable<VkLib.Types.Stats.WallpostStat>> GetPostReach(int? owner_id = null, int? post_id = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -69,7 +69,7 @@ namespace VkLib.Methods
             if (post_id != null)
                 parameters.Add("post_id", post_id.ToString());
 
-            return await _vkontakte.GetAsync<object>("stats.getPostReach", parameters);
+            return await _vkontakte.GetAsync<IEnumerable<VkLib.Types.Stats.WallpostStat>>("stats.getPostReach", parameters);
         }
 
     }

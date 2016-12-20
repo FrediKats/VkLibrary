@@ -1,21 +1,28 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Account 
 {
     public class Offer
     {
         /// <summary>
-        /// Offer price
-        /// </summary>
-        [JsonProperty("price")]
-        public int? Price { get; set; }
-
-        /// <summary>
         /// Offer ID
         /// </summary>
         [JsonProperty("id")]
-        public int? Id { get; set; }
+        public int? Id_ { get; set; }
+
+        /// <summary>
+        /// Instruction how to process the offer
+        /// </summary>
+        [JsonProperty("instruction")]
+        public string Instruction_ { get; set; }
+
+        /// <summary>
+        /// Offer price
+        /// </summary>
+        [JsonProperty("price")]
+        public int? Price_ { get; set; }
 
         /// <summary>
         /// Instruction how to process the offer (HTML format)
@@ -24,40 +31,34 @@ namespace VkLib.Types.Account
         public string InstructionHtml { get; set; }
 
         /// <summary>
+        /// Offer tag
+        /// </summary>
+        [JsonProperty("tag")]
+        public string Tag_ { get; set; }
+
+        /// <summary>
         /// Offer short description
         /// </summary>
         [JsonProperty("short_description")]
         public string ShortDescription { get; set; }
 
         /// <summary>
-        /// Offer tag
+        /// Offer description
         /// </summary>
-        [JsonProperty("tag")]
-        public string Tag { get; set; }
-
-        /// <summary>
-        /// Instruction how to process the offer
-        /// </summary>
-        [JsonProperty("instruction")]
-        public string Instruction { get; set; }
-
-        /// <summary>
-        /// URL of the preview image
-        /// </summary>
-        [JsonProperty("img")]
-        public string Img { get; set; }
+        [JsonProperty("description")]
+        public string Description_ { get; set; }
 
         /// <summary>
         /// Offer title
         /// </summary>
         [JsonProperty("title")]
-        public string Title { get; set; }
+        public string Title_ { get; set; }
 
         /// <summary>
-        /// Offer description
+        /// URL of the preview image
         /// </summary>
-        [JsonProperty("description")]
-        public string Description { get; set; }
+        [JsonProperty("img")]
+        public string Img_ { get; set; }
 
     }
 }

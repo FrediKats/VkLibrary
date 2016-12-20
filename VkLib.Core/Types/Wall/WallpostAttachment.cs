@@ -1,5 +1,6 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Wall 
 {
@@ -8,50 +9,74 @@ namespace VkLib.Types.Wall
         /// <summary>
         /// Property
         /// </summary>
-        [JsonProperty("app")]
-        public AppPost App { get; set; }
-
-        /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("market")]
-        public MarketItem Market { get; set; }
+        [JsonProperty("graffiti")]
+        public VkLib.Types.Wall.Graffiti Graffiti { get; set; }
 
         /// <summary>
         /// Property
         /// </summary>
         [JsonProperty("link")]
-        public Link Link { get; set; }
+        public VkLib.Types.Base.Link Link { get; set; }
 
         /// <summary>
         /// Property
         /// </summary>
-        [JsonProperty("market_market_album")]
-        public MarketAlbum MarketMarketAlbum { get; set; }
+        [JsonProperty("page")]
+        public VkLib.Types.Pages.WikipageFull Page { get; set; }
 
         /// <summary>
         /// Property
         /// </summary>
-        [JsonProperty("doc")]
-        public Doc Doc { get; set; }
+        [JsonProperty("video")]
+        public VkLib.Types.Video.Video Video { get; set; }
+
+        /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("photos_list")]
+        public IEnumerable<string> PhotosList_ { get; set; }
+
+        /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("audio")]
+        public VkLib.Types.Audio.AudioFull Audio { get; set; }
+
+        /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("photo")]
+        public VkLib.Types.Photos.Photo Photo { get; set; }
 
         /// <summary>
         /// Property
         /// </summary>
         [JsonProperty("album")]
-        public PhotoAlbum Album { get; set; }
-
-        /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("posted_photo")]
-        public PostedPhoto PostedPhoto { get; set; }
+        public VkLib.Types.Photos.PhotoAlbum Album { get; set; }
 
         /// <summary>
         /// Property
         /// </summary>
         [JsonProperty("poll")]
-        public Poll Poll { get; set; }
+        public VkLib.Types.Polls.Poll Poll { get; set; }
+
+        /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("note")]
+        public VkLib.Types.Wall.AttachedNote Note { get; set; }
+
+        /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("market_market_album")]
+        public VkLib.Types.Market.MarketAlbum MarketMarketAlbum { get; set; }
+
+        /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("market")]
+        public VkLib.Types.Market.MarketItem Market { get; set; }
 
         /// <summary>
         /// Attachment type
@@ -62,44 +87,20 @@ namespace VkLib.Types.Wall
         /// <summary>
         /// Property
         /// </summary>
-        [JsonProperty("video")]
-        public Video Video { get; set; }
+        [JsonProperty("app")]
+        public VkLib.Types.Wall.AppPost App { get; set; }
 
         /// <summary>
         /// Property
         /// </summary>
-        [JsonProperty("photo")]
-        public Photo Photo { get; set; }
+        [JsonProperty("doc")]
+        public VkLib.Types.Docs.Doc Doc { get; set; }
 
         /// <summary>
         /// Property
         /// </summary>
-        [JsonProperty("page")]
-        public WikipageFull Page { get; set; }
-
-        /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("graffiti")]
-        public Graffiti Graffiti { get; set; }
-
-        /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("note")]
-        public AttachedNote Note { get; set; }
-
-        /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("audio")]
-        public AudioFull Audio { get; set; }
-
-        /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("photos_list")]
-        public IEnumerable<string> PhotosList { get; set; }
+        [JsonProperty("posted_photo")]
+        public VkLib.Types.Wall.PostedPhoto PostedPhoto_ { get; set; }
 
     }
 }

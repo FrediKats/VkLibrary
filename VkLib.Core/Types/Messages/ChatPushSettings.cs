@@ -1,5 +1,6 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Messages 
 {
@@ -9,7 +10,7 @@ namespace VkLib.Types.Messages
         /// Information whether the sound is on
         /// </summary>
         [JsonProperty("sound")]
-        public BoolInt Sound { get; set; }
+        public int? Sound { get; set; }
 
         /// <summary>
         /// Time until that notifications are disabled

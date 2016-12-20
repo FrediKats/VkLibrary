@@ -1,5 +1,6 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Photos 
 {
@@ -12,6 +13,12 @@ namespace VkLib.Types.Photos
         public string Hash { get; set; }
 
         /// <summary>
+        /// Upload server number
+        /// </summary>
+        [JsonProperty("server")]
+        public int? Server { get; set; }
+
+        /// <summary>
         /// Uploaded photo data
         /// </summary>
         [JsonProperty("photo")]
@@ -22,12 +29,6 @@ namespace VkLib.Types.Photos
         /// </summary>
         [JsonProperty("gid")]
         public int? Gid { get; set; }
-
-        /// <summary>
-        /// Upload server number
-        /// </summary>
-        [JsonProperty("server")]
-        public int? Server { get; set; }
 
     }
 }

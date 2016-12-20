@@ -30,7 +30,7 @@ namespace VkLib.Methods
         /// <param name="latitude">Geographical latitude, in degrees (from '-90' to '90').</param>
         /// <param name="longitude">Geographical longitude, in degrees (from '-180' to '180').</param>
         /// <param name="caption">Text describing the photo. 2048 digits max.</param>
-        public async Task<object> Save(int? album_id = null, int? group_id = null, int? server = null, string photos_list = null, string hash = null, uint? latitude = null, uint? longitude = null, string caption = null)
+        public async Task<IEnumerable<VkLib.Types.Photos.Photo>> Save(int? album_id = null, int? group_id = null, int? server = null, string photos_list = null, string hash = null, uint? latitude = null, uint? longitude = null, string caption = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -51,7 +51,7 @@ namespace VkLib.Methods
             if (caption != null)
                 parameters.Add("caption", caption);
 
-            return await _vkontakte.GetAsync<object>("photos.save", parameters);
+            return await _vkontakte.GetAsync<IEnumerable<VkLib.Types.Photos.Photo>>("photos.save", parameters);
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace VkLib.Methods
         /// <param name="owner_id">photo's owner ID</param>
         /// <param name="photo_id">photo ID</param>
         /// <param name="access_key">for private photos</param>
-        public async Task<object> Copy(int? owner_id = null, int? photo_id = null, string access_key = null)
+        public async Task<int?> Copy(int? owner_id = null, int? photo_id = null, string access_key = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -72,7 +72,7 @@ namespace VkLib.Methods
             if (access_key != null)
                 parameters.Add("access_key", access_key);
 
-            return await _vkontakte.GetAsync<object>("photos.copy", parameters);
+            return await _vkontakte.GetAsync<int?>("photos.copy", parameters);
         }
 
         /// <summary>
@@ -87,7 +87,7 @@ namespace VkLib.Methods
         /// <param name="place_str"></param>
         /// <param name="foursquare_id"></param>
         /// <param name="delete_place"></param>
-        public async Task<object> Edit(int? owner_id = null, int? photo_id = null, string caption = null, uint? latitude = null, uint? longitude = null, string place_str = null, string foursquare_id = null, bool? delete_place = null)
+        public async Task<int> Edit(int? owner_id = null, int? photo_id = null, string caption = null, uint? latitude = null, uint? longitude = null, string place_str = null, string foursquare_id = null, bool? delete_place = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -108,7 +108,7 @@ namespace VkLib.Methods
             if (delete_place != null)
                 parameters.Add("delete_place", delete_place.ToString());
 
-            return await _vkontakte.GetAsync<object>("photos.edit", parameters);
+            return await _vkontakte.GetAsync<int>("photos.edit", parameters);
         }
 
         /// <summary>
@@ -118,7 +118,7 @@ namespace VkLib.Methods
         /// <param name="owner_id">ID of the user or community that owns the photo.</param>
         /// <param name="target_album_id">ID of the album to which the photo will be moved.</param>
         /// <param name="photo_id">Photo ID.</param>
-        public async Task<object> Move(int? owner_id = null, int? target_album_id = null, int? photo_id = null)
+        public async Task<int> Move(int? owner_id = null, int? target_album_id = null, int? photo_id = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -129,7 +129,7 @@ namespace VkLib.Methods
             if (photo_id != null)
                 parameters.Add("photo_id", photo_id.ToString());
 
-            return await _vkontakte.GetAsync<object>("photos.move", parameters);
+            return await _vkontakte.GetAsync<int>("photos.move", parameters);
         }
 
         /// <summary>
@@ -139,7 +139,7 @@ namespace VkLib.Methods
         /// <param name="owner_id">ID of the user or community that owns the photo.</param>
         /// <param name="photo_id">Photo ID.</param>
         /// <param name="album_id">Album ID.</param>
-        public async Task<object> MakeCover(int? owner_id = null, int? photo_id = null, int? album_id = null)
+        public async Task<int> MakeCover(int? owner_id = null, int? photo_id = null, int? album_id = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -150,7 +150,7 @@ namespace VkLib.Methods
             if (album_id != null)
                 parameters.Add("album_id", album_id.ToString());
 
-            return await _vkontakte.GetAsync<object>("photos.makeCover", parameters);
+            return await _vkontakte.GetAsync<int>("photos.makeCover", parameters);
         }
 
         /// <summary>
@@ -161,7 +161,7 @@ namespace VkLib.Methods
         /// <param name="album_id">Album ID.</param>
         /// <param name="before">ID of the album before which the album in question shall be placed.</param>
         /// <param name="after">ID of the album after which the album in question shall be placed.</param>
-        public async Task<object> ReorderAlbums(int? owner_id = null, int? album_id = null, int? before = null, int? after = null)
+        public async Task<int> ReorderAlbums(int? owner_id = null, int? album_id = null, int? before = null, int? after = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -174,7 +174,7 @@ namespace VkLib.Methods
             if (after != null)
                 parameters.Add("after", after.ToString());
 
-            return await _vkontakte.GetAsync<object>("photos.reorderAlbums", parameters);
+            return await _vkontakte.GetAsync<int>("photos.reorderAlbums", parameters);
         }
 
         /// <summary>
@@ -185,7 +185,7 @@ namespace VkLib.Methods
         /// <param name="photo_id">Photo ID.</param>
         /// <param name="before">ID of the photo before which the photo in question shall be placed.</param>
         /// <param name="after">ID of the photo after which the photo in question shall be placed.</param>
-        public async Task<object> ReorderPhotos(int? owner_id = null, int? photo_id = null, int? before = null, int? after = null)
+        public async Task<int> ReorderPhotos(int? owner_id = null, int? photo_id = null, int? before = null, int? after = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -198,7 +198,7 @@ namespace VkLib.Methods
             if (after != null)
                 parameters.Add("after", after.ToString());
 
-            return await _vkontakte.GetAsync<object>("photos.reorderPhotos", parameters);
+            return await _vkontakte.GetAsync<int>("photos.reorderPhotos", parameters);
         }
 
         /// <summary>
@@ -213,7 +213,7 @@ namespace VkLib.Methods
         /// <param name="no_service_albums">'1' – to return photos only from standard albums; '0' – to return all photos including those in service albums, e.g., 'My wall photos' (default)</param>
         /// <param name="need_hidden">'1' – to show information about photos being hidden from the block above the wall.</param>
         /// <param name="skip_hidden">'1' – not to return photos being hidden from the block above the wall. Works only with owner_id>0, no_service_albums is ignored.</param>
-        public async Task<object> GetAll(int? owner_id = null, bool? extended = null, int? offset = null, int? count = null, bool? photo_sizes = null, bool? no_service_albums = null, bool? need_hidden = null, bool? skip_hidden = null)
+        public async Task<ApiItemsResponse<VkLib.Types.Photos.PhotoXtrRealOffset>> GetAll(int? owner_id = null, bool? extended = null, int? offset = null, int? count = null, bool? photo_sizes = null, bool? no_service_albums = null, bool? need_hidden = null, bool? skip_hidden = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -234,7 +234,7 @@ namespace VkLib.Methods
             if (skip_hidden != null)
                 parameters.Add("skip_hidden", skip_hidden.ToString());
 
-            return await _vkontakte.GetAsync<object>("photos.getAll", parameters);
+            return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Photos.PhotoXtrRealOffset>>("photos.getAll", parameters);
         }
 
         /// <summary>
@@ -246,7 +246,7 @@ namespace VkLib.Methods
         /// <param name="count">Number of photos to return. Maximum value is 1000.</param>
         /// <param name="extended">'1' — to return an additional 'likes' field; '0' — (default)</param>
         /// <param name="sort">Sort order:; '1' — by date the tag was added in ascending order; '0' — by date the tag was added in descending order</param>
-        public async Task<object> GetUserPhotos(int? user_id = null, int? offset = null, int? count = null, bool? extended = null, string sort = null)
+        public async Task<ApiItemsResponse<VkLib.Types.Photos.Photo>> GetUserPhotos(int? user_id = null, int? offset = null, int? count = null, bool? extended = null, string sort = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -261,7 +261,7 @@ namespace VkLib.Methods
             if (sort != null)
                 parameters.Add("sort", sort);
 
-            return await _vkontakte.GetAsync<object>("photos.getUserPhotos", parameters);
+            return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Photos.Photo>>("photos.getUserPhotos", parameters);
         }
 
         /// <summary>
@@ -270,7 +270,7 @@ namespace VkLib.Methods
         /// </summary>
         /// <param name="album_id">Album ID.</param>
         /// <param name="group_id">ID of the community that owns the album.</param>
-        public async Task<object> DeleteAlbum(int? album_id = null, int? group_id = null)
+        public async Task<int> DeleteAlbum(int? album_id = null, int? group_id = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -279,7 +279,7 @@ namespace VkLib.Methods
             if (group_id != null)
                 parameters.Add("group_id", group_id.ToString());
 
-            return await _vkontakte.GetAsync<object>("photos.deleteAlbum", parameters);
+            return await _vkontakte.GetAsync<int>("photos.deleteAlbum", parameters);
         }
 
         /// <summary>
@@ -288,7 +288,7 @@ namespace VkLib.Methods
         /// </summary>
         /// <param name="owner_id">ID of the user or community that owns the photo.</param>
         /// <param name="photo_id">Photo ID.</param>
-        public async Task<object> Delete(int? owner_id = null, int? photo_id = null)
+        public async Task<int> Delete(int? owner_id = null, int? photo_id = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -297,7 +297,7 @@ namespace VkLib.Methods
             if (photo_id != null)
                 parameters.Add("photo_id", photo_id.ToString());
 
-            return await _vkontakte.GetAsync<object>("photos.delete", parameters);
+            return await _vkontakte.GetAsync<int>("photos.delete", parameters);
         }
 
         /// <summary>
@@ -306,7 +306,7 @@ namespace VkLib.Methods
         /// </summary>
         /// <param name="owner_id">ID of the user or community that owns the photo.</param>
         /// <param name="photo_id">Photo ID.</param>
-        public async Task<object> Restore(int? owner_id = null, int? photo_id = null)
+        public async Task<int> Restore(int? owner_id = null, int? photo_id = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -315,7 +315,7 @@ namespace VkLib.Methods
             if (photo_id != null)
                 parameters.Add("photo_id", photo_id.ToString());
 
-            return await _vkontakte.GetAsync<object>("photos.restore", parameters);
+            return await _vkontakte.GetAsync<int>("photos.restore", parameters);
         }
 
         /// <summary>
@@ -325,7 +325,7 @@ namespace VkLib.Methods
         /// <param name="owner_id">ID of the user or community that owns the photo.</param>
         /// <param name="photo_id">Photo ID.</param>
         /// <param name="tag_id">Tag ID.</param>
-        public async Task<object> ConfirmTag(int? owner_id = null, string photo_id = null, int? tag_id = null)
+        public async Task<int> ConfirmTag(int? owner_id = null, string photo_id = null, int? tag_id = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -336,7 +336,7 @@ namespace VkLib.Methods
             if (tag_id != null)
                 parameters.Add("tag_id", tag_id.ToString());
 
-            return await _vkontakte.GetAsync<object>("photos.confirmTag", parameters);
+            return await _vkontakte.GetAsync<int>("photos.confirmTag", parameters);
         }
 
         /// <summary>
@@ -353,7 +353,7 @@ namespace VkLib.Methods
         /// <param name="access_key"></param>
         /// <param name="extended"></param>
         /// <param name="fields"></param>
-        public async Task<object> GetComments(int? owner_id = null, int? photo_id = null, bool? need_likes = null, int? start_comment_id = null, int? offset = null, int? count = null, string sort = null, string access_key = null, bool? extended = null, IEnumerable<string> fields = null)
+        public async Task<ApiItemsResponse<VkLib.Types.Wall.WallComment>> GetComments(int? owner_id = null, int? photo_id = null, bool? need_likes = null, int? start_comment_id = null, int? offset = null, int? count = null, string sort = null, string access_key = null, bool? extended = null, IEnumerable<string> fields = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -378,7 +378,7 @@ namespace VkLib.Methods
             if (fields != null)
                 parameters.Add("fields", string.Join(",", fields));
 
-            return await _vkontakte.GetAsync<object>("photos.getComments", parameters);
+            return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Wall.WallComment>>("photos.getComments", parameters);
         }
 
         /// <summary>
@@ -390,7 +390,7 @@ namespace VkLib.Methods
         /// <param name="need_likes">'1' — to return an additional 'likes' field; '0' — (default)</param>
         /// <param name="offset">Offset needed to return a specific subset of comments. By default, '0'.</param>
         /// <param name="count">Number of comments to return. By default, '20'. Maximum value, '100'.</param>
-        public async Task<object> GetAllComments(int? owner_id = null, int? album_id = null, bool? need_likes = null, int? offset = null, int? count = null)
+        public async Task<ApiItemsResponse<VkLib.Types.Photos.CommentXtrPid>> GetAllComments(int? owner_id = null, int? album_id = null, bool? need_likes = null, int? offset = null, int? count = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -405,7 +405,7 @@ namespace VkLib.Methods
             if (count != null)
                 parameters.Add("count", count.ToString());
 
-            return await _vkontakte.GetAsync<object>("photos.getAllComments", parameters);
+            return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Photos.CommentXtrPid>>("photos.getAllComments", parameters);
         }
 
         /// <summary>
@@ -421,7 +421,7 @@ namespace VkLib.Methods
         /// <param name="sticker_id"></param>
         /// <param name="access_key"></param>
         /// <param name="guid"></param>
-        public async Task<object> CreateComment(int? owner_id = null, int? photo_id = null, string message = null, IEnumerable<string> attachments = null, bool? from_group = null, int? reply_to_comment = null, int? sticker_id = null, string access_key = null, string guid = null)
+        public async Task<int?> CreateComment(int? owner_id = null, int? photo_id = null, string message = null, IEnumerable<string> attachments = null, bool? from_group = null, int? reply_to_comment = null, int? sticker_id = null, string access_key = null, string guid = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -444,7 +444,7 @@ namespace VkLib.Methods
             if (guid != null)
                 parameters.Add("guid", guid);
 
-            return await _vkontakte.GetAsync<object>("photos.createComment", parameters);
+            return await _vkontakte.GetAsync<int?>("photos.createComment", parameters);
         }
 
         /// <summary>
@@ -453,7 +453,7 @@ namespace VkLib.Methods
         /// </summary>
         /// <param name="owner_id">ID of the user or community that owns the photo.</param>
         /// <param name="comment_id">Comment ID.</param>
-        public async Task<object> DeleteComment(int? owner_id = null, int? comment_id = null)
+        public async Task<int> DeleteComment(int? owner_id = null, int? comment_id = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -462,7 +462,7 @@ namespace VkLib.Methods
             if (comment_id != null)
                 parameters.Add("comment_id", comment_id.ToString());
 
-            return await _vkontakte.GetAsync<object>("photos.deleteComment", parameters);
+            return await _vkontakte.GetAsync<int>("photos.deleteComment", parameters);
         }
 
         /// <summary>
@@ -471,7 +471,7 @@ namespace VkLib.Methods
         /// </summary>
         /// <param name="owner_id">ID of the user or community that owns the photo.</param>
         /// <param name="comment_id">ID of the deleted comment.</param>
-        public async Task<object> RestoreComment(int? owner_id = null, int? comment_id = null)
+        public async Task<int> RestoreComment(int? owner_id = null, int? comment_id = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -480,7 +480,7 @@ namespace VkLib.Methods
             if (comment_id != null)
                 parameters.Add("comment_id", comment_id.ToString());
 
-            return await _vkontakte.GetAsync<object>("photos.restoreComment", parameters);
+            return await _vkontakte.GetAsync<int>("photos.restoreComment", parameters);
         }
 
         /// <summary>
@@ -491,7 +491,7 @@ namespace VkLib.Methods
         /// <param name="comment_id">Comment ID.</param>
         /// <param name="message">New text of the comment.</param>
         /// <param name="attachments">(Required if 'message' is not set.) List of objects attached to the post, in the following format:; "<owner_id>_<media_id>,<owner_id>_<media_id>"; '' — Type of media attachment:; 'photo' — photo; 'video' — video; 'audio' — audio; 'doc' — document; '<owner_id>' — Media attachment owner ID.; '<media_id>' — Media attachment ID.; ; Example:; "photo100172_166443618,photo66748_265827614"</param>
-        public async Task<object> EditComment(int? owner_id = null, int? comment_id = null, string message = null, IEnumerable<string> attachments = null)
+        public async Task<int> EditComment(int? owner_id = null, int? comment_id = null, string message = null, IEnumerable<string> attachments = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -504,7 +504,7 @@ namespace VkLib.Methods
             if (attachments != null)
                 parameters.Add("attachments", string.Join(",", attachments));
 
-            return await _vkontakte.GetAsync<object>("photos.editComment", parameters);
+            return await _vkontakte.GetAsync<int>("photos.editComment", parameters);
         }
 
         /// <summary>
@@ -514,7 +514,7 @@ namespace VkLib.Methods
         /// <param name="owner_id">ID of the user or community that owns the photo.</param>
         /// <param name="photo_id">Photo ID.</param>
         /// <param name="access_key"></param>
-        public async Task<object> GetTags(int? owner_id = null, int? photo_id = null, string access_key = null)
+        public async Task<IEnumerable<VkLib.Types.Photos.PhotoTag>> GetTags(int? owner_id = null, int? photo_id = null, string access_key = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -525,7 +525,7 @@ namespace VkLib.Methods
             if (access_key != null)
                 parameters.Add("access_key", access_key);
 
-            return await _vkontakte.GetAsync<object>("photos.getTags", parameters);
+            return await _vkontakte.GetAsync<IEnumerable<VkLib.Types.Photos.PhotoTag>>("photos.getTags", parameters);
         }
 
         /// <summary>
@@ -539,7 +539,7 @@ namespace VkLib.Methods
         /// <param name="y">Upper left-corner coordinate of the tagged area (as a percentage of the photo's height).</param>
         /// <param name="x2">Lower right-corner coordinate of the tagged area (as a percentage of the photo's width).</param>
         /// <param name="y2">Lower right-corner coordinate of the tagged area (as a percentage of the photo's height).</param>
-        public async Task<object> PutTag(int? owner_id = null, int? photo_id = null, int? user_id = null, uint? x = null, uint? y = null, uint? x2 = null, uint? y2 = null)
+        public async Task<int?> PutTag(int? owner_id = null, int? photo_id = null, int? user_id = null, uint? x = null, uint? y = null, uint? x2 = null, uint? y2 = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -558,7 +558,7 @@ namespace VkLib.Methods
             if (y2 != null)
                 parameters.Add("y2", y2.ToString());
 
-            return await _vkontakte.GetAsync<object>("photos.putTag", parameters);
+            return await _vkontakte.GetAsync<int?>("photos.putTag", parameters);
         }
 
         /// <summary>
@@ -568,7 +568,7 @@ namespace VkLib.Methods
         /// <param name="owner_id">ID of the user or community that owns the photo.</param>
         /// <param name="photo_id">Photo ID.</param>
         /// <param name="tag_id">Tag ID.</param>
-        public async Task<object> RemoveTag(int? owner_id = null, int? photo_id = null, int? tag_id = null)
+        public async Task<int> RemoveTag(int? owner_id = null, int? photo_id = null, int? tag_id = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -579,7 +579,7 @@ namespace VkLib.Methods
             if (tag_id != null)
                 parameters.Add("tag_id", tag_id.ToString());
 
-            return await _vkontakte.GetAsync<object>("photos.removeTag", parameters);
+            return await _vkontakte.GetAsync<int>("photos.removeTag", parameters);
         }
 
         /// <summary>
@@ -588,7 +588,7 @@ namespace VkLib.Methods
         /// </summary>
         /// <param name="offset">Offset needed to return a specific subset of photos.</param>
         /// <param name="count">Number of photos to return.</param>
-        public async Task<object> GetNewTags(int? offset = null, int? count = null)
+        public async Task<ApiItemsResponse<VkLib.Types.Photos.PhotoXtrTagInfo>> GetNewTags(int? offset = null, int? count = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -597,7 +597,7 @@ namespace VkLib.Methods
             if (count != null)
                 parameters.Add("count", count.ToString());
 
-            return await _vkontakte.GetAsync<object>("photos.getNewTags", parameters);
+            return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Photos.PhotoXtrTagInfo>>("photos.getNewTags", parameters);
         }
 
     }

@@ -1,15 +1,28 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Notes 
 {
     public class NoteComment
     {
         /// <summary>
-        /// Comment ID
+        /// Comment author's ID
         /// </summary>
-        [JsonProperty("id")]
-        public int? Id { get; set; }
+        [JsonProperty("uid")]
+        public int? Uid { get; set; }
+
+        /// <summary>
+        /// ID of replied comment 
+        /// </summary>
+        [JsonProperty("reply_to")]
+        public int? ReplyTo_ { get; set; }
+
+        /// <summary>
+        /// Comment text
+        /// </summary>
+        [JsonProperty("message")]
+        public string Message { get; set; }
 
         /// <summary>
         /// Note ID
@@ -18,10 +31,10 @@ namespace VkLib.Types.Notes
         public int? Oid { get; set; }
 
         /// <summary>
-        /// ID of replied comment 
+        /// Comment ID
         /// </summary>
-        [JsonProperty("reply_to")]
-        public int? ReplyTo { get; set; }
+        [JsonProperty("id")]
+        public int? Id { get; set; }
 
         /// <summary>
         /// Note ID
@@ -34,18 +47,6 @@ namespace VkLib.Types.Notes
         /// </summary>
         [JsonProperty("date")]
         public int? Date { get; set; }
-
-        /// <summary>
-        /// Comment author's ID
-        /// </summary>
-        [JsonProperty("uid")]
-        public int? Uid { get; set; }
-
-        /// <summary>
-        /// Comment text
-        /// </summary>
-        [JsonProperty("message")]
-        public string Message { get; set; }
 
     }
 }

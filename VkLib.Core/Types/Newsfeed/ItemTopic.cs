@@ -1,5 +1,6 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Newsfeed 
 {
@@ -9,19 +10,19 @@ namespace VkLib.Types.Newsfeed
         /// Property
         /// </summary>
         [JsonProperty("comments")]
-        public CommentsInfo Comments { get; set; }
-
-        /// <summary>
-        /// Topic post ID
-        /// </summary>
-        [JsonProperty("post_id")]
-        public int? PostId { get; set; }
+        public VkLib.Types.Base.CommentsInfo Comments { get; set; }
 
         /// <summary>
         /// Property
         /// </summary>
         [JsonProperty("likes")]
-        public LikesInfo Likes { get; set; }
+        public VkLib.Types.Base.LikesInfo Likes { get; set; }
+
+        /// <summary>
+        /// Topic post ID
+        /// </summary>
+        [JsonProperty("post_id")]
+        public int? PostId_ { get; set; }
 
         /// <summary>
         /// Post text

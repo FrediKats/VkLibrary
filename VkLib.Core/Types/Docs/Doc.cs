@@ -1,22 +1,11 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Docs 
 {
     public class Doc
     {
-        /// <summary>
-        /// Document type
-        /// </summary>
-        [JsonProperty("type")]
-        public int? Type { get; set; }
-
-        /// <summary>
-        /// Document ID
-        /// </summary>
-        [JsonProperty("id")]
-        public int? Id { get; set; }
-
         /// <summary>
         /// Access key for the document
         /// </summary>
@@ -24,34 +13,22 @@ namespace VkLib.Types.Docs
         public string AccessKey { get; set; }
 
         /// <summary>
-        /// File size in bites
+        /// File extension
         /// </summary>
-        [JsonProperty("size")]
-        public int? Size { get; set; }
+        [JsonProperty("ext")]
+        public string Ext_ { get; set; }
+
+        /// <summary>
+        /// Document ID
+        /// </summary>
+        [JsonProperty("id")]
+        public int? Id_ { get; set; }
 
         /// <summary>
         /// Date when file has been uploaded in Unixtime
         /// </summary>
         [JsonProperty("date")]
-        public int? Date { get; set; }
-
-        /// <summary>
-        /// File URL
-        /// </summary>
-        [JsonProperty("url")]
-        public string Url { get; set; }
-
-        /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("preview")]
-        public DocPreview Preview { get; set; }
-
-        /// <summary>
-        /// Document title
-        /// </summary>
-        [JsonProperty("title")]
-        public string Title { get; set; }
+        public int? Date_ { get; set; }
 
         /// <summary>
         /// Document owner ID
@@ -60,10 +37,34 @@ namespace VkLib.Types.Docs
         public int? OwnerId { get; set; }
 
         /// <summary>
-        /// File extension
+        /// File size in bites
         /// </summary>
-        [JsonProperty("ext")]
-        public string Ext { get; set; }
+        [JsonProperty("size")]
+        public int? Size_ { get; set; }
+
+        /// <summary>
+        /// File URL
+        /// </summary>
+        [JsonProperty("url")]
+        public string Url_ { get; set; }
+
+        /// <summary>
+        /// Document type
+        /// </summary>
+        [JsonProperty("type")]
+        public int? Type_ { get; set; }
+
+        /// <summary>
+        /// Document title
+        /// </summary>
+        [JsonProperty("title")]
+        public string Title_ { get; set; }
+
+        /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("preview")]
+        public VkLib.Types.Docs.DocPreview Preview_ { get; set; }
 
     }
 }

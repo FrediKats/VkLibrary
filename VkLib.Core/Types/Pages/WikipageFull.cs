@@ -1,21 +1,52 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Pages 
 {
     public class WikipageFull
     {
         /// <summary>
+        /// URL of the page preview
+        /// </summary>
+        [JsonProperty("view_url")]
+        public string ViewUrl_ { get; set; }
+
+        /// <summary>
+        /// Information whether current user can edit the page
+        /// </summary>
+        [JsonProperty("current_user_can_edit")]
+        public int? CurrentUserCanEdit { get; set; }
+
+        /// <summary>
+        /// Date when the page has been created in Unixtime
+        /// </summary>
+        [JsonProperty("created")]
+        public int? Created { get; set; }
+
+        /// <summary>
+        /// Views number
+        /// </summary>
+        [JsonProperty("views")]
+        public int? Views { get; set; }
+
+        /// <summary>
+        /// Page content, HTML
+        /// </summary>
+        [JsonProperty("html")]
+        public string Html { get; set; }
+
+        /// <summary>
+        /// Information whether current user can edit the page access settings
+        /// </summary>
+        [JsonProperty("current_user_can_edit_access")]
+        public int? CurrentUserCanEditAccess { get; set; }
+
+        /// <summary>
         /// Last editor ID
         /// </summary>
         [JsonProperty("editor_id")]
-        public int? EditorId { get; set; }
-
-        /// <summary>
-        /// Edit settings of the page
-        /// </summary>
-        [JsonProperty("who_can_edit")]
-        public PrivacySettings WhoCanEdit { get; set; }
+        public int? EditorId_ { get; set; }
 
         /// <summary>
         /// Date when the page has been edited in Unixtime
@@ -27,43 +58,13 @@ namespace VkLib.Types.Pages
         /// View settings of the page
         /// </summary>
         [JsonProperty("who_can_view")]
-        public PrivacySettings WhoCanView { get; set; }
+        public string WhoCanView { get; set; }
 
         /// <summary>
-        /// Page creator ID
+        /// Edit settings of the page
         /// </summary>
-        [JsonProperty("creator_id")]
-        public int? CreatorId { get; set; }
-
-        /// <summary>
-        /// Page title
-        /// </summary>
-        [JsonProperty("title")]
-        public string Title { get; set; }
-
-        /// <summary>
-        /// Community ID
-        /// </summary>
-        [JsonProperty("group_id")]
-        public int? GroupId { get; set; }
-
-        /// <summary>
-        /// URL of the page preview
-        /// </summary>
-        [JsonProperty("view_url")]
-        public string ViewUrl { get; set; }
-
-        /// <summary>
-        /// Page ID
-        /// </summary>
-        [JsonProperty("id")]
-        public int? Id { get; set; }
-
-        /// <summary>
-        /// Information whether current user can edit the page access settings
-        /// </summary>
-        [JsonProperty("current_user_can_edit_access")]
-        public BoolInt CurrentUserCanEditAccess { get; set; }
+        [JsonProperty("who_can_edit")]
+        public string WhoCanEdit { get; set; }
 
         /// <summary>
         /// Page content, wiki
@@ -72,28 +73,28 @@ namespace VkLib.Types.Pages
         public string Source { get; set; }
 
         /// <summary>
-        /// Views number
+        /// Page creator ID
         /// </summary>
-        [JsonProperty("views")]
-        public int? Views { get; set; }
+        [JsonProperty("creator_id")]
+        public int? CreatorId_ { get; set; }
 
         /// <summary>
-        /// Information whether current user can edit the page
+        /// Community ID
         /// </summary>
-        [JsonProperty("current_user_can_edit")]
-        public BoolInt CurrentUserCanEdit { get; set; }
+        [JsonProperty("group_id")]
+        public int? GroupId_ { get; set; }
 
         /// <summary>
-        /// Page content, HTML
+        /// Page title
         /// </summary>
-        [JsonProperty("html")]
-        public string Html { get; set; }
+        [JsonProperty("title")]
+        public string Title { get; set; }
 
         /// <summary>
-        /// Date when the page has been created in Unixtime
+        /// Page ID
         /// </summary>
-        [JsonProperty("created")]
-        public int? Created { get; set; }
+        [JsonProperty("id")]
+        public int? Id { get; set; }
 
     }
 }

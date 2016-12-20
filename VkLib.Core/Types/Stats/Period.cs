@@ -1,57 +1,64 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Stats 
 {
     public class Period
     {
         /// <summary>
-        /// Total reach
-        /// </summary>
-        [JsonProperty("reach")]
-        public int? Reach { get; set; }
-
-        /// <summary>
-        /// Visitors number
-        /// </summary>
-        [JsonProperty("visitors")]
-        public int? Visitors { get; set; }
-
-        /// <summary>
-        /// Day (YYYY-MM-DD)
-        /// </summary>
-        [JsonProperty("day")]
-        public string Day { get; set; }
-
-        /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("sex_age")]
-        public IEnumerable<SexAge> SexAge { get; set; }
-
-        /// <summary>
         /// Property
         /// </summary>
         [JsonProperty("age")]
-        public IEnumerable<Age> Age { get; set; }
-
-        /// <summary>
-        /// Views number
-        /// </summary>
-        [JsonProperty("views")]
-        public int? Views { get; set; }
+        public IEnumerable<VkLib.Types.Stats.Age> Age_ { get; set; }
 
         /// <summary>
         /// Number of users subscribed
         /// </summary>
         [JsonProperty("subscribed")]
-        public int? Subscribed { get; set; }
+        public int? Subscribed_ { get; set; }
 
         /// <summary>
-        /// Number of users unsubscribed
+        /// Visitors number
         /// </summary>
-        [JsonProperty("unsubscribed")]
-        public int? Unsubscribed { get; set; }
+        [JsonProperty("visitors")]
+        public int? Visitors_ { get; set; }
+
+        /// <summary>
+        /// Day (YYYY-MM-DD)
+        /// </summary>
+        [JsonProperty("day")]
+        public string Day_ { get; set; }
+
+        /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("cities")]
+        public IEnumerable<VkLib.Types.Stats.City> Cities_ { get; set; }
+
+        /// <summary>
+        /// Views number
+        /// </summary>
+        [JsonProperty("views")]
+        public int? Views_ { get; set; }
+
+        /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("sex")]
+        public IEnumerable<VkLib.Types.Stats.Sex> Sex_ { get; set; }
+
+        /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("sex_age")]
+        public IEnumerable<VkLib.Types.Stats.SexAge> SexAge { get; set; }
+
+        /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("countries")]
+        public IEnumerable<VkLib.Types.Stats.Country> Countries_ { get; set; }
 
         /// <summary>
         /// Subscribers reach
@@ -60,22 +67,16 @@ namespace VkLib.Types.Stats
         public int? ReachSubscribers { get; set; }
 
         /// <summary>
-        /// Property
+        /// Number of users unsubscribed
         /// </summary>
-        [JsonProperty("cities")]
-        public IEnumerable<City> Cities { get; set; }
+        [JsonProperty("unsubscribed")]
+        public int? Unsubscribed_ { get; set; }
 
         /// <summary>
-        /// Property
+        /// Total reach
         /// </summary>
-        [JsonProperty("sex")]
-        public IEnumerable<Sex> Sex { get; set; }
-
-        /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("countries")]
-        public IEnumerable<Country> Countries { get; set; }
+        [JsonProperty("reach")]
+        public int? Reach_ { get; set; }
 
     }
 }

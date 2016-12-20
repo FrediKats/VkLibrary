@@ -1,16 +1,11 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Photos 
 {
     public class PhotoUploadResponse
     {
-        /// <summary>
-        /// Album ID
-        /// </summary>
-        [JsonProperty("aid")]
-        public int? Aid { get; set; }
-
         /// <summary>
         /// Uploaded photos data
         /// </summary>
@@ -28,6 +23,12 @@ namespace VkLib.Types.Photos
         /// </summary>
         [JsonProperty("server")]
         public int? Server { get; set; }
+
+        /// <summary>
+        /// Album ID
+        /// </summary>
+        [JsonProperty("aid")]
+        public int? Aid { get; set; }
 
     }
 }

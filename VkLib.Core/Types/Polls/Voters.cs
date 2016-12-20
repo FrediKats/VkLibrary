@@ -1,5 +1,6 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Polls 
 {
@@ -15,7 +16,7 @@ namespace VkLib.Types.Polls
         /// Property
         /// </summary>
         [JsonProperty("users")]
-        public VotersUsers Users { get; set; }
+        public VkLib.Types.Polls.VotersUsers Users_ { get; set; }
 
     }
 }

@@ -1,27 +1,28 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Market 
 {
     public class Price
     {
         /// <summary>
-        /// Text
+        /// Property
         /// </summary>
-        [JsonProperty("text")]
-        public string Text { get; set; }
+        [JsonProperty("currency")]
+        public VkLib.Types.Market.Currency Currency_ { get; set; }
 
         /// <summary>
         /// Amount
         /// </summary>
         [JsonProperty("amount")]
-        public string Amount { get; set; }
+        public string Amount_ { get; set; }
 
         /// <summary>
-        /// Property
+        /// Text
         /// </summary>
-        [JsonProperty("currency")]
-        public Currency Currency { get; set; }
+        [JsonProperty("text")]
+        public string Text_ { get; set; }
 
     }
 }

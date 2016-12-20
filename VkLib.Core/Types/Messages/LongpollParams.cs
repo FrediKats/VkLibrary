@@ -1,5 +1,6 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Messages 
 {
@@ -12,16 +13,16 @@ namespace VkLib.Types.Messages
         public string Key { get; set; }
 
         /// <summary>
-        /// Timestamp
-        /// </summary>
-        [JsonProperty("ts")]
-        public int? Ts { get; set; }
-
-        /// <summary>
         /// Server URL
         /// </summary>
         [JsonProperty("server")]
         public string Server { get; set; }
+
+        /// <summary>
+        /// Timestamp
+        /// </summary>
+        [JsonProperty("ts")]
+        public int? Ts { get; set; }
 
     }
 }

@@ -1,21 +1,22 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Groups 
 {
     public class Group
     {
         /// <summary>
-        /// Community type
+        /// URL of square photo of the community with 100 pixels in width
         /// </summary>
-        [JsonProperty("type")]
-        public string Type { get; set; }
+        [JsonProperty("photo_100")]
+        public string Photo100 { get; set; }
 
         /// <summary>
-        /// Community ID
+        /// Community name
         /// </summary>
-        [JsonProperty("id")]
-        public string Id { get; set; }
+        [JsonProperty("name")]
+        public string Name_ { get; set; }
 
         /// <summary>
         /// Information whether community is closed
@@ -24,16 +25,40 @@ namespace VkLib.Types.Groups
         public int? IsClosed { get; set; }
 
         /// <summary>
+        /// Community ID
+        /// </summary>
+        [JsonProperty("id")]
+        public string Id_ { get; set; }
+
+        /// <summary>
+        /// Level of current user's credentials as manager
+        /// </summary>
+        [JsonProperty("admin_level")]
+        public int? AdminLevel { get; set; }
+
+        /// <summary>
         /// Information whether current user is administrator
         /// </summary>
         [JsonProperty("is_admin")]
         public int? IsAdmin { get; set; }
 
         /// <summary>
-        /// URL of square photo of the community with 100 pixels in width
+        /// Community type
         /// </summary>
-        [JsonProperty("photo_100")]
-        public string Photo100 { get; set; }
+        [JsonProperty("type")]
+        public string Type_ { get; set; }
+
+        /// <summary>
+        /// URL of square photo of the community with 200 pixels in width
+        /// </summary>
+        [JsonProperty("photo_200")]
+        public string Photo200 { get; set; }
+
+        /// <summary>
+        /// Domain of the community page
+        /// </summary>
+        [JsonProperty("screen_name")]
+        public string ScreenName { get; set; }
 
         /// <summary>
         /// URL of square photo of the community with 50 pixels in width
@@ -45,31 +70,7 @@ namespace VkLib.Types.Groups
         /// Information whether current user is member
         /// </summary>
         [JsonProperty("is_member")]
-        public BoolInt IsMember { get; set; }
-
-        /// <summary>
-        /// URL of square photo of the community with 200 pixels in width
-        /// </summary>
-        [JsonProperty("photo_200")]
-        public string Photo200 { get; set; }
-
-        /// <summary>
-        /// Level of current user's credentials as manager
-        /// </summary>
-        [JsonProperty("admin_level")]
-        public int? AdminLevel { get; set; }
-
-        /// <summary>
-        /// Community name
-        /// </summary>
-        [JsonProperty("name")]
-        public string Name { get; set; }
-
-        /// <summary>
-        /// Domain of the community page
-        /// </summary>
-        [JsonProperty("screen_name")]
-        public string ScreenName { get; set; }
+        public int? IsMember { get; set; }
 
     }
 }

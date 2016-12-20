@@ -1,22 +1,11 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Groups 
 {
     public class CountersGroup
     {
-        /// <summary>
-        /// Docs number
-        /// </summary>
-        [JsonProperty("docs")]
-        public int? Docs { get; set; }
-
-        /// <summary>
-        /// Videos number
-        /// </summary>
-        [JsonProperty("videos")]
-        public int? Videos { get; set; }
-
         /// <summary>
         /// Photos number
         /// </summary>
@@ -30,10 +19,10 @@ namespace VkLib.Types.Groups
         public int? Topics { get; set; }
 
         /// <summary>
-        /// Audios number
+        /// Market items number
         /// </summary>
-        [JsonProperty("audios")]
-        public int? Audios { get; set; }
+        [JsonProperty("market")]
+        public int? Market { get; set; }
 
         /// <summary>
         /// Photo albums number
@@ -42,10 +31,22 @@ namespace VkLib.Types.Groups
         public int? Albums { get; set; }
 
         /// <summary>
-        /// Market items number
+        /// Audios number
         /// </summary>
-        [JsonProperty("market")]
-        public int? Market { get; set; }
+        [JsonProperty("audios")]
+        public int? Audios { get; set; }
+
+        /// <summary>
+        /// Docs number
+        /// </summary>
+        [JsonProperty("docs")]
+        public int? Docs { get; set; }
+
+        /// <summary>
+        /// Videos number
+        /// </summary>
+        [JsonProperty("videos")]
+        public int? Videos { get; set; }
 
     }
 }

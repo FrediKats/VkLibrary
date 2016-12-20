@@ -1,21 +1,16 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Leads 
 {
     public class LeadDays
     {
         /// <summary>
-        /// Amount of spent votes
+        /// Impressions number
         /// </summary>
-        [JsonProperty("spent")]
-        public int? Spent { get; set; }
-
-        /// <summary>
-        /// Started offers number
-        /// </summary>
-        [JsonProperty("started")]
-        public int? Started { get; set; }
+        [JsonProperty("impressions")]
+        public int? Impressions { get; set; }
 
         /// <summary>
         /// Completed offers number
@@ -24,10 +19,16 @@ namespace VkLib.Types.Leads
         public int? Completed { get; set; }
 
         /// <summary>
-        /// Impressions number
+        /// Started offers number
         /// </summary>
-        [JsonProperty("impressions")]
-        public int? Impressions { get; set; }
+        [JsonProperty("started")]
+        public int? Started { get; set; }
+
+        /// <summary>
+        /// Amount of spent votes
+        /// </summary>
+        [JsonProperty("spent")]
+        public int? Spent { get; set; }
 
     }
 }

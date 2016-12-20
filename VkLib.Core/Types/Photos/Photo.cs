@@ -1,27 +1,22 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Photos 
 {
     public class Photo
     {
         /// <summary>
-        /// Latitude
+        /// Date when uploaded
         /// </summary>
-        [JsonProperty("lat")]
-        public uint? Lat { get; set; }
+        [JsonProperty("date")]
+        public int? Date_ { get; set; }
 
         /// <summary>
-        /// Album ID
+        /// URL of image with 75 px width
         /// </summary>
-        [JsonProperty("album_id")]
-        public int? AlbumId { get; set; }
-
-        /// <summary>
-        /// URL of image with 807 px width
-        /// </summary>
-        [JsonProperty("photo_807")]
-        public string Photo807 { get; set; }
+        [JsonProperty("photo_75")]
+        public string Photo75 { get; set; }
 
         /// <summary>
         /// Post ID
@@ -33,19 +28,7 @@ namespace VkLib.Types.Photos
         /// Photo caption
         /// </summary>
         [JsonProperty("text")]
-        public string Text { get; set; }
-
-        /// <summary>
-        /// Original photo width
-        /// </summary>
-        [JsonProperty("width")]
-        public int? Width { get; set; }
-
-        /// <summary>
-        /// ID of the user who have uploaded the photo
-        /// </summary>
-        [JsonProperty("user_id")]
-        public int? UserId { get; set; }
+        public string Text_ { get; set; }
 
         /// <summary>
         /// Photo owner's ID
@@ -54,16 +37,28 @@ namespace VkLib.Types.Photos
         public int? OwnerId { get; set; }
 
         /// <summary>
-        /// URL of image with 604 px width
+        /// URL of image with 807 px width
         /// </summary>
-        [JsonProperty("photo_604")]
-        public string Photo604 { get; set; }
+        [JsonProperty("photo_807")]
+        public string Photo807 { get; set; }
 
         /// <summary>
-        /// Photo ID
+        /// Album ID
         /// </summary>
-        [JsonProperty("id")]
-        public int? Id { get; set; }
+        [JsonProperty("album_id")]
+        public int? AlbumId { get; set; }
+
+        /// <summary>
+        /// Original photo height
+        /// </summary>
+        [JsonProperty("height")]
+        public int? Height_ { get; set; }
+
+        /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("sizes")]
+        public IEnumerable<VkLib.Types.Photos.PhotoSizes> Sizes_ { get; set; }
 
         /// <summary>
         /// Access key for the photo
@@ -78,40 +73,46 @@ namespace VkLib.Types.Photos
         public string Photo1280 { get; set; }
 
         /// <summary>
+        /// Original photo width
+        /// </summary>
+        [JsonProperty("width")]
+        public int? Width_ { get; set; }
+
+        /// <summary>
+        /// Photo ID
+        /// </summary>
+        [JsonProperty("id")]
+        public int? Id_ { get; set; }
+
+        /// <summary>
+        /// Longitude
+        /// </summary>
+        [JsonProperty("long")]
+        public uint? Long_ { get; set; }
+
+        /// <summary>
+        /// URL of image with 604 px width
+        /// </summary>
+        [JsonProperty("photo_604")]
+        public string Photo604 { get; set; }
+
+        /// <summary>
         /// URL of image with 130 px width
         /// </summary>
         [JsonProperty("photo_130")]
         public string Photo130 { get; set; }
 
         /// <summary>
-        /// Date when uploaded
+        /// ID of the user who have uploaded the photo
         /// </summary>
-        [JsonProperty("date")]
-        public int? Date { get; set; }
+        [JsonProperty("user_id")]
+        public int? UserId { get; set; }
 
         /// <summary>
-        /// Original photo height
+        /// Latitude
         /// </summary>
-        [JsonProperty("height")]
-        public int? Height { get; set; }
-
-        /// <summary>
-        /// URL of image with 75 px width
-        /// </summary>
-        [JsonProperty("photo_75")]
-        public string Photo75 { get; set; }
-
-        /// <summary>
-        /// Longitude
-        /// </summary>
-        [JsonProperty("long")]
-        public uint? Long { get; set; }
-
-        /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("sizes")]
-        public IEnumerable<PhotoSizes> Sizes { get; set; }
+        [JsonProperty("lat")]
+        public uint? Lat_ { get; set; }
 
     }
 }

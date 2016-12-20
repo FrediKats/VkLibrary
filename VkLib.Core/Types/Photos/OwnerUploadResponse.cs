@@ -1,16 +1,11 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Photos 
 {
     public class OwnerUploadResponse
     {
-        /// <summary>
-        /// Uploaded photo data
-        /// </summary>
-        [JsonProperty("photo")]
-        public string Photo { get; set; }
-
         /// <summary>
         /// Uploading hash
         /// </summary>
@@ -22,6 +17,12 @@ namespace VkLib.Types.Photos
         /// </summary>
         [JsonProperty("server")]
         public int? Server { get; set; }
+
+        /// <summary>
+        /// Uploaded photo data
+        /// </summary>
+        [JsonProperty("photo")]
+        public string Photo { get; set; }
 
     }
 }

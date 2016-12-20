@@ -1,51 +1,34 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Video 
 {
     public class Video
     {
         /// <summary>
+        /// Information whether current user can edit the video
+        /// </summary>
+        [JsonProperty("can_edit")]
+        public int? CanEdit { get; set; }
+
+        /// <summary>
+        /// Information whether current user can add the video
+        /// </summary>
+        [JsonProperty("can_add")]
+        public int? CanAdd { get; set; }
+
+        /// <summary>
         /// Video duration in seconds
         /// </summary>
         [JsonProperty("duration")]
-        public int? Duration { get; set; }
+        public int? Duration_ { get; set; }
 
         /// <summary>
-        /// URL of the page with a player that can be used to play the video in the browser.
+        /// Returns if the video is live translation
         /// </summary>
-        [JsonProperty("player")]
-        public string Player { get; set; }
-
-        /// <summary>
-        /// Date when video has been uploaded in Unixtime
-        /// </summary>
-        [JsonProperty("date")]
-        public int? Date { get; set; }
-
-        /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("files")]
-        public VideoFiles Files { get; set; }
-
-        /// <summary>
-        /// URL of the preview image with 800 px in width
-        /// </summary>
-        [JsonProperty("photo_800")]
-        public string Photo800 { get; set; }
-
-        /// <summary>
-        /// Returns if the video is processing
-        /// </summary>
-        [JsonProperty("processing")]
-        public PropertyExists Processing { get; set; }
-
-        /// <summary>
-        /// URL of the preview image with 320 px in width
-        /// </summary>
-        [JsonProperty("photo_320")]
-        public string Photo320 { get; set; }
+        [JsonProperty("live")]
+        public string Live_ { get; set; }
 
         /// <summary>
         /// Video owner ID
@@ -54,22 +37,28 @@ namespace VkLib.Types.Video
         public int? OwnerId { get; set; }
 
         /// <summary>
-        /// Video title
-        /// </summary>
-        [JsonProperty("title")]
-        public string Title { get; set; }
-
-        /// <summary>
         /// Number of comments
         /// </summary>
         [JsonProperty("comments")]
-        public int? Comments { get; set; }
+        public int? Comments_ { get; set; }
 
         /// <summary>
-        /// Video ID
+        /// URL of the preview image with 800 px in width
         /// </summary>
-        [JsonProperty("id")]
-        public int? Id { get; set; }
+        [JsonProperty("photo_800")]
+        public string Photo800 { get; set; }
+
+        /// <summary>
+        /// Video description
+        /// </summary>
+        [JsonProperty("description")]
+        public string Description_ { get; set; }
+
+        /// <summary>
+        /// Number of views
+        /// </summary>
+        [JsonProperty("views")]
+        public int? Views_ { get; set; }
 
         /// <summary>
         /// Video access key
@@ -78,10 +67,28 @@ namespace VkLib.Types.Video
         public string AccessKey { get; set; }
 
         /// <summary>
-        /// Returns if the video is live translation
+        /// Property
         /// </summary>
-        [JsonProperty("live")]
-        public PropertyExists Live { get; set; }
+        [JsonProperty("files")]
+        public VkLib.Types.Video.VideoFiles Files_ { get; set; }
+
+        /// <summary>
+        /// URL of the preview image with 320 px in width
+        /// </summary>
+        [JsonProperty("photo_320")]
+        public string Photo320 { get; set; }
+
+        /// <summary>
+        /// Video ID
+        /// </summary>
+        [JsonProperty("id")]
+        public int? Id_ { get; set; }
+
+        /// <summary>
+        /// Returns if the video is processing
+        /// </summary>
+        [JsonProperty("processing")]
+        public string Processing_ { get; set; }
 
         /// <summary>
         /// URL of the preview image with 130 px in width
@@ -90,22 +97,16 @@ namespace VkLib.Types.Video
         public string Photo130 { get; set; }
 
         /// <summary>
-        /// Number of views
+        /// Date when video has been uploaded in Unixtime
         /// </summary>
-        [JsonProperty("views")]
-        public int? Views { get; set; }
+        [JsonProperty("date")]
+        public int? Date_ { get; set; }
 
         /// <summary>
-        /// Information whether current user can add the video
+        /// URL of the page with a player that can be used to play the video in the browser.
         /// </summary>
-        [JsonProperty("can_add")]
-        public BoolInt CanAdd { get; set; }
-
-        /// <summary>
-        /// Video description
-        /// </summary>
-        [JsonProperty("description")]
-        public string Description { get; set; }
+        [JsonProperty("player")]
+        public string Player_ { get; set; }
 
         /// <summary>
         /// Date when the video has been added in Unixtime
@@ -114,10 +115,10 @@ namespace VkLib.Types.Video
         public int? AddingDate { get; set; }
 
         /// <summary>
-        /// Information whether current user can edit the video
+        /// Video title
         /// </summary>
-        [JsonProperty("can_edit")]
-        public BoolInt CanEdit { get; set; }
+        [JsonProperty("title")]
+        public string Title_ { get; set; }
 
     }
 }

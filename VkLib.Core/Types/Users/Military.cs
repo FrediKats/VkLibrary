@@ -1,22 +1,11 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Users 
 {
     public class Military
     {
-        /// <summary>
-        /// Country ID
-        /// </summary>
-        [JsonProperty("country_id")]
-        public int? CountryId { get; set; }
-
-        /// <summary>
-        /// Unit name
-        /// </summary>
-        [JsonProperty("unit")]
-        public string Unit { get; set; }
-
         /// <summary>
         /// Unit ID
         /// </summary>
@@ -24,16 +13,28 @@ namespace VkLib.Types.Users
         public int? UnitId { get; set; }
 
         /// <summary>
-        /// Till year
+        /// Country ID
         /// </summary>
-        [JsonProperty("until")]
-        public int? Until { get; set; }
+        [JsonProperty("country_id")]
+        public int? CountryId { get; set; }
 
         /// <summary>
         /// From year
         /// </summary>
         [JsonProperty("from")]
-        public int? From { get; set; }
+        public int? From_ { get; set; }
+
+        /// <summary>
+        /// Till year
+        /// </summary>
+        [JsonProperty("until")]
+        public int? Until_ { get; set; }
+
+        /// <summary>
+        /// Unit name
+        /// </summary>
+        [JsonProperty("unit")]
+        public string Unit_ { get; set; }
 
     }
 }

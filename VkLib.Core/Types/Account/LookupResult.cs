@@ -1,5 +1,6 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Account 
 {
@@ -9,13 +10,13 @@ namespace VkLib.Types.Account
         /// Property
         /// </summary>
         [JsonProperty("other")]
-        public IEnumerable<OtherContact> Other { get; set; }
+        public IEnumerable<VkLib.Types.Account.OtherContact> Other { get; set; }
 
         /// <summary>
         /// Property
         /// </summary>
         [JsonProperty("found")]
-        public IEnumerable<UserXtrContact> Found { get; set; }
+        public IEnumerable<VkLib.Types.Account.UserXtrContact> Found { get; set; }
 
     }
 }

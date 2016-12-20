@@ -1,5 +1,6 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Wall 
 {
@@ -14,62 +15,62 @@ namespace VkLib.Types.Wall
         /// <summary>
         /// Property
         /// </summary>
-        [JsonProperty("video")]
-        public Video Video { get; set; }
-
-        /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("photo")]
-        public Photo Photo { get; set; }
+        [JsonProperty("note")]
+        public VkLib.Types.Wall.AttachedNote Note { get; set; }
 
         /// <summary>
         /// Property
         /// </summary>
         [JsonProperty("link")]
-        public Link Link { get; set; }
-
-        /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("page")]
-        public WikipageFull Page { get; set; }
-
-        /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("doc")]
-        public Doc Doc { get; set; }
-
-        /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("note")]
-        public AttachedNote Note { get; set; }
+        public VkLib.Types.Base.Link Link { get; set; }
 
         /// <summary>
         /// Property
         /// </summary>
         [JsonProperty("market_market_album")]
-        public MarketAlbum MarketMarketAlbum { get; set; }
-
-        /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("sticker")]
-        public Sticker Sticker { get; set; }
-
-        /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("audio")]
-        public AudioFull Audio { get; set; }
+        public VkLib.Types.Market.MarketAlbum MarketMarketAlbum { get; set; }
 
         /// <summary>
         /// Property
         /// </summary>
         [JsonProperty("market")]
-        public MarketItem Market { get; set; }
+        public VkLib.Types.Market.MarketItem Market { get; set; }
+
+        /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("page")]
+        public VkLib.Types.Pages.WikipageFull Page { get; set; }
+
+        /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("video")]
+        public VkLib.Types.Video.Video Video { get; set; }
+
+        /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("sticker")]
+        public VkLib.Types.Base.Sticker Sticker { get; set; }
+
+        /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("audio")]
+        public VkLib.Types.Audio.AudioFull Audio { get; set; }
+
+        /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("photo")]
+        public VkLib.Types.Photos.Photo Photo { get; set; }
+
+        /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("doc")]
+        public VkLib.Types.Docs.Doc Doc { get; set; }
 
     }
 }

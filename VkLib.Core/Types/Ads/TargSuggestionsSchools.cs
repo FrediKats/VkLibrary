@@ -1,10 +1,23 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Ads 
 {
     public class TargSuggestionsSchools
     {
+        /// <summary>
+        /// School title
+        /// </summary>
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        /// <summary>
+        /// Full school title
+        /// </summary>
+        [JsonProperty("desc")]
+        public string Desc { get; set; }
+
         /// <summary>
         /// School type
         /// </summary>
@@ -18,22 +31,10 @@ namespace VkLib.Types.Ads
         public int? Id { get; set; }
 
         /// <summary>
-        /// School title
-        /// </summary>
-        [JsonProperty("name")]
-        public string Name { get; set; }
-
-        /// <summary>
         /// City name
         /// </summary>
         [JsonProperty("parent")]
         public string Parent { get; set; }
-
-        /// <summary>
-        /// Full school title
-        /// </summary>
-        [JsonProperty("desc")]
-        public string Desc { get; set; }
 
     }
 }

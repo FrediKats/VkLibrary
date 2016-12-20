@@ -1,10 +1,17 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Wall 
 {
     public class WallComment
     {
+        /// <summary>
+        /// Replied comment ID
+        /// </summary>
+        [JsonProperty("reply_to_comment")]
+        public int? ReplyToComment { get; set; }
+
         /// <summary>
         /// Comment ID
         /// </summary>
@@ -12,10 +19,22 @@ namespace VkLib.Types.Wall
         public int? Id { get; set; }
 
         /// <summary>
-        /// Real position of the comment
+        /// Comment text
         /// </summary>
-        [JsonProperty("real_offset")]
-        public int? RealOffset { get; set; }
+        [JsonProperty("text")]
+        public string Text { get; set; }
+
+        /// <summary>
+        /// Author ID
+        /// </summary>
+        [JsonProperty("from_id")]
+        public int? FromId_ { get; set; }
+
+        /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("attachments")]
+        public IEnumerable<VkLib.Types.Wall.CommentAttachment> Attachments { get; set; }
 
         /// <summary>
         /// Replied user ID
@@ -30,34 +49,16 @@ namespace VkLib.Types.Wall
         public int? Date { get; set; }
 
         /// <summary>
-        /// Author ID
-        /// </summary>
-        [JsonProperty("from_id")]
-        public int? FromId { get; set; }
-
-        /// <summary>
-        /// Comment text
-        /// </summary>
-        [JsonProperty("text")]
-        public string Text { get; set; }
-
-        /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("attachments")]
-        public IEnumerable<CommentAttachment> Attachments { get; set; }
-
-        /// <summary>
         /// Property
         /// </summary>
         [JsonProperty("likes")]
-        public LikesInfo Likes { get; set; }
+        public VkLib.Types.Base.LikesInfo Likes { get; set; }
 
         /// <summary>
-        /// Replied comment ID
+        /// Real position of the comment
         /// </summary>
-        [JsonProperty("reply_to_comment")]
-        public int? ReplyToComment { get; set; }
+        [JsonProperty("real_offset")]
+        public int? RealOffset_ { get; set; }
 
     }
 }

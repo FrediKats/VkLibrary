@@ -1,5 +1,6 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Ads 
 {
@@ -15,7 +16,7 @@ namespace VkLib.Types.Ads
         /// Property
         /// </summary>
         [JsonProperty("rules")]
-        public IEnumerable<Rules> Rules { get; set; }
+        public IEnumerable<VkLib.Types.Ads.Rules> Rules { get; set; }
 
     }
 }

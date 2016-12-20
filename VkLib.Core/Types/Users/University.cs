@@ -1,34 +1,11 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Users 
 {
     public class University
     {
-        /// <summary>
-        /// Graduation year
-        /// </summary>
-        [JsonProperty("graduation")]
-        public int? Graduation { get; set; }
-
-        /// <summary>
-        /// University ID
-        /// </summary>
-        [JsonProperty("id")]
-        public int? Id { get; set; }
-
-        /// <summary>
-        /// Education status
-        /// </summary>
-        [JsonProperty("education_status")]
-        public string EducationStatus { get; set; }
-
-        /// <summary>
-        /// Faculty name
-        /// </summary>
-        [JsonProperty("faculty_name")]
-        public string FacultyName { get; set; }
-
         /// <summary>
         /// Chair name
         /// </summary>
@@ -36,22 +13,28 @@ namespace VkLib.Types.Users
         public string ChairName { get; set; }
 
         /// <summary>
-        /// City ID
-        /// </summary>
-        [JsonProperty("city")]
-        public int? City { get; set; }
-
-        /// <summary>
         /// Country ID
         /// </summary>
         [JsonProperty("country")]
-        public int? Country { get; set; }
+        public int? Country_ { get; set; }
+
+        /// <summary>
+        /// University name
+        /// </summary>
+        [JsonProperty("name")]
+        public string Name_ { get; set; }
 
         /// <summary>
         /// Faculty ID
         /// </summary>
         [JsonProperty("faculty")]
-        public int? Faculty { get; set; }
+        public int? Faculty_ { get; set; }
+
+        /// <summary>
+        /// University ID
+        /// </summary>
+        [JsonProperty("id")]
+        public int? Id_ { get; set; }
 
         /// <summary>
         /// Education form
@@ -60,16 +43,34 @@ namespace VkLib.Types.Users
         public string EducationForm { get; set; }
 
         /// <summary>
+        /// Education status
+        /// </summary>
+        [JsonProperty("education_status")]
+        public string EducationStatus { get; set; }
+
+        /// <summary>
+        /// Graduation year
+        /// </summary>
+        [JsonProperty("graduation")]
+        public int? Graduation_ { get; set; }
+
+        /// <summary>
+        /// Faculty name
+        /// </summary>
+        [JsonProperty("faculty_name")]
+        public string FacultyName { get; set; }
+
+        /// <summary>
         /// Chair ID
         /// </summary>
         [JsonProperty("chair")]
-        public int? Chair { get; set; }
+        public int? Chair_ { get; set; }
 
         /// <summary>
-        /// University name
+        /// City ID
         /// </summary>
-        [JsonProperty("name")]
-        public string Name { get; set; }
+        [JsonProperty("city")]
+        public int? City_ { get; set; }
 
     }
 }

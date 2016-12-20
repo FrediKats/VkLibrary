@@ -1,5 +1,6 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Base 
 {
@@ -9,7 +10,7 @@ namespace VkLib.Types.Base
         /// User ID
         /// </summary>
         [JsonProperty("user_id")]
-        public int? UserId { get; set; }
+        public int? UserId_ { get; set; }
 
     }
 }

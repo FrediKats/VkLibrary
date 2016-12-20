@@ -1421,6 +1421,9 @@
       "type": "object",
       "allOf": [
         {
+          "$ref": "#/definitions/ads_criteria"
+        },
+        {
           "properties": {
             "id": {
               "type": "integer",
@@ -1431,9 +1434,6 @@
               "description": "Campaign ID"
             }
           }
-        },
-        {
-          "$ref": "#/definitions/ads_criteria"
         }
       ]
     },
@@ -1490,15 +1490,15 @@
     "ads_post_stats": {
       "allOf": [
         {
+          "$ref": "#/definitions/stats_wallpost_stat"
+        },
+        {
           "properties": {
             "ad_id": {
               "type": "integer",
               "description": "Object ID"
             }
           }
-        },
-        {
-          "$ref": "#/definitions/stats_wallpost_stat"
         }
       ]
     },

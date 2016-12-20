@@ -26,7 +26,7 @@ namespace VkLib.Methods
         /// <param name="code">Country codes in [vk.com/dev/country_codes|ISO 3166-1 alpha-2] standard.</param>
         /// <param name="offset">Offset needed to return a specific subset of countries.</param>
         /// <param name="count">Number of countries to return.</param>
-        public async Task<object> GetCountries(bool? need_all = null, string code = null, int? offset = null, int? count = null)
+        public async Task<ApiItemsResponse<VkLib.Types.Base.Country>> GetCountries(bool? need_all = null, string code = null, int? offset = null, int? count = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -39,7 +39,7 @@ namespace VkLib.Methods
             if (count != null)
                 parameters.Add("count", count.ToString());
 
-            return await _vkontakte.GetAsync<object>("database.getCountries", parameters);
+            return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Base.Country>>("database.getCountries", parameters);
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace VkLib.Methods
         /// <param name="q">Search query.</param>
         /// <param name="offset">Offset needed to return specific subset of regions.</param>
         /// <param name="count">Number of regions to return.</param>
-        public async Task<object> GetRegions(int? country_id = null, string q = null, int? offset = null, int? count = null)
+        public async Task<ApiItemsResponse<VkLib.Types.Database.Region>> GetRegions(int? country_id = null, string q = null, int? offset = null, int? count = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -63,7 +63,7 @@ namespace VkLib.Methods
             if (count != null)
                 parameters.Add("count", count.ToString());
 
-            return await _vkontakte.GetAsync<object>("database.getRegions", parameters);
+            return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Database.Region>>("database.getRegions", parameters);
         }
 
         /// <summary>
@@ -71,14 +71,14 @@ namespace VkLib.Methods
         /// Docs: <see href="https://vk.com/dev/database.getStreetsById">database.getStreetsById</see>
         /// </summary>
         /// <param name="street_ids">Street IDs.</param>
-        public async Task<object> GetStreetsById(IEnumerable<int?> street_ids = null)
+        public async Task<IEnumerable<VkLib.Types.Database.Street>> GetStreetsById(IEnumerable<int?> street_ids = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (street_ids != null)
                 parameters.Add("street_ids", string.Join(",", street_ids));
 
-            return await _vkontakte.GetAsync<object>("database.getStreetsById", parameters);
+            return await _vkontakte.GetAsync<IEnumerable<VkLib.Types.Database.Street>>("database.getStreetsById", parameters);
         }
 
         /// <summary>
@@ -86,14 +86,14 @@ namespace VkLib.Methods
         /// Docs: <see href="https://vk.com/dev/database.getCountriesById">database.getCountriesById</see>
         /// </summary>
         /// <param name="country_ids">Country IDs.</param>
-        public async Task<object> GetCountriesById(IEnumerable<int?> country_ids = null)
+        public async Task<IEnumerable<VkLib.Types.Base.Country>> GetCountriesById(IEnumerable<int?> country_ids = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (country_ids != null)
                 parameters.Add("country_ids", string.Join(",", country_ids));
 
-            return await _vkontakte.GetAsync<object>("database.getCountriesById", parameters);
+            return await _vkontakte.GetAsync<IEnumerable<VkLib.Types.Base.Country>>("database.getCountriesById", parameters);
         }
 
         /// <summary>
@@ -106,7 +106,7 @@ namespace VkLib.Methods
         /// <param name="need_all">'1' — to return all cities in the country; '0' — to return major cities in the country (default);</param>
         /// <param name="offset">Offset needed to return a specific subset of cities.</param>
         /// <param name="count">Number of cities to return.</param>
-        public async Task<object> GetCities(int? country_id = null, int? region_id = null, string q = null, bool? need_all = null, int? offset = null, int? count = null)
+        public async Task<ApiItemsResponse<VkLib.Types.Database.City>> GetCities(int? country_id = null, int? region_id = null, string q = null, bool? need_all = null, int? offset = null, int? count = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -123,7 +123,7 @@ namespace VkLib.Methods
             if (count != null)
                 parameters.Add("count", count.ToString());
 
-            return await _vkontakte.GetAsync<object>("database.getCities", parameters);
+            return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Database.City>>("database.getCities", parameters);
         }
 
         /// <summary>
@@ -131,14 +131,14 @@ namespace VkLib.Methods
         /// Docs: <see href="https://vk.com/dev/database.getCitiesById">database.getCitiesById</see>
         /// </summary>
         /// <param name="city_ids">City IDs.</param>
-        public async Task<object> GetCitiesById(IEnumerable<int?> city_ids = null)
+        public async Task<IEnumerable<VkLib.Types.Base.Object>> GetCitiesById(IEnumerable<int?> city_ids = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (city_ids != null)
                 parameters.Add("city_ids", string.Join(",", city_ids));
 
-            return await _vkontakte.GetAsync<object>("database.getCitiesById", parameters);
+            return await _vkontakte.GetAsync<IEnumerable<VkLib.Types.Base.Object>>("database.getCitiesById", parameters);
         }
 
         /// <summary>
@@ -150,7 +150,7 @@ namespace VkLib.Methods
         /// <param name="city_id">City ID.</param>
         /// <param name="offset">Offset needed to return a specific subset of universities.</param>
         /// <param name="count">Number of universities to return.</param>
-        public async Task<object> GetUniversities(string q = null, int? country_id = null, int? city_id = null, int? offset = null, int? count = null)
+        public async Task<ApiItemsResponse<VkLib.Types.Database.University>> GetUniversities(string q = null, int? country_id = null, int? city_id = null, int? offset = null, int? count = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -165,7 +165,7 @@ namespace VkLib.Methods
             if (count != null)
                 parameters.Add("count", count.ToString());
 
-            return await _vkontakte.GetAsync<object>("database.getUniversities", parameters);
+            return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Database.University>>("database.getUniversities", parameters);
         }
 
         /// <summary>
@@ -176,7 +176,7 @@ namespace VkLib.Methods
         /// <param name="city_id">City ID.</param>
         /// <param name="offset">Offset needed to return a specific subset of schools.</param>
         /// <param name="count">Number of schools to return.</param>
-        public async Task<object> GetSchools(string q = null, int? city_id = null, int? offset = null, int? count = null)
+        public async Task<ApiItemsResponse<VkLib.Types.Database.School>> GetSchools(string q = null, int? city_id = null, int? offset = null, int? count = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -189,7 +189,7 @@ namespace VkLib.Methods
             if (count != null)
                 parameters.Add("count", count.ToString());
 
-            return await _vkontakte.GetAsync<object>("database.getSchools", parameters);
+            return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Database.School>>("database.getSchools", parameters);
         }
 
         /// <summary>
@@ -197,14 +197,14 @@ namespace VkLib.Methods
         /// Docs: <see href="https://vk.com/dev/database.getSchoolClasses">database.getSchoolClasses</see>
         /// </summary>
         /// <param name="country_id">Country ID.</param>
-        public async Task<object> GetSchoolClasses(int? country_id = null)
+        public async Task<IEnumerable<IEnumerable<string>>> GetSchoolClasses(int? country_id = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (country_id != null)
                 parameters.Add("country_id", country_id.ToString());
 
-            return await _vkontakte.GetAsync<object>("database.getSchoolClasses", parameters);
+            return await _vkontakte.GetAsync<IEnumerable<IEnumerable<string>>>("database.getSchoolClasses", parameters);
         }
 
         /// <summary>
@@ -214,7 +214,7 @@ namespace VkLib.Methods
         /// <param name="university_id">University ID.</param>
         /// <param name="offset">Offset needed to return a specific subset of faculties.</param>
         /// <param name="count">Number of faculties to return.</param>
-        public async Task<object> GetFaculties(int? university_id = null, int? offset = null, int? count = null)
+        public async Task<ApiItemsResponse<VkLib.Types.Database.Faculty>> GetFaculties(int? university_id = null, int? offset = null, int? count = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -225,7 +225,7 @@ namespace VkLib.Methods
             if (count != null)
                 parameters.Add("count", count.ToString());
 
-            return await _vkontakte.GetAsync<object>("database.getFaculties", parameters);
+            return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Database.Faculty>>("database.getFaculties", parameters);
         }
 
         /// <summary>
@@ -235,7 +235,7 @@ namespace VkLib.Methods
         /// <param name="faculty_id">id of the faculty to get chairs from</param>
         /// <param name="offset">offset required to get a certain subset of chairs</param>
         /// <param name="count">amount of chairs to get</param>
-        public async Task<object> GetChairs(int? faculty_id = null, int? offset = null, int? count = null)
+        public async Task<ApiItemsResponse<VkLib.Types.Base.Object>> GetChairs(int? faculty_id = null, int? offset = null, int? count = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -246,7 +246,7 @@ namespace VkLib.Methods
             if (count != null)
                 parameters.Add("count", count.ToString());
 
-            return await _vkontakte.GetAsync<object>("database.getChairs", parameters);
+            return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Base.Object>>("database.getChairs", parameters);
         }
 
     }

@@ -1,5 +1,6 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Base 
 {
@@ -15,7 +16,7 @@ namespace VkLib.Types.Base
         /// Information whether current user can comment the post
         /// </summary>
         [JsonProperty("can_post")]
-        public int? CanPost { get; set; }
+        public int? CanPost_ { get; set; }
 
     }
 }

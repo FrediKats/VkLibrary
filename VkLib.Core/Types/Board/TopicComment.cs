@@ -1,5 +1,6 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Board 
 {
@@ -12,24 +13,6 @@ namespace VkLib.Types.Board
         public int? Id { get; set; }
 
         /// <summary>
-        /// Real position of the comment
-        /// </summary>
-        [JsonProperty("real_offset")]
-        public int? RealOffset { get; set; }
-
-        /// <summary>
-        /// Date when the comment has been added in Unixtime
-        /// </summary>
-        [JsonProperty("date")]
-        public int? Date { get; set; }
-
-        /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("attachments")]
-        public IEnumerable<CommentAttachment> Attachments { get; set; }
-
-        /// <summary>
         /// Comment text
         /// </summary>
         [JsonProperty("text")]
@@ -39,7 +22,25 @@ namespace VkLib.Types.Board
         /// Author ID
         /// </summary>
         [JsonProperty("from_id")]
-        public int? FromId { get; set; }
+        public int? FromId_ { get; set; }
+
+        /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("attachments")]
+        public IEnumerable<VkLib.Types.Wall.CommentAttachment> Attachments { get; set; }
+
+        /// <summary>
+        /// Real position of the comment
+        /// </summary>
+        [JsonProperty("real_offset")]
+        public int? RealOffset_ { get; set; }
+
+        /// <summary>
+        /// Date when the comment has been added in Unixtime
+        /// </summary>
+        [JsonProperty("date")]
+        public int? Date { get; set; }
 
     }
 }

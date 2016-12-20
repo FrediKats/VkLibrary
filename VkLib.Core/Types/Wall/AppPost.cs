@@ -1,15 +1,22 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Wall 
 {
     public class AppPost
     {
         /// <summary>
-        /// Application ID
+        /// URL of the preview image with 604 px in width
         /// </summary>
-        [JsonProperty("id")]
-        public int? Id { get; set; }
+        [JsonProperty("photo_604")]
+        public string Photo604_ { get; set; }
+
+        /// <summary>
+        /// URL of the preview image with 130 px in width
+        /// </summary>
+        [JsonProperty("photo_130")]
+        public string Photo130_ { get; set; }
 
         /// <summary>
         /// Application name
@@ -18,16 +25,10 @@ namespace VkLib.Types.Wall
         public string Name { get; set; }
 
         /// <summary>
-        /// URL of the preview image with 130 px in width
+        /// Application ID
         /// </summary>
-        [JsonProperty("photo_130")]
-        public string Photo130 { get; set; }
-
-        /// <summary>
-        /// URL of the preview image with 604 px in width
-        /// </summary>
-        [JsonProperty("photo_604")]
-        public string Photo604 { get; set; }
+        [JsonProperty("id")]
+        public int? Id { get; set; }
 
     }
 }

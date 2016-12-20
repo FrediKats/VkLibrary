@@ -1,15 +1,16 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Oauth 
 {
     public class Error
     {
         /// <summary>
-        /// Error type
+        /// Error description
         /// </summary>
-        [JsonProperty("error")]
-        public string Error { get; set; }
+        [JsonProperty("error_description")]
+        public string ErrorDescription { get; set; }
 
         /// <summary>
         /// URI for validation
@@ -18,10 +19,10 @@ namespace VkLib.Types.Oauth
         public string RedirectUri { get; set; }
 
         /// <summary>
-        /// Error description
+        /// Error type
         /// </summary>
-        [JsonProperty("error_description")]
-        public string ErrorDescription { get; set; }
+        [JsonProperty("error")]
+        public string Error_ { get; set; }
 
     }
 }

@@ -26,7 +26,7 @@ namespace VkLib.Methods
         /// <param name="client_id">User ID.</param>
         /// <param name="client_secret"></param>
         /// <param name="auth_by_phone"></param>
-        public async Task<object> CheckPhone(string phone = null, int? client_id = null, string client_secret = null, bool? auth_by_phone = null)
+        public async Task<int> CheckPhone(string phone = null, int? client_id = null, string client_secret = null, bool? auth_by_phone = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -39,7 +39,7 @@ namespace VkLib.Methods
             if (auth_by_phone != null)
                 parameters.Add("auth_by_phone", auth_by_phone.ToString());
 
-            return await _vkontakte.GetAsync<object>("auth.checkPhone", parameters);
+            return await _vkontakte.GetAsync<int>("auth.checkPhone", parameters);
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace VkLib.Methods
         /// <param name="voice">'1' — call the phone number and leave a voice message of the authorization code; '0' — send the code by SMS (default)</param>
         /// <param name="sex">'1' — female; '2' — male</param>
         /// <param name="sid">Session ID required for method recall when SMS was not delivered.</param>
-        public async Task<object> Signup(string first_name = null, string last_name = null, int? client_id = null, string client_secret = null, string phone = null, string password = null, bool? test_mode = null, bool? voice = null, int? sex = null, string sid = null)
+        public async Task<VkLib.Responses.Auth.SignupResponse> Signup(string first_name = null, string last_name = null, int? client_id = null, string client_secret = null, string phone = null, string password = null, bool? test_mode = null, bool? voice = null, int? sex = null, string sid = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -81,7 +81,7 @@ namespace VkLib.Methods
             if (sid != null)
                 parameters.Add("sid", sid);
 
-            return await _vkontakte.GetAsync<object>("auth.signup", parameters);
+            return await _vkontakte.GetAsync<VkLib.Responses.Auth.SignupResponse>("auth.signup", parameters);
         }
 
         /// <summary>
@@ -95,7 +95,7 @@ namespace VkLib.Methods
         /// <param name="password"></param>
         /// <param name="test_mode"></param>
         /// <param name="intro"></param>
-        public async Task<object> Confirm(int? client_id = null, string client_secret = null, string phone = null, string code = null, string password = null, bool? test_mode = null, int? intro = null)
+        public async Task<VkLib.Responses.Auth.ConfirmResponse> Confirm(int? client_id = null, string client_secret = null, string phone = null, string code = null, string password = null, bool? test_mode = null, int? intro = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -114,7 +114,7 @@ namespace VkLib.Methods
             if (intro != null)
                 parameters.Add("intro", intro.ToString());
 
-            return await _vkontakte.GetAsync<object>("auth.confirm", parameters);
+            return await _vkontakte.GetAsync<VkLib.Responses.Auth.ConfirmResponse>("auth.confirm", parameters);
         }
 
         /// <summary>
@@ -122,14 +122,14 @@ namespace VkLib.Methods
         /// Docs: <see href="https://vk.com/dev/auth.restore">auth.restore</see>
         /// </summary>
         /// <param name="phone">user phone number.</param>
-        public async Task<object> Restore(string phone = null)
+        public async Task<VkLib.Responses.Auth.RestoreResponse> Restore(string phone = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (phone != null)
                 parameters.Add("phone", phone);
 
-            return await _vkontakte.GetAsync<object>("auth.restore", parameters);
+            return await _vkontakte.GetAsync<VkLib.Responses.Auth.RestoreResponse>("auth.restore", parameters);
         }
 
     }

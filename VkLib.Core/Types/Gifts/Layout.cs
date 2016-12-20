@@ -1,15 +1,22 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Gifts 
 {
     public class Layout
     {
         /// <summary>
+        /// URL of the preview image with 256 px in width
+        /// </summary>
+        [JsonProperty("thumb_256")]
+        public string Thumb256 { get; set; }
+
+        /// <summary>
         /// Gift ID
         /// </summary>
         [JsonProperty("id")]
-        public int? Id { get; set; }
+        public int? Id_ { get; set; }
 
         /// <summary>
         /// URL of the preview image with 96 px in width
@@ -22,12 +29,6 @@ namespace VkLib.Types.Gifts
         /// </summary>
         [JsonProperty("thumb_48")]
         public string Thumb48 { get; set; }
-
-        /// <summary>
-        /// URL of the preview image with 256 px in width
-        /// </summary>
-        [JsonProperty("thumb_256")]
-        public string Thumb256 { get; set; }
 
     }
 }

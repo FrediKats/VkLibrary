@@ -24,7 +24,7 @@ namespace VkLib.Methods
         /// </summary>
         /// <param name="offset">Offset needed to return a specific subset of users.</param>
         /// <param name="count">Number of users to return.</param>
-        public async Task<object> GetUsers(int? offset = null, int? count = null)
+        public async Task<ApiItemsResponse<VkLib.Types.Users.UserMin>> GetUsers(int? offset = null, int? count = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -33,7 +33,7 @@ namespace VkLib.Methods
             if (count != null)
                 parameters.Add("count", count.ToString());
 
-            return await _vkontakte.GetAsync<object>("fave.getUsers", parameters);
+            return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Users.UserMin>>("fave.getUsers", parameters);
         }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace VkLib.Methods
         /// <param name="offset">Offset needed to return a specific subset of photos.</param>
         /// <param name="count">Number of photos to return.</param>
         /// <param name="photo_sizes">'1' — to return photo sizes in a [vk.com/dev/photo_sizes|special format].</param>
-        public async Task<object> GetPhotos(int? offset = null, int? count = null, bool? photo_sizes = null)
+        public async Task<ApiItemsResponse<VkLib.Types.Photos.Photo>> GetPhotos(int? offset = null, int? count = null, bool? photo_sizes = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -54,7 +54,7 @@ namespace VkLib.Methods
             if (photo_sizes != null)
                 parameters.Add("photo_sizes", photo_sizes.ToString());
 
-            return await _vkontakte.GetAsync<object>("fave.getPhotos", parameters);
+            return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Photos.Photo>>("fave.getPhotos", parameters);
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace VkLib.Methods
         /// <param name="offset">Offset needed to return a specific subset of posts.</param>
         /// <param name="count">Number of posts to return.</param>
         /// <param name="extended">'1' — to return additional 'wall', 'profiles', and 'groups' fields.; ; By default: '0'.</param>
-        public async Task<object> GetPosts(int? offset = null, int? count = null, bool? extended = null)
+        public async Task<ApiItemsResponse<VkLib.Types.Wall.WallpostFull>> GetPosts(int? offset = null, int? count = null, bool? extended = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -75,7 +75,7 @@ namespace VkLib.Methods
             if (extended != null)
                 parameters.Add("extended", extended.ToString());
 
-            return await _vkontakte.GetAsync<object>("fave.getPosts", parameters);
+            return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Wall.WallpostFull>>("fave.getPosts", parameters);
         }
 
         /// <summary>
@@ -85,7 +85,7 @@ namespace VkLib.Methods
         /// <param name="offset">Offset needed to return a specific subset of videos.</param>
         /// <param name="count">Number of videos to return.</param>
         /// <param name="extended">Return an additional information about videos. Also returns all owners profiles and groups.</param>
-        public async Task<object> GetVideos(int? offset = null, int? count = null, bool? extended = null)
+        public async Task<ApiItemsResponse<VkLib.Types.Video.Video>> GetVideos(int? offset = null, int? count = null, bool? extended = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -96,7 +96,7 @@ namespace VkLib.Methods
             if (extended != null)
                 parameters.Add("extended", extended.ToString());
 
-            return await _vkontakte.GetAsync<object>("fave.getVideos", parameters);
+            return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Video.Video>>("fave.getVideos", parameters);
         }
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace VkLib.Methods
         /// </summary>
         /// <param name="offset">Offset needed to return a specific subset of users.</param>
         /// <param name="count">Number of results to return.</param>
-        public async Task<object> GetLinks(int? offset = null, int? count = null)
+        public async Task<ApiItemsResponse<VkLib.Types.Fave.FavesLink>> GetLinks(int? offset = null, int? count = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -114,7 +114,7 @@ namespace VkLib.Methods
             if (count != null)
                 parameters.Add("count", count.ToString());
 
-            return await _vkontakte.GetAsync<object>("fave.getLinks", parameters);
+            return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Fave.FavesLink>>("fave.getLinks", parameters);
         }
 
         /// <summary>
@@ -123,7 +123,7 @@ namespace VkLib.Methods
         /// </summary>
         /// <param name="count">Number of results to return. ;</param>
         /// <param name="extended">'1' – to return additional fields 'likes, can_comment, can_repost, photos'. By default: '0'.</param>
-        public async Task<object> GetMarketItems(int? count = null, bool? extended = null)
+        public async Task<ApiItemsResponse<VkLib.Types.Market.MarketItem>> GetMarketItems(int? count = null, bool? extended = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -132,7 +132,7 @@ namespace VkLib.Methods
             if (extended != null)
                 parameters.Add("extended", extended.ToString());
 
-            return await _vkontakte.GetAsync<object>("fave.getMarketItems", parameters);
+            return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Market.MarketItem>>("fave.getMarketItems", parameters);
         }
 
         /// <summary>
@@ -140,14 +140,14 @@ namespace VkLib.Methods
         /// Docs: <see href="https://vk.com/dev/fave.addUser">fave.addUser</see>
         /// </summary>
         /// <param name="user_id">Profile ID.</param>
-        public async Task<object> AddUser(int? user_id = null)
+        public async Task<int> AddUser(int? user_id = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (user_id != null)
                 parameters.Add("user_id", user_id.ToString());
 
-            return await _vkontakte.GetAsync<object>("fave.addUser", parameters);
+            return await _vkontakte.GetAsync<int>("fave.addUser", parameters);
         }
 
         /// <summary>
@@ -155,14 +155,14 @@ namespace VkLib.Methods
         /// Docs: <see href="https://vk.com/dev/fave.removeUser">fave.removeUser</see>
         /// </summary>
         /// <param name="user_id">Profile ID.</param>
-        public async Task<object> RemoveUser(int? user_id = null)
+        public async Task<int> RemoveUser(int? user_id = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (user_id != null)
                 parameters.Add("user_id", user_id.ToString());
 
-            return await _vkontakte.GetAsync<object>("fave.removeUser", parameters);
+            return await _vkontakte.GetAsync<int>("fave.removeUser", parameters);
         }
 
         /// <summary>
@@ -170,14 +170,14 @@ namespace VkLib.Methods
         /// Docs: <see href="https://vk.com/dev/fave.addGroup">fave.addGroup</see>
         /// </summary>
         /// <param name="group_id">Community ID.</param>
-        public async Task<object> AddGroup(int? group_id = null)
+        public async Task<int> AddGroup(int? group_id = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (group_id != null)
                 parameters.Add("group_id", group_id.ToString());
 
-            return await _vkontakte.GetAsync<object>("fave.addGroup", parameters);
+            return await _vkontakte.GetAsync<int>("fave.addGroup", parameters);
         }
 
         /// <summary>
@@ -185,14 +185,14 @@ namespace VkLib.Methods
         /// Docs: <see href="https://vk.com/dev/fave.removeGroup">fave.removeGroup</see>
         /// </summary>
         /// <param name="group_id">Community ID.</param>
-        public async Task<object> RemoveGroup(int? group_id = null)
+        public async Task<int> RemoveGroup(int? group_id = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (group_id != null)
                 parameters.Add("group_id", group_id.ToString());
 
-            return await _vkontakte.GetAsync<object>("fave.removeGroup", parameters);
+            return await _vkontakte.GetAsync<int>("fave.removeGroup", parameters);
         }
 
         /// <summary>
@@ -201,7 +201,7 @@ namespace VkLib.Methods
         /// </summary>
         /// <param name="link">Link URL.</param>
         /// <param name="text">Description text.</param>
-        public async Task<object> AddLink(string link = null, string text = null)
+        public async Task<int> AddLink(string link = null, string text = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -210,7 +210,7 @@ namespace VkLib.Methods
             if (text != null)
                 parameters.Add("text", text);
 
-            return await _vkontakte.GetAsync<object>("fave.addLink", parameters);
+            return await _vkontakte.GetAsync<int>("fave.addLink", parameters);
         }
 
         /// <summary>
@@ -218,14 +218,14 @@ namespace VkLib.Methods
         /// Docs: <see href="https://vk.com/dev/fave.removeLink">fave.removeLink</see>
         /// </summary>
         /// <param name="link_id">Link ID (can be obtained by [vk.com/dev/faves.getLinks|faves.getLinks] method).</param>
-        public async Task<object> RemoveLink(string link_id = null)
+        public async Task<int> RemoveLink(string link_id = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (link_id != null)
                 parameters.Add("link_id", link_id);
 
-            return await _vkontakte.GetAsync<object>("fave.removeLink", parameters);
+            return await _vkontakte.GetAsync<int>("fave.removeLink", parameters);
         }
 
     }

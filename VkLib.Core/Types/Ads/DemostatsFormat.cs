@@ -1,10 +1,17 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Ads 
 {
     public class DemostatsFormat
     {
+        /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("age")]
+        public IEnumerable<VkLib.Types.Ads.StatsAge> Age { get; set; }
+
         /// <summary>
         /// Month as YYYY-MM
         /// </summary>
@@ -14,14 +21,14 @@ namespace VkLib.Types.Ads
         /// <summary>
         /// Property
         /// </summary>
-        [JsonProperty("cities")]
-        public IEnumerable<StatsCities> Cities { get; set; }
+        [JsonProperty("sex")]
+        public IEnumerable<VkLib.Types.Ads.StatsSex> Sex { get; set; }
 
         /// <summary>
-        /// 1 if period=overall
+        /// Property
         /// </summary>
-        [JsonProperty("overall")]
-        public int? Overall { get; set; }
+        [JsonProperty("sex_age")]
+        public IEnumerable<VkLib.Types.Ads.StatsSexAge> SexAge_ { get; set; }
 
         /// <summary>
         /// Day as YYYY-MM-DD
@@ -32,20 +39,14 @@ namespace VkLib.Types.Ads
         /// <summary>
         /// Property
         /// </summary>
-        [JsonProperty("age")]
-        public IEnumerable<StatsAge> Age { get; set; }
+        [JsonProperty("cities")]
+        public IEnumerable<VkLib.Types.Ads.StatsCities> Cities { get; set; }
 
         /// <summary>
-        /// Property
+        /// 1 if period=overall
         /// </summary>
-        [JsonProperty("sex")]
-        public IEnumerable<StatsSex> Sex { get; set; }
-
-        /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("sex_age")]
-        public IEnumerable<StatsSexAge> SexAge { get; set; }
+        [JsonProperty("overall")]
+        public int? Overall { get; set; }
 
     }
 }

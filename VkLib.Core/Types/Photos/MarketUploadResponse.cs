@@ -1,16 +1,11 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Photos 
 {
     public class MarketUploadResponse
     {
-        /// <summary>
-        /// Uploaded photo data
-        /// </summary>
-        [JsonProperty("photo")]
-        public string Photo { get; set; }
-
         /// <summary>
         /// Uploading hash
         /// </summary>
@@ -18,10 +13,10 @@ namespace VkLib.Types.Photos
         public string Hash { get; set; }
 
         /// <summary>
-        /// Upload server number
+        /// Crop data
         /// </summary>
-        [JsonProperty("server")]
-        public int? Server { get; set; }
+        [JsonProperty("crop_data")]
+        public string CropData { get; set; }
 
         /// <summary>
         /// Crop hash
@@ -30,10 +25,16 @@ namespace VkLib.Types.Photos
         public string CropHash { get; set; }
 
         /// <summary>
-        /// Crop data
+        /// Upload server number
         /// </summary>
-        [JsonProperty("crop_data")]
-        public string CropData { get; set; }
+        [JsonProperty("server")]
+        public int? Server { get; set; }
+
+        /// <summary>
+        /// Uploaded photo data
+        /// </summary>
+        [JsonProperty("photo")]
+        public string Photo { get; set; }
 
         /// <summary>
         /// Community ID

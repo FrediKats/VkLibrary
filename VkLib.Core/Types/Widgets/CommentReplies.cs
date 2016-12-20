@@ -1,5 +1,6 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Widgets 
 {
@@ -9,7 +10,7 @@ namespace VkLib.Types.Widgets
         /// Property
         /// </summary>
         [JsonProperty("replies")]
-        public IEnumerable<CommentRepliesItem> Replies { get; set; }
+        public IEnumerable<VkLib.Types.Widgets.CommentRepliesItem> Replies { get; set; }
 
         /// <summary>
         /// Comments number
@@ -21,7 +22,7 @@ namespace VkLib.Types.Widgets
         /// Information whether current user can comment the post
         /// </summary>
         [JsonProperty("can_post")]
-        public int? CanPost { get; set; }
+        public int? CanPost_ { get; set; }
 
     }
 }

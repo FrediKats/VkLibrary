@@ -1,5 +1,6 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Audio 
 {
@@ -15,7 +16,7 @@ namespace VkLib.Types.Audio
         /// Lyrics text
         /// </summary>
         [JsonProperty("text")]
-        public string Text { get; set; }
+        public string Text_ { get; set; }
 
     }
 }

@@ -1,21 +1,16 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Ads 
 {
     public class Account
     {
         /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("access_role")]
-        public AccessRole AccessRole { get; set; }
-
-        /// <summary>
         /// Information whether account is active
         /// </summary>
         [JsonProperty("account_status")]
-        public BoolInt AccountStatus { get; set; }
+        public int? AccountStatus { get; set; }
 
         /// <summary>
         /// Account ID
@@ -28,6 +23,12 @@ namespace VkLib.Types.Ads
         /// </summary>
         [JsonProperty("account_type")]
         public string AccountType { get; set; }
+
+        /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("access_role")]
+        public string AccessRole { get; set; }
 
     }
 }

@@ -137,14 +137,6 @@ namespace VkLib
         }
 
         /// <summary>
-        /// Messages API section.
-        /// </summary>
-        public Messages Messages
-        {
-            get { return new Messages(this); }
-        }
-
-        /// <summary>
         /// Account API section.
         /// </summary>
         public Account Account
@@ -153,11 +145,292 @@ namespace VkLib
         }
 
         /// <summary>
+        /// Ads API section.
+        /// </summary>
+        public Ads Ads
+        {
+            get { return new Ads(this); }
+        }
+
+        /// <summary>
+        /// Apps API section.
+        /// </summary>
+        public Apps Apps
+        {
+            get { return new Apps(this); }
+        }
+
+        /// <summary>
+        /// Audio API section.
+        /// </summary>
+        public Audio Audio
+        {
+            get { return new Audio(this); }
+        }
+
+        /// <summary>
+        /// Auth API section.
+        /// </summary>
+        public Auth Auth
+        {
+            get { return new Auth(this); }
+        }
+
+        /// <summary>
+        /// Board API section.
+        /// </summary>
+        public Board Board
+        {
+            get { return new Board(this); }
+        }
+
+        /// <summary>
+        /// Database API section.
+        /// </summary>
+        public Database Database
+        {
+            get { return new Database(this); }
+        }
+
+        /// <summary>
+        /// Docs API section.
+        /// </summary>
+        public Docs Docs
+        {
+            get { return new Docs(this); }
+        }
+
+        /// <summary>
+        /// Fave API section.
+        /// </summary>
+        public Fave Fave
+        {
+            get { return new Fave(this); }
+        }
+
+
+        /// <summary>
+        /// Friends API section.
+        /// </summary>
+        public Friends Friends
+        {
+            get { return new Friends(this); }
+        }
+
+
+        /// <summary>
+        /// Gifts API section.
+        /// </summary>
+        public Gifts Gifts
+        {
+            get { return new Gifts(this); }
+        }
+
+
+        /// <summary>
+        /// Groups API section.
+        /// </summary>
+        public Groups Groups
+        {
+            get { return new Groups(this); }
+        }
+
+
+        /// <summary>
+        /// Leads API section.
+        /// </summary>
+        public Leads Leads
+        {
+            get { return new Leads(this); }
+        }
+
+
+        /// <summary>
+        /// Likes API section.
+        /// </summary>
+        public Likes Likes
+        {
+            get { return new Likes(this); }
+        }
+
+
+        /// <summary>
+        /// Market API section.
+        /// </summary>
+        public Market Market
+        {
+            get { return new Market(this); }
+        }
+
+
+        /// <summary>
+        /// Messages API section.
+        /// </summary>
+        public Messages Messages
+        {
+            get { return new Messages(this); }
+        }
+
+
+        /// <summary>
+        /// Newsfeed API section.
+        /// </summary>
+        public Newsfeed Newsfeed
+        {
+            get { return new Newsfeed(this); }
+        }
+
+
+        /// <summary>
+        /// Notes API section.
+        /// </summary>
+        public Notes Notes
+        {
+            get { return new Notes(this); }
+        }
+
+
+        /// <summary>
+        /// Notifications API section.
+        /// </summary>
+        public Notifications Notifications
+        {
+            get { return new Notifications(this); }
+        }
+
+
+        /// <summary>
+        /// Orders API section.
+        /// </summary>
+        public Orders Orders
+        {
+            get { return new Orders(this); }
+        }
+
+
+        /// <summary>
+        /// Pages API section.
+        /// </summary>
+        public Pages Pages
+        {
+            get { return new Pages(this); }
+        }
+
+
+        /// <summary>
+        /// Photos API section.
+        /// </summary>
+        public Photos Photos
+        {
+            get { return new Photos(this); }
+        }
+
+
+        /// <summary>
+        /// Places API section.
+        /// </summary>
+        public Places Places
+        {
+            get { return new Places(this); }
+        }
+
+
+        /// <summary>
+        /// Polls API section.
+        /// </summary>
+        public Polls Polls
+        {
+            get { return new Polls(this); }
+        }
+
+
+        /// <summary>
+        /// Search API section.
+        /// </summary>
+        public Search Search
+        {
+            get { return new Search(this); }
+        }
+
+
+        /// <summary>
+        /// Secure API section.
+        /// </summary>
+        public Secure Secure
+        {
+            get { return new Secure(this); }
+        }
+
+
+        /// <summary>
+        /// Stats API section.
+        /// </summary>
+        public Stats Stats
+        {
+            get { return new Stats(this); }
+        }
+
+
+        /// <summary>
+        /// Status API section.
+        /// </summary>
+        public Status Status
+        {
+            get { return new Status(this); }
+        }
+
+
+        /// <summary>
+        /// Storage API section.
+        /// </summary>
+        public Storage Storage
+        {
+            get { return new Storage(this); }
+        }
+
+
+        /// <summary>
         /// Users API section.
         /// </summary>
         public Users Users
         {
             get { return new Users(this); }
+        }
+
+
+        /// <summary>
+        /// Utils API section.
+        /// </summary>
+        public Utils Utils
+        {
+            get { return new Utils(this); }
+        }
+
+
+        /// <summary>
+        /// Video API section.
+        /// </summary>
+        public Video Video
+        {
+            get { return new Video(this); }
+        }
+
+
+        /// <summary>
+        /// Wall API section.
+        /// </summary>
+        public Wall Wall
+        {
+            get { return new Wall(this); }
+        }
+
+
+        /// <summary>
+        /// Widgets API section.
+        /// </summary>
+        public Widgets Widgets
+        {
+            get { return new Widgets(this); }
         }
 
     }

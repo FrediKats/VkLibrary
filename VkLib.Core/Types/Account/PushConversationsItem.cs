@@ -1,21 +1,22 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Account 
 {
     public class PushConversationsItem
     {
         /// <summary>
+        /// Information whether the sound are enabled
+        /// </summary>
+        [JsonProperty("sound")]
+        public int? Sound { get; set; }
+
+        /// <summary>
         /// Peer ID
         /// </summary>
         [JsonProperty("peer_id")]
         public int? PeerId { get; set; }
-
-        /// <summary>
-        /// Information whether the sound are enabled
-        /// </summary>
-        [JsonProperty("sound")]
-        public BoolInt Sound { get; set; }
 
         /// <summary>
         /// Time until that notifications are disabled in seconds

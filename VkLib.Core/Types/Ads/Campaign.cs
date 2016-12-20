@@ -1,27 +1,28 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Ads 
 {
     public class Campaign
     {
         /// <summary>
-        /// Campaign type
+        /// Campaign title
         /// </summary>
-        [JsonProperty("type")]
-        public string Type { get; set; }
+        [JsonProperty("name")]
+        public int? Name_ { get; set; }
 
         /// <summary>
         /// Campaign ID
         /// </summary>
         [JsonProperty("id")]
-        public int? Id { get; set; }
+        public int? Id_ { get; set; }
 
         /// <summary>
-        /// Campaign status
+        /// Campaign's total limit, rubles
         /// </summary>
-        [JsonProperty("status")]
-        public int? Status { get; set; }
+        [JsonProperty("all_limit")]
+        public string AllLimit { get; set; }
 
         /// <summary>
         /// Campaign stop time, as Unixtime
@@ -36,22 +37,22 @@ namespace VkLib.Types.Ads
         public int? StartTime { get; set; }
 
         /// <summary>
+        /// Campaign type
+        /// </summary>
+        [JsonProperty("type")]
+        public string Type_ { get; set; }
+
+        /// <summary>
         /// Campaign's day limit, rubles
         /// </summary>
         [JsonProperty("day_limit")]
         public string DayLimit { get; set; }
 
         /// <summary>
-        /// Campaign title
+        /// Campaign status
         /// </summary>
-        [JsonProperty("name")]
-        public int? Name { get; set; }
-
-        /// <summary>
-        /// Campaign's total limit, rubles
-        /// </summary>
-        [JsonProperty("all_limit")]
-        public string AllLimit { get; set; }
+        [JsonProperty("status")]
+        public int? Status_ { get; set; }
 
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Leads 
 {
@@ -15,7 +16,7 @@ namespace VkLib.Types.Leads
         /// Information whether test mode is enabled
         /// </summary>
         [JsonProperty("test_mode")]
-        public BoolInt TestMode { get; set; }
+        public int? TestMode { get; set; }
 
     }
 }

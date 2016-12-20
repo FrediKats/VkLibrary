@@ -1,33 +1,34 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Account 
 {
     public class PushSettings
     {
         /// <summary>
-        /// Property
+        /// Time until that notifications are disabled in Unixtime
         /// </summary>
-        [JsonProperty("settings")]
-        public PushParams Settings { get; set; }
+        [JsonProperty("disabled_until")]
+        public int? DisabledUntil_ { get; set; }
 
         /// <summary>
         /// Property
         /// </summary>
         [JsonProperty("conversations")]
-        public PushConversations Conversations { get; set; }
+        public VkLib.Types.Account.PushConversations Conversations { get; set; }
 
         /// <summary>
         /// Information whether notifications are disabled
         /// </summary>
         [JsonProperty("disabled")]
-        public BoolInt Disabled { get; set; }
+        public int? Disabled { get; set; }
 
         /// <summary>
-        /// Time until that notifications are disabled in Unixtime
+        /// Property
         /// </summary>
-        [JsonProperty("disabled_until")]
-        public int? DisabledUntil { get; set; }
+        [JsonProperty("settings")]
+        public VkLib.Types.Account.PushParams Settings { get; set; }
 
     }
 }

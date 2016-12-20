@@ -1,5 +1,6 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Docs 
 {
@@ -9,7 +10,7 @@ namespace VkLib.Types.Docs
         /// Property
         /// </summary>
         [JsonProperty("sizes")]
-        public IEnumerable<PhotoSizes> Sizes { get; set; }
+        public IEnumerable<VkLib.Types.Photos.PhotoSizes> Sizes { get; set; }
 
     }
 }

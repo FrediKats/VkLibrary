@@ -1,15 +1,16 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Wall 
 {
     public class WallpostToId
     {
         /// <summary>
-        /// Post author ID
+        /// Property
         /// </summary>
-        [JsonProperty("from_id")]
-        public int? FromId { get; set; }
+        [JsonProperty("geo")]
+        public VkLib.Types.Base.Geo Geo { get; set; }
 
         /// <summary>
         /// Post signer ID
@@ -18,16 +19,10 @@ namespace VkLib.Types.Wall
         public int? SignerId { get; set; }
 
         /// <summary>
-        /// Wall owner's ID
+        /// ID of the source post owner
         /// </summary>
-        [JsonProperty("to_id")]
-        public int? ToId { get; set; }
-
-        /// <summary>
-        /// Date of publishing in Unixtime
-        /// </summary>
-        [JsonProperty("date")]
-        public int? Date { get; set; }
+        [JsonProperty("copy_owner_id")]
+        public int? CopyOwnerId_ { get; set; }
 
         /// <summary>
         /// wall post ID (if comment)
@@ -44,14 +39,44 @@ namespace VkLib.Types.Wall
         /// <summary>
         /// Property
         /// </summary>
-        [JsonProperty("likes")]
-        public LikesInfo Likes { get; set; }
+        [JsonProperty("attachments")]
+        public IEnumerable<VkLib.Types.Wall.WallpostAttachment> Attachments { get; set; }
 
         /// <summary>
         /// Property
         /// </summary>
         [JsonProperty("comments")]
-        public CommentsInfo Comments { get; set; }
+        public VkLib.Types.Base.CommentsInfo Comments { get; set; }
+
+        /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("post_source")]
+        public VkLib.Types.Wall.PostSource PostSource { get; set; }
+
+        /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("likes")]
+        public VkLib.Types.Base.LikesInfo Likes { get; set; }
+
+        /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("post_type")]
+        public string PostType { get; set; }
+
+        /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("reposts")]
+        public VkLib.Types.Base.RepostsInfo Reposts { get; set; }
+
+        /// <summary>
+        /// Wall owner's ID
+        /// </summary>
+        [JsonProperty("to_id")]
+        public int? ToId { get; set; }
 
         /// <summary>
         /// Post ID
@@ -60,46 +85,22 @@ namespace VkLib.Types.Wall
         public int? Id { get; set; }
 
         /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("post_source")]
-        public PostSource PostSource { get; set; }
-
-        /// <summary>
         /// ID of the source post
         /// </summary>
         [JsonProperty("copy_post_id")]
-        public int? CopyPostId { get; set; }
+        public int? CopyPostId_ { get; set; }
 
         /// <summary>
-        /// ID of the source post owner
+        /// Post author ID
         /// </summary>
-        [JsonProperty("copy_owner_id")]
-        public int? CopyOwnerId { get; set; }
+        [JsonProperty("from_id")]
+        public int? FromId { get; set; }
 
         /// <summary>
-        /// Property
+        /// Date of publishing in Unixtime
         /// </summary>
-        [JsonProperty("post_type")]
-        public PostType PostType { get; set; }
-
-        /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("reposts")]
-        public RepostsInfo Reposts { get; set; }
-
-        /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("attachments")]
-        public IEnumerable<WallpostAttachment> Attachments { get; set; }
-
-        /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("geo")]
-        public Geo Geo { get; set; }
+        [JsonProperty("date")]
+        public int? Date { get; set; }
 
     }
 }

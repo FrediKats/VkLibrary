@@ -25,7 +25,7 @@ namespace VkLib.Methods
         /// <param name="key"></param>
         /// <param name="keys"></param>
         /// <param name="user_id"></param>
-        public async Task<object> Get(string key = null, IEnumerable<string> keys = null, int? user_id = null)
+        public async Task<string> Get(string key = null, IEnumerable<string> keys = null, int? user_id = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -36,7 +36,7 @@ namespace VkLib.Methods
             if (user_id != null)
                 parameters.Add("user_id", user_id.ToString());
 
-            return await _vkontakte.GetAsync<object>("storage.get", parameters);
+            return await _vkontakte.GetAsync<string>("storage.get", parameters);
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace VkLib.Methods
         /// <param name="key"></param>
         /// <param name="value"></param>
         /// <param name="user_id"></param>
-        public async Task<object> Set(string key = null, string value = null, int? user_id = null)
+        public async Task<int> Set(string key = null, string value = null, int? user_id = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -57,7 +57,7 @@ namespace VkLib.Methods
             if (user_id != null)
                 parameters.Add("user_id", user_id.ToString());
 
-            return await _vkontakte.GetAsync<object>("storage.set", parameters);
+            return await _vkontakte.GetAsync<int>("storage.set", parameters);
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace VkLib.Methods
         /// </summary>
         /// <param name="user_id">user id, whose variables names are returned if they were requested with a server method.</param>
         /// <param name="count">amount of variable names the info needs to be collected from.</param>
-        public async Task<object> GetKeys(int? user_id = null, int? count = null)
+        public async Task<IEnumerable<string>> GetKeys(int? user_id = null, int? count = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -75,7 +75,7 @@ namespace VkLib.Methods
             if (count != null)
                 parameters.Add("count", count.ToString());
 
-            return await _vkontakte.GetAsync<object>("storage.getKeys", parameters);
+            return await _vkontakte.GetAsync<IEnumerable<string>>("storage.getKeys", parameters);
         }
 
     }

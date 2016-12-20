@@ -25,7 +25,7 @@ namespace VkLib.Methods
         /// <param name="vk_sid">Session obtained as GET parameter when session started.</param>
         /// <param name="secret">Secret key from the lead testing interface.</param>
         /// <param name="comment">Comment text.</param>
-        public async Task<object> Complete(string vk_sid = null, string secret = null, string comment = null)
+        public async Task<VkLib.Types.Leads.Complete> Complete(string vk_sid = null, string secret = null, string comment = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -36,7 +36,7 @@ namespace VkLib.Methods
             if (comment != null)
                 parameters.Add("comment", comment);
 
-            return await _vkontakte.GetAsync<object>("leads.complete", parameters);
+            return await _vkontakte.GetAsync<VkLib.Types.Leads.Complete>("leads.complete", parameters);
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace VkLib.Methods
         /// </summary>
         /// <param name="lead_id">Lead ID.</param>
         /// <param name="secret">Secret key from the lead testing interface.</param>
-        public async Task<object> Start(int? lead_id = null, string secret = null)
+        public async Task<VkLib.Types.Leads.Start> Start(int? lead_id = null, string secret = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -54,7 +54,7 @@ namespace VkLib.Methods
             if (secret != null)
                 parameters.Add("secret", secret);
 
-            return await _vkontakte.GetAsync<object>("leads.start", parameters);
+            return await _vkontakte.GetAsync<VkLib.Types.Leads.Start>("leads.start", parameters);
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace VkLib.Methods
         /// <param name="secret">Secret key obtained from the lead testing interface.</param>
         /// <param name="date_start">Day to start stats from (YYYY_MM_DD, e.g.2011-09-17).</param>
         /// <param name="date_end">Day to finish stats (YYYY_MM_DD, e.g.2011-09-17).</param>
-        public async Task<object> GetStats(int? lead_id = null, string secret = null, string date_start = null, string date_end = null)
+        public async Task<VkLib.Types.Leads.Lead> GetStats(int? lead_id = null, string secret = null, string date_start = null, string date_end = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -78,7 +78,7 @@ namespace VkLib.Methods
             if (date_end != null)
                 parameters.Add("date_end", date_end);
 
-            return await _vkontakte.GetAsync<object>("leads.getStats", parameters);
+            return await _vkontakte.GetAsync<VkLib.Types.Leads.Lead>("leads.getStats", parameters);
         }
 
         /// <summary>
@@ -91,7 +91,7 @@ namespace VkLib.Methods
         /// <param name="count">Number of results to return.</param>
         /// <param name="status">Action type. Possible values:; *'0' — start;; *'1' — finish;; *'2' — blocking users;; *'3' — start in a test mode;; *'4' — finish in a test mode.;</param>
         /// <param name="reverse">Sort order. Possible values:; *'1' — chronological;; *'0' — reverse chronological.</param>
-        public async Task<object> GetUsers(int? offer_id = null, string secret = null, int? offset = null, int? count = null, int? status = null, bool? reverse = null)
+        public async Task<IEnumerable<VkLib.Types.Leads.Entry>> GetUsers(int? offer_id = null, string secret = null, int? offset = null, int? count = null, int? status = null, bool? reverse = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -108,7 +108,7 @@ namespace VkLib.Methods
             if (reverse != null)
                 parameters.Add("reverse", reverse.ToString());
 
-            return await _vkontakte.GetAsync<object>("leads.getUsers", parameters);
+            return await _vkontakte.GetAsync<IEnumerable<VkLib.Types.Leads.Entry>>("leads.getUsers", parameters);
         }
 
         /// <summary>
@@ -119,7 +119,7 @@ namespace VkLib.Methods
         /// <param name="test_result">Value to be return in 'result' field when test mode is used.</param>
         /// <param name="age">User age.</param>
         /// <param name="country">User country code.</param>
-        public async Task<object> CheckUser(int? lead_id = null, int? test_result = null, int? age = null, string country = null)
+        public async Task<VkLib.Types.Leads.Checked> CheckUser(int? lead_id = null, int? test_result = null, int? age = null, string country = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -132,7 +132,7 @@ namespace VkLib.Methods
             if (country != null)
                 parameters.Add("country", country);
 
-            return await _vkontakte.GetAsync<object>("leads.checkUser", parameters);
+            return await _vkontakte.GetAsync<VkLib.Types.Leads.Checked>("leads.checkUser", parameters);
         }
 
         /// <summary>
@@ -140,14 +140,14 @@ namespace VkLib.Methods
         /// Docs: <see href="https://vk.com/dev/leads.metricHit">leads.metricHit</see>
         /// </summary>
         /// <param name="data">Metric data obtained in the lead interface.</param>
-        public async Task<object> MetricHit(string data = null)
+        public async Task<VkLib.Responses.Leads.MetricHitResponse> MetricHit(string data = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (data != null)
                 parameters.Add("data", data);
 
-            return await _vkontakte.GetAsync<object>("leads.metricHit", parameters);
+            return await _vkontakte.GetAsync<VkLib.Responses.Leads.MetricHitResponse>("leads.metricHit", parameters);
         }
 
     }

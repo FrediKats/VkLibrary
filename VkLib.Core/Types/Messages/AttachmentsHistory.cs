@@ -1,10 +1,17 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Messages 
 {
     public class AttachmentsHistory
     {
+        /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("link")]
+        public VkLib.Types.Base.Link Link { get; set; }
+
         /// <summary>
         /// Attachments type
         /// </summary>
@@ -15,31 +22,25 @@ namespace VkLib.Types.Messages
         /// Property
         /// </summary>
         [JsonProperty("video")]
-        public Video Video { get; set; }
-
-        /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("photo")]
-        public Photo Photo { get; set; }
-
-        /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("link")]
-        public Link Link { get; set; }
-
-        /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("doc")]
-        public Doc Doc { get; set; }
+        public VkLib.Types.Video.Video Video { get; set; }
 
         /// <summary>
         /// Property
         /// </summary>
         [JsonProperty("audio")]
-        public AudioFull Audio { get; set; }
+        public VkLib.Types.Audio.AudioFull Audio { get; set; }
+
+        /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("photo")]
+        public VkLib.Types.Photos.Photo Photo { get; set; }
+
+        /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("doc")]
+        public VkLib.Types.Docs.Doc Doc { get; set; }
 
     }
 }

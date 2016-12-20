@@ -1,22 +1,11 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Market 
 {
     public class MarketAlbum
     {
-        /// <summary>
-        /// Market album ID
-        /// </summary>
-        [JsonProperty("id")]
-        public int? Id { get; set; }
-
-        /// <summary>
-        /// Date when album has been updated last time in Unixtime
-        /// </summary>
-        [JsonProperty("updated_time")]
-        public int? UpdatedTime { get; set; }
-
         /// <summary>
         /// Items number
         /// </summary>
@@ -24,10 +13,22 @@ namespace VkLib.Types.Market
         public int? Count { get; set; }
 
         /// <summary>
+        /// Market album ID
+        /// </summary>
+        [JsonProperty("id")]
+        public int? Id { get; set; }
+
+        /// <summary>
+        /// Market album owner's ID
+        /// </summary>
+        [JsonProperty("owner_id")]
+        public int? OwnerId_ { get; set; }
+
+        /// <summary>
         /// Property
         /// </summary>
         [JsonProperty("photo")]
-        public Photo Photo { get; set; }
+        public VkLib.Types.Photos.Photo Photo { get; set; }
 
         /// <summary>
         /// Market album title
@@ -36,10 +37,10 @@ namespace VkLib.Types.Market
         public string Title { get; set; }
 
         /// <summary>
-        /// Market album owner's ID
+        /// Date when album has been updated last time in Unixtime
         /// </summary>
-        [JsonProperty("owner_id")]
-        public int? OwnerId { get; set; }
+        [JsonProperty("updated_time")]
+        public int? UpdatedTime_ { get; set; }
 
     }
 }

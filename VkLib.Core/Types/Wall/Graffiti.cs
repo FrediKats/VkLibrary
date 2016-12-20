@@ -1,5 +1,6 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Wall 
 {
@@ -12,22 +13,22 @@ namespace VkLib.Types.Wall
         public string Photo586 { get; set; }
 
         /// <summary>
+        /// URL of the preview image with 200 px in width
+        /// </summary>
+        [JsonProperty("photo_200")]
+        public string Photo200 { get; set; }
+
+        /// <summary>
         /// Graffiti ID
         /// </summary>
         [JsonProperty("id")]
-        public int? Id { get; set; }
+        public int? Id_ { get; set; }
 
         /// <summary>
         /// Graffiti owner's ID
         /// </summary>
         [JsonProperty("owner_id")]
         public int? OwnerId { get; set; }
-
-        /// <summary>
-        /// URL of the preview image with 200 px in width
-        /// </summary>
-        [JsonProperty("photo_200")]
-        public string Photo200 { get; set; }
 
     }
 }

@@ -1,22 +1,11 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Groups 
 {
     public class GroupXtrInvitedBy
     {
-        /// <summary>
-        /// Information whether community is closed
-        /// </summary>
-        [JsonProperty("is_closed")]
-        public BoolInt IsClosed { get; set; }
-
-        /// <summary>
-        /// URL of square photo of the community with 50 pixels in width
-        /// </summary>
-        [JsonProperty("photo_50")]
-        public string Photo50 { get; set; }
-
         /// <summary>
         /// Community name
         /// </summary>
@@ -24,22 +13,16 @@ namespace VkLib.Types.Groups
         public string Name { get; set; }
 
         /// <summary>
-        /// Domain of the community page
+        /// Information whether community is closed
         /// </summary>
-        [JsonProperty("screen_name")]
-        public string ScreenName { get; set; }
+        [JsonProperty("is_closed")]
+        public int? IsClosed { get; set; }
 
         /// <summary>
-        /// Community type
+        /// Level of current user's credentials as manager
         /// </summary>
-        [JsonProperty("type")]
-        public string Type { get; set; }
-
-        /// <summary>
-        /// Community ID
-        /// </summary>
-        [JsonProperty("id")]
-        public string Id { get; set; }
+        [JsonProperty("admin_level")]
+        public int? AdminLevel { get; set; }
 
         /// <summary>
         /// Inviter ID
@@ -48,34 +31,52 @@ namespace VkLib.Types.Groups
         public int? InvitedBy { get; set; }
 
         /// <summary>
-        /// URL of square photo of the community with 100 pixels in width
-        /// </summary>
-        [JsonProperty("photo_100")]
-        public string Photo100 { get; set; }
-
-        /// <summary>
-        /// Information whether current user is member
-        /// </summary>
-        [JsonProperty("is_member")]
-        public BoolInt IsMember { get; set; }
-
-        /// <summary>
         /// URL of square photo of the community with 200 pixels in width
         /// </summary>
         [JsonProperty("photo_200")]
         public string Photo200 { get; set; }
 
         /// <summary>
+        /// Domain of the community page
+        /// </summary>
+        [JsonProperty("screen_name")]
+        public string ScreenName { get; set; }
+
+        /// <summary>
+        /// URL of square photo of the community with 50 pixels in width
+        /// </summary>
+        [JsonProperty("photo_50")]
+        public string Photo50 { get; set; }
+
+        /// <summary>
         /// Information whether current user is manager
         /// </summary>
         [JsonProperty("is_admin")]
-        public BoolInt IsAdmin { get; set; }
+        public int? IsAdmin { get; set; }
 
         /// <summary>
-        /// Level of current user's credentials as manager
+        /// Community ID
         /// </summary>
-        [JsonProperty("admin_level")]
-        public int? AdminLevel { get; set; }
+        [JsonProperty("id")]
+        public string Id { get; set; }
+
+        /// <summary>
+        /// URL of square photo of the community with 100 pixels in width
+        /// </summary>
+        [JsonProperty("photo_100")]
+        public string Photo100 { get; set; }
+
+        /// <summary>
+        /// Community type
+        /// </summary>
+        [JsonProperty("type")]
+        public string Type { get; set; }
+
+        /// <summary>
+        /// Information whether current user is member
+        /// </summary>
+        [JsonProperty("is_member")]
+        public int? IsMember { get; set; }
 
     }
 }

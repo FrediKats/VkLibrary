@@ -1,5 +1,6 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Ads 
 {
@@ -9,7 +10,7 @@ namespace VkLib.Types.Ads
         /// Property
         /// </summary>
         [JsonProperty("accesses")]
-        public IEnumerable<Accesses> Accesses { get; set; }
+        public IEnumerable<VkLib.Types.Ads.Accesses> Accesses_ { get; set; }
 
         /// <summary>
         /// User ID

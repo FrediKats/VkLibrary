@@ -1,5 +1,6 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Base 
 {
@@ -9,7 +10,7 @@ namespace VkLib.Types.Base
         /// Property
         /// </summary>
         [JsonProperty("price")]
-        public Price Price { get; set; }
+        public VkLib.Types.Market.Price Price { get; set; }
 
     }
 }

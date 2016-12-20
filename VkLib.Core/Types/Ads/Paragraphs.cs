@@ -1,5 +1,6 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Ads 
 {
@@ -9,7 +10,7 @@ namespace VkLib.Types.Ads
         /// Rules paragraph
         /// </summary>
         [JsonProperty("paragraph")]
-        public string Paragraph { get; set; }
+        public string Paragraph_ { get; set; }
 
     }
 }

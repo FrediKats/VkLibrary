@@ -1,34 +1,11 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Pages 
 {
     public class Wikipage
     {
-        /// <summary>
-        /// Page ID
-        /// </summary>
-        [JsonProperty("id")]
-        public int? Id { get; set; }
-
-        /// <summary>
-        /// Edit settings of the page
-        /// </summary>
-        [JsonProperty("who_can_edit")]
-        public PrivacySettings WhoCanEdit { get; set; }
-
-        /// <summary>
-        /// Page creator ID
-        /// </summary>
-        [JsonProperty("creator_id")]
-        public int? CreatorId { get; set; }
-
-        /// <summary>
-        /// Views number
-        /// </summary>
-        [JsonProperty("views")]
-        public int? Views { get; set; }
-
         /// <summary>
         /// Last editor ID
         /// </summary>
@@ -36,16 +13,10 @@ namespace VkLib.Types.Pages
         public int? EditorId { get; set; }
 
         /// <summary>
-        /// View settings of the page
+        /// Page ID
         /// </summary>
-        [JsonProperty("who_can_view")]
-        public PrivacySettings WhoCanView { get; set; }
-
-        /// <summary>
-        /// Last editor name
-        /// </summary>
-        [JsonProperty("editor_name")]
-        public string EditorName { get; set; }
+        [JsonProperty("id")]
+        public int? Id_ { get; set; }
 
         /// <summary>
         /// Page creator name
@@ -54,16 +25,46 @@ namespace VkLib.Types.Pages
         public int? CreatorName { get; set; }
 
         /// <summary>
-        /// Page title
+        /// View settings of the page
         /// </summary>
-        [JsonProperty("title")]
-        public string Title { get; set; }
+        [JsonProperty("who_can_view")]
+        public string WhoCanView { get; set; }
+
+        /// <summary>
+        /// Edit settings of the page
+        /// </summary>
+        [JsonProperty("who_can_edit")]
+        public string WhoCanEdit { get; set; }
+
+        /// <summary>
+        /// Views number
+        /// </summary>
+        [JsonProperty("views")]
+        public int? Views_ { get; set; }
+
+        /// <summary>
+        /// Page creator ID
+        /// </summary>
+        [JsonProperty("creator_id")]
+        public int? CreatorId { get; set; }
 
         /// <summary>
         /// Community ID
         /// </summary>
         [JsonProperty("group_id")]
         public int? GroupId { get; set; }
+
+        /// <summary>
+        /// Page title
+        /// </summary>
+        [JsonProperty("title")]
+        public string Title_ { get; set; }
+
+        /// <summary>
+        /// Last editor name
+        /// </summary>
+        [JsonProperty("editor_name")]
+        public string EditorName { get; set; }
 
     }
 }

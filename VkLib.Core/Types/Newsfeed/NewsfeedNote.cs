@@ -1,5 +1,6 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Newsfeed 
 {
@@ -27,7 +28,7 @@ namespace VkLib.Types.Newsfeed
         /// integer
         /// </summary>
         [JsonProperty("owner_id")]
-        public int? OwnerId { get; set; }
+        public int? OwnerId_ { get; set; }
 
     }
 }

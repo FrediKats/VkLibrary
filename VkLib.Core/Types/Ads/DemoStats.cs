@@ -1,5 +1,6 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Ads 
 {
@@ -8,20 +9,20 @@ namespace VkLib.Types.Ads
         /// <summary>
         /// Property
         /// </summary>
+        [JsonProperty("stats")]
+        public VkLib.Types.Ads.DemostatsFormat Stats { get; set; }
+
+        /// <summary>
+        /// Property
+        /// </summary>
         [JsonProperty("type")]
-        public ObjectType Type { get; set; }
+        public string Type { get; set; }
 
         /// <summary>
         /// Object ID
         /// </summary>
         [JsonProperty("id")]
         public int? Id { get; set; }
-
-        /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("stats")]
-        public DemostatsFormat Stats { get; set; }
 
     }
 }

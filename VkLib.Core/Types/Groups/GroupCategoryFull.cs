@@ -1,5 +1,6 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Groups 
 {
@@ -8,14 +9,8 @@ namespace VkLib.Types.Groups
         /// <summary>
         /// Property
         /// </summary>
-        [JsonProperty("subcategories")]
-        public IEnumerable<GroupCategory> Subcategories { get; set; }
-
-        /// <summary>
-        /// Category ID
-        /// </summary>
-        [JsonProperty("id")]
-        public int? Id { get; set; }
+        [JsonProperty("page_previews")]
+        public IEnumerable<VkLib.Types.Groups.Group> PagePreviews { get; set; }
 
         /// <summary>
         /// Category name
@@ -24,16 +19,22 @@ namespace VkLib.Types.Groups
         public string Name { get; set; }
 
         /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("subcategories")]
+        public IEnumerable<VkLib.Types.Groups.GroupCategory> Subcategories { get; set; }
+
+        /// <summary>
         /// Pages number
         /// </summary>
         [JsonProperty("page_count")]
         public int? PageCount { get; set; }
 
         /// <summary>
-        /// Property
+        /// Category ID
         /// </summary>
-        [JsonProperty("page_previews")]
-        public IEnumerable<Group> PagePreviews { get; set; }
+        [JsonProperty("id")]
+        public int? Id { get; set; }
 
     }
 }

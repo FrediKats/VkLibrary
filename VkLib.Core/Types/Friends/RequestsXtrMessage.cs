@@ -1,10 +1,17 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Friends 
 {
     public class RequestsXtrMessage
     {
+        /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("mutual")]
+        public VkLib.Types.Friends.RequestsMutual Mutual { get; set; }
+
         /// <summary>
         /// Message sent with a request
         /// </summary>
@@ -16,12 +23,6 @@ namespace VkLib.Types.Friends
         /// </summary>
         [JsonProperty("user_id")]
         public int? UserId { get; set; }
-
-        /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("mutual")]
-        public RequestsMutual Mutual { get; set; }
 
         /// <summary>
         /// ID of the user by whom friend has been suggested

@@ -1,5 +1,6 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Video 
 {
@@ -15,7 +16,7 @@ namespace VkLib.Types.Video
         /// Video ID
         /// </summary>
         [JsonProperty("video_id")]
-        public int? VideoId { get; set; }
+        public int? VideoId_ { get; set; }
 
     }
 }

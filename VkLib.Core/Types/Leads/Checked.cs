@@ -1,15 +1,16 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Leads 
 {
     public class Checked
     {
         /// <summary>
-        /// Information whether user can start the lead
+        /// Reason why user can't start the lead
         /// </summary>
-        [JsonProperty("result")]
-        public string Result { get; set; }
+        [JsonProperty("reason")]
+        public string Reason_ { get; set; }
 
         /// <summary>
         /// URL user should open to start the lead
@@ -18,16 +19,16 @@ namespace VkLib.Types.Leads
         public string StartLink { get; set; }
 
         /// <summary>
-        /// Reason why user can't start the lead
+        /// Information whether user can start the lead
         /// </summary>
-        [JsonProperty("reason")]
-        public string Reason { get; set; }
+        [JsonProperty("result")]
+        public string Result_ { get; set; }
 
         /// <summary>
         /// Session ID
         /// </summary>
         [JsonProperty("sid")]
-        public string Sid { get; set; }
+        public string Sid_ { get; set; }
 
     }
 }

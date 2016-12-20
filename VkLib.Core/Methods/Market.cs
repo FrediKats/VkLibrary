@@ -26,7 +26,7 @@ namespace VkLib.Methods
         /// <param name="count">Number of items to return.</param>
         /// <param name="offset">Offset needed to return a specific subset of results.</param>
         /// <param name="extended">'1' – method will return additional fields: 'likes, can_comment, car_repost, photos'. These parameters are not returned by default.</param>
-        public async Task<object> Get(int? owner_id = null, int? count = null, int? offset = null, bool? extended = null)
+        public async Task<ApiItemsResponse<VkLib.Types.Market.MarketItem>> Get(int? owner_id = null, int? count = null, int? offset = null, bool? extended = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -39,7 +39,7 @@ namespace VkLib.Methods
             if (extended != null)
                 parameters.Add("extended", extended.ToString());
 
-            return await _vkontakte.GetAsync<object>("market.get", parameters);
+            return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Market.MarketItem>>("market.get", parameters);
         }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace VkLib.Methods
         /// </summary>
         /// <param name="item_ids">Comma-separated ids list: {user id}_{item id}.; If an item belongs to a community -{community id} is used. ; " 'Videos' value example: ; '-4363_136089719,13245770_137352259'"</param>
         /// <param name="extended">'1' – to return additional fields: 'likes, can_comment, car_repost, photos'. By default: '0'.</param>
-        public async Task<object> GetById(IEnumerable<string> item_ids = null, bool? extended = null)
+        public async Task<ApiItemsResponse<VkLib.Types.Market.MarketItem>> GetById(IEnumerable<string> item_ids = null, bool? extended = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -57,7 +57,7 @@ namespace VkLib.Methods
             if (extended != null)
                 parameters.Add("extended", extended.ToString());
 
-            return await _vkontakte.GetAsync<object>("market.getById", parameters);
+            return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Market.MarketItem>>("market.getById", parameters);
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace VkLib.Methods
         /// <param name="offset">Offset needed to return a specific subset of results.</param>
         /// <param name="count">Number of items to return.</param>
         /// <param name="extended">'1' – to return additional fields: 'likes, can_comment, car_repost, photos'. By default: '0'.</param>
-        public async Task<object> Search(int? owner_id = null, string q = null, int? price_from = null, int? price_to = null, IEnumerable<int?> tags = null, int? rev = null, int? offset = null, int? count = null, bool? extended = null)
+        public async Task<ApiItemsResponse<VkLib.Types.Market.MarketItem>> Search(int? owner_id = null, string q = null, int? price_from = null, int? price_to = null, IEnumerable<int?> tags = null, int? rev = null, int? offset = null, int? count = null, bool? extended = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -96,7 +96,7 @@ namespace VkLib.Methods
             if (extended != null)
                 parameters.Add("extended", extended.ToString());
 
-            return await _vkontakte.GetAsync<object>("market.search", parameters);
+            return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Market.MarketItem>>("market.search", parameters);
         }
 
         /// <summary>
@@ -106,7 +106,7 @@ namespace VkLib.Methods
         /// <param name="owner_id">ID of an items owner community.</param>
         /// <param name="offset">Offset needed to return a specific subset of results.</param>
         /// <param name="count">Number of items to return.</param>
-        public async Task<object> GetAlbums(int? owner_id = null, int? offset = null, int? count = null)
+        public async Task<ApiItemsResponse<VkLib.Types.Market.MarketAlbum>> GetAlbums(int? owner_id = null, int? offset = null, int? count = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -117,7 +117,7 @@ namespace VkLib.Methods
             if (count != null)
                 parameters.Add("count", count.ToString());
 
-            return await _vkontakte.GetAsync<object>("market.getAlbums", parameters);
+            return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Market.MarketAlbum>>("market.getAlbums", parameters);
         }
 
         /// <summary>
@@ -126,7 +126,7 @@ namespace VkLib.Methods
         /// </summary>
         /// <param name="owner_id">identifier of an album owner community; "Note that community id in the 'owner_id' parameter should be negative number. For example 'owner_id'=-1 matches the [vk.com/apiclub|VK API] community "</param>
         /// <param name="album_ids">collections identifiers to obtain data from</param>
-        public async Task<object> GetAlbumById(int? owner_id = null, IEnumerable<int?> album_ids = null)
+        public async Task<ApiItemsResponse<VkLib.Types.Market.MarketAlbum>> GetAlbumById(int? owner_id = null, IEnumerable<int?> album_ids = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -135,7 +135,7 @@ namespace VkLib.Methods
             if (album_ids != null)
                 parameters.Add("album_ids", string.Join(",", album_ids));
 
-            return await _vkontakte.GetAsync<object>("market.getAlbumById", parameters);
+            return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Market.MarketAlbum>>("market.getAlbumById", parameters);
         }
 
         /// <summary>
@@ -150,7 +150,7 @@ namespace VkLib.Methods
         /// <param name="reply_to_comment">ID of a comment to reply with current comment to.</param>
         /// <param name="sticker_id">Sticker ID.</param>
         /// <param name="guid">Random value to avoid resending one comment.</param>
-        public async Task<object> CreateComment(int? owner_id = null, int? item_id = null, string message = null, IEnumerable<string> attachments = null, bool? from_group = null, int? reply_to_comment = null, int? sticker_id = null, string guid = null)
+        public async Task<int?> CreateComment(int? owner_id = null, int? item_id = null, string message = null, IEnumerable<string> attachments = null, bool? from_group = null, int? reply_to_comment = null, int? sticker_id = null, string guid = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -171,7 +171,7 @@ namespace VkLib.Methods
             if (guid != null)
                 parameters.Add("guid", guid);
 
-            return await _vkontakte.GetAsync<object>("market.createComment", parameters);
+            return await _vkontakte.GetAsync<int?>("market.createComment", parameters);
         }
 
         /// <summary>
@@ -186,7 +186,7 @@ namespace VkLib.Methods
         /// <param name="sort">Sort order ('asc' — from old to new, 'desc' — from new to old)</param>
         /// <param name="extended">'1' — comments will be returned as numbered objects, in addition lists of 'profiles' and 'groups' objects will be returned.</param>
         /// <param name="fields">List of additional profile fields to return. See the [vk.com/dev/fields|details]</param>
-        public async Task<object> GetComments(int? owner_id = null, int? item_id = null, bool? need_likes = null, int? start_comment_id = null, int? count = null, string sort = null, bool? extended = null, IEnumerable<string> fields = null)
+        public async Task<ApiItemsResponse<VkLib.Types.Wall.WallComment>> GetComments(int? owner_id = null, int? item_id = null, bool? need_likes = null, int? start_comment_id = null, int? count = null, string sort = null, bool? extended = null, IEnumerable<string> fields = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -207,7 +207,7 @@ namespace VkLib.Methods
             if (fields != null)
                 parameters.Add("fields", string.Join(",", fields));
 
-            return await _vkontakte.GetAsync<object>("market.getComments", parameters);
+            return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Wall.WallComment>>("market.getComments", parameters);
         }
 
         /// <summary>
@@ -216,7 +216,7 @@ namespace VkLib.Methods
         /// </summary>
         /// <param name="owner_id">identifier of an item owner community; "Note that community id in the 'owner_id' parameter should be negative number. For example 'owner_id'=-1 matches the [vk.com/apiclub|VK API] community "</param>
         /// <param name="comment_id">comment id</param>
-        public async Task<object> DeleteComment(int? owner_id = null, int? comment_id = null)
+        public async Task<int> DeleteComment(int? owner_id = null, int? comment_id = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -225,7 +225,7 @@ namespace VkLib.Methods
             if (comment_id != null)
                 parameters.Add("comment_id", comment_id.ToString());
 
-            return await _vkontakte.GetAsync<object>("market.deleteComment", parameters);
+            return await _vkontakte.GetAsync<int>("market.deleteComment", parameters);
         }
 
         /// <summary>
@@ -234,7 +234,7 @@ namespace VkLib.Methods
         /// </summary>
         /// <param name="owner_id">identifier of an item owner community; "Note that community id in the 'owner_id' parameter should be negative number. For example 'owner_id'=-1 matches the [vk.com/apiclub|VK API] community "</param>
         /// <param name="comment_id">deleted comment id</param>
-        public async Task<object> RestoreComment(int? owner_id = null, int? comment_id = null)
+        public async Task<int> RestoreComment(int? owner_id = null, int? comment_id = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -243,7 +243,7 @@ namespace VkLib.Methods
             if (comment_id != null)
                 parameters.Add("comment_id", comment_id.ToString());
 
-            return await _vkontakte.GetAsync<object>("market.restoreComment", parameters);
+            return await _vkontakte.GetAsync<int>("market.restoreComment", parameters);
         }
 
         /// <summary>
@@ -254,7 +254,7 @@ namespace VkLib.Methods
         /// <param name="comment_id">Comment ID.</param>
         /// <param name="message">New comment text (required if 'attachments' are not specified); ; 2048 symbols maximum.</param>
         /// <param name="attachments">Comma-separated list of objects attached to a comment. The field is submitted the following way: ; "'<owner_id>_<media_id>,<owner_id>_<media_id>'"; ; '' - media attachment type:; "'photo' - photo; 'video' - video; 'audio' - audio; 'doc' - document"; ; '<owner_id>' - media owner id; '<media_id>' - media attachment id; ; For example:; "photo100172_166443618,photo66748_265827614";</param>
-        public async Task<object> EditComment(int? owner_id = null, int? comment_id = null, string message = null, IEnumerable<string> attachments = null)
+        public async Task<int> EditComment(int? owner_id = null, int? comment_id = null, string message = null, IEnumerable<string> attachments = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -267,7 +267,7 @@ namespace VkLib.Methods
             if (attachments != null)
                 parameters.Add("attachments", string.Join(",", attachments));
 
-            return await _vkontakte.GetAsync<object>("market.editComment", parameters);
+            return await _vkontakte.GetAsync<int>("market.editComment", parameters);
         }
 
         /// <summary>
@@ -277,7 +277,7 @@ namespace VkLib.Methods
         /// <param name="owner_id">ID of an item owner community.</param>
         /// <param name="comment_id">Comment ID.</param>
         /// <param name="reason">Complaint reason. Possible values:; *'0' — spam;; *'1' — child porn;; *'2' — extremism;; *'3' — violence;; *'4' — drugs propaganda;; *'5' — adult materials;; *'6' — insult.</param>
-        public async Task<object> ReportComment(int? owner_id = null, int? comment_id = null, int? reason = null)
+        public async Task<int> ReportComment(int? owner_id = null, int? comment_id = null, int? reason = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -288,7 +288,7 @@ namespace VkLib.Methods
             if (reason != null)
                 parameters.Add("reason", reason.ToString());
 
-            return await _vkontakte.GetAsync<object>("market.reportComment", parameters);
+            return await _vkontakte.GetAsync<int>("market.reportComment", parameters);
         }
 
         /// <summary>
@@ -297,7 +297,7 @@ namespace VkLib.Methods
         /// </summary>
         /// <param name="count">Number of results to return.</param>
         /// <param name="offset">Offset needed to return a specific subset of results.</param>
-        public async Task<object> GetCategories(int? count = null, int? offset = null)
+        public async Task<ApiItemsResponse<VkLib.Types.Market.MarketCategory>> GetCategories(int? count = null, int? offset = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -306,7 +306,7 @@ namespace VkLib.Methods
             if (offset != null)
                 parameters.Add("offset", offset.ToString());
 
-            return await _vkontakte.GetAsync<object>("market.getCategories", parameters);
+            return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Market.MarketCategory>>("market.getCategories", parameters);
         }
 
         /// <summary>
@@ -316,7 +316,7 @@ namespace VkLib.Methods
         /// <param name="owner_id">ID of an item owner community.</param>
         /// <param name="item_id">Item ID.</param>
         /// <param name="reason">Complaint reason. Possible values:; *'0' — spam;; *'1' — child porn;; *'2' — extremism;; *'3' — violence;; *'4' — drugs propaganda;; *'5' — adult materials;; *'6' — insult.</param>
-        public async Task<object> Report(int? owner_id = null, int? item_id = null, int? reason = null)
+        public async Task<int> Report(int? owner_id = null, int? item_id = null, int? reason = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -327,7 +327,7 @@ namespace VkLib.Methods
             if (reason != null)
                 parameters.Add("reason", reason.ToString());
 
-            return await _vkontakte.GetAsync<object>("market.report", parameters);
+            return await _vkontakte.GetAsync<int>("market.report", parameters);
         }
 
         /// <summary>
@@ -342,7 +342,7 @@ namespace VkLib.Methods
         /// <param name="deleted">Item status ('1' — deleted, '0' — not deleted).</param>
         /// <param name="main_photo_id">Cover photo ID.</param>
         /// <param name="photo_ids">IDs of additional photos.</param>
-        public async Task<object> Add(int? owner_id = null, string name = null, string description = null, int? category_id = null, uint? price = null, bool? deleted = null, int? main_photo_id = null, IEnumerable<int?> photo_ids = null)
+        public async Task<VkLib.Responses.Market.AddResponse> Add(int? owner_id = null, string name = null, string description = null, int? category_id = null, uint? price = null, bool? deleted = null, int? main_photo_id = null, IEnumerable<int?> photo_ids = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -363,7 +363,7 @@ namespace VkLib.Methods
             if (photo_ids != null)
                 parameters.Add("photo_ids", string.Join(",", photo_ids));
 
-            return await _vkontakte.GetAsync<object>("market.add", parameters);
+            return await _vkontakte.GetAsync<VkLib.Responses.Market.AddResponse>("market.add", parameters);
         }
 
         /// <summary>
@@ -379,7 +379,7 @@ namespace VkLib.Methods
         /// <param name="deleted">Item status ('1' — deleted, '0' — not deleted).</param>
         /// <param name="main_photo_id">Cover photo ID.</param>
         /// <param name="photo_ids">IDs of additional photos.</param>
-        public async Task<object> Edit(int? owner_id = null, int? item_id = null, string name = null, string description = null, int? category_id = null, uint? price = null, bool? deleted = null, int? main_photo_id = null, IEnumerable<int?> photo_ids = null)
+        public async Task<int> Edit(int? owner_id = null, int? item_id = null, string name = null, string description = null, int? category_id = null, uint? price = null, bool? deleted = null, int? main_photo_id = null, IEnumerable<int?> photo_ids = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -402,7 +402,7 @@ namespace VkLib.Methods
             if (photo_ids != null)
                 parameters.Add("photo_ids", string.Join(",", photo_ids));
 
-            return await _vkontakte.GetAsync<object>("market.edit", parameters);
+            return await _vkontakte.GetAsync<int>("market.edit", parameters);
         }
 
         /// <summary>
@@ -411,7 +411,7 @@ namespace VkLib.Methods
         /// </summary>
         /// <param name="owner_id">ID of an item owner community.</param>
         /// <param name="item_id">Item ID.</param>
-        public async Task<object> Delete(int? owner_id = null, int? item_id = null)
+        public async Task<int> Delete(int? owner_id = null, int? item_id = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -420,7 +420,7 @@ namespace VkLib.Methods
             if (item_id != null)
                 parameters.Add("item_id", item_id.ToString());
 
-            return await _vkontakte.GetAsync<object>("market.delete", parameters);
+            return await _vkontakte.GetAsync<int>("market.delete", parameters);
         }
 
         /// <summary>
@@ -429,7 +429,7 @@ namespace VkLib.Methods
         /// </summary>
         /// <param name="owner_id">ID of an item owner community.</param>
         /// <param name="item_id">Deleted item ID.</param>
-        public async Task<object> Restore(int? owner_id = null, int? item_id = null)
+        public async Task<int> Restore(int? owner_id = null, int? item_id = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -438,7 +438,7 @@ namespace VkLib.Methods
             if (item_id != null)
                 parameters.Add("item_id", item_id.ToString());
 
-            return await _vkontakte.GetAsync<object>("market.restore", parameters);
+            return await _vkontakte.GetAsync<int>("market.restore", parameters);
         }
 
         /// <summary>
@@ -450,7 +450,7 @@ namespace VkLib.Methods
         /// <param name="item_id">Item ID.</param>
         /// <param name="before">ID of an item to place current item before it.</param>
         /// <param name="after">ID of an item to place current item after it.</param>
-        public async Task<object> ReorderItems(int? owner_id = null, int? album_id = null, int? item_id = null, int? before = null, int? after = null)
+        public async Task<int> ReorderItems(int? owner_id = null, int? album_id = null, int? item_id = null, int? before = null, int? after = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -465,7 +465,7 @@ namespace VkLib.Methods
             if (after != null)
                 parameters.Add("after", after.ToString());
 
-            return await _vkontakte.GetAsync<object>("market.reorderItems", parameters);
+            return await _vkontakte.GetAsync<int>("market.reorderItems", parameters);
         }
 
         /// <summary>
@@ -476,7 +476,7 @@ namespace VkLib.Methods
         /// <param name="album_id">Collection ID.</param>
         /// <param name="before">ID of a collection to place current collection before it.</param>
         /// <param name="after">ID of a collection to place current collection after it.</param>
-        public async Task<object> ReorderAlbums(int? owner_id = null, int? album_id = null, int? before = null, int? after = null)
+        public async Task<int> ReorderAlbums(int? owner_id = null, int? album_id = null, int? before = null, int? after = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -489,7 +489,7 @@ namespace VkLib.Methods
             if (after != null)
                 parameters.Add("after", after.ToString());
 
-            return await _vkontakte.GetAsync<object>("market.reorderAlbums", parameters);
+            return await _vkontakte.GetAsync<int>("market.reorderAlbums", parameters);
         }
 
         /// <summary>
@@ -500,7 +500,7 @@ namespace VkLib.Methods
         /// <param name="title">Collection title.</param>
         /// <param name="photo_id">Cover photo ID.</param>
         /// <param name="main_album">Set as main ('1' – set, '0' – no).</param>
-        public async Task<object> AddAlbum(int? owner_id = null, string title = null, int? photo_id = null, bool? main_album = null)
+        public async Task<VkLib.Responses.Market.AddAlbumResponse> AddAlbum(int? owner_id = null, string title = null, int? photo_id = null, bool? main_album = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -513,7 +513,7 @@ namespace VkLib.Methods
             if (main_album != null)
                 parameters.Add("main_album", main_album.ToString());
 
-            return await _vkontakte.GetAsync<object>("market.addAlbum", parameters);
+            return await _vkontakte.GetAsync<VkLib.Responses.Market.AddAlbumResponse>("market.addAlbum", parameters);
         }
 
         /// <summary>
@@ -525,7 +525,7 @@ namespace VkLib.Methods
         /// <param name="title">Collection title.</param>
         /// <param name="photo_id">Cover photo id</param>
         /// <param name="main_album">Set as main ('1' – set, '0' – no).</param>
-        public async Task<object> EditAlbum(int? owner_id = null, int? album_id = null, string title = null, int? photo_id = null, bool? main_album = null)
+        public async Task<int> EditAlbum(int? owner_id = null, int? album_id = null, string title = null, int? photo_id = null, bool? main_album = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -540,7 +540,7 @@ namespace VkLib.Methods
             if (main_album != null)
                 parameters.Add("main_album", main_album.ToString());
 
-            return await _vkontakte.GetAsync<object>("market.editAlbum", parameters);
+            return await _vkontakte.GetAsync<int>("market.editAlbum", parameters);
         }
 
         /// <summary>
@@ -549,7 +549,7 @@ namespace VkLib.Methods
         /// </summary>
         /// <param name="owner_id">ID of an collection owner community.</param>
         /// <param name="album_id">Collection ID.</param>
-        public async Task<object> DeleteAlbum(int? owner_id = null, int? album_id = null)
+        public async Task<int> DeleteAlbum(int? owner_id = null, int? album_id = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -558,7 +558,7 @@ namespace VkLib.Methods
             if (album_id != null)
                 parameters.Add("album_id", album_id.ToString());
 
-            return await _vkontakte.GetAsync<object>("market.deleteAlbum", parameters);
+            return await _vkontakte.GetAsync<int>("market.deleteAlbum", parameters);
         }
 
         /// <summary>
@@ -568,7 +568,7 @@ namespace VkLib.Methods
         /// <param name="owner_id">ID of an item owner community.</param>
         /// <param name="item_id">Item ID.</param>
         /// <param name="album_ids">Collections IDs to remove item from.</param>
-        public async Task<object> RemoveFromAlbum(int? owner_id = null, int? item_id = null, IEnumerable<int?> album_ids = null)
+        public async Task<int> RemoveFromAlbum(int? owner_id = null, int? item_id = null, IEnumerable<int?> album_ids = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -579,7 +579,7 @@ namespace VkLib.Methods
             if (album_ids != null)
                 parameters.Add("album_ids", string.Join(",", album_ids));
 
-            return await _vkontakte.GetAsync<object>("market.removeFromAlbum", parameters);
+            return await _vkontakte.GetAsync<int>("market.removeFromAlbum", parameters);
         }
 
         /// <summary>
@@ -589,7 +589,7 @@ namespace VkLib.Methods
         /// <param name="owner_id">ID of an item owner community.</param>
         /// <param name="item_id">Item ID.</param>
         /// <param name="album_ids">Collections IDs to add item to.</param>
-        public async Task<object> AddToAlbum(int? owner_id = null, int? item_id = null, IEnumerable<int?> album_ids = null)
+        public async Task<int> AddToAlbum(int? owner_id = null, int? item_id = null, IEnumerable<int?> album_ids = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -600,7 +600,7 @@ namespace VkLib.Methods
             if (album_ids != null)
                 parameters.Add("album_ids", string.Join(",", album_ids));
 
-            return await _vkontakte.GetAsync<object>("market.addToAlbum", parameters);
+            return await _vkontakte.GetAsync<int>("market.addToAlbum", parameters);
         }
 
     }

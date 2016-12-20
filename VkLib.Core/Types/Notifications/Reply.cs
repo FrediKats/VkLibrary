@@ -1,27 +1,28 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Notifications 
 {
     public class Reply
     {
         /// <summary>
-        /// Reply ID
-        /// </summary>
-        [JsonProperty("id")]
-        public int? Id { get; set; }
-
-        /// <summary>
         /// Date when the reply has been created in Unixtime
         /// </summary>
         [JsonProperty("date")]
-        public int? Date { get; set; }
+        public int? Date_ { get; set; }
+
+        /// <summary>
+        /// Reply ID
+        /// </summary>
+        [JsonProperty("id")]
+        public int? Id_ { get; set; }
 
         /// <summary>
         /// Reply text
         /// </summary>
         [JsonProperty("text")]
-        public int? Text { get; set; }
+        public int? Text_ { get; set; }
 
     }
 }

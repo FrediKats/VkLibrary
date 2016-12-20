@@ -1,5 +1,6 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Docs 
 {
@@ -8,14 +9,14 @@ namespace VkLib.Types.Docs
         /// <summary>
         /// Property
         /// </summary>
-        [JsonProperty("video")]
-        public DocPreviewVideo Video { get; set; }
+        [JsonProperty("photo")]
+        public VkLib.Types.Docs.DocPreviewPhoto Photo { get; set; }
 
         /// <summary>
         /// Property
         /// </summary>
-        [JsonProperty("photo")]
-        public DocPreviewPhoto Photo { get; set; }
+        [JsonProperty("video")]
+        public VkLib.Types.Docs.DocPreviewVideo Video { get; set; }
 
     }
 }

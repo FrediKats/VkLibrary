@@ -52,3 +52,4 @@ TestApp/
 VkLib.Core/obj
 VkLib.Core/bin
 VkLib.Core/.vs
+*.user

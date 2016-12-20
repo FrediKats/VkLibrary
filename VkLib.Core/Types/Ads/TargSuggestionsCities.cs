@@ -1,15 +1,16 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Ads 
 {
     public class TargSuggestionsCities
     {
         /// <summary>
-        /// Parent object
+        /// Object name
         /// </summary>
-        [JsonProperty("parent")]
-        public string Parent { get; set; }
+        [JsonProperty("name")]
+        public string Name { get; set; }
 
         /// <summary>
         /// Object ID
@@ -18,10 +19,10 @@ namespace VkLib.Types.Ads
         public int? Id { get; set; }
 
         /// <summary>
-        /// Object name
+        /// Parent object
         /// </summary>
-        [JsonProperty("name")]
-        public string Name { get; set; }
+        [JsonProperty("parent")]
+        public string Parent { get; set; }
 
     }
 }

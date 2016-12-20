@@ -1,22 +1,11 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Widgets 
 {
     public class CommentRepliesItem
     {
-        /// <summary>
-        /// Property
-        /// </summary>
-        [JsonProperty("user")]
-        public UserFull User { get; set; }
-
-        /// <summary>
-        /// Date when the comment has been added in Unixtime
-        /// </summary>
-        [JsonProperty("date")]
-        public int? Date { get; set; }
-
         /// <summary>
         /// User ID
         /// </summary>
@@ -36,10 +25,22 @@ namespace VkLib.Types.Widgets
         public int? Cid { get; set; }
 
         /// <summary>
+        /// Date when the comment has been added in Unixtime
+        /// </summary>
+        [JsonProperty("date")]
+        public int? Date { get; set; }
+
+        /// <summary>
         /// Property
         /// </summary>
         [JsonProperty("likes")]
-        public WidgetLikes Likes { get; set; }
+        public VkLib.Types.Widgets.WidgetLikes Likes { get; set; }
+
+        /// <summary>
+        /// Property
+        /// </summary>
+        [JsonProperty("user")]
+        public VkLib.Types.Users.UserFull User { get; set; }
 
     }
 }

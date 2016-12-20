@@ -1,5 +1,6 @@
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace VkLib.Types.Ads 
 {
@@ -9,13 +10,13 @@ namespace VkLib.Types.Ads
         /// Property
         /// </summary>
         [JsonProperty("paragraphs")]
-        public IEnumerable<Paragraphs> Paragraphs { get; set; }
+        public IEnumerable<VkLib.Types.Ads.Paragraphs> Paragraphs_ { get; set; }
 
         /// <summary>
         /// Comment
         /// </summary>
         [JsonProperty("title")]
-        public string Title { get; set; }
+        public string Title_ { get; set; }
 
     }
 }

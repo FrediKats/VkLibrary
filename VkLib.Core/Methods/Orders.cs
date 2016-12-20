@@ -24,7 +24,7 @@ namespace VkLib.Methods
         /// </summary>
         /// <param name="count">number of returned orders.</param>
         /// <param name="test_mode">if this parameter is set to 1, this method returns a list of test mode orders. By default — 0.</param>
-        public async Task<object> Get(int? count = null, bool? test_mode = null)
+        public async Task<IEnumerable<VkLib.Types.Orders.Order>> Get(int? count = null, bool? test_mode = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -33,7 +33,7 @@ namespace VkLib.Methods
             if (test_mode != null)
                 parameters.Add("test_mode", test_mode.ToString());
 
-            return await _vkontakte.GetAsync<object>("orders.get", parameters);
+            return await _vkontakte.GetAsync<IEnumerable<VkLib.Types.Orders.Order>>("orders.get", parameters);
         }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace VkLib.Methods
         /// <param name="order_id">order ID.</param>
         /// <param name="order_ids">order IDs (when information about several orders is requested).</param>
         /// <param name="test_mode">if this parameter is set to 1, this method returns a list of test mode orders. By default — 0.</param>
-        public async Task<object> GetById(int? order_id = null, IEnumerable<int?> order_ids = null, bool? test_mode = null)
+        public async Task<IEnumerable<VkLib.Types.Orders.Order>> GetById(int? order_id = null, IEnumerable<int?> order_ids = null, bool? test_mode = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -54,7 +54,7 @@ namespace VkLib.Methods
             if (test_mode != null)
                 parameters.Add("test_mode", test_mode.ToString());
 
-            return await _vkontakte.GetAsync<object>("orders.getById", parameters);
+            return await _vkontakte.GetAsync<IEnumerable<VkLib.Types.Orders.Order>>("orders.getById", parameters);
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace VkLib.Methods
         /// <param name="action">action to be done with the order. ; ; Available actions:; *cancel — to cancel unconfirmed order.; *charge — to confirm unconfirmed order. Applies only if processing of [vk.com/dev/payments_status|order_change_state] notification failed.; *refund — to cancel confirmed order.;</param>
         /// <param name="app_order_id">internal ID of the order in the application.</param>
         /// <param name="test_mode">if this parameter is set to 1, this method returns a list of test mode orders. By default — 0.</param>
-        public async Task<object> ChangeState(int? order_id = null, string action = null, int? app_order_id = null, bool? test_mode = null)
+        public async Task<string> ChangeState(int? order_id = null, string action = null, int? app_order_id = null, bool? test_mode = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -78,7 +78,7 @@ namespace VkLib.Methods
             if (test_mode != null)
                 parameters.Add("test_mode", test_mode.ToString());
 
-            return await _vkontakte.GetAsync<object>("orders.changeState", parameters);
+            return await _vkontakte.GetAsync<string>("orders.changeState", parameters);
         }
 
         /// <summary>
@@ -87,7 +87,7 @@ namespace VkLib.Methods
         /// </summary>
         /// <param name="user_id"></param>
         /// <param name="votes"></param>
-        public async Task<object> GetAmount(int? user_id = null, IEnumerable<string> votes = null)
+        public async Task<VkLib.Types.Orders.Amount> GetAmount(int? user_id = null, IEnumerable<string> votes = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -96,7 +96,7 @@ namespace VkLib.Methods
             if (votes != null)
                 parameters.Add("votes", string.Join(",", votes));
 
-            return await _vkontakte.GetAsync<object>("orders.getAmount", parameters);
+            return await _vkontakte.GetAsync<VkLib.Types.Orders.Amount>("orders.getAmount", parameters);
         }
 
     }
