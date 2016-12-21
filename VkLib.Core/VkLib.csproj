@@ -107,7 +107,9 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AuthTools\AccessToken.cs" />
+    <Compile Include="Auth\AccessToken.cs" />
+    <Compile Include="Auth\Enums.cs" />
+    <Compile Include="Auth\OAuthResult.cs" />
     <Compile Include="Methods\Account.cs" />
     <Compile Include="Methods\Ads.cs" />
     <Compile Include="Methods\Apps.cs" />
@@ -142,6 +144,7 @@
     <Compile Include="Methods\Video.cs" />
     <Compile Include="Methods\Wall.cs" />
     <Compile Include="Methods\Widgets.cs" />
+    <Compile Include="Auth\OAuth.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Responses\Account\ChangePasswordResponse.cs" />
     <Compile Include="Responses\Account\SaveProfileInfoResponse.cs" />
@@ -450,6 +453,7 @@
     <Compile Include="Types\Widgets\WidgetComment.cs" />
     <Compile Include="Types\Widgets\WidgetLikes.cs" />
     <Compile Include="Types\Widgets\WidgetPage.cs" />
+    <Compile Include="UploadHelper.cs" />
     <Compile Include="Vkontakte.cs" />
     <EmbeddedResource Include="Properties\VkLib.rd.xml" />
   </ItemGroup>

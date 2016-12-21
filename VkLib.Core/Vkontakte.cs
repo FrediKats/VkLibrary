@@ -6,9 +6,8 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.NetworkInformation;
 using System.Threading.Tasks;
-using VkLib.AuthTools;
 using VkLib.Methods;
-using VkLib.Types;
+using VkLib.Auth;
 
 namespace VkLib
 {
@@ -16,7 +15,7 @@ namespace VkLib
     {
         private readonly string _clientSecret;
         private readonly string _appId;
-        private          string _apiVersion;
+        private readonly string _apiVersion;
 
         public const string DirectAuthUrl    = "https://oauth.vk.com/token";
         public const string OAuthUrl         = "https://oauth.vk.com/authorize?";
@@ -29,7 +28,7 @@ namespace VkLib
         /// <param name="appId">Unique app identifier</param>
         /// <param name="clientSecret">App access key</param>
         /// <param name="apiVersion">API version</param>
-        public Vkontakte(string appId, string apiVersion = "5.60", string clientSecret = null)
+        public Vkontakte(string appId, string clientSecret = null, string apiVersion = "5.60")
         {
             this._appId = appId;
             this._apiVersion = apiVersion;
@@ -55,14 +54,11 @@ namespace VkLib
             parameters.Add("v", _apiVersion);
 
             // Build Uri string.
-            string urlString =
-                string.Concat(MethodBase, method, "?",
-                    string.Join("&", parameters.Select(
-                        i => string.Format("{0}={1}",
-                        Uri.EscapeDataString(i.Key),
-                        Uri.EscapeDataString(i.Value)
-                    )))
-                );
+            string urlString = GetUrl(
+                string.Concat(MethodBase, method, "?"), 
+                parameters
+            );
+
             log($"Invoking {method}: {urlString}");
 
             // Invoke GET request.
@@ -85,6 +81,23 @@ namespace VkLib
 
                 return apiResponse.Response;
             }
+        }
+
+        /// <summary>
+        /// Creates url string from parameters dict and method base.
+        /// </summary>
+        /// <param name="baseString">Main url part</param>
+        /// <param name="parameters">Params dict</param>
+        /// <returns></returns>
+        internal string GetUrl(string baseString, Dictionary<string, string> parameters)
+        {
+            return string.Concat(baseString,
+                    string.Join("&", parameters.Select(
+                        i => string.Format("{0}={1}",
+                        Uri.EscapeDataString(i.Key),
+                        Uri.EscapeDataString(i.Value)
+                    )))
+                );
         }
 
         /// <summary>
@@ -138,6 +151,22 @@ namespace VkLib
         }
 
         /// <summary>
+        /// API files upload helper. Contains upload methods.
+        /// </summary>
+        public UploadHelper UploadHelper
+        {
+            get { return new UploadHelper(this); }
+        }
+
+        /// <summary>
+        /// OAuth helpers API section.
+        /// </summary>
+        public OAuth OAuth
+        {
+            get { return new OAuth(this); }
+        }
+
+        /// <summary>
         /// Account API section.
         /// </summary>
         public Account Account
@@ -172,9 +201,9 @@ namespace VkLib
         /// <summary>
         /// Auth API section.
         /// </summary>
-        public Auth Auth
+        public OAuth Auth
         {
-            get { return new Auth(this); }
+            get { return new OAuth(this); }
         }
 
         /// <summary>

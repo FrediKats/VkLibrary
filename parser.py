@@ -698,9 +698,9 @@ class JResponses:
 # Main actions
 if __name__ == "__main__":
 
-    j_objects = JObjects('VkLib.JsonSchema/objects.json', output=False, save=False)
-    j_responses = JResponses('VkLib.JsonSchema/responses.json', output=False, save=False)
-    j_methods = JMethods('VkLib.JsonSchema/methods.json', output=False, save=False)
+    j_objects = JObjects('VkLib.Schema/objects.json', output=False, save=False)
+    j_responses = JResponses('VkLib.Schema/responses.json', output=False, save=False)
+    j_methods = JMethods('VkLib.Schema/methods.json', output=False, save=False)
 
 
 
