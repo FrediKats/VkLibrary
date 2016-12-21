@@ -107,6 +107,7 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuthTools\AccessToken.cs" />
     <Compile Include="Methods\Account.cs" />
     <Compile Include="Methods\Ads.cs" />
     <Compile Include="Methods\Apps.cs" />
@@ -216,6 +217,7 @@
     <Compile Include="Types\Ads\FloodStats.cs" />
     <Compile Include="Types\Ads\LinkStatus.cs" />
     <Compile Include="Types\Ads\Paragraphs.cs" />
+    <Compile Include="Types\Ads\PostStats.cs" />
     <Compile Include="Types\Ads\RejectReason.cs" />
     <Compile Include="Types\Ads\Rules.cs" />
     <Compile Include="Types\Ads\Stats.cs" />
@@ -225,6 +227,7 @@
     <Compile Include="Types\Ads\StatsSex.cs" />
     <Compile Include="Types\Ads\StatsSexAge.cs" />
     <Compile Include="Types\Ads\TargetGroup.cs" />
+    <Compile Include="Types\Ads\TargSettings.cs" />
     <Compile Include="Types\Ads\TargStats.cs" />
     <Compile Include="Types\Ads\TargSuggestions.cs" />
     <Compile Include="Types\Ads\TargSuggestionsCities.cs" />

@@ -28,7 +28,7 @@ namespace VkLib.Types.Account
         /// Two factor authentication is enabled
         /// </summary>
         [JsonProperty("2fa_required")]
-        public int? 2faRequired { get; set; }
+        public int? _2faRequired { get; set; }
 
         /// <summary>
         /// Country code

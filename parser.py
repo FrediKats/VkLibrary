@@ -138,6 +138,7 @@ class JObjects:
     @classmethod
     def __parse_children(cls, all_of, key):
 
+        print(all_of)
         # Get and write name of a parent
         first = all_of[0]
         ref = first.get("$ref", None)
@@ -697,7 +698,7 @@ class JResponses:
 # Main actions
 if __name__ == "__main__":
 
-    j_objects = JObjects('VkLib.JsonSchema/objects.json', output=False, save=True)
+    j_objects = JObjects('VkLib.JsonSchema/objects.json', output=False, save=False)
     j_responses = JResponses('VkLib.JsonSchema/responses.json', output=False, save=False)
     j_methods = JMethods('VkLib.JsonSchema/methods.json', output=False, save=False)
 

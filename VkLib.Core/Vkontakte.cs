@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.NetworkInformation;
 using System.Threading.Tasks;
+using VkLib.AuthTools;
 using VkLib.Methods;
 using VkLib.Types;
 
