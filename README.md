@@ -1,7 +1,15 @@
 # VkLibrary
 .NET library that tries to cover all <a href="https://vk.com/dev">VK.COM API methods</a>. Huge parts of it were generated using <a href="https://github.com/VKCOM/vk-api-schema">Json Schema</a> and a self-written Python script <a href="https://github.com/Worldbeater/VkLibrary/blob/master/parser.py">parser.py</a>. Some features are not currently working and library may contain bugs, but work is in progress. Instructions on how to use the library are provided below.
 
-### Initializing
+## Contents
+- <a href="#initializing">Initializing</a>
+- <a href="#authentication">Authentication</a>
+- <a href="#calling-api-methods">Calling API methods</a>
+- <a href="#uploading-files">Uploading files</a>
+- <a href="#executing-scripts-in-vkscript">Executing scripts in VkScript</a>
+- <a href="#roadmap">Roadmap</a>
+
+## Initializing
 Firstly, initialize the library. Use your vk app's ID and Secret code.
 ```c#
 Vkontakte vk = new Vkontakte(
@@ -11,7 +19,7 @@ Vkontakte vk = new Vkontakte(
   );
 ```
 
-### Authentication
+## Authentication
 Most methods require a valid access token. To get that token using OAuth, you should show a WebView-like control to a user, navigate him to authentication page and handle future redirects. More info can be found <a href="http://vk.com/dev/auth_mobile">here</a>. There are some examples below on how to get things done in UWP:
 ```c#
 // Firstly we build an OAuth url and launch it. (assuming that WebView is a declared Web View control)
@@ -32,7 +40,7 @@ private async void WebView_NavigationStarting(WebView sender, WebViewNavigationS
 }
 ```
 
-### Calling API methods
+## Calling API methods
 All API methods are listed <a href="https://vk.com/dev/methods">here</a>. Calling them is quite simple, just use the following syntax:
 ```c#
 // Returns a sequence of vk users.
@@ -63,7 +71,7 @@ JToken response = vk.GetAsync<JToken>("someSection.getSomeInfo", new Dictionary<
   });
 ```
 
-### Uploading files
+## Uploading files
 VkLibrary has a helper section containing methods for <a href="https://vk.com/dev/upload_files">photo/video/audio/document uploading</a>. This section is called <b>UploadHelper</b>. There is an example below on how to upload a document to VK servers:
 ```c#
 // Get documents upload server.
@@ -93,7 +101,7 @@ PhotoUploadResponse response = await vk.UploadHelper.PostMultipleAsync<PhotoUplo
 DocUploadResponse response = await vk.UploadHelper.PostAsync<DocUploadResponse>(new Uri(url), bytes, "doc", fileName);
 ```
 
-### Executing scripts in VkScript
+## Executing scripts in VkScript
 <a href="https://vk.com/dev/execute">VK.COM API</a> provides an ability to execute code on VK.COM servers. That code should be written in <a href="https://vk.com/dev/execute">VkScript</a>, a language similar to ActionScript or JavaScript, and end with a <b>return %expression%</b> statement. For example:
 ```c#
 // Sends an execute request.
@@ -111,6 +119,6 @@ Outputs:
 }]
 ```
 
-### Roadmap
+## Roadmap
 - Add long polling support;
 - Test and fix bugs.
