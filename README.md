@@ -48,7 +48,7 @@ ApiItemsResponse<Message> messages = await vk.Messages.GetHistory(
     count: 10,
     offset: 0
   );
-"  
+  
 // Sends message to a user. Returns 1 if OK, 0 if not OK.
 int is_okay = await vk.Messages.Send(
     user_id: "12345",
