@@ -60,18 +60,18 @@ int is_okay = await vk.Messages.Send(
 VkLibrary has a helper section containing methods for <a href="https://vk.com/dev/upload_files">photo/video/audio/document uploading</a>. This section is called <b>UploadHelper</b>. There is an example below on how to upload a document to VK servers:
 ```c#
 // Get documents upload server.
-string serverUrl = await vk.UploadHelper.GetDocsUploadServer();
+GetUploadServerResponse server = await vk.Docs.GetUploadServer();
 
 // Upload a document using POST request.
-string response = await vk.UploadHelper.UploadDocument(
-    serverUrl,       // Server url received on previous step
-    "Document.docx", // Document name 
-    bytes            // Bytes representing the document
+DocUploadResponse response = await vk.UploadHelper.UploadDocument(
+    server.UploadUrl, // Server url received on previous step
+    "Document.docx",  // Document name 
+    bytes             // Bytes representing the document
   );
 
 // Save document and receive it's instance.
-VkLib.Types.Docs.Doc document = await vk.UploadHelper.SaveDocument(
-    response,        // Data received on previous step
+Doc document = await vk.Docs.Save(
+    response.File,   // Data received on previous step
     "My document!",  // Custom name 
     "usefull, stuff" // Tags separated by comas
   );
@@ -96,6 +96,5 @@ Outputs:
 ```
 
 ### Roadmap
-- Add left methods for video/audio/photo uploading;
 - Add long polling support;
 - Test and fix bugs.
