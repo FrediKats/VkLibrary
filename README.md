@@ -57,7 +57,7 @@ int is_okay = await vk.Messages.Send(
 ```
 
 ### Uploading files
-VkLibrary has a helper section containing methods for photo/video/audio/document uploading. This section is called <b>UploadHelper</b>. There is an example below on how to upload a document to VK servers:
+VkLibrary has a helper section containing methods for <a href="https://vk.com/dev/upload_files">photo/video/audio/document uploading</a>. This section is called <b>UploadHelper</b>. There is an example below on how to upload a document to VK servers:
 ```c#
 // Get documents upload server.
 string serverUrl = await vk.UploadHelper.GetDocsUploadServer();
