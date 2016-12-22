@@ -33,5 +33,10 @@ namespace VkLib.Auth
             }
         }
 
+        public override string ToString()
+        {
+            return $"{Token} {ExpiresIn} {UserId}";
+        }
+
     }
 }

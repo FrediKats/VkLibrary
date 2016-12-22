@@ -101,6 +101,21 @@ namespace VkLib
         }
 
         /// <summary>
+        /// Executes given script written in VKSCRIPT language on VK servers.
+        /// See docs for more info: https://vk.com/dev/execute
+        /// </summary>
+        /// <typeparam name="T">Type to return</typeparam>
+        /// <param name="script">Your code</param>
+        /// <returns>Object of a given type, determined by a script.</returns>
+        public async Task<T> Execute<T>(string script)
+        {
+            return await GetAsync<T>("execute", new Dictionary<string, string>() 
+            {
+                { "code", script }
+            });
+        }
+
+        /// <summary>
         /// Logs information to Debug output.
         /// </summary>
         /// <param name="obj">Object to show</param>
