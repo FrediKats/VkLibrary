@@ -20,7 +20,7 @@ namespace VkLib.Auth
         /// <summary>
         /// User ID that owns this token.
         /// </summary>
-        public long UserId { get; set; }
+        public int UserId { get; set; }
 
         /// <summary>
         /// Has access token expired?

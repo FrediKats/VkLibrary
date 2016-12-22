@@ -31,7 +31,7 @@ namespace VkLib
         /// <param name="type">Type (file/photo/audio/etc.)</param>
         /// <param name="fileName">File's name</param>
         /// <returns>String response</returns>
-        private async Task<string> PostAsync(Uri uri, byte[] bytes, string type, string fileName)
+        public async Task<T> PostAsync<T>(Uri uri, byte[] bytes, string type, string fileName)
         {
             using (HttpClient client = new HttpClient())
             using (MultipartFormDataContent content = new MultipartFormDataContent())
@@ -47,7 +47,7 @@ namespace VkLib
                 using (Stream responseStream = await responseMessage.Content.ReadAsStreamAsync())
                 using (StreamReader streamReader = new StreamReader(responseStream, Encoding.UTF8))
                 {
-                    return streamReader.ReadToEnd();
+                    return JsonConvert.DeserializeObject<T>(streamReader.ReadToEnd());
                 }
             }
         }
@@ -58,10 +58,8 @@ namespace VkLib
         /// <param name="uri">Server uri</param>
         /// <param name="files">Files dict. Key is file name, value is file itself.</param>
         /// <returns>String response</returns>
-        private async Task<string> PostMultipleAsync(Uri uri, Dictionary<string, byte[]> files)
+        public async Task<T> PostMultipleAsync<T>(Uri uri, Dictionary<string, byte[]> files)
         {
-            if (files.Count > 5) throw new Exception("Too many files to upload.");
-
             using (HttpClient client = new HttpClient())
             using (MultipartFormDataContent content = new MultipartFormDataContent())
             {
@@ -84,171 +82,70 @@ namespace VkLib
                 using (Stream responseStream = await responseMessage.Content.ReadAsStreamAsync())
                 using (StreamReader streamReader = new StreamReader(responseStream, Encoding.UTF8))
                 {
-                    return streamReader.ReadToEnd();
+                    return JsonConvert.DeserializeObject<T>(streamReader.ReadToEnd());
                 }
             }
         }
 
-        #region 1. Album photos uploader
-
-        public async Task<string> GetPhotosUploadServer(int group_id = 0)
-        {
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
-
-            if (group_id != 0)
-                parameters.Add("group_id", group_id.ToString());
-
-            Responses.Photos.GetChatUploadServerResponse response =
-               await _vkontakte.GetAsync<Responses.Photos.GetChatUploadServerResponse>(
-                   "photos.getUploadServer", parameters);
-
-            return response.UploadUrl;
-        }
-
-        public async Task<VkLib.Types.Photos.PhotoUploadResponse> UploadPhotos(string url, Dictionary<string, byte[]> files)
-        {
-            VkLib.Types.Photos.PhotoUploadResponse response =
-                JsonConvert.DeserializeObject<VkLib.Types.Photos.PhotoUploadResponse>(
-                    await PostMultipleAsync(new Uri(url), files)
-                    );
-
-            return response;
-        }
-
-        public async Task<Types.Photos.Photo> SavePhotos(string photos_list, string server, string album_id, string hash)
-        {
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
-
-            parameters.Add("server", server);
-            parameters.Add("photos_list", photos_list);
-            parameters.Add("aid", album_id);
-            parameters.Add("hash", hash);
-
-            IEnumerable<Types.Photos.Photo> response =
-                await _vkontakte.GetAsync<IEnumerable<Types.Photos.Photo>>("photos.save", parameters);
-
-            return response.First();
-        }
-
-        #endregion
-
-        #region 4. Messages Photo Uploader
-
         /// <summary>
-        /// Gets messages upload vk server.
+        /// Upload multiple photos to vk servers.
         /// </summary>
-        /// <returns>Upload server's uri.</returns>
-        public async Task<string> GetMessagesUploadServer()
+        /// <param name="url">Server url</param>
+        /// <param name="files">Files name-bytes pairs</param>
+        /// <returns></returns>
+        public async Task<Types.Photos.PhotoUploadResponse> UploadPhotos(string url, Dictionary<string, byte[]> files)
         {
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
-
-            Responses.Photos.GetChatUploadServerResponse response =
-               await _vkontakte.GetAsync<Responses.Photos.GetChatUploadServerResponse>(
-                   "docs.getUploadServer", parameters);
-
-            return response.UploadUrl;
+            return await PostMultipleAsync<Types.Photos.PhotoUploadResponse>(new Uri(url), files);    
         }
 
         /// <summary>
-        /// Uploads photo to a given server (get it's uri using GetMessagesUploadServer)
+        /// Uploads a photo to conversation.
         /// </summary>
-        /// <param name="url">Server's url</param>
+        /// <param name="url">Server url</param>
         /// <param name="fileName">File name</param>
-        /// <param name="photoStream">Photo MultipartFormDataContent</param>
+        /// <param name="bytes">Photo bytes</param>
         /// <returns></returns>
-        public async Task<VkLib.Types.Photos.MessageUploadResponse> UploadMessagesPhotos(string url, string fileName, byte[] bytes)
+        public async Task<Types.Photos.MessageUploadResponse> UploadMessagesPhoto(string url, string fileName, byte[] bytes)
         {
-            VkLib.Types.Photos.MessageUploadResponse response =
-                JsonConvert.DeserializeObject<VkLib.Types.Photos.MessageUploadResponse>(
-                    await PostAsync(new Uri(url), bytes, "photo", fileName)
-                    );
-
-            return response;
+            return await PostAsync<Types.Photos.MessageUploadResponse>(new Uri(url), bytes, "photo", fileName);
         }
 
         /// <summary>
-        /// Saves uploaded photo. Uses id.
+        /// Uploads document to vk.
         /// </summary>
-        /// <param name="photo"></param>
-        /// <param name="server"></param>
-        /// <param name="hash"></param>
-        /// <returns></returns>
-        public async Task<Types.Photos.Photo> SaveMessagesPhotos(string photo, string server, string hash)
-        {
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
-
-            parameters.Add("photo", photo);
-            parameters.Add("server", server);
-            parameters.Add("hash", hash);
-
-            IEnumerable<Types.Photos.Photo> response =
-                await _vkontakte.GetAsync<IEnumerable<Types.Photos.Photo>>("photos.saveMessagesPhoto", parameters);
-
-            return response.First();
-        }
-
-        #endregion
-
-        #region 10. Docs Uploader
-
-        /// <summary>
-        /// Gets documents upload server.
-        /// </summary>
-        /// <returns>Upload server's uri.</returns>
-        public async Task<string> GetDocsUploadServer(int group_id = 0)
-        {
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
-            if (group_id != 0) parameters.Add("group_id", group_id.ToString());
-
-            Responses.Docs.GetUploadServerResponse response = 
-                await _vkontakte.GetAsync<Responses.Docs.GetUploadServerResponse>(
-                    "docs.getUploadServer", parameters);
-
-            return response.UploadUrl;
-        }
-
-        /// <summary>
-        /// Uploads document to a given server (get it's uri using GetDocsUploadServer)
-        /// </summary>
-        /// <param name="url">Server's url</param>
+        /// <param name="url">Server url</param>
         /// <param name="fileName">File name</param>
-        /// <param name="photoStream">Photo MultipartFormDataContent</param>
+        /// <param name="bytes">Doc bytes</param>
         /// <returns></returns>
-        public async Task<string> UploadDocument(string url, string fileName, byte[] bytes)
+        public async Task<Types.Docs.DocUploadResponse> UploadDocument(string url, string fileName, byte[] bytes)
         {
-            VkLib.Types.Docs.DocUploadResponse response =
-                JsonConvert.DeserializeObject<VkLib.Types.Docs.DocUploadResponse>(
-                    await PostAsync(new Uri(url), bytes, "doc", fileName)
-                    );
-
-            return response.File;
+            return await PostAsync<Types.Docs.DocUploadResponse>(new Uri(url), bytes, "doc", fileName);
         }
 
         /// <summary>
-        /// Saves uploaded photo. Uses id.
+        /// Uploads video to vk.
         /// </summary>
-        /// <param name="photo"></param>
-        /// <param name="server"></param>
-        /// <param name="hash"></param>
+        /// <param name="url">Server url</param>
+        /// <param name="fileName">File name</param>
+        /// <param name="bytes">Video bytes</param>
         /// <returns></returns>
-        public async Task<Types.Docs.Doc> SaveDocument(string file, string title, string tags)
+        public async Task<Types.Video.UploadResponse> UploadVideo(string url, string fileName, byte[] bytes)
         {
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
-
-            parameters.Add("file", file);
-            parameters.Add("title", title);
-            parameters.Add("tags", tags);
-
-            IEnumerable<Types.Docs.Doc> response = 
-                await _vkontakte.GetAsync<IEnumerable<Types.Docs.Doc>>(
-                   "docs.save", parameters);
-
-            return response.First();
+            return await PostAsync<Types.Video.UploadResponse>(new Uri(url), bytes, "video_file", fileName);
         }
 
-        #endregion
+        /// <summary>
+        /// Uploads an MP3 audio to vk.
+        /// </summary>
+        /// <param name="url">Upload url</param>
+        /// <param name="fileName">File name</param>
+        /// <param name="bytes">Audio bytes</param>
+        /// <returns></returns>
+        public async Task<Types.Audio.AudioUploadResponse> UploadAudio(string url, string fileName, byte[] bytes)
+        {
+            return await PostAsync<Types.Audio.AudioUploadResponse>(new Uri(url), bytes, "file", fileName);
+        }
 
-        // TODO: Implement left uploading methods
 
     }
 }

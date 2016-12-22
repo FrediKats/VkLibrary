@@ -19,6 +19,86 @@ namespace VkLib.Methods
         }
 
         /// <summary>
+        /// Get chat upload server.
+        /// Docs: <see href="https://vk.com/dev/photos.getChatUploadServer">photos.getChatUploadServer</see>
+        /// </summary>
+        public async Task<Responses.Photos.GetChatUploadServerResponse> GetChatUploadServer(
+            int chat_id, int? crop_x = null, int? crop_y = null, int? crop_width = null)
+        {
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+
+            parameters.Add("chat_id", chat_id.ToString());
+
+            if (crop_x != null)
+                parameters.Add("crop_x", crop_x.ToString());
+            if (crop_y != null)
+                parameters.Add("crop_y", crop_y.ToString());
+            if (crop_width != null)
+                parameters.Add("crop_width", crop_width.ToString());
+
+            return await _vkontakte.GetAsync<Responses.Photos.GetChatUploadServerResponse>(
+                "photos.getChatUploadServer", parameters);
+        }
+
+        /// <summary>
+        /// Get messages upload server.
+        /// Docs: <see href="https://vk.com/dev/photos.getMessagesUploadServer">photos.getMessagesUploadServer</see>
+        /// </summary>
+        public async Task<Responses.Photos.GetChatUploadServerResponse> GetMessagesUploadServer()
+        {
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            return await _vkontakte.GetAsync<Responses.Photos.GetChatUploadServerResponse>(
+                "photos.getMessagesUploadServer", parameters);
+        }
+
+        /// <summary>
+        /// Gets owner photo upload server.
+        /// Docs: <see href="https://vk.com/dev/photos.getOwnerPhotoUploadServer">photos.getOwnerPhotoUploadServer</see>
+        /// </summary>
+        /// <param name="group_id">Owner id. Add "-" for groups.</param>
+        public async Task<Responses.Photos.GetChatUploadServerResponse> GetOwnerPhotoUploadServer(int owner_id = 0)
+        {
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+
+            if (owner_id != 0)
+                parameters.Add("owner_id", owner_id.ToString());
+
+            return await _vkontakte.GetAsync<Responses.Photos.GetChatUploadServerResponse>(
+                "photos.getOwnerPhotoUploadServer", parameters);
+        }
+
+        /// <summary>
+        /// Get wall upload server.
+        /// Docs: <see href="https://vk.com/dev/photos.getWallUploadServer">photos.getWallUploadServer</see>
+        /// </summary>
+        /// <param name="group_id">Group id.</param>
+        public async Task<Responses.Photos.GetChatUploadServerResponse> GetWallUploadServer(uint group_id)
+        {
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+
+            parameters.Add("group_id", group_id.ToString());
+
+            return await _vkontakte.GetAsync<Responses.Photos.GetChatUploadServerResponse>(
+                "photos.getWallUploadServer", parameters);
+        }
+
+        /// <summary>
+        /// Get photos upload server.
+        /// Docs: <see href="https://vk.com/dev/photos.getUploadServer">photos.getUploadServer</see>
+        /// </summary>
+        /// <param name="group_id">Group id.</param>
+        public async Task<Responses.Photos.GetChatUploadServerResponse> GetUploadServer(uint group_id = 0)
+        {
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+
+            if (group_id != 0)
+                parameters.Add("group_id", group_id.ToString());
+            
+            return await _vkontakte.GetAsync<Responses.Photos.GetChatUploadServerResponse>(
+                "photos.getUploadServer", parameters);
+        }
+
+        /// <summary>
         /// Saves photos after successful uploading.
         /// Docs: <see href="https://vk.com/dev/photos.save">photos.save</see>
         /// </summary>
@@ -30,7 +110,8 @@ namespace VkLib.Methods
         /// <param name="latitude">Geographical latitude, in degrees (from '-90' to '90').</param>
         /// <param name="longitude">Geographical longitude, in degrees (from '-180' to '180').</param>
         /// <param name="caption">Text describing the photo. 2048 digits max.</param>
-        public async Task<IEnumerable<VkLib.Types.Photos.Photo>> Save(int? album_id = null, int? group_id = null, int? server = null, string photos_list = null, string hash = null, uint? latitude = null, uint? longitude = null, string caption = null)
+        public async Task<IEnumerable<VkLib.Types.Photos.Photo>> Save(
+            int? album_id = null, int? group_id = null, int? server = null, string photos_list = null, string hash = null, uint? latitude = null, uint? longitude = null, string caption = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 

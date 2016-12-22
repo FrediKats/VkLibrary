@@ -73,7 +73,7 @@ namespace VkLib.Methods
         /// <param name="fields">Profile fields to return.;</param>
         /// <param name="offset">Offset needed to return a specific subset of communities.</param>
         /// <param name="count">Number of communities to return.</param>
-        public async Task<ApiItemsResponse<int?>> Get(int? user_id = null, bool? extended = null, IEnumerable<string> filter = null, IEnumerable<string> fields = null, int? offset = null, int? count = null)
+        public async Task<ApiItemsResponse<Types.Groups.Group>> Get(int? user_id = null, bool? extended = true, IEnumerable<string> filter = null, IEnumerable<string> fields = null, int? offset = null, int? count = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -90,7 +90,7 @@ namespace VkLib.Methods
             if (count != null)
                 parameters.Add("count", count.ToString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<int?>>("groups.get", parameters);
+            return await _vkontakte.GetAsync<ApiItemsResponse<Types.Groups.Group>>("groups.get", parameters);
         }
 
         /// <summary>
