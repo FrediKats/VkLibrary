@@ -82,7 +82,7 @@ VK.COM API provides an ability to execute code on VK.COM servers. That code shou
 ```c#
 // Sends an execute request.
 JToken result = await vk.Execute<JToken>(
-  script: "return [API.users.isAppUser(), API.friends.get(), API.status.get()];"
+    script: "return [API.users.isAppUser(), API.friends.get(), API.status.get()];"
   );
 ```
 Outputs:
@@ -97,4 +97,5 @@ Outputs:
 
 ### Roadmap
 - Add left methods for video/audio/photo uploading;
+- Add long polling support;
 - Test and fix bugs.
