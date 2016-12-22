@@ -1,5 +1,5 @@
 # VkLibrary
-.NET library that tries to cover all <a href="https://vk.com/dev">VK.COM API methods</a>. Huge parts of it were generated using <a href="https://github.com/VKCOM/vk-api-schema">Json Schema</a> and a self-written Python script <a href="https://github.com/Worldbeater/VkLibrary/blob/master/parser.py">parser.py</a>. Some features are not currently working and library may contain tons of bugs, but work is in progress. Instructions on how to use the library are provided below.
+.NET library that tries to cover all <a href="https://vk.com/dev">VK.COM API methods</a>. Huge parts of it were generated using <a href="https://github.com/VKCOM/vk-api-schema">Json Schema</a> and a self-written Python script <a href="https://github.com/Worldbeater/VkLibrary/blob/master/parser.py">parser.py</a>. Some features are not currently working and library may contain bugs, but work is in progress. Instructions on how to use the library are provided below.
 
 ### Initializing
 Firstly, initialize the library. Use your vk app's ID and Secret code.
@@ -33,7 +33,7 @@ private async void WebView_NavigationStarting(WebView sender, WebViewNavigationS
 ```
 
 ### Calling API methods
-Calling methods is quite simple. Just use the following syntax:
+All API methods are listed <a href="https://vk.com/dev/methods">here</a>. Calling them is quite simple, just use the following syntax:
 ```c#
 // Returns a sequence of vk users.
 IEnumerable<UserFull> users = await vk.Users.Get(
@@ -54,6 +54,13 @@ int is_okay = await vk.Messages.Send(
     user_id: "12345",
     message: "Hey! What's up?"
   );
+```
+If you find an API method that VkLibrary does not support (this is unlikely, but may happen), use a generic GetAsync<T> method:
+```c#
+JToken response = vk.GetAsync<JToken>("someSection.getSomeInfo", new Dictionary<string, string> {
+    { "some_parameter_one", "its_value" },
+    { "some_parameter_two", "its_value" }
+  });
 ```
 
 ### Uploading files
@@ -77,8 +84,17 @@ Doc document = await vk.Docs.Save(
   );
 ```
 
+If there are no POST methods in UploadHelper that can suite you, use generics: PostAsync<T> or PostMultipleAsync<T>.
+```c#
+// Uploads a photo and catches response into a PhotoUploadResponse object.
+PhotoUploadResponse response = await vk.UploadHelper.PostMultipleAsync<PhotoUploadResponse>(new Uri(url), files);  
+
+// Uploads a document and catches response into a DocUploadResponse object.
+DocUploadResponse response = await vk.UploadHelper.PostAsync<DocUploadResponse>(new Uri(url), bytes, "doc", fileName);
+```
+
 ### Executing scripts in VkScript
-VK.COM API provides an ability to execute code on VK.COM servers. That code should be written in <a href="https://vk.com/dev/execute">VkScript</a>, a language similar to ActionScript or JavaScript, and end with a <b>return %expression%</b> statement. For example:
+<a href="https://vk.com/dev/execute">VK.COM API</a> provides an ability to execute code on VK.COM servers. That code should be written in <a href="https://vk.com/dev/execute">VkScript</a>, a language similar to ActionScript or JavaScript, and end with a <b>return %expression%</b> statement. For example:
 ```c#
 // Sends an execute request.
 JToken result = await vk.Execute<JToken>(
