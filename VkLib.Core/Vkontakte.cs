@@ -131,7 +131,7 @@ namespace VkLib
         /// </summary>
         /// <param name="unixTimeStamp">unix TimeStamp</param>
         /// <returns>Converted DateTime</returns>
-        public static DateTime UnixTimeStampToDateTime(double unixTimeStamp)
+        public static DateTime UnixTimeToDateTime(double unixTimeStamp)
         {
             return new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(unixTimeStamp).ToLocalTime();
         }

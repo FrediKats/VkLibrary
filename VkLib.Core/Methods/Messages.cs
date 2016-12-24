@@ -124,7 +124,7 @@ namespace VkLib.Methods
         /// <param name="peer_id"></param>
         /// <param name="start_message_id">Starting message ID from which to return history.</param>
         /// <param name="rev">Sort order:; '1' — return messages in chronological order.; '0' — return messages in reverse chronological order.</param>
-        public async Task<ApiItemsResponse<VkLib.Types.Messages.Message>> GetHistory(int? offset = null, int? count = null, string user_id = null, int? peer_id = null, int? start_message_id = null, int? rev = null)
+        public async Task<ApiItemsResponse<VkLib.Types.Messages.Message>> GetHistory(int? offset = null, int? count = null, int? user_id = null, int? peer_id = null, int? start_message_id = null, int? rev = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -133,7 +133,7 @@ namespace VkLib.Methods
             if (count != null)
                 parameters.Add("count", count.ToString());
             if (user_id != null)
-                parameters.Add("user_id", user_id);
+                parameters.Add("user_id", user_id.ToString());
             if (peer_id != null)
                 parameters.Add("peer_id", peer_id.ToString());
             if (start_message_id != null)

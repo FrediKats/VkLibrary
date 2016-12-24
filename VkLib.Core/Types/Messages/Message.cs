@@ -131,6 +131,5 @@ namespace VkLib.Types.Messages
         /// </summary>
         [JsonProperty("chat_active")]
         public IEnumerable<int?> ChatActive { get; set; }
-
     }
 }

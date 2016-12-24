@@ -29,7 +29,7 @@ namespace VkLib.Methods
         /// <param name="offset">Offset needed to return a specific subset of friends.</param>
         /// <param name="fields">Profile fields to return. Sample values: 'uid', 'first_name', 'last_name', 'nickname', 'sex', 'bdate' (birthdate), 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'domain', 'has_mobile', 'rate', 'contacts', 'education'.;</param>
         /// <param name="name_case">Case for declension of user name and surname: ; 'nom' — nominative (default) ; 'gen' — genitive ; 'dat' — dative ; 'acc' — accusative ; 'ins' — instrumental ; 'abl' — prepositional</param>
-        public async Task<ApiItemsResponse<int?>> Get(int? user_id = null, string order = null, int? list_id = null, int? count = null, int? offset = null, IEnumerable<string> fields = null, string name_case = null)
+        public async Task<ApiItemsResponse<Types.Users.UserFull>> Get(int? user_id = null, string order = null, int? list_id = null, int? count = null, int? offset = null, IEnumerable<string> fields = null, string name_case = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -48,7 +48,7 @@ namespace VkLib.Methods
             if (name_case != null)
                 parameters.Add("name_case", name_case);
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<int?>>("friends.get", parameters);
+            return await _vkontakte.GetAsync<ApiItemsResponse<Types.Users.UserFull>>("friends.get", parameters);
         }
 
         /// <summary>
@@ -137,7 +137,7 @@ namespace VkLib.Methods
         /// <param name="out">'1' — to return outgoing requests; '0' — to return incoming requests (default)</param>
         /// <param name="sort">Sort order:; '1' — by number of mutual friends; '0' — by date</param>
         /// <param name="suggested">'1' — to return a list of suggested friends; '0' — to return friend requests (default)</param>
-        public async Task<ApiItemsResponse<int?>> GetRequests(int? offset = null, int? count = null, bool? extended = null, bool? need_mutual = null, bool? out_ = null, int? sort = null, bool? suggested = null)
+        public async Task<ApiItemsResponse<T>> GetRequests<T>(int? need_viewed = null, int? offset = null, int? count = null, int? need_mutual = null, int? out_ = null, int? sort = null, int? suggested = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -145,18 +145,19 @@ namespace VkLib.Methods
                 parameters.Add("offset", offset.ToString());
             if (count != null)
                 parameters.Add("count", count.ToString());
-            if (extended != null)
-                parameters.Add("extended", extended.ToString());
+           
+            parameters.Add("extended", 1.ToString());
+
             if (need_mutual != null)
                 parameters.Add("need_mutual", need_mutual.ToString());
             if (out_ != null)
-                parameters.Add("out_", out_.ToString());
+                parameters.Add("out", out_.ToString());
             if (sort != null)
                 parameters.Add("sort", sort.ToString());
             if (suggested != null)
                 parameters.Add("suggested", suggested.ToString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<int?>>("friends.getRequests", parameters);
+            return await _vkontakte.GetAsync<ApiItemsResponse<T>>("friends.getRequests", parameters);
         }
 
         /// <summary>

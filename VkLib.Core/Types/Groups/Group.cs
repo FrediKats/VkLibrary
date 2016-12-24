@@ -52,7 +52,7 @@ namespace VkLib.Types.Groups
         /// Community ID
         /// </summary>
         [JsonProperty("id")]
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         /// <summary>
         /// URL of square photo of the community with 50 pixels in width
