@@ -1,5 +1,5 @@
 # VkLibrary
-.NET library that tries to cover all <a href="https://vk.com/dev">VK.COM API methods</a>. Huge parts of it were generated using <a href="https://github.com/VKCOM/vk-api-schema">Json Schema</a> and a self-written Python script <a href="https://github.com/Worldbeater/VkLibrary/blob/master/parser.py">parser.py</a>. Some features are not currently working and library may contain bugs, but work is in progress. Instructions on how to use the library are provided below.
+.NET library that covers almost all <a href="https://vk.com/dev">VK.COM API methods</a>. Huge parts of it were generated using <a href="https://github.com/VKCOM/vk-api-schema">Json Schema</a> and a self-written Python script <a href="https://github.com/Worldbeater/VkLibrary/blob/master/parser.py">parser.py</a>. Some features are not currently working and library may contain bugs, but work is in progress. Instructions on how to use the library are provided below.
 
 ## Contents
 - <a href="#initializing">Initializing</a>
@@ -98,7 +98,7 @@ If there are no POST methods in UploadHelper that can suite you, use generics: P
 PhotoUploadResponse response = await vk.UploadHelper.PostMultipleAsync<PhotoUploadResponse>(new Uri(url), files);  
 
 // Uploads a document and catches response into a DocUploadResponse object.
-DocUploadResponse response = await vk.UploadHelper.PostAsync<DocUploadResponse>(new Uri(url), bytes, "doc", fileName);
+DocUploadResponse response = await vk.UploadHelper.PostAsync<DocUploadResponse>(new Uri(url), bytes, "file", fileName);
 ```
 
 ## Executing scripts in VkScript
