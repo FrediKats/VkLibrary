@@ -88,7 +88,7 @@ namespace VkLib.Types.Messages
         /// Date when the message has been sent in Unixtime
         /// </summary>
         [JsonProperty("date")]
-        public int? Date { get; set; }
+        public double? Date { get; set; }
 
         /// <summary>
         /// Forwarded messages
@@ -131,5 +131,24 @@ namespace VkLib.Types.Messages
         /// </summary>
         [JsonProperty("chat_active")]
         public IEnumerable<int?> ChatActive { get; set; }
+
+        /// <summary>
+        /// Chat action type (or null if none type)
+        /// </summary>
+        [JsonProperty("action")]
+        public string Action { get; set; }
+
+        /// <summary>
+        /// Chat text (for chat_create and chat_title_update)
+        /// </summary>
+        [JsonProperty("action_text")]
+        public string ActionText { get; set; }
+
+        /// <summary>
+        /// User if (for chat_invite_user or chat_kick_user)
+        /// </summary>
+        [JsonProperty("action_mid")]
+        public int? ActionMid { get; set; }
+
     }
 }

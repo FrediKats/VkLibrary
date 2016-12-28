@@ -119,7 +119,7 @@ namespace VkLib
         /// <returns></returns>
         public async Task<Types.Docs.DocUploadResponse> UploadDocument(string url, string fileName, byte[] bytes)
         {
-            return await PostAsync<Types.Docs.DocUploadResponse>(new Uri(url), bytes, "doc", fileName);
+            return await PostAsync<Types.Docs.DocUploadResponse>(new Uri(url), bytes, "file", fileName);
         }
 
         /// <summary>

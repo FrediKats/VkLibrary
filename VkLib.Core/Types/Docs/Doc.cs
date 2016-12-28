@@ -64,7 +64,7 @@ namespace VkLib.Types.Docs
         /// File size in bites
         /// </summary>
         [JsonProperty("size")]
-        public int? Size { get; set; }
+        public long? Size { get; set; }
 
     }
 }

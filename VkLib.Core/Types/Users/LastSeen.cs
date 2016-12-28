@@ -16,7 +16,7 @@ namespace VkLib.Types.Users
         /// Last visit date (in Unix time)
         /// </summary>
         [JsonProperty("time")]
-        public int? Time { get; set; }
+        public double? Time { get; set; }
 
     }
 }

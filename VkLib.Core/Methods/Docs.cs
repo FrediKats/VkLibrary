@@ -91,7 +91,7 @@ namespace VkLib.Methods
         /// <param name="file">This parameter is returned when the file is [vk.com/dev/upload_files_2|uploaded to the server].</param>
         /// <param name="title">Document title.</param>
         /// <param name="tags">Document tags.</param>
-        public async Task<VkLib.Types.Docs.Doc> Save(string file = null, string title = null, string tags = null)
+        public async Task<IEnumerable<VkLib.Types.Docs.Doc>> Save(string file = null, string title = null, string tags = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -102,7 +102,7 @@ namespace VkLib.Methods
             if (tags != null)
                 parameters.Add("tags", tags);
 
-            return await _vkontakte.GetAsync<VkLib.Types.Docs.Doc>("docs.save", parameters);
+            return await _vkontakte.GetAsync<IEnumerable<VkLib.Types.Docs.Doc>>("docs.save", parameters);
         }
 
         /// <summary>

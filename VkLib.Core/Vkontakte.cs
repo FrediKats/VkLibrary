@@ -137,6 +137,16 @@ namespace VkLib
         }
 
         /// <summary>
+        /// Converts DateTime to Unix timestamp.
+        /// </summary>
+        /// <param name="dateTime">DateTime</param>
+        /// <returns>Converted Unix Timestamp</returns>
+        public static double DateTomeToUnixTime(DateTime dateTime)
+        {
+            return (DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+        }
+
+        /// <summary>
         /// User access token.
         /// </summary>
         public AccessToken AccessToken { get; set; } = new AccessToken();

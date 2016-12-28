@@ -1,3 +1,4 @@
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -231,7 +232,7 @@ namespace VkLib.Methods
         /// </summary>
         /// <param name="message_ids">Message IDs.</param>
         /// <param name="spam">'1' — to mark message as spam.</param>
-        public async Task<int> Delete(IEnumerable<int?> message_ids = null, bool? spam = null)
+        public async Task<JToken> Delete(IEnumerable<int?> message_ids = null, bool? spam = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -240,7 +241,7 @@ namespace VkLib.Methods
             if (spam != null)
                 parameters.Add("spam", spam.ToString());
 
-            return await _vkontakte.GetAsync<int>("messages.delete", parameters);
+            return await _vkontakte.GetAsync<JToken>("messages.delete", parameters);
         }
 
         /// <summary>
