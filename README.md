@@ -2,12 +2,21 @@
 .NET library that covers almost all <a href="https://vk.com/dev">VK.COM API methods</a>. Huge parts of it were generated using <a href="https://github.com/VKCOM/vk-api-schema">Json Schema</a> and a self-written Python script <a href="https://github.com/Worldbeater/VkLibrary/blob/master/parser.py">parser.py</a>. Some features are not currently working and library may contain bugs, but work is in progress. Instructions on how to use the library are provided below.
 
 ## Contents
+- <a href="#installation">Installation</a>
 - <a href="#initializing">Initializing</a>
 - <a href="#authentication">Authentication</a>
 - <a href="#calling-api-methods">Calling API methods</a>
 - <a href="#uploading-files">Uploading files</a>
 - <a href="#executing-scripts-in-vkscript">Executing scripts in VkScript</a>
 - <a href="#roadmap">Roadmap</a>
+
+## Installation
+To install, use or edit this portable class library you should do the following:
+- Open your project in Visual Studio solution explorer;
+- Right-click "References", choose "Add Reference";
+- From left-side menu choose "Browse";
+- In Explorer file type menu choose "All types" and select "VkLib.sln" from VkLibrary/VkLib.Core/VkLib.sln
+
 
 ## Initializing
 Firstly, initialize the library. Use your vk app's ID and Secret code.
