@@ -30,11 +30,11 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (user_id != null)
-                parameters.Add("user_id", user_id.ToString());
+                parameters.Add("user_id", user_id.ToApiString());
             if (count != null)
-                parameters.Add("count", count.ToString());
+                parameters.Add("count", count.ToApiString());
             if (offset != null)
-                parameters.Add("offset", offset.ToString());
+                parameters.Add("offset", offset.ToApiString());
 
             return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Gifts.Gift>>("gifts.get", parameters);
         }

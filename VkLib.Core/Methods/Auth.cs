@@ -33,11 +33,11 @@ namespace VkLib.Methods
             if (phone != null)
                 parameters.Add("phone", phone);
             if (client_id != null)
-                parameters.Add("client_id", client_id.ToString());
+                parameters.Add("client_id", client_id.ToApiString());
             if (client_secret != null)
                 parameters.Add("client_secret", client_secret);
             if (auth_by_phone != null)
-                parameters.Add("auth_by_phone", auth_by_phone.ToString());
+                parameters.Add("auth_by_phone", auth_by_phone.ToApiString());
 
             return await _vkontakte.GetAsync<int>("auth.checkPhone", parameters);
         }
@@ -65,7 +65,7 @@ namespace VkLib.Methods
             if (last_name != null)
                 parameters.Add("last_name", last_name);
             if (client_id != null)
-                parameters.Add("client_id", client_id.ToString());
+                parameters.Add("client_id", client_id.ToApiString());
             if (client_secret != null)
                 parameters.Add("client_secret", client_secret);
             if (phone != null)
@@ -73,11 +73,11 @@ namespace VkLib.Methods
             if (password != null)
                 parameters.Add("password", password);
             if (test_mode != null)
-                parameters.Add("test_mode", test_mode.ToString());
+                parameters.Add("test_mode", test_mode.ToApiString());
             if (voice != null)
-                parameters.Add("voice", voice.ToString());
+                parameters.Add("voice", voice.ToApiString());
             if (sex != null)
-                parameters.Add("sex", sex.ToString());
+                parameters.Add("sex", sex.ToApiString());
             if (sid != null)
                 parameters.Add("sid", sid);
 
@@ -100,7 +100,7 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (client_id != null)
-                parameters.Add("client_id", client_id.ToString());
+                parameters.Add("client_id", client_id.ToApiString());
             if (client_secret != null)
                 parameters.Add("client_secret", client_secret);
             if (phone != null)
@@ -110,9 +110,9 @@ namespace VkLib.Methods
             if (password != null)
                 parameters.Add("password", password);
             if (test_mode != null)
-                parameters.Add("test_mode", test_mode.ToString());
+                parameters.Add("test_mode", test_mode.ToApiString());
             if (intro != null)
-                parameters.Add("intro", intro.ToString());
+                parameters.Add("intro", intro.ToApiString());
 
             return await _vkontakte.GetAsync<VkLib.Responses.Auth.ConfirmResponse>("auth.confirm", parameters);
         }

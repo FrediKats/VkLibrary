@@ -30,11 +30,11 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (count != null)
-                parameters.Add("count", count.ToString());
+                parameters.Add("count", count.ToApiString());
             if (offset != null)
-                parameters.Add("offset", offset.ToString());
+                parameters.Add("offset", offset.ToApiString());
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
 
             return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Docs.Doc>>("docs.get", parameters);
         }
@@ -49,7 +49,7 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (docs != null)
-                parameters.Add("docs", string.Join(",", docs));
+                parameters.Add("docs", docs.ToApiString());
 
             return await _vkontakte.GetAsync<IEnumerable<VkLib.Types.Docs.Doc>>("docs.getById", parameters);
         }
@@ -64,7 +64,7 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (group_id != null)
-                parameters.Add("group_id", group_id.ToString());
+                parameters.Add("group_id", group_id.ToApiString());
 
             return await _vkontakte.GetAsync<VkLib.Responses.Docs.GetUploadServerResponse>("docs.getUploadServer", parameters);
         }
@@ -79,7 +79,7 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (group_id != null)
-                parameters.Add("group_id", group_id.ToString());
+                parameters.Add("group_id", group_id.ToApiString());
 
             return await _vkontakte.GetAsync<VkLib.Responses.Docs.GetWallUploadServerResponse>("docs.getWallUploadServer", parameters);
         }
@@ -116,9 +116,9 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (doc_id != null)
-                parameters.Add("doc_id", doc_id.ToString());
+                parameters.Add("doc_id", doc_id.ToApiString());
 
             return await _vkontakte.GetAsync<int>("docs.delete", parameters);
         }
@@ -135,9 +135,9 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (doc_id != null)
-                parameters.Add("doc_id", doc_id.ToString());
+                parameters.Add("doc_id", doc_id.ToApiString());
             if (access_key != null)
                 parameters.Add("access_key", access_key);
 
@@ -154,7 +154,7 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
 
             return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Docs.DocTypes>>("docs.getTypes", parameters);
         }
@@ -173,9 +173,9 @@ namespace VkLib.Methods
             if (q != null)
                 parameters.Add("q", q);
             if (count != null)
-                parameters.Add("count", count.ToString());
+                parameters.Add("count", count.ToApiString());
             if (offset != null)
-                parameters.Add("offset", offset.ToString());
+                parameters.Add("offset", offset.ToApiString());
 
             return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Docs.Doc>>("docs.search", parameters);
         }
@@ -193,13 +193,13 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (doc_id != null)
-                parameters.Add("doc_id", doc_id.ToString());
+                parameters.Add("doc_id", doc_id.ToApiString());
             if (title != null)
                 parameters.Add("title", title);
             if (tags != null)
-                parameters.Add("tags", string.Join(",", tags));
+                parameters.Add("tags", tags.ToApiString());
 
             return await _vkontakte.GetAsync<int>("docs.edit", parameters);
         }

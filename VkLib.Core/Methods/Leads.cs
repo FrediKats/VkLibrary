@@ -50,7 +50,7 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (lead_id != null)
-                parameters.Add("lead_id", lead_id.ToString());
+                parameters.Add("lead_id", lead_id.ToApiString());
             if (secret != null)
                 parameters.Add("secret", secret);
 
@@ -70,7 +70,7 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (lead_id != null)
-                parameters.Add("lead_id", lead_id.ToString());
+                parameters.Add("lead_id", lead_id.ToApiString());
             if (secret != null)
                 parameters.Add("secret", secret);
             if (date_start != null)
@@ -96,17 +96,17 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (offer_id != null)
-                parameters.Add("offer_id", offer_id.ToString());
+                parameters.Add("offer_id", offer_id.ToApiString());
             if (secret != null)
                 parameters.Add("secret", secret);
             if (offset != null)
-                parameters.Add("offset", offset.ToString());
+                parameters.Add("offset", offset.ToApiString());
             if (count != null)
-                parameters.Add("count", count.ToString());
+                parameters.Add("count", count.ToApiString());
             if (status != null)
-                parameters.Add("status", status.ToString());
+                parameters.Add("status", status.ToApiString());
             if (reverse != null)
-                parameters.Add("reverse", reverse.ToString());
+                parameters.Add("reverse", reverse.ToApiString());
 
             return await _vkontakte.GetAsync<IEnumerable<VkLib.Types.Leads.Entry>>("leads.getUsers", parameters);
         }
@@ -124,11 +124,11 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (lead_id != null)
-                parameters.Add("lead_id", lead_id.ToString());
+                parameters.Add("lead_id", lead_id.ToApiString());
             if (test_result != null)
-                parameters.Add("test_result", test_result.ToString());
+                parameters.Add("test_result", test_result.ToApiString());
             if (age != null)
-                parameters.Add("age", age.ToString());
+                parameters.Add("age", age.ToApiString());
             if (country != null)
                 parameters.Add("country", country);
 

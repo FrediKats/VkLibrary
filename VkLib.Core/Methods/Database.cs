@@ -31,13 +31,13 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (need_all != null)
-                parameters.Add("need_all", need_all.ToString());
+                parameters.Add("need_all", need_all.ToApiString());
             if (code != null)
                 parameters.Add("code", code);
             if (offset != null)
-                parameters.Add("offset", offset.ToString());
+                parameters.Add("offset", offset.ToApiString());
             if (count != null)
-                parameters.Add("count", count.ToString());
+                parameters.Add("count", count.ToApiString());
 
             return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Base.Country>>("database.getCountries", parameters);
         }
@@ -55,13 +55,13 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (country_id != null)
-                parameters.Add("country_id", country_id.ToString());
+                parameters.Add("country_id", country_id.ToApiString());
             if (q != null)
                 parameters.Add("q", q);
             if (offset != null)
-                parameters.Add("offset", offset.ToString());
+                parameters.Add("offset", offset.ToApiString());
             if (count != null)
-                parameters.Add("count", count.ToString());
+                parameters.Add("count", count.ToApiString());
 
             return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Database.Region>>("database.getRegions", parameters);
         }
@@ -76,7 +76,7 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (street_ids != null)
-                parameters.Add("street_ids", string.Join(",", street_ids));
+                parameters.Add("street_ids", street_ids.ToApiString());
 
             return await _vkontakte.GetAsync<IEnumerable<VkLib.Types.Database.Street>>("database.getStreetsById", parameters);
         }
@@ -91,7 +91,7 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (country_ids != null)
-                parameters.Add("country_ids", string.Join(",", country_ids));
+                parameters.Add("country_ids", country_ids.ToApiString());
 
             return await _vkontakte.GetAsync<IEnumerable<VkLib.Types.Base.Country>>("database.getCountriesById", parameters);
         }
@@ -111,17 +111,17 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (country_id != null)
-                parameters.Add("country_id", country_id.ToString());
+                parameters.Add("country_id", country_id.ToApiString());
             if (region_id != null)
-                parameters.Add("region_id", region_id.ToString());
+                parameters.Add("region_id", region_id.ToApiString());
             if (q != null)
                 parameters.Add("q", q);
             if (need_all != null)
-                parameters.Add("need_all", need_all.ToString());
+                parameters.Add("need_all", need_all.ToApiString());
             if (offset != null)
-                parameters.Add("offset", offset.ToString());
+                parameters.Add("offset", offset.ToApiString());
             if (count != null)
-                parameters.Add("count", count.ToString());
+                parameters.Add("count", count.ToApiString());
 
             return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Database.City>>("database.getCities", parameters);
         }
@@ -136,7 +136,7 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (city_ids != null)
-                parameters.Add("city_ids", string.Join(",", city_ids));
+                parameters.Add("city_ids", city_ids.ToApiString());
 
             return await _vkontakte.GetAsync<IEnumerable<VkLib.Types.Base.Object>>("database.getCitiesById", parameters);
         }
@@ -157,13 +157,13 @@ namespace VkLib.Methods
             if (q != null)
                 parameters.Add("q", q);
             if (country_id != null)
-                parameters.Add("country_id", country_id.ToString());
+                parameters.Add("country_id", country_id.ToApiString());
             if (city_id != null)
-                parameters.Add("city_id", city_id.ToString());
+                parameters.Add("city_id", city_id.ToApiString());
             if (offset != null)
-                parameters.Add("offset", offset.ToString());
+                parameters.Add("offset", offset.ToApiString());
             if (count != null)
-                parameters.Add("count", count.ToString());
+                parameters.Add("count", count.ToApiString());
 
             return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Database.University>>("database.getUniversities", parameters);
         }
@@ -183,11 +183,11 @@ namespace VkLib.Methods
             if (q != null)
                 parameters.Add("q", q);
             if (city_id != null)
-                parameters.Add("city_id", city_id.ToString());
+                parameters.Add("city_id", city_id.ToApiString());
             if (offset != null)
-                parameters.Add("offset", offset.ToString());
+                parameters.Add("offset", offset.ToApiString());
             if (count != null)
-                parameters.Add("count", count.ToString());
+                parameters.Add("count", count.ToApiString());
 
             return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Database.School>>("database.getSchools", parameters);
         }
@@ -202,7 +202,7 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (country_id != null)
-                parameters.Add("country_id", country_id.ToString());
+                parameters.Add("country_id", country_id.ToApiString());
 
             return await _vkontakte.GetAsync<IEnumerable<IEnumerable<string>>>("database.getSchoolClasses", parameters);
         }
@@ -219,11 +219,11 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (university_id != null)
-                parameters.Add("university_id", university_id.ToString());
+                parameters.Add("university_id", university_id.ToApiString());
             if (offset != null)
-                parameters.Add("offset", offset.ToString());
+                parameters.Add("offset", offset.ToApiString());
             if (count != null)
-                parameters.Add("count", count.ToString());
+                parameters.Add("count", count.ToApiString());
 
             return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Database.Faculty>>("database.getFaculties", parameters);
         }
@@ -240,11 +240,11 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (faculty_id != null)
-                parameters.Add("faculty_id", faculty_id.ToString());
+                parameters.Add("faculty_id", faculty_id.ToApiString());
             if (offset != null)
-                parameters.Add("offset", offset.ToString());
+                parameters.Add("offset", offset.ToApiString());
             if (count != null)
-                parameters.Add("count", count.ToString());
+                parameters.Add("count", count.ToApiString());
 
             return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Base.Object>>("database.getChairs", parameters);
         }

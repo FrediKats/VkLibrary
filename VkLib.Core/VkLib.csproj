@@ -110,6 +110,7 @@
     <Compile Include="Auth\AccessToken.cs" />
     <Compile Include="Auth\Enums.cs" />
     <Compile Include="Auth\OAuthResult.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="Methods\Account.cs" />
     <Compile Include="Methods\Ads.cs" />
     <Compile Include="Methods\Apps.cs" />

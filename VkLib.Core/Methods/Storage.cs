@@ -32,9 +32,9 @@ namespace VkLib.Methods
             if (key != null)
                 parameters.Add("key", key);
             if (keys != null)
-                parameters.Add("keys", string.Join(",", keys));
+                parameters.Add("keys", keys.ToApiString());
             if (user_id != null)
-                parameters.Add("user_id", user_id.ToString());
+                parameters.Add("user_id", user_id.ToApiString());
 
             return await _vkontakte.GetAsync<string>("storage.get", parameters);
         }
@@ -55,7 +55,7 @@ namespace VkLib.Methods
             if (value != null)
                 parameters.Add("value", value);
             if (user_id != null)
-                parameters.Add("user_id", user_id.ToString());
+                parameters.Add("user_id", user_id.ToApiString());
 
             return await _vkontakte.GetAsync<int>("storage.set", parameters);
         }
@@ -71,9 +71,9 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (user_id != null)
-                parameters.Add("user_id", user_id.ToString());
+                parameters.Add("user_id", user_id.ToApiString());
             if (count != null)
-                parameters.Add("count", count.ToString());
+                parameters.Add("count", count.ToApiString());
 
             return await _vkontakte.GetAsync<IEnumerable<string>>("storage.getKeys", parameters);
         }

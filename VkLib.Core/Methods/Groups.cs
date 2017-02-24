@@ -33,11 +33,11 @@ namespace VkLib.Methods
             if (group_id != null)
                 parameters.Add("group_id", group_id);
             if (user_id != null)
-                parameters.Add("user_id", user_id.ToString());
+                parameters.Add("user_id", user_id.ToApiString());
             if (user_ids != null)
-                parameters.Add("user_ids", string.Join(",", user_ids));
+                parameters.Add("user_ids", user_ids.ToApiString());
             if (extended != null)
-                parameters.Add("extended", extended.ToString());
+                parameters.Add("extended", extended.ToApiString());
 
             return await _vkontakte.GetAsync<int>("groups.isMember", parameters);
         }
@@ -54,11 +54,11 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (group_ids != null)
-                parameters.Add("group_ids", string.Join(",", group_ids));
+                parameters.Add("group_ids", group_ids.ToApiString());
             if (group_id != null)
                 parameters.Add("group_id", group_id);
             if (fields != null)
-                parameters.Add("fields", string.Join(",", fields));
+                parameters.Add("fields", fields.ToApiString());
 
             return await _vkontakte.GetAsync<IEnumerable<VkLib.Types.Groups.GroupFull>>("groups.getById", parameters);
         }
@@ -78,17 +78,17 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (user_id != null)
-                parameters.Add("user_id", user_id.ToString());
+                parameters.Add("user_id", user_id.ToApiString());
             if (extended != null)
-                parameters.Add("extended", extended.ToString());
+                parameters.Add("extended", extended.ToApiString());
             if (filter != null)
-                parameters.Add("filter", string.Join(",", filter));
+                parameters.Add("filter", filter.ToApiString());
             if (fields != null)
-                parameters.Add("fields", string.Join(",", fields));
+                parameters.Add("fields", fields.ToApiString());
             if (offset != null)
-                parameters.Add("offset", offset.ToString());
+                parameters.Add("offset", offset.ToApiString());
             if (count != null)
-                parameters.Add("count", count.ToString());
+                parameters.Add("count", count.ToApiString());
 
             return await _vkontakte.GetAsync<ApiItemsResponse<Types.Groups.GroupFull>>("groups.get", parameters);
         }
@@ -112,11 +112,11 @@ namespace VkLib.Methods
             if (sort != null)
                 parameters.Add("sort", sort);
             if (offset != null)
-                parameters.Add("offset", offset.ToString());
+                parameters.Add("offset", offset.ToApiString());
             if (count != null)
-                parameters.Add("count", count.ToString());
+                parameters.Add("count", count.ToApiString());
             if (fields != null)
-                parameters.Add("fields", string.Join(",", fields));
+                parameters.Add("fields", fields.ToApiString());
             if (filter != null)
                 parameters.Add("filter", filter);
 
@@ -134,7 +134,7 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (group_id != null)
-                parameters.Add("group_id", group_id.ToString());
+                parameters.Add("group_id", group_id.ToApiString());
             if (not_sure != null)
                 parameters.Add("not_sure", not_sure);
 
@@ -151,7 +151,7 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (group_id != null)
-                parameters.Add("group_id", group_id.ToString());
+                parameters.Add("group_id", group_id.ToApiString());
 
             return await _vkontakte.GetAsync<int>("groups.leave", parameters);
         }
@@ -178,19 +178,19 @@ namespace VkLib.Methods
             if (type != null)
                 parameters.Add("type", type);
             if (country_id != null)
-                parameters.Add("country_id", country_id.ToString());
+                parameters.Add("country_id", country_id.ToApiString());
             if (city_id != null)
-                parameters.Add("city_id", city_id.ToString());
+                parameters.Add("city_id", city_id.ToApiString());
             if (future != null)
-                parameters.Add("future", future.ToString());
+                parameters.Add("future", future.ToApiString());
             if (market != null)
-                parameters.Add("market", market.ToString());
+                parameters.Add("market", market.ToApiString());
             if (sort != null)
-                parameters.Add("sort", sort.ToString());
+                parameters.Add("sort", sort.ToApiString());
             if (offset != null)
-                parameters.Add("offset", offset.ToString());
+                parameters.Add("offset", offset.ToApiString());
             if (count != null)
-                parameters.Add("count", count.ToString());
+                parameters.Add("count", count.ToApiString());
 
             return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Groups.Group>>("groups.search", parameters);
         }
@@ -206,9 +206,9 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (category_id != null)
-                parameters.Add("category_id", category_id.ToString());
+                parameters.Add("category_id", category_id.ToApiString());
             if (subcategory_id != null)
-                parameters.Add("subcategory_id", subcategory_id.ToString());
+                parameters.Add("subcategory_id", subcategory_id.ToApiString());
 
             return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Groups.Group>>("groups.getCatalog", parameters);
         }
@@ -224,9 +224,9 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (extended != null)
-                parameters.Add("extended", extended.ToString());
+                parameters.Add("extended", extended.ToApiString());
             if (subcategories != null)
-                parameters.Add("subcategories", subcategories.ToString());
+                parameters.Add("subcategories", subcategories.ToApiString());
 
             return await _vkontakte.GetAsync<VkLib.Responses.Groups.GetCatalogInfoResponse>("groups.getCatalogInfo", parameters);
         }
@@ -243,11 +243,11 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (offset != null)
-                parameters.Add("offset", offset.ToString());
+                parameters.Add("offset", offset.ToApiString());
             if (count != null)
-                parameters.Add("count", count.ToString());
+                parameters.Add("count", count.ToApiString());
             if (extended != null)
-                parameters.Add("extended", extended.ToString());
+                parameters.Add("extended", extended.ToApiString());
 
             return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Groups.GroupXtrInvitedBy>>("groups.getInvites", parameters);
         }
@@ -266,13 +266,13 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (group_id != null)
-                parameters.Add("group_id", group_id.ToString());
+                parameters.Add("group_id", group_id.ToApiString());
             if (offset != null)
-                parameters.Add("offset", offset.ToString());
+                parameters.Add("offset", offset.ToApiString());
             if (count != null)
-                parameters.Add("count", count.ToString());
+                parameters.Add("count", count.ToApiString());
             if (fields != null)
-                parameters.Add("fields", string.Join(",", fields));
+                parameters.Add("fields", fields.ToApiString());
             if (name_case != null)
                 parameters.Add("name_case", name_case);
 
@@ -294,17 +294,17 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (group_id != null)
-                parameters.Add("group_id", group_id.ToString());
+                parameters.Add("group_id", group_id.ToApiString());
             if (user_id != null)
-                parameters.Add("user_id", user_id.ToString());
+                parameters.Add("user_id", user_id.ToApiString());
             if (end_date != null)
-                parameters.Add("end_date", end_date.ToString());
+                parameters.Add("end_date", end_date.ToApiString());
             if (reason != null)
-                parameters.Add("reason", reason.ToString());
+                parameters.Add("reason", reason.ToApiString());
             if (comment != null)
                 parameters.Add("comment", comment);
             if (comment_visible != null)
-                parameters.Add("comment_visible", comment_visible.ToString());
+                parameters.Add("comment_visible", comment_visible.ToApiString());
 
             return await _vkontakte.GetAsync<int>("groups.banUser", parameters);
         }
@@ -320,9 +320,9 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (group_id != null)
-                parameters.Add("group_id", group_id.ToString());
+                parameters.Add("group_id", group_id.ToApiString());
             if (user_id != null)
-                parameters.Add("user_id", user_id.ToString());
+                parameters.Add("user_id", user_id.ToApiString());
 
             return await _vkontakte.GetAsync<int>("groups.unbanUser", parameters);
         }
@@ -341,15 +341,15 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (group_id != null)
-                parameters.Add("group_id", group_id.ToString());
+                parameters.Add("group_id", group_id.ToApiString());
             if (offset != null)
-                parameters.Add("offset", offset.ToString());
+                parameters.Add("offset", offset.ToApiString());
             if (count != null)
-                parameters.Add("count", count.ToString());
+                parameters.Add("count", count.ToApiString());
             if (fields != null)
-                parameters.Add("fields", string.Join(",", fields));
+                parameters.Add("fields", fields.ToApiString());
             if (user_id != null)
-                parameters.Add("user_id", user_id.ToString());
+                parameters.Add("user_id", user_id.ToApiString());
 
             return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Groups.UserXtrBanInfo>>("groups.getBanned", parameters);
         }
@@ -374,9 +374,9 @@ namespace VkLib.Methods
             if (type != null)
                 parameters.Add("type", type);
             if (public_category != null)
-                parameters.Add("public_category", public_category.ToString());
+                parameters.Add("public_category", public_category.ToApiString());
             if (subtype != null)
-                parameters.Add("subtype", subtype.ToString());
+                parameters.Add("subtype", subtype.ToApiString());
 
             return await _vkontakte.GetAsync<VkLib.Types.Groups.Group>("groups.create", parameters);
         }
@@ -429,7 +429,7 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (group_id != null)
-                parameters.Add("group_id", group_id.ToString());
+                parameters.Add("group_id", group_id.ToApiString());
             if (title != null)
                 parameters.Add("title", title);
             if (description != null)
@@ -437,7 +437,7 @@ namespace VkLib.Methods
             if (screen_name != null)
                 parameters.Add("screen_name", screen_name);
             if (access != null)
-                parameters.Add("access", access.ToString());
+                parameters.Add("access", access.ToApiString());
             if (website != null)
                 parameters.Add("website", website);
             if (subject != null)
@@ -449,63 +449,63 @@ namespace VkLib.Methods
             if (rss != null)
                 parameters.Add("rss", rss);
             if (event_start_date != null)
-                parameters.Add("event_start_date", event_start_date.ToString());
+                parameters.Add("event_start_date", event_start_date.ToApiString());
             if (event_finish_date != null)
-                parameters.Add("event_finish_date", event_finish_date.ToString());
+                parameters.Add("event_finish_date", event_finish_date.ToApiString());
             if (event_group_id != null)
-                parameters.Add("event_group_id", event_group_id.ToString());
+                parameters.Add("event_group_id", event_group_id.ToApiString());
             if (public_category != null)
-                parameters.Add("public_category", public_category.ToString());
+                parameters.Add("public_category", public_category.ToApiString());
             if (public_subcategory != null)
-                parameters.Add("public_subcategory", public_subcategory.ToString());
+                parameters.Add("public_subcategory", public_subcategory.ToApiString());
             if (public_date != null)
                 parameters.Add("public_date", public_date);
             if (wall != null)
-                parameters.Add("wall", wall.ToString());
+                parameters.Add("wall", wall.ToApiString());
             if (topics != null)
-                parameters.Add("topics", topics.ToString());
+                parameters.Add("topics", topics.ToApiString());
             if (photos != null)
-                parameters.Add("photos", photos.ToString());
+                parameters.Add("photos", photos.ToApiString());
             if (video != null)
-                parameters.Add("video", video.ToString());
+                parameters.Add("video", video.ToApiString());
             if (audio != null)
-                parameters.Add("audio", audio.ToString());
+                parameters.Add("audio", audio.ToApiString());
             if (links != null)
-                parameters.Add("links", links.ToString());
+                parameters.Add("links", links.ToApiString());
             if (events != null)
-                parameters.Add("events", events.ToString());
+                parameters.Add("events", events.ToApiString());
             if (places != null)
-                parameters.Add("places", places.ToString());
+                parameters.Add("places", places.ToApiString());
             if (contacts != null)
-                parameters.Add("contacts", contacts.ToString());
+                parameters.Add("contacts", contacts.ToApiString());
             if (docs != null)
-                parameters.Add("docs", docs.ToString());
+                parameters.Add("docs", docs.ToApiString());
             if (wiki != null)
-                parameters.Add("wiki", wiki.ToString());
+                parameters.Add("wiki", wiki.ToApiString());
             if (messages != null)
-                parameters.Add("messages", messages.ToString());
+                parameters.Add("messages", messages.ToApiString());
             if (age_limits != null)
-                parameters.Add("age_limits", age_limits.ToString());
+                parameters.Add("age_limits", age_limits.ToApiString());
             if (market != null)
-                parameters.Add("market", market.ToString());
+                parameters.Add("market", market.ToApiString());
             if (market_comments != null)
-                parameters.Add("market_comments", market_comments.ToString());
+                parameters.Add("market_comments", market_comments.ToApiString());
             if (market_country != null)
-                parameters.Add("market_country", string.Join(",", market_country));
+                parameters.Add("market_country", market_country.ToApiString());
             if (market_city != null)
-                parameters.Add("market_city", string.Join(",", market_city));
+                parameters.Add("market_city", market_city.ToApiString());
             if (market_currency != null)
-                parameters.Add("market_currency", market_currency.ToString());
+                parameters.Add("market_currency", market_currency.ToApiString());
             if (market_contact != null)
-                parameters.Add("market_contact", market_contact.ToString());
+                parameters.Add("market_contact", market_contact.ToApiString());
             if (market_wiki != null)
-                parameters.Add("market_wiki", market_wiki.ToString());
+                parameters.Add("market_wiki", market_wiki.ToApiString());
             if (obscene_filter != null)
-                parameters.Add("obscene_filter", obscene_filter.ToString());
+                parameters.Add("obscene_filter", obscene_filter.ToApiString());
             if (obscene_stopwords != null)
-                parameters.Add("obscene_stopwords", obscene_stopwords.ToString());
+                parameters.Add("obscene_stopwords", obscene_stopwords.ToApiString());
             if (obscene_words != null)
-                parameters.Add("obscene_words", string.Join(",", obscene_words));
+                parameters.Add("obscene_words", obscene_words.ToApiString());
 
             return await _vkontakte.GetAsync<int>("groups.edit", parameters);
         }
@@ -526,19 +526,19 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (group_id != null)
-                parameters.Add("group_id", group_id.ToString());
+                parameters.Add("group_id", group_id.ToApiString());
             if (title != null)
                 parameters.Add("title", title);
             if (address != null)
                 parameters.Add("address", address);
             if (country_id != null)
-                parameters.Add("country_id", country_id.ToString());
+                parameters.Add("country_id", country_id.ToApiString());
             if (city_id != null)
-                parameters.Add("city_id", city_id.ToString());
+                parameters.Add("city_id", city_id.ToApiString());
             if (latitude != null)
-                parameters.Add("latitude", latitude.ToString());
+                parameters.Add("latitude", latitude.ToApiString());
             if (longitude != null)
-                parameters.Add("longitude", longitude.ToString());
+                parameters.Add("longitude", longitude.ToApiString());
 
             return await _vkontakte.GetAsync<VkLib.Responses.Groups.EditPlaceResponse>("groups.editPlace", parameters);
         }
@@ -553,7 +553,7 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (group_id != null)
-                parameters.Add("group_id", group_id.ToString());
+                parameters.Add("group_id", group_id.ToApiString());
 
             return await _vkontakte.GetAsync<VkLib.Types.Groups.GroupSettings>("groups.getSettings", parameters);
         }
@@ -571,13 +571,13 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (group_id != null)
-                parameters.Add("group_id", group_id.ToString());
+                parameters.Add("group_id", group_id.ToApiString());
             if (offset != null)
-                parameters.Add("offset", offset.ToString());
+                parameters.Add("offset", offset.ToApiString());
             if (count != null)
-                parameters.Add("count", count.ToString());
+                parameters.Add("count", count.ToApiString());
             if (fields != null)
-                parameters.Add("fields", string.Join(",", fields));
+                parameters.Add("fields", fields.ToApiString());
 
             return await _vkontakte.GetAsync<ApiItemsResponse<int?>>("groups.getRequests", parameters);
         }
@@ -598,13 +598,13 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (group_id != null)
-                parameters.Add("group_id", group_id.ToString());
+                parameters.Add("group_id", group_id.ToApiString());
             if (user_id != null)
-                parameters.Add("user_id", user_id.ToString());
+                parameters.Add("user_id", user_id.ToApiString());
             if (role != null)
                 parameters.Add("role", role);
             if (is_contact != null)
-                parameters.Add("is_contact", is_contact.ToString());
+                parameters.Add("is_contact", is_contact.ToApiString());
             if (contact_position != null)
                 parameters.Add("contact_position", contact_position);
             if (contact_phone != null)
@@ -626,9 +626,9 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (group_id != null)
-                parameters.Add("group_id", group_id.ToString());
+                parameters.Add("group_id", group_id.ToApiString());
             if (user_id != null)
-                parameters.Add("user_id", user_id.ToString());
+                parameters.Add("user_id", user_id.ToApiString());
 
             return await _vkontakte.GetAsync<int>("groups.invite", parameters);
         }
@@ -645,7 +645,7 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (group_id != null)
-                parameters.Add("group_id", group_id.ToString());
+                parameters.Add("group_id", group_id.ToApiString());
             if (link != null)
                 parameters.Add("link", link);
             if (text != null)
@@ -665,9 +665,9 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (group_id != null)
-                parameters.Add("group_id", group_id.ToString());
+                parameters.Add("group_id", group_id.ToApiString());
             if (link_id != null)
-                parameters.Add("link_id", link_id.ToString());
+                parameters.Add("link_id", link_id.ToApiString());
 
             return await _vkontakte.GetAsync<int>("groups.deleteLink", parameters);
         }
@@ -684,9 +684,9 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (group_id != null)
-                parameters.Add("group_id", group_id.ToString());
+                parameters.Add("group_id", group_id.ToApiString());
             if (link_id != null)
-                parameters.Add("link_id", link_id.ToString());
+                parameters.Add("link_id", link_id.ToApiString());
             if (text != null)
                 parameters.Add("text", text);
 
@@ -705,11 +705,11 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (group_id != null)
-                parameters.Add("group_id", group_id.ToString());
+                parameters.Add("group_id", group_id.ToApiString());
             if (link_id != null)
-                parameters.Add("link_id", link_id.ToString());
+                parameters.Add("link_id", link_id.ToApiString());
             if (after != null)
-                parameters.Add("after", after.ToString());
+                parameters.Add("after", after.ToApiString());
 
             return await _vkontakte.GetAsync<int>("groups.reorderLink", parameters);
         }
@@ -725,9 +725,9 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (group_id != null)
-                parameters.Add("group_id", group_id.ToString());
+                parameters.Add("group_id", group_id.ToApiString());
             if (user_id != null)
-                parameters.Add("user_id", user_id.ToString());
+                parameters.Add("user_id", user_id.ToApiString());
 
             return await _vkontakte.GetAsync<int>("groups.removeUser", parameters);
         }
@@ -743,9 +743,9 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (group_id != null)
-                parameters.Add("group_id", group_id.ToString());
+                parameters.Add("group_id", group_id.ToApiString());
             if (user_id != null)
-                parameters.Add("user_id", user_id.ToString());
+                parameters.Add("user_id", user_id.ToApiString());
 
             return await _vkontakte.GetAsync<int>("groups.approveRequest", parameters);
         }
@@ -760,7 +760,7 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (group_id != null)
-                parameters.Add("group_id", group_id.ToString());
+                parameters.Add("group_id", group_id.ToApiString());
 
             return await _vkontakte.GetAsync<VkLib.Responses.Groups.GetCallbackConfirmationCodeResponse>("groups.getCallbackConfirmationCode", parameters);
         }
@@ -775,7 +775,7 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (group_id != null)
-                parameters.Add("group_id", group_id.ToString());
+                parameters.Add("group_id", group_id.ToApiString());
 
             return await _vkontakte.GetAsync<VkLib.Responses.Groups.GetCallbackServerSettingsResponse>("groups.getCallbackServerSettings", parameters);
         }
@@ -790,7 +790,7 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (group_id != null)
-                parameters.Add("group_id", group_id.ToString());
+                parameters.Add("group_id", group_id.ToApiString());
 
             return await _vkontakte.GetAsync<VkLib.Responses.Groups.GetCallbackSettingsResponse>("groups.getCallbackSettings", parameters);
         }
@@ -806,7 +806,7 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (group_id != null)
-                parameters.Add("group_id", group_id.ToString());
+                parameters.Add("group_id", group_id.ToApiString());
             if (server_url != null)
                 parameters.Add("server_url", server_url);
 
@@ -824,7 +824,7 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (group_id != null)
-                parameters.Add("group_id", group_id.ToString());
+                parameters.Add("group_id", group_id.ToApiString());
             if (secret_key != null)
                 parameters.Add("secret_key", secret_key);
 
@@ -859,43 +859,43 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (group_id != null)
-                parameters.Add("group_id", group_id.ToString());
+                parameters.Add("group_id", group_id.ToApiString());
             if (message_new != null)
-                parameters.Add("message_new", message_new.ToString());
+                parameters.Add("message_new", message_new.ToApiString());
             if (message_allow != null)
-                parameters.Add("message_allow", message_allow.ToString());
+                parameters.Add("message_allow", message_allow.ToApiString());
             if (message_deny != null)
-                parameters.Add("message_deny", message_deny.ToString());
+                parameters.Add("message_deny", message_deny.ToApiString());
             if (photo_new != null)
-                parameters.Add("photo_new", photo_new.ToString());
+                parameters.Add("photo_new", photo_new.ToApiString());
             if (audio_new != null)
-                parameters.Add("audio_new", audio_new.ToString());
+                parameters.Add("audio_new", audio_new.ToApiString());
             if (video_new != null)
-                parameters.Add("video_new", video_new.ToString());
+                parameters.Add("video_new", video_new.ToApiString());
             if (wall_reply_new != null)
-                parameters.Add("wall_reply_new", wall_reply_new.ToString());
+                parameters.Add("wall_reply_new", wall_reply_new.ToApiString());
             if (wall_reply_edit != null)
-                parameters.Add("wall_reply_edit", wall_reply_edit.ToString());
+                parameters.Add("wall_reply_edit", wall_reply_edit.ToApiString());
             if (wall_post_new != null)
-                parameters.Add("wall_post_new", wall_post_new.ToString());
+                parameters.Add("wall_post_new", wall_post_new.ToApiString());
             if (board_post_new != null)
-                parameters.Add("board_post_new", board_post_new.ToString());
+                parameters.Add("board_post_new", board_post_new.ToApiString());
             if (board_post_edit != null)
-                parameters.Add("board_post_edit", board_post_edit.ToString());
+                parameters.Add("board_post_edit", board_post_edit.ToApiString());
             if (board_post_restore != null)
-                parameters.Add("board_post_restore", board_post_restore.ToString());
+                parameters.Add("board_post_restore", board_post_restore.ToApiString());
             if (board_post_delete != null)
-                parameters.Add("board_post_delete", board_post_delete.ToString());
+                parameters.Add("board_post_delete", board_post_delete.ToApiString());
             if (photo_comment_new != null)
-                parameters.Add("photo_comment_new", photo_comment_new.ToString());
+                parameters.Add("photo_comment_new", photo_comment_new.ToApiString());
             if (video_comment_new != null)
-                parameters.Add("video_comment_new", video_comment_new.ToString());
+                parameters.Add("video_comment_new", video_comment_new.ToApiString());
             if (market_comment_new != null)
-                parameters.Add("market_comment_new", market_comment_new.ToString());
+                parameters.Add("market_comment_new", market_comment_new.ToApiString());
             if (group_join != null)
-                parameters.Add("group_join", group_join.ToString());
+                parameters.Add("group_join", group_join.ToApiString());
             if (group_leave != null)
-                parameters.Add("group_leave", group_leave.ToString());
+                parameters.Add("group_leave", group_leave.ToApiString());
 
             return await _vkontakte.GetAsync<int>("groups.setCallbackSettings", parameters);
         }

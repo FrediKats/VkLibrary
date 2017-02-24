@@ -29,9 +29,9 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (count != null)
-                parameters.Add("count", count.ToString());
+                parameters.Add("count", count.ToApiString());
             if (test_mode != null)
-                parameters.Add("test_mode", test_mode.ToString());
+                parameters.Add("test_mode", test_mode.ToApiString());
 
             return await _vkontakte.GetAsync<IEnumerable<VkLib.Types.Orders.Order>>("orders.get", parameters);
         }
@@ -48,11 +48,11 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (order_id != null)
-                parameters.Add("order_id", order_id.ToString());
+                parameters.Add("order_id", order_id.ToApiString());
             if (order_ids != null)
-                parameters.Add("order_ids", string.Join(",", order_ids));
+                parameters.Add("order_ids", order_ids.ToApiString());
             if (test_mode != null)
-                parameters.Add("test_mode", test_mode.ToString());
+                parameters.Add("test_mode", test_mode.ToApiString());
 
             return await _vkontakte.GetAsync<IEnumerable<VkLib.Types.Orders.Order>>("orders.getById", parameters);
         }
@@ -70,13 +70,13 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (order_id != null)
-                parameters.Add("order_id", order_id.ToString());
+                parameters.Add("order_id", order_id.ToApiString());
             if (action != null)
                 parameters.Add("action", action);
             if (app_order_id != null)
-                parameters.Add("app_order_id", app_order_id.ToString());
+                parameters.Add("app_order_id", app_order_id.ToApiString());
             if (test_mode != null)
-                parameters.Add("test_mode", test_mode.ToString());
+                parameters.Add("test_mode", test_mode.ToApiString());
 
             return await _vkontakte.GetAsync<string>("orders.changeState", parameters);
         }
@@ -92,9 +92,9 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (user_id != null)
-                parameters.Add("user_id", user_id.ToString());
+                parameters.Add("user_id", user_id.ToApiString());
             if (votes != null)
-                parameters.Add("votes", string.Join(",", votes));
+                parameters.Add("votes", votes.ToApiString());
 
             return await _vkontakte.GetAsync<VkLib.Types.Orders.Amount>("orders.getAmount", parameters);
         }

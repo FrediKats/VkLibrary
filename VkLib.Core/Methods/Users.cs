@@ -30,9 +30,9 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (user_ids != null)
-                parameters.Add("user_ids", string.Join(",", user_ids));
+                parameters.Add("user_ids", user_ids.ToApiString());
             if (fields != null)
-                parameters.Add("fields", string.Join(",", fields));
+                parameters.Add("fields", fields.ToApiString());
             if (name_case != null)
                 parameters.Add("name_case", name_case);
 
@@ -83,57 +83,57 @@ namespace VkLib.Methods
             if (q != null)
                 parameters.Add("q", q);
             if (sort != null)
-                parameters.Add("sort", sort.ToString());
+                parameters.Add("sort", sort.ToApiString());
             if (offset != null)
-                parameters.Add("offset", offset.ToString());
+                parameters.Add("offset", offset.ToApiString());
             if (count != null)
-                parameters.Add("count", count.ToString());
+                parameters.Add("count", count.ToApiString());
             if (fields != null)
-                parameters.Add("fields", string.Join(",", fields));
+                parameters.Add("fields", fields.ToApiString());
             if (city != null)
-                parameters.Add("city", city.ToString());
+                parameters.Add("city", city.ToApiString());
             if (country != null)
-                parameters.Add("country", country.ToString());
+                parameters.Add("country", country.ToApiString());
             if (hometown != null)
                 parameters.Add("hometown", hometown);
             if (university_country != null)
-                parameters.Add("university_country", university_country.ToString());
+                parameters.Add("university_country", university_country.ToApiString());
             if (university != null)
-                parameters.Add("university", university.ToString());
+                parameters.Add("university", university.ToApiString());
             if (university_year != null)
-                parameters.Add("university_year", university_year.ToString());
+                parameters.Add("university_year", university_year.ToApiString());
             if (university_faculty != null)
-                parameters.Add("university_faculty", university_faculty.ToString());
+                parameters.Add("university_faculty", university_faculty.ToApiString());
             if (university_chair != null)
-                parameters.Add("university_chair", university_chair.ToString());
+                parameters.Add("university_chair", university_chair.ToApiString());
             if (sex != null)
-                parameters.Add("sex", sex.ToString());
+                parameters.Add("sex", sex.ToApiString());
             if (status != null)
-                parameters.Add("status", status.ToString());
+                parameters.Add("status", status.ToApiString());
             if (age_from != null)
-                parameters.Add("age_from", age_from.ToString());
+                parameters.Add("age_from", age_from.ToApiString());
             if (age_to != null)
-                parameters.Add("age_to", age_to.ToString());
+                parameters.Add("age_to", age_to.ToApiString());
             if (birth_day != null)
-                parameters.Add("birth_day", birth_day.ToString());
+                parameters.Add("birth_day", birth_day.ToApiString());
             if (birth_month != null)
-                parameters.Add("birth_month", birth_month.ToString());
+                parameters.Add("birth_month", birth_month.ToApiString());
             if (birth_year != null)
-                parameters.Add("birth_year", birth_year.ToString());
+                parameters.Add("birth_year", birth_year.ToApiString());
             if (online != null)
-                parameters.Add("online", online.ToString());
+                parameters.Add("online", online.ToApiString());
             if (has_photo != null)
-                parameters.Add("has_photo", has_photo.ToString());
+                parameters.Add("has_photo", has_photo.ToApiString());
             if (school_country != null)
-                parameters.Add("school_country", school_country.ToString());
+                parameters.Add("school_country", school_country.ToApiString());
             if (school_city != null)
-                parameters.Add("school_city", school_city.ToString());
+                parameters.Add("school_city", school_city.ToApiString());
             if (school_class != null)
-                parameters.Add("school_class", school_class.ToString());
+                parameters.Add("school_class", school_class.ToApiString());
             if (school != null)
-                parameters.Add("school", school.ToString());
+                parameters.Add("school", school.ToApiString());
             if (school_year != null)
-                parameters.Add("school_year", school_year.ToString());
+                parameters.Add("school_year", school_year.ToApiString());
             if (religion != null)
                 parameters.Add("religion", religion);
             if (interests != null)
@@ -143,9 +143,9 @@ namespace VkLib.Methods
             if (position != null)
                 parameters.Add("position", position);
             if (group_id != null)
-                parameters.Add("group_id", group_id.ToString());
+                parameters.Add("group_id", group_id.ToApiString());
             if (from_list != null)
-                parameters.Add("from_list", string.Join(",", from_list));
+                parameters.Add("from_list", from_list.ToApiString());
 
             return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Users.UserFull>>("users.search", parameters);
         }
@@ -160,7 +160,7 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (user_id != null)
-                parameters.Add("user_id", user_id.ToString());
+                parameters.Add("user_id", user_id.ToApiString());
 
             return await _vkontakte.GetAsync<int>("users.isAppUser", parameters);
         }
@@ -179,15 +179,15 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (user_id != null)
-                parameters.Add("user_id", user_id.ToString());
+                parameters.Add("user_id", user_id.ToApiString());
             if (extended != null)
-                parameters.Add("extended", extended.ToString());
+                parameters.Add("extended", extended.ToApiString());
             if (offset != null)
-                parameters.Add("offset", offset.ToString());
+                parameters.Add("offset", offset.ToApiString());
             if (count != null)
-                parameters.Add("count", count.ToString());
+                parameters.Add("count", count.ToApiString());
             if (fields != null)
-                parameters.Add("fields", string.Join(",", fields));
+                parameters.Add("fields", fields.ToApiString());
 
             return await _vkontakte.GetAsync<VkLib.Responses.Users.GetSubscriptionsResponse>("users.getSubscriptions", parameters);
         }
@@ -206,13 +206,13 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (user_id != null)
-                parameters.Add("user_id", user_id.ToString());
+                parameters.Add("user_id", user_id.ToApiString());
             if (offset != null)
-                parameters.Add("offset", offset.ToString());
+                parameters.Add("offset", offset.ToApiString());
             if (count != null)
-                parameters.Add("count", count.ToString());
+                parameters.Add("count", count.ToApiString());
             if (fields != null)
-                parameters.Add("fields", string.Join(",", fields));
+                parameters.Add("fields", fields.ToApiString());
             if (name_case != null)
                 parameters.Add("name_case", name_case);
 
@@ -231,7 +231,7 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (user_id != null)
-                parameters.Add("user_id", user_id.ToString());
+                parameters.Add("user_id", user_id.ToApiString());
             if (type != null)
                 parameters.Add("type", type);
             if (comment != null)
@@ -256,17 +256,17 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (latitude != null)
-                parameters.Add("latitude", latitude.ToString());
+                parameters.Add("latitude", latitude.ToApiString());
             if (longitude != null)
-                parameters.Add("longitude", longitude.ToString());
+                parameters.Add("longitude", longitude.ToApiString());
             if (accuracy != null)
-                parameters.Add("accuracy", accuracy.ToString());
+                parameters.Add("accuracy", accuracy.ToApiString());
             if (timeout != null)
-                parameters.Add("timeout", timeout.ToString());
+                parameters.Add("timeout", timeout.ToApiString());
             if (radius != null)
-                parameters.Add("radius", radius.ToString());
+                parameters.Add("radius", radius.ToApiString());
             if (fields != null)
-                parameters.Add("fields", string.Join(",", fields));
+                parameters.Add("fields", fields.ToApiString());
             if (name_case != null)
                 parameters.Add("name_case", name_case);
 

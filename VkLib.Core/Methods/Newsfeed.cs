@@ -36,23 +36,23 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (filters != null)
-                parameters.Add("filters", string.Join(",", filters));
+                parameters.Add("filters", filters.ToApiString());
             if (return_banned != null)
-                parameters.Add("return_banned", return_banned.ToString());
+                parameters.Add("return_banned", return_banned.ToApiString());
             if (start_time != null)
-                parameters.Add("start_time", start_time.ToString());
+                parameters.Add("start_time", start_time.ToApiString());
             if (end_time != null)
-                parameters.Add("end_time", end_time.ToString());
+                parameters.Add("end_time", end_time.ToApiString());
             if (max_photos != null)
-                parameters.Add("max_photos", max_photos.ToString());
+                parameters.Add("max_photos", max_photos.ToApiString());
             if (source_ids != null)
                 parameters.Add("source_ids", source_ids);
             if (start_from != null)
                 parameters.Add("start_from", start_from);
             if (count != null)
-                parameters.Add("count", count.ToString());
+                parameters.Add("count", count.ToApiString());
             if (fields != null)
-                parameters.Add("fields", string.Join(",", fields));
+                parameters.Add("fields", fields.ToApiString());
 
             return await _vkontakte.GetAsync<ApiItemsResponse<object>>("newsfeed.get", parameters);
         }
@@ -72,17 +72,17 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (start_time != null)
-                parameters.Add("start_time", start_time.ToString());
+                parameters.Add("start_time", start_time.ToApiString());
             if (end_time != null)
-                parameters.Add("end_time", end_time.ToString());
+                parameters.Add("end_time", end_time.ToApiString());
             if (max_photos != null)
-                parameters.Add("max_photos", max_photos.ToString());
+                parameters.Add("max_photos", max_photos.ToApiString());
             if (start_from != null)
                 parameters.Add("start_from", start_from);
             if (count != null)
-                parameters.Add("count", count.ToString());
+                parameters.Add("count", count.ToApiString());
             if (fields != null)
-                parameters.Add("fields", string.Join(",", fields));
+                parameters.Add("fields", fields.ToApiString());
 
             return await _vkontakte.GetAsync<ApiItemsResponse<object>>("newsfeed.getRecommended", parameters);
         }
@@ -103,19 +103,19 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (count != null)
-                parameters.Add("count", count.ToString());
+                parameters.Add("count", count.ToApiString());
             if (filters != null)
-                parameters.Add("filters", string.Join(",", filters));
+                parameters.Add("filters", filters.ToApiString());
             if (reposts != null)
                 parameters.Add("reposts", reposts);
             if (start_time != null)
-                parameters.Add("start_time", start_time.ToString());
+                parameters.Add("start_time", start_time.ToApiString());
             if (end_time != null)
-                parameters.Add("end_time", end_time.ToString());
+                parameters.Add("end_time", end_time.ToApiString());
             if (start_from != null)
                 parameters.Add("start_from", start_from);
             if (fields != null)
-                parameters.Add("fields", string.Join(",", fields));
+                parameters.Add("fields", fields.ToApiString());
 
             return await _vkontakte.GetAsync<ApiItemsResponse<object>>("newsfeed.getComments", parameters);
         }
@@ -134,15 +134,15 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (start_time != null)
-                parameters.Add("start_time", start_time.ToString());
+                parameters.Add("start_time", start_time.ToApiString());
             if (end_time != null)
-                parameters.Add("end_time", end_time.ToString());
+                parameters.Add("end_time", end_time.ToApiString());
             if (offset != null)
-                parameters.Add("offset", offset.ToString());
+                parameters.Add("offset", offset.ToApiString());
             if (count != null)
-                parameters.Add("count", count.ToString());
+                parameters.Add("count", count.ToApiString());
 
             return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Wall.WallpostToId>>("newsfeed.getMentions", parameters);
         }
@@ -159,9 +159,9 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (extended != null)
-                parameters.Add("extended", extended.ToString());
+                parameters.Add("extended", extended.ToApiString());
             if (fields != null)
-                parameters.Add("fields", string.Join(",", fields));
+                parameters.Add("fields", fields.ToApiString());
             if (name_case != null)
                 parameters.Add("name_case", name_case);
 
@@ -179,9 +179,9 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (user_ids != null)
-                parameters.Add("user_ids", string.Join(",", user_ids));
+                parameters.Add("user_ids", user_ids.ToApiString());
             if (group_ids != null)
-                parameters.Add("group_ids", string.Join(",", group_ids));
+                parameters.Add("group_ids", group_ids.ToApiString());
 
             return await _vkontakte.GetAsync<int>("newsfeed.addBan", parameters);
         }
@@ -197,9 +197,9 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (user_ids != null)
-                parameters.Add("user_ids", string.Join(",", user_ids));
+                parameters.Add("user_ids", user_ids.ToApiString());
             if (group_ids != null)
-                parameters.Add("group_ids", string.Join(",", group_ids));
+                parameters.Add("group_ids", group_ids.ToApiString());
 
             return await _vkontakte.GetAsync<int>("newsfeed.deleteBan", parameters);
         }
@@ -218,9 +218,9 @@ namespace VkLib.Methods
             if (type != null)
                 parameters.Add("type", type);
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (item_id != null)
-                parameters.Add("item_id", item_id.ToString());
+                parameters.Add("item_id", item_id.ToApiString());
 
             return await _vkontakte.GetAsync<int>("newsfeed.ignoreItem", parameters);
         }
@@ -239,9 +239,9 @@ namespace VkLib.Methods
             if (type != null)
                 parameters.Add("type", type);
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (item_id != null)
-                parameters.Add("item_id", item_id.ToString());
+                parameters.Add("item_id", item_id.ToApiString());
 
             return await _vkontakte.GetAsync<int>("newsfeed.unignoreItem", parameters);
         }
@@ -266,21 +266,21 @@ namespace VkLib.Methods
             if (q != null)
                 parameters.Add("q", q);
             if (extended != null)
-                parameters.Add("extended", extended.ToString());
+                parameters.Add("extended", extended.ToApiString());
             if (count != null)
-                parameters.Add("count", count.ToString());
+                parameters.Add("count", count.ToApiString());
             if (latitude != null)
-                parameters.Add("latitude", latitude.ToString());
+                parameters.Add("latitude", latitude.ToApiString());
             if (longitude != null)
-                parameters.Add("longitude", longitude.ToString());
+                parameters.Add("longitude", longitude.ToApiString());
             if (start_time != null)
-                parameters.Add("start_time", start_time.ToString());
+                parameters.Add("start_time", start_time.ToApiString());
             if (end_time != null)
-                parameters.Add("end_time", end_time.ToString());
+                parameters.Add("end_time", end_time.ToApiString());
             if (start_from != null)
                 parameters.Add("start_from", start_from);
             if (fields != null)
-                parameters.Add("fields", string.Join(",", fields));
+                parameters.Add("fields", fields.ToApiString());
 
             return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Wall.WallpostFull>>("newsfeed.search", parameters);
         }
@@ -295,7 +295,7 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (list_ids != null)
-                parameters.Add("list_ids", string.Join(",", list_ids));
+                parameters.Add("list_ids", list_ids.ToApiString());
 
             return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Newsfeed.List>>("newsfeed.getLists", parameters);
         }
@@ -313,13 +313,13 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (list_id != null)
-                parameters.Add("list_id", list_id.ToString());
+                parameters.Add("list_id", list_id.ToApiString());
             if (title != null)
                 parameters.Add("title", title);
             if (source_ids != null)
-                parameters.Add("source_ids", string.Join(",", source_ids));
+                parameters.Add("source_ids", source_ids.ToApiString());
             if (no_reposts != null)
-                parameters.Add("no_reposts", no_reposts.ToString());
+                parameters.Add("no_reposts", no_reposts.ToApiString());
 
             return await _vkontakte.GetAsync<int?>("newsfeed.saveList", parameters);
         }
@@ -334,7 +334,7 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (list_id != null)
-                parameters.Add("list_id", list_id.ToString());
+                parameters.Add("list_id", list_id.ToApiString());
 
             return await _vkontakte.GetAsync<int>("newsfeed.deleteList", parameters);
         }
@@ -353,9 +353,9 @@ namespace VkLib.Methods
             if (type != null)
                 parameters.Add("type", type);
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (item_id != null)
-                parameters.Add("item_id", item_id.ToString());
+                parameters.Add("item_id", item_id.ToApiString());
 
             return await _vkontakte.GetAsync<int>("newsfeed.unsubscribe", parameters);
         }
@@ -373,13 +373,13 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (offset != null)
-                parameters.Add("offset", offset.ToString());
+                parameters.Add("offset", offset.ToApiString());
             if (count != null)
-                parameters.Add("count", count.ToString());
+                parameters.Add("count", count.ToApiString());
             if (shuffle != null)
-                parameters.Add("shuffle", shuffle.ToString());
+                parameters.Add("shuffle", shuffle.ToApiString());
             if (fields != null)
-                parameters.Add("fields", string.Join(",", fields));
+                parameters.Add("fields", fields.ToApiString());
 
             return await _vkontakte.GetAsync<ApiItemsResponse<object>>("newsfeed.getSuggestedSources", parameters);
         }

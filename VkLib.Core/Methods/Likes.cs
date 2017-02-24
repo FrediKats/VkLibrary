@@ -39,23 +39,23 @@ namespace VkLib.Methods
             if (type != null)
                 parameters.Add("type", type);
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (item_id != null)
-                parameters.Add("item_id", item_id.ToString());
+                parameters.Add("item_id", item_id.ToApiString());
             if (page_url != null)
                 parameters.Add("page_url", page_url);
             if (filter != null)
                 parameters.Add("filter", filter);
             if (friends_only != null)
-                parameters.Add("friends_only", friends_only.ToString());
+                parameters.Add("friends_only", friends_only.ToApiString());
             if (extended != null)
-                parameters.Add("extended", extended.ToString());
+                parameters.Add("extended", extended.ToApiString());
             if (offset != null)
-                parameters.Add("offset", offset.ToString());
+                parameters.Add("offset", offset.ToApiString());
             if (count != null)
-                parameters.Add("count", count.ToString());
+                parameters.Add("count", count.ToApiString());
             if (skip_own != null)
-                parameters.Add("skip_own", skip_own.ToString());
+                parameters.Add("skip_own", skip_own.ToApiString());
 
             return await _vkontakte.GetAsync<ApiItemsResponse<int?>>("likes.getList", parameters);
         }
@@ -75,9 +75,9 @@ namespace VkLib.Methods
             if (type != null)
                 parameters.Add("type", type);
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (item_id != null)
-                parameters.Add("item_id", item_id.ToString());
+                parameters.Add("item_id", item_id.ToApiString());
             if (access_key != null)
                 parameters.Add("access_key", access_key);
 
@@ -98,9 +98,9 @@ namespace VkLib.Methods
             if (type != null)
                 parameters.Add("type", type);
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (item_id != null)
-                parameters.Add("item_id", item_id.ToString());
+                parameters.Add("item_id", item_id.ToApiString());
 
             return await _vkontakte.GetAsync<VkLib.Responses.Likes.DeleteResponse>("likes.delete", parameters);
         }
@@ -118,13 +118,13 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (user_id != null)
-                parameters.Add("user_id", user_id.ToString());
+                parameters.Add("user_id", user_id.ToApiString());
             if (type != null)
                 parameters.Add("type", type);
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (item_id != null)
-                parameters.Add("item_id", item_id.ToString());
+                parameters.Add("item_id", item_id.ToApiString());
 
             return await _vkontakte.GetAsync<VkLib.Responses.Likes.IsLikedResponse>("likes.isLiked", parameters);
         }

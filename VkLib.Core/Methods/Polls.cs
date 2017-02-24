@@ -30,11 +30,11 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (is_board != null)
-                parameters.Add("is_board", is_board.ToString());
+                parameters.Add("is_board", is_board.ToApiString());
             if (poll_id != null)
-                parameters.Add("poll_id", poll_id.ToString());
+                parameters.Add("poll_id", poll_id.ToApiString());
 
             return await _vkontakte.GetAsync<VkLib.Types.Polls.Poll>("polls.getById", parameters);
         }
@@ -52,13 +52,13 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (poll_id != null)
-                parameters.Add("poll_id", poll_id.ToString());
+                parameters.Add("poll_id", poll_id.ToApiString());
             if (answer_id != null)
-                parameters.Add("answer_id", answer_id.ToString());
+                parameters.Add("answer_id", answer_id.ToApiString());
             if (is_board != null)
-                parameters.Add("is_board", is_board.ToString());
+                parameters.Add("is_board", is_board.ToApiString());
 
             return await _vkontakte.GetAsync<int>("polls.addVote", parameters);
         }
@@ -76,13 +76,13 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (poll_id != null)
-                parameters.Add("poll_id", poll_id.ToString());
+                parameters.Add("poll_id", poll_id.ToApiString());
             if (answer_id != null)
-                parameters.Add("answer_id", answer_id.ToString());
+                parameters.Add("answer_id", answer_id.ToApiString());
             if (is_board != null)
-                parameters.Add("is_board", is_board.ToString());
+                parameters.Add("is_board", is_board.ToApiString());
 
             return await _vkontakte.GetAsync<int>("polls.deleteVote", parameters);
         }
@@ -105,21 +105,21 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (poll_id != null)
-                parameters.Add("poll_id", poll_id.ToString());
+                parameters.Add("poll_id", poll_id.ToApiString());
             if (answer_ids != null)
-                parameters.Add("answer_ids", string.Join(",", answer_ids));
+                parameters.Add("answer_ids", answer_ids.ToApiString());
             if (is_board != null)
-                parameters.Add("is_board", is_board.ToString());
+                parameters.Add("is_board", is_board.ToApiString());
             if (friends_only != null)
-                parameters.Add("friends_only", friends_only.ToString());
+                parameters.Add("friends_only", friends_only.ToApiString());
             if (offset != null)
-                parameters.Add("offset", offset.ToString());
+                parameters.Add("offset", offset.ToApiString());
             if (count != null)
-                parameters.Add("count", count.ToString());
+                parameters.Add("count", count.ToApiString());
             if (fields != null)
-                parameters.Add("fields", string.Join(",", fields));
+                parameters.Add("fields", fields.ToApiString());
             if (name_case != null)
                 parameters.Add("name_case", name_case);
 
@@ -141,9 +141,9 @@ namespace VkLib.Methods
             if (question != null)
                 parameters.Add("question", question);
             if (is_anonymous != null)
-                parameters.Add("is_anonymous", is_anonymous.ToString());
+                parameters.Add("is_anonymous", is_anonymous.ToApiString());
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (add_answers != null)
                 parameters.Add("add_answers", add_answers);
 
@@ -165,9 +165,9 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (poll_id != null)
-                parameters.Add("poll_id", poll_id.ToString());
+                parameters.Add("poll_id", poll_id.ToApiString());
             if (question != null)
                 parameters.Add("question", question);
             if (add_answers != null)

@@ -31,9 +31,9 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (group_id != null)
-                parameters.Add("group_id", group_id.ToString());
+                parameters.Add("group_id", group_id.ToApiString());
             if (app_id != null)
-                parameters.Add("app_id", app_id.ToString());
+                parameters.Add("app_id", app_id.ToApiString());
             if (date_from != null)
                 parameters.Add("date_from", date_from);
             if (date_to != null)
@@ -65,9 +65,9 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (post_id != null)
-                parameters.Add("post_id", post_id.ToString());
+                parameters.Add("post_id", post_id.ToApiString());
 
             return await _vkontakte.GetAsync<IEnumerable<VkLib.Types.Stats.WallpostStat>>("stats.getPostReach", parameters);
         }

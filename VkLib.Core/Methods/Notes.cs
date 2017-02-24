@@ -30,11 +30,11 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (note_ids != null)
-                parameters.Add("note_ids", string.Join(",", note_ids));
+                parameters.Add("note_ids", note_ids.ToApiString());
             if (user_id != null)
-                parameters.Add("user_id", user_id.ToString());
+                parameters.Add("user_id", user_id.ToApiString());
             if (count != null)
-                parameters.Add("count", count.ToString());
+                parameters.Add("count", count.ToApiString());
 
             return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Notes.Note>>("notes.get", parameters);
         }
@@ -50,9 +50,9 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (note_id != null)
-                parameters.Add("note_id", note_id.ToString());
+                parameters.Add("note_id", note_id.ToApiString());
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
 
             return await _vkontakte.GetAsync<VkLib.Types.Notes.Note>("notes.getById", parameters);
         }
@@ -74,9 +74,9 @@ namespace VkLib.Methods
             if (text != null)
                 parameters.Add("text", text);
             if (privacy_view != null)
-                parameters.Add("privacy_view", string.Join(",", privacy_view));
+                parameters.Add("privacy_view", privacy_view.ToApiString());
             if (privacy_comment != null)
-                parameters.Add("privacy_comment", string.Join(",", privacy_comment));
+                parameters.Add("privacy_comment", privacy_comment.ToApiString());
 
             return await _vkontakte.GetAsync<int?>("notes.add", parameters);
         }
@@ -95,15 +95,15 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (note_id != null)
-                parameters.Add("note_id", note_id.ToString());
+                parameters.Add("note_id", note_id.ToApiString());
             if (title != null)
                 parameters.Add("title", title);
             if (text != null)
                 parameters.Add("text", text);
             if (privacy_view != null)
-                parameters.Add("privacy_view", string.Join(",", privacy_view));
+                parameters.Add("privacy_view", privacy_view.ToApiString());
             if (privacy_comment != null)
-                parameters.Add("privacy_comment", string.Join(",", privacy_comment));
+                parameters.Add("privacy_comment", privacy_comment.ToApiString());
 
             return await _vkontakte.GetAsync<int>("notes.edit", parameters);
         }
@@ -118,7 +118,7 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (note_id != null)
-                parameters.Add("note_id", note_id.ToString());
+                parameters.Add("note_id", note_id.ToApiString());
 
             return await _vkontakte.GetAsync<int>("notes.delete", parameters);
         }
@@ -135,11 +135,11 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (note_id != null)
-                parameters.Add("note_id", note_id.ToString());
+                parameters.Add("note_id", note_id.ToApiString());
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (count != null)
-                parameters.Add("count", count.ToString());
+                parameters.Add("count", count.ToApiString());
 
             return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Notes.NoteComment>>("notes.getComments", parameters);
         }
@@ -158,11 +158,11 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (note_id != null)
-                parameters.Add("note_id", note_id.ToString());
+                parameters.Add("note_id", note_id.ToApiString());
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (reply_to != null)
-                parameters.Add("reply_to", reply_to.ToString());
+                parameters.Add("reply_to", reply_to.ToApiString());
             if (message != null)
                 parameters.Add("message", message);
             if (guid != null)
@@ -183,9 +183,9 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (comment_id != null)
-                parameters.Add("comment_id", comment_id.ToString());
+                parameters.Add("comment_id", comment_id.ToApiString());
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (message != null)
                 parameters.Add("message", message);
 
@@ -203,9 +203,9 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (comment_id != null)
-                parameters.Add("comment_id", comment_id.ToString());
+                parameters.Add("comment_id", comment_id.ToApiString());
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
 
             return await _vkontakte.GetAsync<int>("notes.deleteComment", parameters);
         }
@@ -221,9 +221,9 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (comment_id != null)
-                parameters.Add("comment_id", comment_id.ToString());
+                parameters.Add("comment_id", comment_id.ToApiString());
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
 
             return await _vkontakte.GetAsync<int>("notes.restoreComment", parameters);
         }

@@ -34,17 +34,17 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (type != null)
-                parameters.Add("type", type.ToString());
+                parameters.Add("type", type.ToApiString());
             if (title != null)
                 parameters.Add("title", title);
             if (latitude != null)
-                parameters.Add("latitude", latitude.ToString());
+                parameters.Add("latitude", latitude.ToApiString());
             if (longitude != null)
-                parameters.Add("longitude", longitude.ToString());
+                parameters.Add("longitude", longitude.ToApiString());
             if (country != null)
-                parameters.Add("country", country.ToString());
+                parameters.Add("country", country.ToApiString());
             if (city != null)
-                parameters.Add("city", city.ToString());
+                parameters.Add("city", city.ToApiString());
             if (address != null)
                 parameters.Add("address", address);
 
@@ -61,7 +61,7 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (places != null)
-                parameters.Add("places", string.Join(",", places));
+                parameters.Add("places", places.ToApiString());
 
             return await _vkontakte.GetAsync<IEnumerable<VkLib.Types.Places.PlaceMin>>("places.getById", parameters);
         }
@@ -84,17 +84,17 @@ namespace VkLib.Methods
             if (q != null)
                 parameters.Add("q", q);
             if (city != null)
-                parameters.Add("city", city.ToString());
+                parameters.Add("city", city.ToApiString());
             if (latitude != null)
-                parameters.Add("latitude", latitude.ToString());
+                parameters.Add("latitude", latitude.ToApiString());
             if (longitude != null)
-                parameters.Add("longitude", longitude.ToString());
+                parameters.Add("longitude", longitude.ToApiString());
             if (radius != null)
-                parameters.Add("radius", radius.ToString());
+                parameters.Add("radius", radius.ToApiString());
             if (offset != null)
-                parameters.Add("offset", offset.ToString());
+                parameters.Add("offset", offset.ToApiString());
             if (count != null)
-                parameters.Add("count", count.ToString());
+                parameters.Add("count", count.ToApiString());
 
             return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Places.PlaceFull>>("places.search", parameters);
         }
@@ -114,17 +114,17 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (place_id != null)
-                parameters.Add("place_id", place_id.ToString());
+                parameters.Add("place_id", place_id.ToApiString());
             if (text != null)
                 parameters.Add("text", text);
             if (latitude != null)
-                parameters.Add("latitude", latitude.ToString());
+                parameters.Add("latitude", latitude.ToApiString());
             if (longitude != null)
-                parameters.Add("longitude", longitude.ToString());
+                parameters.Add("longitude", longitude.ToApiString());
             if (friends_only != null)
-                parameters.Add("friends_only", friends_only.ToString());
+                parameters.Add("friends_only", friends_only.ToApiString());
             if (services != null)
-                parameters.Add("services", string.Join(",", services));
+                parameters.Add("services", services.ToApiString());
 
             return await _vkontakte.GetAsync<VkLib.Responses.Places.CheckinResponse>("places.checkin", parameters);
         }
@@ -147,23 +147,23 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (latitude != null)
-                parameters.Add("latitude", latitude.ToString());
+                parameters.Add("latitude", latitude.ToApiString());
             if (longitude != null)
-                parameters.Add("longitude", longitude.ToString());
+                parameters.Add("longitude", longitude.ToApiString());
             if (place != null)
-                parameters.Add("place", place.ToString());
+                parameters.Add("place", place.ToApiString());
             if (user_id != null)
-                parameters.Add("user_id", user_id.ToString());
+                parameters.Add("user_id", user_id.ToApiString());
             if (offset != null)
-                parameters.Add("offset", offset.ToString());
+                parameters.Add("offset", offset.ToApiString());
             if (count != null)
-                parameters.Add("count", count.ToString());
+                parameters.Add("count", count.ToApiString());
             if (timestamp != null)
-                parameters.Add("timestamp", timestamp.ToString());
+                parameters.Add("timestamp", timestamp.ToApiString());
             if (friends_only != null)
-                parameters.Add("friends_only", friends_only.ToString());
+                parameters.Add("friends_only", friends_only.ToApiString());
             if (need_places != null)
-                parameters.Add("need_places", need_places.ToString());
+                parameters.Add("need_places", need_places.ToApiString());
 
             return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Places.Checkin>>("places.getCheckins", parameters);
         }

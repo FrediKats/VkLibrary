@@ -35,21 +35,21 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (group_id != null)
-                parameters.Add("group_id", group_id.ToString());
+                parameters.Add("group_id", group_id.ToApiString());
             if (topic_ids != null)
-                parameters.Add("topic_ids", string.Join(",", topic_ids));
+                parameters.Add("topic_ids", topic_ids.ToApiString());
             if (order != null)
-                parameters.Add("order", order.ToString());
+                parameters.Add("order", order.ToApiString());
             if (offset != null)
-                parameters.Add("offset", offset.ToString());
+                parameters.Add("offset", offset.ToApiString());
             if (count != null)
-                parameters.Add("count", count.ToString());
+                parameters.Add("count", count.ToApiString());
             if (extended != null)
-                parameters.Add("extended", extended.ToString());
+                parameters.Add("extended", extended.ToApiString());
             if (preview != null)
-                parameters.Add("preview", preview.ToString());
+                parameters.Add("preview", preview.ToApiString());
             if (preview_length != null)
-                parameters.Add("preview_length", preview_length.ToString());
+                parameters.Add("preview_length", preview_length.ToApiString());
 
             return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Board.Topic>>("board.getTopics", parameters);
         }
@@ -71,19 +71,19 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (group_id != null)
-                parameters.Add("group_id", group_id.ToString());
+                parameters.Add("group_id", group_id.ToApiString());
             if (topic_id != null)
-                parameters.Add("topic_id", topic_id.ToString());
+                parameters.Add("topic_id", topic_id.ToApiString());
             if (need_likes != null)
-                parameters.Add("need_likes", need_likes.ToString());
+                parameters.Add("need_likes", need_likes.ToApiString());
             if (start_comment_id != null)
-                parameters.Add("start_comment_id", start_comment_id.ToString());
+                parameters.Add("start_comment_id", start_comment_id.ToApiString());
             if (offset != null)
-                parameters.Add("offset", offset.ToString());
+                parameters.Add("offset", offset.ToApiString());
             if (count != null)
-                parameters.Add("count", count.ToString());
+                parameters.Add("count", count.ToApiString());
             if (extended != null)
-                parameters.Add("extended", extended.ToString());
+                parameters.Add("extended", extended.ToApiString());
             if (sort != null)
                 parameters.Add("sort", sort);
 
@@ -104,15 +104,15 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (group_id != null)
-                parameters.Add("group_id", group_id.ToString());
+                parameters.Add("group_id", group_id.ToApiString());
             if (title != null)
                 parameters.Add("title", title);
             if (text != null)
                 parameters.Add("text", text);
             if (from_group != null)
-                parameters.Add("from_group", from_group.ToString());
+                parameters.Add("from_group", from_group.ToApiString());
             if (attachments != null)
-                parameters.Add("attachments", string.Join(",", attachments));
+                parameters.Add("attachments", attachments.ToApiString());
 
             return await _vkontakte.GetAsync<int?>("board.addTopic", parameters);
         }
@@ -133,17 +133,17 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (group_id != null)
-                parameters.Add("group_id", group_id.ToString());
+                parameters.Add("group_id", group_id.ToApiString());
             if (topic_id != null)
-                parameters.Add("topic_id", topic_id.ToString());
+                parameters.Add("topic_id", topic_id.ToApiString());
             if (message != null)
                 parameters.Add("message", message);
             if (attachments != null)
-                parameters.Add("attachments", string.Join(",", attachments));
+                parameters.Add("attachments", attachments.ToApiString());
             if (from_group != null)
-                parameters.Add("from_group", from_group.ToString());
+                parameters.Add("from_group", from_group.ToApiString());
             if (sticker_id != null)
-                parameters.Add("sticker_id", sticker_id.ToString());
+                parameters.Add("sticker_id", sticker_id.ToApiString());
             if (guid != null)
                 parameters.Add("guid", guid);
 
@@ -161,9 +161,9 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (group_id != null)
-                parameters.Add("group_id", group_id.ToString());
+                parameters.Add("group_id", group_id.ToApiString());
             if (topic_id != null)
-                parameters.Add("topic_id", topic_id.ToString());
+                parameters.Add("topic_id", topic_id.ToApiString());
 
             return await _vkontakte.GetAsync<int>("board.deleteTopic", parameters);
         }
@@ -180,9 +180,9 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (group_id != null)
-                parameters.Add("group_id", group_id.ToString());
+                parameters.Add("group_id", group_id.ToApiString());
             if (topic_id != null)
-                parameters.Add("topic_id", topic_id.ToString());
+                parameters.Add("topic_id", topic_id.ToApiString());
             if (title != null)
                 parameters.Add("title", title);
 
@@ -203,15 +203,15 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (group_id != null)
-                parameters.Add("group_id", group_id.ToString());
+                parameters.Add("group_id", group_id.ToApiString());
             if (topic_id != null)
-                parameters.Add("topic_id", topic_id.ToString());
+                parameters.Add("topic_id", topic_id.ToApiString());
             if (comment_id != null)
-                parameters.Add("comment_id", comment_id.ToString());
+                parameters.Add("comment_id", comment_id.ToApiString());
             if (message != null)
                 parameters.Add("message", message);
             if (attachments != null)
-                parameters.Add("attachments", string.Join(",", attachments));
+                parameters.Add("attachments", attachments.ToApiString());
 
             return await _vkontakte.GetAsync<int>("board.editComment", parameters);
         }
@@ -228,11 +228,11 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (group_id != null)
-                parameters.Add("group_id", group_id.ToString());
+                parameters.Add("group_id", group_id.ToApiString());
             if (topic_id != null)
-                parameters.Add("topic_id", topic_id.ToString());
+                parameters.Add("topic_id", topic_id.ToApiString());
             if (comment_id != null)
-                parameters.Add("comment_id", comment_id.ToString());
+                parameters.Add("comment_id", comment_id.ToApiString());
 
             return await _vkontakte.GetAsync<int>("board.restoreComment", parameters);
         }
@@ -249,11 +249,11 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (group_id != null)
-                parameters.Add("group_id", group_id.ToString());
+                parameters.Add("group_id", group_id.ToApiString());
             if (topic_id != null)
-                parameters.Add("topic_id", topic_id.ToString());
+                parameters.Add("topic_id", topic_id.ToApiString());
             if (comment_id != null)
-                parameters.Add("comment_id", comment_id.ToString());
+                parameters.Add("comment_id", comment_id.ToApiString());
 
             return await _vkontakte.GetAsync<int>("board.deleteComment", parameters);
         }
@@ -269,9 +269,9 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (group_id != null)
-                parameters.Add("group_id", group_id.ToString());
+                parameters.Add("group_id", group_id.ToApiString());
             if (topic_id != null)
-                parameters.Add("topic_id", topic_id.ToString());
+                parameters.Add("topic_id", topic_id.ToApiString());
 
             return await _vkontakte.GetAsync<int>("board.openTopic", parameters);
         }
@@ -287,9 +287,9 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (group_id != null)
-                parameters.Add("group_id", group_id.ToString());
+                parameters.Add("group_id", group_id.ToApiString());
             if (topic_id != null)
-                parameters.Add("topic_id", topic_id.ToString());
+                parameters.Add("topic_id", topic_id.ToApiString());
 
             return await _vkontakte.GetAsync<int>("board.closeTopic", parameters);
         }
@@ -305,9 +305,9 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (group_id != null)
-                parameters.Add("group_id", group_id.ToString());
+                parameters.Add("group_id", group_id.ToApiString());
             if (topic_id != null)
-                parameters.Add("topic_id", topic_id.ToString());
+                parameters.Add("topic_id", topic_id.ToApiString());
 
             return await _vkontakte.GetAsync<int>("board.fixTopic", parameters);
         }
@@ -323,9 +323,9 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (group_id != null)
-                parameters.Add("group_id", group_id.ToString());
+                parameters.Add("group_id", group_id.ToApiString());
             if (topic_id != null)
-                parameters.Add("topic_id", topic_id.ToString());
+                parameters.Add("topic_id", topic_id.ToApiString());
 
             return await _vkontakte.GetAsync<int>("board.unfixTopic", parameters);
         }

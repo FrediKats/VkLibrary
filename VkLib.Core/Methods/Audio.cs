@@ -33,17 +33,17 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (album_id != null)
-                parameters.Add("album_id", album_id.ToString());
+                parameters.Add("album_id", album_id.ToApiString());
             if (audio_ids != null)
-                parameters.Add("audio_ids", string.Join(",", audio_ids));
+                parameters.Add("audio_ids", audio_ids.ToApiString());
             if (need_user != null)
-                parameters.Add("need_user", need_user.ToString());
+                parameters.Add("need_user", need_user.ToApiString());
             if (offset != null)
-                parameters.Add("offset", offset.ToString());
+                parameters.Add("offset", offset.ToApiString());
             if (count != null)
-                parameters.Add("count", count.ToString());
+                parameters.Add("count", count.ToApiString());
 
             return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Audio.AudioFull>>("audio.get", parameters);
         }
@@ -58,7 +58,7 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (audios != null)
-                parameters.Add("audios", string.Join(",", audios));
+                parameters.Add("audios", audios.ToApiString());
 
             return await _vkontakte.GetAsync<IEnumerable<VkLib.Types.Audio.AudioFull>>("audio.getById", parameters);
         }
@@ -73,7 +73,7 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (lyrics_id != null)
-                parameters.Add("lyrics_id", lyrics_id.ToString());
+                parameters.Add("lyrics_id", lyrics_id.ToApiString());
 
             return await _vkontakte.GetAsync<VkLib.Types.Audio.Lyrics>("audio.getLyrics", parameters);
         }
@@ -97,19 +97,19 @@ namespace VkLib.Methods
             if (q != null)
                 parameters.Add("q", q);
             if (auto_complete != null)
-                parameters.Add("auto_complete", auto_complete.ToString());
+                parameters.Add("auto_complete", auto_complete.ToApiString());
             if (lyrics != null)
-                parameters.Add("lyrics", lyrics.ToString());
+                parameters.Add("lyrics", lyrics.ToApiString());
             if (performer_only != null)
-                parameters.Add("performer_only", performer_only.ToString());
+                parameters.Add("performer_only", performer_only.ToApiString());
             if (sort != null)
-                parameters.Add("sort", sort.ToString());
+                parameters.Add("sort", sort.ToApiString());
             if (search_own != null)
-                parameters.Add("search_own", search_own.ToString());
+                parameters.Add("search_own", search_own.ToApiString());
             if (offset != null)
-                parameters.Add("offset", offset.ToString());
+                parameters.Add("offset", offset.ToApiString());
             if (count != null)
-                parameters.Add("count", count.ToString());
+                parameters.Add("count", count.ToApiString());
 
             return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Audio.AudioFull>>("audio.search", parameters);
         }
@@ -140,7 +140,7 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (server != null)
-                parameters.Add("server", server.ToString());
+                parameters.Add("server", server.ToApiString());
             if (audio != null)
                 parameters.Add("audio", audio);
             if (hash != null)
@@ -166,13 +166,13 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (audio_id != null)
-                parameters.Add("audio_id", audio_id.ToString());
+                parameters.Add("audio_id", audio_id.ToApiString());
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (group_id != null)
-                parameters.Add("group_id", group_id.ToString());
+                parameters.Add("group_id", group_id.ToApiString());
             if (album_id != null)
-                parameters.Add("album_id", album_id.ToString());
+                parameters.Add("album_id", album_id.ToApiString());
 
             return await _vkontakte.GetAsync<int?>("audio.add", parameters);
         }
@@ -188,9 +188,9 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (audio_id != null)
-                parameters.Add("audio_id", audio_id.ToString());
+                parameters.Add("audio_id", audio_id.ToApiString());
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
 
             return await _vkontakte.GetAsync<int>("audio.delete", parameters);
         }
@@ -211,9 +211,9 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (audio_id != null)
-                parameters.Add("audio_id", audio_id.ToString());
+                parameters.Add("audio_id", audio_id.ToApiString());
             if (artist != null)
                 parameters.Add("artist", artist);
             if (title != null)
@@ -221,9 +221,9 @@ namespace VkLib.Methods
             if (text != null)
                 parameters.Add("text", text);
             if (genre_id != null)
-                parameters.Add("genre_id", genre_id.ToString());
+                parameters.Add("genre_id", genre_id.ToApiString());
             if (no_search != null)
-                parameters.Add("no_search", no_search.ToString());
+                parameters.Add("no_search", no_search.ToApiString());
 
             return await _vkontakte.GetAsync<int?>("audio.edit", parameters);
         }
@@ -241,13 +241,13 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (audio_id != null)
-                parameters.Add("audio_id", audio_id.ToString());
+                parameters.Add("audio_id", audio_id.ToApiString());
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (before != null)
-                parameters.Add("before", before.ToString());
+                parameters.Add("before", before.ToApiString());
             if (after != null)
-                parameters.Add("after", after.ToString());
+                parameters.Add("after", after.ToApiString());
 
             return await _vkontakte.GetAsync<int>("audio.reorder", parameters);
         }
@@ -263,9 +263,9 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (audio_id != null)
-                parameters.Add("audio_id", audio_id.ToString());
+                parameters.Add("audio_id", audio_id.ToApiString());
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
 
             return await _vkontakte.GetAsync<int>("audio.restore", parameters);
         }
@@ -282,11 +282,11 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (offset != null)
-                parameters.Add("offset", offset.ToString());
+                parameters.Add("offset", offset.ToApiString());
             if (count != null)
-                parameters.Add("count", count.ToString());
+                parameters.Add("count", count.ToApiString());
 
             return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Audio.AudioAlbum>>("audio.getAlbums", parameters);
         }
@@ -302,7 +302,7 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (group_id != null)
-                parameters.Add("group_id", group_id.ToString());
+                parameters.Add("group_id", group_id.ToApiString());
             if (title != null)
                 parameters.Add("title", title);
 
@@ -321,9 +321,9 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (group_id != null)
-                parameters.Add("group_id", group_id.ToString());
+                parameters.Add("group_id", group_id.ToApiString());
             if (album_id != null)
-                parameters.Add("album_id", album_id.ToString());
+                parameters.Add("album_id", album_id.ToApiString());
             if (title != null)
                 parameters.Add("title", title);
 
@@ -341,9 +341,9 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (group_id != null)
-                parameters.Add("group_id", group_id.ToString());
+                parameters.Add("group_id", group_id.ToApiString());
             if (album_id != null)
-                parameters.Add("album_id", album_id.ToString());
+                parameters.Add("album_id", album_id.ToApiString());
 
             return await _vkontakte.GetAsync<int>("audio.deleteAlbum", parameters);
         }
@@ -360,11 +360,11 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (group_id != null)
-                parameters.Add("group_id", group_id.ToString());
+                parameters.Add("group_id", group_id.ToApiString());
             if (album_id != null)
-                parameters.Add("album_id", album_id.ToString());
+                parameters.Add("album_id", album_id.ToApiString());
             if (audio_ids != null)
-                parameters.Add("audio_ids", string.Join(",", audio_ids));
+                parameters.Add("audio_ids", audio_ids.ToApiString());
 
             return await _vkontakte.GetAsync<int>("audio.moveToAlbum", parameters);
         }
@@ -382,7 +382,7 @@ namespace VkLib.Methods
             if (audio != null)
                 parameters.Add("audio", audio);
             if (target_ids != null)
-                parameters.Add("target_ids", string.Join(",", target_ids));
+                parameters.Add("target_ids", target_ids.ToApiString());
 
             return await _vkontakte.GetAsync<IEnumerable<int?>>("audio.setBroadcast", parameters);
         }
@@ -400,7 +400,7 @@ namespace VkLib.Methods
             if (filter != null)
                 parameters.Add("filter", filter);
             if (active != null)
-                parameters.Add("active", active.ToString());
+                parameters.Add("active", active.ToApiString());
 
             return await _vkontakte.GetAsync<IEnumerable<VkLib.Types.Users.UserBroadcast>>("audio.getBroadcastList", parameters);
         }
@@ -421,13 +421,13 @@ namespace VkLib.Methods
             if (target_audio != null)
                 parameters.Add("target_audio", target_audio);
             if (user_id != null)
-                parameters.Add("user_id", user_id.ToString());
+                parameters.Add("user_id", user_id.ToApiString());
             if (offset != null)
-                parameters.Add("offset", offset.ToString());
+                parameters.Add("offset", offset.ToApiString());
             if (count != null)
-                parameters.Add("count", count.ToString());
+                parameters.Add("count", count.ToApiString());
             if (shuffle != null)
-                parameters.Add("shuffle", shuffle.ToString());
+                parameters.Add("shuffle", shuffle.ToApiString());
 
             return await _vkontakte.GetAsync<IEnumerable<VkLib.Types.Audio.AudioFull>>("audio.getRecommendations", parameters);
         }
@@ -445,13 +445,13 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (only_eng != null)
-                parameters.Add("only_eng", only_eng.ToString());
+                parameters.Add("only_eng", only_eng.ToApiString());
             if (genre_id != null)
-                parameters.Add("genre_id", genre_id.ToString());
+                parameters.Add("genre_id", genre_id.ToApiString());
             if (offset != null)
-                parameters.Add("offset", offset.ToString());
+                parameters.Add("offset", offset.ToApiString());
             if (count != null)
-                parameters.Add("count", count.ToString());
+                parameters.Add("count", count.ToApiString());
 
             return await _vkontakte.GetAsync<IEnumerable<VkLib.Types.Audio.AudioFull>>("audio.getPopular", parameters);
         }
@@ -466,7 +466,7 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
 
             return await _vkontakte.GetAsync<int?>("audio.getCount", parameters);
         }

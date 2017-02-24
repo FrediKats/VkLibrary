@@ -33,7 +33,7 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (widget_api_id != null)
-                parameters.Add("widget_api_id", widget_api_id.ToString());
+                parameters.Add("widget_api_id", widget_api_id.ToApiString());
             if (url != null)
                 parameters.Add("url", url);
             if (page_id != null)
@@ -41,9 +41,9 @@ namespace VkLib.Methods
             if (order != null)
                 parameters.Add("order", order);
             if (fields != null)
-                parameters.Add("fields", string.Join(",", fields));
+                parameters.Add("fields", fields.ToApiString());
             if (count != null)
-                parameters.Add("count", count.ToString());
+                parameters.Add("count", count.ToApiString());
 
             return await _vkontakte.GetAsync<VkLib.Responses.Widgets.GetCommentsResponse>("widgets.getComments", parameters);
         }
@@ -61,13 +61,13 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (widget_api_id != null)
-                parameters.Add("widget_api_id", widget_api_id.ToString());
+                parameters.Add("widget_api_id", widget_api_id.ToApiString());
             if (order != null)
                 parameters.Add("order", order);
             if (period != null)
                 parameters.Add("period", period);
             if (count != null)
-                parameters.Add("count", count.ToString());
+                parameters.Add("count", count.ToApiString());
 
             return await _vkontakte.GetAsync<VkLib.Responses.Widgets.GetPagesResponse>("widgets.getPages", parameters);
         }

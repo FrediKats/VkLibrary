@@ -31,13 +31,13 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (count != null)
-                parameters.Add("count", count.ToString());
+                parameters.Add("count", count.ToApiString());
             if (offset != null)
-                parameters.Add("offset", offset.ToString());
+                parameters.Add("offset", offset.ToApiString());
             if (extended != null)
-                parameters.Add("extended", extended.ToString());
+                parameters.Add("extended", extended.ToApiString());
 
             return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Market.MarketItem>>("market.get", parameters);
         }
@@ -53,9 +53,9 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (item_ids != null)
-                parameters.Add("item_ids", string.Join(",", item_ids));
+                parameters.Add("item_ids", item_ids.ToApiString());
             if (extended != null)
-                parameters.Add("extended", extended.ToString());
+                parameters.Add("extended", extended.ToApiString());
 
             return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Market.MarketItem>>("market.getById", parameters);
         }
@@ -78,23 +78,23 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (q != null)
                 parameters.Add("q", q);
             if (price_from != null)
-                parameters.Add("price_from", price_from.ToString());
+                parameters.Add("price_from", price_from.ToApiString());
             if (price_to != null)
-                parameters.Add("price_to", price_to.ToString());
+                parameters.Add("price_to", price_to.ToApiString());
             if (tags != null)
-                parameters.Add("tags", string.Join(",", tags));
+                parameters.Add("tags", tags.ToApiString());
             if (rev != null)
-                parameters.Add("rev", rev.ToString());
+                parameters.Add("rev", rev.ToApiString());
             if (offset != null)
-                parameters.Add("offset", offset.ToString());
+                parameters.Add("offset", offset.ToApiString());
             if (count != null)
-                parameters.Add("count", count.ToString());
+                parameters.Add("count", count.ToApiString());
             if (extended != null)
-                parameters.Add("extended", extended.ToString());
+                parameters.Add("extended", extended.ToApiString());
 
             return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Market.MarketItem>>("market.search", parameters);
         }
@@ -111,11 +111,11 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (offset != null)
-                parameters.Add("offset", offset.ToString());
+                parameters.Add("offset", offset.ToApiString());
             if (count != null)
-                parameters.Add("count", count.ToString());
+                parameters.Add("count", count.ToApiString());
 
             return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Market.MarketAlbum>>("market.getAlbums", parameters);
         }
@@ -131,9 +131,9 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (album_ids != null)
-                parameters.Add("album_ids", string.Join(",", album_ids));
+                parameters.Add("album_ids", album_ids.ToApiString());
 
             return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Market.MarketAlbum>>("market.getAlbumById", parameters);
         }
@@ -155,19 +155,19 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (item_id != null)
-                parameters.Add("item_id", item_id.ToString());
+                parameters.Add("item_id", item_id.ToApiString());
             if (message != null)
                 parameters.Add("message", message);
             if (attachments != null)
-                parameters.Add("attachments", string.Join(",", attachments));
+                parameters.Add("attachments", attachments.ToApiString());
             if (from_group != null)
-                parameters.Add("from_group", from_group.ToString());
+                parameters.Add("from_group", from_group.ToApiString());
             if (reply_to_comment != null)
-                parameters.Add("reply_to_comment", reply_to_comment.ToString());
+                parameters.Add("reply_to_comment", reply_to_comment.ToApiString());
             if (sticker_id != null)
-                parameters.Add("sticker_id", sticker_id.ToString());
+                parameters.Add("sticker_id", sticker_id.ToApiString());
             if (guid != null)
                 parameters.Add("guid", guid);
 
@@ -191,21 +191,21 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (item_id != null)
-                parameters.Add("item_id", item_id.ToString());
+                parameters.Add("item_id", item_id.ToApiString());
             if (need_likes != null)
-                parameters.Add("need_likes", need_likes.ToString());
+                parameters.Add("need_likes", need_likes.ToApiString());
             if (start_comment_id != null)
-                parameters.Add("start_comment_id", start_comment_id.ToString());
+                parameters.Add("start_comment_id", start_comment_id.ToApiString());
             if (count != null)
-                parameters.Add("count", count.ToString());
+                parameters.Add("count", count.ToApiString());
             if (sort != null)
                 parameters.Add("sort", sort);
             if (extended != null)
-                parameters.Add("extended", extended.ToString());
+                parameters.Add("extended", extended.ToApiString());
             if (fields != null)
-                parameters.Add("fields", string.Join(",", fields));
+                parameters.Add("fields", fields.ToApiString());
 
             return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Wall.WallComment>>("market.getComments", parameters);
         }
@@ -221,9 +221,9 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (comment_id != null)
-                parameters.Add("comment_id", comment_id.ToString());
+                parameters.Add("comment_id", comment_id.ToApiString());
 
             return await _vkontakte.GetAsync<int>("market.deleteComment", parameters);
         }
@@ -239,9 +239,9 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (comment_id != null)
-                parameters.Add("comment_id", comment_id.ToString());
+                parameters.Add("comment_id", comment_id.ToApiString());
 
             return await _vkontakte.GetAsync<int>("market.restoreComment", parameters);
         }
@@ -259,13 +259,13 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (comment_id != null)
-                parameters.Add("comment_id", comment_id.ToString());
+                parameters.Add("comment_id", comment_id.ToApiString());
             if (message != null)
                 parameters.Add("message", message);
             if (attachments != null)
-                parameters.Add("attachments", string.Join(",", attachments));
+                parameters.Add("attachments", attachments.ToApiString());
 
             return await _vkontakte.GetAsync<int>("market.editComment", parameters);
         }
@@ -282,11 +282,11 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (comment_id != null)
-                parameters.Add("comment_id", comment_id.ToString());
+                parameters.Add("comment_id", comment_id.ToApiString());
             if (reason != null)
-                parameters.Add("reason", reason.ToString());
+                parameters.Add("reason", reason.ToApiString());
 
             return await _vkontakte.GetAsync<int>("market.reportComment", parameters);
         }
@@ -302,9 +302,9 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (count != null)
-                parameters.Add("count", count.ToString());
+                parameters.Add("count", count.ToApiString());
             if (offset != null)
-                parameters.Add("offset", offset.ToString());
+                parameters.Add("offset", offset.ToApiString());
 
             return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Market.MarketCategory>>("market.getCategories", parameters);
         }
@@ -321,11 +321,11 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (item_id != null)
-                parameters.Add("item_id", item_id.ToString());
+                parameters.Add("item_id", item_id.ToApiString());
             if (reason != null)
-                parameters.Add("reason", reason.ToString());
+                parameters.Add("reason", reason.ToApiString());
 
             return await _vkontakte.GetAsync<int>("market.report", parameters);
         }
@@ -347,21 +347,21 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (name != null)
                 parameters.Add("name", name);
             if (description != null)
                 parameters.Add("description", description);
             if (category_id != null)
-                parameters.Add("category_id", category_id.ToString());
+                parameters.Add("category_id", category_id.ToApiString());
             if (price != null)
-                parameters.Add("price", price.ToString());
+                parameters.Add("price", price.ToApiString());
             if (deleted != null)
-                parameters.Add("deleted", deleted.ToString());
+                parameters.Add("deleted", deleted.ToApiString());
             if (main_photo_id != null)
-                parameters.Add("main_photo_id", main_photo_id.ToString());
+                parameters.Add("main_photo_id", main_photo_id.ToApiString());
             if (photo_ids != null)
-                parameters.Add("photo_ids", string.Join(",", photo_ids));
+                parameters.Add("photo_ids", photo_ids.ToApiString());
 
             return await _vkontakte.GetAsync<VkLib.Responses.Market.AddResponse>("market.add", parameters);
         }
@@ -384,23 +384,23 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (item_id != null)
-                parameters.Add("item_id", item_id.ToString());
+                parameters.Add("item_id", item_id.ToApiString());
             if (name != null)
                 parameters.Add("name", name);
             if (description != null)
                 parameters.Add("description", description);
             if (category_id != null)
-                parameters.Add("category_id", category_id.ToString());
+                parameters.Add("category_id", category_id.ToApiString());
             if (price != null)
-                parameters.Add("price", price.ToString());
+                parameters.Add("price", price.ToApiString());
             if (deleted != null)
-                parameters.Add("deleted", deleted.ToString());
+                parameters.Add("deleted", deleted.ToApiString());
             if (main_photo_id != null)
-                parameters.Add("main_photo_id", main_photo_id.ToString());
+                parameters.Add("main_photo_id", main_photo_id.ToApiString());
             if (photo_ids != null)
-                parameters.Add("photo_ids", string.Join(",", photo_ids));
+                parameters.Add("photo_ids", photo_ids.ToApiString());
 
             return await _vkontakte.GetAsync<int>("market.edit", parameters);
         }
@@ -416,9 +416,9 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (item_id != null)
-                parameters.Add("item_id", item_id.ToString());
+                parameters.Add("item_id", item_id.ToApiString());
 
             return await _vkontakte.GetAsync<int>("market.delete", parameters);
         }
@@ -434,9 +434,9 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (item_id != null)
-                parameters.Add("item_id", item_id.ToString());
+                parameters.Add("item_id", item_id.ToApiString());
 
             return await _vkontakte.GetAsync<int>("market.restore", parameters);
         }
@@ -455,15 +455,15 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (album_id != null)
-                parameters.Add("album_id", album_id.ToString());
+                parameters.Add("album_id", album_id.ToApiString());
             if (item_id != null)
-                parameters.Add("item_id", item_id.ToString());
+                parameters.Add("item_id", item_id.ToApiString());
             if (before != null)
-                parameters.Add("before", before.ToString());
+                parameters.Add("before", before.ToApiString());
             if (after != null)
-                parameters.Add("after", after.ToString());
+                parameters.Add("after", after.ToApiString());
 
             return await _vkontakte.GetAsync<int>("market.reorderItems", parameters);
         }
@@ -481,13 +481,13 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (album_id != null)
-                parameters.Add("album_id", album_id.ToString());
+                parameters.Add("album_id", album_id.ToApiString());
             if (before != null)
-                parameters.Add("before", before.ToString());
+                parameters.Add("before", before.ToApiString());
             if (after != null)
-                parameters.Add("after", after.ToString());
+                parameters.Add("after", after.ToApiString());
 
             return await _vkontakte.GetAsync<int>("market.reorderAlbums", parameters);
         }
@@ -505,13 +505,13 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (title != null)
                 parameters.Add("title", title);
             if (photo_id != null)
-                parameters.Add("photo_id", photo_id.ToString());
+                parameters.Add("photo_id", photo_id.ToApiString());
             if (main_album != null)
-                parameters.Add("main_album", main_album.ToString());
+                parameters.Add("main_album", main_album.ToApiString());
 
             return await _vkontakte.GetAsync<VkLib.Responses.Market.AddAlbumResponse>("market.addAlbum", parameters);
         }
@@ -530,15 +530,15 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (album_id != null)
-                parameters.Add("album_id", album_id.ToString());
+                parameters.Add("album_id", album_id.ToApiString());
             if (title != null)
                 parameters.Add("title", title);
             if (photo_id != null)
-                parameters.Add("photo_id", photo_id.ToString());
+                parameters.Add("photo_id", photo_id.ToApiString());
             if (main_album != null)
-                parameters.Add("main_album", main_album.ToString());
+                parameters.Add("main_album", main_album.ToApiString());
 
             return await _vkontakte.GetAsync<int>("market.editAlbum", parameters);
         }
@@ -554,9 +554,9 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (album_id != null)
-                parameters.Add("album_id", album_id.ToString());
+                parameters.Add("album_id", album_id.ToApiString());
 
             return await _vkontakte.GetAsync<int>("market.deleteAlbum", parameters);
         }
@@ -573,11 +573,11 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (item_id != null)
-                parameters.Add("item_id", item_id.ToString());
+                parameters.Add("item_id", item_id.ToApiString());
             if (album_ids != null)
-                parameters.Add("album_ids", string.Join(",", album_ids));
+                parameters.Add("album_ids", album_ids.ToApiString());
 
             return await _vkontakte.GetAsync<int>("market.removeFromAlbum", parameters);
         }
@@ -594,11 +594,11 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (item_id != null)
-                parameters.Add("item_id", item_id.ToString());
+                parameters.Add("item_id", item_id.ToApiString());
             if (album_ids != null)
-                parameters.Add("album_ids", string.Join(",", album_ids));
+                parameters.Add("album_ids", album_ids.ToApiString());
 
             return await _vkontakte.GetAsync<int>("market.addToAlbum", parameters);
         }

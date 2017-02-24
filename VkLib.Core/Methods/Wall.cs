@@ -19,6 +19,74 @@ namespace VkLib.Methods
         }
 
         /// <summary>
+        /// Returns a list of posts on a user wall or community wall.
+        /// </summary>
+        /// <param name="owner_id">ID of the user or community that owns the wall. By default, current user ID. Use a negative value to designate a community ID.</param>
+        /// <param name="domain">User or community short address.</param>
+        /// <param name="offset">Offset needed to return a specific subset of posts.</param>
+        /// <param name="count">Number of posts to return (maximum 100).</param>
+        /// <param name="filter">Filter to apply: 'owner' — posts by the wall owner; 'others' — posts by someone else; 'all' — posts by the wall owner and others (default); 'postponed' — timed posts (only available for calls with an 'access_token'); 'suggests' — suggested posts on a community wall</param>
+        /// <param name="extended">'1' — to return 'wall', 'profiles', and 'groups' fields; '0' — to return no additional fields (default)</param>
+        /// <param name="fields"></param>
+        public async Task<ApiItemsResponse<VkLib.Types.Wall.WallpostFull>> Get(
+            int? owner_id = null, string domain = null, int? offset = null, int? count = null, 
+            string filter = null, bool? extended = null, IEnumerable<string> fields = null)
+        {
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+
+            if (owner_id != null)
+                parameters.Add("owner_id", owner_id.ToApiString());
+            if (domain != null)
+                parameters.Add("domain", domain);
+            if (offset != null)
+                parameters.Add("offset", offset.ToApiString());
+            if (count != null)
+                parameters.Add("count", count.ToApiString());
+            if (filter != null)
+                parameters.Add("filter", filter.ToApiString());
+            if (extended != null)
+                parameters.Add("extended", extended.ToApiString());
+            if (fields != null)
+                parameters.Add("fields", fields.ToApiString());
+
+            return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Wall.WallpostFull>>("wall.get", parameters);
+        }
+
+        /// <summary>
+        /// Allows to search posts on user or community walls.
+        /// </summary>
+        /// <param name="owner_id">user or community id. Remember that for a community 'owner_id' must be negative.</param>
+        /// <param name="domain">user or community screen name.</param>
+        /// <param name="query">search query string.</param>
+        /// <param name="owners_only">'1' – returns only page owner's posts.</param>
+        /// <param name="count">count of posts to return.</param>
+        /// <param name="extended">count of posts to return.</param>
+        /// <param name="fields"></param>
+        public async Task<ApiItemsResponse<VkLib.Types.Wall.WallpostFull>> Search(
+            int? owner_id = null, string domain = null, string query = null, bool? owners_only = null, 
+            int? count = null, bool? extended = null, IEnumerable<string> fields = null)
+        {
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+
+            if (owner_id != null)
+                parameters.Add("owner_id", owner_id.ToApiString());
+            if (domain != null)
+                parameters.Add("domain", domain.ToApiString());
+            if (query != null)
+                parameters.Add("query", query);
+            if (owners_only != null)
+                parameters.Add("owners_only", owners_only.ToApiString());
+            if (count != null)
+                parameters.Add("count", count.ToApiString());
+            if (extended != null)
+                parameters.Add("extended", extended.ToApiString());
+            if (fields != null)
+                parameters.Add("fields", fields.ToApiString());
+
+            return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Wall.WallpostFull>>("wall.get", parameters);
+        }
+
+        /// <summary>
         /// Returns a list of posts from user or community walls by their IDs.
         /// Docs: <see href="https://vk.com/dev/wall.getById">wall.getById</see>
         /// </summary>
@@ -31,13 +99,13 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (posts != null)
-                parameters.Add("posts", string.Join(",", posts));
+                parameters.Add("posts", posts.ToApiString());
             if (extended != null)
-                parameters.Add("extended", extended.ToString());
+                parameters.Add("extended", extended.ToApiString());
             if (copy_history_depth != null)
-                parameters.Add("copy_history_depth", copy_history_depth.ToString());
+                parameters.Add("copy_history_depth", copy_history_depth.ToApiString());
             if (fields != null)
-                parameters.Add("fields", string.Join(",", fields));
+                parameters.Add("fields", fields.ToApiString());
 
             return await _vkontakte.GetAsync<IEnumerable<VkLib.Types.Wall.WallpostFull>>("wall.getById", parameters);
         }
@@ -65,33 +133,33 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (friends_only != null)
-                parameters.Add("friends_only", friends_only.ToString());
+                parameters.Add("friends_only", friends_only.ToApiString());
             if (from_group != null)
-                parameters.Add("from_group", from_group.ToString());
+                parameters.Add("from_group", from_group.ToApiString());
             if (message != null)
                 parameters.Add("message", message);
             if (attachments != null)
-                parameters.Add("attachments", string.Join(",", attachments));
+                parameters.Add("attachments", attachments.ToApiString());
             if (services != null)
                 parameters.Add("services", services);
             if (signed != null)
-                parameters.Add("signed", signed.ToString());
+                parameters.Add("signed", signed.ToApiString());
             if (publish_date != null)
-                parameters.Add("publish_date", publish_date.ToString());
+                parameters.Add("publish_date", publish_date.ToApiString());
             if (lat != null)
-                parameters.Add("lat", lat.ToString());
+                parameters.Add("lat", lat.ToApiString());
             if (long_ != null)
-                parameters.Add("long_", long_.ToString());
+                parameters.Add("long_", long_.ToApiString());
             if (place_id != null)
-                parameters.Add("place_id", place_id.ToString());
+                parameters.Add("place_id", place_id.ToApiString());
             if (post_id != null)
-                parameters.Add("post_id", post_id.ToString());
+                parameters.Add("post_id", post_id.ToApiString());
             if (guid != null)
                 parameters.Add("guid", guid);
             if (mark_as_ads != null)
-                parameters.Add("mark_as_ads", mark_as_ads.ToString());
+                parameters.Add("mark_as_ads", mark_as_ads.ToApiString());
 
             return await _vkontakte.GetAsync<VkLib.Responses.Wall.PostResponse>("wall.post", parameters);
         }
@@ -113,9 +181,9 @@ namespace VkLib.Methods
             if (message != null)
                 parameters.Add("message", message);
             if (group_id != null)
-                parameters.Add("group_id", group_id.ToString());
+                parameters.Add("group_id", group_id.ToApiString());
             if (mark_as_ads != null)
-                parameters.Add("mark_as_ads", mark_as_ads.ToString());
+                parameters.Add("mark_as_ads", mark_as_ads.ToApiString());
 
             return await _vkontakte.GetAsync<VkLib.Responses.Wall.RepostResponse>("wall.repost", parameters);
         }
@@ -133,13 +201,13 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (post_id != null)
-                parameters.Add("post_id", post_id.ToString());
+                parameters.Add("post_id", post_id.ToApiString());
             if (offset != null)
-                parameters.Add("offset", offset.ToString());
+                parameters.Add("offset", offset.ToApiString());
             if (count != null)
-                parameters.Add("count", count.ToString());
+                parameters.Add("count", count.ToApiString());
 
             return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Wall.WallpostFull>>("wall.getReposts", parameters);
         }
@@ -165,29 +233,29 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (post_id != null)
-                parameters.Add("post_id", post_id.ToString());
+                parameters.Add("post_id", post_id.ToApiString());
             if (friends_only != null)
-                parameters.Add("friends_only", friends_only.ToString());
+                parameters.Add("friends_only", friends_only.ToApiString());
             if (message != null)
                 parameters.Add("message", message);
             if (attachments != null)
-                parameters.Add("attachments", string.Join(",", attachments));
+                parameters.Add("attachments", attachments.ToApiString());
             if (services != null)
                 parameters.Add("services", services);
             if (signed != null)
-                parameters.Add("signed", signed.ToString());
+                parameters.Add("signed", signed.ToApiString());
             if (publish_date != null)
-                parameters.Add("publish_date", publish_date.ToString());
+                parameters.Add("publish_date", publish_date.ToApiString());
             if (lat != null)
-                parameters.Add("lat", lat.ToString());
+                parameters.Add("lat", lat.ToApiString());
             if (long_ != null)
-                parameters.Add("long_", long_.ToString());
+                parameters.Add("long_", long_.ToApiString());
             if (place_id != null)
-                parameters.Add("place_id", place_id.ToString());
+                parameters.Add("place_id", place_id.ToApiString());
             if (mark_as_ads != null)
-                parameters.Add("mark_as_ads", mark_as_ads.ToString());
+                parameters.Add("mark_as_ads", mark_as_ads.ToApiString());
 
             return await _vkontakte.GetAsync<int>("wall.edit", parameters);
         }
@@ -203,9 +271,9 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (post_id != null)
-                parameters.Add("post_id", post_id.ToString());
+                parameters.Add("post_id", post_id.ToApiString());
 
             return await _vkontakte.GetAsync<int>("wall.delete", parameters);
         }
@@ -221,9 +289,9 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (post_id != null)
-                parameters.Add("post_id", post_id.ToString());
+                parameters.Add("post_id", post_id.ToApiString());
 
             return await _vkontakte.GetAsync<int>("wall.restore", parameters);
         }
@@ -239,9 +307,9 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (post_id != null)
-                parameters.Add("post_id", post_id.ToString());
+                parameters.Add("post_id", post_id.ToApiString());
 
             return await _vkontakte.GetAsync<int>("wall.pin", parameters);
         }
@@ -257,9 +325,9 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (post_id != null)
-                parameters.Add("post_id", post_id.ToString());
+                parameters.Add("post_id", post_id.ToApiString());
 
             return await _vkontakte.GetAsync<int>("wall.unpin", parameters);
         }
@@ -282,23 +350,23 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (post_id != null)
-                parameters.Add("post_id", post_id.ToString());
+                parameters.Add("post_id", post_id.ToApiString());
             if (need_likes != null)
-                parameters.Add("need_likes", need_likes.ToString());
+                parameters.Add("need_likes", need_likes.ToApiString());
             if (start_comment_id != null)
-                parameters.Add("start_comment_id", start_comment_id.ToString());
+                parameters.Add("start_comment_id", start_comment_id.ToApiString());
             if (offset != null)
-                parameters.Add("offset", offset.ToString());
+                parameters.Add("offset", offset.ToApiString());
             if (count != null)
-                parameters.Add("count", count.ToString());
+                parameters.Add("count", count.ToApiString());
             if (sort != null)
                 parameters.Add("sort", sort);
             if (preview_length != null)
-                parameters.Add("preview_length", preview_length.ToString());
+                parameters.Add("preview_length", preview_length.ToApiString());
             if (extended != null)
-                parameters.Add("extended", extended.ToString());
+                parameters.Add("extended", extended.ToApiString());
 
             return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Wall.WallComment>>("wall.getComments", parameters);
         }
@@ -320,19 +388,19 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (post_id != null)
-                parameters.Add("post_id", post_id.ToString());
+                parameters.Add("post_id", post_id.ToApiString());
             if (from_group != null)
-                parameters.Add("from_group", from_group.ToString());
+                parameters.Add("from_group", from_group.ToApiString());
             if (message != null)
                 parameters.Add("message", message);
             if (reply_to_comment != null)
-                parameters.Add("reply_to_comment", reply_to_comment.ToString());
+                parameters.Add("reply_to_comment", reply_to_comment.ToApiString());
             if (attachments != null)
-                parameters.Add("attachments", string.Join(",", attachments));
+                parameters.Add("attachments", attachments.ToApiString());
             if (sticker_id != null)
-                parameters.Add("sticker_id", sticker_id.ToString());
+                parameters.Add("sticker_id", sticker_id.ToApiString());
             if (guid != null)
                 parameters.Add("guid", guid);
 
@@ -352,13 +420,13 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (comment_id != null)
-                parameters.Add("comment_id", comment_id.ToString());
+                parameters.Add("comment_id", comment_id.ToApiString());
             if (message != null)
                 parameters.Add("message", message);
             if (attachments != null)
-                parameters.Add("attachments", string.Join(",", attachments));
+                parameters.Add("attachments", attachments.ToApiString());
 
             return await _vkontakte.GetAsync<int>("wall.editComment", parameters);
         }
@@ -374,9 +442,9 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (comment_id != null)
-                parameters.Add("comment_id", comment_id.ToString());
+                parameters.Add("comment_id", comment_id.ToApiString());
 
             return await _vkontakte.GetAsync<int>("wall.deleteComment", parameters);
         }
@@ -392,9 +460,9 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (comment_id != null)
-                parameters.Add("comment_id", comment_id.ToString());
+                parameters.Add("comment_id", comment_id.ToApiString());
 
             return await _vkontakte.GetAsync<int>("wall.restoreComment", parameters);
         }
@@ -411,11 +479,11 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (post_id != null)
-                parameters.Add("post_id", post_id.ToString());
+                parameters.Add("post_id", post_id.ToApiString());
             if (reason != null)
-                parameters.Add("reason", reason.ToString());
+                parameters.Add("reason", reason.ToApiString());
 
             return await _vkontakte.GetAsync<int>("wall.reportPost", parameters);
         }
@@ -432,11 +500,11 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (comment_id != null)
-                parameters.Add("comment_id", comment_id.ToString());
+                parameters.Add("comment_id", comment_id.ToApiString());
             if (reason != null)
-                parameters.Add("reason", reason.ToString());
+                parameters.Add("reason", reason.ToApiString());
 
             return await _vkontakte.GetAsync<int>("wall.reportComment", parameters);
         }

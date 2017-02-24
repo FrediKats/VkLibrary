@@ -32,15 +32,15 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (count != null)
-                parameters.Add("count", count.ToString());
+                parameters.Add("count", count.ToApiString());
             if (start_from != null)
                 parameters.Add("start_from", start_from);
             if (filters != null)
-                parameters.Add("filters", string.Join(",", filters));
+                parameters.Add("filters", filters.ToApiString());
             if (start_time != null)
-                parameters.Add("start_time", start_time.ToString());
+                parameters.Add("start_time", start_time.ToApiString());
             if (end_time != null)
-                parameters.Add("end_time", end_time.ToString());
+                parameters.Add("end_time", end_time.ToApiString());
 
             return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Notifications.Notification>>("notifications.get", parameters);
         }

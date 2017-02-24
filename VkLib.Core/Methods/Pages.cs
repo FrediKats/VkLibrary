@@ -34,19 +34,19 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToString());
+                parameters.Add("owner_id", owner_id.ToApiString());
             if (page_id != null)
-                parameters.Add("page_id", page_id.ToString());
+                parameters.Add("page_id", page_id.ToApiString());
             if (global != null)
-                parameters.Add("global", global.ToString());
+                parameters.Add("global", global.ToApiString());
             if (site_preview != null)
-                parameters.Add("site_preview", site_preview.ToString());
+                parameters.Add("site_preview", site_preview.ToApiString());
             if (title != null)
                 parameters.Add("title", title);
             if (need_source != null)
-                parameters.Add("need_source", need_source.ToString());
+                parameters.Add("need_source", need_source.ToApiString());
             if (need_html != null)
-                parameters.Add("need_html", need_html.ToString());
+                parameters.Add("need_html", need_html.ToApiString());
 
             return await _vkontakte.GetAsync<VkLib.Types.Pages.WikipageFull>("pages.get", parameters);
         }
@@ -67,11 +67,11 @@ namespace VkLib.Methods
             if (text != null)
                 parameters.Add("text", text);
             if (page_id != null)
-                parameters.Add("page_id", page_id.ToString());
+                parameters.Add("page_id", page_id.ToApiString());
             if (group_id != null)
-                parameters.Add("group_id", group_id.ToString());
+                parameters.Add("group_id", group_id.ToApiString());
             if (user_id != null)
-                parameters.Add("user_id", user_id.ToString());
+                parameters.Add("user_id", user_id.ToApiString());
             if (title != null)
                 parameters.Add("title", title);
 
@@ -92,15 +92,15 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (page_id != null)
-                parameters.Add("page_id", page_id.ToString());
+                parameters.Add("page_id", page_id.ToApiString());
             if (group_id != null)
-                parameters.Add("group_id", group_id.ToString());
+                parameters.Add("group_id", group_id.ToApiString());
             if (user_id != null)
-                parameters.Add("user_id", user_id.ToString());
+                parameters.Add("user_id", user_id.ToApiString());
             if (view != null)
-                parameters.Add("view", view.ToString());
+                parameters.Add("view", view.ToApiString());
             if (edit != null)
-                parameters.Add("edit", edit.ToString());
+                parameters.Add("edit", edit.ToApiString());
 
             return await _vkontakte.GetAsync<int?>("pages.saveAccess", parameters);
         }
@@ -117,11 +117,11 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (page_id != null)
-                parameters.Add("page_id", page_id.ToString());
+                parameters.Add("page_id", page_id.ToApiString());
             if (group_id != null)
-                parameters.Add("group_id", group_id.ToString());
+                parameters.Add("group_id", group_id.ToApiString());
             if (user_id != null)
-                parameters.Add("user_id", user_id.ToString());
+                parameters.Add("user_id", user_id.ToApiString());
 
             return await _vkontakte.GetAsync<IEnumerable<VkLib.Types.Pages.WikipageVersion>>("pages.getHistory", parameters);
         }
@@ -136,7 +136,7 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (group_id != null)
-                parameters.Add("group_id", group_id.ToString());
+                parameters.Add("group_id", group_id.ToApiString());
 
             return await _vkontakte.GetAsync<IEnumerable<VkLib.Types.Pages.Wikipage>>("pages.getTitles", parameters);
         }
@@ -154,13 +154,13 @@ namespace VkLib.Methods
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (version_id != null)
-                parameters.Add("version_id", version_id.ToString());
+                parameters.Add("version_id", version_id.ToApiString());
             if (group_id != null)
-                parameters.Add("group_id", group_id.ToString());
+                parameters.Add("group_id", group_id.ToApiString());
             if (user_id != null)
-                parameters.Add("user_id", user_id.ToString());
+                parameters.Add("user_id", user_id.ToApiString());
             if (need_html != null)
-                parameters.Add("need_html", need_html.ToString());
+                parameters.Add("need_html", need_html.ToApiString());
 
             return await _vkontakte.GetAsync<VkLib.Types.Pages.WikipageFull>("pages.getVersion", parameters);
         }
@@ -178,7 +178,7 @@ namespace VkLib.Methods
             if (text != null)
                 parameters.Add("text", text);
             if (group_id != null)
-                parameters.Add("group_id", group_id.ToString());
+                parameters.Add("group_id", group_id.ToApiString());
 
             return await _vkontakte.GetAsync<string>("pages.parseWiki", parameters);
         }

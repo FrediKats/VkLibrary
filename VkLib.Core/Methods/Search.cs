@@ -33,11 +33,11 @@ namespace VkLib.Methods
             if (q != null)
                 parameters.Add("q", q);
             if (limit != null)
-                parameters.Add("limit", limit.ToString());
+                parameters.Add("limit", limit.ToApiString());
             if (filters != null)
-                parameters.Add("filters", string.Join(",", filters));
+                parameters.Add("filters", filters.ToApiString());
             if (search_global != null)
-                parameters.Add("search_global", search_global.ToString());
+                parameters.Add("search_global", search_global.ToApiString());
 
             return await _vkontakte.GetAsync<IEnumerable<VkLib.Types.Search.Hint>>("search.getHints", parameters);
         }
