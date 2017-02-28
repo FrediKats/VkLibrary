@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 
 namespace VkLib.Auth
 { 
@@ -10,16 +11,30 @@ namespace VkLib.Auth
         /// <summary>
         /// Access token itself.
         /// </summary>
+        [JsonProperty("access_token")]
         public string Token { get; set; }
+
+        /// <summary>
+        /// Expires in UnixTimeStamp.
+        /// </summary>
+        [JsonProperty("expires_in")]
+        public double ExpiresIn { get; set; }
 
         /// <summary>
         /// Expires in DateTime.
         /// </summary>
-        public DateTime ExpiresIn { get; set; }
+        public DateTime ExpiresInDateTime
+        {
+            get
+            {
+                return DateTime.Now.Add(TimeSpan.FromSeconds(ExpiresIn));
+            }
+        }
 
         /// <summary>
         /// User ID that owns this token.
         /// </summary>
+        [JsonProperty("user_id")]
         public int UserId { get; set; }
 
         /// <summary>
@@ -29,7 +44,7 @@ namespace VkLib.Auth
         {
             get
             {
-                return ExpiresIn != DateTime.MinValue && DateTime.Now > ExpiresIn;
+                return ExpiresInDateTime != DateTime.MinValue && DateTime.Now > ExpiresInDateTime;
             }
         }
 

@@ -17,7 +17,7 @@ namespace VkLib
         private readonly string _appId;
         private readonly string _apiVersion;
 
-        public const string DirectAuthUrl    = "https://oauth.vk.com/token";
+        public const string DirectAuthUrl    = "https://oauth.vk.com/";
         public const string OAuthUrl         = "https://oauth.vk.com/authorize?";
         public const string OAuthRedirectUrl = "https://oauth.vk.com/blank.html";
         public const string MethodBase       = "https://api.vk.com/method/";
@@ -34,7 +34,7 @@ namespace VkLib
             this._apiVersion = apiVersion;
             this._clientSecret = clientSecret;
         }
-
+        
         /// <summary>
         /// Sends GET request to vk server. Sample:
         /// GetAsync
@@ -42,20 +42,24 @@ namespace VkLib
         /// <param name="baseUri"></param>
         /// <param name="parameters"></param>
         /// <returns></returns>
-        public async Task<T> GetAsync<T>(string method, Dictionary<string, string> parameters)
-        {
+        internal async Task<T> GetAsync<T>(
+            string method, 
+            Dictionary<string, string> parameters, 
+            string baseUrl = Vkontakte.MethodBase,
+            bool usePlain = false
+        ) { 
             // Check network connectivity.
             if (!NetworkInterface.GetIsNetworkAvailable())
                 throw new Exception("Network unavailiable.");
 
             // Sign method using access token and api version number.
-            if (AccessToken != null)
+            if (AccessToken != null && !string.IsNullOrEmpty(AccessToken.Token))
                 parameters.Add("access_token", AccessToken.Token);
             parameters.Add("v", _apiVersion);
 
             // Build Uri string.
             string urlString = GetUrl(
-                string.Concat(MethodBase, method, "?"), 
+                string.Concat(baseUrl, method, "?"), 
                 parameters
             );
 
@@ -68,7 +72,10 @@ namespace VkLib
                 // Read response as string.
                 string response = await responseMessage.Content.ReadAsStringAsync();
                 log($"Response: {response}");
-               
+
+                // Should we use standart API response or an unknown format?
+                if (usePlain) return JsonConvert.DeserializeObject<T>(response);
+
                 // Deserialize object of given type.
                 ApiResponse<T> apiResponse = JsonConvert.DeserializeObject<ApiResponse<T>>(response);
 
@@ -92,12 +99,12 @@ namespace VkLib
         internal string GetUrl(string baseString, Dictionary<string, string> parameters)
         {
             return string.Concat(baseString,
-                    string.Join("&", parameters.Select(
-                        i => string.Format("{0}={1}",
-                        Uri.EscapeDataString(i.Key),
-                        Uri.EscapeDataString(i.Value)
-                    )))
-                );
+                string.Join("&", parameters.Select(
+                    i => string.Format("{0}={1}",
+                    Uri.EscapeDataString(i.Key),
+                    Uri.EscapeDataString(i.Value)
+                )))
+            );
         }
 
         /// <summary>
@@ -119,7 +126,7 @@ namespace VkLib
         /// Logs information to Debug output.
         /// </summary>
         /// <param name="obj">Object to show</param>
-        public void log(object obj)
+        internal void log(object obj)
         {
 #if DEBUG
             Debug.WriteLine(obj);
@@ -173,6 +180,14 @@ namespace VkLib
         public string ApiVersion
         {
             get { return _apiVersion; }
+        }
+
+        /// <summary>
+        /// API part related to direct auth.
+        /// </summary>
+        public DirectAuth DirectAuth
+        {
+            get { return new DirectAuth(this); }
         }
 
         /// <summary>

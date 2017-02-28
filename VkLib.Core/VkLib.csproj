@@ -108,6 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Auth\AccessToken.cs" />
+    <Compile Include="Auth\DirectAuth.cs" />
     <Compile Include="Auth\Enums.cs" />
     <Compile Include="Auth\OAuthResult.cs" />
     <Compile Include="Extensions.cs" />

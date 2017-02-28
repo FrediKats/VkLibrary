@@ -64,8 +64,7 @@ namespace VkLib.Auth
                 result.AccessToken.Token = p["access_token"];
 
             if (p.ContainsKey("expires_in"))
-                result.AccessToken.ExpiresIn = (p["expires_in"] != "0") ?
-                    DateTime.Now.Add( TimeSpan.FromSeconds( double.Parse(p["expires_in"]) ) ) : DateTime.MinValue;
+                result.AccessToken.ExpiresIn = double.Parse(p["expires_in"]);
 
             if (p.ContainsKey("user_id"))
                 result.AccessToken.UserId = int.Parse(p["user_id"]);
