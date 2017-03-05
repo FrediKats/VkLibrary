@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace VkLib
@@ -19,7 +20,7 @@ namespace VkLib
         /// <summary>
         /// Error got from API. Is NULL when everything is OK.
         /// </summary>
-        [JsonProperty("errors")]
+        [JsonProperty("error")]
         public ApiError Error { get; set; }
     }
 
@@ -61,5 +62,7 @@ namespace VkLib
         [JsonProperty("items")]
         public List<T> Items { get; set; }
     }
+
+
 
 }

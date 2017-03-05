@@ -36,8 +36,7 @@ namespace VkLib
         }
         
         /// <summary>
-        /// Sends GET request to vk server. Sample:
-        /// GetAsync
+        /// Sends GET request to vk server.
         /// </summary>
         /// <param name="baseUri"></param>
         /// <param name="parameters"></param>
@@ -78,12 +77,15 @@ namespace VkLib
 
                 // Deserialize object of given type.
                 ApiResponse<T> apiResponse = JsonConvert.DeserializeObject<ApiResponse<T>>(response);
+                log("ApiResponse successfully deserialized.");
 
                 // Check for errors.
                 if (apiResponse.Error != null)
                 { 
-                    log($"ERROR:{apiResponse.Error.ErrorMessage}, CODE: {apiResponse.Error.Code}");
-                    throw new FormatException(apiResponse.Error.ErrorMessage);
+                    log($"Received API error. Code: {apiResponse.Error.Code}, " +
+                        $"description: \"{apiResponse.Error.ErrorMessage}\"");
+
+                    throw new ApiException(apiResponse.Error);
                 }
 
                 return apiResponse.Response;

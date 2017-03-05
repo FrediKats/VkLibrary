@@ -22,5 +22,21 @@ namespace VkLib
 
             return variable.ToString();
         }
+
+    }
+
+    public class ApiException : Exception
+    {
+        private ApiError apiError;
+
+        public ApiException(ApiError apiError)
+        {
+            this.apiError = apiError;
+        }
+
+        public ApiError GetApiError()
+        {
+            return this.apiError;
+        }
     }
 }
