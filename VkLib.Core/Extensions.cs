@@ -10,7 +10,7 @@ namespace VkLib
 {
     public static class Extensions
     {
-        public static string ToApiString(this object variable)
+        internal static string ToApiString(this object variable)
         {
             // Check for booleans.
             Type type = variable.GetType();

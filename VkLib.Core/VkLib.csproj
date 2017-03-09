@@ -182,6 +182,7 @@
     <Compile Include="Responses\Messages\SetChatPhotoResponse.cs" />
     <Compile Include="Responses\Newsfeed\GetBannedExtendedResponse.cs" />
     <Compile Include="Responses\Newsfeed\GetBannedResponse.cs" />
+    <Compile Include="Responses\Newsfeed\NewsFeedResponse.cs" />
     <Compile Include="Responses\Photos\GetChatUploadServerResponse.cs" />
     <Compile Include="Responses\Photos\GetMarketAlbumUploadServerResponse.cs" />
     <Compile Include="Responses\Photos\GetMarketUploadServerResponse.cs" />

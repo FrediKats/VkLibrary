@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VkLib.Responses.Newsfeed;
 
 namespace VkLib.Methods
 {
@@ -31,7 +32,7 @@ namespace VkLib.Methods
         /// <param name="start_from">identifier required to get the next page of results. ; Value for this parameter is returned in 'next_from' field in a reply.</param>
         /// <param name="count">Number of news items to return (default 50; maximum 100). For auto feed, you can use the 'new_offset' parameter returned by this method.</param>
         /// <param name="fields">Additional fields of [vk.com/dev/fields|profiles] and [vk.com/dev/fields_groups|communities] to return.</param>
-        public async Task<ApiItemsResponse<object>> Get(IEnumerable<string> filters = null, bool? return_banned = null, int? start_time = null, int? end_time = null, int? max_photos = null, string source_ids = null, string start_from = null, int? count = null, IEnumerable<string> fields = null)
+        public async Task<NewsFeedResponse> Get(IEnumerable<string> filters = null, bool? return_banned = null, int? start_time = null, int? end_time = null, int? max_photos = null, string source_ids = null, string start_from = null, int? count = null, IEnumerable<string> fields = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -54,7 +55,7 @@ namespace VkLib.Methods
             if (fields != null)
                 parameters.Add("fields", fields.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<object>>("newsfeed.get", parameters);
+            return await _vkontakte.GetAsync<NewsFeedResponse>("newsfeed.get", parameters);
         }
 
         /// <summary>
@@ -67,7 +68,7 @@ namespace VkLib.Methods
         /// <param name="start_from">'new_from' value obtained in previous call.</param>
         /// <param name="count">Number of news items to return.</param>
         /// <param name="fields">Additional fields of [vk.com/dev/fields|profiles] and [vk.com/dev/fields_groups|communities] to return.</param>
-        public async Task<ApiItemsResponse<object>> GetRecommended(int? start_time = null, int? end_time = null, int? max_photos = null, string start_from = null, int? count = null, IEnumerable<string> fields = null)
+        public async Task<NewsFeedResponse> GetRecommended(int? start_time = null, int? end_time = null, int? max_photos = null, string start_from = null, int? count = null, IEnumerable<string> fields = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -84,7 +85,7 @@ namespace VkLib.Methods
             if (fields != null)
                 parameters.Add("fields", fields.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<object>>("newsfeed.getRecommended", parameters);
+            return await _vkontakte.GetAsync<NewsFeedResponse>("newsfeed.getRecommended", parameters);
         }
 
         /// <summary>
@@ -98,7 +99,7 @@ namespace VkLib.Methods
         /// <param name="end_time">Latest timestamp (in Unix time) of a comment to return. By default, the current time.</param>
         /// <param name="start_from">Identificator needed to return the next page with results. Value for this parameter returns in 'next_from' field.</param>
         /// <param name="fields">Additional fields of [vk.com/dev/fields|profiles] and [vk.com/dev/fields_groups|communities] to return.</param>
-        public async Task<ApiItemsResponse<object>> GetComments(int? count = null, IEnumerable<string> filters = null, string reposts = null, int? start_time = null, int? end_time = null, string start_from = null, IEnumerable<string> fields = null)
+        public async Task<NewsFeedResponse> GetComments(int? count = null, IEnumerable<string> filters = null, string reposts = null, int? start_time = null, int? end_time = null, string start_from = null, IEnumerable<string> fields = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -117,7 +118,7 @@ namespace VkLib.Methods
             if (fields != null)
                 parameters.Add("fields", fields.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<object>>("newsfeed.getComments", parameters);
+            return await _vkontakte.GetAsync<NewsFeedResponse>("newsfeed.getComments", parameters);
         }
 
         /// <summary>

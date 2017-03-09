@@ -137,10 +137,12 @@ namespace VkLib.Methods
         /// <param name="out">'1' — to return outgoing requests; '0' — to return incoming requests (default)</param>
         /// <param name="sort">Sort order:; '1' — by number of mutual friends; '0' — by date</param>
         /// <param name="suggested">'1' — to return a list of suggested friends; '0' — to return friend requests (default)</param>
-        public async Task<ApiItemsResponse<T>> GetRequests<T>(int? need_viewed = null, int? offset = null, int? count = null, int? need_mutual = null, int? out_ = null, int? sort = null, int? suggested = null)
+        public async Task<ApiItemsResponse<T>> GetRequests<T>(bool? need_viewed = null, int? offset = null, int? count = null, bool? need_mutual = null, bool? out_ = null, int? sort = null, bool? suggested = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
+            if (need_viewed != null)
+                parameters.Add("need_viewed", need_viewed.ToApiString());
             if (offset != null)
                 parameters.Add("offset", offset.ToApiString());
             if (count != null)
