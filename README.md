@@ -29,7 +29,7 @@ Vkontakte vk = new Vkontakte(
 ```
 
 ## Authentication
-Most methods require a valid access token. To get that token using OAuth, you should show a WebView-like control to a user, navigate him to authentication page and handle future redirects. More info can be found <a href="http://vk.com/dev/auth_mobile">here</a>. There are some examples below on how to get things done in UWP:
+Most methods require a valid access token. To get that token using <b>OAuth</b>, you should show a WebView-like control to a user, navigate him to authentication page and handle future redirects. More info can be found <a href="http://vk.com/dev/auth_mobile">here</a>. There are some examples below on how to get things done in UWP:
 ```c#
 // Firstly we build an OAuth url and launch it. (assuming that WebView is a declared Web View control)
 string url = vk.OAuth.GetAuthUrl(ScopeSettings.Root, AuthDisplayType.Mobile);
@@ -47,6 +47,15 @@ private async void WebView_NavigationStarting(WebView sender, WebViewNavigationS
         vk.AccessToken = result.AccessToken;
     }
 }
+```
+
+If you are developing an vk application that was <a href="https://vk.com/dev/auth_direct">approved</a> by vk administration, than you can use Direct Auth extensions. You need to write the following code to achieve this:
+```c#
+AccessToken accessToken = await App.vk.DirectAuth.Login(
+    login: LoginBox.Text,           // User's login (e-mail or phone)
+    password: PasswordBox.Password, // User's password
+    scope: ScopeSettings.IamTheGod  // Scope settings
+);
 ```
 
 ## Calling API methods
