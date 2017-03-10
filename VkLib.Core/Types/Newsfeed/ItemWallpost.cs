@@ -66,5 +66,10 @@ namespace VkLib.Types.Newsfeed
         [JsonProperty("attachments")]
         public IEnumerable<VkLib.Types.Wall.WallpostAttachment> Attachments { get; set; }
 
+        [JsonProperty("source_id")]
+        public int? SourceId { get; set; }
+
+        [JsonProperty("date")]
+        public double? Date { get; set; }
     }
 }
