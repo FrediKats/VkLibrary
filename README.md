@@ -52,8 +52,8 @@ private async void WebView_NavigationStarting(WebView sender, WebViewNavigationS
 If you are developing an vk application that was <a href="https://vk.com/dev/auth_direct">approved</a> by vk administration, than you can use Direct Auth extensions. You need to write the following code to achieve this:
 ```c#
 AccessToken accessToken = await App.vk.DirectAuth.Login(
-    login: LoginBox.Text,           // User's login (e-mail or phone)
-    password: PasswordBox.Password, // User's password
+    login: "example@example.com",   // User's login (e-mail or phone)
+    password: "123456789",          // User's password
     scope: ScopeSettings.IamTheGod  // Scope settings
 );
 ```
