@@ -9,18 +9,21 @@ namespace VkLib.Responses.Newsfeed
     public class NewsFeedResponse
     {
         [JsonProperty("items")]
-        public IEnumerable<ItemWallpost> Items { get; set; }
+        public List<ItemWallpost> Items { get; set; }
 
         [JsonProperty("profiles")]
-        public IEnumerable<UserFull> Profiles { get; set; }
+        public List<UserFull> Profiles { get; set; }
 
         [JsonProperty("groups")]
-        public IEnumerable<GroupFull> Groups { get; set; }
+        public List<GroupFull> Groups { get; set; }
 
         [JsonProperty("new_offset")]
         public string NewOffset { get; set; }
 
         [JsonProperty("next_from")]
         public string NextFrom { get; set; }
+
+        [JsonProperty("count")]
+        public int? Count { get; set; }
     }
 }

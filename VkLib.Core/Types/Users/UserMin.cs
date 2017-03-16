@@ -28,7 +28,7 @@ namespace VkLib.Types.Users
         /// User ID
         /// </summary>
         [JsonProperty("id")]
-        public int? Id { get; set; }
+        public int Id { get; set; }
 
         /// <summary>
         /// Returns if a profile is deleted or blocked

@@ -16,7 +16,7 @@ namespace VkLib.Types.Video
         /// Video duration in seconds
         /// </summary>
         [JsonProperty("duration")]
-        public int? Duration { get; set; }
+        public double? Duration { get; set; }
 
         /// <summary>
         /// Video ID

@@ -34,7 +34,7 @@ namespace VkLib.Types.Notifications
         /// Property
         /// </summary>
         [JsonProperty("parent")]
-        public IEnumerable<object> Parent { get; set; }
+        public VkLib.Types.Notifications.Feedback Parent { get; set; }
 
     }
 }

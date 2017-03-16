@@ -22,7 +22,7 @@ namespace VkLib.Types.Wall
         /// Date of publishing in Unixtime
         /// </summary>
         [JsonProperty("date")]
-        public int? Date { get; set; }
+        public double? Date { get; set; }
 
         /// <summary>
         /// Post ID

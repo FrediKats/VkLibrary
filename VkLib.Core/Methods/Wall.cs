@@ -28,7 +28,7 @@ namespace VkLib.Methods
         /// <param name="filter">Filter to apply: 'owner' — posts by the wall owner; 'others' — posts by someone else; 'all' — posts by the wall owner and others (default); 'postponed' — timed posts (only available for calls with an 'access_token'); 'suggests' — suggested posts on a community wall</param>
         /// <param name="extended">'1' — to return 'wall', 'profiles', and 'groups' fields; '0' — to return no additional fields (default)</param>
         /// <param name="fields"></param>
-        public async Task<ApiItemsResponse<VkLib.Types.Wall.WallpostFull>> Get(
+        public async Task<VkLib.Responses.Newsfeed.NewsFeedResponse> Get(
             int? owner_id = null, string domain = null, int? offset = null, int? count = null, 
             string filter = null, bool? extended = null, IEnumerable<string> fields = null)
         {
@@ -49,7 +49,7 @@ namespace VkLib.Methods
             if (fields != null)
                 parameters.Add("fields", fields.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Wall.WallpostFull>>("wall.get", parameters);
+            return await _vkontakte.GetAsync<VkLib.Responses.Newsfeed.NewsFeedResponse>("wall.get", parameters);
         }
 
         /// <summary>

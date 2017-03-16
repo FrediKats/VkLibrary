@@ -16,7 +16,7 @@ namespace VkLib.Types.Wall
         /// Property
         /// </summary>
         [JsonProperty("copy_history")]
-        public IEnumerable<VkLib.Types.Wall.Wallpost> CopyHistory { get; set; }
+        public IEnumerable<VkLib.Types.Wall.WallpostFull> CopyHistory { get; set; }
 
         /// <summary>
         /// Information whether current user can edit the post

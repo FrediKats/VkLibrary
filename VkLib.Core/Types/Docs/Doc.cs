@@ -16,7 +16,7 @@ namespace VkLib.Types.Docs
         /// Date when file has been uploaded in Unixtime
         /// </summary>
         [JsonProperty("date")]
-        public int? Date { get; set; }
+        public double? Date { get; set; }
 
         /// <summary>
         /// Property
