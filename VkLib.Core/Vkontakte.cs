@@ -62,27 +62,27 @@ namespace VkLib
                 parameters
             );
 
-            log($"Invoking {method}: {urlString}");
+            Log($"Invoking {method}: {urlString}");
 
             // Invoke GET request.
             using (HttpClient httpClient = new HttpClient())
-            using (HttpResponseMessage responseMessage = await httpClient.GetAsync(urlString))
+            using (HttpResponseMessage responseMessage = await httpClient.GetAsync(urlString).ConfigureAwait(false))
             {
                 // Read response as string.
-                string response = await responseMessage.Content.ReadAsStringAsync();
-                log($"Response: {response}");
+                string response = await responseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+                Log($"Response: {response}");
 
                 // Should we use standart API response or an unknown format?
                 if (usePlain) return JsonConvert.DeserializeObject<T>(response);
 
                 // Deserialize object of given type.
                 ApiResponse<T> apiResponse = JsonConvert.DeserializeObject<ApiResponse<T>>(response);
-                log("ApiResponse successfully deserialized.");
+                Log("ApiResponse successfully deserialized.");
 
                 // Check for errors.
                 if (apiResponse.Error != null)
                 { 
-                    log($"Received API error. Code: {apiResponse.Error.Code}, " +
+                    Log($"Received API error. Code: {apiResponse.Error.Code}, " +
                         $"description: \"{apiResponse.Error.ErrorMessage}\"");
 
                     throw new ApiException(apiResponse.Error);
@@ -121,14 +121,15 @@ namespace VkLib
             return await GetAsync<T>("execute", new Dictionary<string, string>() 
             {
                 { "code", script }
-            });
+            })
+            .ConfigureAwait(false);
         }
 
         /// <summary>
         /// Logs information to Debug output.
         /// </summary>
         /// <param name="obj">Object to show</param>
-        internal void log(object obj)
+        internal void Log(object obj)
         {
 #if DEBUG
             Debug.WriteLine(obj);

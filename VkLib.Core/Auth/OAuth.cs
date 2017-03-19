@@ -43,7 +43,7 @@ namespace VkLib.Auth
             );
 
             // Log url.
-            _vkontakte.log($"Prepared OAuth url: {result_url}");
+            _vkontakte.Log($"Prepared OAuth url: {result_url}");
             return result_url;
         }
 

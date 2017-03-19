@@ -19,7 +19,7 @@ namespace VkLib.Auth
 
         public async Task<AccessToken> Login(string login, string password, ScopeSettings? scope)
         {
-            _vkontakte.log("Invoking direct auth login...");
+            _vkontakte.Log("Invoking direct auth login...");
             
             if (_vkontakte.ClientSecret == null || _vkontakte.AppId == null)
                 throw new Exception("App ID and Client Secret MUST be specified.");
@@ -45,9 +45,9 @@ namespace VkLib.Auth
             );
 
             if (token.Token == null)
-                _vkontakte.log("Failed to get token!");
+                _vkontakte.Log("Failed to get token!");
             else
-                _vkontakte.log("Authorization succeed.");
+                _vkontakte.Log("Authorization succeed.");
 
             return token;
         }
