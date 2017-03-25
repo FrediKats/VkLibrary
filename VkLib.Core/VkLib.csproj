@@ -111,6 +111,7 @@
     <Compile Include="Auth\DirectAuth.cs" />
     <Compile Include="Auth\Enums.cs" />
     <Compile Include="Auth\OAuthResult.cs" />
+    <Compile Include="Converters\InvalidTypeJsonConverter.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Methods\Account.cs" />
     <Compile Include="Methods\Ads.cs" />

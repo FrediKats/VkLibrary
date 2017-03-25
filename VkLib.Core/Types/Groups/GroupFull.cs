@@ -135,7 +135,7 @@ namespace VkLib.Types.Groups
         /// <summary>
         /// Property
         /// </summary>
-        [JsonProperty("counters")]
+        [JsonProperty("counters"), JsonConverter(typeof(Converters.InvalidTypeJsonConverter))]
         public VkLib.Types.Groups.CountersGroup Counters { get; set; }
 
         /// <summary>

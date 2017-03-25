@@ -37,6 +37,7 @@ namespace VkLib
             using (MultipartFormDataContent content = new MultipartFormDataContent())
             using (ByteArrayContent streamContent = new ByteArrayContent(bytes))
             {
+                _vkontakte.Log($"Uploading {type} named \"{fileName}\" to VK.COM server: {uri}");
                 streamContent.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
                 {
                     FileName = fileName,

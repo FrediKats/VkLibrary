@@ -22,7 +22,7 @@ namespace VkLib.Types.Groups
         /// Link title
         /// </summary>
         [JsonProperty("name")]
-        public int? Name { get; set; }
+        public string Name { get; set; }
 
         /// <summary>
         /// Information whether the link title can be edited
