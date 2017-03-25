@@ -155,7 +155,7 @@ namespace VkLib.Methods
         /// <param name="count">Number of objects to return.</param>
         /// <param name="photo_sizes">'1' — to return photo sizes in a</param>
         /// <param name="fields">Additional profile [vk.com/dev/fields|fields] to return. </param>
-        public async Task<ApiItemsResponse<VkLib.Types.Messages.AttachmentsHistory>> GetHistoryAttachments(int? peer_id = null, string media_type = null, string start_from = null, int? count = null, bool? photo_sizes = null, IEnumerable<string> fields = null)
+        public async Task<ApiItemsResponse<VkLib.Types.Messages.AttachmentsContainer>> GetHistoryAttachments(int? peer_id = null, string media_type = null, string start_from = null, int? count = null, bool? photo_sizes = null, IEnumerable<string> fields = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -172,7 +172,7 @@ namespace VkLib.Methods
             if (fields != null)
                 parameters.Add("fields", fields.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Messages.AttachmentsHistory>>("messages.getHistoryAttachments", parameters);
+            return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Messages.AttachmentsContainer>>("messages.getHistoryAttachments", parameters);
         }
 
         /// <summary>

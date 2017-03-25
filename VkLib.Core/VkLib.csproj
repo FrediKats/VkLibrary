@@ -326,6 +326,7 @@
     <Compile Include="Types\Market\MarketItemFull.cs" />
     <Compile Include="Types\Market\Price.cs" />
     <Compile Include="Types\Market\Section.cs" />
+    <Compile Include="Types\Messages\AttachmentsContainer.cs" />
     <Compile Include="Types\Messages\AttachmentsHistory.cs" />
     <Compile Include="Types\Messages\Chat.cs" />
     <Compile Include="Types\Messages\ChatFull.cs" />

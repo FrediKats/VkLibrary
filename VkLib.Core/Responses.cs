@@ -61,6 +61,12 @@ namespace VkLib
         /// </summary>
         [JsonProperty("items")]
         public List<T> Items { get; set; }
+
+        /// <summary>
+        /// Next-from indicator. Used in some methods.
+        /// </summary>
+        [JsonProperty("next_from")]
+        public string NextFrom { get; set; }
     }
 
 
