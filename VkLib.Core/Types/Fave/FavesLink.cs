@@ -10,7 +10,7 @@ namespace VkLib.Types.Fave
         /// Link ID
         /// </summary>
         [JsonProperty("id")]
-        public int? Id { get; set; }
+        public string Id { get; set; }
 
         /// <summary>
         /// Link description

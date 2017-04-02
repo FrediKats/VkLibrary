@@ -201,7 +201,7 @@ namespace VkLib.Methods
         /// <param name="count">Number of followers to return.</param>
         /// <param name="fields">Profile fields to return. Sample values: 'nickname', 'screen_name', 'sex', 'bdate' (birthdate), 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'has_mobile', 'rate', 'contacts', 'education', 'online'.;</param>
         /// <param name="name_case">Case for declension of user name and surname:; 'nom' — nominative (default); 'gen' — genitive ; 'dat' — dative; 'acc' — accusative ; 'ins' — instrumental ; 'abl' — prepositional</param>
-        public async Task<ApiItemsResponse<int?>> GetFollowers(int? user_id = null, int? offset = null, int? count = null, IEnumerable<string> fields = null, string name_case = null)
+        public async Task<ApiItemsResponse<T>> GetFollowers<T>(int? user_id = null, int? offset = null, int? count = null, IEnumerable<string> fields = null, string name_case = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -216,7 +216,7 @@ namespace VkLib.Methods
             if (name_case != null)
                 parameters.Add("name_case", name_case);
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<int?>>("users.getFollowers", parameters);
+            return await _vkontakte.GetAsync<ApiItemsResponse<T>>("users.getFollowers", parameters);
         }
 
         /// <summary>

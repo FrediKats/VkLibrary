@@ -64,7 +64,7 @@ namespace VkLib.Methods
         /// <param name="offset">Offset needed to return a specific subset of posts.</param>
         /// <param name="count">Number of posts to return.</param>
         /// <param name="extended">'1' — to return additional 'wall', 'profiles', and 'groups' fields.; ; By default: '0'.</param>
-        public async Task<ApiItemsResponse<VkLib.Types.Wall.WallpostFull>> GetPosts(int? offset = null, int? count = null, bool? extended = null)
+        public async Task<VkLib.Responses.Newsfeed.NewsFeedResponse> GetPosts(int? offset = null, int? count = null, bool? extended = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -75,7 +75,7 @@ namespace VkLib.Methods
             if (extended != null)
                 parameters.Add("extended", extended.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Wall.WallpostFull>>("fave.getPosts", parameters);
+            return await _vkontakte.GetAsync<VkLib.Responses.Newsfeed.NewsFeedResponse>("fave.getPosts", parameters);
         }
 
         /// <summary>

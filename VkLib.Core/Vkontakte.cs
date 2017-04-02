@@ -8,11 +8,14 @@ using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 using VkLib.Methods;
 using VkLib.Auth;
+using System.IO;
 
 namespace VkLib
 {
     public class Vkontakte
     {
+        private readonly JsonParsingType _jsonParsingType;
+        private readonly HttpClient _httpClient;
         private readonly string _clientSecret;
         private readonly string _appId;
         private readonly string _apiVersion;
@@ -28,11 +31,16 @@ namespace VkLib
         /// <param name="appId">Unique app identifier</param>
         /// <param name="clientSecret">App access key</param>
         /// <param name="apiVersion">API version</param>
-        public Vkontakte(string appId, string clientSecret = null, string apiVersion = "5.60")
-        {
+        public Vkontakte(
+            string appId, JsonParsingType jsonParsingType,
+            string clientSecret = null, string apiVersion = "5.60"
+        ) {
             this._appId = appId;
             this._apiVersion = apiVersion;
             this._clientSecret = clientSecret;
+
+            this._jsonParsingType = jsonParsingType;
+            this._httpClient = new HttpClient();
         }
         
         /// <summary>
@@ -41,54 +49,102 @@ namespace VkLib
         /// <param name="baseUri"></param>
         /// <param name="parameters"></param>
         /// <returns></returns>
-        internal async Task<T> GetAsync<T>(
-            string method, 
+        internal async Task<T> GetAsync<T>(string method, 
             Dictionary<string, string> parameters, 
             string baseUrl = Vkontakte.MethodBase,
             bool usePlain = false
         ) { 
             // Check network connectivity.
             if (!NetworkInterface.GetIsNetworkAvailable())
-                throw new Exception("Network unavailiable.");
-
-            // Sign method using access token and api version number.
+                throw new HttpRequestException("Network unavailiable.");
+            
+            // Check access tokens, secret keys, versions.
             if (AccessToken != null && !string.IsNullOrEmpty(AccessToken.Token))
                 parameters.Add("access_token", AccessToken.Token);
+            if (_clientSecret != null)
+                parameters.Add("client_secret", _clientSecret);
             parameters.Add("v", _apiVersion);
-
-            // Build Uri string.
+            
+            // Get request Url.
             string urlString = GetUrl(
                 string.Concat(baseUrl, method, "?"), 
                 parameters
             );
-
             Log($"Invoking {method}: {urlString}");
-
-            // Invoke GET request.
-            using (HttpClient httpClient = new HttpClient())
-            using (HttpResponseMessage responseMessage = await httpClient.GetAsync(urlString).ConfigureAwait(false))
+            
+            // Parse JSON in a preferred way.
+            switch (_jsonParsingType)
             {
-                // Read response as string.
-                string response = await responseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
-                Log($"Response: {response}");
+                case JsonParsingType.UseStream:
+                    if (usePlain)
+                        return await DeserializeGetFromStream<T>(urlString).ConfigureAwait(false);
 
-                // Should we use standart API response or an unknown format?
-                if (usePlain) return JsonConvert.DeserializeObject<T>(response);
+                    // Deserialize obj from stream.
+                    ApiResponse<T> apiStreamResponse = await DeserializeGetFromStream<ApiResponse<T>>(
+                        urlString).ConfigureAwait(false);
+                    this.ProcessErrors(apiStreamResponse.Error);
+                    return apiStreamResponse.Response;
 
-                // Deserialize object of given type.
-                ApiResponse<T> apiResponse = JsonConvert.DeserializeObject<ApiResponse<T>>(response);
-                Log("ApiResponse successfully deserialized.");
+                case JsonParsingType.UseString:
+                    if (usePlain)
+                        return await DeserializeGetFromString<T>(urlString).ConfigureAwait(false);
 
-                // Check for errors.
-                if (apiResponse.Error != null)
-                { 
-                    Log($"Received API error. Code: {apiResponse.Error.Code}, " +
-                        $"description: \"{apiResponse.Error.ErrorMessage}\"");
+                    // Deserialize obj from string.
+                    ApiResponse<T> apiStringResponse = await DeserializeGetFromString<ApiResponse<T>>(
+                        urlString).ConfigureAwait(false);
+                    this.ProcessErrors(apiStringResponse.Error);
+                    return apiStringResponse.Response;
 
-                    throw new ApiException(apiResponse.Error);
-                }
+                default:
+                    throw new Exception("Unknown error occured.");
+            }
+        }
 
-                return apiResponse.Response;
+        /// <summary>
+        /// Check for any API errors.
+        /// </summary>
+        private void ProcessErrors(ApiError apiError)
+        {
+            if (apiError != null)
+            {
+                Log($"Received API error. " +
+                    $"Code: {apiError.Code}, " +
+                    $"About: \"{apiError.ErrorMessage}\"");
+                throw new ApiException(apiError);
+            }
+        }
+
+        /// <summary>
+        /// Deserializes object using Stream and JsonConverter. Optimal.
+        /// </summary>
+        private async Task<T> DeserializeGetFromStream<T>(string urlString)
+        {
+            using (Stream stream = await _httpClient.GetStreamAsync(urlString).ConfigureAwait(false))
+            using (StreamReader streamReader = new StreamReader(stream))
+            using (JsonReader jsonReader = new JsonTextReader(streamReader))
+            {
+                JsonSerializer serializer = new JsonSerializer();
+                T response = serializer.Deserialize<T>(jsonReader);
+                Log("Response successfully deserialized.");
+
+                return response;
+            }
+        }
+
+        /// <summary>
+        /// Deserializes object from string and logs some debug info.
+        /// </summary>
+        private async Task<T> DeserializeGetFromString<T>(string urlString)
+        {
+            using (var responseMessage = await _httpClient.GetAsync(urlString).ConfigureAwait(false))
+            {
+                string str = await responseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+                Log($"Response: {str}");
+
+                T response = JsonConvert.DeserializeObject<T>(str);
+                Log("Response successfully deserialized.");
+
+                return response;
             }
         }
 
@@ -118,11 +174,9 @@ namespace VkLib
         /// <returns>Object of a given type, determined by a script.</returns>
         public async Task<T> Execute<T>(string script)
         {
-            return await GetAsync<T>("execute", new Dictionary<string, string>() 
-            {
+            return await GetAsync<T>("execute", new Dictionary<string, string>() {
                 { "code", script }
-            })
-            .ConfigureAwait(false);
+            }).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -159,352 +213,224 @@ namespace VkLib
         /// <summary>
         /// User access token.
         /// </summary>
-        public AccessToken AccessToken { get; set; } = new AccessToken();
+        public AccessToken AccessToken { get; set; }
 
         /// <summary>
         /// Application identifier.
         /// </summary>
-        internal string AppId
-        {
-            get { return _appId; }
-        }
+        internal string AppId => _appId;
 
         /// <summary>
         /// Application secret code.
         /// </summary>
-        internal string ClientSecret
-        {
-            get { return _clientSecret; }
-        }
+        internal string ClientSecret => _clientSecret;
 
         /// <summary>
         /// API version used by the Lib.
         /// </summary>
-        public string ApiVersion
-        {
-            get { return _apiVersion; }
-        }
+        internal string ApiVersion => _apiVersion;
+
+        #region API sections
 
         /// <summary>
         /// API part related to direct auth.
         /// </summary>
-        public DirectAuth DirectAuth
-        {
-            get { return new DirectAuth(this); }
-        }
+        public DirectAuth DirectAuth => new DirectAuth(this);
 
         /// <summary>
         /// API files upload helper. Contains upload methods.
         /// </summary>
-        public UploadHelper UploadHelper
-        {
-            get { return new UploadHelper(this); }
-        }
+        public UploadHelper UploadHelper => new UploadHelper(this); 
 
         /// <summary>
         /// OAuth helpers API section.
         /// </summary>
-        public OAuth OAuth
-        {
-            get { return new OAuth(this); }
-        }
+        public OAuth OAuth => new OAuth(this);
 
         /// <summary>
         /// Account API section.
         /// </summary>
-        public Account Account
-        {
-            get { return new Account(this); }
-        }
+        public Account Account => new Account(this); 
 
         /// <summary>
         /// Ads API section.
         /// </summary>
-        public Ads Ads
-        {
-            get { return new Ads(this); }
-        }
+        public Ads Ads => new Ads(this);
 
         /// <summary>
         /// Apps API section.
         /// </summary>
-        public Apps Apps
-        {
-            get { return new Apps(this); }
-        }
+        public Apps Apps => new Apps(this);
 
         /// <summary>
         /// Audio API section.
         /// </summary>
-        public Audio Audio
-        {
-            get { return new Audio(this); }
-        }
-
-        /// <summary>
-        /// Auth API section.
-        /// </summary>
-        public OAuth Auth
-        {
-            get { return new OAuth(this); }
-        }
+        public Audio Audio => new Audio(this);
 
         /// <summary>
         /// Board API section.
         /// </summary>
-        public Board Board
-        {
-            get { return new Board(this); }
-        }
+        public Board Board => new Board(this);
 
         /// <summary>
         /// Database API section.
         /// </summary>
-        public Database Database
-        {
-            get { return new Database(this); }
-        }
+        public Database Database => new Database(this);
 
         /// <summary>
         /// Docs API section.
         /// </summary>
-        public Docs Docs
-        {
-            get { return new Docs(this); }
-        }
+        public Docs Docs => new Docs(this); 
 
         /// <summary>
         /// Fave API section.
         /// </summary>
-        public Fave Fave
-        {
-            get { return new Fave(this); }
-        }
-
+        public Fave Fave => new Fave(this);
 
         /// <summary>
         /// Friends API section.
         /// </summary>
-        public Friends Friends
-        {
-            get { return new Friends(this); }
-        }
-
+        public Friends Friends => new Friends(this);
 
         /// <summary>
         /// Gifts API section.
         /// </summary>
-        public Gifts Gifts
-        {
-            get { return new Gifts(this); }
-        }
-
+        public Gifts Gifts => new Gifts(this);
 
         /// <summary>
         /// Groups API section.
         /// </summary>
-        public Groups Groups
-        {
-            get { return new Groups(this); }
-        }
-
+        public Groups Groups => new Groups(this);
 
         /// <summary>
         /// Leads API section.
         /// </summary>
-        public Leads Leads
-        {
-            get { return new Leads(this); }
-        }
-
+        public Leads Leads => new Leads(this);
 
         /// <summary>
         /// Likes API section.
         /// </summary>
-        public Likes Likes
-        {
-            get { return new Likes(this); }
-        }
-
+        public Likes Likes => new Likes(this);
 
         /// <summary>
         /// Market API section.
         /// </summary>
-        public Market Market
-        {
-            get { return new Market(this); }
-        }
-
+        public Market Market => new Market(this);
 
         /// <summary>
         /// Messages API section.
         /// </summary>
-        public Messages Messages
-        {
-            get { return new Messages(this); }
-        }
-
+        public Messages Messages => new Messages(this);
 
         /// <summary>
         /// Newsfeed API section.
         /// </summary>
-        public Newsfeed Newsfeed
-        {
-            get { return new Newsfeed(this); }
-        }
-
+        public Newsfeed Newsfeed => new Newsfeed(this);
 
         /// <summary>
         /// Notes API section.
         /// </summary>
-        public Notes Notes
-        {
-            get { return new Notes(this); }
-        }
-
+        public Notes Notes => new Notes(this);
 
         /// <summary>
         /// Notifications API section.
         /// </summary>
-        public Notifications Notifications
-        {
-            get { return new Notifications(this); }
-        }
-
+        public Notifications Notifications => new Notifications(this);
 
         /// <summary>
         /// Orders API section.
         /// </summary>
-        public Orders Orders
-        {
-            get { return new Orders(this); }
-        }
-
+        public Orders Orders => new Orders(this);
 
         /// <summary>
         /// Pages API section.
         /// </summary>
-        public Pages Pages
-        {
-            get { return new Pages(this); }
-        }
-
+        public Pages Pages => new Pages(this);
 
         /// <summary>
         /// Photos API section.
         /// </summary>
-        public Photos Photos
-        {
-            get { return new Photos(this); }
-        }
-
+        public Photos Photos => new Photos(this);
 
         /// <summary>
         /// Places API section.
         /// </summary>
-        public Places Places
-        {
-            get { return new Places(this); }
-        }
-
+        public Places Places => new Places(this);
 
         /// <summary>
         /// Polls API section.
         /// </summary>
-        public Polls Polls
-        {
-            get { return new Polls(this); }
-        }
-
+        public Polls Polls => new Polls(this);
 
         /// <summary>
         /// Search API section.
         /// </summary>
-        public Search Search
-        {
-            get { return new Search(this); }
-        }
-
+        public Search Search => new Search(this);
 
         /// <summary>
         /// Secure API section.
         /// </summary>
-        public Secure Secure
-        {
-            get { return new Secure(this); }
-        }
-
+        public Secure Secure => new Secure(this);
 
         /// <summary>
         /// Stats API section.
         /// </summary>
-        public Stats Stats
-        {
-            get { return new Stats(this); }
-        }
-
+        public Stats Stats => new Stats(this);
 
         /// <summary>
         /// Status API section.
         /// </summary>
-        public Status Status
-        {
-            get { return new Status(this); }
-        }
-
+        public Status Status => new Status(this);
 
         /// <summary>
         /// Storage API section.
         /// </summary>
-        public Storage Storage
-        {
-            get { return new Storage(this); }
-        }
-
+        public Storage Storage => new Storage(this);
 
         /// <summary>
         /// Users API section.
         /// </summary>
-        public Users Users
-        {
-            get { return new Users(this); }
-        }
-
+        public Users Users => new Users(this);
 
         /// <summary>
         /// Utils API section.
         /// </summary>
-        public Utils Utils
-        {
-            get { return new Utils(this); }
-        }
-
+        public Utils Utils => new Utils(this);
 
         /// <summary>
         /// Video API section.
         /// </summary>
-        public Video Video
-        {
-            get { return new Video(this); }
-        }
-
+        public Video Video => new Video(this);
 
         /// <summary>
         /// Wall API section.
         /// </summary>
-        public Wall Wall
-        {
-            get { return new Wall(this); }
-        }
-
+        public Wall Wall => new Wall(this);
 
         /// <summary>
         /// Widgets API section.
         /// </summary>
-        public Widgets Widgets
-        {
-            get { return new Widgets(this); }
-        }
+        public Widgets Widgets => new Widgets(this);
 
+        #endregion
+    }
+
+    /// <summary>
+    /// Json parsing type.
+    /// </summary>
+    public enum JsonParsingType
+    {
+        /// <summary>
+        /// To minimize memory usage and the number of objects allocated, 
+        /// Json.NET supports serializing and deserializing directly to a stream.
+        /// Use this for better performance when parsing Jsons.
+        /// </summary>
+        UseStream,
+
+        /// <summary>
+        /// Loads Json into a string, logs it to the DEBUG output, and then
+        /// deserializes. Use this for testing purposes. 
+        /// </summary>
+        UseString
     }
 }

@@ -103,12 +103,12 @@ namespace VkLib.Methods
         /// <param name="count">Number of community members to return.</param>
         /// <param name="fields">List of additional fields to be returned. ; Available values: 'sex, bdate, city, country, photo_50, photo_100, photo_200_orig, photo_200, photo_400_orig, photo_max, photo_max_orig, online, online_mobile, lists, domain, has_mobile, contacts, connections, site, education, universities, schools, can_post, can_see_all_posts, can_see_audio, can_write_private_message, status, last_seen, common_count, relation, relatives, counters'.</param>
         /// <param name="filter">*'friends' – only friends in this community will be returned;; *'unsure' – only those who pressed 'I may attend' will be returned (if it's an event).</param>
-        public async Task<ApiItemsResponse<int?>> GetMembers(string group_id = null, string sort = null, int? offset = null, int? count = null, IEnumerable<string> fields = null, string filter = null)
+        public async Task<ApiItemsResponse<T>> GetMembers<T>(int? group_id = null, string sort = null, int? offset = null, int? count = null, IEnumerable<string> fields = null, string filter = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             if (group_id != null)
-                parameters.Add("group_id", group_id);
+                parameters.Add("group_id", group_id.ToApiString());
             if (sort != null)
                 parameters.Add("sort", sort);
             if (offset != null)
@@ -120,7 +120,7 @@ namespace VkLib.Methods
             if (filter != null)
                 parameters.Add("filter", filter);
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<int?>>("groups.getMembers", parameters);
+            return await _vkontakte.GetAsync<ApiItemsResponse<T>>("groups.getMembers", parameters);
         }
 
         /// <summary>
