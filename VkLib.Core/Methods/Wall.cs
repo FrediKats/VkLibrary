@@ -94,7 +94,7 @@ namespace VkLib.Methods
         /// <param name="extended">'1' — to return user and community objects needed to display posts; '0' — no additional fields are returned (default)</param>
         /// <param name="copy_history_depth">Sets the number of parent elements to include in the array 'copy_history' that is returned if the post is a repost from another wall.</param>
         /// <param name="fields"></param>
-        public async Task<IEnumerable<VkLib.Types.Wall.WallpostFull>> GetById(IEnumerable<string> posts = null, bool? extended = null, int? copy_history_depth = null, IEnumerable<string> fields = null)
+        public async Task<VkLib.Responses.Newsfeed.NewsFeedResponse> GetById(IEnumerable<string> posts = null, bool? extended = null, int? copy_history_depth = null, IEnumerable<string> fields = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -107,7 +107,7 @@ namespace VkLib.Methods
             if (fields != null)
                 parameters.Add("fields", fields.ToApiString());
 
-            return await _vkontakte.GetAsync<IEnumerable<VkLib.Types.Wall.WallpostFull>>("wall.getById", parameters);
+            return await _vkontakte.GetAsync<VkLib.Responses.Newsfeed.NewsFeedResponse>("wall.getById", parameters);
         }
 
         /// <summary>
@@ -345,7 +345,7 @@ namespace VkLib.Methods
         /// <param name="sort">Sort order:; 'asc' — chronological; 'desc' — reverse chronological</param>
         /// <param name="preview_length">Number of characters at which to truncate comments when previewed. By default, '90'. Specify '0' if you do not want to truncate comments.;</param>
         /// <param name="extended"></param>
-        public async Task<ApiItemsResponse<VkLib.Types.Wall.WallComment>> GetComments(int? owner_id = null, int? post_id = null, bool? need_likes = null, int? start_comment_id = null, int? offset = null, int? count = null, string sort = null, int? preview_length = null, bool? extended = null)
+        public async Task<VkLib.Responses.Wall.CommentsResponse> GetComments(int? owner_id = null, int? post_id = null, bool? need_likes = null, int? start_comment_id = null, int? offset = null, int? count = null, string sort = null, int? preview_length = null, bool? extended = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -368,7 +368,7 @@ namespace VkLib.Methods
             if (extended != null)
                 parameters.Add("extended", extended.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Wall.WallComment>>("wall.getComments", parameters);
+            return await _vkontakte.GetAsync<VkLib.Responses.Wall.CommentsResponse>("wall.getComments", parameters);
         }
 
         /// <summary>

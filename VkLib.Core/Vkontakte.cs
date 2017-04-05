@@ -61,8 +61,6 @@ namespace VkLib
             // Check access tokens, secret keys, versions.
             if (AccessToken != null && !string.IsNullOrEmpty(AccessToken.Token))
                 parameters.Add("access_token", AccessToken.Token);
-            if (_clientSecret != null)
-                parameters.Add("client_secret", _clientSecret);
             parameters.Add("v", _apiVersion);
             
             // Get request Url.

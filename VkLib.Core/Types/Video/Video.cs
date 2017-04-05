@@ -82,7 +82,7 @@ namespace VkLib.Types.Video
         /// Date when video has been uploaded in Unixtime
         /// </summary>
         [JsonProperty("date")]
-        public int? Date { get; set; }
+        public double? Date { get; set; }
 
         /// <summary>
         /// Video owner ID

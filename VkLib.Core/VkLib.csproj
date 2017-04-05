@@ -181,6 +181,7 @@
     <Compile Include="Responses\Messages\GetLongPollHistoryResponse.cs" />
     <Compile Include="Responses\Messages\IsMessagesFromGroupAllowedResponse.cs" />
     <Compile Include="Responses\Messages\SetChatPhotoResponse.cs" />
+    <Compile Include="Responses\Wall\CommentsResponse.cs" />
     <Compile Include="Responses\Newsfeed\GetBannedExtendedResponse.cs" />
     <Compile Include="Responses\Newsfeed\GetBannedResponse.cs" />
     <Compile Include="Responses\Newsfeed\NewsFeedResponse.cs" />
