@@ -22,7 +22,7 @@ namespace VkLib.Types.Wall
         /// Date when the comment has been added in Unixtime
         /// </summary>
         [JsonProperty("date")]
-        public int? Date { get; set; }
+        public double? Date { get; set; }
 
         /// <summary>
         /// Comment ID

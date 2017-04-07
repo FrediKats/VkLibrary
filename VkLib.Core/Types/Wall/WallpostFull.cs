@@ -49,13 +49,19 @@ namespace VkLib.Types.Wall
         public int? CanPin { get; set; }
 
         /// <summary>
-        /// Property
+        /// Info about post likes count
         /// </summary>
         [JsonProperty("likes")]
         public VkLib.Types.Base.LikesInfo Likes { get; set; }
+    
+        /// <summary>
+        /// Info about post views count
+        /// </summary>
+        [JsonProperty("views")]
+        public VkLib.Types.Base.ViewsInfo Views { get; set; }
 
         /// <summary>
-        /// Property
+        /// Info about post reposts count
         /// </summary>
         [JsonProperty("reposts")]
         public VkLib.Types.Base.RepostsInfo Reposts { get; set; }

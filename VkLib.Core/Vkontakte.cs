@@ -33,7 +33,7 @@ namespace VkLib
         /// <param name="apiVersion">API version</param>
         public Vkontakte(
             string appId, JsonParsingType jsonParsingType,
-            string clientSecret = null, string apiVersion = "5.60"
+            string clientSecret = null, string apiVersion = "5.63"
         ) {
             this._appId = appId;
             this._apiVersion = apiVersion;

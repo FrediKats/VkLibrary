@@ -270,6 +270,7 @@
     <Compile Include="Types\Base\RequestParam.cs" />
     <Compile Include="Types\Base\Sticker.cs" />
     <Compile Include="Types\Base\UserId.cs" />
+    <Compile Include="Types\Base\ViewsInfo.cs" />
     <Compile Include="Types\Board\Topic.cs" />
     <Compile Include="Types\Board\TopicComment.cs" />
     <Compile Include="Types\Board\TopicPoll.cs" />
