@@ -85,7 +85,7 @@ namespace VkLib.Methods
         /// <param name="offset">Offset needed to return a specific subset of videos.</param>
         /// <param name="count">Number of videos to return.</param>
         /// <param name="extended">Return an additional information about videos. Also returns all owners profiles and groups.</param>
-        public async Task<ApiItemsResponse<VkLib.Types.Video.Video>> GetVideos(int? offset = null, int? count = null, bool? extended = null)
+        public async Task<ApiItemsResponse<VkLib.Types.Video.VideoFull>> GetVideos(int? offset = null, int? count = null, bool? extended = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -96,7 +96,7 @@ namespace VkLib.Methods
             if (extended != null)
                 parameters.Add("extended", extended.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Video.Video>>("fave.getVideos", parameters);
+            return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Video.VideoFull>>("fave.getVideos", parameters);
         }
 
         /// <summary>

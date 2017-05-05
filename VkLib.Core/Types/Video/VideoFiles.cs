@@ -9,19 +9,19 @@ namespace VkLib.Types.Video
         /// <summary>
         /// URL of the mpeg4 file with 240p quality
         /// </summary>
-        [JsonProperty("mp_240")]
+        [JsonProperty("mp4_240")]
         public string Mp240 { get; set; }
 
         /// <summary>
         /// URL of the mpeg4 file with 360p quality
         /// </summary>
-        [JsonProperty("mp_360")]
+        [JsonProperty("mp4_360")]
         public string Mp360 { get; set; }
 
         /// <summary>
         /// URL of the mpeg4 file with 720p quality
         /// </summary>
-        [JsonProperty("mp_720")]
+        [JsonProperty("mp4_720")]
         public string Mp720 { get; set; }
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace VkLib.Types.Video
         /// <summary>
         /// URL of the mpeg4 file with 480p quality
         /// </summary>
-        [JsonProperty("mp_480")]
+        [JsonProperty("mp4_480")]
         public string Mp480 { get; set; }
 
     }

@@ -28,7 +28,7 @@ namespace VkLib.Methods
         /// <param name="count">Number of videos to return.</param>
         /// <param name="offset">Offset needed to return a specific subset of videos.</param>
         /// <param name="extended">'1' — to return an extended response with additional fields</param>
-        public async Task<ApiItemsResponse<VkLib.Types.Video.Video>> Get(int? owner_id = null, IEnumerable<string> videos = null, int? album_id = null, int? count = null, int? offset = null, bool? extended = null)
+        public async Task<ApiItemsResponse<VkLib.Types.Video.VideoFull>> Get(int? owner_id = null, IEnumerable<string> videos = null, int? album_id = null, int? count = null, int? offset = null, bool? extended = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -45,7 +45,7 @@ namespace VkLib.Methods
             if (extended != null)
                 parameters.Add("extended", extended.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Video.Video>>("video.get", parameters);
+            return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Video.VideoFull>>("video.get", parameters);
         }
 
         /// <summary>
@@ -513,7 +513,7 @@ namespace VkLib.Methods
         /// <param name="count">Number of comments to return.</param>
         /// <param name="sort">Sort order:; 'asc' — oldest comment first; 'desc' — newest comment first</param>
         /// <param name="extended"></param>
-        public async Task<ApiItemsResponse<VkLib.Types.Wall.WallComment>> GetComments(int? owner_id = null, int? video_id = null, bool? need_likes = null, int? start_comment_id = null, int? offset = null, int? count = null, string sort = null, bool? extended = null)
+        public async Task<VkLib.Responses.Wall.CommentsResponse> GetComments(int? owner_id = null, int? video_id = null, bool? need_likes = null, int? start_comment_id = null, int? offset = null, int? count = null, string sort = null, bool? extended = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -534,7 +534,7 @@ namespace VkLib.Methods
             if (extended != null)
                 parameters.Add("extended", extended.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Wall.WallComment>>("video.getComments", parameters);
+            return await _vkontakte.GetAsync<VkLib.Responses.Wall.CommentsResponse>("video.getComments", parameters);
         }
 
         /// <summary>

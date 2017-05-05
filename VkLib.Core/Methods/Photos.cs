@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VkLib.Responses.Wall;
 
 namespace VkLib.Methods
 {
@@ -16,6 +17,58 @@ namespace VkLib.Methods
         internal Photos(Vkontakte vkontakte)
         {
             _vkontakte = vkontakte;
+        }
+
+        /// <summary>
+        /// Returns photos given in photo_ids list.
+        /// </summary>
+        /// <param name="owner_id">Owner's id</param>
+        /// <param name="album_id">Aldum id: wall, profile, saved</param>
+        /// <param name="photo_ids">Photo ids enumerable</param>
+        /// <param name="rev">Reverce order or not</param>
+        /// <param name="extended">Extended or not</param>
+        /// <param name="feed_type">photo, photo_tag</param>
+        /// <param name="feed">time info</param>
+        /// <param name="photo_sizes">1 - return photo sizes, 0 - no</param>
+        /// <param name="offset">offset info</param>
+        /// <param name="count">count info</param>
+        public async Task<ApiItemsResponse<VkLib.Types.Photos.PhotoFull>> Get(
+            int? owner_id = null, string album_id = null, IEnumerable<string> photo_ids = null, 
+            bool? rev = null, bool? extended = null, string feed_type = null, int? feed = null, 
+            bool? photo_sizes = null, int? offset = null, int? count = null)
+        {
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+
+            if (owner_id != null)    parameters.Add("owner_id", owner_id.ToApiString());
+            if (album_id != null)    parameters.Add("album_id", album_id.ToApiString());
+            if (photo_ids != null)   parameters.Add("photo_ids", photo_ids.ToApiString());
+            if (rev != null)         parameters.Add("rev", rev.ToApiString());
+            if (extended != null)    parameters.Add("extended", extended.ToApiString());
+            if (feed_type != null)   parameters.Add("feed_type", feed_type.ToApiString());
+            if (feed != null)        parameters.Add("feed", feed.ToApiString());
+            if (photo_sizes != null) parameters.Add("photo_sizes", photo_sizes.ToApiString());
+            if (offset != null)      parameters.Add("offset", offset.ToApiString());
+            if (count != null)       parameters.Add("count", count.ToApiString());
+
+            return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Photos.PhotoFull>>("photos.get", parameters);
+        }
+
+        /// <summary>
+        /// Returns photos specified in photos enumerable.
+        /// </summary>
+        /// <param name="photos">Photo ids array</param>
+        /// <param name="extended">Should vk return additional fields?</param>
+        /// <param name="photo_sizes">Return photo sizes or not</param>
+        public async Task<IEnumerable<VkLib.Types.Photos.PhotoFull>> GetById(
+            IEnumerable<string> photos = null, bool? extended = null, bool? photo_sizes = null)
+        {
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+
+            if (photos != null)      parameters.Add("photos", photos.ToApiString());
+            if (extended != null)    parameters.Add("extended", extended.ToApiString());
+            if (photo_sizes != null) parameters.Add("photo_sizes", photo_sizes.ToApiString());
+
+            return await _vkontakte.GetAsync<IEnumerable<VkLib.Types.Photos.PhotoFull>>("photos.getById", parameters);
         }
 
         /// <summary>
@@ -434,7 +487,7 @@ namespace VkLib.Methods
         /// <param name="access_key"></param>
         /// <param name="extended"></param>
         /// <param name="fields"></param>
-        public async Task<ApiItemsResponse<VkLib.Types.Wall.WallComment>> GetComments(int? owner_id = null, int? photo_id = null, bool? need_likes = null, int? start_comment_id = null, int? offset = null, int? count = null, string sort = null, string access_key = null, bool? extended = null, IEnumerable<string> fields = null)
+        public async Task<CommentsResponse> GetComments(int? owner_id = null, int? photo_id = null, bool? need_likes = null, int? start_comment_id = null, int? offset = null, int? count = null, string sort = null, string access_key = null, bool? extended = null, IEnumerable<string> fields = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -459,7 +512,7 @@ namespace VkLib.Methods
             if (fields != null)
                 parameters.Add("fields", fields.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Wall.WallComment>>("photos.getComments", parameters);
+            return await _vkontakte.GetAsync<CommentsResponse>("photos.getComments", parameters);
         }
 
         /// <summary>
