@@ -1,23 +1,20 @@
-using System;
-using System.Collections.Generic;
 using Newtonsoft.Json;
-using VkLib.Types;
+using VkLib.Types.Messages;
 
 namespace VkLib.Responses.Messages
 {
     public class SetChatPhotoResponse
     {
         /// <summary>
-        /// None
+        ///     None
         /// </summary>
         [JsonProperty("chat")]
-        public VkLib.Types.Messages.Chat Chat { get; set; }
+        public Chat Chat { get; set; }
 
         /// <summary>
-        /// Service message ID
+        ///     Service message ID
         /// </summary>
         [JsonProperty("message_id")]
         public int? MessageId { get; set; }
-
     }
 }

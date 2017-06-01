@@ -1,22 +1,20 @@
-using System;
-using Newtonsoft.Json;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
-namespace VkLib.Types.Orders 
+namespace VkLib.Types.Orders
 {
     public class Amount
     {
         /// <summary>
-        /// Currency name
+        ///     Currency name
         /// </summary>
         [JsonProperty("currency")]
         public string Currency { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("amounts")]
-        public IEnumerable<VkLib.Types.Orders.AmountItem> Amounts { get; set; }
-
+        public IEnumerable<AmountItem> Amounts { get; set; }
     }
 }

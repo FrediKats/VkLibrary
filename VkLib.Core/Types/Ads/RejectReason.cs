@@ -1,22 +1,20 @@
-using System;
-using Newtonsoft.Json;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
-namespace VkLib.Types.Ads 
+namespace VkLib.Types.Ads
 {
     public class RejectReason
     {
         /// <summary>
-        /// Comment text
+        ///     Comment text
         /// </summary>
         [JsonProperty("comment")]
         public string Comment { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("rules")]
-        public IEnumerable<VkLib.Types.Ads.Rules> Rules { get; set; }
-
+        public IEnumerable<Rules> Rules { get; set; }
     }
 }

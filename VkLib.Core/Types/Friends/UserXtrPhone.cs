@@ -1,16 +1,14 @@
-using System;
 using Newtonsoft.Json;
-using System.Collections.Generic;
+using VkLib.Types.Users;
 
-namespace VkLib.Types.Friends 
+namespace VkLib.Types.Friends
 {
-    public class UserXtrPhone : VkLib.Types.Users.UserFull
+    public class UserXtrPhone : UserFull
     {
         /// <summary>
-        /// User phone
+        ///     User phone
         /// </summary>
         [JsonProperty("phone")]
         public string Phone { get; set; }
-
     }
 }

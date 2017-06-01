@@ -1,16 +1,14 @@
-using System;
 using Newtonsoft.Json;
-using System.Collections.Generic;
+using VkLib.Types.Users;
 
-namespace VkLib.Types.Groups 
+namespace VkLib.Types.Groups
 {
-    public class UserXtrRole : VkLib.Types.Users.UserFull
+    public class UserXtrRole : UserFull
     {
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("role")]
         public string Role { get; set; }
-
     }
 }

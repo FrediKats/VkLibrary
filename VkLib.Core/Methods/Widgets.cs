@@ -1,17 +1,15 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using VkLib.Responses.Widgets;
 
 namespace VkLib.Methods
 {
     /// <summary>
-    /// Widgets API section.
+    ///     Widgets API section.
     /// </summary>
     public class Widgets
     {
-        private Vkontakte _vkontakte;
+        private readonly Vkontakte _vkontakte;
 
         internal Widgets(Vkontakte vkontakte)
         {
@@ -19,25 +17,26 @@ namespace VkLib.Methods
         }
 
         /// <summary>
-        /// Gets a list of comments for the page added through the [vk.com/dev/Comments|Comments widget].
-        /// Docs: <see href="https://vk.com/dev/widgets.getComments">widgets.getComments</see>
+        ///     Gets a list of comments for the page added through the [vk.com/dev/Comments|Comments widget].
+        ///     Docs: <see href="https://vk.com/dev/widgets.getComments">widgets.getComments</see>
         /// </summary>
-        /// <param name="widget_api_id"></param>
+        /// <param name="widgetApiId"></param>
         /// <param name="url"></param>
-        /// <param name="page_id"></param>
+        /// <param name="pageId"></param>
         /// <param name="order"></param>
         /// <param name="fields"></param>
         /// <param name="count"></param>
-        public async Task<VkLib.Responses.Widgets.GetCommentsResponse> GetComments(int? widget_api_id = null, string url = null, string page_id = null, string order = null, IEnumerable<string> fields = null, int? count = null)
+        public async Task<GetCommentsResponse> GetComments(int? widgetApiId = null, string url = null,
+            string pageId = null, string order = null, IEnumerable<string> fields = null, int? count = null)
         {
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            var parameters = new Dictionary<string, string>();
 
-            if (widget_api_id != null)
-                parameters.Add("widget_api_id", widget_api_id.ToApiString());
+            if (widgetApiId != null)
+                parameters.Add("widget_api_id", widgetApiId.ToApiString());
             if (url != null)
                 parameters.Add("url", url);
-            if (page_id != null)
-                parameters.Add("page_id", page_id);
+            if (pageId != null)
+                parameters.Add("page_id", pageId);
             if (order != null)
                 parameters.Add("order", order);
             if (fields != null)
@@ -45,23 +44,25 @@ namespace VkLib.Methods
             if (count != null)
                 parameters.Add("count", count.ToApiString());
 
-            return await _vkontakte.GetAsync<VkLib.Responses.Widgets.GetCommentsResponse>("widgets.getComments", parameters);
+            return await _vkontakte.GetAsync<GetCommentsResponse>("widgets.getComments", parameters);
         }
 
         /// <summary>
-        /// Gets a list of application/site pages where the [vk.com/dev/Comments|Comments widget] or [vk.com/dev/Like|Like widget] is installed.
-        /// Docs: <see href="https://vk.com/dev/widgets.getPages">widgets.getPages</see>
+        ///     Gets a list of application/site pages where the [vk.com/dev/Comments|Comments widget] or [vk.com/dev/Like|Like
+        ///     widget] is installed.
+        ///     Docs: <see href="https://vk.com/dev/widgets.getPages">widgets.getPages</see>
         /// </summary>
-        /// <param name="widget_api_id"></param>
+        /// <param name="widgetApiId"></param>
         /// <param name="order"></param>
         /// <param name="period"></param>
         /// <param name="count"></param>
-        public async Task<VkLib.Responses.Widgets.GetPagesResponse> GetPages(int? widget_api_id = null, string order = null, string period = null, int? count = null)
+        public async Task<GetPagesResponse> GetPages(int? widgetApiId = null, string order = null,
+            string period = null, int? count = null)
         {
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            var parameters = new Dictionary<string, string>();
 
-            if (widget_api_id != null)
-                parameters.Add("widget_api_id", widget_api_id.ToApiString());
+            if (widgetApiId != null)
+                parameters.Add("widget_api_id", widgetApiId.ToApiString());
             if (order != null)
                 parameters.Add("order", order);
             if (period != null)
@@ -69,8 +70,7 @@ namespace VkLib.Methods
             if (count != null)
                 parameters.Add("count", count.ToApiString());
 
-            return await _vkontakte.GetAsync<VkLib.Responses.Widgets.GetPagesResponse>("widgets.getPages", parameters);
+            return await _vkontakte.GetAsync<GetPagesResponse>("widgets.getPages", parameters);
         }
-
     }
 }

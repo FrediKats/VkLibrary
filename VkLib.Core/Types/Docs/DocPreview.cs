@@ -1,25 +1,24 @@
-using System;
-using Newtonsoft.Json;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
-namespace VkLib.Types.Docs 
+namespace VkLib.Types.Docs
 {
     public class DocPreview
     {
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("photo")]
-        public VkLib.Types.Docs.DocPreviewPhoto Photo { get; set; }
+        public DocPreviewPhoto Photo { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("video")]
-        public VkLib.Types.Docs.DocPreviewVideo Video { get; set; }
+        public DocPreviewVideo Video { get; set; }
 
         [JsonProperty("audio_msg")]
-        public VkLib.Types.Docs.DocPreviewAudioMsg AudioMessage { get; set; }
+        public DocPreviewAudioMsg AudioMessage { get; set; }
     }
 
     public class DocPreviewAudioMsg
@@ -36,5 +35,4 @@ namespace VkLib.Types.Docs
         [JsonProperty("link_mp3")]
         public string LinkMp3 { get; set; }
     }
-
 }

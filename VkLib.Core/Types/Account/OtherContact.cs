@@ -1,22 +1,19 @@
-using System;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 
-namespace VkLib.Types.Account 
+namespace VkLib.Types.Account
 {
     public class OtherContact
     {
         /// <summary>
-        /// Mutual friends count
+        ///     Mutual friends count
         /// </summary>
         [JsonProperty("common_count")]
         public int? CommonCount { get; set; }
 
         /// <summary>
-        /// Contact
+        ///     Contact
         /// </summary>
         [JsonProperty("contact")]
         public string Contact { get; set; }
-
     }
 }

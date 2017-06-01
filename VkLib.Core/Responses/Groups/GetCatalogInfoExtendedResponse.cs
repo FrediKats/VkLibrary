@@ -1,23 +1,21 @@
-using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using VkLib.Types;
+using VkLib.Types.Groups;
 
 namespace VkLib.Responses.Groups
 {
     public class GetCatalogInfoExtendedResponse
     {
         /// <summary>
-        /// None
+        ///     None
         /// </summary>
         [JsonProperty("categories")]
-        public IEnumerable<VkLib.Types.Groups.GroupCategoryFull> Categories { get; set; }
+        public IEnumerable<GroupCategoryFull> Categories { get; set; }
 
         /// <summary>
-        /// Information whether catalog is enabled for current user
+        ///     Information whether catalog is enabled for current user
         /// </summary>
         [JsonProperty("enabled")]
         public int? Enabled { get; set; }
-
     }
 }

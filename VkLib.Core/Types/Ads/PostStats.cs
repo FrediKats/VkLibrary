@@ -1,16 +1,14 @@
-using System;
 using Newtonsoft.Json;
-using System.Collections.Generic;
+using VkLib.Types.Stats;
 
-namespace VkLib.Types.Ads 
+namespace VkLib.Types.Ads
 {
-    public class PostStats : VkLib.Types.Stats.WallpostStat
+    public class PostStats : WallpostStat
     {
         /// <summary>
-        /// Object ID
+        ///     Object ID
         /// </summary>
         [JsonProperty("ad_id")]
         public int? AdId { get; set; }
-
     }
 }

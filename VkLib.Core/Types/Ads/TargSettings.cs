@@ -1,22 +1,19 @@
-using System;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 
-namespace VkLib.Types.Ads 
+namespace VkLib.Types.Ads
 {
-    public class TargSettings : VkLib.Types.Ads.Criteria
+    public class TargSettings : Criteria
     {
         /// <summary>
-        /// Campaign ID
+        ///     Campaign ID
         /// </summary>
         [JsonProperty("campaign_id")]
         public int? CampaignId { get; set; }
 
         /// <summary>
-        /// Ad ID
+        ///     Ad ID
         /// </summary>
         [JsonProperty("id")]
         public int? Id { get; set; }
-
     }
 }

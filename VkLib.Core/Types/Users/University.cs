@@ -1,76 +1,73 @@
-using System;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 
-namespace VkLib.Types.Users 
+namespace VkLib.Types.Users
 {
     public class University
     {
         /// <summary>
-        /// Faculty name
+        ///     Faculty name
         /// </summary>
         [JsonProperty("faculty_name")]
         public string FacultyName { get; set; }
 
         /// <summary>
-        /// University ID
+        ///     University ID
         /// </summary>
         [JsonProperty("id")]
         public int? Id { get; set; }
 
         /// <summary>
-        /// Chair name
+        ///     Chair name
         /// </summary>
         [JsonProperty("chair_name")]
         public string ChairName { get; set; }
 
         /// <summary>
-        /// University name
+        ///     University name
         /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; }
 
         /// <summary>
-        /// Chair ID
+        ///     Chair ID
         /// </summary>
         [JsonProperty("chair")]
         public int? Chair { get; set; }
 
         /// <summary>
-        /// Education form
+        ///     Education form
         /// </summary>
         [JsonProperty("education_form")]
         public string EducationForm { get; set; }
 
         /// <summary>
-        /// Faculty ID
+        ///     Faculty ID
         /// </summary>
         [JsonProperty("faculty")]
         public int? Faculty { get; set; }
 
         /// <summary>
-        /// Graduation year
+        ///     Graduation year
         /// </summary>
         [JsonProperty("graduation")]
         public int? Graduation { get; set; }
 
         /// <summary>
-        /// Education status
+        ///     Education status
         /// </summary>
         [JsonProperty("education_status")]
         public string EducationStatus { get; set; }
 
         /// <summary>
-        /// Country ID
+        ///     Country ID
         /// </summary>
         [JsonProperty("country")]
         public int? Country { get; set; }
 
         /// <summary>
-        /// City ID
+        ///     City ID
         /// </summary>
         [JsonProperty("city")]
         public int? City { get; set; }
-
     }
 }

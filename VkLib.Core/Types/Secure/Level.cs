@@ -1,22 +1,19 @@
-using System;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 
-namespace VkLib.Types.Secure 
+namespace VkLib.Types.Secure
 {
     public class Level
     {
         /// <summary>
-        /// Level
+        ///     Level
         /// </summary>
         [JsonProperty("level")]
-        public int? Level_ { get; set; }
+        public int? LevelCode { get; set; }
 
         /// <summary>
-        /// User ID
+        ///     User ID
         /// </summary>
         [JsonProperty("uid")]
         public int? Uid { get; set; }
-
     }
 }

@@ -1,17 +1,17 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using VkLib.Responses.Market;
+using VkLib.Types.Market;
+using VkLib.Types.Wall;
 
 namespace VkLib.Methods
 {
     /// <summary>
-    /// Market API section.
+    ///     Market API section.
     /// </summary>
     public class Market
     {
-        private Vkontakte _vkontakte;
+        private readonly Vkontakte _vkontakte;
 
         internal Market(Vkontakte vkontakte)
         {
@@ -19,19 +19,26 @@ namespace VkLib.Methods
         }
 
         /// <summary>
-        /// Returns items list for a community.
-        /// Docs: <see href="https://vk.com/dev/market.get">market.get</see>
+        ///     Returns items list for a community.
+        ///     Docs: <see href="https://vk.com/dev/market.get">market.get</see>
         /// </summary>
-        /// <param name="owner_id">ID of an item owner community; "Note that community id in the 'owner_id' parameter should be negative number. For example 'owner_id'=-1 matches the [vk.com/apiclub|VK API] community "</param>
+        /// <param name="ownerId">
+        ///     ID of an item owner community; "Note that community id in the 'owner_id' parameter should be
+        ///     negative number. For example 'owner_id'=-1 matches the [vk.com/apiclub|VK API] community "
+        /// </param>
         /// <param name="count">Number of items to return.</param>
         /// <param name="offset">Offset needed to return a specific subset of results.</param>
-        /// <param name="extended">'1' – method will return additional fields: 'likes, can_comment, car_repost, photos'. These parameters are not returned by default.</param>
-        public async Task<ApiItemsResponse<VkLib.Types.Market.MarketItem>> Get(int? owner_id = null, int? count = null, int? offset = null, bool? extended = null)
+        /// <param name="extended">
+        ///     '1' – method will return additional fields: 'likes, can_comment, car_repost, photos'. These
+        ///     parameters are not returned by default.
+        /// </param>
+        public async Task<ApiItemsResponse<MarketItem>> Get(int? ownerId = null, int? count = null, int? offset = null,
+            bool? extended = null)
         {
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            var parameters = new Dictionary<string, string>();
 
-            if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToApiString());
+            if (ownerId != null)
+                parameters.Add("owner_id", ownerId.ToApiString());
             if (count != null)
                 parameters.Add("count", count.ToApiString());
             if (offset != null)
@@ -39,52 +46,58 @@ namespace VkLib.Methods
             if (extended != null)
                 parameters.Add("extended", extended.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Market.MarketItem>>("market.get", parameters);
+            return await _vkontakte.GetAsync<ApiItemsResponse<MarketItem>>("market.get", parameters);
         }
 
         /// <summary>
-        /// Returns information about market items by their ids.
-        /// Docs: <see href="https://vk.com/dev/market.getById">market.getById</see>
+        ///     Returns information about market items by their ids.
+        ///     Docs: <see href="https://vk.com/dev/market.getById">market.getById</see>
         /// </summary>
-        /// <param name="item_ids">Comma-separated ids list: {user id}_{item id}.; If an item belongs to a community -{community id} is used. ; " 'Videos' value example: ; '-4363_136089719,13245770_137352259'"</param>
+        /// <param name="itemIds">
+        ///     Comma-separated ids list: {user id}_{item id}.; If an item belongs to a community -{community
+        ///     id} is used. ; " 'Videos' value example: ; '-4363_136089719,13245770_137352259'"
+        /// </param>
         /// <param name="extended">'1' – to return additional fields: 'likes, can_comment, car_repost, photos'. By default: '0'.</param>
-        public async Task<ApiItemsResponse<VkLib.Types.Market.MarketItem>> GetById(IEnumerable<string> item_ids = null, bool? extended = null)
+        public async Task<ApiItemsResponse<MarketItem>> GetById(IEnumerable<string> itemIds = null,
+            bool? extended = null)
         {
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            var parameters = new Dictionary<string, string>();
 
-            if (item_ids != null)
-                parameters.Add("item_ids", item_ids.ToApiString());
+            if (itemIds != null)
+                parameters.Add("item_ids", itemIds.ToApiString());
             if (extended != null)
                 parameters.Add("extended", extended.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Market.MarketItem>>("market.getById", parameters);
+            return await _vkontakte.GetAsync<ApiItemsResponse<MarketItem>>("market.getById", parameters);
         }
 
         /// <summary>
-        /// Searches market items in a community's catalog
-        /// Docs: <see href="https://vk.com/dev/market.search">market.search</see>
+        ///     Searches market items in a community's catalog
+        ///     Docs: <see href="https://vk.com/dev/market.search">market.search</see>
         /// </summary>
-        /// <param name="owner_id">ID of an items owner community.</param>
+        /// <param name="ownerId">ID of an items owner community.</param>
         /// <param name="q">Search query, for example "pink slippers".</param>
-        /// <param name="price_from">Minimum item price value.</param>
-        /// <param name="price_to">Maximum item price value.</param>
+        /// <param name="priceFrom">Minimum item price value.</param>
+        /// <param name="priceTo">Maximum item price value.</param>
         /// <param name="tags">Comma-separated tag IDs list.</param>
         /// <param name="rev">'0' — do not use reverse order, '1' — use reverse order</param>
         /// <param name="offset">Offset needed to return a specific subset of results.</param>
         /// <param name="count">Number of items to return.</param>
         /// <param name="extended">'1' – to return additional fields: 'likes, can_comment, car_repost, photos'. By default: '0'.</param>
-        public async Task<ApiItemsResponse<VkLib.Types.Market.MarketItem>> Search(int? owner_id = null, string q = null, int? price_from = null, int? price_to = null, IEnumerable<int?> tags = null, int? rev = null, int? offset = null, int? count = null, bool? extended = null)
+        public async Task<ApiItemsResponse<MarketItem>> Search(int? ownerId = null, string q = null,
+            int? priceFrom = null, int? priceTo = null, IEnumerable<int?> tags = null, int? rev = null,
+            int? offset = null, int? count = null, bool? extended = null)
         {
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            var parameters = new Dictionary<string, string>();
 
-            if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToApiString());
+            if (ownerId != null)
+                parameters.Add("owner_id", ownerId.ToApiString());
             if (q != null)
                 parameters.Add("q", q);
-            if (price_from != null)
-                parameters.Add("price_from", price_from.ToApiString());
-            if (price_to != null)
-                parameters.Add("price_to", price_to.ToApiString());
+            if (priceFrom != null)
+                parameters.Add("price_from", priceFrom.ToApiString());
+            if (priceTo != null)
+                parameters.Add("price_to", priceTo.ToApiString());
             if (tags != null)
                 parameters.Add("tags", tags.ToApiString());
             if (rev != null)
@@ -96,78 +109,99 @@ namespace VkLib.Methods
             if (extended != null)
                 parameters.Add("extended", extended.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Market.MarketItem>>("market.search", parameters);
+            return await _vkontakte.GetAsync<ApiItemsResponse<MarketItem>>("market.search", parameters);
         }
 
         /// <summary>
-        /// Returns community's collections list.
-        /// Docs: <see href="https://vk.com/dev/market.getAlbums">market.getAlbums</see>
+        ///     Returns community's collections list.
+        ///     Docs: <see href="https://vk.com/dev/market.getAlbums">market.getAlbums</see>
         /// </summary>
-        /// <param name="owner_id">ID of an items owner community.</param>
+        /// <param name="ownerId">ID of an items owner community.</param>
         /// <param name="offset">Offset needed to return a specific subset of results.</param>
         /// <param name="count">Number of items to return.</param>
-        public async Task<ApiItemsResponse<VkLib.Types.Market.MarketAlbum>> GetAlbums(int? owner_id = null, int? offset = null, int? count = null)
+        public async Task<ApiItemsResponse<MarketAlbum>> GetAlbums(int? ownerId = null, int? offset = null,
+            int? count = null)
         {
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            var parameters = new Dictionary<string, string>();
 
-            if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToApiString());
+            if (ownerId != null)
+                parameters.Add("owner_id", ownerId.ToApiString());
             if (offset != null)
                 parameters.Add("offset", offset.ToApiString());
             if (count != null)
                 parameters.Add("count", count.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Market.MarketAlbum>>("market.getAlbums", parameters);
+            return await _vkontakte.GetAsync<ApiItemsResponse<MarketAlbum>>("market.getAlbums", parameters);
         }
 
         /// <summary>
-        /// Returns items album's data
-        /// Docs: <see href="https://vk.com/dev/market.getAlbumById">market.getAlbumById</see>
+        ///     Returns items album's data
+        ///     Docs: <see href="https://vk.com/dev/market.getAlbumById">market.getAlbumById</see>
         /// </summary>
-        /// <param name="owner_id">identifier of an album owner community; "Note that community id in the 'owner_id' parameter should be negative number. For example 'owner_id'=-1 matches the [vk.com/apiclub|VK API] community "</param>
-        /// <param name="album_ids">collections identifiers to obtain data from</param>
-        public async Task<ApiItemsResponse<VkLib.Types.Market.MarketAlbum>> GetAlbumById(int? owner_id = null, IEnumerable<int?> album_ids = null)
+        /// <param name="ownerId">
+        ///     identifier of an album owner community; "Note that community id in the 'owner_id' parameter
+        ///     should be negative number. For example 'owner_id'=-1 matches the [vk.com/apiclub|VK API] community "
+        /// </param>
+        /// <param name="albumIds">collections identifiers to obtain data from</param>
+        public async Task<ApiItemsResponse<MarketAlbum>> GetAlbumById(int? ownerId = null,
+            IEnumerable<int?> albumIds = null)
         {
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            var parameters = new Dictionary<string, string>();
 
-            if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToApiString());
-            if (album_ids != null)
-                parameters.Add("album_ids", album_ids.ToApiString());
+            if (ownerId != null)
+                parameters.Add("owner_id", ownerId.ToApiString());
+            if (albumIds != null)
+                parameters.Add("album_ids", albumIds.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Market.MarketAlbum>>("market.getAlbumById", parameters);
+            return await _vkontakte.GetAsync<ApiItemsResponse<MarketAlbum>>("market.getAlbumById", parameters);
         }
 
         /// <summary>
-        /// Creates a new comment for an item.
-        /// Docs: <see href="https://vk.com/dev/market.createComment">market.createComment</see>
+        ///     Creates a new comment for an item.
+        ///     Docs: <see href="https://vk.com/dev/market.createComment">market.createComment</see>
         /// </summary>
-        /// <param name="owner_id">ID of an item owner community.</param>
-        /// <param name="item_id">Item ID.</param>
+        /// <param name="ownerId">ID of an item owner community.</param>
+        /// <param name="itemId">Item ID.</param>
         /// <param name="message">Comment text (required if 'attachments' parameter is not specified)</param>
-        /// <param name="attachments">Comma-separated list of objects attached to a comment. The field is submitted the following way: ; "'<owner_id>_<media_id>,<owner_id>_<media_id>'"; ; '' - media attachment type:; "'photo' - photo; 'video' - video; 'audio' - audio; 'doc' - document"; ; '<owner_id>' - media owner id; '<media_id>' - media attachment id; ; For example:; "photo100172_166443618,photo66748_265827614";</param>
-        /// <param name="from_group">'1' - comment will be published on behalf of a community, '0' - on behalf of a user (by default).</param>
-        /// <param name="reply_to_comment">ID of a comment to reply with current comment to.</param>
-        /// <param name="sticker_id">Sticker ID.</param>
+        /// <param name="attachments">
+        ///     (Required if 'message' is not set.) List of objects attached to the post, in the following format:; 
+        ///     "%owner_id%_%media_id%, %owner_id%_%media_id%"; 
+        ///     '' — Type of media attachment:; 
+        ///     'photo' — photo; 
+        ///     'video' — video; 
+        ///     'audio' — audio; 
+        ///     'doc' — document; 
+        ///     '%owner_id%' — Media attachment owner ID.; 
+        ///     '%media_id%' — Media attachment ID.;
+        ///     Example:; "photo100172_166443618,photo66748_265827614"
+        /// </param>
+        /// <param name="fromGroup">
+        ///     '1' - comment will be published on behalf of a community, '0' - on behalf of a user (by
+        ///     default).
+        /// </param>
+        /// <param name="replyToComment">ID of a comment to reply with current comment to.</param>
+        /// <param name="stickerId">Sticker ID.</param>
         /// <param name="guid">Random value to avoid resending one comment.</param>
-        public async Task<int?> CreateComment(int? owner_id = null, int? item_id = null, string message = null, IEnumerable<string> attachments = null, bool? from_group = null, int? reply_to_comment = null, int? sticker_id = null, string guid = null)
+        public async Task<int?> CreateComment(int? ownerId = null, int? itemId = null, string message = null,
+            IEnumerable<string> attachments = null, bool? fromGroup = null, int? replyToComment = null,
+            int? stickerId = null, string guid = null)
         {
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            var parameters = new Dictionary<string, string>();
 
-            if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToApiString());
-            if (item_id != null)
-                parameters.Add("item_id", item_id.ToApiString());
+            if (ownerId != null)
+                parameters.Add("owner_id", ownerId.ToApiString());
+            if (itemId != null)
+                parameters.Add("item_id", itemId.ToApiString());
             if (message != null)
                 parameters.Add("message", message);
             if (attachments != null)
                 parameters.Add("attachments", attachments.ToApiString());
-            if (from_group != null)
-                parameters.Add("from_group", from_group.ToApiString());
-            if (reply_to_comment != null)
-                parameters.Add("reply_to_comment", reply_to_comment.ToApiString());
-            if (sticker_id != null)
-                parameters.Add("sticker_id", sticker_id.ToApiString());
+            if (fromGroup != null)
+                parameters.Add("from_group", fromGroup.ToApiString());
+            if (replyToComment != null)
+                parameters.Add("reply_to_comment", replyToComment.ToApiString());
+            if (stickerId != null)
+                parameters.Add("sticker_id", stickerId.ToApiString());
             if (guid != null)
                 parameters.Add("guid", guid);
 
@@ -175,29 +209,34 @@ namespace VkLib.Methods
         }
 
         /// <summary>
-        /// Returns comments list for an item.
-        /// Docs: <see href="https://vk.com/dev/market.getComments">market.getComments</see>
+        ///     Returns comments list for an item.
+        ///     Docs: <see href="https://vk.com/dev/market.getComments">market.getComments</see>
         /// </summary>
-        /// <param name="owner_id">ID of an item owner community</param>
-        /// <param name="item_id">Item ID.</param>
-        /// <param name="need_likes">'1' — to return likes info.</param>
-        /// <param name="start_comment_id">ID of a comment to start a list from (details below).</param>
+        /// <param name="ownerId">ID of an item owner community</param>
+        /// <param name="itemId">Item ID.</param>
+        /// <param name="needLikes">'1' — to return likes info.</param>
+        /// <param name="startCommentId">ID of a comment to start a list from (details below).</param>
         /// <param name="count">Number of results to return.</param>
         /// <param name="sort">Sort order ('asc' — from old to new, 'desc' — from new to old)</param>
-        /// <param name="extended">'1' — comments will be returned as numbered objects, in addition lists of 'profiles' and 'groups' objects will be returned.</param>
+        /// <param name="extended">
+        ///     '1' — comments will be returned as numbered objects, in addition lists of 'profiles' and
+        ///     'groups' objects will be returned.
+        /// </param>
         /// <param name="fields">List of additional profile fields to return. See the [vk.com/dev/fields|details]</param>
-        public async Task<ApiItemsResponse<VkLib.Types.Wall.WallComment>> GetComments(int? owner_id = null, int? item_id = null, bool? need_likes = null, int? start_comment_id = null, int? count = null, string sort = null, bool? extended = null, IEnumerable<string> fields = null)
+        public async Task<ApiItemsResponse<WallComment>> GetComments(int? ownerId = null, int? itemId = null,
+            bool? needLikes = null, int? startCommentId = null, int? count = null, string sort = null,
+            bool? extended = null, IEnumerable<string> fields = null)
         {
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            var parameters = new Dictionary<string, string>();
 
-            if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToApiString());
-            if (item_id != null)
-                parameters.Add("item_id", item_id.ToApiString());
-            if (need_likes != null)
-                parameters.Add("need_likes", need_likes.ToApiString());
-            if (start_comment_id != null)
-                parameters.Add("start_comment_id", start_comment_id.ToApiString());
+            if (ownerId != null)
+                parameters.Add("owner_id", ownerId.ToApiString());
+            if (itemId != null)
+                parameters.Add("item_id", itemId.ToApiString());
+            if (needLikes != null)
+                parameters.Add("need_likes", needLikes.ToApiString());
+            if (startCommentId != null)
+                parameters.Add("start_comment_id", startCommentId.ToApiString());
             if (count != null)
                 parameters.Add("count", count.ToApiString());
             if (sort != null)
@@ -207,61 +246,79 @@ namespace VkLib.Methods
             if (fields != null)
                 parameters.Add("fields", fields.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Wall.WallComment>>("market.getComments", parameters);
+            return await _vkontakte.GetAsync<ApiItemsResponse<WallComment>>("market.getComments", parameters);
         }
 
         /// <summary>
-        /// Deletes an item's comment
-        /// Docs: <see href="https://vk.com/dev/market.deleteComment">market.deleteComment</see>
+        ///     Deletes an item's comment
+        ///     Docs: <see href="https://vk.com/dev/market.deleteComment">market.deleteComment</see>
         /// </summary>
-        /// <param name="owner_id">identifier of an item owner community; "Note that community id in the 'owner_id' parameter should be negative number. For example 'owner_id'=-1 matches the [vk.com/apiclub|VK API] community "</param>
-        /// <param name="comment_id">comment id</param>
-        public async Task<int> DeleteComment(int? owner_id = null, int? comment_id = null)
+        /// <param name="ownerId">
+        ///     identifier of an item owner community; "Note that community id in the 'owner_id' parameter
+        ///     should be negative number. For example 'owner_id'=-1 matches the [vk.com/apiclub|VK API] community "
+        /// </param>
+        /// <param name="commentId">comment id</param>
+        public async Task<int> DeleteComment(int? ownerId = null, int? commentId = null)
         {
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            var parameters = new Dictionary<string, string>();
 
-            if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToApiString());
-            if (comment_id != null)
-                parameters.Add("comment_id", comment_id.ToApiString());
+            if (ownerId != null)
+                parameters.Add("owner_id", ownerId.ToApiString());
+            if (commentId != null)
+                parameters.Add("comment_id", commentId.ToApiString());
 
             return await _vkontakte.GetAsync<int>("market.deleteComment", parameters);
         }
 
         /// <summary>
-        /// Restores a recently deleted comment
-        /// Docs: <see href="https://vk.com/dev/market.restoreComment">market.restoreComment</see>
+        ///     Restores a recently deleted comment
+        ///     Docs: <see href="https://vk.com/dev/market.restoreComment">market.restoreComment</see>
         /// </summary>
-        /// <param name="owner_id">identifier of an item owner community; "Note that community id in the 'owner_id' parameter should be negative number. For example 'owner_id'=-1 matches the [vk.com/apiclub|VK API] community "</param>
-        /// <param name="comment_id">deleted comment id</param>
-        public async Task<int> RestoreComment(int? owner_id = null, int? comment_id = null)
+        /// <param name="ownerId">
+        ///     identifier of an item owner community; "Note that community id in the 'owner_id' parameter
+        ///     should be negative number. For example 'owner_id'=-1 matches the [vk.com/apiclub|VK API] community "
+        /// </param>
+        /// <param name="commentId">deleted comment id</param>
+        public async Task<int> RestoreComment(int? ownerId = null, int? commentId = null)
         {
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            var parameters = new Dictionary<string, string>();
 
-            if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToApiString());
-            if (comment_id != null)
-                parameters.Add("comment_id", comment_id.ToApiString());
+            if (ownerId != null)
+                parameters.Add("owner_id", ownerId.ToApiString());
+            if (commentId != null)
+                parameters.Add("comment_id", commentId.ToApiString());
 
             return await _vkontakte.GetAsync<int>("market.restoreComment", parameters);
         }
 
         /// <summary>
-        /// Chages item comment's text
-        /// Docs: <see href="https://vk.com/dev/market.editComment">market.editComment</see>
+        ///     Chages item comment's text
+        ///     Docs: <see href="https://vk.com/dev/market.editComment">market.editComment</see>
         /// </summary>
-        /// <param name="owner_id">ID of an item owner community.</param>
-        /// <param name="comment_id">Comment ID.</param>
+        /// <param name="ownerId">ID of an item owner community.</param>
+        /// <param name="commentId">Comment ID.</param>
         /// <param name="message">New comment text (required if 'attachments' are not specified); ; 2048 symbols maximum.</param>
-        /// <param name="attachments">Comma-separated list of objects attached to a comment. The field is submitted the following way: ; "'<owner_id>_<media_id>,<owner_id>_<media_id>'"; ; '' - media attachment type:; "'photo' - photo; 'video' - video; 'audio' - audio; 'doc' - document"; ; '<owner_id>' - media owner id; '<media_id>' - media attachment id; ; For example:; "photo100172_166443618,photo66748_265827614";</param>
-        public async Task<int> EditComment(int? owner_id = null, int? comment_id = null, string message = null, IEnumerable<string> attachments = null)
+        /// <param name="attachments">
+        ///     (Required if 'message' is not set.) List of objects attached to the post, in the following format:; 
+        ///     "%owner_id%_%media_id%, %owner_id%_%media_id%"; 
+        ///     '' — Type of media attachment:; 
+        ///     'photo' — photo; 
+        ///     'video' — video; 
+        ///     'audio' — audio; 
+        ///     'doc' — document; 
+        ///     '%owner_id%' — Media attachment owner ID.; 
+        ///     '%media_id%' — Media attachment ID.;
+        ///     Example:; "photo100172_166443618,photo66748_265827614"
+        /// </param>
+        public async Task<int> EditComment(int? ownerId = null, int? commentId = null, string message = null,
+            IEnumerable<string> attachments = null)
         {
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            var parameters = new Dictionary<string, string>();
 
-            if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToApiString());
-            if (comment_id != null)
-                parameters.Add("comment_id", comment_id.ToApiString());
+            if (ownerId != null)
+                parameters.Add("owner_id", ownerId.ToApiString());
+            if (commentId != null)
+                parameters.Add("comment_id", commentId.ToApiString());
             if (message != null)
                 parameters.Add("message", message);
             if (attachments != null)
@@ -271,20 +328,23 @@ namespace VkLib.Methods
         }
 
         /// <summary>
-        /// Sends a complaint to the item's comment.
-        /// Docs: <see href="https://vk.com/dev/market.reportComment">market.reportComment</see>
+        ///     Sends a complaint to the item's comment.
+        ///     Docs: <see href="https://vk.com/dev/market.reportComment">market.reportComment</see>
         /// </summary>
-        /// <param name="owner_id">ID of an item owner community.</param>
-        /// <param name="comment_id">Comment ID.</param>
-        /// <param name="reason">Complaint reason. Possible values:; *'0' — spam;; *'1' — child porn;; *'2' — extremism;; *'3' — violence;; *'4' — drugs propaganda;; *'5' — adult materials;; *'6' — insult.</param>
-        public async Task<int> ReportComment(int? owner_id = null, int? comment_id = null, int? reason = null)
+        /// <param name="ownerId">ID of an item owner community.</param>
+        /// <param name="commentId">Comment ID.</param>
+        /// <param name="reason">
+        ///     Complaint reason. Possible values:; *'0' — spam;; *'1' — child porn;; *'2' — extremism;; *'3' —
+        ///     violence;; *'4' — drugs propaganda;; *'5' — adult materials;; *'6' — insult.
+        /// </param>
+        public async Task<int> ReportComment(int? ownerId = null, int? commentId = null, int? reason = null)
         {
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            var parameters = new Dictionary<string, string>();
 
-            if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToApiString());
-            if (comment_id != null)
-                parameters.Add("comment_id", comment_id.ToApiString());
+            if (ownerId != null)
+                parameters.Add("owner_id", ownerId.ToApiString());
+            if (commentId != null)
+                parameters.Add("comment_id", commentId.ToApiString());
             if (reason != null)
                 parameters.Add("reason", reason.ToApiString());
 
@@ -292,38 +352,41 @@ namespace VkLib.Methods
         }
 
         /// <summary>
-        /// Returns a list of market categories.
-        /// Docs: <see href="https://vk.com/dev/market.getCategories">market.getCategories</see>
+        ///     Returns a list of market categories.
+        ///     Docs: <see href="https://vk.com/dev/market.getCategories">market.getCategories</see>
         /// </summary>
         /// <param name="count">Number of results to return.</param>
         /// <param name="offset">Offset needed to return a specific subset of results.</param>
-        public async Task<ApiItemsResponse<VkLib.Types.Market.MarketCategory>> GetCategories(int? count = null, int? offset = null)
+        public async Task<ApiItemsResponse<MarketCategory>> GetCategories(int? count = null, int? offset = null)
         {
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            var parameters = new Dictionary<string, string>();
 
             if (count != null)
                 parameters.Add("count", count.ToApiString());
             if (offset != null)
                 parameters.Add("offset", offset.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Market.MarketCategory>>("market.getCategories", parameters);
+            return await _vkontakte.GetAsync<ApiItemsResponse<MarketCategory>>("market.getCategories", parameters);
         }
 
         /// <summary>
-        /// Sends a complaint to the item.
-        /// Docs: <see href="https://vk.com/dev/market.report">market.report</see>
+        ///     Sends a complaint to the item.
+        ///     Docs: <see href="https://vk.com/dev/market.report">market.report</see>
         /// </summary>
-        /// <param name="owner_id">ID of an item owner community.</param>
-        /// <param name="item_id">Item ID.</param>
-        /// <param name="reason">Complaint reason. Possible values:; *'0' — spam;; *'1' — child porn;; *'2' — extremism;; *'3' — violence;; *'4' — drugs propaganda;; *'5' — adult materials;; *'6' — insult.</param>
-        public async Task<int> Report(int? owner_id = null, int? item_id = null, int? reason = null)
+        /// <param name="ownerId">ID of an item owner community.</param>
+        /// <param name="itemId">Item ID.</param>
+        /// <param name="reason">
+        ///     Complaint reason. Possible values:; *'0' — spam;; *'1' — child porn;; *'2' — extremism;; *'3' —
+        ///     violence;; *'4' — drugs propaganda;; *'5' — adult materials;; *'6' — insult.
+        /// </param>
+        public async Task<int> Report(int? ownerId = null, int? itemId = null, int? reason = null)
         {
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            var parameters = new Dictionary<string, string>();
 
-            if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToApiString());
-            if (item_id != null)
-                parameters.Add("item_id", item_id.ToApiString());
+            if (ownerId != null)
+                parameters.Add("owner_id", ownerId.ToApiString());
+            if (itemId != null)
+                parameters.Add("item_id", itemId.ToApiString());
             if (reason != null)
                 parameters.Add("reason", reason.ToApiString());
 
@@ -331,135 +394,140 @@ namespace VkLib.Methods
         }
 
         /// <summary>
-        /// Ads a new item to the market.
-        /// Docs: <see href="https://vk.com/dev/market.add">market.add</see>
+        ///     Ads a new item to the market.
+        ///     Docs: <see href="https://vk.com/dev/market.add">market.add</see>
         /// </summary>
-        /// <param name="owner_id">ID of an item owner community.</param>
+        /// <param name="ownerId">ID of an item owner community.</param>
         /// <param name="name">Item name.</param>
         /// <param name="description">Item description.</param>
-        /// <param name="category_id">Item category ID.</param>
+        /// <param name="categoryId">Item category ID.</param>
         /// <param name="price">Item price.</param>
         /// <param name="deleted">Item status ('1' — deleted, '0' — not deleted).</param>
-        /// <param name="main_photo_id">Cover photo ID.</param>
-        /// <param name="photo_ids">IDs of additional photos.</param>
-        public async Task<VkLib.Responses.Market.AddResponse> Add(int? owner_id = null, string name = null, string description = null, int? category_id = null, uint? price = null, bool? deleted = null, int? main_photo_id = null, IEnumerable<int?> photo_ids = null)
+        /// <param name="mainPhotoId">Cover photo ID.</param>
+        /// <param name="photoIds">IDs of additional photos.</param>
+        public async Task<AddResponse> Add(int? ownerId = null, string name = null, string description = null,
+            int? categoryId = null, uint? price = null, bool? deleted = null, int? mainPhotoId = null,
+            IEnumerable<int?> photoIds = null)
         {
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            var parameters = new Dictionary<string, string>();
 
-            if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToApiString());
+            if (ownerId != null)
+                parameters.Add("owner_id", ownerId.ToApiString());
             if (name != null)
                 parameters.Add("name", name);
             if (description != null)
                 parameters.Add("description", description);
-            if (category_id != null)
-                parameters.Add("category_id", category_id.ToApiString());
+            if (categoryId != null)
+                parameters.Add("category_id", categoryId.ToApiString());
             if (price != null)
                 parameters.Add("price", price.ToApiString());
             if (deleted != null)
                 parameters.Add("deleted", deleted.ToApiString());
-            if (main_photo_id != null)
-                parameters.Add("main_photo_id", main_photo_id.ToApiString());
-            if (photo_ids != null)
-                parameters.Add("photo_ids", photo_ids.ToApiString());
+            if (mainPhotoId != null)
+                parameters.Add("main_photo_id", mainPhotoId.ToApiString());
+            if (photoIds != null)
+                parameters.Add("photo_ids", photoIds.ToApiString());
 
-            return await _vkontakte.GetAsync<VkLib.Responses.Market.AddResponse>("market.add", parameters);
+            return await _vkontakte.GetAsync<AddResponse>("market.add", parameters);
         }
 
         /// <summary>
-        /// Edits an item.
-        /// Docs: <see href="https://vk.com/dev/market.edit">market.edit</see>
+        ///     Edits an item.
+        ///     Docs: <see href="https://vk.com/dev/market.edit">market.edit</see>
         /// </summary>
-        /// <param name="owner_id">ID of an item owner community.</param>
-        /// <param name="item_id">Item ID.</param>
+        /// <param name="ownerId">ID of an item owner community.</param>
+        /// <param name="itemId">Item ID.</param>
         /// <param name="name">Item name.</param>
         /// <param name="description">Item description.</param>
-        /// <param name="category_id">Item category ID.</param>
+        /// <param name="categoryId">Item category ID.</param>
         /// <param name="price">Item price.</param>
         /// <param name="deleted">Item status ('1' — deleted, '0' — not deleted).</param>
-        /// <param name="main_photo_id">Cover photo ID.</param>
-        /// <param name="photo_ids">IDs of additional photos.</param>
-        public async Task<int> Edit(int? owner_id = null, int? item_id = null, string name = null, string description = null, int? category_id = null, uint? price = null, bool? deleted = null, int? main_photo_id = null, IEnumerable<int?> photo_ids = null)
+        /// <param name="mainPhotoId">Cover photo ID.</param>
+        /// <param name="photoIds">IDs of additional photos.</param>
+        public async Task<int> Edit(int? ownerId = null, int? itemId = null, string name = null,
+            string description = null, int? categoryId = null, uint? price = null, bool? deleted = null,
+            int? mainPhotoId = null, IEnumerable<int?> photoIds = null)
         {
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            var parameters = new Dictionary<string, string>();
 
-            if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToApiString());
-            if (item_id != null)
-                parameters.Add("item_id", item_id.ToApiString());
+            if (ownerId != null)
+                parameters.Add("owner_id", ownerId.ToApiString());
+            if (itemId != null)
+                parameters.Add("item_id", itemId.ToApiString());
             if (name != null)
                 parameters.Add("name", name);
             if (description != null)
                 parameters.Add("description", description);
-            if (category_id != null)
-                parameters.Add("category_id", category_id.ToApiString());
+            if (categoryId != null)
+                parameters.Add("category_id", categoryId.ToApiString());
             if (price != null)
                 parameters.Add("price", price.ToApiString());
             if (deleted != null)
                 parameters.Add("deleted", deleted.ToApiString());
-            if (main_photo_id != null)
-                parameters.Add("main_photo_id", main_photo_id.ToApiString());
-            if (photo_ids != null)
-                parameters.Add("photo_ids", photo_ids.ToApiString());
+            if (mainPhotoId != null)
+                parameters.Add("main_photo_id", mainPhotoId.ToApiString());
+            if (photoIds != null)
+                parameters.Add("photo_ids", photoIds.ToApiString());
 
             return await _vkontakte.GetAsync<int>("market.edit", parameters);
         }
 
         /// <summary>
-        /// Deletes an item.
-        /// Docs: <see href="https://vk.com/dev/market.delete">market.delete</see>
+        ///     Deletes an item.
+        ///     Docs: <see href="https://vk.com/dev/market.delete">market.delete</see>
         /// </summary>
-        /// <param name="owner_id">ID of an item owner community.</param>
-        /// <param name="item_id">Item ID.</param>
-        public async Task<int> Delete(int? owner_id = null, int? item_id = null)
+        /// <param name="ownerId">ID of an item owner community.</param>
+        /// <param name="itemId">Item ID.</param>
+        public async Task<int> Delete(int? ownerId = null, int? itemId = null)
         {
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            var parameters = new Dictionary<string, string>();
 
-            if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToApiString());
-            if (item_id != null)
-                parameters.Add("item_id", item_id.ToApiString());
+            if (ownerId != null)
+                parameters.Add("owner_id", ownerId.ToApiString());
+            if (itemId != null)
+                parameters.Add("item_id", itemId.ToApiString());
 
             return await _vkontakte.GetAsync<int>("market.delete", parameters);
         }
 
         /// <summary>
-        /// Restores recently deleted item
-        /// Docs: <see href="https://vk.com/dev/market.restore">market.restore</see>
+        ///     Restores recently deleted item
+        ///     Docs: <see href="https://vk.com/dev/market.restore">market.restore</see>
         /// </summary>
-        /// <param name="owner_id">ID of an item owner community.</param>
-        /// <param name="item_id">Deleted item ID.</param>
-        public async Task<int> Restore(int? owner_id = null, int? item_id = null)
+        /// <param name="ownerId">ID of an item owner community.</param>
+        /// <param name="itemId">Deleted item ID.</param>
+        public async Task<int> Restore(int? ownerId = null, int? itemId = null)
         {
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            var parameters = new Dictionary<string, string>();
 
-            if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToApiString());
-            if (item_id != null)
-                parameters.Add("item_id", item_id.ToApiString());
+            if (ownerId != null)
+                parameters.Add("owner_id", ownerId.ToApiString());
+            if (itemId != null)
+                parameters.Add("item_id", itemId.ToApiString());
 
             return await _vkontakte.GetAsync<int>("market.restore", parameters);
         }
 
         /// <summary>
-        /// Changes item place in a collection.
-        /// Docs: <see href="https://vk.com/dev/market.reorderItems">market.reorderItems</see>
+        ///     Changes item place in a collection.
+        ///     Docs: <see href="https://vk.com/dev/market.reorderItems">market.reorderItems</see>
         /// </summary>
-        /// <param name="owner_id">ID of an item owner community.</param>
-        /// <param name="album_id">ID of a collection to reorder items in. Set 0 to reorder full items list.</param>
-        /// <param name="item_id">Item ID.</param>
+        /// <param name="ownerId">ID of an item owner community.</param>
+        /// <param name="albumId">ID of a collection to reorder items in. Set 0 to reorder full items list.</param>
+        /// <param name="itemId">Item ID.</param>
         /// <param name="before">ID of an item to place current item before it.</param>
         /// <param name="after">ID of an item to place current item after it.</param>
-        public async Task<int> ReorderItems(int? owner_id = null, int? album_id = null, int? item_id = null, int? before = null, int? after = null)
+        public async Task<int> ReorderItems(int? ownerId = null, int? albumId = null, int? itemId = null,
+            int? before = null, int? after = null)
         {
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            var parameters = new Dictionary<string, string>();
 
-            if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToApiString());
-            if (album_id != null)
-                parameters.Add("album_id", album_id.ToApiString());
-            if (item_id != null)
-                parameters.Add("item_id", item_id.ToApiString());
+            if (ownerId != null)
+                parameters.Add("owner_id", ownerId.ToApiString());
+            if (albumId != null)
+                parameters.Add("album_id", albumId.ToApiString());
+            if (itemId != null)
+                parameters.Add("item_id", itemId.ToApiString());
             if (before != null)
                 parameters.Add("before", before.ToApiString());
             if (after != null)
@@ -469,21 +537,22 @@ namespace VkLib.Methods
         }
 
         /// <summary>
-        /// Reorders the collections list.
-        /// Docs: <see href="https://vk.com/dev/market.reorderAlbums">market.reorderAlbums</see>
+        ///     Reorders the collections list.
+        ///     Docs: <see href="https://vk.com/dev/market.reorderAlbums">market.reorderAlbums</see>
         /// </summary>
-        /// <param name="owner_id">ID of an item owner community.</param>
-        /// <param name="album_id">Collection ID.</param>
+        /// <param name="ownerId">ID of an item owner community.</param>
+        /// <param name="albumId">Collection ID.</param>
         /// <param name="before">ID of a collection to place current collection before it.</param>
         /// <param name="after">ID of a collection to place current collection after it.</param>
-        public async Task<int> ReorderAlbums(int? owner_id = null, int? album_id = null, int? before = null, int? after = null)
+        public async Task<int> ReorderAlbums(int? ownerId = null, int? albumId = null, int? before = null,
+            int? after = null)
         {
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            var parameters = new Dictionary<string, string>();
 
-            if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToApiString());
-            if (album_id != null)
-                parameters.Add("album_id", album_id.ToApiString());
+            if (ownerId != null)
+                parameters.Add("owner_id", ownerId.ToApiString());
+            if (albumId != null)
+                parameters.Add("album_id", albumId.ToApiString());
             if (before != null)
                 parameters.Add("before", before.ToApiString());
             if (after != null)
@@ -493,115 +562,117 @@ namespace VkLib.Methods
         }
 
         /// <summary>
-        /// Creates new collection of items
-        /// Docs: <see href="https://vk.com/dev/market.addAlbum">market.addAlbum</see>
+        ///     Creates new collection of items
+        ///     Docs: <see href="https://vk.com/dev/market.addAlbum">market.addAlbum</see>
         /// </summary>
-        /// <param name="owner_id">ID of an item owner community.</param>
+        /// <param name="ownerId">ID of an item owner community.</param>
         /// <param name="title">Collection title.</param>
-        /// <param name="photo_id">Cover photo ID.</param>
-        /// <param name="main_album">Set as main ('1' – set, '0' – no).</param>
-        public async Task<VkLib.Responses.Market.AddAlbumResponse> AddAlbum(int? owner_id = null, string title = null, int? photo_id = null, bool? main_album = null)
+        /// <param name="photoId">Cover photo ID.</param>
+        /// <param name="mainAlbum">Set as main ('1' – set, '0' – no).</param>
+        public async Task<AddAlbumResponse> AddAlbum(int? ownerId = null, string title = null, int? photoId = null,
+            bool? mainAlbum = null)
         {
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            var parameters = new Dictionary<string, string>();
 
-            if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToApiString());
+            if (ownerId != null)
+                parameters.Add("owner_id", ownerId.ToApiString());
             if (title != null)
                 parameters.Add("title", title);
-            if (photo_id != null)
-                parameters.Add("photo_id", photo_id.ToApiString());
-            if (main_album != null)
-                parameters.Add("main_album", main_album.ToApiString());
+            if (photoId != null)
+                parameters.Add("photo_id", photoId.ToApiString());
+            if (mainAlbum != null)
+                parameters.Add("main_album", mainAlbum.ToApiString());
 
-            return await _vkontakte.GetAsync<VkLib.Responses.Market.AddAlbumResponse>("market.addAlbum", parameters);
+            return await _vkontakte.GetAsync<AddAlbumResponse>("market.addAlbum", parameters);
         }
 
         /// <summary>
-        /// Edits a collection of items
-        /// Docs: <see href="https://vk.com/dev/market.editAlbum">market.editAlbum</see>
+        ///     Edits a collection of items
+        ///     Docs: <see href="https://vk.com/dev/market.editAlbum">market.editAlbum</see>
         /// </summary>
-        /// <param name="owner_id">ID of an collection owner community.</param>
-        /// <param name="album_id">Collection ID.</param>
+        /// <param name="ownerId">ID of an collection owner community.</param>
+        /// <param name="albumId">Collection ID.</param>
         /// <param name="title">Collection title.</param>
-        /// <param name="photo_id">Cover photo id</param>
-        /// <param name="main_album">Set as main ('1' – set, '0' – no).</param>
-        public async Task<int> EditAlbum(int? owner_id = null, int? album_id = null, string title = null, int? photo_id = null, bool? main_album = null)
+        /// <param name="photoId">Cover photo id</param>
+        /// <param name="mainAlbum">Set as main ('1' – set, '0' – no).</param>
+        public async Task<int> EditAlbum(int? ownerId = null, int? albumId = null, string title = null,
+            int? photoId = null, bool? mainAlbum = null)
         {
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            var parameters = new Dictionary<string, string>();
 
-            if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToApiString());
-            if (album_id != null)
-                parameters.Add("album_id", album_id.ToApiString());
+            if (ownerId != null)
+                parameters.Add("owner_id", ownerId.ToApiString());
+            if (albumId != null)
+                parameters.Add("album_id", albumId.ToApiString());
             if (title != null)
                 parameters.Add("title", title);
-            if (photo_id != null)
-                parameters.Add("photo_id", photo_id.ToApiString());
-            if (main_album != null)
-                parameters.Add("main_album", main_album.ToApiString());
+            if (photoId != null)
+                parameters.Add("photo_id", photoId.ToApiString());
+            if (mainAlbum != null)
+                parameters.Add("main_album", mainAlbum.ToApiString());
 
             return await _vkontakte.GetAsync<int>("market.editAlbum", parameters);
         }
 
         /// <summary>
-        /// Deletes a collection of items.
-        /// Docs: <see href="https://vk.com/dev/market.deleteAlbum">market.deleteAlbum</see>
+        ///     Deletes a collection of items.
+        ///     Docs: <see href="https://vk.com/dev/market.deleteAlbum">market.deleteAlbum</see>
         /// </summary>
-        /// <param name="owner_id">ID of an collection owner community.</param>
-        /// <param name="album_id">Collection ID.</param>
-        public async Task<int> DeleteAlbum(int? owner_id = null, int? album_id = null)
+        /// <param name="ownerId">ID of an collection owner community.</param>
+        /// <param name="albumId">Collection ID.</param>
+        public async Task<int> DeleteAlbum(int? ownerId = null, int? albumId = null)
         {
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            var parameters = new Dictionary<string, string>();
 
-            if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToApiString());
-            if (album_id != null)
-                parameters.Add("album_id", album_id.ToApiString());
+            if (ownerId != null)
+                parameters.Add("owner_id", ownerId.ToApiString());
+            if (albumId != null)
+                parameters.Add("album_id", albumId.ToApiString());
 
             return await _vkontakte.GetAsync<int>("market.deleteAlbum", parameters);
         }
 
         /// <summary>
-        /// Removes an item from one or multiple collections.
-        /// Docs: <see href="https://vk.com/dev/market.removeFromAlbum">market.removeFromAlbum</see>
+        ///     Removes an item from one or multiple collections.
+        ///     Docs: <see href="https://vk.com/dev/market.removeFromAlbum">market.removeFromAlbum</see>
         /// </summary>
-        /// <param name="owner_id">ID of an item owner community.</param>
-        /// <param name="item_id">Item ID.</param>
-        /// <param name="album_ids">Collections IDs to remove item from.</param>
-        public async Task<int> RemoveFromAlbum(int? owner_id = null, int? item_id = null, IEnumerable<int?> album_ids = null)
+        /// <param name="ownerId">ID of an item owner community.</param>
+        /// <param name="itemId">Item ID.</param>
+        /// <param name="albumIds">Collections IDs to remove item from.</param>
+        public async Task<int> RemoveFromAlbum(int? ownerId = null, int? itemId = null,
+            IEnumerable<int?> albumIds = null)
         {
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            var parameters = new Dictionary<string, string>();
 
-            if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToApiString());
-            if (item_id != null)
-                parameters.Add("item_id", item_id.ToApiString());
-            if (album_ids != null)
-                parameters.Add("album_ids", album_ids.ToApiString());
+            if (ownerId != null)
+                parameters.Add("owner_id", ownerId.ToApiString());
+            if (itemId != null)
+                parameters.Add("item_id", itemId.ToApiString());
+            if (albumIds != null)
+                parameters.Add("album_ids", albumIds.ToApiString());
 
             return await _vkontakte.GetAsync<int>("market.removeFromAlbum", parameters);
         }
 
         /// <summary>
-        /// Adds an item to one or multiple collections.
-        /// Docs: <see href="https://vk.com/dev/market.addToAlbum">market.addToAlbum</see>
+        ///     Adds an item to one or multiple collections.
+        ///     Docs: <see href="https://vk.com/dev/market.addToAlbum">market.addToAlbum</see>
         /// </summary>
-        /// <param name="owner_id">ID of an item owner community.</param>
-        /// <param name="item_id">Item ID.</param>
-        /// <param name="album_ids">Collections IDs to add item to.</param>
-        public async Task<int> AddToAlbum(int? owner_id = null, int? item_id = null, IEnumerable<int?> album_ids = null)
+        /// <param name="ownerId">ID of an item owner community.</param>
+        /// <param name="itemId">Item ID.</param>
+        /// <param name="albumIds">Collections IDs to add item to.</param>
+        public async Task<int> AddToAlbum(int? ownerId = null, int? itemId = null, IEnumerable<int?> albumIds = null)
         {
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            var parameters = new Dictionary<string, string>();
 
-            if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToApiString());
-            if (item_id != null)
-                parameters.Add("item_id", item_id.ToApiString());
-            if (album_ids != null)
-                parameters.Add("album_ids", album_ids.ToApiString());
+            if (ownerId != null)
+                parameters.Add("owner_id", ownerId.ToApiString());
+            if (itemId != null)
+                parameters.Add("item_id", itemId.ToApiString());
+            if (albumIds != null)
+                parameters.Add("album_ids", albumIds.ToApiString());
 
             return await _vkontakte.GetAsync<int>("market.addToAlbum", parameters);
         }
-
     }
 }

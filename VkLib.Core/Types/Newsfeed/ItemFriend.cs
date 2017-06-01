@@ -1,16 +1,13 @@
-using System;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 
-namespace VkLib.Types.Newsfeed 
+namespace VkLib.Types.Newsfeed
 {
     public class ItemFriend
     {
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("friends")]
         public object Friends { get; set; }
-
     }
 }

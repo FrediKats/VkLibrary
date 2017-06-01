@@ -1,42 +1,37 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.UI.Popups;
 
 namespace VkLib
 {
+    /// <summary>
+    ///     Extension methods.
+    /// </summary>
     public static class Extensions
     {
         internal static string ToApiString(this object variable)
         {
             // Check for booleans.
-            Type type = variable.GetType();
-            if (type == typeof(bool)) return (bool)variable ? "1" : "0";
+            var type = variable.GetType();
+            if (type == typeof(bool)) return (bool) variable ? "1" : "0";
 
             // Check for sequences.
-            IEnumerable<object> enumerable = variable as IEnumerable<object>;
-            if (enumerable != null) return string.Join(",", enumerable);
-
-            return variable.ToString();
+            var enumerable = variable as IEnumerable<object>;
+            return enumerable != null
+                ? string.Join(",", enumerable)
+                : variable.ToString();
         }
-
     }
 
+    /// <summary>
+    ///     Represents API exception - exception that holds
+    ///     ApiError with Exception data.
+    /// </summary>
     public class ApiException : Exception
     {
-        private ApiError apiError;
+        private readonly ApiError _apiError;
 
-        public ApiException(ApiError apiError)
-        {
-            this.apiError = apiError;
-        }
+        public ApiException(ApiError apiError) => _apiError = apiError;
 
-        public ApiError GetApiError()
-        {
-            return this.apiError;
-        }
+        public ApiError GetApiError() => _apiError;
     }
 }

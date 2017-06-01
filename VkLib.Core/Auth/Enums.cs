@@ -1,62 +1,106 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace VkLib.Auth
 {
+    /// <summary>
+    ///     VKontakte access scope settings.
+    /// </summary>
     [Flags]
     public enum ScopeSettings
     {
+        /// <summary>
+        ///     App can notify user.
+        /// </summary>
         CanNotify = 1,
 
+        /// <summary>
+        ///     App can access friends.
+        /// </summary>
         CanAccessFriends = 2,
 
+        /// <summary>
+        ///     App can acccess photos.
+        /// </summary>
         CanAccessPhotos = 4,
 
+        /// <summary>
+        ///     App can access audios.
+        /// </summary>
         CanAccessAudios = 8,
 
+        /// <summary>
+        ///     App can access videos.
+        /// </summary>
         CanAccessVideos = 16,
 
+        /// <summary>
+        ///     App can access wikis.
+        /// </summary>
         CanAccessWiki = 128,
 
+        /// <summary>
+        ///     App can manage left-menu links.
+        /// </summary>
         CanAddAppLinkToUserMenu = 256,
 
+        /// <summary>
+        ///     App can modify status.
+        /// </summary>
         CanAccessStatus = 1024,
 
+        /// <summary>
+        ///     App can modify notes.
+        /// </summary>
         CanAccessNotes = 2048,
 
+        /// <summary>
+        ///     App has access to messages.
+        /// </summary>
         CanAccessMessages = 4096,
 
+        /// <summary>
+        ///     App can access wall.
+        /// </summary>
         CanAccessWall = 8192,
 
+        /// <summary>
+        ///     App can access cabinet/ads.
+        /// </summary>
         CanAccessAdsCabinet = 32768,
 
+        /// <summary>
+        ///     App can access docs.
+        /// </summary>
         CanAccessDocs = 131072,
 
+        /// <summary>
+        ///     App can access docs.
+        /// </summary>
         CanAccessGroups = 262144,
 
-        IamTheGod = 140492191,
+        /// <summary>
+        ///     Root permissions.
+        /// </summary>
+        IamTheGod = 140492191
     }
 
     /// <summary>
-    /// Authorization block display type.
+    ///     Authorization block display type.
     /// </summary>
     public enum AuthDisplayType
     {
         /// <summary>
-        /// Desktop pbrowser page.
+        ///     Desktop browser page.
         /// </summary>
         Page,
 
         /// <summary>
-        /// Popup view.
+        ///     Popup view.
         /// </summary>
         Popup,
 
         /// <summary>
-        /// Mobile view. (Preffered for modile devices)
+        ///     Mobile view. (Preffered for modile devices)
         /// </summary>
         Mobile
     }

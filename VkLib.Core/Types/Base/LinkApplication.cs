@@ -1,22 +1,19 @@
-using System;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 
-namespace VkLib.Types.Base 
+namespace VkLib.Types.Base
 {
     public class LinkApplication
     {
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("store")]
-        public VkLib.Types.Base.LinkApplicationStore Store { get; set; }
+        public LinkApplicationStore Store { get; set; }
 
         /// <summary>
-        /// Application Id
+        ///     Application Id
         /// </summary>
         [JsonProperty("app_id")]
         public uint? AppId { get; set; }
-
     }
 }

@@ -1,124 +1,121 @@
-using System;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 
-namespace VkLib.Types.Ads 
+namespace VkLib.Types.Ads
 {
     public class Ad
     {
         /// <summary>
-        /// Ad ID
+        ///     Ad ID
         /// </summary>
         [JsonProperty("id")]
         public int? Id { get; set; }
 
         /// <summary>
-        /// Cost of 1000 impressions, kopecks
+        ///     Cost of 1000 impressions, kopecks
         /// </summary>
         [JsonProperty("cpm")]
         public int? Cpm { get; set; }
 
         /// <summary>
-        /// Ad platform
+        ///     Ad platform
         /// </summary>
         [JsonProperty("ad_platform")]
         public string AdPlatform { get; set; }
 
         /// <summary>
-        /// Campaign ID
+        ///     Campaign ID
         /// </summary>
         [JsonProperty("campaign_id")]
         public int? CampaignId { get; set; }
 
         /// <summary>
-        /// Ad format
+        ///     Ad format
         /// </summary>
         [JsonProperty("ad_format")]
         public int? AdFormat { get; set; }
 
         /// <summary>
-        /// Category ID
+        ///     Category ID
         /// </summary>
         [JsonProperty("category1_id")]
         public int? Category1Id { get; set; }
 
         /// <summary>
-        /// Ad title
+        ///     Ad title
         /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; }
 
         /// <summary>
-        /// Impressions limit
+        ///     Impressions limit
         /// </summary>
         [JsonProperty("impressions_limit")]
         public int? ImpressionsLimit { get; set; }
 
         /// <summary>
-        /// Information whether the ad is a video
+        ///     Information whether the ad is a video
         /// </summary>
         [JsonProperty("video")]
         public int? Video { get; set; }
 
         /// <summary>
-        /// Information whether impressions are limited
+        ///     Information whether impressions are limited
         /// </summary>
         [JsonProperty("impressions_limited")]
         public int? ImpressionsLimited { get; set; }
 
         /// <summary>
-        /// Additional category ID
+        ///     Additional category ID
         /// </summary>
         [JsonProperty("category2_id")]
         public int? Category2Id { get; set; }
 
         /// <summary>
-        /// Cost type
+        ///     Cost type
         /// </summary>
         [JsonProperty("cost_type")]
         public int? CostType { get; set; }
 
         /// <summary>
-        /// Ad atatus
+        ///     Ad atatus
         /// </summary>
         [JsonProperty("status")]
         public int? Status { get; set; }
 
         /// <summary>
-        /// Cost of a click, kopecks
+        ///     Cost of a click, kopecks
         /// </summary>
         [JsonProperty("cpc")]
         public int? Cpc { get; set; }
 
         /// <summary>
-        /// Information whether disclaimer is enabled
+        ///     Information whether disclaimer is enabled
         /// </summary>
         [JsonProperty("disclaimer_supplements")]
         public int? DisclaimerSupplements { get; set; }
 
         /// <summary>
-        /// Total limit
+        ///     Total limit
         /// </summary>
         [JsonProperty("all_limit")]
         public int? AllLimit { get; set; }
 
         /// <summary>
-        /// Information whether disclaimer is enabled
+        ///     Information whether disclaimer is enabled
         /// </summary>
         [JsonProperty("disclaimer_medical")]
         public int? DisclaimerMedical { get; set; }
 
         /// <summary>
-        /// Information whether disclaimer is enabled
+        ///     Information whether disclaimer is enabled
         /// </summary>
         [JsonProperty("disclaimer_specialist")]
         public int? DisclaimerSpecialist { get; set; }
 
         /// <summary>
-        /// Review status
+        ///     Review status
         /// </summary>
         [JsonProperty("approved")]
         public int? Approved { get; set; }
-
     }
 }

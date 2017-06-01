@@ -1,22 +1,20 @@
-using System;
-using Newtonsoft.Json;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
-namespace VkLib.Types.Newsfeed 
+namespace VkLib.Types.Newsfeed
 {
     public class ItemNoteNotes
     {
         /// <summary>
-        /// Notes number
+        ///     Notes number
         /// </summary>
         [JsonProperty("count")]
         public int? Count { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("items")]
-        public IEnumerable<VkLib.Types.Newsfeed.NewsfeedNote> Items { get; set; }
-
+        public IEnumerable<NewsfeedNote> Items { get; set; }
     }
 }

@@ -1,16 +1,13 @@
-using System;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 
-namespace VkLib.Types.Newsfeed 
+namespace VkLib.Types.Newsfeed
 {
     public class ItemNote
     {
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("notes")]
-        public VkLib.Types.Newsfeed.ItemNoteNotes Notes { get; set; }
-
+        public ItemNoteNotes Notes { get; set; }
     }
 }

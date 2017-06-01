@@ -1,70 +1,69 @@
-using System;
-using Newtonsoft.Json;
 using System.Collections.Generic;
+using Newtonsoft.Json;
+using VkLib.Types.Base;
 
-namespace VkLib.Types.Wall 
+namespace VkLib.Types.Wall
 {
     public class Wallpost
     {
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("geo")]
-        public VkLib.Types.Base.Geo Geo { get; set; }
+        public Geo Geo { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("attachments")]
-        public IEnumerable<VkLib.Types.Wall.WallpostAttachment> Attachments { get; set; }
+        public IEnumerable<WallpostAttachment> Attachments { get; set; }
 
         /// <summary>
-        /// Date of publishing in Unixtime
+        ///     Date of publishing in Unixtime
         /// </summary>
         [JsonProperty("date")]
         public double? Date { get; set; }
 
         /// <summary>
-        /// Post ID
+        ///     Post ID
         /// </summary>
         [JsonProperty("id")]
         public int? Id { get; set; }
 
         /// <summary>
-        /// Wall owner's ID
+        ///     Wall owner's ID
         /// </summary>
         [JsonProperty("owner_id")]
         public int? OwnerId { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("post_source")]
-        public VkLib.Types.Wall.PostSource PostSource { get; set; }
+        public PostSource PostSource { get; set; }
 
         /// <summary>
-        /// Post text
+        ///     Post text
         /// </summary>
         [JsonProperty("text")]
         public string Text { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("post_type")]
         public string PostType { get; set; }
 
         /// <summary>
-        /// Post signer ID
+        ///     Post signer ID
         /// </summary>
         [JsonProperty("signer_id")]
         public int? SignerId { get; set; }
 
         /// <summary>
-        /// Post author ID
+        ///     Post author ID
         /// </summary>
         [JsonProperty("from_id")]
         public int? FromId { get; set; }
-
     }
 }

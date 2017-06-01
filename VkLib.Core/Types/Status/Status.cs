@@ -1,22 +1,20 @@
-using System;
 using Newtonsoft.Json;
-using System.Collections.Generic;
+using VkLib.Types.Audio;
 
-namespace VkLib.Types.Status 
+namespace VkLib.Types.Status
 {
     public class Status
     {
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("audio")]
-        public VkLib.Types.Audio.AudioFull Audio { get; set; }
+        public AudioFull Audio { get; set; }
 
         /// <summary>
-        /// Status text
+        ///     Status text
         /// </summary>
         [JsonProperty("text")]
         public string Text { get; set; }
-
     }
 }

@@ -1,34 +1,31 @@
-using System;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 
-namespace VkLib.Types.Stats 
+namespace VkLib.Types.Stats
 {
     public class Country
     {
         /// <summary>
-        /// Country code
+        ///     Country code
         /// </summary>
         [JsonProperty("code")]
         public string Code { get; set; }
 
         /// <summary>
-        /// Visitors number
+        ///     Visitors number
         /// </summary>
         [JsonProperty("visitors")]
         public int? Visitors { get; set; }
 
         /// <summary>
-        /// Country name
+        ///     Country name
         /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; }
 
         /// <summary>
-        /// Country ID
+        ///     Country ID
         /// </summary>
         [JsonProperty("value")]
         public int? Value { get; set; }
-
     }
 }

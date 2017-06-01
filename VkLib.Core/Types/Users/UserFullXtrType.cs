@@ -1,16 +1,13 @@
-using System;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 
-namespace VkLib.Types.Users 
+namespace VkLib.Types.Users
 {
-    public class UserFullXtrType : VkLib.Types.Users.UserFull
+    public class UserFullXtrType : UserFull
     {
         /// <summary>
-        /// Object type
+        ///     Object type
         /// </summary>
         [JsonProperty("type")]
         public string Type { get; set; }
-
     }
 }

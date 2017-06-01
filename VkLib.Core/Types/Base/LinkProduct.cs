@@ -1,16 +1,14 @@
-using System;
 using Newtonsoft.Json;
-using System.Collections.Generic;
+using VkLib.Types.Market;
 
-namespace VkLib.Types.Base 
+namespace VkLib.Types.Base
 {
     public class LinkProduct
     {
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("price")]
-        public VkLib.Types.Market.Price Price { get; set; }
-
+        public Price Price { get; set; }
     }
 }

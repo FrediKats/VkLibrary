@@ -1,40 +1,37 @@
-using System;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 
-namespace VkLib.Types.Secure 
+namespace VkLib.Types.Secure
 {
     public class SmsNotification
     {
         /// <summary>
-        /// User ID
+        ///     User ID
         /// </summary>
         [JsonProperty("user_id")]
         public int? UserId { get; set; }
 
         /// <summary>
-        /// Date when message has been sent in Unixtime
+        ///     Date when message has been sent in Unixtime
         /// </summary>
         [JsonProperty("date")]
         public int? Date { get; set; }
 
         /// <summary>
-        /// Application ID
+        ///     Application ID
         /// </summary>
         [JsonProperty("app_id")]
         public int? AppId { get; set; }
 
         /// <summary>
-        /// Notification ID
+        ///     Notification ID
         /// </summary>
         [JsonProperty("id")]
         public int? Id { get; set; }
 
         /// <summary>
-        /// Messsage text
+        ///     Messsage text
         /// </summary>
         [JsonProperty("message")]
         public string Message { get; set; }
-
     }
 }

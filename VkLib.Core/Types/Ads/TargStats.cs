@@ -1,28 +1,25 @@
-using System;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 
-namespace VkLib.Types.Ads 
+namespace VkLib.Types.Ads
 {
     public class TargStats
     {
         /// <summary>
-        /// Recommended CPC value
+        ///     Recommended CPC value
         /// </summary>
         [JsonProperty("recommended_cpc")]
         public uint? RecommendedCpc { get; set; }
 
         /// <summary>
-        /// Recommended CPM value
+        ///     Recommended CPM value
         /// </summary>
         [JsonProperty("recommended_cpm")]
         public uint? RecommendedCpm { get; set; }
 
         /// <summary>
-        /// Audience
+        ///     Audience
         /// </summary>
         [JsonProperty("audience_count")]
         public int? AudienceCount { get; set; }
-
     }
 }

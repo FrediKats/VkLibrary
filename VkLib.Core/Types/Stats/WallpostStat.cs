@@ -1,58 +1,55 @@
-using System;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 
-namespace VkLib.Types.Stats 
+namespace VkLib.Types.Stats
 {
     public class WallpostStat
     {
         /// <summary>
-        /// People have joined the group
+        ///     People have joined the group
         /// </summary>
         [JsonProperty("join_group")]
         public int? JoinGroup { get; set; }
 
         /// <summary>
-        /// Total reach
+        ///     Total reach
         /// </summary>
         [JsonProperty("reach_total")]
         public int? ReachTotal { get; set; }
 
         /// <summary>
-        /// Unsubscribed members
+        ///     Unsubscribed members
         /// </summary>
         [JsonProperty("unsubscribe")]
         public int? Unsubscribe { get; set; }
 
         /// <summary>
-        /// Hidings number
+        ///     Hidings number
         /// </summary>
         [JsonProperty("hide")]
         public int? Hide { get; set; }
 
         /// <summary>
-        /// Subscribers reach
+        ///     Subscribers reach
         /// </summary>
         [JsonProperty("reach_subscribers")]
         public int? ReachSubscribers { get; set; }
 
         /// <summary>
-        /// Link clickthrough
+        ///     Link clickthrough
         /// </summary>
         [JsonProperty("links")]
         public int? Links { get; set; }
 
         /// <summary>
-        /// Reports number
+        ///     Reports number
         /// </summary>
         [JsonProperty("report")]
         public int? Report { get; set; }
 
         /// <summary>
-        /// Clickthrough to community
+        ///     Clickthrough to community
         /// </summary>
         [JsonProperty("to_group")]
         public int? ToGroup { get; set; }
-
     }
 }

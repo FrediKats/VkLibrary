@@ -1,25 +1,23 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System;
 
 namespace VkLib.Converters
 {
     /// <summary>
-    /// JSON converter used to ignore strange VK API behaviour
-    /// (returning arrays instead of objects, etc.)
+    ///     JSON converter used to ignore strange VK API behaviour
+    ///     (returning arrays instead of objects, etc.)
     /// </summary>
     public class InvalidTypeJsonConverter : JsonConverter
     {
-        public override bool CanConvert(Type objectType)
-        {
-            return objectType != null;
-        }
+        public override bool CanConvert(Type objectType) => objectType != null;
 
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue,
+            JsonSerializer serializer)
         {
             try
             {
-                JToken token = JToken.Load(reader);
+                var token = JToken.Load(reader);
                 return token.ToObject(objectType, serializer);
             }
             catch (JsonSerializationException)
@@ -28,11 +26,9 @@ namespace VkLib.Converters
             }
         }
 
-        public override bool CanWrite { get => false; }
+        public override bool CanWrite => false;
 
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-        {
+        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer) => 
             throw new NotImplementedException();
-        }
     }
 }

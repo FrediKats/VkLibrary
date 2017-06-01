@@ -1,52 +1,50 @@
-using System;
-using Newtonsoft.Json;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
-namespace VkLib.Types.Ads 
+namespace VkLib.Types.Ads
 {
     public class DemostatsFormat
     {
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("sex")]
-        public IEnumerable<VkLib.Types.Ads.StatsSex> Sex { get; set; }
+        public IEnumerable<StatsSex> Sex { get; set; }
 
         /// <summary>
-        /// 1 if period=overall
+        ///     1 if period=overall
         /// </summary>
         [JsonProperty("overall")]
         public int? Overall { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("sex_age")]
-        public IEnumerable<VkLib.Types.Ads.StatsSexAge> SexAge { get; set; }
+        public IEnumerable<StatsSexAge> SexAge { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("cities")]
-        public IEnumerable<VkLib.Types.Ads.StatsCities> Cities { get; set; }
+        public IEnumerable<StatsCities> Cities { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("age")]
-        public IEnumerable<VkLib.Types.Ads.StatsAge> Age { get; set; }
+        public IEnumerable<StatsAge> Age { get; set; }
 
         /// <summary>
-        /// Day as YYYY-MM-DD
+        ///     Day as YYYY-MM-DD
         /// </summary>
         [JsonProperty("day")]
         public string Day { get; set; }
 
         /// <summary>
-        /// Month as YYYY-MM
+        ///     Month as YYYY-MM
         /// </summary>
         [JsonProperty("month")]
         public string Month { get; set; }
-
     }
 }

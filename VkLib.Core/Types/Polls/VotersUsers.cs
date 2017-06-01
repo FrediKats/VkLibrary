@@ -1,22 +1,20 @@
-using System;
-using Newtonsoft.Json;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
-namespace VkLib.Types.Polls 
+namespace VkLib.Types.Polls
 {
     public class VotersUsers
     {
         /// <summary>
-        /// Votes number
+        ///     Votes number
         /// </summary>
         [JsonProperty("count")]
         public int? Count { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("items")]
         public IEnumerable<int?> Items { get; set; }
-
     }
 }

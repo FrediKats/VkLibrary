@@ -1,22 +1,20 @@
-using System;
-using Newtonsoft.Json;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
-namespace VkLib.Types.Ads 
+namespace VkLib.Types.Ads
 {
     public class Rules
     {
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("paragraphs")]
-        public IEnumerable<VkLib.Types.Ads.Paragraphs> Paragraphs { get; set; }
+        public IEnumerable<Paragraphs> Paragraphs { get; set; }
 
         /// <summary>
-        /// Comment
+        ///     Comment
         /// </summary>
         [JsonProperty("title")]
         public string Title { get; set; }
-
     }
 }

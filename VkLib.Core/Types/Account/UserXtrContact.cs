@@ -1,28 +1,26 @@
-using System;
 using Newtonsoft.Json;
-using System.Collections.Generic;
+using VkLib.Types.Users;
 
-namespace VkLib.Types.Account 
+namespace VkLib.Types.Account
 {
-    public class UserXtrContact : VkLib.Types.Users.UserFull
+    public class UserXtrContact : UserFull
     {
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("contact")]
         public string Contact { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("sort_num")]
         public int? SortNum { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("request_sent")]
         public int? RequestSent { get; set; }
-
     }
 }

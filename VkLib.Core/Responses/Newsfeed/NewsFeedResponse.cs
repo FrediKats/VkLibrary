@@ -1,5 +1,5 @@
-﻿using Newtonsoft.Json;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 using VkLib.Types.Groups;
 using VkLib.Types.Newsfeed;
 using VkLib.Types.Users;

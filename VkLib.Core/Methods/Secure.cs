@@ -1,17 +1,15 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using VkLib.Types.Secure;
 
 namespace VkLib.Methods
 {
     /// <summary>
-    /// Secure API section.
+    ///     Secure API section.
     /// </summary>
     public class Secure
     {
-        private Vkontakte _vkontakte;
+        private readonly Vkontakte _vkontakte;
 
         internal Secure(Vkontakte vkontakte)
         {
@@ -19,22 +17,24 @@ namespace VkLib.Methods
         }
 
         /// <summary>
-        /// Checks the user authentication in 'IFrame' and 'Flash' apps using the 'access_token' parameter.
-        /// Docs: <see href="https://vk.com/dev/secure.checkToken">secure.checkToken</see>
+        ///     Checks the user authentication in 'IFrame' and 'Flash' apps using the 'access_token' parameter.
+        ///     Docs: <see href="https://vk.com/dev/secure.checkToken">secure.checkToken</see>
         /// </summary>
         /// <param name="token">client 'access_token'</param>
-        /// <param name="ip">user 'ip address'. Note that user may access using the 'ipv6' address, in this case it is required to transmit the 'ipv6' address. ; If not transmitted, the address will not be checked.</param>
-        public async Task<VkLib.Types.Secure.TokenChecked> CheckToken(string token = null, string ip = null)
+        /// <param name="ip">
+        ///     user 'ip address'. Note that user may access using the 'ipv6' address, in this case it is required to
+        ///     transmit the 'ipv6' address. ; If not transmitted, the address will not be checked.
+        /// </param>
+        public async Task<TokenChecked> CheckToken(string token = null, string ip = null)
         {
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            var parameters = new Dictionary<string, string>();
 
             if (token != null)
                 parameters.Add("token", token);
             if (ip != null)
                 parameters.Add("ip", ip);
 
-            return await _vkontakte.GetAsync<VkLib.Types.Secure.TokenChecked>("secure.checkToken", parameters);
+            return await _vkontakte.GetAsync<TokenChecked>("secure.checkToken", parameters);
         }
-
     }
 }

@@ -1,22 +1,19 @@
-using System;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 
-namespace VkLib.Types.Base 
+namespace VkLib.Types.Base
 {
     public class LinkRating
     {
         /// <summary>
-        /// Count of stars
+        ///     Count of stars
         /// </summary>
         [JsonProperty("stars")]
         public uint? Stars { get; set; }
 
         /// <summary>
-        /// Count of reviews
+        ///     Count of reviews
         /// </summary>
         [JsonProperty("reviews_count")]
         public int? ReviewsCount { get; set; }
-
     }
 }

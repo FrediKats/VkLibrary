@@ -1,46 +1,43 @@
-using System;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 
-namespace VkLib.Types.Audio 
+namespace VkLib.Types.Audio
 {
-    public class AudioFull : VkLib.Types.Audio.Audio
+    public class AudioFull : Audio
     {
         /// <summary>
-        /// Album ID
+        ///     Album ID
         /// </summary>
         [JsonProperty("album_id")]
         public int? AlbumId { get; set; }
 
         /// <summary>
-        /// Date when uploaded
+        ///     Date when uploaded
         /// </summary>
         [JsonProperty("date")]
         public int? Date { get; set; }
 
         /// <summary>
-        /// Lyrics ID
+        ///     Lyrics ID
         /// </summary>
         [JsonProperty("lyrics_id")]
         public int? LyricsId { get; set; }
 
         /// <summary>
-        /// Duration in seconds
+        ///     Duration in seconds
         /// </summary>
         [JsonProperty("duration")]
         public int? Duration { get; set; }
 
         /// <summary>
-        /// Information whether the audio is hidden from search
+        ///     Information whether the audio is hidden from search
         /// </summary>
         [JsonProperty("no_search")]
         public int? NoSearch { get; set; }
 
         /// <summary>
-        /// Genre ID
+        ///     Genre ID
         /// </summary>
         [JsonProperty("genre_id")]
         public int? GenreId { get; set; }
-
     }
 }

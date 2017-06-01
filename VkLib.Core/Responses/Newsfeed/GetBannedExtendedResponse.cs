@@ -1,23 +1,22 @@
-using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using VkLib.Types;
+using VkLib.Types.Groups;
+using VkLib.Types.Users;
 
 namespace VkLib.Responses.Newsfeed
 {
     public class GetBannedExtendedResponse
     {
         /// <summary>
-        /// None
+        ///     None
         /// </summary>
         [JsonProperty("groups")]
-        public IEnumerable<VkLib.Types.Users.UserFull> Groups { get; set; }
+        public IEnumerable<UserFull> Groups { get; set; }
 
         /// <summary>
-        /// None
+        ///     None
         /// </summary>
         [JsonProperty("members")]
-        public IEnumerable<VkLib.Types.Groups.GroupFull> Members { get; set; }
-
+        public IEnumerable<GroupFull> Members { get; set; }
     }
 }

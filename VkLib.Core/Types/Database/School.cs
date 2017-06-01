@@ -1,22 +1,19 @@
-using System;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 
-namespace VkLib.Types.Database 
+namespace VkLib.Types.Database
 {
     public class School
     {
         /// <summary>
-        /// School ID
+        ///     School ID
         /// </summary>
         [JsonProperty("id")]
         public int? Id { get; set; }
 
         /// <summary>
-        /// School title
+        ///     School title
         /// </summary>
         [JsonProperty("title")]
         public string Title { get; set; }
-
     }
 }

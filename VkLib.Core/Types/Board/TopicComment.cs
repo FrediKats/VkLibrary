@@ -1,46 +1,45 @@
-using System;
-using Newtonsoft.Json;
 using System.Collections.Generic;
+using Newtonsoft.Json;
+using VkLib.Types.Wall;
 
-namespace VkLib.Types.Board 
+namespace VkLib.Types.Board
 {
     public class TopicComment
     {
         /// <summary>
-        /// Date when the comment has been added in Unixtime
+        ///     Date when the comment has been added in Unixtime
         /// </summary>
         [JsonProperty("date")]
         public int? Date { get; set; }
 
         /// <summary>
-        /// Comment ID
+        ///     Comment ID
         /// </summary>
         [JsonProperty("id")]
         public int? Id { get; set; }
 
         /// <summary>
-        /// Comment text
+        ///     Comment text
         /// </summary>
         [JsonProperty("text")]
         public string Text { get; set; }
 
         /// <summary>
-        /// Author ID
+        ///     Author ID
         /// </summary>
         [JsonProperty("from_id")]
         public int? FromId { get; set; }
 
         /// <summary>
-        /// Real position of the comment
+        ///     Real position of the comment
         /// </summary>
         [JsonProperty("real_offset")]
         public int? RealOffset { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("attachments")]
-        public IEnumerable<VkLib.Types.Wall.CommentAttachment> Attachments { get; set; }
-
+        public IEnumerable<CommentAttachment> Attachments { get; set; }
     }
 }

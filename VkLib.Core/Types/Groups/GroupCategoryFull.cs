@@ -1,40 +1,38 @@
-using System;
-using Newtonsoft.Json;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
-namespace VkLib.Types.Groups 
+namespace VkLib.Types.Groups
 {
     public class GroupCategoryFull
     {
         /// <summary>
-        /// Pages number
+        ///     Pages number
         /// </summary>
         [JsonProperty("page_count")]
         public int? PageCount { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("subcategories")]
-        public IEnumerable<VkLib.Types.Groups.GroupCategory> Subcategories { get; set; }
+        public IEnumerable<GroupCategory> Subcategories { get; set; }
 
         /// <summary>
-        /// Category ID
+        ///     Category ID
         /// </summary>
         [JsonProperty("id")]
         public int? Id { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("page_previews")]
-        public IEnumerable<VkLib.Types.Groups.Group> PagePreviews { get; set; }
+        public IEnumerable<Group> PagePreviews { get; set; }
 
         /// <summary>
-        /// Category name
+        ///     Category name
         /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; }
-
     }
 }

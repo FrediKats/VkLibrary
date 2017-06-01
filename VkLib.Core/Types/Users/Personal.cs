@@ -1,58 +1,56 @@
-using System;
-using Newtonsoft.Json;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
-namespace VkLib.Types.Users 
+namespace VkLib.Types.Users
 {
     public class Personal
     {
         /// <summary>
-        /// User's views on smoking
+        ///     User's views on smoking
         /// </summary>
         [JsonProperty("smoking")]
         public int? Smoking { get; set; }
 
         /// <summary>
-        /// User's personal priority in life
+        ///     User's personal priority in life
         /// </summary>
         [JsonProperty("life_main")]
         public int? LifeMain { get; set; }
 
         /// <summary>
-        /// User's religion
+        ///     User's religion
         /// </summary>
         [JsonProperty("religion")]
         public string Religion { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("langs")]
         public IEnumerable<string> Langs { get; set; }
 
         /// <summary>
-        /// User's views on alcohol
+        ///     User's views on alcohol
         /// </summary>
         [JsonProperty("alcohol")]
         public int? Alcohol { get; set; }
 
         /// <summary>
-        /// User's political views
+        ///     User's political views
         /// </summary>
         [JsonProperty("political")]
         public int? Political { get; set; }
 
         /// <summary>
-        /// User's personal priority in people
+        ///     User's personal priority in people
         /// </summary>
         [JsonProperty("people_main")]
         public int? PeopleMain { get; set; }
 
         /// <summary>
-        /// User's inspired by
+        ///     User's inspired by
         /// </summary>
         [JsonProperty("inspired_by")]
         public string InspiredBy { get; set; }
-
     }
 }

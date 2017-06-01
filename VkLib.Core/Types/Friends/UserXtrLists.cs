@@ -1,16 +1,15 @@
-using System;
-using Newtonsoft.Json;
 using System.Collections.Generic;
+using Newtonsoft.Json;
+using VkLib.Types.Users;
 
-namespace VkLib.Types.Friends 
+namespace VkLib.Types.Friends
 {
-    public class UserXtrLists : VkLib.Types.Users.UserFull
+    public class UserXtrLists : UserFull
     {
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("lists")]
         public IEnumerable<int?> Lists { get; set; }
-
     }
 }

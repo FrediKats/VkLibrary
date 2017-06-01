@@ -1,22 +1,19 @@
-using System;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 
-namespace VkLib.Types.Audio 
+namespace VkLib.Types.Audio
 {
     public class Lyrics
     {
         /// <summary>
-        /// Lyrics ID
+        ///     Lyrics ID
         /// </summary>
         [JsonProperty("lyrics_id")]
         public int? LyricsId { get; set; }
 
         /// <summary>
-        /// Lyrics text
+        ///     Lyrics text
         /// </summary>
         [JsonProperty("text")]
         public string Text { get; set; }
-
     }
 }

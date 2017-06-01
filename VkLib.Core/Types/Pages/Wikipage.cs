@@ -1,70 +1,67 @@
-using System;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 
-namespace VkLib.Types.Pages 
+namespace VkLib.Types.Pages
 {
     public class Wikipage
     {
         /// <summary>
-        /// Views number
+        ///     Views number
         /// </summary>
         [JsonProperty("views")]
         public int? Views { get; set; }
 
         /// <summary>
-        /// Last editor name
+        ///     Last editor name
         /// </summary>
         [JsonProperty("editor_name")]
         public string EditorName { get; set; }
 
         /// <summary>
-        /// Last editor ID
+        ///     Last editor ID
         /// </summary>
         [JsonProperty("editor_id")]
         public int? EditorId { get; set; }
 
         /// <summary>
-        /// Community ID
+        ///     Community ID
         /// </summary>
         [JsonProperty("group_id")]
         public int? GroupId { get; set; }
 
         /// <summary>
-        /// Page ID
+        ///     Page ID
         /// </summary>
         [JsonProperty("id")]
         public int? Id { get; set; }
 
         /// <summary>
-        /// Edit settings of the page
+        ///     Edit settings of the page
         /// </summary>
         [JsonProperty("who_can_edit")]
         public string WhoCanEdit { get; set; }
 
         /// <summary>
-        /// View settings of the page
+        ///     View settings of the page
         /// </summary>
         [JsonProperty("who_can_view")]
         public string WhoCanView { get; set; }
 
         /// <summary>
-        /// Page creator name
+        ///     Page creator name
         /// </summary>
         [JsonProperty("creator_name")]
         public int? CreatorName { get; set; }
 
         /// <summary>
-        /// Page title
+        ///     Page title
         /// </summary>
         [JsonProperty("title")]
         public string Title { get; set; }
 
         /// <summary>
-        /// Page creator ID
+        ///     Page creator ID
         /// </summary>
         [JsonProperty("creator_id")]
         public int? CreatorId { get; set; }
-
     }
 }

@@ -1,34 +1,32 @@
-using System;
 using Newtonsoft.Json;
-using System.Collections.Generic;
+using VkLib.Types.Base;
 
-namespace VkLib.Types.Newsfeed 
+namespace VkLib.Types.Newsfeed
 {
     public class ItemTopic
     {
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("comments")]
-        public VkLib.Types.Base.CommentsInfo Comments { get; set; }
+        public CommentsInfo Comments { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("likes")]
-        public VkLib.Types.Base.LikesInfo Likes { get; set; }
+        public LikesInfo Likes { get; set; }
 
         /// <summary>
-        /// Topic post ID
+        ///     Topic post ID
         /// </summary>
         [JsonProperty("post_id")]
         public int? PostId { get; set; }
 
         /// <summary>
-        /// Post text
+        ///     Post text
         /// </summary>
         [JsonProperty("text")]
         public string Text { get; set; }
-
     }
 }

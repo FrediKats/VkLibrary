@@ -1,28 +1,26 @@
-using System;
-using Newtonsoft.Json;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
-namespace VkLib.Types.Base 
+namespace VkLib.Types.Base
 {
     public class Error
     {
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("request_params")]
-        public IEnumerable<VkLib.Types.Base.RequestParam> RequestParams { get; set; }
+        public IEnumerable<RequestParam> RequestParams { get; set; }
 
         /// <summary>
-        /// Error message
+        ///     Error message
         /// </summary>
         [JsonProperty("error_msg")]
         public string ErrorMsg { get; set; }
 
         /// <summary>
-        /// Error code
+        ///     Error code
         /// </summary>
         [JsonProperty("error_code")]
         public int? ErrorCode { get; set; }
-
     }
 }

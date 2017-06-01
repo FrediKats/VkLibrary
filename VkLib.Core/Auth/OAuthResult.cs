@@ -1,53 +1,45 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace VkLib.Auth
 {
     /// <summary>
-    /// A class representing parsed VKCOM url containing token.
+    ///     A class representing parsed VKCOM url containing token.
     /// </summary>
     public class OAuthResult
     {
         /// <summary>
-        /// Access token.
+        ///     Access token.
         /// </summary>
         public AccessToken AccessToken { get; set; }
 
         /// <summary>
-        /// Error.
+        ///     Error.
         /// </summary>
         public string Error { get; set; }
 
         /// <summary>
-        /// Error reason
+        ///     Error reason
         /// </summary>
         public string ErrorReason { get; set; }
 
         /// <summary>
-        /// Error description.
+        ///     Error description.
         /// </summary>
         public string ErrorDescription { get; set; }
-    
-        /// <summary>
-        /// Have we managed to get access token?
-        /// </summary>
-        public bool IsSuccess
-        {
-            get
-            {
-                return AccessToken != null && !string.IsNullOrEmpty(AccessToken.Token) && !AccessToken.HasExpired;
-            }
-        }
 
         /// <summary>
-        /// Parse from dictionary got from Uri.
+        ///     Have we managed to get access token?
+        /// </summary>
+        public bool IsSuccess => !string.IsNullOrEmpty(AccessToken?.Token) && !AccessToken.HasExpired;
+
+        /// <summary>
+        ///     Parse from dictionary got from Uri.
         /// </summary>
         /// <param name="p">Dictionary got from Uri</param>
         /// <returns>OAuthResult instance</returns>
         public static OAuthResult Parse(Dictionary<string, string> p)
         {
-            OAuthResult result = new OAuthResult();
-            result.AccessToken = new AccessToken();
+            var result = new OAuthResult { AccessToken = new AccessToken() };
 
             if (p.ContainsKey("error"))
                 result.Error = p["error"];
@@ -73,7 +65,5 @@ namespace VkLib.Auth
 
             return result;
         }
-
     }
-
 }

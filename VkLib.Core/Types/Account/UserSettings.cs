@@ -1,112 +1,112 @@
-using System;
-using Newtonsoft.Json;
 using System.Collections.Generic;
+using Newtonsoft.Json;
+using VkLib.Types.Base;
+using VkLib.Types.Users;
 
-namespace VkLib.Types.Account 
+namespace VkLib.Types.Account
 {
     public class UserSettings
     {
         /// <summary>
-        /// User sex
+        ///     User sex
         /// </summary>
         [JsonProperty("sex")]
         public int? Sex { get; set; }
 
         /// <summary>
-        /// User status
+        ///     User status
         /// </summary>
         [JsonProperty("status")]
         public string Status { get; set; }
 
         /// <summary>
-        /// User relationship status
+        ///     User relationship status
         /// </summary>
         [JsonProperty("relation")]
         public int? Relation { get; set; }
 
         /// <summary>
-        /// Domain name of the user's page
+        ///     Domain name of the user's page
         /// </summary>
         [JsonProperty("screen_name")]
         public string ScreenName { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("name_request")]
-        public VkLib.Types.Account.NameRequest NameRequest { get; set; }
+        public NameRequest NameRequest { get; set; }
 
         /// <summary>
-        /// User's hometown
+        ///     User's hometown
         /// </summary>
         [JsonProperty("home_town")]
         public string HomeTown { get; set; }
 
         /// <summary>
-        /// User maiden name
+        ///     User maiden name
         /// </summary>
         [JsonProperty("maiden_name")]
         public string MaidenName { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("relation_partner")]
-        public VkLib.Types.Users.UserMin RelationPartner { get; set; }
+        public UserMin RelationPartner { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("city")]
-        public VkLib.Types.Base.Object City { get; set; }
+        public Object City { get; set; }
 
         /// <summary>
-        /// User last name
+        ///     User last name
         /// </summary>
         [JsonProperty("last_name")]
         public string LastName { get; set; }
 
         /// <summary>
-        /// User's date of birth
+        ///     User's date of birth
         /// </summary>
         [JsonProperty("bdate")]
         public string Bdate { get; set; }
 
         /// <summary>
-        /// Information whether user's birthdate are hidden
+        ///     Information whether user's birthdate are hidden
         /// </summary>
         [JsonProperty("bdate_visibility")]
         public int? BdateVisibility { get; set; }
 
         /// <summary>
-        /// User phone number with some hidden digits
+        ///     User phone number with some hidden digits
         /// </summary>
         [JsonProperty("phone")]
         public string Phone { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("relation_requests")]
-        public IEnumerable<VkLib.Types.Users.UserMin> RelationRequests { get; set; }
+        public IEnumerable<UserMin> RelationRequests { get; set; }
 
         /// <summary>
-        /// Information whether relation status is pending
+        ///     Information whether relation status is pending
         /// </summary>
         [JsonProperty("relation_pending")]
         public int? RelationPending { get; set; }
 
         /// <summary>
-        /// User first name
+        ///     User first name
         /// </summary>
         [JsonProperty("first_name")]
         public string FirstName { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("country")]
-        public VkLib.Types.Base.Country Country { get; set; }
-
+        public Country Country { get; set; }
     }
 }

@@ -1,82 +1,86 @@
-using System;
 using Newtonsoft.Json;
-using System.Collections.Generic;
+using VkLib.Types.Audio;
+using VkLib.Types.Base;
+using VkLib.Types.Docs;
+using VkLib.Types.Gifts;
+using VkLib.Types.Market;
+using VkLib.Types.Photos;
+using VkLib.Types.Wall;
 
-namespace VkLib.Types.Messages 
+namespace VkLib.Types.Messages
 {
     public class MessageAttachment
     {
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("sticker")]
-        public VkLib.Types.Base.Sticker Sticker { get; set; }
+        public Sticker Sticker { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("wall")]
-        public VkLib.Types.Wall.WallpostAttached Wall { get; set; }
+        public WallpostAttached Wall { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("audio")]
-        public VkLib.Types.Audio.AudioFull Audio { get; set; }
+        public AudioFull Audio { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("wall_reply")]
-        public VkLib.Types.Wall.WallComment WallReply { get; set; }
+        public WallComment WallReply { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("video")]
-        public VkLib.Types.Video.Video Video { get; set; }
+        public Video.Video Video { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("link")]
-        public VkLib.Types.Base.Link Link { get; set; }
+        public Link Link { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("market_market_album")]
-        public VkLib.Types.Market.MarketAlbum MarketMarketAlbum { get; set; }
+        public MarketAlbum MarketMarketAlbum { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("gift")]
-        public VkLib.Types.Gifts.Layout Gift { get; set; }
+        public Layout Gift { get; set; }
 
         /// <summary>
-        /// Attachment type
+        ///     Attachment type
         /// </summary>
         [JsonProperty("type")]
         public string Type { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("photo")]
-        public VkLib.Types.Photos.Photo Photo { get; set; }
+        public Photo Photo { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("market")]
-        public VkLib.Types.Market.MarketItem Market { get; set; }
+        public MarketItem Market { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("doc")]
-        public VkLib.Types.Docs.Doc Doc { get; set; }
-
+        public Doc Doc { get; set; }
     }
 }

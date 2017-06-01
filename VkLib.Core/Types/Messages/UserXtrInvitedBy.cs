@@ -1,16 +1,14 @@
-using System;
 using Newtonsoft.Json;
-using System.Collections.Generic;
+using VkLib.Types.Users;
 
-namespace VkLib.Types.Messages 
+namespace VkLib.Types.Messages
 {
-    public class UserXtrInvitedBy : VkLib.Types.Users.UserXtrType
+    public class UserXtrInvitedBy : UserXtrType
     {
         /// <summary>
-        /// ID of the inviter
+        ///     ID of the inviter
         /// </summary>
         [JsonProperty("invited_by")]
         public int? InvitedBy { get; set; }
-
     }
 }

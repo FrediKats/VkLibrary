@@ -1,40 +1,37 @@
-using System;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 
-namespace VkLib.Types.Friends 
+namespace VkLib.Types.Friends
 {
     public class FriendStatus
     {
         /// <summary>
-        /// MD5 hash for the result validation
+        ///     MD5 hash for the result validation
         /// </summary>
         [JsonProperty("sign")]
         public string Sign { get; set; }
 
         /// <summary>
-        /// Information whether request is unviewed
+        ///     Information whether request is unviewed
         /// </summary>
         [JsonProperty("read_state")]
         public int? ReadState { get; set; }
 
         /// <summary>
-        /// User ID
+        ///     User ID
         /// </summary>
         [JsonProperty("user_id")]
         public int? UserId { get; set; }
 
         /// <summary>
-        /// Message sent with request
+        ///     Message sent with request
         /// </summary>
         [JsonProperty("request_message")]
         public string RequestMessage { get; set; }
 
         /// <summary>
-        /// Friend status with the user
+        ///     Friend status with the user
         /// </summary>
         [JsonProperty("friend_status")]
-        public int? FriendStatus_ { get; set; }
-
+        public int? FriendStatusCode { get; set; }
     }
 }

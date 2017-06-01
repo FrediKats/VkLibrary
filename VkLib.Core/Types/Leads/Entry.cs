@@ -1,58 +1,55 @@
-using System;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 
-namespace VkLib.Types.Leads 
+namespace VkLib.Types.Leads
 {
     public class Entry
     {
         /// <summary>
-        /// Date when the action has been started in Unixtime
+        ///     Date when the action has been started in Unixtime
         /// </summary>
         [JsonProperty("date")]
         public int? Date { get; set; }
 
         /// <summary>
-        /// Action type
+        ///     Action type
         /// </summary>
         [JsonProperty("status")]
         public int? Status { get; set; }
 
         /// <summary>
-        /// User ID
+        ///     User ID
         /// </summary>
         [JsonProperty("uid")]
         public int? Uid { get; set; }
 
         /// <summary>
-        /// Comment text
+        ///     Comment text
         /// </summary>
         [JsonProperty("comment")]
         public string Comment { get; set; }
 
         /// <summary>
-        /// Application ID
+        ///     Application ID
         /// </summary>
         [JsonProperty("aid")]
         public int? Aid { get; set; }
 
         /// <summary>
-        /// Information whether test mode is enabled
+        ///     Information whether test mode is enabled
         /// </summary>
         [JsonProperty("test_mode")]
         public int? TestMode { get; set; }
 
         /// <summary>
-        /// Start date in Unixtime (for status=2)
+        ///     Start date in Unixtime (for status=2)
         /// </summary>
         [JsonProperty("start_date")]
         public int? StartDate { get; set; }
 
         /// <summary>
-        /// Session string ID
+        ///     Session string ID
         /// </summary>
         [JsonProperty("sid")]
         public string Sid { get; set; }
-
     }
 }

@@ -1,58 +1,58 @@
-using System;
 using Newtonsoft.Json;
-using System.Collections.Generic;
+using VkLib.Types.Board;
+using VkLib.Types.Photos;
+using VkLib.Types.Wall;
 
-namespace VkLib.Types.Notifications 
+namespace VkLib.Types.Notifications
 {
     public class NotificationsComment
     {
         /// <summary>
-        /// Date when the comment has been added in Unixtime
+        ///     Date when the comment has been added in Unixtime
         /// </summary>
         [JsonProperty("date")]
         public int? Date { get; set; }
 
         /// <summary>
-        /// Comment ID
+        ///     Comment ID
         /// </summary>
         [JsonProperty("id")]
         public int? Id { get; set; }
 
         /// <summary>
-        /// Author ID
+        ///     Author ID
         /// </summary>
         [JsonProperty("owner_id")]
         public int? OwnerId { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("topic")]
-        public VkLib.Types.Board.Topic Topic { get; set; }
+        public Topic Topic { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("photo")]
-        public VkLib.Types.Photos.Photo Photo { get; set; }
+        public Photo Photo { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("video")]
-        public VkLib.Types.Video.Video Video { get; set; }
+        public Video.Video Video { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("post")]
-        public VkLib.Types.Wall.Wallpost Post { get; set; }
+        public Wallpost Post { get; set; }
 
         /// <summary>
-        /// Comment text
+        ///     Comment text
         /// </summary>
         [JsonProperty("text")]
         public string Text { get; set; }
-
     }
 }

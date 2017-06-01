@@ -1,17 +1,15 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using VkLib.Types.Polls;
 
 namespace VkLib.Methods
 {
     /// <summary>
-    /// Polls API section.
+    ///     Polls API section.
     /// </summary>
     public class Polls
     {
-        private Vkontakte _vkontakte;
+        private readonly Vkontakte _vkontakte;
 
         internal Polls(Vkontakte vkontakte)
         {
@@ -19,166 +17,205 @@ namespace VkLib.Methods
         }
 
         /// <summary>
-        /// Returns detailed information about a poll by its ID.
-        /// Docs: <see href="https://vk.com/dev/polls.getById">polls.getById</see>
+        ///     Returns detailed information about a poll by its ID.
+        ///     Docs: <see href="https://vk.com/dev/polls.getById">polls.getById</see>
         /// </summary>
-        /// <param name="owner_id">ID of the user or community that owns the poll. Use a negative value to designate a community ID.</param>
-        /// <param name="is_board">'1' – poll is in a board, '0' – poll is on a wall. ; '0' by default.</param>
-        /// <param name="poll_id">Poll ID.</param>
-        public async Task<VkLib.Types.Polls.Poll> GetById(int? owner_id = null, bool? is_board = null, int? poll_id = null)
+        /// <param name="ownerId">
+        ///     ID of the user or community that owns the poll. Use a negative value to designate a community
+        ///     ID.
+        /// </param>
+        /// <param name="isBoard">'1' – poll is in a board, '0' – poll is on a wall. ; '0' by default.</param>
+        /// <param name="pollId">Poll ID.</param>
+        public async Task<Poll> GetById(int? ownerId = null, bool? isBoard = null, int? pollId = null)
         {
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            var parameters = new Dictionary<string, string>();
 
-            if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToApiString());
-            if (is_board != null)
-                parameters.Add("is_board", is_board.ToApiString());
-            if (poll_id != null)
-                parameters.Add("poll_id", poll_id.ToApiString());
+            if (ownerId != null)
+                parameters.Add("owner_id", ownerId.ToApiString());
+            if (isBoard != null)
+                parameters.Add("is_board", isBoard.ToApiString());
+            if (pollId != null)
+                parameters.Add("poll_id", pollId.ToApiString());
 
-            return await _vkontakte.GetAsync<VkLib.Types.Polls.Poll>("polls.getById", parameters);
+            return await _vkontakte.GetAsync<Poll>("polls.getById", parameters);
         }
 
         /// <summary>
-        /// Adds the current user's vote to the selected answer in the poll.
-        /// Docs: <see href="https://vk.com/dev/polls.addVote">polls.addVote</see>
+        ///     Adds the current user's vote to the selected answer in the poll.
+        ///     Docs: <see href="https://vk.com/dev/polls.addVote">polls.addVote</see>
         /// </summary>
-        /// <param name="owner_id">ID of the user or community that owns the poll. Use a negative value to designate a community ID.</param>
-        /// <param name="poll_id">Poll ID.</param>
-        /// <param name="answer_id">Answer ID.</param>
-        /// <param name="is_board"></param>
-        public async Task<int> AddVote(int? owner_id = null, int? poll_id = null, int? answer_id = null, bool? is_board = null)
+        /// <param name="ownerId">
+        ///     ID of the user or community that owns the poll. Use a negative value to designate a community
+        ///     ID.
+        /// </param>
+        /// <param name="pollId">Poll ID.</param>
+        /// <param name="answerId">Answer ID.</param>
+        /// <param name="isBoard"></param>
+        public async Task<int> AddVote(int? ownerId = null, int? pollId = null, int? answerId = null,
+            bool? isBoard = null)
         {
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            var parameters = new Dictionary<string, string>();
 
-            if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToApiString());
-            if (poll_id != null)
-                parameters.Add("poll_id", poll_id.ToApiString());
-            if (answer_id != null)
-                parameters.Add("answer_id", answer_id.ToApiString());
-            if (is_board != null)
-                parameters.Add("is_board", is_board.ToApiString());
+            if (ownerId != null)
+                parameters.Add("owner_id", ownerId.ToApiString());
+            if (pollId != null)
+                parameters.Add("poll_id", pollId.ToApiString());
+            if (answerId != null)
+                parameters.Add("answer_id", answerId.ToApiString());
+            if (isBoard != null)
+                parameters.Add("is_board", isBoard.ToApiString());
 
             return await _vkontakte.GetAsync<int>("polls.addVote", parameters);
         }
 
         /// <summary>
-        /// Deletes the current user's vote from the selected answer in the poll.
-        /// Docs: <see href="https://vk.com/dev/polls.deleteVote">polls.deleteVote</see>
+        ///     Deletes the current user's vote from the selected answer in the poll.
+        ///     Docs: <see href="https://vk.com/dev/polls.deleteVote">polls.deleteVote</see>
         /// </summary>
-        /// <param name="owner_id">ID of the user or community that owns the poll. Use a negative value to designate a community ID.</param>
-        /// <param name="poll_id">Poll ID.</param>
-        /// <param name="answer_id">Answer ID.</param>
-        /// <param name="is_board"></param>
-        public async Task<int> DeleteVote(int? owner_id = null, int? poll_id = null, int? answer_id = null, bool? is_board = null)
+        /// <param name="ownerId">
+        ///     ID of the user or community that owns the poll. Use a negative value to designate a community
+        ///     ID.
+        /// </param>
+        /// <param name="pollId">Poll ID.</param>
+        /// <param name="answerId">Answer ID.</param>
+        /// <param name="isBoard"></param>
+        public async Task<int> DeleteVote(int? ownerId = null, int? pollId = null, int? answerId = null,
+            bool? isBoard = null)
         {
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            var parameters = new Dictionary<string, string>();
 
-            if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToApiString());
-            if (poll_id != null)
-                parameters.Add("poll_id", poll_id.ToApiString());
-            if (answer_id != null)
-                parameters.Add("answer_id", answer_id.ToApiString());
-            if (is_board != null)
-                parameters.Add("is_board", is_board.ToApiString());
+            if (ownerId != null)
+                parameters.Add("owner_id", ownerId.ToApiString());
+            if (pollId != null)
+                parameters.Add("poll_id", pollId.ToApiString());
+            if (answerId != null)
+                parameters.Add("answer_id", answerId.ToApiString());
+            if (isBoard != null)
+                parameters.Add("is_board", isBoard.ToApiString());
 
             return await _vkontakte.GetAsync<int>("polls.deleteVote", parameters);
         }
 
         /// <summary>
-        /// Returns a list of IDs of users who selected specific answers in the poll.
-        /// Docs: <see href="https://vk.com/dev/polls.getVoters">polls.getVoters</see>
+        ///     Returns a list of IDs of users who selected specific answers in the poll.
+        ///     Docs: <see href="https://vk.com/dev/polls.getVoters">polls.getVoters</see>
         /// </summary>
-        /// <param name="owner_id">ID of the user or community that owns the poll. Use a negative value to designate a community ID.</param>
-        /// <param name="poll_id">Poll ID.</param>
-        /// <param name="answer_ids">Answer IDs.</param>
-        /// <param name="is_board"></param>
-        /// <param name="friends_only">'1' — to return only current user's friends; '0' — to return all users (default);</param>
+        /// <param name="ownerId">
+        ///     ID of the user or community that owns the poll. Use a negative value to designate a community
+        ///     ID.
+        /// </param>
+        /// <param name="pollId">Poll ID.</param>
+        /// <param name="answerIds">Answer IDs.</param>
+        /// <param name="isBoard"></param>
+        /// <param name="friendsOnly">'1' — to return only current user's friends; '0' — to return all users (default);</param>
         /// <param name="offset">Offset needed to return a specific subset of voters.; '0' — (default)</param>
-        /// <param name="count">Number of user IDs to return (if the 'friends_only' parameter is not set, maximum '1000'; otherwise '10').; '100' — (default)</param>
-        /// <param name="fields">Profile fields to return. Sample values: 'nickname', 'screen_name', 'sex', 'bdate (birthdate)', 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'has_mobile', 'rate', 'contacts', 'education', 'online', 'counters'.;</param>
-        /// <param name="name_case">Case for declension of user name and surname: ; 'nom' — nominative (default) ; 'gen' — genitive ; 'dat' — dative ; 'acc' — accusative ; 'ins' — instrumental ; 'abl' — prepositional</param>
-        public async Task<IEnumerable<VkLib.Types.Polls.Voters>> GetVoters(int? owner_id = null, int? poll_id = null, IEnumerable<int?> answer_ids = null, bool? is_board = null, bool? friends_only = null, int? offset = null, int? count = null, IEnumerable<string> fields = null, string name_case = null)
+        /// <param name="count">
+        ///     Number of user IDs to return (if the 'friends_only' parameter is not set, maximum '1000'; otherwise
+        ///     '10').; '100' — (default)
+        /// </param>
+        /// <param name="fields">
+        ///     Profile fields to return. Sample values: 'nickname', 'screen_name', 'sex', 'bdate (birthdate)',
+        ///     'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'has_mobile', 'rate', 'contacts', 'education',
+        ///     'online', 'counters'.;
+        /// </param>
+        /// <param name="nameCase">
+        ///     Case for declension of user name and surname: ; 'nom' — nominative (default) ; 'gen' — genitive
+        ///     ; 'dat' — dative ; 'acc' — accusative ; 'ins' — instrumental ; 'abl' — prepositional
+        /// </param>
+        public async Task<IEnumerable<Voters>> GetVoters(int? ownerId = null, int? pollId = null,
+            IEnumerable<int?> answerIds = null, bool? isBoard = null, bool? friendsOnly = null, int? offset = null,
+            int? count = null, IEnumerable<string> fields = null, string nameCase = null)
         {
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            var parameters = new Dictionary<string, string>();
 
-            if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToApiString());
-            if (poll_id != null)
-                parameters.Add("poll_id", poll_id.ToApiString());
-            if (answer_ids != null)
-                parameters.Add("answer_ids", answer_ids.ToApiString());
-            if (is_board != null)
-                parameters.Add("is_board", is_board.ToApiString());
-            if (friends_only != null)
-                parameters.Add("friends_only", friends_only.ToApiString());
+            if (ownerId != null)
+                parameters.Add("owner_id", ownerId.ToApiString());
+            if (pollId != null)
+                parameters.Add("poll_id", pollId.ToApiString());
+            if (answerIds != null)
+                parameters.Add("answer_ids", answerIds.ToApiString());
+            if (isBoard != null)
+                parameters.Add("is_board", isBoard.ToApiString());
+            if (friendsOnly != null)
+                parameters.Add("friends_only", friendsOnly.ToApiString());
             if (offset != null)
                 parameters.Add("offset", offset.ToApiString());
             if (count != null)
                 parameters.Add("count", count.ToApiString());
             if (fields != null)
                 parameters.Add("fields", fields.ToApiString());
-            if (name_case != null)
-                parameters.Add("name_case", name_case);
+            if (nameCase != null)
+                parameters.Add("name_case", nameCase);
 
-            return await _vkontakte.GetAsync<IEnumerable<VkLib.Types.Polls.Voters>>("polls.getVoters", parameters);
+            return await _vkontakte.GetAsync<IEnumerable<Voters>>("polls.getVoters", parameters);
         }
 
         /// <summary>
-        /// Creates polls that can be attached to the users' or communities' posts.
-        /// Docs: <see href="https://vk.com/dev/polls.create">polls.create</see>
+        ///     Creates polls that can be attached to the users' or communities' posts.
+        ///     Docs: <see href="https://vk.com/dev/polls.create">polls.create</see>
         /// </summary>
         /// <param name="question">question text</param>
-        /// <param name="is_anonymous">'1' – anonymous poll, participants list is hidden;; '0' – public poll, participants list is available;; Default value is '0'.</param>
-        /// <param name="owner_id">If a poll will be added to a communty it is required to send a negative group identifier. Current user by default.</param>
-        /// <param name="add_answers">available answers list, for example:; " ["yes","no","maybe"]"; There can be from 1 to 10 answers.</param>
-        public async Task<VkLib.Types.Polls.Poll> Create(string question = null, bool? is_anonymous = null, int? owner_id = null, string add_answers = null)
+        /// <param name="isAnonymous">
+        ///     '1' – anonymous poll, participants list is hidden;; '0' – public poll, participants list is
+        ///     available;; Default value is '0'.
+        /// </param>
+        /// <param name="ownerId">
+        ///     If a poll will be added to a communty it is required to send a negative group identifier.
+        ///     Current user by default.
+        /// </param>
+        /// <param name="addAnswers">
+        ///     available answers list, for example:; " ["yes","no","maybe"]"; There can be from 1 to 10
+        ///     answers.
+        /// </param>
+        public async Task<Poll> Create(string question = null, bool? isAnonymous = null, int? ownerId = null,
+            string addAnswers = null)
         {
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            var parameters = new Dictionary<string, string>();
 
             if (question != null)
                 parameters.Add("question", question);
-            if (is_anonymous != null)
-                parameters.Add("is_anonymous", is_anonymous.ToApiString());
-            if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToApiString());
-            if (add_answers != null)
-                parameters.Add("add_answers", add_answers);
+            if (isAnonymous != null)
+                parameters.Add("is_anonymous", isAnonymous.ToApiString());
+            if (ownerId != null)
+                parameters.Add("owner_id", ownerId.ToApiString());
+            if (addAnswers != null)
+                parameters.Add("add_answers", addAnswers);
 
-            return await _vkontakte.GetAsync<VkLib.Types.Polls.Poll>("polls.create", parameters);
+            return await _vkontakte.GetAsync<Poll>("polls.create", parameters);
         }
 
         /// <summary>
-        /// Edits created polls
-        /// Docs: <see href="https://vk.com/dev/polls.edit">polls.edit</see>
+        ///     Edits created polls
+        ///     Docs: <see href="https://vk.com/dev/polls.edit">polls.edit</see>
         /// </summary>
-        /// <param name="owner_id">poll owner id</param>
-        /// <param name="poll_id">edited poll's id</param>
+        /// <param name="ownerId">poll owner id</param>
+        /// <param name="pollId">edited poll's id</param>
         /// <param name="question">new question text</param>
-        /// <param name="add_answers">answers list, for example: ; "["yes","no","maybe"]"</param>
-        /// <param name="edit_answers">object containing answers that need to be edited;; key – answer id, value – new answer text.; Example:; {"382967099":"option1", "382967103":"option2"}"</param>
-        /// <param name="delete_answers">list of answer ids to be deleted. For example:; "[382967099, 382967103]"</param>
-        public async Task<int> Edit(int? owner_id = null, int? poll_id = null, string question = null, string add_answers = null, string edit_answers = null, string delete_answers = null)
+        /// <param name="addAnswers">answers list, for example: ; "["yes","no","maybe"]"</param>
+        /// <param name="editAnswers">
+        ///     object containing answers that need to be edited;; key – answer id, value – new answer
+        ///     text.; Example:; {"382967099":"option1", "382967103":"option2"}"
+        /// </param>
+        /// <param name="deleteAnswers">list of answer ids to be deleted. For example:; "[382967099, 382967103]"</param>
+        public async Task<int> Edit(int? ownerId = null, int? pollId = null, string question = null,
+            string addAnswers = null, string editAnswers = null, string deleteAnswers = null)
         {
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            var parameters = new Dictionary<string, string>();
 
-            if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToApiString());
-            if (poll_id != null)
-                parameters.Add("poll_id", poll_id.ToApiString());
+            if (ownerId != null)
+                parameters.Add("owner_id", ownerId.ToApiString());
+            if (pollId != null)
+                parameters.Add("poll_id", pollId.ToApiString());
             if (question != null)
                 parameters.Add("question", question);
-            if (add_answers != null)
-                parameters.Add("add_answers", add_answers);
-            if (edit_answers != null)
-                parameters.Add("edit_answers", edit_answers);
-            if (delete_answers != null)
-                parameters.Add("delete_answers", delete_answers);
+            if (addAnswers != null)
+                parameters.Add("add_answers", addAnswers);
+            if (editAnswers != null)
+                parameters.Add("edit_answers", editAnswers);
+            if (deleteAnswers != null)
+                parameters.Add("delete_answers", deleteAnswers);
 
             return await _vkontakte.GetAsync<int>("polls.edit", parameters);
         }
-
     }
 }

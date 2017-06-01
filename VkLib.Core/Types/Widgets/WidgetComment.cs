@@ -1,94 +1,95 @@
-using System;
-using Newtonsoft.Json;
 using System.Collections.Generic;
+using Newtonsoft.Json;
+using VkLib.Types.Base;
+using VkLib.Types.Users;
+using VkLib.Types.Wall;
 
-namespace VkLib.Types.Widgets 
+namespace VkLib.Types.Widgets
 {
     public class WidgetComment
     {
         /// <summary>
-        /// Wall owner
+        ///     Wall owner
         /// </summary>
         [JsonProperty("to_id")]
         public int? ToId { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("likes")]
-        public VkLib.Types.Base.LikesInfo Likes { get; set; }
+        public LikesInfo Likes { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("user")]
-        public VkLib.Types.Users.UserFull User { get; set; }
+        public UserFull User { get; set; }
 
         /// <summary>
-        /// Comment ID
+        ///     Comment ID
         /// </summary>
         [JsonProperty("id")]
         public int? Id { get; set; }
 
         /// <summary>
-        /// Information whether current user can delete the comment
+        ///     Information whether current user can delete the comment
         /// </summary>
         [JsonProperty("can_delete")]
         public int? CanDelete { get; set; }
 
         /// <summary>
-        /// Comment author ID
+        ///     Comment author ID
         /// </summary>
         [JsonProperty("from_id")]
         public int? FromId { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("media")]
-        public VkLib.Types.Widgets.CommentMedia Media { get; set; }
+        public CommentMedia Media { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("attachments")]
-        public IEnumerable<VkLib.Types.Wall.CommentAttachment> Attachments { get; set; }
+        public IEnumerable<CommentAttachment> Attachments { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("comments")]
-        public VkLib.Types.Widgets.CommentReplies Comments { get; set; }
+        public CommentReplies Comments { get; set; }
 
         /// <summary>
-        /// Date when the comment has been added in Unixtime
+        ///     Date when the comment has been added in Unixtime
         /// </summary>
         [JsonProperty("date")]
         public int? Date { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("post_source")]
-        public VkLib.Types.Wall.PostSource PostSource { get; set; }
+        public PostSource PostSource { get; set; }
 
         /// <summary>
-        /// Comment text
+        ///     Comment text
         /// </summary>
         [JsonProperty("text")]
         public string Text { get; set; }
 
         /// <summary>
-        /// Post type
+        ///     Post type
         /// </summary>
         [JsonProperty("post_type")]
         public int? PostType { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("reposts")]
-        public VkLib.Types.Base.RepostsInfo Reposts { get; set; }
-
+        public RepostsInfo Reposts { get; set; }
     }
 }

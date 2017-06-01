@@ -1,34 +1,33 @@
-using System;
 using Newtonsoft.Json;
-using System.Collections.Generic;
+using VkLib.Types.Base;
+using VkLib.Types.Photos;
 
-namespace VkLib.Types.Newsfeed 
+namespace VkLib.Types.Newsfeed
 {
-    public class NewsfeedPhoto : VkLib.Types.Photos.Photo
+    public class NewsfeedPhoto : Photo
     {
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("comments")]
-        public VkLib.Types.Base.ObjectCount Comments { get; set; }
+        public ObjectCount Comments { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("likes")]
-        public VkLib.Types.Base.Likes Likes { get; set; }
+        public Likes Likes { get; set; }
 
         /// <summary>
-        /// Information whether current user can comment the photo
+        ///     Information whether current user can comment the photo
         /// </summary>
         [JsonProperty("can_comment")]
         public int? CanComment { get; set; }
 
         /// <summary>
-        /// Information whether current user can repost the photo
+        ///     Information whether current user can repost the photo
         /// </summary>
         [JsonProperty("can_repost")]
         public int? CanRepost { get; set; }
-
     }
 }

@@ -1,34 +1,31 @@
-using System;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 
-namespace VkLib.Types.Photos 
+namespace VkLib.Types.Photos
 {
     public class MarketAlbumUploadResponse
     {
         /// <summary>
-        /// Uploading hash
+        ///     Uploading hash
         /// </summary>
         [JsonProperty("hash")]
         public string Hash { get; set; }
 
         /// <summary>
-        /// Uploaded photo data
+        ///     Uploaded photo data
         /// </summary>
         [JsonProperty("photo")]
         public string Photo { get; set; }
 
         /// <summary>
-        /// Upload server number
+        ///     Upload server number
         /// </summary>
         [JsonProperty("server")]
         public int? Server { get; set; }
 
         /// <summary>
-        /// Community ID
+        ///     Community ID
         /// </summary>
         [JsonProperty("gid")]
         public int? Gid { get; set; }
-
     }
 }

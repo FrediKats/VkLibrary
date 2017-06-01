@@ -1,22 +1,20 @@
-using System;
-using Newtonsoft.Json;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
-namespace VkLib.Types.Users 
+namespace VkLib.Types.Users
 {
     public class UsersArray
     {
         /// <summary>
-        /// Users number
+        ///     Users number
         /// </summary>
         [JsonProperty("count")]
         public int? Count { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("items")]
         public IEnumerable<int?> Items { get; set; }
-
     }
 }

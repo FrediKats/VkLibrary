@@ -1,46 +1,43 @@
-using System;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 
-namespace VkLib.Types.Photos 
+namespace VkLib.Types.Photos
 {
     public class MarketUploadResponse
     {
         /// <summary>
-        /// Crop data
+        ///     Crop data
         /// </summary>
         [JsonProperty("crop_data")]
         public string CropData { get; set; }
 
         /// <summary>
-        /// Upload server number
+        ///     Upload server number
         /// </summary>
         [JsonProperty("server")]
         public int? Server { get; set; }
 
         /// <summary>
-        /// Crop hash
+        ///     Crop hash
         /// </summary>
         [JsonProperty("crop_hash")]
         public string CropHash { get; set; }
 
         /// <summary>
-        /// Uploaded photo data
+        ///     Uploaded photo data
         /// </summary>
         [JsonProperty("photo")]
         public string Photo { get; set; }
 
         /// <summary>
-        /// Community ID
+        ///     Community ID
         /// </summary>
         [JsonProperty("group_id")]
         public int? GroupId { get; set; }
 
         /// <summary>
-        /// Uploading hash
+        ///     Uploading hash
         /// </summary>
         [JsonProperty("hash")]
         public string Hash { get; set; }
-
     }
 }

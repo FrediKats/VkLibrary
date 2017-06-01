@@ -1,28 +1,26 @@
-using System;
-using Newtonsoft.Json;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
-namespace VkLib.Types.Widgets 
+namespace VkLib.Types.Widgets
 {
     public class CommentReplies
     {
         /// <summary>
-        /// Comments number
+        ///     Comments number
         /// </summary>
         [JsonProperty("count")]
         public int? Count { get; set; }
 
         /// <summary>
-        /// Information whether current user can comment the post
+        ///     Information whether current user can comment the post
         /// </summary>
         [JsonProperty("can_post")]
         public int? CanPost { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("replies")]
-        public IEnumerable<VkLib.Types.Widgets.CommentRepliesItem> Replies { get; set; }
-
+        public IEnumerable<CommentRepliesItem> Replies { get; set; }
     }
 }

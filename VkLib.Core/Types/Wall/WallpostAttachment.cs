@@ -1,106 +1,111 @@
-using System;
-using Newtonsoft.Json;
 using System.Collections.Generic;
+using Newtonsoft.Json;
+using VkLib.Types.Audio;
+using VkLib.Types.Base;
+using VkLib.Types.Docs;
+using VkLib.Types.Market;
+using VkLib.Types.Pages;
+using VkLib.Types.Photos;
+using VkLib.Types.Polls;
 
-namespace VkLib.Types.Wall 
+namespace VkLib.Types.Wall
 {
     public class WallpostAttachment
     {
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("market")]
-        public VkLib.Types.Market.MarketItem Market { get; set; }
+        public MarketItem Market { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("graffiti")]
-        public VkLib.Types.Wall.Graffiti Graffiti { get; set; }
+        public Graffiti Graffiti { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("note")]
-        public VkLib.Types.Wall.AttachedNote Note { get; set; }
+        public AttachedNote Note { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("audio")]
-        public VkLib.Types.Audio.AudioFull Audio { get; set; }
+        public AudioFull Audio { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("video")]
-        public VkLib.Types.Video.Video Video { get; set; }
+        public Video.Video Video { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("link")]
-        public VkLib.Types.Base.Link Link { get; set; }
+        public Link Link { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("app")]
-        public VkLib.Types.Wall.AppPost App { get; set; }
+        public AppPost App { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("market_market_album")]
-        public VkLib.Types.Market.MarketAlbum MarketMarketAlbum { get; set; }
+        public MarketAlbum MarketMarketAlbum { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("poll")]
-        public VkLib.Types.Polls.Poll Poll { get; set; }
+        public Poll Poll { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("posted_photo")]
-        public VkLib.Types.Wall.PostedPhoto PostedPhoto { get; set; }
+        public PostedPhoto PostedPhoto { get; set; }
 
         /// <summary>
-        /// Attachment type
+        ///     Attachment type
         /// </summary>
         [JsonProperty("type")]
         public string Type { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("page")]
-        public VkLib.Types.Pages.WikipageFull Page { get; set; }
+        public WikipageFull Page { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("photos_list")]
         public IEnumerable<string> PhotosList { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("album")]
-        public VkLib.Types.Photos.PhotoAlbum Album { get; set; }
+        public PhotoAlbum Album { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("photo")]
-        public VkLib.Types.Photos.Photo Photo { get; set; }
+        public Photo Photo { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("doc")]
-        public VkLib.Types.Docs.Doc Doc { get; set; }
-
+        public Doc Doc { get; set; }
     }
 }

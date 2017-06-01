@@ -1,23 +1,21 @@
-using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using VkLib.Types;
+using VkLib.Types.Widgets;
 
 namespace VkLib.Responses.Widgets
 {
     public class GetCommentsResponse
     {
         /// <summary>
-        /// None
+        ///     None
         /// </summary>
         [JsonProperty("posts")]
-        public IEnumerable<VkLib.Types.Widgets.WidgetComment> Posts { get; set; }
+        public IEnumerable<WidgetComment> Posts { get; set; }
 
         /// <summary>
-        /// Total number
+        ///     Total number
         /// </summary>
         [JsonProperty("count")]
         public int? Count { get; set; }
-
     }
 }

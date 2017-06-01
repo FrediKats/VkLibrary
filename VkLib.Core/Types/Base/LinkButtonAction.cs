@@ -1,22 +1,19 @@
-using System;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 
-namespace VkLib.Types.Base 
+namespace VkLib.Types.Base
 {
     public class LinkButtonAction
     {
         /// <summary>
-        /// Action URL
+        ///     Action URL
         /// </summary>
         [JsonProperty("url")]
         public string Url { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("type")]
         public string Type { get; set; }
-
     }
 }

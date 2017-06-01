@@ -1,22 +1,20 @@
-using System;
-using Newtonsoft.Json;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
-namespace VkLib.Types.Ads 
+namespace VkLib.Types.Ads
 {
     public class Users
     {
         /// <summary>
-        /// User ID
+        ///     User ID
         /// </summary>
         [JsonProperty("user_id")]
         public int? UserId { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("accesses")]
-        public IEnumerable<VkLib.Types.Ads.Accesses> Accesses { get; set; }
-
+        public IEnumerable<Accesses> Accesses { get; set; }
     }
 }

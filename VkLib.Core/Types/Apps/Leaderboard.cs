@@ -1,34 +1,31 @@
-using System;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 
-namespace VkLib.Types.Apps 
+namespace VkLib.Types.Apps
 {
     public class Leaderboard
     {
         /// <summary>
-        /// Score number
+        ///     Score number
         /// </summary>
         [JsonProperty("score")]
         public int? Score { get; set; }
 
         /// <summary>
-        /// Level
+        ///     Level
         /// </summary>
         [JsonProperty("level")]
         public int? Level { get; set; }
 
         /// <summary>
-        /// Points number
+        ///     Points number
         /// </summary>
         [JsonProperty("points")]
         public int? Points { get; set; }
 
         /// <summary>
-        /// User ID
+        ///     User ID
         /// </summary>
         [JsonProperty("user_id")]
         public int? UserId { get; set; }
-
     }
 }

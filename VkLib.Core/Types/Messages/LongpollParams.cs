@@ -1,28 +1,25 @@
-using System;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 
-namespace VkLib.Types.Messages 
+namespace VkLib.Types.Messages
 {
     public class LongpollParams
     {
         /// <summary>
-        /// Server URL
+        ///     Server URL
         /// </summary>
         [JsonProperty("server")]
         public string Server { get; set; }
 
         /// <summary>
-        /// Timestamp
+        ///     Timestamp
         /// </summary>
         [JsonProperty("ts")]
         public int? Ts { get; set; }
 
         /// <summary>
-        /// Key
+        ///     Key
         /// </summary>
         [JsonProperty("key")]
         public string Key { get; set; }
-
     }
 }

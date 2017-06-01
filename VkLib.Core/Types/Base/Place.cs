@@ -1,76 +1,73 @@
-using System;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 
-namespace VkLib.Types.Base 
+namespace VkLib.Types.Base
 {
     public class Place
     {
         /// <summary>
-        /// City name
+        ///     City name
         /// </summary>
         [JsonProperty("city")]
         public string City { get; set; }
 
         /// <summary>
-        /// Place latitude
+        ///     Place latitude
         /// </summary>
         [JsonProperty("latitude")]
         public uint? Latitude { get; set; }
 
         /// <summary>
-        /// Checkins number
+        ///     Checkins number
         /// </summary>
         [JsonProperty("checkins")]
         public int? Checkins { get; set; }
 
         /// <summary>
-        /// Place address
+        ///     Place address
         /// </summary>
         [JsonProperty("address")]
         public string Address { get; set; }
 
         /// <summary>
-        /// Place ID
+        ///     Place ID
         /// </summary>
         [JsonProperty("id")]
         public int? Id { get; set; }
 
         /// <summary>
-        /// Place longitude
+        ///     Place longitude
         /// </summary>
         [JsonProperty("longitude")]
         public uint? Longitude { get; set; }
 
         /// <summary>
-        /// Place type
+        ///     Place type
         /// </summary>
         [JsonProperty("type")]
         public string Type { get; set; }
 
         /// <summary>
-        /// Date of the place creation in Unixtime
+        ///     Date of the place creation in Unixtime
         /// </summary>
         [JsonProperty("created")]
         public int? Created { get; set; }
 
         /// <summary>
-        /// URL of the place's icon
+        ///     URL of the place's icon
         /// </summary>
         [JsonProperty("icon")]
         public string Icon { get; set; }
 
         /// <summary>
-        /// Place title
+        ///     Place title
         /// </summary>
         [JsonProperty("title")]
         public string Title { get; set; }
 
         /// <summary>
-        /// Country name
+        ///     Country name
         /// </summary>
         [JsonProperty("country")]
         public string Country { get; set; }
-
     }
 }

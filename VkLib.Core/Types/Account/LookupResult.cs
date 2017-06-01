@@ -1,22 +1,20 @@
-using System;
-using Newtonsoft.Json;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
-namespace VkLib.Types.Account 
+namespace VkLib.Types.Account
 {
     public class LookupResult
     {
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("other")]
-        public IEnumerable<VkLib.Types.Account.OtherContact> Other { get; set; }
+        public IEnumerable<OtherContact> Other { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("found")]
-        public IEnumerable<VkLib.Types.Account.UserXtrContact> Found { get; set; }
-
+        public IEnumerable<UserXtrContact> Found { get; set; }
     }
 }

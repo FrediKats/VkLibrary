@@ -1,28 +1,25 @@
-using System;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 
-namespace VkLib.Types.Stats 
+namespace VkLib.Types.Stats
 {
     public class City
     {
         /// <summary>
-        /// Visitors number
+        ///     Visitors number
         /// </summary>
         [JsonProperty("visitors")]
         public int? Visitors { get; set; }
 
         /// <summary>
-        /// City name
+        ///     City name
         /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; }
 
         /// <summary>
-        /// City ID
+        ///     City ID
         /// </summary>
         [JsonProperty("value")]
         public int? Value { get; set; }
-
     }
 }

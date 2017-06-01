@@ -1,34 +1,31 @@
-using System;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 
-namespace VkLib.Types.Leads 
+namespace VkLib.Types.Leads
 {
     public class LeadDays
     {
         /// <summary>
-        /// Amount of spent votes
+        ///     Amount of spent votes
         /// </summary>
         [JsonProperty("spent")]
         public int? Spent { get; set; }
 
         /// <summary>
-        /// Impressions number
+        ///     Impressions number
         /// </summary>
         [JsonProperty("impressions")]
         public int? Impressions { get; set; }
 
         /// <summary>
-        /// Completed offers number
+        ///     Completed offers number
         /// </summary>
         [JsonProperty("completed")]
         public int? Completed { get; set; }
 
         /// <summary>
-        /// Started offers number
+        ///     Started offers number
         /// </summary>
         [JsonProperty("started")]
         public int? Started { get; set; }
-
     }
 }

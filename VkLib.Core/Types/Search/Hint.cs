@@ -1,46 +1,45 @@
-using System;
 using Newtonsoft.Json;
-using System.Collections.Generic;
+using VkLib.Types.Groups;
+using VkLib.Types.Users;
 
-namespace VkLib.Types.Search 
+namespace VkLib.Types.Search
 {
     public class Hint
     {
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("profile")]
-        public VkLib.Types.Users.UserMin Profile { get; set; }
+        public UserMin Profile { get; set; }
 
         /// <summary>
-        /// Object type
+        ///     Object type
         /// </summary>
         [JsonProperty("type")]
         public string Type { get; set; }
 
         /// <summary>
-        /// Object description
+        ///     Object description
         /// </summary>
         [JsonProperty("description")]
         public string Description { get; set; }
 
         /// <summary>
-        /// Information whether the object has been found globally
+        ///     Information whether the object has been found globally
         /// </summary>
         [JsonProperty("global")]
         public int? Global { get; set; }
 
         /// <summary>
-        /// Section title
+        ///     Section title
         /// </summary>
         [JsonProperty("section")]
         public string Section { get; set; }
 
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("group")]
-        public VkLib.Types.Groups.Group Group { get; set; }
-
+        public Group Group { get; set; }
     }
 }

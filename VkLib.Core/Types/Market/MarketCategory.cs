@@ -1,28 +1,25 @@
-using System;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 
-namespace VkLib.Types.Market 
+namespace VkLib.Types.Market
 {
     public class MarketCategory
     {
         /// <summary>
-        /// Property
+        ///     Property
         /// </summary>
         [JsonProperty("section")]
-        public VkLib.Types.Market.Section Section { get; set; }
+        public Section Section { get; set; }
 
         /// <summary>
-        /// Category ID
+        ///     Category ID
         /// </summary>
         [JsonProperty("id")]
         public int? Id { get; set; }
 
         /// <summary>
-        /// Category name
+        ///     Category name
         /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; }
-
     }
 }

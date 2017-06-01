@@ -1,17 +1,16 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using VkLib.Responses.Docs;
+using VkLib.Types.Docs;
 
 namespace VkLib.Methods
 {
     /// <summary>
-    /// Docs API section.
+    ///     Docs API section.
     /// </summary>
     public class Docs
     {
-        private Vkontakte _vkontakte;
+        private readonly Vkontakte _vkontakte;
 
         internal Docs(Vkontakte vkontakte)
         {
@@ -19,81 +18,84 @@ namespace VkLib.Methods
         }
 
         /// <summary>
-        /// Returns detailed information about user or community documents.
-        /// Docs: <see href="https://vk.com/dev/docs.get">docs.get</see>
+        ///     Returns detailed information about user or community documents.
+        ///     Docs: <see href="https://vk.com/dev/docs.get">docs.get</see>
         /// </summary>
         /// <param name="count">Number of documents to return. By default, all documents.</param>
         /// <param name="offset">Offset needed to return a specific subset of documents.</param>
-        /// <param name="owner_id">ID of the user or community that owns the documents. Use a negative value to designate a community ID.</param>
-        public async Task<ApiItemsResponse<VkLib.Types.Docs.Doc>> Get(int? count = null, int? offset = null, int? owner_id = null)
+        /// <param name="ownerId">
+        ///     ID of the user or community that owns the documents. Use a negative value to designate a
+        ///     community ID.
+        /// </param>
+        public async Task<ApiItemsResponse<Doc>> Get(int? count = null, int? offset = null, int? ownerId = null)
         {
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            var parameters = new Dictionary<string, string>();
 
             if (count != null)
                 parameters.Add("count", count.ToApiString());
             if (offset != null)
                 parameters.Add("offset", offset.ToApiString());
-            if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToApiString());
+            if (ownerId != null)
+                parameters.Add("owner_id", ownerId.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Docs.Doc>>("docs.get", parameters);
+            return await _vkontakte.GetAsync<ApiItemsResponse<Doc>>("docs.get", parameters);
         }
 
         /// <summary>
-        /// Returns information about documents by their IDs.
-        /// Docs: <see href="https://vk.com/dev/docs.getById">docs.getById</see>
+        ///     Returns information about documents by their IDs.
+        ///     Docs: <see href="https://vk.com/dev/docs.getById">docs.getById</see>
         /// </summary>
         /// <param name="docs">Document IDs. Example: ; "66748_91488,66748_91455";</param>
-        public async Task<IEnumerable<VkLib.Types.Docs.Doc>> GetById(IEnumerable<string> docs = null)
+        public async Task<IEnumerable<Doc>> GetById(IEnumerable<string> docs = null)
         {
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            var parameters = new Dictionary<string, string>();
 
             if (docs != null)
                 parameters.Add("docs", docs.ToApiString());
 
-            return await _vkontakte.GetAsync<IEnumerable<VkLib.Types.Docs.Doc>>("docs.getById", parameters);
+            return await _vkontakte.GetAsync<IEnumerable<Doc>>("docs.getById", parameters);
         }
 
         /// <summary>
-        /// Returns the server address for document upload.
-        /// Docs: <see href="https://vk.com/dev/docs.getUploadServer">docs.getUploadServer</see>
+        ///     Returns the server address for document upload.
+        ///     Docs: <see href="https://vk.com/dev/docs.getUploadServer">docs.getUploadServer</see>
         /// </summary>
-        /// <param name="group_id">Community ID (if the document will be uploaded to the community).</param>
-        public async Task<VkLib.Responses.Docs.GetUploadServerResponse> GetUploadServer(int? group_id = null)
+        /// <param name="groupId">Community ID (if the document will be uploaded to the community).</param>
+        public async Task<GetUploadServerResponse> GetUploadServer(int? groupId = null)
         {
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            var parameters = new Dictionary<string, string>();
 
-            if (group_id != null)
-                parameters.Add("group_id", group_id.ToApiString());
+            if (groupId != null)
+                parameters.Add("group_id", groupId.ToApiString());
 
-            return await _vkontakte.GetAsync<VkLib.Responses.Docs.GetUploadServerResponse>("docs.getUploadServer", parameters);
+            return await _vkontakte.GetAsync<GetUploadServerResponse>("docs.getUploadServer", parameters);
         }
 
         /// <summary>
-        /// Returns the server address for document upload onto a user's or community's wall.
-        /// Docs: <see href="https://vk.com/dev/docs.getWallUploadServer">docs.getWallUploadServer</see>
+        ///     Returns the server address for document upload onto a user's or community's wall.
+        ///     Docs: <see href="https://vk.com/dev/docs.getWallUploadServer">docs.getWallUploadServer</see>
         /// </summary>
-        /// <param name="group_id">Community ID (if the document will be uploaded to the community).</param>
-        public async Task<VkLib.Responses.Docs.GetWallUploadServerResponse> GetWallUploadServer(int? group_id = null)
+        /// <param name="groupId">Community ID (if the document will be uploaded to the community).</param>
+        public async Task<GetWallUploadServerResponse> GetWallUploadServer(int? groupId = null)
         {
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            var parameters = new Dictionary<string, string>();
 
-            if (group_id != null)
-                parameters.Add("group_id", group_id.ToApiString());
+            if (groupId != null)
+                parameters.Add("group_id", groupId.ToApiString());
 
-            return await _vkontakte.GetAsync<VkLib.Responses.Docs.GetWallUploadServerResponse>("docs.getWallUploadServer", parameters);
+            return await _vkontakte.GetAsync<GetWallUploadServerResponse>("docs.getWallUploadServer", parameters);
         }
 
         /// <summary>
-        /// Saves a document after [vk.com/dev/upload_files_2|uploading it to a server].
-        /// Docs: <see href="https://vk.com/dev/docs.save">docs.save</see>
+        ///     Saves a document after [vk.com/dev/upload_files_2|uploading it to a server].
+        ///     Docs: <see href="https://vk.com/dev/docs.save">docs.save</see>
         /// </summary>
         /// <param name="file">This parameter is returned when the file is [vk.com/dev/upload_files_2|uploaded to the server].</param>
         /// <param name="title">Document title.</param>
         /// <param name="tags">Document tags.</param>
-        public async Task<IEnumerable<VkLib.Types.Docs.Doc>> Save(string file = null, string title = null, string tags = null)
+        public async Task<IEnumerable<Doc>> Save(string file = null, string title = null, string tags = null)
         {
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            var parameters = new Dictionary<string, string>();
 
             if (file != null)
                 parameters.Add("file", file);
@@ -102,73 +104,82 @@ namespace VkLib.Methods
             if (tags != null)
                 parameters.Add("tags", tags);
 
-            return await _vkontakte.GetAsync<IEnumerable<VkLib.Types.Docs.Doc>>("docs.save", parameters);
+            return await _vkontakte.GetAsync<IEnumerable<Doc>>("docs.save", parameters);
         }
 
         /// <summary>
-        /// Deletes a user or community document.
-        /// Docs: <see href="https://vk.com/dev/docs.delete">docs.delete</see>
+        ///     Deletes a user or community document.
+        ///     Docs: <see href="https://vk.com/dev/docs.delete">docs.delete</see>
         /// </summary>
-        /// <param name="owner_id">ID of the user or community that owns the document. Use a negative value to designate a community ID.</param>
-        /// <param name="doc_id">Document ID.</param>
-        public async Task<int> Delete(int? owner_id = null, int? doc_id = null)
+        /// <param name="ownerId">
+        ///     ID of the user or community that owns the document. Use a negative value to designate a
+        ///     community ID.
+        /// </param>
+        /// <param name="docId">Document ID.</param>
+        public async Task<int> Delete(int? ownerId = null, int? docId = null)
         {
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            var parameters = new Dictionary<string, string>();
 
-            if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToApiString());
-            if (doc_id != null)
-                parameters.Add("doc_id", doc_id.ToApiString());
+            if (ownerId != null)
+                parameters.Add("owner_id", ownerId.ToApiString());
+            if (docId != null)
+                parameters.Add("doc_id", docId.ToApiString());
 
             return await _vkontakte.GetAsync<int>("docs.delete", parameters);
         }
 
         /// <summary>
-        /// Copies a document to a user's or community's document list.
-        /// Docs: <see href="https://vk.com/dev/docs.add">docs.add</see>
+        ///     Copies a document to a user's or community's document list.
+        ///     Docs: <see href="https://vk.com/dev/docs.add">docs.add</see>
         /// </summary>
-        /// <param name="owner_id">ID of the user or community that owns the document. Use a negative value to designate a community ID.</param>
-        /// <param name="doc_id">Document ID.</param>
-        /// <param name="access_key">Access key. This parameter is required if 'access_key' was returned with the document's data.</param>
-        public async Task<VkLib.Responses.Docs.AddResponse> Add(int? owner_id = null, int? doc_id = null, string access_key = null)
+        /// <param name="ownerId">
+        ///     ID of the user or community that owns the document. Use a negative value to designate a
+        ///     community ID.
+        /// </param>
+        /// <param name="docId">Document ID.</param>
+        /// <param name="accessKey">Access key. This parameter is required if 'access_key' was returned with the document's data.</param>
+        public async Task<AddResponse> Add(int? ownerId = null, int? docId = null, string accessKey = null)
         {
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            var parameters = new Dictionary<string, string>();
 
-            if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToApiString());
-            if (doc_id != null)
-                parameters.Add("doc_id", doc_id.ToApiString());
-            if (access_key != null)
-                parameters.Add("access_key", access_key);
+            if (ownerId != null)
+                parameters.Add("owner_id", ownerId.ToApiString());
+            if (docId != null)
+                parameters.Add("doc_id", docId.ToApiString());
+            if (accessKey != null)
+                parameters.Add("access_key", accessKey);
 
-            return await _vkontakte.GetAsync<VkLib.Responses.Docs.AddResponse>("docs.add", parameters);
+            return await _vkontakte.GetAsync<AddResponse>("docs.add", parameters);
         }
 
         /// <summary>
-        /// Returns documents types available for current user.
-        /// Docs: <see href="https://vk.com/dev/docs.getTypes">docs.getTypes</see>
+        ///     Returns documents types available for current user.
+        ///     Docs: <see href="https://vk.com/dev/docs.getTypes">docs.getTypes</see>
         /// </summary>
-        /// <param name="owner_id">ID of the user or community that owns the documents. Use a negative value to designate a community ID.</param>
-        public async Task<ApiItemsResponse<VkLib.Types.Docs.DocTypes>> GetTypes(int? owner_id = null)
+        /// <param name="ownerId">
+        ///     ID of the user or community that owns the documents. Use a negative value to designate a
+        ///     community ID.
+        /// </param>
+        public async Task<ApiItemsResponse<DocTypes>> GetTypes(int? ownerId = null)
         {
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            var parameters = new Dictionary<string, string>();
 
-            if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToApiString());
+            if (ownerId != null)
+                parameters.Add("owner_id", ownerId.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Docs.DocTypes>>("docs.getTypes", parameters);
+            return await _vkontakte.GetAsync<ApiItemsResponse<DocTypes>>("docs.getTypes", parameters);
         }
 
         /// <summary>
-        /// Returns a list of documents matching the search criteria.
-        /// Docs: <see href="https://vk.com/dev/docs.search">docs.search</see>
+        ///     Returns a list of documents matching the search criteria.
+        ///     Docs: <see href="https://vk.com/dev/docs.search">docs.search</see>
         /// </summary>
         /// <param name="q">Search query string.</param>
         /// <param name="count">Number of results to return.</param>
         /// <param name="offset">Offset needed to return a specific subset of results.</param>
-        public async Task<ApiItemsResponse<VkLib.Types.Docs.Doc>> Search(string q = null, int? count = null, int? offset = null)
+        public async Task<ApiItemsResponse<Doc>> Search(string q = null, int? count = null, int? offset = null)
         {
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            var parameters = new Dictionary<string, string>();
 
             if (q != null)
                 parameters.Add("q", q);
@@ -177,25 +188,26 @@ namespace VkLib.Methods
             if (offset != null)
                 parameters.Add("offset", offset.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<VkLib.Types.Docs.Doc>>("docs.search", parameters);
+            return await _vkontakte.GetAsync<ApiItemsResponse<Doc>>("docs.search", parameters);
         }
 
         /// <summary>
-        /// Edits a document.
-        /// Docs: <see href="https://vk.com/dev/docs.edit">docs.edit</see>
+        ///     Edits a document.
+        ///     Docs: <see href="https://vk.com/dev/docs.edit">docs.edit</see>
         /// </summary>
-        /// <param name="owner_id">User ID or community ID. Use a negative value to designate a community ID.</param>
-        /// <param name="doc_id">Document ID.</param>
+        /// <param name="ownerId">User ID or community ID. Use a negative value to designate a community ID.</param>
+        /// <param name="docId">Document ID.</param>
         /// <param name="title">Document title.</param>
         /// <param name="tags">Document tags.</param>
-        public async Task<int> Edit(int? owner_id = null, int? doc_id = null, string title = null, IEnumerable<string> tags = null)
+        public async Task<int> Edit(int? ownerId = null, int? docId = null, string title = null,
+            IEnumerable<string> tags = null)
         {
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            var parameters = new Dictionary<string, string>();
 
-            if (owner_id != null)
-                parameters.Add("owner_id", owner_id.ToApiString());
-            if (doc_id != null)
-                parameters.Add("doc_id", doc_id.ToApiString());
+            if (ownerId != null)
+                parameters.Add("owner_id", ownerId.ToApiString());
+            if (docId != null)
+                parameters.Add("doc_id", docId.ToApiString());
             if (title != null)
                 parameters.Add("title", title);
             if (tags != null)
@@ -203,6 +215,5 @@ namespace VkLib.Methods
 
             return await _vkontakte.GetAsync<int>("docs.edit", parameters);
         }
-
     }
 }

@@ -1,58 +1,55 @@
-using System;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 
-namespace VkLib.Types.Base 
+namespace VkLib.Types.Base
 {
     public class Sticker
     {
         /// <summary>
-        /// URL of the preview image with 256 px in height
+        ///     URL of the preview image with 256 px in height
         /// </summary>
         [JsonProperty("photo_256")]
         public string Photo256 { get; set; }
 
         /// <summary>
-        /// URL of the preview image with 352 px in height
+        ///     URL of the preview image with 352 px in height
         /// </summary>
         [JsonProperty("photo_352")]
         public string Photo352 { get; set; }
 
         /// <summary>
-        /// Sticker ID
+        ///     Sticker ID
         /// </summary>
         [JsonProperty("id")]
         public int? Id { get; set; }
 
         /// <summary>
-        /// URL of the preview image with 128 px in height
+        ///     URL of the preview image with 128 px in height
         /// </summary>
         [JsonProperty("photo_128")]
         public string Photo128 { get; set; }
 
         /// <summary>
-        /// Collection ID
+        ///     Collection ID
         /// </summary>
         [JsonProperty("product_id")]
         public int? ProductId { get; set; }
 
         /// <summary>
-        /// URL of the preview image with 64 px in height
+        ///     URL of the preview image with 64 px in height
         /// </summary>
         [JsonProperty("photo_64")]
         public string Photo64 { get; set; }
 
         /// <summary>
-        /// Width in px
+        ///     Width in px
         /// </summary>
         [JsonProperty("width")]
         public int? Width { get; set; }
 
         /// <summary>
-        /// Hieght in px
+        ///     Hieght in px
         /// </summary>
         [JsonProperty("height")]
         public int? Height { get; set; }
-
     }
 }

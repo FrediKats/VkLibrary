@@ -1,23 +1,21 @@
-using System;
-using System.Collections.Generic;
 using Newtonsoft.Json;
-using VkLib.Types;
+using VkLib.Types.Groups;
+using VkLib.Types.Users;
 
 namespace VkLib.Responses.Users
 {
     public class GetSubscriptionsResponse
     {
         /// <summary>
-        /// None
+        ///     None
         /// </summary>
         [JsonProperty("users")]
-        public VkLib.Types.Users.UsersArray Users { get; set; }
+        public UsersArray Users { get; set; }
 
         /// <summary>
-        /// None
+        ///     None
         /// </summary>
         [JsonProperty("groups")]
-        public VkLib.Types.Groups.GroupsArray Groups { get; set; }
-
+        public GroupsArray Groups { get; set; }
     }
 }

@@ -1,28 +1,26 @@
-using System;
 using Newtonsoft.Json;
-using System.Collections.Generic;
+using VkLib.Types.Base;
 
-namespace VkLib.Types.Database 
+namespace VkLib.Types.Database
 {
-    public class City : VkLib.Types.Base.Object
+    public class City : Object
     {
         /// <summary>
-        /// Region title
+        ///     Region title
         /// </summary>
         [JsonProperty("region")]
         public string Region { get; set; }
 
         /// <summary>
-        /// Area title
+        ///     Area title
         /// </summary>
         [JsonProperty("area")]
         public string Area { get; set; }
 
         /// <summary>
-        /// Information whether the city is included in important cities list
+        ///     Information whether the city is included in important cities list
         /// </summary>
         [JsonProperty("important")]
         public int? Important { get; set; }
-
     }
 }

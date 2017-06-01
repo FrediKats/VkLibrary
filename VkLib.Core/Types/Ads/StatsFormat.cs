@@ -1,82 +1,79 @@
-using System;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 
-namespace VkLib.Types.Ads 
+namespace VkLib.Types.Ads
 {
     public class StatsFormat
     {
         /// <summary>
-        /// Video views (full video)
+        ///     Video views (full video)
         /// </summary>
         [JsonProperty("video_views_full")]
         public int? VideoViewsFull { get; set; }
 
         /// <summary>
-        /// Video views number
+        ///     Video views number
         /// </summary>
         [JsonProperty("video_views")]
         public int? VideoViews { get; set; }
 
         /// <summary>
-        /// 1 if period=overall
+        ///     1 if period=overall
         /// </summary>
         [JsonProperty("overall")]
         public int? Overall { get; set; }
 
         /// <summary>
-        /// Clickthoughs to the advertised site
+        ///     Clickthoughs to the advertised site
         /// </summary>
         [JsonProperty("video_clicks_site")]
         public int? VideoClicksSite { get; set; }
 
         /// <summary>
-        /// Day as YYYY-MM-DD
+        ///     Day as YYYY-MM-DD
         /// </summary>
         [JsonProperty("day")]
         public string Day { get; set; }
 
         /// <summary>
-        /// Reach 
+        ///     Reach
         /// </summary>
         [JsonProperty("reach")]
         public int? Reach { get; set; }
 
         /// <summary>
-        /// Impressions number
+        ///     Impressions number
         /// </summary>
         [JsonProperty("impressions")]
         public int? Impressions { get; set; }
 
         /// <summary>
-        /// Clicks number
+        ///     Clicks number
         /// </summary>
         [JsonProperty("clicks")]
         public int? Clicks { get; set; }
 
         /// <summary>
-        /// Video views (half of video)
+        ///     Video views (half of video)
         /// </summary>
         [JsonProperty("video_views_half")]
         public int? VideoViewsHalf { get; set; }
 
         /// <summary>
-        /// Spent funds
+        ///     Spent funds
         /// </summary>
         [JsonProperty("spent")]
         public int? Spent { get; set; }
 
         /// <summary>
-        /// Events number
+        ///     Events number
         /// </summary>
         [JsonProperty("join_rate")]
         public int? JoinRate { get; set; }
 
         /// <summary>
-        /// Month as YYYY-MM
+        ///     Month as YYYY-MM
         /// </summary>
         [JsonProperty("month")]
         public string Month { get; set; }
-
     }
 }

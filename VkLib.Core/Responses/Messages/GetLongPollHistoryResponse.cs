@@ -1,23 +1,21 @@
-using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using VkLib.Types;
+using VkLib.Types.Messages;
 
 namespace VkLib.Responses.Messages
 {
     public class GetLongPollHistoryResponse
     {
         /// <summary>
-        /// None
+        ///     None
         /// </summary>
         [JsonProperty("messages")]
-        public VkLib.Types.Messages.LongpollMessages Messages { get; set; }
+        public LongpollMessages Messages { get; set; }
 
         /// <summary>
-        /// None
+        ///     None
         /// </summary>
         [JsonProperty("history")]
         public IEnumerable<IEnumerable<int?>> History { get; set; }
-
     }
 }
