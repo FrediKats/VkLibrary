@@ -44,7 +44,7 @@ var url = vk.OAuth.GetAuthUrl(ScopeSettings.CanAccessMessages, AuthDisplayType.M
 WebView.Navigate(new Uri(url));
 
 // Secondly we subscribe to WebView's navigation starting event:
-private async void WebView_NavigationStarting(WebView sender, WebViewNavigationStartingEventArgs args)
+private async void WebViewNavigationStarting(WebView sender, WebViewNavigationStartingEventArgs args)
 {
     // And try to parse url when redirecting:
     var result = vk.OAuth.ParseResponseUrl(args.Uri);
@@ -58,7 +58,7 @@ private async void WebView_NavigationStarting(WebView sender, WebViewNavigationS
     }
 }
 ```
-If you are developing an vk application that was <a href="https://vk.com/dev/auth_direct">approved</a> by vk administration, than you can use Direct Auth extensions. You need to write the following code to achieve this:
+If you are developing vk application that was <a href="https://vk.com/dev/auth_direct">approved</a> by vk administration, you can use Direct Auth extensions. You need to write the following code to perform user authentication:
 ```c#
 var accessToken = await vk.DirectAuth.Login(
     login: "example@example.com",   // User's login (e-mail or phone)
@@ -75,19 +75,19 @@ var friends = await vk.Friends.Get();
 
 // Returns a sequence of vk users containing only one user, whose id is '210700286'.
 var users = await vk.Users.Get(
-    user_ids: new string[] { "210700286" },    
-    fields: new string[] { "photo_50", "city", "verified" },
-    name_case: "Nom"
+    userIds: new[] { "210700286" },    
+    fields: new[] { "photo_50", "city", "verified" },
+    nameCase: "Nom"
 );
 
 // Returns last 10 messages from a conversation.
 var messages = await vk.Messages.GetHistory(
-    user_id: "12345", count: 10
+    userId: "12345", count: 10
 );
   
 // Sends message to a user. Returns 1 if OK, 0 if not OK.
 var ok = await vk.Messages.Send(
-    user_id: "12345", message: "Hey! What's up?"
+    userId: "12345", message: "Hey! What's up?"
 );
 ```
 If you find an API method that VkLibrary does not support (this is unlikely, but may happen), use a generic <b>GetAsync</b> method:
@@ -105,7 +105,7 @@ var friends = vk.Friends.Get(userId: 1234567, count: 10);
 ```
 
 ## Uploading Files
-VkLibrary has a helper section containing methods for <a href="https://vk.com/dev/upload_files">photo, video, audio, document uploading</a>. This section is called <b>UploadHelper</b>. Here is an example below on how to upload a document to VK servers:
+VkLibrary has a helper section containing methods for <a href="https://vk.com/dev/upload_files">photos, videos, audios and documents uploading</a>. This section is called <b>UploadHelper</b>. There is an example below on how to upload a document to VK servers:
 ```c#
 // Get documents upload server.
 var server = await vk.Docs.GetUploadServer();
@@ -134,7 +134,7 @@ var response = await vk.UploadHelper.PostAsync<DocUploadResponse>(new Uri(url), 
 ```
 
 ## Executing Scripts in VkScript
-<a href="https://vk.com/dev/execute">VK.COM API</a> provides ability to execute code on VK.COM servers. That code should be written in <a href="https://vk.com/dev/execute">VkScript</a>, a language similar to ActionScript or JavaScript, and end with a <b>return %expression%</b> statement. For example:
+<a href="https://vk.com/dev/execute">API</a> provides an ability to execute code on VK.COM servers. Such code should be written in <a href="https://vk.com/dev/execute">VkScript</a>, a language similar to ActionScript or JavaScript, and end with a <b>return %expression%</b> statement. For example:
 ```c#
 // Sends an execute request.
 var result = await vk.Execute<JToken>(
@@ -152,25 +152,25 @@ Outputs:
 ```
 
 ## For F# Lovers
-VkLibrary also can be used in F# programming language using .NET Interop capabilities. Here are some primitive examples below on how to write simple code using this library:
+VkLibrary can also be used with F# programming language. Here are some simple examples below on how to use this library:
 ```f#
-/// Library initialization is simple:
+// Library initialization is simple:
 use lib = new Vkontakte (string 1234567, JsonParsingType.UseStream)
 
-/// Let's create a generic function to simulate C# await operator for Task<'a>.
+// Let's create a generic function to simulate C# await operator for Task<'a>.
 let await (task: Task<'a>) = 
     async {
         let! result = task |> Async.AwaitTask 
         return result 
     } |> Async.RunSynchronously
  
-/// Then we define a simple function to make integers nullable:
+// Then we define a simple helper function to make types nullable:
 let nbl (x: 'a) = x |> Nullable<'a> 
  
-/// So we can call library methods in a familiar way and get results!
+// So we can call library methods in a familiar way and get results!
 let friends = await <| lib.Friends.Get()
 
-/// Default named arguments can be passed to C# functions like this:
+// Named optional arguments with default values can be passed to the lib like this:
 let friends = 
     lib.Friends.Get(userId=nbl 1234567, count=nbl 10)
     |> await
