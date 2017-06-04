@@ -63,3 +63,4 @@ VkLibrary.Tests/.vs
 *.nuspec
 *.nupkg
 *.sln
+*.suo
