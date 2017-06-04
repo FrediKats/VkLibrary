@@ -1,0 +1,401 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{39DC7534-215E-4F5D-B8BC-46C49D0C9657}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>VkLibrary.Core</RootNamespace>
+    <AssemblyName>VkLibrary.Core</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="project.json" />
+    <!-- A reference to the entire .NET Framework is automatically included -->
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApiError.cs" />
+    <Compile Include="ApiException.cs" />
+    <Compile Include="ApiItemsResponse.cs" />
+    <Compile Include="ApiResponse.cs" />
+    <Compile Include="Auth\AccessToken.cs" />
+    <Compile Include="Auth\DirectAuth.cs" />
+    <Compile Include="Auth\Enums.cs" />
+    <Compile Include="Auth\OAuth.cs" />
+    <Compile Include="Auth\OAuthResult.cs" />
+    <Compile Include="Converters\InvalidTypeJsonConverter.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="Methods\Account.cs" />
+    <Compile Include="Methods\Ads.cs" />
+    <Compile Include="Methods\Apps.cs" />
+    <Compile Include="Methods\Audio.cs" />
+    <Compile Include="Methods\Auth.cs" />
+    <Compile Include="Methods\Board.cs" />
+    <Compile Include="Methods\Database.cs" />
+    <Compile Include="Methods\Docs.cs" />
+    <Compile Include="Methods\Fave.cs" />
+    <Compile Include="Methods\Friends.cs" />
+    <Compile Include="Methods\Gifts.cs" />
+    <Compile Include="Methods\Groups.cs" />
+    <Compile Include="Methods\Leads.cs" />
+    <Compile Include="Methods\Likes.cs" />
+    <Compile Include="Methods\Market.cs" />
+    <Compile Include="Methods\Messages.cs" />
+    <Compile Include="Methods\Newsfeed.cs" />
+    <Compile Include="Methods\Notes.cs" />
+    <Compile Include="Methods\Notifications.cs" />
+    <Compile Include="Methods\Orders.cs" />
+    <Compile Include="Methods\Pages.cs" />
+    <Compile Include="Methods\Photos.cs" />
+    <Compile Include="Methods\Places.cs" />
+    <Compile Include="Methods\Polls.cs" />
+    <Compile Include="Methods\Search.cs" />
+    <Compile Include="Methods\Secure.cs" />
+    <Compile Include="Methods\Stats.cs" />
+    <Compile Include="Methods\Status.cs" />
+    <Compile Include="Methods\Storage.cs" />
+    <Compile Include="Methods\Users.cs" />
+    <Compile Include="Methods\Utils.cs" />
+    <Compile Include="Methods\Video.cs" />
+    <Compile Include="Methods\Wall.cs" />
+    <Compile Include="Methods\Widgets.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Responses\Account\ChangePasswordResponse.cs" />
+    <Compile Include="Responses\Account\SaveProfileInfoResponse.cs" />
+    <Compile Include="Responses\Ads\CreateTargetGroupResponse.cs" />
+    <Compile Include="Responses\Audio\AddAlbumResponse.cs" />
+    <Compile Include="Responses\Audio\GetUploadServerResponse.cs" />
+    <Compile Include="Responses\Auth\ConfirmResponse.cs" />
+    <Compile Include="Responses\Auth\RestoreResponse.cs" />
+    <Compile Include="Responses\Auth\SignupResponse.cs" />
+    <Compile Include="Responses\Docs\AddResponse.cs" />
+    <Compile Include="Responses\Docs\GetUploadServerResponse.cs" />
+    <Compile Include="Responses\Docs\GetWallUploadServerResponse.cs" />
+    <Compile Include="Responses\Friends\AddListResponse.cs" />
+    <Compile Include="Responses\Friends\DeleteResponse.cs" />
+    <Compile Include="Responses\Friends\GetOnlineOnlineMobileResponse.cs" />
+    <Compile Include="Responses\Groups\EditPlaceResponse.cs" />
+    <Compile Include="Responses\Groups\GetCallbackConfirmationCodeResponse.cs" />
+    <Compile Include="Responses\Groups\GetCallbackServerSettingsResponse.cs" />
+    <Compile Include="Responses\Groups\GetCallbackSettingsResponse.cs" />
+    <Compile Include="Responses\Groups\GetCatalogInfoExtendedResponse.cs" />
+    <Compile Include="Responses\Groups\GetCatalogInfoResponse.cs" />
+    <Compile Include="Responses\Groups\IsMemberExtendedResponse.cs" />
+    <Compile Include="Responses\Groups\SetCallbackServerResponse.cs" />
+    <Compile Include="Responses\Leads\MetricHitResponse.cs" />
+    <Compile Include="Responses\Likes\AddResponse.cs" />
+    <Compile Include="Responses\Likes\DeleteResponse.cs" />
+    <Compile Include="Responses\Likes\IsLikedResponse.cs" />
+    <Compile Include="Responses\Market\AddAlbumResponse.cs" />
+    <Compile Include="Responses\Market\AddResponse.cs" />
+    <Compile Include="Responses\Messages\DeleteChatPhotoResponse.cs" />
+    <Compile Include="Responses\Messages\GetLongPollHistoryResponse.cs" />
+    <Compile Include="Responses\Messages\IsMessagesFromGroupAllowedResponse.cs" />
+    <Compile Include="Responses\Messages\SetChatPhotoResponse.cs" />
+    <Compile Include="Responses\Newsfeed\GetBannedExtendedResponse.cs" />
+    <Compile Include="Responses\Newsfeed\GetBannedResponse.cs" />
+    <Compile Include="Responses\Newsfeed\NewsFeedResponse.cs" />
+    <Compile Include="Responses\Photos\GetChatUploadServerResponse.cs" />
+    <Compile Include="Responses\Photos\GetMarketAlbumUploadServerResponse.cs" />
+    <Compile Include="Responses\Photos\GetMarketUploadServerResponse.cs" />
+    <Compile Include="Responses\Photos\GetOwnerPhotoUploadServerResponse.cs" />
+    <Compile Include="Responses\Photos\SaveOwnerPhotoResponse.cs" />
+    <Compile Include="Responses\Places\AddResponse.cs" />
+    <Compile Include="Responses\Places\CheckinResponse.cs" />
+    <Compile Include="Responses\Users\GetSubscriptionsResponse.cs" />
+    <Compile Include="Responses\Video\AddAlbumResponse.cs" />
+    <Compile Include="Responses\Wall\CommentsResponse.cs" />
+    <Compile Include="Responses\Wall\CreateCommentResponse.cs" />
+    <Compile Include="Responses\Wall\PostResponse.cs" />
+    <Compile Include="Responses\Wall\RepostResponse.cs" />
+    <Compile Include="Responses\Widgets\GetCommentsResponse.cs" />
+    <Compile Include="Responses\Widgets\GetPagesResponse.cs" />
+    <Compile Include="Types\Account\AccountCounters.cs" />
+    <Compile Include="Types\Account\Info.cs" />
+    <Compile Include="Types\Account\LookupResult.cs" />
+    <Compile Include="Types\Account\NameRequest.cs" />
+    <Compile Include="Types\Account\Offer.cs" />
+    <Compile Include="Types\Account\OtherContact.cs" />
+    <Compile Include="Types\Account\PushConversations.cs" />
+    <Compile Include="Types\Account\PushConversationsItem.cs" />
+    <Compile Include="Types\Account\PushParams.cs" />
+    <Compile Include="Types\Account\PushSettings.cs" />
+    <Compile Include="Types\Account\UserSettings.cs" />
+    <Compile Include="Types\Account\UserXtrContact.cs" />
+    <Compile Include="Types\Ads\Accesses.cs" />
+    <Compile Include="Types\Ads\Account.cs" />
+    <Compile Include="Types\Ads\Ad.cs" />
+    <Compile Include="Types\Ads\AdLayout.cs" />
+    <Compile Include="Types\Ads\Campaign.cs" />
+    <Compile Include="Types\Ads\Category.cs" />
+    <Compile Include="Types\Ads\Client.cs" />
+    <Compile Include="Types\Ads\Criteria.cs" />
+    <Compile Include="Types\Ads\DemoStats.cs" />
+    <Compile Include="Types\Ads\DemostatsFormat.cs" />
+    <Compile Include="Types\Ads\FloodStats.cs" />
+    <Compile Include="Types\Ads\LinkStatus.cs" />
+    <Compile Include="Types\Ads\Paragraphs.cs" />
+    <Compile Include="Types\Ads\PostStats.cs" />
+    <Compile Include="Types\Ads\RejectReason.cs" />
+    <Compile Include="Types\Ads\Rules.cs" />
+    <Compile Include="Types\Ads\Stats.cs" />
+    <Compile Include="Types\Ads\StatsAge.cs" />
+    <Compile Include="Types\Ads\StatsCities.cs" />
+    <Compile Include="Types\Ads\StatsFormat.cs" />
+    <Compile Include="Types\Ads\StatsSex.cs" />
+    <Compile Include="Types\Ads\StatsSexAge.cs" />
+    <Compile Include="Types\Ads\TargetGroup.cs" />
+    <Compile Include="Types\Ads\TargSettings.cs" />
+    <Compile Include="Types\Ads\TargStats.cs" />
+    <Compile Include="Types\Ads\TargSuggestions.cs" />
+    <Compile Include="Types\Ads\TargSuggestionsCities.cs" />
+    <Compile Include="Types\Ads\TargSuggestionsRegions.cs" />
+    <Compile Include="Types\Ads\TargSuggestionsSchools.cs" />
+    <Compile Include="Types\Ads\Users.cs" />
+    <Compile Include="Types\Apps\App.cs" />
+    <Compile Include="Types\Apps\Leaderboard.cs" />
+    <Compile Include="Types\Audio\Audio.cs" />
+    <Compile Include="Types\Audio\AudioAlbum.cs" />
+    <Compile Include="Types\Audio\AudioFull.cs" />
+    <Compile Include="Types\Audio\AudioUploadResponse.cs" />
+    <Compile Include="Types\Audio\Lyrics.cs" />
+    <Compile Include="Types\Base\CommentsInfo.cs" />
+    <Compile Include="Types\Base\Country.cs" />
+    <Compile Include="Types\Base\Error.cs" />
+    <Compile Include="Types\Base\Geo.cs" />
+    <Compile Include="Types\Base\Likes.cs" />
+    <Compile Include="Types\Base\LikesInfo.cs" />
+    <Compile Include="Types\Base\Link.cs" />
+    <Compile Include="Types\Base\LinkApplication.cs" />
+    <Compile Include="Types\Base\LinkApplicationStore.cs" />
+    <Compile Include="Types\Base\LinkButton.cs" />
+    <Compile Include="Types\Base\LinkButtonAction.cs" />
+    <Compile Include="Types\Base\LinkProduct.cs" />
+    <Compile Include="Types\Base\LinkRating.cs" />
+    <Compile Include="Types\Base\Object.cs" />
+    <Compile Include="Types\Base\ObjectCount.cs" />
+    <Compile Include="Types\Base\ObjectWithName.cs" />
+    <Compile Include="Types\Base\Place.cs" />
+    <Compile Include="Types\Base\RepostsInfo.cs" />
+    <Compile Include="Types\Base\RequestParam.cs" />
+    <Compile Include="Types\Base\Sticker.cs" />
+    <Compile Include="Types\Base\UserId.cs" />
+    <Compile Include="Types\Base\ViewsInfo.cs" />
+    <Compile Include="Types\Board\Topic.cs" />
+    <Compile Include="Types\Board\TopicComment.cs" />
+    <Compile Include="Types\Board\TopicPoll.cs" />
+    <Compile Include="Types\Database\City.cs" />
+    <Compile Include="Types\Database\Faculty.cs" />
+    <Compile Include="Types\Database\Region.cs" />
+    <Compile Include="Types\Database\School.cs" />
+    <Compile Include="Types\Database\Street.cs" />
+    <Compile Include="Types\Database\University.cs" />
+    <Compile Include="Types\Docs\Doc.cs" />
+    <Compile Include="Types\Docs\DocPreview.cs" />
+    <Compile Include="Types\Docs\DocPreviewPhoto.cs" />
+    <Compile Include="Types\Docs\DocPreviewVideo.cs" />
+    <Compile Include="Types\Docs\DocTypes.cs" />
+    <Compile Include="Types\Docs\DocUploadResponse.cs" />
+    <Compile Include="Types\Fave\FavesLink.cs" />
+    <Compile Include="Types\Friends\FriendsList.cs" />
+    <Compile Include="Types\Friends\FriendStatus.cs" />
+    <Compile Include="Types\Friends\Requests.cs" />
+    <Compile Include="Types\Friends\RequestsMutual.cs" />
+    <Compile Include="Types\Friends\RequestsXtrMessage.cs" />
+    <Compile Include="Types\Friends\UserXtrLists.cs" />
+    <Compile Include="Types\Friends\UserXtrPhone.cs" />
+    <Compile Include="Types\Gifts\Gift.cs" />
+    <Compile Include="Types\Gifts\Layout.cs" />
+    <Compile Include="Types\Groups\BanInfo.cs" />
+    <Compile Include="Types\Groups\ContactsItem.cs" />
+    <Compile Include="Types\Groups\CountersGroup.cs" />
+    <Compile Include="Types\Groups\Group.cs" />
+    <Compile Include="Types\Groups\GroupCategory.cs" />
+    <Compile Include="Types\Groups\GroupCategoryFull.cs" />
+    <Compile Include="Types\Groups\GroupFull.cs" />
+    <Compile Include="Types\Groups\GroupLink.cs" />
+    <Compile Include="Types\Groups\GroupsArray.cs" />
+    <Compile Include="Types\Groups\GroupSettings.cs" />
+    <Compile Include="Types\Groups\GroupXtrInvitedBy.cs" />
+    <Compile Include="Types\Groups\LinksItem.cs" />
+    <Compile Include="Types\Groups\MarketInfo.cs" />
+    <Compile Include="Types\Groups\MemberRole.cs" />
+    <Compile Include="Types\Groups\MemberStatus.cs" />
+    <Compile Include="Types\Groups\MemberStatusFull.cs" />
+    <Compile Include="Types\Groups\SubjectItem.cs" />
+    <Compile Include="Types\Groups\UserXtrBanInfo.cs" />
+    <Compile Include="Types\Groups\UserXtrRole.cs" />
+    <Compile Include="Types\Leads\Checked.cs" />
+    <Compile Include="Types\Leads\Complete.cs" />
+    <Compile Include="Types\Leads\Entry.cs" />
+    <Compile Include="Types\Leads\Lead.cs" />
+    <Compile Include="Types\Leads\LeadDays.cs" />
+    <Compile Include="Types\Leads\Start.cs" />
+    <Compile Include="Types\Market\Currency.cs" />
+    <Compile Include="Types\Market\MarketAlbum.cs" />
+    <Compile Include="Types\Market\MarketCategory.cs" />
+    <Compile Include="Types\Market\MarketItem.cs" />
+    <Compile Include="Types\Market\MarketItemFull.cs" />
+    <Compile Include="Types\Market\Price.cs" />
+    <Compile Include="Types\Market\Section.cs" />
+    <Compile Include="Types\Messages\AttachmentsContainer.cs" />
+    <Compile Include="Types\Messages\AttachmentsHistory.cs" />
+    <Compile Include="Types\Messages\Chat.cs" />
+    <Compile Include="Types\Messages\ChatFull.cs" />
+    <Compile Include="Types\Messages\ChatPushSettings.cs" />
+    <Compile Include="Types\Messages\Dialog.cs" />
+    <Compile Include="Types\Messages\LastActivity.cs" />
+    <Compile Include="Types\Messages\LongpollMessages.cs" />
+    <Compile Include="Types\Messages\LongpollParams.cs" />
+    <Compile Include="Types\Messages\Message.cs" />
+    <Compile Include="Types\Messages\MessageAttachment.cs" />
+    <Compile Include="Types\Messages\UserXtrInvitedBy.cs" />
+    <Compile Include="Types\Newsfeed\ItemAudio.cs" />
+    <Compile Include="Types\Newsfeed\ItemAudioAudio.cs" />
+    <Compile Include="Types\Newsfeed\ItemFriend.cs" />
+    <Compile Include="Types\Newsfeed\ItemNote.cs" />
+    <Compile Include="Types\Newsfeed\ItemNoteNotes.cs" />
+    <Compile Include="Types\Newsfeed\ItemPhoto.cs" />
+    <Compile Include="Types\Newsfeed\ItemPhotoPhotos.cs" />
+    <Compile Include="Types\Newsfeed\ItemPhotoTag.cs" />
+    <Compile Include="Types\Newsfeed\ItemPhotoTagPhotoTags.cs" />
+    <Compile Include="Types\Newsfeed\ItemTopic.cs" />
+    <Compile Include="Types\Newsfeed\ItemVideo.cs" />
+    <Compile Include="Types\Newsfeed\ItemVideoVideo.cs" />
+    <Compile Include="Types\Newsfeed\ItemWallpost.cs" />
+    <Compile Include="Types\Newsfeed\List.cs" />
+    <Compile Include="Types\Newsfeed\NewsfeedNote.cs" />
+    <Compile Include="Types\Newsfeed\NewsfeedPhoto.cs" />
+    <Compile Include="Types\Notes\Note.cs" />
+    <Compile Include="Types\Notes\NoteComment.cs" />
+    <Compile Include="Types\Notifications\Feedback.cs" />
+    <Compile Include="Types\Notifications\Notification.cs" />
+    <Compile Include="Types\Notifications\NotificationsComment.cs" />
+    <Compile Include="Types\Notifications\Reply.cs" />
+    <Compile Include="Types\Oauth\Error.cs" />
+    <Compile Include="Types\Orders\Amount.cs" />
+    <Compile Include="Types\Orders\AmountItem.cs" />
+    <Compile Include="Types\Orders\Order.cs" />
+    <Compile Include="Types\Pages\Wikipage.cs" />
+    <Compile Include="Types\Pages\WikipageFull.cs" />
+    <Compile Include="Types\Pages\WikipageVersion.cs" />
+    <Compile Include="Types\Photos\CommentXtrPid.cs" />
+    <Compile Include="Types\Photos\MarketAlbumUploadResponse.cs" />
+    <Compile Include="Types\Photos\MarketUploadResponse.cs" />
+    <Compile Include="Types\Photos\MessageUploadResponse.cs" />
+    <Compile Include="Types\Photos\OwnerUploadResponse.cs" />
+    <Compile Include="Types\Photos\Photo.cs" />
+    <Compile Include="Types\Photos\PhotoAlbum.cs" />
+    <Compile Include="Types\Photos\PhotoAlbumFull.cs" />
+    <Compile Include="Types\Photos\PhotoFull.cs" />
+    <Compile Include="Types\Photos\PhotoFullXtrRealOffset.cs" />
+    <Compile Include="Types\Photos\PhotoSizes.cs" />
+    <Compile Include="Types\Photos\PhotoTag.cs" />
+    <Compile Include="Types\Photos\PhotoUpload.cs" />
+    <Compile Include="Types\Photos\PhotoUploadResponse.cs" />
+    <Compile Include="Types\Photos\PhotoXtrRealOffset.cs" />
+    <Compile Include="Types\Photos\PhotoXtrTagInfo.cs" />
+    <Compile Include="Types\Photos\WallUploadResponse.cs" />
+    <Compile Include="Types\Places\Checkin.cs" />
+    <Compile Include="Types\Places\PlaceFull.cs" />
+    <Compile Include="Types\Places\PlaceMin.cs" />
+    <Compile Include="Types\Places\Types.cs" />
+    <Compile Include="Types\Polls\Answer.cs" />
+    <Compile Include="Types\Polls\Poll.cs" />
+    <Compile Include="Types\Polls\Voters.cs" />
+    <Compile Include="Types\Polls\VotersUsers.cs" />
+    <Compile Include="Types\Search\Hint.cs" />
+    <Compile Include="Types\Secure\Level.cs" />
+    <Compile Include="Types\Secure\SmsNotification.cs" />
+    <Compile Include="Types\Secure\TokenChecked.cs" />
+    <Compile Include="Types\Secure\Transaction.cs" />
+    <Compile Include="Types\Stats\Age.cs" />
+    <Compile Include="Types\Stats\City.cs" />
+    <Compile Include="Types\Stats\Country.cs" />
+    <Compile Include="Types\Stats\Period.cs" />
+    <Compile Include="Types\Stats\Sex.cs" />
+    <Compile Include="Types\Stats\SexAge.cs" />
+    <Compile Include="Types\Stats\WallpostStat.cs" />
+    <Compile Include="Types\Status\Status.cs" />
+    <Compile Include="Types\Users\Career.cs" />
+    <Compile Include="Types\Users\CropPhoto.cs" />
+    <Compile Include="Types\Users\CropPhotoCrop.cs" />
+    <Compile Include="Types\Users\CropPhotoRect.cs" />
+    <Compile Include="Types\Users\Exports.cs" />
+    <Compile Include="Types\Users\LastSeen.cs" />
+    <Compile Include="Types\Users\Military.cs" />
+    <Compile Include="Types\Users\Occupation.cs" />
+    <Compile Include="Types\Users\Personal.cs" />
+    <Compile Include="Types\Users\Relative.cs" />
+    <Compile Include="Types\Users\School.cs" />
+    <Compile Include="Types\Users\University.cs" />
+    <Compile Include="Types\Users\User.cs" />
+    <Compile Include="Types\Users\UserBroadcast.cs" />
+    <Compile Include="Types\Users\UserCounters.cs" />
+    <Compile Include="Types\Users\UserFull.cs" />
+    <Compile Include="Types\Users\UserFullXtrType.cs" />
+    <Compile Include="Types\Users\UserLim.cs" />
+    <Compile Include="Types\Users\UserMin.cs" />
+    <Compile Include="Types\Users\UsersArray.cs" />
+    <Compile Include="Types\Users\UserXtrCounters.cs" />
+    <Compile Include="Types\Users\UserXtrType.cs" />
+    <Compile Include="Types\Utils\DomainResolved.cs" />
+    <Compile Include="Types\Utils\LinkChecked.cs" />
+    <Compile Include="Types\Video\CatBlock.cs" />
+    <Compile Include="Types\Video\CatElement.cs" />
+    <Compile Include="Types\Video\SaveResult.cs" />
+    <Compile Include="Types\Video\UploadResponse.cs" />
+    <Compile Include="Types\Video\Video.cs" />
+    <Compile Include="Types\Video\VideoAlbum.cs" />
+    <Compile Include="Types\Video\VideoAlbumFull.cs" />
+    <Compile Include="Types\Video\VideoFiles.cs" />
+    <Compile Include="Types\Video\VideoFull.cs" />
+    <Compile Include="Types\Video\VideoTag.cs" />
+    <Compile Include="Types\Video\VideoTagInfo.cs" />
+    <Compile Include="Types\Wall\AppPost.cs" />
+    <Compile Include="Types\Wall\AttachedNote.cs" />
+    <Compile Include="Types\Wall\CommentAttachment.cs" />
+    <Compile Include="Types\Wall\Graffiti.cs" />
+    <Compile Include="Types\Wall\PostedPhoto.cs" />
+    <Compile Include="Types\Wall\PostSource.cs" />
+    <Compile Include="Types\Wall\WallComment.cs" />
+    <Compile Include="Types\Wall\Wallpost.cs" />
+    <Compile Include="Types\Wall\WallpostAttached.cs" />
+    <Compile Include="Types\Wall\WallpostAttachment.cs" />
+    <Compile Include="Types\Wall\WallpostFull.cs" />
+    <Compile Include="Types\Wall\WallpostToId.cs" />
+    <Compile Include="Types\Widgets\CommentMedia.cs" />
+    <Compile Include="Types\Widgets\CommentReplies.cs" />
+    <Compile Include="Types\Widgets\CommentRepliesItem.cs" />
+    <Compile Include="Types\Widgets\WidgetComment.cs" />
+    <Compile Include="Types\Widgets\WidgetLikes.cs" />
+    <Compile Include="Types\Widgets\WidgetPage.cs" />
+    <Compile Include="UploadHelper.cs" />
+    <Compile Include="VkLibrary.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+</Project>
