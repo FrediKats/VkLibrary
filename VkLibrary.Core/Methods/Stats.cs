@@ -9,9 +9,9 @@ namespace VkLibrary.Core.Methods
     /// </summary>
     public class Stats
     {
-        private readonly VkLibrary _vkontakte;
+        private readonly Vkontakte _vkontakte;
 
-        internal Stats(VkLibrary vkontakte)
+        internal Stats(Vkontakte vkontakte)
         {
             _vkontakte = vkontakte;
         }

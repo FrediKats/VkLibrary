@@ -8,8 +8,8 @@ namespace VkLibrary.Core.Auth
     /// </summary>
     public class OAuth
     {
-        private readonly VkLibrary _library;
-        internal OAuth(VkLibrary vkontakte) => _library = vkontakte;
+        private readonly Vkontakte _library;
+        internal OAuth(Vkontakte vkontakte) => _library = vkontakte;
          
         /// <summary>
         /// Returns OAuth url based on provided and const parameters.
@@ -22,7 +22,7 @@ namespace VkLibrary.Core.Auth
             // Initialize parameters.
             var parameters = new Dictionary<string, string>
             {
-                {"redirect_uri", VkLibrary.OAuthRedirectUrl},
+                {"redirect_uri", Vkontakte.OAuthRedirectUrl},
                 {"display", display.ToString().ToLowerInvariant()},
                 {"client_id", _library.GetAppId()},
                 {"response_type", "token"},
@@ -31,7 +31,7 @@ namespace VkLibrary.Core.Auth
             };
 
             // Create result url.
-            var resultUrl = VkLibrary.BuildUrl(VkLibrary.OAuthUrl, parameters);
+            var resultUrl = Vkontakte.BuildUrl(Vkontakte.OAuthUrl, parameters);
             _library.Log($"Prepared OAuth url: {resultUrl}");
             return resultUrl;
         }

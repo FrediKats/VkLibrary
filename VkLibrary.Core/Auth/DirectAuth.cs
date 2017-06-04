@@ -9,8 +9,8 @@ namespace VkLibrary.Core.Auth
     /// </summary>
     public class DirectAuth
     {
-        private readonly VkLibrary _library;
-        internal DirectAuth(VkLibrary vkontakte) => _library = vkontakte;
+        private readonly Vkontakte _library;
+        internal DirectAuth(Vkontakte vkontakte) => _library = vkontakte;
 
         /// <summary>
         /// Performs login via VK for official applications and then
@@ -44,8 +44,8 @@ namespace VkLibrary.Core.Auth
             };
 
             // Build request url.
-            var url = VkLibrary.BuildUrl(string.Concat(
-                VkLibrary.DirectAuthUrl, "token"), parameters);
+            var url = Vkontakte.BuildUrl(string.Concat(
+                Vkontakte.DirectAuthUrl, "token"), parameters);
 
             // Deserialize token.
             var token = await _library

@@ -19,8 +19,8 @@ namespace VkLibrary.Core
     /// </summary>
     public class UploadHelper
     {
-        private readonly VkLibrary _library;
-        internal UploadHelper(VkLibrary library) => _library = library;
+        private readonly Vkontakte _library;
+        internal UploadHelper(Vkontakte library) => _library = library;
 
         /// <summary>
         /// Async POST request.

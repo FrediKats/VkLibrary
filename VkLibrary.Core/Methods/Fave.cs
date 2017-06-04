@@ -14,9 +14,9 @@ namespace VkLibrary.Core.Methods
     /// </summary>
     public class Fave
     {
-        private readonly VkLibrary _vkontakte;
+        private readonly Vkontakte _vkontakte;
 
-        internal Fave(VkLibrary vkontakte)
+        internal Fave(Vkontakte vkontakte)
         {
             _vkontakte = vkontakte;
         }

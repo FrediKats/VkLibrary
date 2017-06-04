@@ -11,9 +11,9 @@ namespace VkLibrary.Core.Methods
     /// </summary>
     public class Market
     {
-        private readonly VkLibrary _vkontakte;
+        private readonly Vkontakte _vkontakte;
 
-        internal Market(VkLibrary vkontakte)
+        internal Market(Vkontakte vkontakte)
         {
             _vkontakte = vkontakte;
         }

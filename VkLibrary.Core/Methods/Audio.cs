@@ -11,9 +11,9 @@ namespace VkLibrary.Core.Methods
     /// </summary>
     public class Audio
     {
-        private readonly VkLibrary _vkontakte;
+        private readonly Vkontakte _vkontakte;
 
-        internal Audio(VkLibrary vkontakte)
+        internal Audio(Vkontakte vkontakte)
         {
             _vkontakte = vkontakte;
         }

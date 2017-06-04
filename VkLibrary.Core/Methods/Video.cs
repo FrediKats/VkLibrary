@@ -11,9 +11,9 @@ namespace VkLibrary.Core.Methods
     /// </summary>
     public class Video
     {
-        private readonly VkLibrary _vkontakte;
+        private readonly Vkontakte _vkontakte;
 
-        internal Video(VkLibrary vkontakte)
+        internal Video(Vkontakte vkontakte)
         {
             _vkontakte = vkontakte;
         }

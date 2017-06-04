@@ -10,9 +10,9 @@ namespace VkLibrary.Core.Methods
     /// </summary>
     public class Ads
     {
-        private readonly VkLibrary _vkontakte;
+        private readonly Vkontakte _vkontakte;
 
-        internal Ads(VkLibrary vkontakte)
+        internal Ads(Vkontakte vkontakte)
         {
             _vkontakte = vkontakte;
         }

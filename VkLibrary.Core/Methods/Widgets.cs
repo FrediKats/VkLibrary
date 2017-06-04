@@ -9,9 +9,9 @@ namespace VkLibrary.Core.Methods
     /// </summary>
     public class Widgets
     {
-        private readonly VkLibrary _vkontakte;
+        private readonly Vkontakte _vkontakte;
 
-        internal Widgets(VkLibrary vkontakte)
+        internal Widgets(Vkontakte vkontakte)
         {
             _vkontakte = vkontakte;
         }

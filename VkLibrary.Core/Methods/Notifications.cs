@@ -9,9 +9,9 @@ namespace VkLibrary.Core.Methods
     /// </summary>
     public class Notifications
     {
-        private readonly VkLibrary _vkontakte;
+        private readonly Vkontakte _vkontakte;
 
-        internal Notifications(VkLibrary vkontakte)
+        internal Notifications(Vkontakte vkontakte)
         {
             _vkontakte = vkontakte;
         }

@@ -9,9 +9,9 @@ namespace VkLibrary.Core.Methods
     /// </summary>
     public class Polls
     {
-        private readonly VkLibrary _vkontakte;
+        private readonly Vkontakte _vkontakte;
 
-        internal Polls(VkLibrary vkontakte)
+        internal Polls(Vkontakte vkontakte)
         {
             _vkontakte = vkontakte;
         }

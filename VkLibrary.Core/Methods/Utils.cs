@@ -9,9 +9,9 @@ namespace VkLibrary.Core.Methods
     /// </summary>
     public class Utils
     {
-        private readonly VkLibrary _vkontakte;
+        private readonly Vkontakte _vkontakte;
 
-        internal Utils(VkLibrary vkontakte)
+        internal Utils(Vkontakte vkontakte)
         {
             _vkontakte = vkontakte;
         }

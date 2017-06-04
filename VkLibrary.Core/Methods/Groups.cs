@@ -11,9 +11,9 @@ namespace VkLibrary.Core.Methods
     /// </summary>
     public class Groups
     {
-        private readonly VkLibrary _vkontakte;
+        private readonly Vkontakte _vkontakte;
 
-        internal Groups(VkLibrary vkontakte)
+        internal Groups(Vkontakte vkontakte)
         {
             _vkontakte = vkontakte;
         }

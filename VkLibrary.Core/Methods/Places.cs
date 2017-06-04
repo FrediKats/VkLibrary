@@ -10,9 +10,9 @@ namespace VkLibrary.Core.Methods
     /// </summary>
     public class Places
     {
-        private readonly VkLibrary _vkontakte;
+        private readonly Vkontakte _vkontakte;
 
-        internal Places(VkLibrary vkontakte)
+        internal Places(Vkontakte vkontakte)
         {
             _vkontakte = vkontakte;
         }

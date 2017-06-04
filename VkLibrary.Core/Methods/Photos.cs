@@ -11,8 +11,8 @@ namespace VkLibrary.Core.Methods
     /// </summary>
     public class Photos
     {
-        private readonly VkLibrary _vkontakte;
-        internal Photos(VkLibrary vkontakte) => _vkontakte = vkontakte;
+        private readonly Vkontakte _vkontakte;
+        internal Photos(Vkontakte vkontakte) => _vkontakte = vkontakte;
 
         /// <summary>
         /// Returns photos given in photo_ids list.

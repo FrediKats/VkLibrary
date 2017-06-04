@@ -9,9 +9,9 @@ namespace VkLibrary.Core.Methods
     /// </summary>
     public class Auth
     {
-        private readonly VkLibrary _vkontakte;
+        private readonly Vkontakte _vkontakte;
 
-        internal Auth(VkLibrary vkontakte)
+        internal Auth(Vkontakte vkontakte)
         {
             _vkontakte = vkontakte;
         }

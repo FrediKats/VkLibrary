@@ -8,9 +8,9 @@ namespace VkLibrary.Core.Methods
     /// </summary>
     public class Apps
     {
-        private readonly VkLibrary _vkontakte;
+        private readonly Vkontakte _vkontakte;
 
-        internal Apps(VkLibrary vkontakte)
+        internal Apps(Vkontakte vkontakte)
         {
             _vkontakte = vkontakte;
         }

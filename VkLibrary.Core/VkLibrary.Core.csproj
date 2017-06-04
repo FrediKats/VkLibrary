@@ -395,7 +395,7 @@
     <Compile Include="Types\Widgets\WidgetLikes.cs" />
     <Compile Include="Types\Widgets\WidgetPage.cs" />
     <Compile Include="UploadHelper.cs" />
-    <Compile Include="VkLibrary.cs" />
+    <Compile Include="Vkontakte.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
 </Project>

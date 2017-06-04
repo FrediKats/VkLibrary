@@ -9,9 +9,9 @@ namespace VkLibrary.Core.Methods
     /// </summary>
     public class Board
     {
-        private readonly VkLibrary _vkontakte;
+        private readonly Vkontakte _vkontakte;
 
-        internal Board(VkLibrary vkontakte)
+        internal Board(Vkontakte vkontakte)
         {
             _vkontakte = vkontakte;
         }

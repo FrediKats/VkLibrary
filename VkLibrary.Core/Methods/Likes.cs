@@ -9,9 +9,9 @@ namespace VkLibrary.Core.Methods
     /// </summary>
     public class Likes
     {
-        private readonly VkLibrary _vkontakte;
+        private readonly Vkontakte _vkontakte;
 
-        internal Likes(VkLibrary vkontakte)
+        internal Likes(Vkontakte vkontakte)
         {
             _vkontakte = vkontakte;
         }

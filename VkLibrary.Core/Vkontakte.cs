@@ -14,7 +14,7 @@ namespace VkLibrary.Core
     /// Library main class that should be instantiated to work with VK API.
     /// </summary>
     /// ReSharper disable once ClassNeverInstantiated.Global
-    public class VkLibrary : IDisposable
+    public class Vkontakte : IDisposable
     {
         private readonly JsonParsingType _jsonParsingType;
         private readonly HttpClient _httpClient;
@@ -36,7 +36,7 @@ namespace VkLibrary.Core
         /// <param name="clientSecret">App access key</param>
         /// <param name="apiVersion">API version</param>
         /// <param name="logger">Custom logger</param>
-        public VkLibrary(string appId, JsonParsingType jsonParsingType, 
+        public Vkontakte(string appId, JsonParsingType jsonParsingType, 
             string clientSecret = null, string apiVersion = "5.63",
             Action<object> logger = null)
         {
@@ -55,7 +55,7 @@ namespace VkLibrary.Core
         /// <param name="method">Method shortcut</param>
         /// <param name="parameters">Parameters dict</param>
         /// <returns></returns>
-        internal async Task<TResult> GetAsync<TResult>(string method, Dictionary<string, string> parameters)
+        public async Task<TResult> GetAsync<TResult>(string method, Dictionary<string, string> parameters)
         {
             // Add token and api version info to request.
             if (!string.IsNullOrEmpty(AccessToken?.Token))

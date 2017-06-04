@@ -10,9 +10,9 @@ namespace VkLibrary.Core.Methods
     /// </summary>
     public class Database
     {
-        private readonly VkLibrary _vkontakte;
+        private readonly Vkontakte _vkontakte;
 
-        internal Database(VkLibrary vkontakte)
+        internal Database(Vkontakte vkontakte)
         {
             _vkontakte = vkontakte;
         }

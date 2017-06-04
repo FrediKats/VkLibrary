@@ -11,9 +11,9 @@ namespace VkLibrary.Core.Methods
     /// </summary>
     public class Newsfeed
     {
-        private readonly VkLibrary _vkontakte;
+        private readonly Vkontakte _vkontakte;
 
-        internal Newsfeed(VkLibrary vkontakte)
+        internal Newsfeed(Vkontakte vkontakte)
         {
             _vkontakte = vkontakte;
         }

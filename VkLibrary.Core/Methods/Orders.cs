@@ -9,9 +9,9 @@ namespace VkLibrary.Core.Methods
     /// </summary>
     public class Orders
     {
-        private readonly VkLibrary _vkontakte;
+        private readonly Vkontakte _vkontakte;
 
-        internal Orders(VkLibrary vkontakte)
+        internal Orders(Vkontakte vkontakte)
         {
             _vkontakte = vkontakte;
         }

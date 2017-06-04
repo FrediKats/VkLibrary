@@ -13,7 +13,7 @@ module Extensions =
 
     /// Returns prepared library instance.
     let getLibFull app parse secret version logger = 
-        new VkLibrary (app, parse, secret, version, logger)
+        new Vkontakte (app, parse, secret, version, logger)
 
     /// Console logger.
     let logger : Action<obj> =

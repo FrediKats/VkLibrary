@@ -8,9 +8,9 @@ namespace VkLibrary.Core.Methods
     /// </summary>
     public class Storage
     {
-        private readonly VkLibrary _vkontakte;
+        private readonly Vkontakte _vkontakte;
 
-        internal Storage(VkLibrary vkontakte)
+        internal Storage(Vkontakte vkontakte)
         {
             _vkontakte = vkontakte;
         }

@@ -11,8 +11,8 @@ namespace VkLibrary.Core.Methods
     /// </summary>
     public class Account
     {
-        private readonly VkLibrary _vkontakte;
-        internal Account(VkLibrary vkontakte) => _vkontakte = vkontakte;
+        private readonly Vkontakte _vkontakte;
+        internal Account(Vkontakte vkontakte) => _vkontakte = vkontakte;
 
         /// <summary>
         /// Returns non-null values of user counters.

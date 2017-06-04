@@ -9,9 +9,9 @@ namespace VkLibrary.Core.Methods
     /// </summary>
     public class Gifts
     {
-        private readonly VkLibrary _vkontakte;
+        private readonly Vkontakte _vkontakte;
 
-        internal Gifts(VkLibrary vkontakte)
+        internal Gifts(Vkontakte vkontakte)
         {
             _vkontakte = vkontakte;
         }

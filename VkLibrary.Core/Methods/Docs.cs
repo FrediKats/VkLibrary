@@ -10,9 +10,9 @@ namespace VkLibrary.Core.Methods
     /// </summary>
     public class Docs
     {
-        private readonly VkLibrary _vkontakte;
+        private readonly Vkontakte _vkontakte;
 
-        internal Docs(VkLibrary vkontakte)
+        internal Docs(Vkontakte vkontakte)
         {
             _vkontakte = vkontakte;
         }

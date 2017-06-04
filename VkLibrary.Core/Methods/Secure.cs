@@ -9,9 +9,9 @@ namespace VkLibrary.Core.Methods
     /// </summary>
     public class Secure
     {
-        private readonly VkLibrary _vkontakte;
+        private readonly Vkontakte _vkontakte;
 
-        internal Secure(VkLibrary vkontakte)
+        internal Secure(Vkontakte vkontakte)
         {
             _vkontakte = vkontakte;
         }

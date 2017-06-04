@@ -9,9 +9,9 @@ namespace VkLibrary.Core.Methods
     /// </summary>
     public class Search
     {
-        private readonly VkLibrary _vkontakte;
+        private readonly Vkontakte _vkontakte;
 
-        internal Search(VkLibrary vkontakte)
+        internal Search(Vkontakte vkontakte)
         {
             _vkontakte = vkontakte;
         }

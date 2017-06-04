@@ -10,9 +10,9 @@ namespace VkLibrary.Core.Methods
     /// </summary>
     public class Leads
     {
-        private readonly VkLibrary _vkontakte;
+        private readonly Vkontakte _vkontakte;
 
-        internal Leads(VkLibrary vkontakte)
+        internal Leads(Vkontakte vkontakte)
         {
             _vkontakte = vkontakte;
         }

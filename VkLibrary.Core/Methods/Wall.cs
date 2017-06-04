@@ -11,9 +11,9 @@ namespace VkLibrary.Core.Methods
     /// </summary>
     public class Wall
     {
-        private readonly VkLibrary _vkontakte;
+        private readonly Vkontakte _vkontakte;
 
-        internal Wall(VkLibrary vkontakte) => _vkontakte = vkontakte;
+        internal Wall(Vkontakte vkontakte) => _vkontakte = vkontakte;
 
         /// <summary>
         /// Returns a list of posts on a user wall or community wall.

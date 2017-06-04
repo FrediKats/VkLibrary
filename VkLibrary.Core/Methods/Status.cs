@@ -8,9 +8,9 @@ namespace VkLibrary.Core.Methods
     /// </summary>
     public class Status
     {
-        private readonly VkLibrary _vkontakte;
+        private readonly Vkontakte _vkontakte;
 
-        internal Status(VkLibrary vkontakte)
+        internal Status(Vkontakte vkontakte)
         {
             _vkontakte = vkontakte;
         }

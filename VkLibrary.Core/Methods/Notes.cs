@@ -9,9 +9,9 @@ namespace VkLibrary.Core.Methods
     /// </summary>
     public class Notes
     {
-        private readonly VkLibrary _vkontakte;
+        private readonly Vkontakte _vkontakte;
 
-        internal Notes(VkLibrary vkontakte)
+        internal Notes(Vkontakte vkontakte)
         {
             _vkontakte = vkontakte;
         }
