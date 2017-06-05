@@ -14,6 +14,18 @@ module OAuth =
     open System.Net
     open System
 
+    // Locally stored library.
+    let mutable lib = null
+    
+    [<OneTimeSetUp>]
+    /// Methods fixture setup.
+    let fixtureSetUp () = 
+        lib <- getLib Constants.appId String.Empty Constants.apiVersion
+
+    [<OneTimeTearDown>]
+    /// Dispose library when tests have completed.
+    let fixtureTearDown () = lib.Dispose()
+
     [<Test>]
     /// OAuth prepare url tests.
     let oAuthPrepareUrlTest () =
@@ -21,7 +33,7 @@ module OAuth =
         let display = AuthDisplayType.Page
         let parameters =
             (scope, display)
-            |> lib().OAuth.GetAuthUrl
+            |> lib.OAuth.GetAuthUrl
             |> fun x -> Uri(x).Query
             |> WebUtility.UrlDecode
             |> substring 1
@@ -46,7 +58,7 @@ module OAuth =
         let parsed =
             success 
             |> Uri
-            |> lib().OAuth.ParseResponseUrl
+            |> lib.OAuth.ParseResponseUrl
         let token = parsed.AccessToken.Token 
         parsed.IsSuccess |> should equal true
         parsed.Error     |> should be Null
@@ -61,7 +73,7 @@ module OAuth =
         let parsed = 
             failure
             |> Uri
-            |> lib().OAuth.ParseResponseUrl
+            |> lib.OAuth.ParseResponseUrl
         let token = parsed.AccessToken.Token
         parsed.IsSuccess |> should equal false
         parsed.Error     |> should equal "access_denied"

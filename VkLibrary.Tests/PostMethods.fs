@@ -12,11 +12,23 @@ module PostMethods =
     open VkLibrary.Core
     open Newtonsoft.Json.Linq
     open System.Collections.Generic
+    
+    // Locally stored library.
+    let mutable lib = null
+    
+    [<OneTimeSetUp>]
+    /// Methods fixture setup.
+    let fixtureSetUp () = 
+        lib <- getLib Constants.appId String.Empty Constants.apiVersion
+
+    [<OneTimeTearDown>]
+    /// Dispose library when tests have completed.
+    let fixtureTearDown () = lib.Dispose()
 
     [<Test>]
     /// Post async test.
     let postTest () =
-        let uploader = signedLib().UploadHelper
+        let uploader = lib.UploadHelper
         let url = Uri <| "http://httpbin.org/post"
         uploader.PostAsync<JToken>(url, Array.create 2 1uy, "doc", "doc")
         |> await
@@ -28,7 +40,7 @@ module PostMethods =
     [<Test>]
     /// Multiple post uploads test.
     let postMultipleTest () =
-        let uploader = signedLib().UploadHelper
+        let uploader = lib.UploadHelper
         let url = Uri <| "http://httpbin.org/post"
         uploader.PostMultipleAsync<JToken>(url, 
             dict [

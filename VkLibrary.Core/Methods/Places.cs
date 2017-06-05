@@ -37,7 +37,7 @@ namespace VkLibrary.Core.Methods
         /// [vk.com/dev/database.getCities|database.getCities] method.
         /// </param>
         /// <param name="address">Street address of the location (e.g., '125 Elm Street').</param>
-        public async Task<AddResponse> Add(int? type = null, string title = null, uint? latitude = null,
+        public Task<AddResponse> Add(int? type = null, string title = null, uint? latitude = null,
             uint? longitude = null, int? country = null, int? city = null, string address = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -57,7 +57,7 @@ namespace VkLibrary.Core.Methods
             if (address != null)
                 parameters.Add("address", address);
 
-            return await _vkontakte.GetAsync<AddResponse>("places.add", parameters);
+            return _vkontakte.GetAsync<AddResponse>("places.add", parameters);
         }
 
         /// <summary>
@@ -65,14 +65,14 @@ namespace VkLibrary.Core.Methods
         /// Docs: <see href="https://vk.com/dev/places.getById">places.getById</see>
         /// </summary>
         /// <param name="places">Location IDs.</param>
-        public async Task<IEnumerable<PlaceMin>> GetById(IEnumerable<int?> places = null)
+        public Task<IEnumerable<PlaceMin>> GetById(IEnumerable<int?> places = null)
         {
             var parameters = new Dictionary<string, string>();
 
             if (places != null)
                 parameters.Add("places", places.ToApiString());
 
-            return await _vkontakte.GetAsync<IEnumerable<PlaceMin>>("places.getById", parameters);
+            return _vkontakte.GetAsync<IEnumerable<PlaceMin>>("places.getById", parameters);
         }
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="radius">Radius of the search zone:; '1' — 100 m. (default); '2' — 800 m.; '3' — 6 km.; '4' — 50 km.</param>
         /// <param name="offset">Offset needed to return a specific subset of locations.</param>
         /// <param name="count">Number of locations to return.</param>
-        public async Task<ApiItemsResponse<PlaceFull>> Search(string q = null, int? city = null, uint? latitude = null,
+        public Task<ApiItemsResponse<PlaceFull>> Search(string q = null, int? city = null, uint? latitude = null,
             uint? longitude = null, int? radius = null, int? offset = null, int? count = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -106,7 +106,7 @@ namespace VkLibrary.Core.Methods
             if (count != null)
                 parameters.Add("count", count.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<PlaceFull>>("places.search", parameters);
+            return _vkontakte.GetAsync<ApiItemsResponse<PlaceFull>>("places.search", parameters);
         }
 
         /// <summary>
@@ -125,7 +125,7 @@ namespace VkLibrary.Core.Methods
         /// List of services or websites (e.g., 'twitter', 'facebook') to which the check-in will be
         /// exported, if the user has set up the respective option.
         /// </param>
-        public async Task<CheckinResponse> Checkin(int? placeId = null, string text = null, uint? latitude = null,
+        public Task<CheckinResponse> Checkin(int? placeId = null, string text = null, uint? latitude = null,
             uint? longitude = null, bool? friendsOnly = null, IEnumerable<string> services = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -143,7 +143,7 @@ namespace VkLibrary.Core.Methods
             if (services != null)
                 parameters.Add("services", services.ToApiString());
 
-            return await _vkontakte.GetAsync<CheckinResponse>("places.checkin", parameters);
+            return _vkontakte.GetAsync<CheckinResponse>("places.checkin", parameters);
         }
 
         /// <summary>
@@ -162,7 +162,7 @@ namespace VkLibrary.Core.Methods
         /// 'longitude' are not set.)
         /// </param>
         /// <param name="needPlaces">'1' — to return location information with the check-ins. (Ignored if 'place' is not set.);</param>
-        public async Task<ApiItemsResponse<Checkin>> GetCheckins(uint? latitude = null, uint? longitude = null,
+        public Task<ApiItemsResponse<Checkin>> GetCheckins(uint? latitude = null, uint? longitude = null,
             int? place = null, int? userId = null, int? offset = null, int? count = null, int? timestamp = null,
             bool? friendsOnly = null, bool? needPlaces = null)
         {
@@ -187,19 +187,19 @@ namespace VkLibrary.Core.Methods
             if (needPlaces != null)
                 parameters.Add("need_places", needPlaces.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<Checkin>>("places.getCheckins", parameters);
+            return _vkontakte.GetAsync<ApiItemsResponse<Checkin>>("places.getCheckins", parameters);
         }
 
         /// <summary>
         /// Returns a list of all types of locations.
         /// Docs: <see href="https://vk.com/dev/places.getTypes">places.getTypes</see>
         /// </summary>
-        public async Task<IEnumerable<Types.Places.Types>> GetTypes()
+        public Task<IEnumerable<Types.Places.Types>> GetTypes()
         {
             var parameters = new Dictionary<string, string>();
 
 
-            return await _vkontakte.GetAsync<IEnumerable<Types.Places.Types>>("places.getTypes", parameters);
+            return _vkontakte.GetAsync<IEnumerable<Types.Places.Types>>("places.getTypes", parameters);
         }
     }
 }

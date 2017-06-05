@@ -31,7 +31,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="needUser">'1' — to return information about users who uploaded audio files</param>
         /// <param name="offset">Offset needed to return a specific subset of audio files.</param>
         /// <param name="count">Number of audio files to return.</param>
-        public async Task<ApiItemsResponse<AudioFull>> Get(int? ownerId = null, int? albumId = null,
+        public Task<ApiItemsResponse<AudioFull>> Get(int? ownerId = null, int? albumId = null,
             IEnumerable<int?> audioIds = null, bool? needUser = null, int? offset = null, int? count = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -49,7 +49,7 @@ namespace VkLibrary.Core.Methods
             if (count != null)
                 parameters.Add("count", count.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<AudioFull>>("audio.get", parameters);
+            return _vkontakte.GetAsync<ApiItemsResponse<AudioFull>>("audio.get", parameters);
         }
 
         /// <summary>
@@ -57,14 +57,14 @@ namespace VkLibrary.Core.Methods
         /// Docs: <see href="https://vk.com/dev/audio.getById">audio.getById</see>
         /// </summary>
         /// <param name="audios">Audio file IDs, in the following format:; "{owner_id}_{audio_id}"</param>
-        public async Task<IEnumerable<AudioFull>> GetById(IEnumerable<string> audios = null)
+        public Task<IEnumerable<AudioFull>> GetById(IEnumerable<string> audios = null)
         {
             var parameters = new Dictionary<string, string>();
 
             if (audios != null)
                 parameters.Add("audios", audios.ToApiString());
 
-            return await _vkontakte.GetAsync<IEnumerable<AudioFull>>("audio.getById", parameters);
+            return _vkontakte.GetAsync<IEnumerable<AudioFull>>("audio.getById", parameters);
         }
 
         /// <summary>
@@ -75,14 +75,14 @@ namespace VkLibrary.Core.Methods
         /// Lyrics ID (could be obtained with [vk.com/dev/audio.get|audio.get],
         /// [vk.com/dev/audio.getById|audio.getById], or [vk.com/dev/audio.search|audio.search] methods).
         /// </param>
-        public async Task<Lyrics> GetLyrics(int? lyricsId = null)
+        public Task<Lyrics> GetLyrics(int? lyricsId = null)
         {
             var parameters = new Dictionary<string, string>();
 
             if (lyricsId != null)
                 parameters.Add("lyrics_id", lyricsId.ToApiString());
 
-            return await _vkontakte.GetAsync<Lyrics>("audio.getLyrics", parameters);
+            return _vkontakte.GetAsync<Lyrics>("audio.getLyrics", parameters);
         }
 
         /// <summary>
@@ -100,7 +100,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="searchOwn">'1' — to search among current user's audios. By default: '0'.</param>
         /// <param name="offset">Offset needed to return a specific subset of audio files.</param>
         /// <param name="count">Number of audio files to return.</param>
-        public async Task<ApiItemsResponse<AudioFull>> Search(string q = null, bool? autoComplete = null,
+        public Task<ApiItemsResponse<AudioFull>> Search(string q = null, bool? autoComplete = null,
             bool? lyrics = null, bool? performerOnly = null, int? sort = null, bool? searchOwn = null,
             int? offset = null, int? count = null)
         {
@@ -123,19 +123,19 @@ namespace VkLibrary.Core.Methods
             if (count != null)
                 parameters.Add("count", count.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<AudioFull>>("audio.search", parameters);
+            return _vkontakte.GetAsync<ApiItemsResponse<AudioFull>>("audio.search", parameters);
         }
 
         /// <summary>
         /// Returns the server address to [vk.com/dev/upload_files_2|upload audio files].
         /// Docs: <see href="https://vk.com/dev/audio.getUploadServer">audio.getUploadServer</see>
         /// </summary>
-        public async Task<GetUploadServerResponse> GetUploadServer()
+        public Task<GetUploadServerResponse> GetUploadServer()
         {
             var parameters = new Dictionary<string, string>();
 
 
-            return await _vkontakte.GetAsync<GetUploadServerResponse>("audio.getUploadServer", parameters);
+            return _vkontakte.GetAsync<GetUploadServerResponse>("audio.getUploadServer", parameters);
         }
 
         /// <summary>
@@ -156,7 +156,7 @@ namespace VkLibrary.Core.Methods
         /// </param>
         /// <param name="artist">The name of the artist. By default, this is obtained from ID3 tags.</param>
         /// <param name="title">The title of the audio file. By default, this is obtained from ID3 tags.</param>
-        public async Task<IEnumerable<Types.Audio.Audio>> Save(int? server = null, string audio = null,
+        public Task<IEnumerable<Types.Audio.Audio>> Save(int? server = null, string audio = null,
             string hash = null, string artist = null, string title = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -172,7 +172,7 @@ namespace VkLibrary.Core.Methods
             if (title != null)
                 parameters.Add("title", title);
 
-            return await _vkontakte.GetAsync<IEnumerable<Types.Audio.Audio>>("audio.save", parameters);
+            return _vkontakte.GetAsync<IEnumerable<Types.Audio.Audio>>("audio.save", parameters);
         }
 
         /// <summary>
@@ -186,7 +186,7 @@ namespace VkLibrary.Core.Methods
         /// </param>
         /// <param name="groupId">Community ID, needed when adding the audio file to a community (without minus).</param>
         /// <param name="albumId">Album ID.</param>
-        public async Task<int?> Add(int? audioId = null, int? ownerId = null, int? groupId = null,
+        public Task<int?> Add(int? audioId = null, int? ownerId = null, int? groupId = null,
             int? albumId = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -200,7 +200,7 @@ namespace VkLibrary.Core.Methods
             if (albumId != null)
                 parameters.Add("album_id", albumId.ToApiString());
 
-            return await _vkontakte.GetAsync<int?>("audio.add", parameters);
+            return _vkontakte.GetAsync<int?>("audio.add", parameters);
         }
 
         /// <summary>
@@ -212,7 +212,7 @@ namespace VkLibrary.Core.Methods
         /// ID of the user or community that owns the audio file. Use a negative value to designate a
         /// community ID.
         /// </param>
-        public async Task<int> Delete(int? audioId = null, int? ownerId = null)
+        public Task<int> Delete(int? audioId = null, int? ownerId = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -221,7 +221,7 @@ namespace VkLibrary.Core.Methods
             if (ownerId != null)
                 parameters.Add("owner_id", ownerId.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("audio.delete", parameters);
+            return _vkontakte.GetAsync<int>("audio.delete", parameters);
         }
 
         /// <summary>
@@ -238,7 +238,7 @@ namespace VkLibrary.Core.Methods
         /// '1' — audio file will not be available for search; '0' — audio file will be available for
         /// search (default)
         /// </param>
-        public async Task<int?> Edit(int? ownerId = null, int? audioId = null, string artist = null,
+        public Task<int?> Edit(int? ownerId = null, int? audioId = null, string artist = null,
             string title = null, string text = null, int? genreId = null, bool? noSearch = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -258,7 +258,7 @@ namespace VkLibrary.Core.Methods
             if (noSearch != null)
                 parameters.Add("no_search", noSearch.ToApiString());
 
-            return await _vkontakte.GetAsync<int?>("audio.edit", parameters);
+            return _vkontakte.GetAsync<int?>("audio.edit", parameters);
         }
 
         /// <summary>
@@ -269,7 +269,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="ownerId">ID of the user or community that owns the audio file.</param>
         /// <param name="before">ID of the audio file before which to place the audio file.</param>
         /// <param name="after">ID of the audio file after which to place the audio file.</param>
-        public async Task<int> Reorder(int? audioId = null, int? ownerId = null, int? before = null,
+        public Task<int> Reorder(int? audioId = null, int? ownerId = null, int? before = null,
             int? after = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -283,7 +283,7 @@ namespace VkLibrary.Core.Methods
             if (after != null)
                 parameters.Add("after", after.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("audio.reorder", parameters);
+            return _vkontakte.GetAsync<int>("audio.reorder", parameters);
         }
 
         /// <summary>
@@ -292,7 +292,7 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="audioId">Audio file ID.</param>
         /// <param name="ownerId">ID of the user or community that owns the audio file.</param>
-        public async Task<int> Restore(int? audioId = null, int? ownerId = null)
+        public Task<int> Restore(int? audioId = null, int? ownerId = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -301,7 +301,7 @@ namespace VkLibrary.Core.Methods
             if (ownerId != null)
                 parameters.Add("owner_id", ownerId.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("audio.restore", parameters);
+            return _vkontakte.GetAsync<int>("audio.restore", parameters);
         }
 
         /// <summary>
@@ -311,7 +311,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="ownerId">ID of the user or community that owns the audio file.</param>
         /// <param name="offset">Offset needed to return a specific subset of albums.</param>
         /// <param name="count">Number of albums to return.</param>
-        public async Task<ApiItemsResponse<AudioAlbum>> GetAlbums(int? ownerId = null, int? offset = null,
+        public Task<ApiItemsResponse<AudioAlbum>> GetAlbums(int? ownerId = null, int? offset = null,
             int? count = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -323,7 +323,7 @@ namespace VkLibrary.Core.Methods
             if (count != null)
                 parameters.Add("count", count.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<AudioAlbum>>("audio.getAlbums", parameters);
+            return _vkontakte.GetAsync<ApiItemsResponse<AudioAlbum>>("audio.getAlbums", parameters);
         }
 
         /// <summary>
@@ -332,7 +332,7 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="groupId">Community ID (if the album will be created in a community).</param>
         /// <param name="title">Album title.</param>
-        public async Task<AddAlbumResponse> AddAlbum(int? groupId = null, string title = null)
+        public Task<AddAlbumResponse> AddAlbum(int? groupId = null, string title = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -341,7 +341,7 @@ namespace VkLibrary.Core.Methods
             if (title != null)
                 parameters.Add("title", title);
 
-            return await _vkontakte.GetAsync<AddAlbumResponse>("audio.addAlbum", parameters);
+            return _vkontakte.GetAsync<AddAlbumResponse>("audio.addAlbum", parameters);
         }
 
         /// <summary>
@@ -351,7 +351,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="groupId">ID of the community where the album is located.;</param>
         /// <param name="albumId">Album ID.</param>
         /// <param name="title">New album title.</param>
-        public async Task<int> EditAlbum(int? groupId = null, int? albumId = null, string title = null)
+        public Task<int> EditAlbum(int? groupId = null, int? albumId = null, string title = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -362,7 +362,7 @@ namespace VkLibrary.Core.Methods
             if (title != null)
                 parameters.Add("title", title);
 
-            return await _vkontakte.GetAsync<int>("audio.editAlbum", parameters);
+            return _vkontakte.GetAsync<int>("audio.editAlbum", parameters);
         }
 
         /// <summary>
@@ -371,7 +371,7 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="groupId">ID of the community where the album is located.;</param>
         /// <param name="albumId">Album ID.</param>
-        public async Task<int> DeleteAlbum(int? groupId = null, int? albumId = null)
+        public Task<int> DeleteAlbum(int? groupId = null, int? albumId = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -380,7 +380,7 @@ namespace VkLibrary.Core.Methods
             if (albumId != null)
                 parameters.Add("album_id", albumId.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("audio.deleteAlbum", parameters);
+            return _vkontakte.GetAsync<int>("audio.deleteAlbum", parameters);
         }
 
         /// <summary>
@@ -390,7 +390,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="groupId">ID of the community where the audio files are located. By default, current user ID.;</param>
         /// <param name="albumId">ID of the album to which the audio files will be moved.</param>
         /// <param name="audioIds">IDs of the audio files to be moved.; "NOTE: An album can hold up to 1000 audio files.";</param>
-        public async Task<int> MoveToAlbum(int? groupId = null, int? albumId = null,
+        public Task<int> MoveToAlbum(int? groupId = null, int? albumId = null,
             IEnumerable<int?> audioIds = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -402,7 +402,7 @@ namespace VkLibrary.Core.Methods
             if (audioIds != null)
                 parameters.Add("audio_ids", audioIds.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("audio.moveToAlbum", parameters);
+            return _vkontakte.GetAsync<int>("audio.moveToAlbum", parameters);
         }
 
         /// <summary>
@@ -417,7 +417,7 @@ namespace VkLibrary.Core.Methods
         /// IDs of communities and user whose statuses will be included in the broadcast. Use a negative
         /// value to designate a community ID. By default, current user ID.
         /// </param>
-        public async Task<IEnumerable<int?>> SetBroadcast(string audio = null, IEnumerable<int?> targetIds = null)
+        public Task<IEnumerable<int?>> SetBroadcast(string audio = null, IEnumerable<int?> targetIds = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -426,7 +426,7 @@ namespace VkLibrary.Core.Methods
             if (targetIds != null)
                 parameters.Add("target_ids", targetIds.ToApiString());
 
-            return await _vkontakte.GetAsync<IEnumerable<int?>>("audio.setBroadcast", parameters);
+            return _vkontakte.GetAsync<IEnumerable<int?>>("audio.setBroadcast", parameters);
         }
 
         /// <summary>
@@ -441,7 +441,7 @@ namespace VkLibrary.Core.Methods
         /// '1' — to return only friends and communities that are broadcasting at the moment.; '0' — to return
         /// all friends and communities (default).
         /// </param>
-        public async Task<IEnumerable<UserBroadcast>> GetBroadcastList(string filter = null, bool? active = null)
+        public Task<IEnumerable<UserBroadcast>> GetBroadcastList(string filter = null, bool? active = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -450,7 +450,7 @@ namespace VkLibrary.Core.Methods
             if (active != null)
                 parameters.Add("active", active.ToApiString());
 
-            return await _vkontakte.GetAsync<IEnumerable<UserBroadcast>>("audio.getBroadcastList", parameters);
+            return _vkontakte.GetAsync<IEnumerable<UserBroadcast>>("audio.getBroadcastList", parameters);
         }
 
         /// <summary>
@@ -465,7 +465,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="offset">Offset needed to return a specific subset of audio files.</param>
         /// <param name="count">Number of audio files to return.</param>
         /// <param name="shuffle">'1' — shuffle on</param>
-        public async Task<IEnumerable<AudioFull>> GetRecommendations(string targetAudio = null, int? userId = null,
+        public Task<IEnumerable<AudioFull>> GetRecommendations(string targetAudio = null, int? userId = null,
             int? offset = null, int? count = null, bool? shuffle = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -481,7 +481,7 @@ namespace VkLibrary.Core.Methods
             if (shuffle != null)
                 parameters.Add("shuffle", shuffle.ToApiString());
 
-            return await _vkontakte.GetAsync<IEnumerable<AudioFull>>("audio.getRecommendations", parameters);
+            return _vkontakte.GetAsync<IEnumerable<AudioFull>>("audio.getRecommendations", parameters);
         }
 
         /// <summary>
@@ -492,7 +492,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="genreId">Genre ID. See the list of [vk.com/dev/audio_genres|audio genres].</param>
         /// <param name="offset">Offset needed to return a specific subset of audio files.</param>
         /// <param name="count">Number of audio files to return.</param>
-        public async Task<IEnumerable<AudioFull>> GetPopular(bool? onlyEng = null, int? genreId = null,
+        public Task<IEnumerable<AudioFull>> GetPopular(bool? onlyEng = null, int? genreId = null,
             int? offset = null, int? count = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -506,7 +506,7 @@ namespace VkLibrary.Core.Methods
             if (count != null)
                 parameters.Add("count", count.ToApiString());
 
-            return await _vkontakte.GetAsync<IEnumerable<AudioFull>>("audio.getPopular", parameters);
+            return _vkontakte.GetAsync<IEnumerable<AudioFull>>("audio.getPopular", parameters);
         }
 
         /// <summary>
@@ -514,14 +514,14 @@ namespace VkLibrary.Core.Methods
         /// Docs: <see href="https://vk.com/dev/audio.getCount">audio.getCount</see>
         /// </summary>
         /// <param name="ownerId">ID of the user or community that owns the audio files. By default, current user ID.</param>
-        public async Task<int?> GetCount(int? ownerId = null)
+        public Task<int?> GetCount(int? ownerId = null)
         {
             var parameters = new Dictionary<string, string>();
 
             if (ownerId != null)
                 parameters.Add("owner_id", ownerId.ToApiString());
 
-            return await _vkontakte.GetAsync<int?>("audio.getCount", parameters);
+            return _vkontakte.GetAsync<int?>("audio.getCount", parameters);
         }
     }
 }

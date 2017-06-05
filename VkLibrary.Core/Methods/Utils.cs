@@ -17,11 +17,11 @@ namespace VkLibrary.Core.Methods
         /// Docs: <see href="https://vk.com/dev/utils.checkLink">utils.checkLink</see>
         /// </summary>
         /// <param name="url">Link to check (e.g., 'http://google.com').</param>
-        public async Task<LinkChecked> CheckLink(string url = null)
+        public Task<LinkChecked> CheckLink(string url = null)
         {
             var parameters = new Dictionary<string, string>();
             if (url != null) parameters.Add("url", url);
-            return await _vkontakte.GetAsync<LinkChecked>("utils.checkLink", parameters);
+            return _vkontakte.GetAsync<LinkChecked>("utils.checkLink", parameters);
         }
 
         /// <summary>
@@ -32,20 +32,19 @@ namespace VkLibrary.Core.Methods
         /// Screen name of the user, community (e.g., 'apiclub,' 'andrew', or 'rules_of_war'), or
         /// application.
         /// </param>
-        public async Task<DomainResolved> ResolveScreenName(string screenName = null)
+        public Task<DomainResolved> ResolveScreenName(string screenName = null)
         {
             var parameters = new Dictionary<string, string>();
             if (screenName != null) parameters.Add("screen_name", screenName);
-            return await _vkontakte.GetAsync<DomainResolved>("utils.resolveScreenName", parameters);
+            return _vkontakte.GetAsync<DomainResolved>("utils.resolveScreenName", parameters);
         }
 
         /// <summary>
         /// Returns the current time of the VK server.
         /// Docs: <see href="https://vk.com/dev/utils.getServerTime">utils.getServerTime</see>
         /// </summary>
-        public async Task<int?> GetServerTime() => 
-            await _vkontakte.GetAsync<int?>("utils.getServerTime", 
-                new Dictionary<string, string>());
+        public Task<int?> GetServerTime() => _vkontakte.GetAsync<int?>(
+            "utils.getServerTime", new Dictionary<string, string>());
 
         /// <summary>
         /// Allows to receive a link shortened via vk.cc. 
@@ -53,7 +52,7 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="url">URL to be shortened.</param>
         /// <param name="private_"></param>
-        public async Task<LinkInfo> GetShortLink(string url = null, bool? private_ = null)
+        public Task<LinkInfo> GetShortLink(string url = null, bool? private_ = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -62,7 +61,7 @@ namespace VkLibrary.Core.Methods
             if (private_ != null)
                 parameters.Add("private", private_.ToApiString());
 
-            return await _vkontakte.GetAsync<LinkInfo>("utils.getShortLink", parameters);
+            return _vkontakte.GetAsync<LinkInfo>("utils.getShortLink", parameters);
         }
 
         /// <summary>
@@ -77,7 +76,7 @@ namespace VkLibrary.Core.Methods
         /// 1 — to return extended stats data (sex, age, geo).
         ///  0 (by default) — to return views number only.
         /// </param>
-        public async Task<LinkInfoXtrStats> GetLinkStats(string key, string accessKey = null, 
+        public Task<LinkInfoXtrStats> GetLinkStats(string key, string accessKey = null, 
             string interval = null, int? intervalsCount = null, bool? extended = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -93,7 +92,7 @@ namespace VkLibrary.Core.Methods
             if (extended != null)
                 parameters.Add("extended", extended.ToApiString());
 
-            return await _vkontakte.GetAsync<LinkInfoXtrStats>("utils.getLinkStats", parameters);
+            return _vkontakte.GetAsync<LinkInfoXtrStats>("utils.getLinkStats", parameters);
         }
 
         /// <summary>
@@ -102,25 +101,25 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="count">Number of links to return.</param>
         /// <param name="offset">Offset needed to return a specific subset of links.</param>
-        public async Task<ApiItemsResponse<LinkInfoFull>> GetLastShortenedLinks(int? count = null, int? offset = null)
+        public Task<ApiItemsResponse<LinkInfoFull>> GetLastShortenedLinks(int? count = null, int? offset = null)
         {
             var parameters = new Dictionary<string, string>();
 
             if (count != null) parameters.Add("count", count.ToApiString());
             if (offset != null) parameters.Add("offset", offset.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<LinkInfoFull>>("utils.getLastShortenedLinks", parameters);
+            return _vkontakte.GetAsync<ApiItemsResponse<LinkInfoFull>>("utils.getLastShortenedLinks", parameters);
         }
 
         /// <summary>
         /// Deletes shortened link from user's list. 
         /// </summary>
         /// <param name="key">Link key (characters after "vk.cc"). </param>
-        public async Task<int?> DeleteFromLastShortened(string key)
+        public Task<int?> DeleteFromLastShortened(string key)
         {
             var parameters = new Dictionary<string, string>();
             if (key != null) parameters.Add("key", key);
-            return await _vkontakte.GetAsync<int?>("utils.deleteFromLastShortened", parameters);
+            return _vkontakte.GetAsync<int?>("utils.deleteFromLastShortened", parameters);
         }
     }
 }

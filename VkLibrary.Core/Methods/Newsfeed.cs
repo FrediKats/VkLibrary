@@ -48,7 +48,7 @@ namespace VkLibrary.Core.Methods
         /// Additional fields of [vk.com/dev/fields|profiles] and [vk.com/dev/fields_groups|communities] to
         /// return.
         /// </param>
-        public async Task<NewsFeedResponse> Get(IEnumerable<string> filters = null, bool? returnBanned = null,
+        public Task<NewsFeedResponse> Get(IEnumerable<string> filters = null, bool? returnBanned = null,
             int? startTime = null, int? endTime = null, int? maxPhotos = null, string sourceIds = null,
             string startFrom = null, int? count = null, IEnumerable<string> fields = null)
         {
@@ -73,7 +73,7 @@ namespace VkLibrary.Core.Methods
             if (fields != null)
                 parameters.Add("fields", fields.ToApiString());
 
-            return await _vkontakte.GetAsync<NewsFeedResponse>("newsfeed.get", parameters);
+            return _vkontakte.GetAsync<NewsFeedResponse>("newsfeed.get", parameters);
         }
 
         /// <summary>
@@ -89,7 +89,7 @@ namespace VkLibrary.Core.Methods
         /// Additional fields of [vk.com/dev/fields|profiles] and [vk.com/dev/fields_groups|communities] to
         /// return.
         /// </param>
-        public async Task<NewsFeedResponse> GetRecommended(int? startTime = null, int? endTime = null,
+        public Task<NewsFeedResponse> GetRecommended(int? startTime = null, int? endTime = null,
             int? maxPhotos = null, string startFrom = null, int? count = null, IEnumerable<string> fields = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -107,7 +107,7 @@ namespace VkLibrary.Core.Methods
             if (fields != null)
                 parameters.Add("fields", fields.ToApiString());
 
-            return await _vkontakte.GetAsync<NewsFeedResponse>("newsfeed.getRecommended", parameters);
+            return _vkontakte.GetAsync<NewsFeedResponse>("newsfeed.getRecommended", parameters);
         }
 
         /// <summary>
@@ -136,7 +136,7 @@ namespace VkLibrary.Core.Methods
         /// Additional fields of [vk.com/dev/fields|profiles] and [vk.com/dev/fields_groups|communities] to
         /// return.
         /// </param>
-        public async Task<NewsFeedResponse> GetComments(int? count = null, IEnumerable<string> filters = null,
+        public Task<NewsFeedResponse> GetComments(int? count = null, IEnumerable<string> filters = null,
             string reposts = null, int? startTime = null, int? endTime = null, string startFrom = null,
             IEnumerable<string> fields = null)
         {
@@ -157,7 +157,7 @@ namespace VkLibrary.Core.Methods
             if (fields != null)
                 parameters.Add("fields", fields.ToApiString());
 
-            return await _vkontakte.GetAsync<NewsFeedResponse>("newsfeed.getComments", parameters);
+            return _vkontakte.GetAsync<NewsFeedResponse>("newsfeed.getComments", parameters);
         }
 
         /// <summary>
@@ -169,7 +169,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="endTime">Latest timestamp (in Unix time) of a post to return. By default, the current time.;</param>
         /// <param name="offset">Offset needed to return a specific subset of posts.</param>
         /// <param name="count">Number of posts to return.</param>
-        public async Task<ApiItemsResponse<WallpostToId>> GetMentions(int? ownerId = null, int? startTime = null,
+        public Task<ApiItemsResponse<WallpostToId>> GetMentions(int? ownerId = null, int? startTime = null,
             int? endTime = null, int? offset = null, int? count = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -185,7 +185,7 @@ namespace VkLibrary.Core.Methods
             if (count != null)
                 parameters.Add("count", count.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<WallpostToId>>("newsfeed.getMentions", parameters);
+            return _vkontakte.GetAsync<ApiItemsResponse<WallpostToId>>("newsfeed.getMentions", parameters);
         }
 
         /// <summary>
@@ -198,7 +198,7 @@ namespace VkLibrary.Core.Methods
         /// Case for declension of user name and surname:; 'nom' — nominative (default); 'gen' — genitive ;
         /// 'dat' — dative; 'acc' — accusative ; 'ins' — instrumental ; 'abl' — prepositional
         /// </param>
-        public async Task<GetBannedResponse> GetBanned(bool? extended = null, IEnumerable<string> fields = null,
+        public Task<GetBannedResponse> GetBanned(bool? extended = null, IEnumerable<string> fields = null,
             string nameCase = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -210,7 +210,7 @@ namespace VkLibrary.Core.Methods
             if (nameCase != null)
                 parameters.Add("name_case", nameCase);
 
-            return await _vkontakte.GetAsync<GetBannedResponse>("newsfeed.getBanned", parameters);
+            return _vkontakte.GetAsync<GetBannedResponse>("newsfeed.getBanned", parameters);
         }
 
         /// <summary>
@@ -219,7 +219,7 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="userIds"></param>
         /// <param name="groupIds"></param>
-        public async Task<int> AddBan(IEnumerable<int?> userIds = null, IEnumerable<int?> groupIds = null)
+        public Task<int> AddBan(IEnumerable<int?> userIds = null, IEnumerable<int?> groupIds = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -228,7 +228,7 @@ namespace VkLibrary.Core.Methods
             if (groupIds != null)
                 parameters.Add("group_ids", groupIds.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("newsfeed.addBan", parameters);
+            return _vkontakte.GetAsync<int>("newsfeed.addBan", parameters);
         }
 
         /// <summary>
@@ -237,7 +237,7 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="userIds"></param>
         /// <param name="groupIds"></param>
-        public async Task<int> DeleteBan(IEnumerable<int?> userIds = null, IEnumerable<int?> groupIds = null)
+        public Task<int> DeleteBan(IEnumerable<int?> userIds = null, IEnumerable<int?> groupIds = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -246,7 +246,7 @@ namespace VkLibrary.Core.Methods
             if (groupIds != null)
                 parameters.Add("group_ids", groupIds.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("newsfeed.deleteBan", parameters);
+            return _vkontakte.GetAsync<int>("newsfeed.deleteBan", parameters);
         }
 
         /// <summary>
@@ -262,7 +262,7 @@ namespace VkLibrary.Core.Methods
         /// 'owner_id=1' – user ; 'owner_id=-1' – community "
         /// </param>
         /// <param name="itemId">Item identifier</param>
-        public async Task<int> IgnoreItem(string type = null, int? ownerId = null, int? itemId = null)
+        public Task<int> IgnoreItem(string type = null, int? ownerId = null, int? itemId = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -273,7 +273,7 @@ namespace VkLibrary.Core.Methods
             if (itemId != null)
                 parameters.Add("item_id", itemId.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("newsfeed.ignoreItem", parameters);
+            return _vkontakte.GetAsync<int>("newsfeed.ignoreItem", parameters);
         }
 
         /// <summary>
@@ -289,7 +289,7 @@ namespace VkLibrary.Core.Methods
         /// 'owner_id=1' – user ; 'owner_id=-1' – community "
         /// </param>
         /// <param name="itemId">Item identifier</param>
-        public async Task<int> UnignoreItem(string type = null, int? ownerId = null, int? itemId = null)
+        public Task<int> UnignoreItem(string type = null, int? ownerId = null, int? itemId = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -300,7 +300,7 @@ namespace VkLibrary.Core.Methods
             if (itemId != null)
                 parameters.Add("item_id", itemId.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("newsfeed.unignoreItem", parameters);
+            return _vkontakte.GetAsync<int>("newsfeed.unignoreItem", parameters);
         }
 
         /// <summary>
@@ -319,7 +319,7 @@ namespace VkLibrary.Core.Methods
         /// Additional fields of [vk.com/dev/fields|profiles] and [vk.com/dev/fields_groups|communities] to
         /// return.
         /// </param>
-        public async Task<ApiItemsResponse<WallpostFull>> Search(string q = null, bool? extended = null,
+        public Task<ApiItemsResponse<WallpostFull>> Search(string q = null, bool? extended = null,
             int? count = null, uint? latitude = null, uint? longitude = null, int? startTime = null,
             int? endTime = null, string startFrom = null, IEnumerable<string> fields = null)
         {
@@ -344,7 +344,7 @@ namespace VkLibrary.Core.Methods
             if (fields != null)
                 parameters.Add("fields", fields.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<WallpostFull>>("newsfeed.search", parameters);
+            return _vkontakte.GetAsync<ApiItemsResponse<WallpostFull>>("newsfeed.search", parameters);
         }
 
         /// <summary>
@@ -352,14 +352,14 @@ namespace VkLibrary.Core.Methods
         /// Docs: <see href="https://vk.com/dev/newsfeed.getLists">newsfeed.getLists</see>
         /// </summary>
         /// <param name="listIds">numeric list identifiers.</param>
-        public async Task<ApiItemsResponse<List>> GetLists(IEnumerable<int?> listIds = null)
+        public Task<ApiItemsResponse<List>> GetLists(IEnumerable<int?> listIds = null)
         {
             var parameters = new Dictionary<string, string>();
 
             if (listIds != null)
                 parameters.Add("list_ids", listIds.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<List>>("newsfeed.getLists", parameters);
+            return _vkontakte.GetAsync<ApiItemsResponse<List>>("newsfeed.getLists", parameters);
         }
 
         /// <summary>
@@ -373,7 +373,7 @@ namespace VkLibrary.Core.Methods
         /// negative numbers.
         /// </param>
         /// <param name="noReposts">reposts display on and off ('1' is for off).</param>
-        public async Task<int?> SaveList(int? listId = null, string title = null, IEnumerable<int?> sourceIds = null,
+        public Task<int?> SaveList(int? listId = null, string title = null, IEnumerable<int?> sourceIds = null,
             bool? noReposts = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -387,21 +387,21 @@ namespace VkLibrary.Core.Methods
             if (noReposts != null)
                 parameters.Add("no_reposts", noReposts.ToApiString());
 
-            return await _vkontakte.GetAsync<int?>("newsfeed.saveList", parameters);
+            return _vkontakte.GetAsync<int?>("newsfeed.saveList", parameters);
         }
 
         /// <summary>
         /// Docs: <see href="https://vk.com/dev/newsfeed.deleteList">newsfeed.deleteList</see>
         /// </summary>
         /// <param name="listId"></param>
-        public async Task<int> DeleteList(int? listId = null)
+        public Task<int> DeleteList(int? listId = null)
         {
             var parameters = new Dictionary<string, string>();
 
             if (listId != null)
                 parameters.Add("list_id", listId.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("newsfeed.deleteList", parameters);
+            return _vkontakte.GetAsync<int>("newsfeed.deleteList", parameters);
         }
 
         /// <summary>
@@ -414,7 +414,7 @@ namespace VkLibrary.Core.Methods
         /// </param>
         /// <param name="ownerId">Object owner ID.</param>
         /// <param name="itemId">Object ID.</param>
-        public async Task<int> Unsubscribe(string type = null, int? ownerId = null, int? itemId = null)
+        public Task<int> Unsubscribe(string type = null, int? ownerId = null, int? itemId = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -425,7 +425,7 @@ namespace VkLibrary.Core.Methods
             if (itemId != null)
                 parameters.Add("item_id", itemId.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("newsfeed.unsubscribe", parameters);
+            return _vkontakte.GetAsync<int>("newsfeed.unsubscribe", parameters);
         }
 
         /// <summary>
@@ -439,7 +439,7 @@ namespace VkLibrary.Core.Methods
         /// list of extra fields to be returned. See available fields for [vk.com/dev/fields|users] and
         /// [vk.com/dev/fields_groups|communities].
         /// </param>
-        public async Task<ApiItemsResponse<object>> GetSuggestedSources(int? offset = null, int? count = null,
+        public Task<ApiItemsResponse<object>> GetSuggestedSources(int? offset = null, int? count = null,
             bool? shuffle = null, IEnumerable<string> fields = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -453,7 +453,7 @@ namespace VkLibrary.Core.Methods
             if (fields != null)
                 parameters.Add("fields", fields.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<object>>("newsfeed.getSuggestedSources", parameters);
+            return _vkontakte.GetAsync<ApiItemsResponse<object>>("newsfeed.getSuggestedSources", parameters);
         }
     }
 }

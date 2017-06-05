@@ -23,7 +23,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="userId">User ID.</param>
         /// <param name="count">Number of gifts to return.</param>
         /// <param name="offset">Offset needed to return a specific subset of results.</param>
-        public async Task<ApiItemsResponse<Gift>> Get(int? userId = null, int? count = null, int? offset = null)
+        public Task<ApiItemsResponse<Gift>> Get(int? userId = null, int? count = null, int? offset = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -34,7 +34,7 @@ namespace VkLibrary.Core.Methods
             if (offset != null)
                 parameters.Add("offset", offset.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<Gift>>("gifts.get", parameters);
+            return _vkontakte.GetAsync<ApiItemsResponse<Gift>>("gifts.get", parameters);
         }
     }
 }

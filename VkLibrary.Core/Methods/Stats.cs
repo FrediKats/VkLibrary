@@ -24,7 +24,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="appId">Application ID.</param>
         /// <param name="dateFrom">Latest datestamp (in Unix time) of statistics to return.</param>
         /// <param name="dateTo">End datestamp (in Unix time) of statistics to return.</param>
-        public async Task<IEnumerable<Period>> Get(int? groupId = null, int? appId = null, string dateFrom = null,
+        public Task<IEnumerable<Period>> Get(int? groupId = null, int? appId = null, string dateFrom = null,
             string dateTo = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -38,18 +38,18 @@ namespace VkLibrary.Core.Methods
             if (dateTo != null)
                 parameters.Add("date_to", dateTo);
 
-            return await _vkontakte.GetAsync<IEnumerable<Period>>("stats.get", parameters);
+            return _vkontakte.GetAsync<IEnumerable<Period>>("stats.get", parameters);
         }
 
         /// <summary>
         /// Docs: <see href="https://vk.com/dev/stats.trackVisitor">stats.trackVisitor</see>
         /// </summary>
-        public async Task<int> TrackVisitor()
+        public Task<int> TrackVisitor()
         {
             var parameters = new Dictionary<string, string>();
 
 
-            return await _vkontakte.GetAsync<int>("stats.trackVisitor", parameters);
+            return _vkontakte.GetAsync<int>("stats.trackVisitor", parameters);
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace VkLibrary.Core.Methods
         /// wall post id. Note that stats are available only for '300' last (newest) posts on a community
         /// wall.
         /// </param>
-        public async Task<IEnumerable<WallpostStat>> GetPostReach(int? ownerId = null, int? postId = null)
+        public Task<IEnumerable<WallpostStat>> GetPostReach(int? ownerId = null, int? postId = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -70,7 +70,7 @@ namespace VkLibrary.Core.Methods
             if (postId != null)
                 parameters.Add("post_id", postId.ToApiString());
 
-            return await _vkontakte.GetAsync<IEnumerable<WallpostStat>>("stats.getPostReach", parameters);
+            return _vkontakte.GetAsync<IEnumerable<WallpostStat>>("stats.getPostReach", parameters);
         }
     }
 }

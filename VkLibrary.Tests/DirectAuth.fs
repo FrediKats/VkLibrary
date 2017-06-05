@@ -12,13 +12,13 @@ module DirectAuth =
     open VkLibrary.Core
     open Extensions
 
-    [<Test>]
+    [<Test; Ignore("Auth spam")>]
     /// Direct auth login test.
     let directAuthTest () =
         let lib = getLib Constants.officialAppId Constants.officialAppSecret Constants.apiVersion
         let login = Constants.login
         let pass = Constants.password
-        lib.DirectAuth.Login(login, pass, ScopeSettings.CanAccessAdsCabinet)
+        lib.DirectAuth.Login(login, pass, ScopeSettings.IamTheGod)
         |> await
         |> fun x -> x.Token
         |> should not' (be Null)

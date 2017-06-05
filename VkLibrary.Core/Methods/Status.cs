@@ -21,7 +21,7 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="userId">User ID or community ID. Use a negative value to designate a community ID.</param>
         /// <param name="groupId"></param>
-        public async Task<Types.Status.Status> Get(int? userId = null, int? groupId = null)
+        public Task<Types.Status.Status> Get(int? userId = null, int? groupId = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -30,7 +30,7 @@ namespace VkLibrary.Core.Methods
             if (groupId != null)
                 parameters.Add("group_id", groupId.ToApiString());
 
-            return await _vkontakte.GetAsync<Types.Status.Status>("status.get", parameters);
+            return _vkontakte.GetAsync<Types.Status.Status>("status.get", parameters);
         }
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="text">Text of the new status.</param>
         /// <param name="groupId">Identifier of a community to set a status in. If left blank the status is set to current user.</param>
-        public async Task<int> Set(string text = null, int? groupId = null)
+        public Task<int> Set(string text = null, int? groupId = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -48,7 +48,7 @@ namespace VkLibrary.Core.Methods
             if (groupId != null)
                 parameters.Add("group_id", groupId.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("status.set", parameters);
+            return _vkontakte.GetAsync<int>("status.set", parameters);
         }
     }
 }

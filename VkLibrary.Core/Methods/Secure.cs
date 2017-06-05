@@ -25,7 +25,7 @@ namespace VkLibrary.Core.Methods
         /// user 'ip address'. Note that user may access using the 'ipv6' address, in this case it is required to
         /// transmit the 'ipv6' address. ; If not transmitted, the address will not be checked.
         /// </param>
-        public async Task<TokenChecked> CheckToken(string token = null, string ip = null)
+        public Task<TokenChecked> CheckToken(string token = null, string ip = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -34,7 +34,7 @@ namespace VkLibrary.Core.Methods
             if (ip != null)
                 parameters.Add("ip", ip);
 
-            return await _vkontakte.GetAsync<TokenChecked>("secure.checkToken", parameters);
+            return _vkontakte.GetAsync<TokenChecked>("secure.checkToken", parameters);
         }
     }
 }

@@ -24,7 +24,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="limit">Maximum number of results to return.</param>
         /// <param name="filters"></param>
         /// <param name="searchGlobal"></param>
-        public async Task<IEnumerable<Hint>> GetHints(string q = null, int? limit = null,
+        public Task<IEnumerable<Hint>> GetHints(string q = null, int? limit = null,
             IEnumerable<string> filters = null, bool? searchGlobal = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -38,7 +38,7 @@ namespace VkLibrary.Core.Methods
             if (searchGlobal != null)
                 parameters.Add("search_global", searchGlobal.ToApiString());
 
-            return await _vkontakte.GetAsync<IEnumerable<Hint>>("search.getHints", parameters);
+            return _vkontakte.GetAsync<IEnumerable<Hint>>("search.getHints", parameters);
         }
     }
 }

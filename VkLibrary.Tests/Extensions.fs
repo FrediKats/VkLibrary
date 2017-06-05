@@ -9,7 +9,6 @@ module Extensions =
     open System.Threading.Tasks
     open System.Collections.Generic
     open VkLibrary.Core
-    open VkLibrary.Core.Auth
 
     /// Returns prepared library instance.
     let getLibFull app parse secret version logger = 
@@ -22,17 +21,7 @@ module Extensions =
     /// Returns customized lib for debugging.
     let getLib app secret version =
         getLibFull (string app) JsonParsingType.UseString secret (string version) logger
-
-    /// Returns default lib.
-    let lib () = getLib Constants.appId String.Empty Constants.apiVersion
-
-    /// Returns token-signed library.
-    let signedLib () = 
-        let lib = lib()
-        lib.AccessToken <- AccessToken()
-        lib.AccessToken.Token <- Constants.accessToken
-        lib
-
+        
     /// Awaits a task and returns results.
     let await (task: Task<'a>) = 
         async {
@@ -41,6 +30,12 @@ module Extensions =
                 |> Async.AwaitTask 
             return result 
         } |> Async.RunSynchronously
+        
+    /// Awaits a task returning void.
+    let awaitVoid (task: Task) = 
+        task 
+        |> Async.AwaitIAsyncResult 
+        |> Async.Ignore
 
     /// Short syntax for nullable conversion.
     let nbl (x: 'a) = x |> Nullable<'a>

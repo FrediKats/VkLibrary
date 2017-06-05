@@ -26,7 +26,7 @@ namespace VkLibrary.Core.Methods
         /// </param>
         /// <param name="isBoard">'1' – poll is in a board, '0' – poll is on a wall. ; '0' by default.</param>
         /// <param name="pollId">Poll ID.</param>
-        public async Task<Poll> GetById(int? ownerId = null, bool? isBoard = null, int? pollId = null)
+        public Task<Poll> GetById(int? ownerId = null, bool? isBoard = null, int? pollId = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -37,7 +37,7 @@ namespace VkLibrary.Core.Methods
             if (pollId != null)
                 parameters.Add("poll_id", pollId.ToApiString());
 
-            return await _vkontakte.GetAsync<Poll>("polls.getById", parameters);
+            return _vkontakte.GetAsync<Poll>("polls.getById", parameters);
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="pollId">Poll ID.</param>
         /// <param name="answerId">Answer ID.</param>
         /// <param name="isBoard"></param>
-        public async Task<int> AddVote(int? ownerId = null, int? pollId = null, int? answerId = null,
+        public Task<int> AddVote(int? ownerId = null, int? pollId = null, int? answerId = null,
             bool? isBoard = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -65,7 +65,7 @@ namespace VkLibrary.Core.Methods
             if (isBoard != null)
                 parameters.Add("is_board", isBoard.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("polls.addVote", parameters);
+            return _vkontakte.GetAsync<int>("polls.addVote", parameters);
         }
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="pollId">Poll ID.</param>
         /// <param name="answerId">Answer ID.</param>
         /// <param name="isBoard"></param>
-        public async Task<int> DeleteVote(int? ownerId = null, int? pollId = null, int? answerId = null,
+        public Task<int> DeleteVote(int? ownerId = null, int? pollId = null, int? answerId = null,
             bool? isBoard = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -93,7 +93,7 @@ namespace VkLibrary.Core.Methods
             if (isBoard != null)
                 parameters.Add("is_board", isBoard.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("polls.deleteVote", parameters);
+            return _vkontakte.GetAsync<int>("polls.deleteVote", parameters);
         }
 
         /// <summary>
@@ -122,7 +122,7 @@ namespace VkLibrary.Core.Methods
         /// Case for declension of user name and surname: ; 'nom' — nominative (default) ; 'gen' — genitive
         /// ; 'dat' — dative ; 'acc' — accusative ; 'ins' — instrumental ; 'abl' — prepositional
         /// </param>
-        public async Task<IEnumerable<Voters>> GetVoters(int? ownerId = null, int? pollId = null,
+        public Task<IEnumerable<Voters>> GetVoters(int? ownerId = null, int? pollId = null,
             IEnumerable<int?> answerIds = null, bool? isBoard = null, bool? friendsOnly = null, int? offset = null,
             int? count = null, IEnumerable<string> fields = null, string nameCase = null)
         {
@@ -147,7 +147,7 @@ namespace VkLibrary.Core.Methods
             if (nameCase != null)
                 parameters.Add("name_case", nameCase);
 
-            return await _vkontakte.GetAsync<IEnumerable<Voters>>("polls.getVoters", parameters);
+            return _vkontakte.GetAsync<IEnumerable<Voters>>("polls.getVoters", parameters);
         }
 
         /// <summary>
@@ -167,7 +167,7 @@ namespace VkLibrary.Core.Methods
         /// available answers list, for example:; " ["yes","no","maybe"]"; There can be from 1 to 10
         /// answers.
         /// </param>
-        public async Task<Poll> Create(string question = null, bool? isAnonymous = null, int? ownerId = null,
+        public Task<Poll> Create(string question = null, bool? isAnonymous = null, int? ownerId = null,
             string addAnswers = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -181,7 +181,7 @@ namespace VkLibrary.Core.Methods
             if (addAnswers != null)
                 parameters.Add("add_answers", addAnswers);
 
-            return await _vkontakte.GetAsync<Poll>("polls.create", parameters);
+            return _vkontakte.GetAsync<Poll>("polls.create", parameters);
         }
 
         /// <summary>
@@ -197,7 +197,7 @@ namespace VkLibrary.Core.Methods
         /// text.; Example:; {"382967099":"option1", "382967103":"option2"}"
         /// </param>
         /// <param name="deleteAnswers">list of answer ids to be deleted. For example:; "[382967099, 382967103]"</param>
-        public async Task<int> Edit(int? ownerId = null, int? pollId = null, string question = null,
+        public Task<int> Edit(int? ownerId = null, int? pollId = null, string question = null,
             string addAnswers = null, string editAnswers = null, string deleteAnswers = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -215,7 +215,7 @@ namespace VkLibrary.Core.Methods
             if (deleteAnswers != null)
                 parameters.Add("delete_answers", deleteAnswers);
 
-            return await _vkontakte.GetAsync<int>("polls.edit", parameters);
+            return _vkontakte.GetAsync<int>("polls.edit", parameters);
         }
     }
 }

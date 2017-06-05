@@ -23,7 +23,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="noteIds">Note IDs.</param>
         /// <param name="userId">Note owner ID.</param>
         /// <param name="count">Number of notes to return.</param>
-        public async Task<ApiItemsResponse<Note>> Get(IEnumerable<int?> noteIds = null, int? userId = null,
+        public Task<ApiItemsResponse<Note>> Get(IEnumerable<int?> noteIds = null, int? userId = null,
             int? count = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -35,7 +35,7 @@ namespace VkLibrary.Core.Methods
             if (count != null)
                 parameters.Add("count", count.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<Note>>("notes.get", parameters);
+            return _vkontakte.GetAsync<ApiItemsResponse<Note>>("notes.get", parameters);
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="noteId">Note ID.</param>
         /// <param name="ownerId">Note owner ID.</param>
-        public async Task<Note> GetById(int? noteId = null, int? ownerId = null)
+        public Task<Note> GetById(int? noteId = null, int? ownerId = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -53,7 +53,7 @@ namespace VkLibrary.Core.Methods
             if (ownerId != null)
                 parameters.Add("owner_id", ownerId.ToApiString());
 
-            return await _vkontakte.GetAsync<Note>("notes.getById", parameters);
+            return _vkontakte.GetAsync<Note>("notes.getById", parameters);
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="text">Note text.</param>
         /// <param name="privacyView"></param>
         /// <param name="privacyComment"></param>
-        public async Task<int?> Add(string title = null, string text = null, IEnumerable<string> privacyView = null,
+        public Task<int?> Add(string title = null, string text = null, IEnumerable<string> privacyView = null,
             IEnumerable<string> privacyComment = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -78,7 +78,7 @@ namespace VkLibrary.Core.Methods
             if (privacyComment != null)
                 parameters.Add("privacy_comment", privacyComment.ToApiString());
 
-            return await _vkontakte.GetAsync<int?>("notes.add", parameters);
+            return _vkontakte.GetAsync<int?>("notes.add", parameters);
         }
 
         /// <summary>
@@ -90,7 +90,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="text">Note text.</param>
         /// <param name="privacyView"></param>
         /// <param name="privacyComment"></param>
-        public async Task<int> Edit(int? noteId = null, string title = null, string text = null,
+        public Task<int> Edit(int? noteId = null, string title = null, string text = null,
             IEnumerable<string> privacyView = null, IEnumerable<string> privacyComment = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -106,7 +106,7 @@ namespace VkLibrary.Core.Methods
             if (privacyComment != null)
                 parameters.Add("privacy_comment", privacyComment.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("notes.edit", parameters);
+            return _vkontakte.GetAsync<int>("notes.edit", parameters);
         }
 
         /// <summary>
@@ -114,14 +114,14 @@ namespace VkLibrary.Core.Methods
         /// Docs: <see href="https://vk.com/dev/notes.delete">notes.delete</see>
         /// </summary>
         /// <param name="noteId">Note ID.</param>
-        public async Task<int> Delete(int? noteId = null)
+        public Task<int> Delete(int? noteId = null)
         {
             var parameters = new Dictionary<string, string>();
 
             if (noteId != null)
                 parameters.Add("note_id", noteId.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("notes.delete", parameters);
+            return _vkontakte.GetAsync<int>("notes.delete", parameters);
         }
 
         /// <summary>
@@ -131,7 +131,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="noteId">Note ID.</param>
         /// <param name="ownerId">Note owner ID.</param>
         /// <param name="count">Number of comments to return.</param>
-        public async Task<ApiItemsResponse<NoteComment>> GetComments(int? noteId = null, int? ownerId = null,
+        public Task<ApiItemsResponse<NoteComment>> GetComments(int? noteId = null, int? ownerId = null,
             int? count = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -143,7 +143,7 @@ namespace VkLibrary.Core.Methods
             if (count != null)
                 parameters.Add("count", count.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<NoteComment>>("notes.getComments", parameters);
+            return _vkontakte.GetAsync<ApiItemsResponse<NoteComment>>("notes.getComments", parameters);
         }
 
         /// <summary>
@@ -155,7 +155,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="replyTo">ID of the user to whom the reply is addressed (if the comment is a reply to another comment).;</param>
         /// <param name="message">Comment text.</param>
         /// <param name="guid"></param>
-        public async Task<int?> CreateComment(int? noteId = null, int? ownerId = null, int? replyTo = null,
+        public Task<int?> CreateComment(int? noteId = null, int? ownerId = null, int? replyTo = null,
             string message = null, string guid = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -171,7 +171,7 @@ namespace VkLibrary.Core.Methods
             if (guid != null)
                 parameters.Add("guid", guid);
 
-            return await _vkontakte.GetAsync<int?>("notes.createComment", parameters);
+            return _vkontakte.GetAsync<int?>("notes.createComment", parameters);
         }
 
         /// <summary>
@@ -181,7 +181,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="commentId">Comment ID.</param>
         /// <param name="ownerId">Note owner ID.</param>
         /// <param name="message">New comment text.</param>
-        public async Task<int> EditComment(int? commentId = null, int? ownerId = null, string message = null)
+        public Task<int> EditComment(int? commentId = null, int? ownerId = null, string message = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -192,7 +192,7 @@ namespace VkLibrary.Core.Methods
             if (message != null)
                 parameters.Add("message", message);
 
-            return await _vkontakte.GetAsync<int>("notes.editComment", parameters);
+            return _vkontakte.GetAsync<int>("notes.editComment", parameters);
         }
 
         /// <summary>
@@ -201,7 +201,7 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="commentId">Comment ID.</param>
         /// <param name="ownerId">Note owner ID.</param>
-        public async Task<int> DeleteComment(int? commentId = null, int? ownerId = null)
+        public Task<int> DeleteComment(int? commentId = null, int? ownerId = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -210,7 +210,7 @@ namespace VkLibrary.Core.Methods
             if (ownerId != null)
                 parameters.Add("owner_id", ownerId.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("notes.deleteComment", parameters);
+            return _vkontakte.GetAsync<int>("notes.deleteComment", parameters);
         }
 
         /// <summary>
@@ -219,7 +219,7 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="commentId">Comment ID.</param>
         /// <param name="ownerId">Note owner ID.</param>
-        public async Task<int> RestoreComment(int? commentId = null, int? ownerId = null)
+        public Task<int> RestoreComment(int? commentId = null, int? ownerId = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -228,7 +228,7 @@ namespace VkLibrary.Core.Methods
             if (ownerId != null)
                 parameters.Add("owner_id", ownerId.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("notes.restoreComment", parameters);
+            return _vkontakte.GetAsync<int>("notes.restoreComment", parameters);
         }
     }
 }

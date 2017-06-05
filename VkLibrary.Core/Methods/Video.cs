@@ -33,7 +33,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="count">Number of videos to return.</param>
         /// <param name="offset">Offset needed to return a specific subset of videos.</param>
         /// <param name="extended">'1' — to return an extended response with additional fields</param>
-        public async Task<ApiItemsResponse<VideoFull>> Get(int? ownerId = null, IEnumerable<string> videos = null,
+        public Task<ApiItemsResponse<VideoFull>> Get(int? ownerId = null, IEnumerable<string> videos = null,
             int? albumId = null, int? count = null, int? offset = null, bool? extended = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -51,7 +51,7 @@ namespace VkLibrary.Core.Methods
             if (extended != null)
                 parameters.Add("extended", extended.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<VideoFull>>("video.get", parameters);
+            return _vkontakte.GetAsync<ApiItemsResponse<VideoFull>>("video.get", parameters);
         }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="privacyComment">Privacy settings for comments in a [vk.com/dev/privacy_setting|special format].</param>
         /// <param name="noComments">Disable comments for the group video.</param>
         /// <param name="repeat">'1' — to repeat the playback of the video; '0' — to play the video once;</param>
-        public async Task<int> Edit(int? ownerId = null, int? videoId = null, string name = null, string desc = null,
+        public Task<int> Edit(int? ownerId = null, int? videoId = null, string name = null, string desc = null,
             IEnumerable<string> privacyView = null, IEnumerable<string> privacyComment = null,
             bool? noComments = null, bool? repeat = null)
         {
@@ -92,7 +92,7 @@ namespace VkLibrary.Core.Methods
             if (repeat != null)
                 parameters.Add("repeat", repeat.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("video.edit", parameters);
+            return _vkontakte.GetAsync<int>("video.edit", parameters);
         }
 
         /// <summary>
@@ -108,7 +108,7 @@ namespace VkLibrary.Core.Methods
         /// ID of the user or community that owns the video.; Use a negative value to designate a community
         /// ID.
         /// </param>
-        public async Task<int> Add(int? targetId = null, int? videoId = null, int? ownerId = null)
+        public Task<int> Add(int? targetId = null, int? videoId = null, int? ownerId = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -119,7 +119,7 @@ namespace VkLibrary.Core.Methods
             if (ownerId != null)
                 parameters.Add("owner_id", ownerId.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("video.add", parameters);
+            return _vkontakte.GetAsync<int>("video.add", parameters);
         }
 
         /// <summary>
@@ -144,7 +144,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="privacyComment"></param>
         /// <param name="noComments"></param>
         /// <param name="repeat">'1' — to repeat the playback of the video; '0' — to play the video once;</param>
-        public async Task<SaveResult> Save(string name = null, string description = null, bool? isPrivate = null,
+        public Task<SaveResult> Save(string name = null, string description = null, bool? isPrivate = null,
             bool? wallpost = null, string link = null, int? groupId = null, int? albumId = null,
             IEnumerable<string> privacyView = null, IEnumerable<string> privacyComment = null,
             bool? noComments = null, bool? repeat = null)
@@ -174,7 +174,7 @@ namespace VkLibrary.Core.Methods
             if (repeat != null)
                 parameters.Add("repeat", repeat.ToApiString());
 
-            return await _vkontakte.GetAsync<SaveResult>("video.save", parameters);
+            return _vkontakte.GetAsync<SaveResult>("video.save", parameters);
         }
 
         /// <summary>
@@ -184,7 +184,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="videoId">Video ID.</param>
         /// <param name="ownerId">ID of the user or community that owns the video.</param>
         /// <param name="targetId"></param>
-        public async Task<int> Delete(int? videoId = null, int? ownerId = null, int? targetId = null)
+        public Task<int> Delete(int? videoId = null, int? ownerId = null, int? targetId = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -195,7 +195,7 @@ namespace VkLibrary.Core.Methods
             if (targetId != null)
                 parameters.Add("target_id", targetId.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("video.delete", parameters);
+            return _vkontakte.GetAsync<int>("video.delete", parameters);
         }
 
         /// <summary>
@@ -204,7 +204,7 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="videoId">Video ID.</param>
         /// <param name="ownerId">ID of the user or community that owns the video.</param>
-        public async Task<int> Restore(int? videoId = null, int? ownerId = null)
+        public Task<int> Restore(int? videoId = null, int? ownerId = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -213,7 +213,7 @@ namespace VkLibrary.Core.Methods
             if (ownerId != null)
                 parameters.Add("owner_id", ownerId.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("video.restore", parameters);
+            return _vkontakte.GetAsync<int>("video.restore", parameters);
         }
 
         /// <summary>
@@ -234,7 +234,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="shorter"></param>
         /// <param name="count">Number of videos to return.</param>
         /// <param name="extended"></param>
-        public async Task<ApiItemsResponse<Types.Video.Video>> Search(string q = null, int? sort = null, int? hd = null,
+        public Task<ApiItemsResponse<Types.Video.Video>> Search(string q = null, int? sort = null, int? hd = null,
             bool? adult = null, IEnumerable<string> filters = null, bool? searchOwn = null, int? offset = null,
             int? longer = null, int? shorter = null, int? count = null, bool? extended = null)
         {
@@ -263,7 +263,7 @@ namespace VkLibrary.Core.Methods
             if (extended != null)
                 parameters.Add("extended", extended.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<Types.Video.Video>>("video.search", parameters);
+            return _vkontakte.GetAsync<ApiItemsResponse<Types.Video.Video>>("video.search", parameters);
         }
 
         /// <summary>
@@ -274,7 +274,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="offset">Offset needed to return a specific subset of videos.</param>
         /// <param name="count">Number of videos to return.</param>
         /// <param name="extended"></param>
-        public async Task<ApiItemsResponse<Types.Video.Video>> GetUserVideos(int? userId = null, int? offset = null,
+        public Task<ApiItemsResponse<Types.Video.Video>> GetUserVideos(int? userId = null, int? offset = null,
             int? count = null, bool? extended = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -288,7 +288,7 @@ namespace VkLibrary.Core.Methods
             if (extended != null)
                 parameters.Add("extended", extended.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<Types.Video.Video>>("video.getUserVideos", parameters);
+            return _vkontakte.GetAsync<ApiItemsResponse<Types.Video.Video>>("video.getUserVideos", parameters);
         }
 
         /// <summary>
@@ -299,7 +299,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="offset">Offset needed to return a specific subset of video albums.</param>
         /// <param name="count">Number of video albums to return.</param>
         /// <param name="extended">'1' — to return additional information about album privacy settings for the current user</param>
-        public async Task<ApiItemsResponse<VideoAlbumFull>> GetAlbums(int? ownerId = null, int? offset = null,
+        public Task<ApiItemsResponse<VideoAlbumFull>> GetAlbums(int? ownerId = null, int? offset = null,
             int? count = null, bool? extended = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -313,7 +313,7 @@ namespace VkLibrary.Core.Methods
             if (extended != null)
                 parameters.Add("extended", extended.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<VideoAlbumFull>>("video.getAlbums", parameters);
+            return _vkontakte.GetAsync<ApiItemsResponse<VideoAlbumFull>>("video.getAlbums", parameters);
         }
 
         /// <summary>
@@ -325,7 +325,7 @@ namespace VkLibrary.Core.Methods
         /// community ID.
         /// </param>
         /// <param name="albumId">Album ID.</param>
-        public async Task<VideoAlbumFull> GetAlbumById(int? ownerId = null, int? albumId = null)
+        public Task<VideoAlbumFull> GetAlbumById(int? ownerId = null, int? albumId = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -334,7 +334,7 @@ namespace VkLibrary.Core.Methods
             if (albumId != null)
                 parameters.Add("album_id", albumId.ToApiString());
 
-            return await _vkontakte.GetAsync<VideoAlbumFull>("video.getAlbumById", parameters);
+            return _vkontakte.GetAsync<VideoAlbumFull>("video.getAlbumById", parameters);
         }
 
         /// <summary>
@@ -347,7 +347,7 @@ namespace VkLibrary.Core.Methods
         /// new access permissions for the album.; Possible values: ; *'0' – all users;; *'1' – friends
         /// only;; *'2' – friends and friends of friends;; *'3' – "only me".
         /// </param>
-        public async Task<AddAlbumResponse> AddAlbum(int? groupId = null, string title = null,
+        public Task<AddAlbumResponse> AddAlbum(int? groupId = null, string title = null,
             IEnumerable<string> privacy = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -359,7 +359,7 @@ namespace VkLibrary.Core.Methods
             if (privacy != null)
                 parameters.Add("privacy", privacy.ToApiString());
 
-            return await _vkontakte.GetAsync<AddAlbumResponse>("video.addAlbum", parameters);
+            return _vkontakte.GetAsync<AddAlbumResponse>("video.addAlbum", parameters);
         }
 
         /// <summary>
@@ -373,7 +373,7 @@ namespace VkLibrary.Core.Methods
         /// new access permissions for the album.; Possible values: ; *'0' – all users;; *'1' – friends
         /// only;; *'2' – friends and friends of friends;; *'3' – "only me".
         /// </param>
-        public async Task<int> EditAlbum(int? groupId = null, int? albumId = null, string title = null,
+        public Task<int> EditAlbum(int? groupId = null, int? albumId = null, string title = null,
             IEnumerable<string> privacy = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -387,7 +387,7 @@ namespace VkLibrary.Core.Methods
             if (privacy != null)
                 parameters.Add("privacy", privacy.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("video.editAlbum", parameters);
+            return _vkontakte.GetAsync<int>("video.editAlbum", parameters);
         }
 
         /// <summary>
@@ -396,7 +396,7 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="groupId">Community ID (if the album is owned by a community).</param>
         /// <param name="albumId">Album ID.</param>
-        public async Task<int> DeleteAlbum(int? groupId = null, int? albumId = null)
+        public Task<int> DeleteAlbum(int? groupId = null, int? albumId = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -405,7 +405,7 @@ namespace VkLibrary.Core.Methods
             if (albumId != null)
                 parameters.Add("album_id", albumId.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("video.deleteAlbum", parameters);
+            return _vkontakte.GetAsync<int>("video.deleteAlbum", parameters);
         }
 
         /// <summary>
@@ -416,7 +416,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="albumId">Album ID.</param>
         /// <param name="before">ID of the album before which the album in question shall be placed.</param>
         /// <param name="after">ID of the album after which the album in question shall be placed.</param>
-        public async Task<int> ReorderAlbums(int? ownerId = null, int? albumId = null, int? before = null,
+        public Task<int> ReorderAlbums(int? ownerId = null, int? albumId = null, int? before = null,
             int? after = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -430,7 +430,7 @@ namespace VkLibrary.Core.Methods
             if (after != null)
                 parameters.Add("after", after.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("video.reorderAlbums", parameters);
+            return _vkontakte.GetAsync<int>("video.reorderAlbums", parameters);
         }
 
         /// <summary>
@@ -451,7 +451,7 @@ namespace VkLibrary.Core.Methods
         /// placed.
         /// </param>
         /// <param name="afterVideoId">ID of the video after which the photo in question shall be placed.</param>
-        public async Task<int> ReorderVideos(int? targetId = null, int? albumId = null, int? ownerId = null,
+        public Task<int> ReorderVideos(int? targetId = null, int? albumId = null, int? ownerId = null,
             int? videoId = null, int? beforeOwnerId = null, int? beforeVideoId = null, int? afterOwnerId = null,
             int? afterVideoId = null)
         {
@@ -474,7 +474,7 @@ namespace VkLibrary.Core.Methods
             if (afterVideoId != null)
                 parameters.Add("after_video_id", afterVideoId.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("video.reorderVideos", parameters);
+            return _vkontakte.GetAsync<int>("video.reorderVideos", parameters);
         }
 
         /// <summary>
@@ -485,7 +485,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="albumIds"></param>
         /// <param name="ownerId"></param>
         /// <param name="videoId"></param>
-        public async Task<int> AddToAlbum(int? targetId = null, int? albumId = null,
+        public Task<int> AddToAlbum(int? targetId = null, int? albumId = null,
             IEnumerable<int?> albumIds = null, int? ownerId = null, int? videoId = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -501,7 +501,7 @@ namespace VkLibrary.Core.Methods
             if (videoId != null)
                 parameters.Add("video_id", videoId.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("video.addToAlbum", parameters);
+            return _vkontakte.GetAsync<int>("video.addToAlbum", parameters);
         }
 
         /// <summary>
@@ -512,7 +512,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="albumIds"></param>
         /// <param name="ownerId"></param>
         /// <param name="videoId"></param>
-        public async Task<int> RemoveFromAlbum(int? targetId = null, int? albumId = null,
+        public Task<int> RemoveFromAlbum(int? targetId = null, int? albumId = null,
             IEnumerable<int?> albumIds = null, int? ownerId = null, int? videoId = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -528,7 +528,7 @@ namespace VkLibrary.Core.Methods
             if (videoId != null)
                 parameters.Add("video_id", videoId.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("video.removeFromAlbum", parameters);
+            return _vkontakte.GetAsync<int>("video.removeFromAlbum", parameters);
         }
 
         /// <summary>
@@ -538,7 +538,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="ownerId"></param>
         /// <param name="videoId"></param>
         /// <param name="extended"></param>
-        public async Task<IEnumerable<int?>> GetAlbumsByVideo(int? targetId = null, int? ownerId = null,
+        public Task<IEnumerable<int?>> GetAlbumsByVideo(int? targetId = null, int? ownerId = null,
             int? videoId = null, bool? extended = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -552,7 +552,7 @@ namespace VkLibrary.Core.Methods
             if (extended != null)
                 parameters.Add("extended", extended.ToApiString());
 
-            return await _vkontakte.GetAsync<IEnumerable<int?>>("video.getAlbumsByVideo", parameters);
+            return _vkontakte.GetAsync<IEnumerable<int?>>("video.getAlbumsByVideo", parameters);
         }
 
         /// <summary>
@@ -567,7 +567,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="count">Number of comments to return.</param>
         /// <param name="sort">Sort order:; 'asc' — oldest comment first; 'desc' — newest comment first</param>
         /// <param name="extended"></param>
-        public async Task<CommentsResponse> GetComments(int? ownerId = null, int? videoId = null,
+        public Task<CommentsResponse> GetComments(int? ownerId = null, int? videoId = null,
             bool? needLikes = null, int? startCommentId = null, int? offset = null, int? count = null,
             string sort = null, bool? extended = null)
         {
@@ -590,7 +590,7 @@ namespace VkLibrary.Core.Methods
             if (extended != null)
                 parameters.Add("extended", extended.ToApiString());
 
-            return await _vkontakte.GetAsync<CommentsResponse>("video.getComments", parameters);
+            return _vkontakte.GetAsync<CommentsResponse>("video.getComments", parameters);
         }
 
         /// <summary>
@@ -617,7 +617,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="replyToComment"></param>
         /// <param name="stickerId"></param>
         /// <param name="guid"></param>
-        public async Task<int?> CreateComment(int? ownerId = null, int? videoId = null, string message = null,
+        public Task<int?> CreateComment(int? ownerId = null, int? videoId = null, string message = null,
             IEnumerable<string> attachments = null, bool? fromGroup = null, int? replyToComment = null,
             int? stickerId = null, string guid = null)
         {
@@ -640,7 +640,7 @@ namespace VkLibrary.Core.Methods
             if (guid != null)
                 parameters.Add("guid", guid);
 
-            return await _vkontakte.GetAsync<int?>("video.createComment", parameters);
+            return _vkontakte.GetAsync<int?>("video.createComment", parameters);
         }
 
         /// <summary>
@@ -649,7 +649,7 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="ownerId">ID of the user or community that owns the video.</param>
         /// <param name="commentId">ID of the comment to be deleted.</param>
-        public async Task<int> DeleteComment(int? ownerId = null, int? commentId = null)
+        public Task<int> DeleteComment(int? ownerId = null, int? commentId = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -658,7 +658,7 @@ namespace VkLibrary.Core.Methods
             if (commentId != null)
                 parameters.Add("comment_id", commentId.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("video.deleteComment", parameters);
+            return _vkontakte.GetAsync<int>("video.deleteComment", parameters);
         }
 
         /// <summary>
@@ -667,7 +667,7 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="ownerId">ID of the user or community that owns the video.</param>
         /// <param name="commentId">ID of the deleted comment.</param>
-        public async Task<int> RestoreComment(int? ownerId = null, int? commentId = null)
+        public Task<int> RestoreComment(int? ownerId = null, int? commentId = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -676,7 +676,7 @@ namespace VkLibrary.Core.Methods
             if (commentId != null)
                 parameters.Add("comment_id", commentId.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("video.restoreComment", parameters);
+            return _vkontakte.GetAsync<int>("video.restoreComment", parameters);
         }
 
         /// <summary>
@@ -698,7 +698,7 @@ namespace VkLibrary.Core.Methods
         /// '%media_id%' — Media attachment ID.;
         /// Example:; "photo100172_166443618,photo66748_265827614"
         /// </param>
-        public async Task<int> EditComment(int? ownerId = null, int? commentId = null, string message = null,
+        public Task<int> EditComment(int? ownerId = null, int? commentId = null, string message = null,
             IEnumerable<string> attachments = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -712,7 +712,7 @@ namespace VkLibrary.Core.Methods
             if (attachments != null)
                 parameters.Add("attachments", attachments.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("video.editComment", parameters);
+            return _vkontakte.GetAsync<int>("video.editComment", parameters);
         }
 
         /// <summary>
@@ -721,7 +721,7 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="ownerId">ID of the user or community that owns the video.</param>
         /// <param name="videoId">Video ID.</param>
-        public async Task<IEnumerable<VideoTag>> GetTags(int? ownerId = null, int? videoId = null)
+        public Task<IEnumerable<VideoTag>> GetTags(int? ownerId = null, int? videoId = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -730,7 +730,7 @@ namespace VkLibrary.Core.Methods
             if (videoId != null)
                 parameters.Add("video_id", videoId.ToApiString());
 
-            return await _vkontakte.GetAsync<IEnumerable<VideoTag>>("video.getTags", parameters);
+            return _vkontakte.GetAsync<IEnumerable<VideoTag>>("video.getTags", parameters);
         }
 
         /// <summary>
@@ -741,7 +741,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="ownerId">ID of the user or community that owns the video.</param>
         /// <param name="videoId">Video ID.</param>
         /// <param name="taggedName">Tag text.</param>
-        public async Task<int?> PutTag(int? userId = null, int? ownerId = null, int? videoId = null,
+        public Task<int?> PutTag(int? userId = null, int? ownerId = null, int? videoId = null,
             string taggedName = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -755,7 +755,7 @@ namespace VkLibrary.Core.Methods
             if (taggedName != null)
                 parameters.Add("tagged_name", taggedName);
 
-            return await _vkontakte.GetAsync<int?>("video.putTag", parameters);
+            return _vkontakte.GetAsync<int?>("video.putTag", parameters);
         }
 
         /// <summary>
@@ -765,7 +765,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="tagId">Tag ID.</param>
         /// <param name="ownerId">ID of the user or community that owns the video.</param>
         /// <param name="videoId">Video ID.</param>
-        public async Task<int> RemoveTag(int? tagId = null, int? ownerId = null, int? videoId = null)
+        public Task<int> RemoveTag(int? tagId = null, int? ownerId = null, int? videoId = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -776,7 +776,7 @@ namespace VkLibrary.Core.Methods
             if (videoId != null)
                 parameters.Add("video_id", videoId.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("video.removeTag", parameters);
+            return _vkontakte.GetAsync<int>("video.removeTag", parameters);
         }
 
         /// <summary>
@@ -785,7 +785,7 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="offset">Offset needed to return a specific subset of videos.</param>
         /// <param name="count">Number of videos to return.</param>
-        public async Task<ApiItemsResponse<VideoTagInfo>> GetNewTags(int? offset = null, int? count = null)
+        public Task<ApiItemsResponse<VideoTagInfo>> GetNewTags(int? offset = null, int? count = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -794,7 +794,7 @@ namespace VkLibrary.Core.Methods
             if (count != null)
                 parameters.Add("count", count.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<VideoTagInfo>>("video.getNewTags", parameters);
+            return _vkontakte.GetAsync<ApiItemsResponse<VideoTagInfo>>("video.getNewTags", parameters);
         }
 
         /// <summary>
@@ -809,7 +809,7 @@ namespace VkLibrary.Core.Methods
         /// </param>
         /// <param name="comment">Comment describing the complaint.</param>
         /// <param name="searchQuery">(If the video was found in search results.) Search query string.</param>
-        public async Task<int> Report(int? ownerId = null, int? videoId = null, int? reason = null,
+        public Task<int> Report(int? ownerId = null, int? videoId = null, int? reason = null,
             string comment = null, string searchQuery = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -825,7 +825,7 @@ namespace VkLibrary.Core.Methods
             if (searchQuery != null)
                 parameters.Add("search_query", searchQuery);
 
-            return await _vkontakte.GetAsync<int>("video.report", parameters);
+            return _vkontakte.GetAsync<int>("video.report", parameters);
         }
 
         /// <summary>
@@ -838,7 +838,7 @@ namespace VkLibrary.Core.Methods
         /// Reason for the complaint: ; 0 – spam ; 1 – child pornography ; 2 – extremism ; 3 – violence ; 4 –
         /// drug propaganda ; 5 – adult material ; 6 – insult; abuse
         /// </param>
-        public async Task<int> ReportComment(int? ownerId = null, int? commentId = null, int? reason = null)
+        public Task<int> ReportComment(int? ownerId = null, int? commentId = null, int? reason = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -849,7 +849,7 @@ namespace VkLibrary.Core.Methods
             if (reason != null)
                 parameters.Add("reason", reason.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("video.reportComment", parameters);
+            return _vkontakte.GetAsync<int>("video.reportComment", parameters);
         }
 
         /// <summary>
@@ -864,7 +864,7 @@ namespace VkLibrary.Core.Methods
         /// </param>
         /// <param name="filters">list of requested catalog sections</param>
         /// <param name="extended">1 – return additional infor about users and communities in profiles and groups fields.</param>
-        public async Task<ApiItemsResponse<CatBlock>> GetCatalog(int? count = null, int? itemsCount = null,
+        public Task<ApiItemsResponse<CatBlock>> GetCatalog(int? count = null, int? itemsCount = null,
             string from = null, IEnumerable<string> filters = null, bool? extended = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -880,7 +880,7 @@ namespace VkLibrary.Core.Methods
             if (extended != null)
                 parameters.Add("extended", extended.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<CatBlock>>("video.getCatalog", parameters);
+            return _vkontakte.GetAsync<ApiItemsResponse<CatBlock>>("video.getCatalog", parameters);
         }
 
         /// <summary>
@@ -891,7 +891,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="from">'next' value returned with a block by the '' method.</param>
         /// <param name="count">number of blocks to return.</param>
         /// <param name="extended">1 – return additional infor about users and communities in profiles and groups fields.</param>
-        public async Task<ApiItemsResponse<CatElement>> GetCatalogSection(string sectionId = null, string from = null,
+        public Task<ApiItemsResponse<CatElement>> GetCatalogSection(string sectionId = null, string from = null,
             int? count = null, bool? extended = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -905,7 +905,7 @@ namespace VkLibrary.Core.Methods
             if (extended != null)
                 parameters.Add("extended", extended.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<CatElement>>("video.getCatalogSection", parameters);
+            return _vkontakte.GetAsync<ApiItemsResponse<CatElement>>("video.getCatalogSection", parameters);
         }
 
         /// <summary>
@@ -913,14 +913,14 @@ namespace VkLibrary.Core.Methods
         /// Docs: <see href="https://vk.com/dev/video.hideCatalogSection">video.hideCatalogSection</see>
         /// </summary>
         /// <param name="sectionId">'id' value returned with a block to hide by the '' method.</param>
-        public async Task<int> HideCatalogSection(int? sectionId = null)
+        public Task<int> HideCatalogSection(int? sectionId = null)
         {
             var parameters = new Dictionary<string, string>();
 
             if (sectionId != null)
                 parameters.Add("section_id", sectionId.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("video.hideCatalogSection", parameters);
+            return _vkontakte.GetAsync<int>("video.hideCatalogSection", parameters);
         }
     }
 }

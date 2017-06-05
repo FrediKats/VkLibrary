@@ -45,7 +45,7 @@ namespace VkLibrary.Core.Methods
         /// Number of characters after which to truncate the previewed comment. To preview the full
         /// comment, specify '0'.
         /// </param>
-        public async Task<ApiItemsResponse<Topic>> GetTopics(int? groupId = null, IEnumerable<int?> topicIds = null,
+        public Task<ApiItemsResponse<Topic>> GetTopics(int? groupId = null, IEnumerable<int?> topicIds = null,
             int? order = null, int? offset = null, int? count = null, bool? extended = null, int? preview = null,
             int? previewLength = null)
         {
@@ -68,7 +68,7 @@ namespace VkLibrary.Core.Methods
             if (previewLength != null)
                 parameters.Add("preview_length", previewLength.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<Topic>>("board.getTopics", parameters);
+            return _vkontakte.GetAsync<ApiItemsResponse<Topic>>("board.getTopics", parameters);
         }
 
         /// <summary>
@@ -89,7 +89,7 @@ namespace VkLibrary.Core.Methods
         /// Sort order:; 'asc' — by creation date in chronological order; 'desc' — by creation date in reverse
         /// chronological order;
         /// </param>
-        public async Task<ApiItemsResponse<TopicComment>> GetComments(int? groupId = null, int? topicId = null,
+        public Task<ApiItemsResponse<TopicComment>> GetComments(int? groupId = null, int? topicId = null,
             bool? needLikes = null, int? startCommentId = null, int? offset = null, int? count = null,
             bool? extended = null, string sort = null)
         {
@@ -112,7 +112,7 @@ namespace VkLibrary.Core.Methods
             if (sort != null)
                 parameters.Add("sort", sort);
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<TopicComment>>("board.getComments", parameters);
+            return _vkontakte.GetAsync<ApiItemsResponse<TopicComment>>("board.getComments", parameters);
         }
 
         /// <summary>
@@ -138,7 +138,7 @@ namespace VkLibrary.Core.Methods
         /// '%media_id%' — Media attachment ID.;
         /// Example:; "photo100172_166443618,photo66748_265827614"
         /// </param>
-        public async Task<int?> AddTopic(int? groupId = null, string title = null, string text = null,
+        public Task<int?> AddTopic(int? groupId = null, string title = null, string text = null,
             bool? fromGroup = null, IEnumerable<string> attachments = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -154,7 +154,7 @@ namespace VkLibrary.Core.Methods
             if (attachments != null)
                 parameters.Add("attachments", attachments.ToApiString());
 
-            return await _vkontakte.GetAsync<int?>("board.addTopic", parameters);
+            return _vkontakte.GetAsync<int?>("board.addTopic", parameters);
         }
 
         /// <summary>
@@ -182,7 +182,7 @@ namespace VkLibrary.Core.Methods
         /// </param>
         /// <param name="stickerId">Sticker ID.</param>
         /// <param name="guid">Unique identifier to avoid repeated comments.</param>
-        public async Task<int?> CreateComment(int? groupId = null, int? topicId = null, string message = null,
+        public Task<int?> CreateComment(int? groupId = null, int? topicId = null, string message = null,
             IEnumerable<string> attachments = null, bool? fromGroup = null, int? stickerId = null, string guid = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -202,7 +202,7 @@ namespace VkLibrary.Core.Methods
             if (guid != null)
                 parameters.Add("guid", guid);
 
-            return await _vkontakte.GetAsync<int?>("board.createComment", parameters);
+            return _vkontakte.GetAsync<int?>("board.createComment", parameters);
         }
 
         /// <summary>
@@ -211,7 +211,7 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="groupId">ID of the community that owns the discussion board.</param>
         /// <param name="topicId">Topic ID.</param>
-        public async Task<int> DeleteTopic(int? groupId = null, int? topicId = null)
+        public Task<int> DeleteTopic(int? groupId = null, int? topicId = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -220,7 +220,7 @@ namespace VkLibrary.Core.Methods
             if (topicId != null)
                 parameters.Add("topic_id", topicId.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("board.deleteTopic", parameters);
+            return _vkontakte.GetAsync<int>("board.deleteTopic", parameters);
         }
 
         /// <summary>
@@ -230,7 +230,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="groupId">ID of the community that owns the discussion board.</param>
         /// <param name="topicId">Topic ID.</param>
         /// <param name="title">New title of the topic.</param>
-        public async Task<int> EditTopic(int? groupId = null, int? topicId = null, string title = null)
+        public Task<int> EditTopic(int? groupId = null, int? topicId = null, string title = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -241,7 +241,7 @@ namespace VkLibrary.Core.Methods
             if (title != null)
                 parameters.Add("title", title);
 
-            return await _vkontakte.GetAsync<int>("board.editTopic", parameters);
+            return _vkontakte.GetAsync<int>("board.editTopic", parameters);
         }
 
         /// <summary>
@@ -264,7 +264,7 @@ namespace VkLibrary.Core.Methods
         /// '%media_id%' — Media attachment ID.;
         /// Example:; "photo100172_166443618,photo66748_265827614"
         /// </param>
-        public async Task<int> EditComment(int? groupId = null, int? topicId = null, int? commentId = null,
+        public Task<int> EditComment(int? groupId = null, int? topicId = null, int? commentId = null,
             string message = null, IEnumerable<string> attachments = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -280,7 +280,7 @@ namespace VkLibrary.Core.Methods
             if (attachments != null)
                 parameters.Add("attachments", attachments.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("board.editComment", parameters);
+            return _vkontakte.GetAsync<int>("board.editComment", parameters);
         }
 
         /// <summary>
@@ -290,7 +290,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="groupId">ID of the community that owns the discussion board.</param>
         /// <param name="topicId">Topic ID.</param>
         /// <param name="commentId">Comment ID.</param>
-        public async Task<int> RestoreComment(int? groupId = null, int? topicId = null, int? commentId = null)
+        public Task<int> RestoreComment(int? groupId = null, int? topicId = null, int? commentId = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -301,7 +301,7 @@ namespace VkLibrary.Core.Methods
             if (commentId != null)
                 parameters.Add("comment_id", commentId.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("board.restoreComment", parameters);
+            return _vkontakte.GetAsync<int>("board.restoreComment", parameters);
         }
 
         /// <summary>
@@ -311,7 +311,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="groupId">ID of the community that owns the discussion board.</param>
         /// <param name="topicId">Topic ID.</param>
         /// <param name="commentId">Comment ID.</param>
-        public async Task<int> DeleteComment(int? groupId = null, int? topicId = null, int? commentId = null)
+        public Task<int> DeleteComment(int? groupId = null, int? topicId = null, int? commentId = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -322,7 +322,7 @@ namespace VkLibrary.Core.Methods
             if (commentId != null)
                 parameters.Add("comment_id", commentId.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("board.deleteComment", parameters);
+            return _vkontakte.GetAsync<int>("board.deleteComment", parameters);
         }
 
         /// <summary>
@@ -331,7 +331,7 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="groupId">ID of the community that owns the discussion board.</param>
         /// <param name="topicId">Topic ID.</param>
-        public async Task<int> OpenTopic(int? groupId = null, int? topicId = null)
+        public Task<int> OpenTopic(int? groupId = null, int? topicId = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -340,7 +340,7 @@ namespace VkLibrary.Core.Methods
             if (topicId != null)
                 parameters.Add("topic_id", topicId.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("board.openTopic", parameters);
+            return _vkontakte.GetAsync<int>("board.openTopic", parameters);
         }
 
         /// <summary>
@@ -349,7 +349,7 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="groupId">ID of the community that owns the discussion board.</param>
         /// <param name="topicId">Topic ID.</param>
-        public async Task<int> CloseTopic(int? groupId = null, int? topicId = null)
+        public Task<int> CloseTopic(int? groupId = null, int? topicId = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -358,7 +358,7 @@ namespace VkLibrary.Core.Methods
             if (topicId != null)
                 parameters.Add("topic_id", topicId.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("board.closeTopic", parameters);
+            return _vkontakte.GetAsync<int>("board.closeTopic", parameters);
         }
 
         /// <summary>
@@ -367,7 +367,7 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="groupId">ID of the community that owns the discussion board.</param>
         /// <param name="topicId">Topic ID.</param>
-        public async Task<int> FixTopic(int? groupId = null, int? topicId = null)
+        public Task<int> FixTopic(int? groupId = null, int? topicId = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -376,7 +376,7 @@ namespace VkLibrary.Core.Methods
             if (topicId != null)
                 parameters.Add("topic_id", topicId.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("board.fixTopic", parameters);
+            return _vkontakte.GetAsync<int>("board.fixTopic", parameters);
         }
 
         /// <summary>
@@ -385,7 +385,7 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="groupId">ID of the community that owns the discussion board.</param>
         /// <param name="topicId">Topic ID.</param>
-        public async Task<int> UnfixTopic(int? groupId = null, int? topicId = null)
+        public Task<int> UnfixTopic(int? groupId = null, int? topicId = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -394,7 +394,7 @@ namespace VkLibrary.Core.Methods
             if (topicId != null)
                 parameters.Add("topic_id", topicId.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("board.unfixTopic", parameters);
+            return _vkontakte.GetAsync<int>("board.unfixTopic", parameters);
         }
     }
 }

@@ -19,14 +19,14 @@ namespace VkLibrary.Core.Methods
         /// Docs: <see href="https://vk.com/dev/account.getCounters">account.getCounters</see>
         /// </summary>
         /// <param name="filter">Counters to be returned (friends, messages, photos, videos, notes, gifts, events, groups, sdk).</param>
-        public async Task<AccountCounters> GetCounters(IEnumerable<string> filter = null)
+        public Task<AccountCounters> GetCounters(IEnumerable<string> filter = null)
         {
             var parameters = new Dictionary<string, string>();
 
             if (filter != null)
                 parameters.Add("filter", filter.ToApiString());
 
-            return await _vkontakte.GetAsync<AccountCounters>("account.getCounters", parameters);
+            return _vkontakte.GetAsync<AccountCounters>("account.getCounters", parameters);
         }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="userId">User ID.</param>
         /// <param name="name">Application screen name.</param>
-        public async Task<int> SetNameInMenu(int? userId = null, string name = null)
+        public Task<int> SetNameInMenu(int? userId = null, string name = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -44,7 +44,7 @@ namespace VkLibrary.Core.Methods
             if (name != null)
                 parameters.Add("name", name);
 
-            return await _vkontakte.GetAsync<int>("account.setNameInMenu", parameters);
+            return _vkontakte.GetAsync<int>("account.setNameInMenu", parameters);
         }
 
         /// <summary>
@@ -52,26 +52,26 @@ namespace VkLibrary.Core.Methods
         /// Docs: <see href="https://vk.com/dev/account.setOnline">account.setOnline</see>
         /// </summary>
         /// <param name="voip">'1' if videocalls are available for current device.</param>
-        public async Task<int> SetOnline(bool? voip = null)
+        public Task<int> SetOnline(bool? voip = null)
         {
             var parameters = new Dictionary<string, string>();
 
             if (voip != null)
                 parameters.Add("voip", voip.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("account.setOnline", parameters);
+            return _vkontakte.GetAsync<int>("account.setOnline", parameters);
         }
 
         /// <summary>
         /// Marks a current user as offline.
         /// Docs: <see href="https://vk.com/dev/account.setOffline">account.setOffline</see>
         /// </summary>
-        public async Task<int> SetOffline()
+        public Task<int> SetOffline()
         {
             var parameters = new Dictionary<string, string>();
 
 
-            return await _vkontakte.GetAsync<int>("account.setOffline", parameters);
+            return _vkontakte.GetAsync<int>("account.setOffline", parameters);
         }
 
         /// <summary>
@@ -93,7 +93,7 @@ namespace VkLibrary.Core.Methods
         /// photo_50, photo_100, photo_200_orig, has_mobile, contacts, education, online, relation, last_seen, status,
         /// can_write_private_message, can_see_all_posts, can_post, universities'.
         /// </param>
-        public async Task<LookupResult> LookupContacts(IEnumerable<string> contacts = null, string service = null,
+        public Task<LookupResult> LookupContacts(IEnumerable<string> contacts = null, string service = null,
             string mycontact = null, bool? returnAll = null, IEnumerable<string> fields = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -109,7 +109,7 @@ namespace VkLibrary.Core.Methods
             if (fields != null)
                 parameters.Add("fields", fields.ToApiString());
 
-            return await _vkontakte.GetAsync<LookupResult>("account.lookupContacts", parameters);
+            return _vkontakte.GetAsync<LookupResult>("account.lookupContacts", parameters);
         }
 
         /// <summary>
@@ -125,7 +125,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="deviceId">Unique device ID.</param>
         /// <param name="systemVersion">String version of device operating system.</param>
         /// <param name="settings">Push settings in a [vk.com/dev/push_settings|special format].</param>
-        public async Task<int> RegisterDevice(string token = null, string deviceModel = null, int? deviceYear = null,
+        public Task<int> RegisterDevice(string token = null, string deviceModel = null, int? deviceYear = null,
             string deviceId = null, string systemVersion = null, string settings = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -143,7 +143,7 @@ namespace VkLibrary.Core.Methods
             if (settings != null)
                 parameters.Add("settings", settings);
 
-            return await _vkontakte.GetAsync<int>("account.registerDevice", parameters);
+            return _vkontakte.GetAsync<int>("account.registerDevice", parameters);
         }
 
         /// <summary>
@@ -151,14 +151,14 @@ namespace VkLibrary.Core.Methods
         /// Docs: <see href="https://vk.com/dev/account.unregisterDevice">account.unregisterDevice</see>
         /// </summary>
         /// <param name="deviceId">Unique device ID.</param>
-        public async Task<int> UnregisterDevice(string deviceId = null)
+        public Task<int> UnregisterDevice(string deviceId = null)
         {
             var parameters = new Dictionary<string, string>();
 
             if (deviceId != null)
                 parameters.Add("device_id", deviceId);
 
-            return await _vkontakte.GetAsync<int>("account.unregisterDevice", parameters);
+            return _vkontakte.GetAsync<int>("account.unregisterDevice", parameters);
         }
 
         /// <summary>
@@ -175,7 +175,7 @@ namespace VkLibrary.Core.Methods
         /// '1' — to enable sound in this dialog, '0' — to disable sound. Only if 'peer_id' contains user or
         /// community ID.
         /// </param>
-        public async Task<int> SetSilenceMode(string deviceId = null, int? time = null, int? peerId = null,
+        public Task<int> SetSilenceMode(string deviceId = null, int? time = null, int? peerId = null,
             int? sound = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -189,7 +189,7 @@ namespace VkLibrary.Core.Methods
             if (sound != null)
                 parameters.Add("sound", sound.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("account.setSilenceMode", parameters);
+            return _vkontakte.GetAsync<int>("account.setSilenceMode", parameters);
         }
 
         /// <summary>
@@ -197,14 +197,14 @@ namespace VkLibrary.Core.Methods
         /// Docs: <see href="https://vk.com/dev/account.getPushSettings">account.getPushSettings</see>
         /// </summary>
         /// <param name="deviceId">Unique device ID.</param>
-        public async Task<PushSettings> GetPushSettings(string deviceId = null)
+        public Task<PushSettings> GetPushSettings(string deviceId = null)
         {
             var parameters = new Dictionary<string, string>();
 
             if (deviceId != null)
                 parameters.Add("device_id", deviceId);
 
-            return await _vkontakte.GetAsync<PushSettings>("account.getPushSettings", parameters);
+            return _vkontakte.GetAsync<PushSettings>("account.getPushSettings", parameters);
         }
 
         /// <summary>
@@ -215,7 +215,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="settings">Push settings in a [vk.com/dev/push_settings|special format].</param>
         /// <param name="key">Notification key.</param>
         /// <param name="value">New value for the key in a [vk.com/dev/push_settings|special format].</param>
-        public async Task<int> SetPushSettings(string deviceId = null, string settings = null, string key = null,
+        public Task<int> SetPushSettings(string deviceId = null, string settings = null, string key = null,
             IEnumerable<string> value = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -229,7 +229,7 @@ namespace VkLibrary.Core.Methods
             if (value != null)
                 parameters.Add("value", value.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("account.setPushSettings", parameters);
+            return _vkontakte.GetAsync<int>("account.setPushSettings", parameters);
         }
 
         /// <summary>
@@ -237,14 +237,14 @@ namespace VkLibrary.Core.Methods
         /// Docs: <see href="https://vk.com/dev/account.getAppPermissions">account.getAppPermissions</see>
         /// </summary>
         /// <param name="userId">User ID whose settings information shall be got. By default: current user.</param>
-        public async Task<int?> GetAppPermissions(int? userId = null)
+        public Task<int?> GetAppPermissions(int? userId = null)
         {
             var parameters = new Dictionary<string, string>();
 
             if (userId != null)
                 parameters.Add("user_id", userId.ToApiString());
 
-            return await _vkontakte.GetAsync<int?>("account.getAppPermissions", parameters);
+            return _vkontakte.GetAsync<int?>("account.getAppPermissions", parameters);
         }
 
         /// <summary>
@@ -253,14 +253,14 @@ namespace VkLibrary.Core.Methods
         /// Docs: <see href="https://vk.com/dev/account.getActiveOffers">account.getActiveOffers</see>
         /// </summary>
         /// <param name="count">Number of results to return.</param>
-        public async Task<ApiItemsResponse<Offer>> GetActiveOffers(int? count = null)
+        public Task<ApiItemsResponse<Offer>> GetActiveOffers(int? count = null)
         {
             var parameters = new Dictionary<string, string>();
 
             if (count != null)
                 parameters.Add("count", count.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<Offer>>("account.getActiveOffers", parameters);
+            return _vkontakte.GetAsync<ApiItemsResponse<Offer>>("account.getActiveOffers", parameters);
         }
 
         /// <summary>
@@ -268,14 +268,14 @@ namespace VkLibrary.Core.Methods
         /// Docs: <see href="https://vk.com/dev/account.banUser">account.banUser</see>
         /// </summary>
         /// <param name="userId">User ID.</param>
-        public async Task<int> BanUser(int? userId = null)
+        public Task<int> BanUser(int? userId = null)
         {
             var parameters = new Dictionary<string, string>();
 
             if (userId != null)
                 parameters.Add("user_id", userId.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("account.banUser", parameters);
+            return _vkontakte.GetAsync<int>("account.banUser", parameters);
         }
 
         /// <summary>
@@ -283,14 +283,14 @@ namespace VkLibrary.Core.Methods
         /// Docs: <see href="https://vk.com/dev/account.unbanUser">account.unbanUser</see>
         /// </summary>
         /// <param name="userId">User ID.</param>
-        public async Task<int> UnbanUser(int? userId = null)
+        public Task<int> UnbanUser(int? userId = null)
         {
             var parameters = new Dictionary<string, string>();
 
             if (userId != null)
                 parameters.Add("user_id", userId.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("account.unbanUser", parameters);
+            return _vkontakte.GetAsync<int>("account.unbanUser", parameters);
         }
 
         /// <summary>
@@ -299,7 +299,7 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="offset">Offset needed to return a specific subset of results.</param>
         /// <param name="count">Number of results to return.</param>
-        public async Task<ApiItemsResponse<UserMin>> GetBanned(int? offset = null, int? count = null)
+        public Task<ApiItemsResponse<UserMin>> GetBanned(int? offset = null, int? count = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -308,7 +308,7 @@ namespace VkLibrary.Core.Methods
             if (count != null)
                 parameters.Add("count", count.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<UserMin>>("account.getBanned", parameters);
+            return _vkontakte.GetAsync<ApiItemsResponse<UserMin>>("account.getBanned", parameters);
         }
 
         /// <summary>
@@ -321,14 +321,14 @@ namespace VkLibrary.Core.Methods
         /// wall replies disabled or not;; *'intro' — is intro passed by user or not;; *'lang' — user language.; ; By default:
         /// all.
         /// </param>
-        public async Task<Info> GetInfo(IEnumerable<string> fields = null)
+        public Task<Info> GetInfo(IEnumerable<string> fields = null)
         {
             var parameters = new Dictionary<string, string>();
 
             if (fields != null)
                 parameters.Add("fields", fields.ToApiString());
 
-            return await _vkontakte.GetAsync<Info>("account.getInfo", parameters);
+            return _vkontakte.GetAsync<Info>("account.getInfo", parameters);
         }
 
         /// <summary>
@@ -337,7 +337,7 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="name">Setting name.</param>
         /// <param name="value">Setting value.</param>
-        public async Task<int> SetInfo(string name = null, string value = null)
+        public Task<int> SetInfo(string name = null, string value = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -346,7 +346,7 @@ namespace VkLibrary.Core.Methods
             if (value != null)
                 parameters.Add("value", value);
 
-            return await _vkontakte.GetAsync<int>("account.setInfo", parameters);
+            return _vkontakte.GetAsync<int>("account.setInfo", parameters);
         }
 
         /// <summary>
@@ -364,7 +364,7 @@ namespace VkLibrary.Core.Methods
         /// </param>
         /// <param name="oldPassword">Current user password.</param>
         /// <param name="newPassword">New password that will be set as a current</param>
-        public async Task<ChangePasswordResponse> ChangePassword(string restoreSid = null,
+        public Task<ChangePasswordResponse> ChangePassword(string restoreSid = null,
             string changePasswordHash = null, string oldPassword = null, string newPassword = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -378,19 +378,19 @@ namespace VkLibrary.Core.Methods
             if (newPassword != null)
                 parameters.Add("new_password", newPassword);
 
-            return await _vkontakte.GetAsync<ChangePasswordResponse>("account.changePassword", parameters);
+            return _vkontakte.GetAsync<ChangePasswordResponse>("account.changePassword", parameters);
         }
 
         /// <summary>
         /// Returns the current account info.
         /// Docs: <see href="https://vk.com/dev/account.getProfileInfo">account.getProfileInfo</see>
         /// </summary>
-        public async Task<UserSettings> GetProfileInfo()
+        public Task<UserSettings> GetProfileInfo()
         {
             var parameters = new Dictionary<string, string>();
 
 
-            return await _vkontakte.GetAsync<UserSettings>("account.getProfileInfo", parameters);
+            return _vkontakte.GetAsync<UserSettings>("account.getProfileInfo", parameters);
         }
 
         /// <summary>
@@ -421,7 +421,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="countryId">User country.</param>
         /// <param name="cityId">User city.</param>
         /// <param name="status">Status text.</param>
-        public async Task<SaveProfileInfoResponse> SaveProfileInfo(string firstName = null, string lastName = null,
+        public Task<SaveProfileInfoResponse> SaveProfileInfo(string firstName = null, string lastName = null,
             string maidenName = null, string screenName = null, int? cancelRequestId = null, int? sex = null,
             int? relation = null, int? relationPartnerId = null, string bdate = null, int? bdateVisibility = null,
             string homeTown = null, int? countryId = null, int? cityId = null, string status = null)
@@ -457,7 +457,7 @@ namespace VkLibrary.Core.Methods
             if (status != null)
                 parameters.Add("status", status);
 
-            return await _vkontakte.GetAsync<SaveProfileInfoResponse>("account.saveProfileInfo", parameters);
+            return _vkontakte.GetAsync<SaveProfileInfoResponse>("account.saveProfileInfo", parameters);
         }
     }
 }

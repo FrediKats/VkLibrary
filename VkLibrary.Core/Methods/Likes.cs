@@ -51,7 +51,7 @@ namespace VkLibrary.Core.Methods
         /// otherwise, the default is '10' if 'friends_only' is set to '1'.;
         /// </param>
         /// <param name="skipOwn"></param>
-        public async Task<ApiItemsResponse<int?>> GetList(string type = null, int? ownerId = null, 
+        public Task<ApiItemsResponse<int?>> GetList(string type = null, int? ownerId = null, 
             int? itemId = null, string pageUrl = null, string filter = null, bool? friendsOnly = null, 
             int? offset = null, int? count = null, bool? skipOwn = null)
         {
@@ -77,7 +77,7 @@ namespace VkLibrary.Core.Methods
                 parameters.Add("skip_own", skipOwn.ToApiString());
 
             parameters.Add("extended", false.ToApiString());
-            return await _vkontakte.GetAsync<ApiItemsResponse<int?>>("likes.getList", parameters);
+            return _vkontakte.GetAsync<ApiItemsResponse<int?>>("likes.getList", parameters);
         }
 
         /// <summary>
@@ -93,7 +93,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="ownerId">ID of the user or community that owns the object.</param>
         /// <param name="itemId">Object ID.</param>
         /// <param name="accessKey">Access key required for an object owned by a private entity.;</param>
-        public async Task<AddResponse> Add(string type = null, int? ownerId = null, int? itemId = null,
+        public Task<AddResponse> Add(string type = null, int? ownerId = null, int? itemId = null,
             string accessKey = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -107,7 +107,7 @@ namespace VkLibrary.Core.Methods
             if (accessKey != null)
                 parameters.Add("access_key", accessKey);
 
-            return await _vkontakte.GetAsync<AddResponse>("likes.add", parameters);
+            return _vkontakte.GetAsync<AddResponse>("likes.add", parameters);
         }
 
         /// <summary>
@@ -122,7 +122,7 @@ namespace VkLibrary.Core.Methods
         /// </param>
         /// <param name="ownerId">ID of the user or community that owns the object.</param>
         /// <param name="itemId">Object ID.</param>
-        public async Task<DeleteResponse> Delete(string type = null, int? ownerId = null, int? itemId = null)
+        public Task<DeleteResponse> Delete(string type = null, int? ownerId = null, int? itemId = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -133,7 +133,7 @@ namespace VkLibrary.Core.Methods
             if (itemId != null)
                 parameters.Add("item_id", itemId.ToApiString());
 
-            return await _vkontakte.GetAsync<DeleteResponse>("likes.delete", parameters);
+            return _vkontakte.GetAsync<DeleteResponse>("likes.delete", parameters);
         }
 
         /// <summary>
@@ -148,7 +148,7 @@ namespace VkLibrary.Core.Methods
         /// </param>
         /// <param name="ownerId">ID of the user or community that owns the object.</param>
         /// <param name="itemId">Object ID.</param>
-        public async Task<IsLikedResponse> IsLiked(int? userId = null, string type = null, int? ownerId = null,
+        public Task<IsLikedResponse> IsLiked(int? userId = null, string type = null, int? ownerId = null,
             int? itemId = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -162,7 +162,7 @@ namespace VkLibrary.Core.Methods
             if (itemId != null)
                 parameters.Add("item_id", itemId.ToApiString());
 
-            return await _vkontakte.GetAsync<IsLikedResponse>("likes.isLiked", parameters);
+            return _vkontakte.GetAsync<IsLikedResponse>("likes.isLiked", parameters);
         }
     }
 }

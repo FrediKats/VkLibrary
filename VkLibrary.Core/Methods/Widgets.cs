@@ -26,7 +26,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="order"></param>
         /// <param name="fields"></param>
         /// <param name="count"></param>
-        public async Task<GetCommentsResponse> GetComments(int? widgetApiId = null, string url = null,
+        public Task<GetCommentsResponse> GetComments(int? widgetApiId = null, string url = null,
             string pageId = null, string order = null, IEnumerable<string> fields = null, int? count = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -44,7 +44,7 @@ namespace VkLibrary.Core.Methods
             if (count != null)
                 parameters.Add("count", count.ToApiString());
 
-            return await _vkontakte.GetAsync<GetCommentsResponse>("widgets.getComments", parameters);
+            return _vkontakte.GetAsync<GetCommentsResponse>("widgets.getComments", parameters);
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="order"></param>
         /// <param name="period"></param>
         /// <param name="count"></param>
-        public async Task<GetPagesResponse> GetPages(int? widgetApiId = null, string order = null,
+        public Task<GetPagesResponse> GetPages(int? widgetApiId = null, string order = null,
             string period = null, int? count = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -70,7 +70,7 @@ namespace VkLibrary.Core.Methods
             if (count != null)
                 parameters.Add("count", count.ToApiString());
 
-            return await _vkontakte.GetAsync<GetPagesResponse>("widgets.getPages", parameters);
+            return _vkontakte.GetAsync<GetPagesResponse>("widgets.getPages", parameters);
         }
     }
 }

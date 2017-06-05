@@ -32,7 +32,7 @@ namespace VkLibrary.Core.Methods
         /// Case for declension of user name and surname:; 'nom' — nominative (default); 'gen' — genitive ;
         /// 'dat' — dative; 'acc' — accusative ; 'ins' — instrumental ; 'abl' — prepositional
         /// </param>
-        public async Task<IEnumerable<UserXtrCounters>> Get(IEnumerable<string> userIds = null,
+        public Task<IEnumerable<UserXtrCounters>> Get(IEnumerable<string> userIds = null,
             IEnumerable<string> fields = null, string nameCase = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -44,7 +44,7 @@ namespace VkLibrary.Core.Methods
             if (nameCase != null)
                 parameters.Add("name_case", nameCase);
 
-            return await _vkontakte.GetAsync<IEnumerable<UserXtrCounters>>("users.get", parameters);
+            return _vkontakte.GetAsync<IEnumerable<UserXtrCounters>>("users.get", parameters);
         }
 
         /// <summary>
@@ -91,7 +91,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="position">Job position.</param>
         /// <param name="groupId">ID of a community to search in communities.</param>
         /// <param name="fromList"></param>
-        public async Task<ApiItemsResponse<UserFull>> Search(string q = null, int? sort = null, int? offset = null,
+        public Task<ApiItemsResponse<UserFull>> Search(string q = null, int? sort = null, int? offset = null,
             int? count = null, IEnumerable<string> fields = null, int? city = null, int? country = null,
             string hometown = null, int? universityCountry = null, int? university = null, int? universityYear = null,
             int? universityFaculty = null, int? universityChair = null, int? sex = null, int? status = null,
@@ -170,7 +170,7 @@ namespace VkLibrary.Core.Methods
             if (fromList != null)
                 parameters.Add("from_list", fromList.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<UserFull>>("users.search", parameters);
+            return _vkontakte.GetAsync<ApiItemsResponse<UserFull>>("users.search", parameters);
         }
 
         /// <summary>
@@ -178,14 +178,14 @@ namespace VkLibrary.Core.Methods
         /// Docs: <see href="https://vk.com/dev/users.isAppUser">users.isAppUser</see>
         /// </summary>
         /// <param name="userId"></param>
-        public async Task<int> IsAppUser(int? userId = null)
+        public Task<int> IsAppUser(int? userId = null)
         {
             var parameters = new Dictionary<string, string>();
 
             if (userId != null)
                 parameters.Add("user_id", userId.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("users.isAppUser", parameters);
+            return _vkontakte.GetAsync<int>("users.isAppUser", parameters);
         }
 
         /// <summary>
@@ -200,7 +200,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="offset">Offset needed to return a specific subset of subscriptions.</param>
         /// <param name="count">Number of users and communities to return.</param>
         /// <param name="fields"></param>
-        public async Task<GetSubscriptionsResponse> GetSubscriptions(int? userId = null, bool? extended = null,
+        public Task<GetSubscriptionsResponse> GetSubscriptions(int? userId = null, bool? extended = null,
             int? offset = null, int? count = null, IEnumerable<string> fields = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -216,7 +216,7 @@ namespace VkLibrary.Core.Methods
             if (fields != null)
                 parameters.Add("fields", fields.ToApiString());
 
-            return await _vkontakte.GetAsync<GetSubscriptionsResponse>("users.getSubscriptions", parameters);
+            return _vkontakte.GetAsync<GetSubscriptionsResponse>("users.getSubscriptions", parameters);
         }
 
         /// <summary>
@@ -235,7 +235,7 @@ namespace VkLibrary.Core.Methods
         /// Case for declension of user name and surname:; 'nom' — nominative (default); 'gen' — genitive ;
         /// 'dat' — dative; 'acc' — accusative ; 'ins' — instrumental ; 'abl' — prepositional
         /// </param>
-        public async Task<ApiItemsResponse<T>> GetFollowers<T>(int? userId = null, int? offset = null,
+        public Task<ApiItemsResponse<T>> GetFollowers<T>(int? userId = null, int? offset = null,
             int? count = null, IEnumerable<string> fields = null, string nameCase = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -251,7 +251,7 @@ namespace VkLibrary.Core.Methods
             if (nameCase != null)
                 parameters.Add("name_case", nameCase);
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<T>>("users.getFollowers", parameters);
+            return _vkontakte.GetAsync<ApiItemsResponse<T>>("users.getFollowers", parameters);
         }
 
         /// <summary>
@@ -264,7 +264,7 @@ namespace VkLibrary.Core.Methods
         /// 'advertisment' – disruptive advertisements
         /// </param>
         /// <param name="comment">Comment describing the complaint.</param>
-        public async Task<int> Report(int? userId = null, string type = null, string comment = null)
+        public Task<int> Report(int? userId = null, string type = null, string comment = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -275,7 +275,7 @@ namespace VkLibrary.Core.Methods
             if (comment != null)
                 parameters.Add("comment", comment);
 
-            return await _vkontakte.GetAsync<int>("users.report", parameters);
+            return _vkontakte.GetAsync<int>("users.report", parameters);
         }
 
         /// <summary>
@@ -298,7 +298,7 @@ namespace VkLibrary.Core.Methods
         /// Case for declension of user name and surname: ; nom –nominative (default) ; gen – genitive ;
         /// dat – dative ; acc – accusative ; ins – instrumental ; abl – prepositional
         /// </param>
-        public async Task<ApiItemsResponse<UserFull>> GetNearby(uint? latitude = null, uint? longitude = null,
+        public Task<ApiItemsResponse<UserFull>> GetNearby(uint? latitude = null, uint? longitude = null,
             int? accuracy = null, int? timeout = null, int? radius = null, IEnumerable<string> fields = null,
             string nameCase = null)
         {
@@ -319,7 +319,7 @@ namespace VkLibrary.Core.Methods
             if (nameCase != null)
                 parameters.Add("name_case", nameCase);
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<UserFull>>("users.getNearby", parameters);
+            return _vkontakte.GetAsync<ApiItemsResponse<UserFull>>("users.getNearby", parameters);
         }
     }
 }

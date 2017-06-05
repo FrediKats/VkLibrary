@@ -27,7 +27,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="title">Wiki page title.</param>
         /// <param name="needSource"></param>
         /// <param name="needHtml">'1' — to return the page as HTML;</param>
-        public async Task<WikipageFull> Get(int? ownerId = null, int? pageId = null, bool? global = null,
+        public Task<WikipageFull> Get(int? ownerId = null, int? pageId = null, bool? global = null,
             bool? sitePreview = null, string title = null, bool? needSource = null, bool? needHtml = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -47,7 +47,7 @@ namespace VkLibrary.Core.Methods
             if (needHtml != null)
                 parameters.Add("need_html", needHtml.ToApiString());
 
-            return await _vkontakte.GetAsync<WikipageFull>("pages.get", parameters);
+            return _vkontakte.GetAsync<WikipageFull>("pages.get", parameters);
         }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="groupId">ID of the community that owns the wiki page.</param>
         /// <param name="userId"></param>
         /// <param name="title">Wiki page title.</param>
-        public async Task<int?> Save(string text = null, int? pageId = null, int? groupId = null, int? userId = null,
+        public Task<int?> Save(string text = null, int? pageId = null, int? groupId = null, int? userId = null,
             string title = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -75,7 +75,7 @@ namespace VkLibrary.Core.Methods
             if (title != null)
                 parameters.Add("title", title);
 
-            return await _vkontakte.GetAsync<int?>("pages.save", parameters);
+            return _vkontakte.GetAsync<int?>("pages.save", parameters);
         }
 
         /// <summary>
@@ -93,7 +93,7 @@ namespace VkLibrary.Core.Methods
         /// Who can edit the wiki page:; '1' — only community members; '2' — all users can edit the page; '0' —
         /// only community managers
         /// </param>
-        public async Task<int?> SaveAccess(int? pageId = null, int? groupId = null, int? userId = null,
+        public Task<int?> SaveAccess(int? pageId = null, int? groupId = null, int? userId = null,
             int? view = null, int? edit = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -109,7 +109,7 @@ namespace VkLibrary.Core.Methods
             if (edit != null)
                 parameters.Add("edit", edit.ToApiString());
 
-            return await _vkontakte.GetAsync<int?>("pages.saveAccess", parameters);
+            return _vkontakte.GetAsync<int?>("pages.saveAccess", parameters);
         }
 
         /// <summary>
@@ -119,7 +119,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="pageId">Wiki page ID.</param>
         /// <param name="groupId">ID of the community that owns the wiki page.</param>
         /// <param name="userId"></param>
-        public async Task<IEnumerable<WikipageVersion>> GetHistory(int? pageId = null, int? groupId = null,
+        public Task<IEnumerable<WikipageVersion>> GetHistory(int? pageId = null, int? groupId = null,
             int? userId = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -131,7 +131,7 @@ namespace VkLibrary.Core.Methods
             if (userId != null)
                 parameters.Add("user_id", userId.ToApiString());
 
-            return await _vkontakte.GetAsync<IEnumerable<WikipageVersion>>("pages.getHistory", parameters);
+            return _vkontakte.GetAsync<IEnumerable<WikipageVersion>>("pages.getHistory", parameters);
         }
 
         /// <summary>
@@ -139,14 +139,14 @@ namespace VkLibrary.Core.Methods
         /// Docs: <see href="https://vk.com/dev/pages.getTitles">pages.getTitles</see>
         /// </summary>
         /// <param name="groupId">ID of the community that owns the wiki page.</param>
-        public async Task<IEnumerable<Wikipage>> GetTitles(int? groupId = null)
+        public Task<IEnumerable<Wikipage>> GetTitles(int? groupId = null)
         {
             var parameters = new Dictionary<string, string>();
 
             if (groupId != null)
                 parameters.Add("group_id", groupId.ToApiString());
 
-            return await _vkontakte.GetAsync<IEnumerable<Wikipage>>("pages.getTitles", parameters);
+            return _vkontakte.GetAsync<IEnumerable<Wikipage>>("pages.getTitles", parameters);
         }
 
         /// <summary>
@@ -157,7 +157,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="groupId">ID of the community that owns the wiki page.</param>
         /// <param name="userId"></param>
         /// <param name="needHtml">'1' — to return the page as HTML</param>
-        public async Task<WikipageFull> GetVersion(int? versionId = null, int? groupId = null, int? userId = null,
+        public Task<WikipageFull> GetVersion(int? versionId = null, int? groupId = null, int? userId = null,
             bool? needHtml = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -171,7 +171,7 @@ namespace VkLibrary.Core.Methods
             if (needHtml != null)
                 parameters.Add("need_html", needHtml.ToApiString());
 
-            return await _vkontakte.GetAsync<WikipageFull>("pages.getVersion", parameters);
+            return _vkontakte.GetAsync<WikipageFull>("pages.getVersion", parameters);
         }
 
         /// <summary>
@@ -180,7 +180,7 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="text">Text of the wiki page.</param>
         /// <param name="groupId">ID of the group in the context of which this markup is interpreted.;</param>
-        public async Task<string> ParseWiki(string text = null, int? groupId = null)
+        public Task<string> ParseWiki(string text = null, int? groupId = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -189,7 +189,7 @@ namespace VkLibrary.Core.Methods
             if (groupId != null)
                 parameters.Add("group_id", groupId.ToApiString());
 
-            return await _vkontakte.GetAsync<string>("pages.parseWiki", parameters);
+            return _vkontakte.GetAsync<string>("pages.parseWiki", parameters);
         }
 
         /// <summary>
@@ -197,14 +197,14 @@ namespace VkLibrary.Core.Methods
         /// Docs: <see href="https://vk.com/dev/pages.clearCache">pages.clearCache</see>
         /// </summary>
         /// <param name="url">Address of the page where you need to refesh the cached version</param>
-        public async Task<int> ClearCache(string url = null)
+        public Task<int> ClearCache(string url = null)
         {
             var parameters = new Dictionary<string, string>();
 
             if (url != null)
                 parameters.Add("url", url);
 
-            return await _vkontakte.GetAsync<int>("pages.clearCache", parameters);
+            return _vkontakte.GetAsync<int>("pages.clearCache", parameters);
         }
     }
 }

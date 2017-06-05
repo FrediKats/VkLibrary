@@ -30,7 +30,7 @@ namespace VkLibrary.Core.Methods
         /// </param>
         /// <param name="startTime">Earliest timestamp (in Unix time) of a notification to return. By default, 24 hours ago.</param>
         /// <param name="endTime">Latest timestamp (in Unix time) of a notification to return. By default, the current time.</param>
-        public async Task<ApiItemsResponse<Notification>> Get(int? count = null, string startFrom = null,
+        public Task<ApiItemsResponse<Notification>> Get(int? count = null, string startFrom = null,
             IEnumerable<string> filters = null, int? startTime = null, int? endTime = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -46,19 +46,19 @@ namespace VkLibrary.Core.Methods
             if (endTime != null)
                 parameters.Add("end_time", endTime.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<Notification>>("notifications.get", parameters);
+            return _vkontakte.GetAsync<ApiItemsResponse<Notification>>("notifications.get", parameters);
         }
 
         /// <summary>
         /// Resets the counter of new notifications about other users' feedback to the current user's wall posts.
         /// Docs: <see href="https://vk.com/dev/notifications.markAsViewed">notifications.markAsViewed</see>
         /// </summary>
-        public async Task<int> MarkAsViewed()
+        public Task<int> MarkAsViewed()
         {
             var parameters = new Dictionary<string, string>();
 
 
-            return await _vkontakte.GetAsync<int>("notifications.markAsViewed", parameters);
+            return _vkontakte.GetAsync<int>("notifications.markAsViewed", parameters);
         }
     }
 }

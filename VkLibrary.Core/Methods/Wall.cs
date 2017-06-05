@@ -35,7 +35,7 @@ namespace VkLibrary.Core.Methods
         /// (default)
         /// </param>
         /// <param name="fields"></param>
-        public async Task<NewsFeedResponse> Get(
+        public Task<NewsFeedResponse> Get(
             int? ownerId = null, string domain = null, int? offset = null, int? count = null,
             string filter = null, bool? extended = null, IEnumerable<string> fields = null)
         {
@@ -56,7 +56,7 @@ namespace VkLibrary.Core.Methods
             if (fields != null)
                 parameters.Add("fields", fields.ToApiString());
 
-            return await _vkontakte.GetAsync<NewsFeedResponse>("wall.get", parameters);
+            return _vkontakte.GetAsync<NewsFeedResponse>("wall.get", parameters);
         }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="count">count of posts to return.</param>
         /// <param name="extended">count of posts to return.</param>
         /// <param name="fields"></param>
-        public async Task<ApiItemsResponse<WallpostFull>> Search(
+        public Task<ApiItemsResponse<WallpostFull>> Search(
             int? ownerId = null, string domain = null, string query = null, bool? ownersOnly = null,
             int? count = null, bool? extended = null, IEnumerable<string> fields = null)
         {
@@ -90,7 +90,7 @@ namespace VkLibrary.Core.Methods
             if (fields != null)
                 parameters.Add("fields", fields.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<WallpostFull>>("wall.get", parameters);
+            return _vkontakte.GetAsync<ApiItemsResponse<WallpostFull>>("wall.get", parameters);
         }
 
         /// <summary>
@@ -110,7 +110,7 @@ namespace VkLibrary.Core.Methods
         /// returned if the post is a repost from another wall.
         /// </param>
         /// <param name="fields"></param>
-        public async Task<NewsFeedResponse> GetById(IEnumerable<string> posts = null, bool? extended = null,
+        public Task<NewsFeedResponse> GetById(IEnumerable<string> posts = null, bool? extended = null,
             int? copyHistoryDepth = null, IEnumerable<string> fields = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -124,7 +124,7 @@ namespace VkLibrary.Core.Methods
             if (fields != null)
                 parameters.Add("fields", fields.ToApiString());
 
-            return await _vkontakte.GetAsync<NewsFeedResponse>("wall.getById", parameters);
+            return _vkontakte.GetAsync<NewsFeedResponse>("wall.getById", parameters);
         }
 
         /// <summary>
@@ -168,7 +168,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="postId">Post ID. Used for publishing of scheduled and suggested posts.</param>
         /// <param name="guid"></param>
         /// <param name="markAsAds"></param>
-        public async Task<PostResponse> Post(int? ownerId = null, bool? friendsOnly = null, bool? fromGroup = null,
+        public Task<PostResponse> Post(int? ownerId = null, bool? friendsOnly = null, bool? fromGroup = null,
             string message = null, IEnumerable<string> attachments = null, string services = null, bool? signed = null,
             int? publishDate = null, uint? lat = null, uint? long_ = null, int? placeId = null, int? postId = null,
             string guid = null, bool? markAsAds = null)
@@ -204,7 +204,7 @@ namespace VkLibrary.Core.Methods
             if (markAsAds != null)
                 parameters.Add("mark_as_ads", markAsAds.ToApiString());
 
-            return await _vkontakte.GetAsync<PostResponse>("wall.post", parameters);
+            return _vkontakte.GetAsync<PostResponse>("wall.post", parameters);
         }
 
         /// <summary>
@@ -215,7 +215,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="message">Comment to be added along with the reposted object.</param>
         /// <param name="groupId">Target community ID when reposting to a community.</param>
         /// <param name="markAsAds"></param>
-        public async Task<RepostResponse> Repost(string object_ = null, string message = null, int? groupId = null,
+        public Task<RepostResponse> Repost(string object_ = null, string message = null, int? groupId = null,
             bool? markAsAds = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -229,7 +229,7 @@ namespace VkLibrary.Core.Methods
             if (markAsAds != null)
                 parameters.Add("mark_as_ads", markAsAds.ToApiString());
 
-            return await _vkontakte.GetAsync<RepostResponse>("wall.repost", parameters);
+            return _vkontakte.GetAsync<RepostResponse>("wall.repost", parameters);
         }
 
         /// <summary>
@@ -243,7 +243,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="postId">Post ID.</param>
         /// <param name="offset">Offset needed to return a specific subset of reposts.</param>
         /// <param name="count">Number of reposts to return.</param>
-        public async Task<ApiItemsResponse<WallpostFull>> GetReposts(int? ownerId = null, int? postId = null,
+        public Task<ApiItemsResponse<WallpostFull>> GetReposts(int? ownerId = null, int? postId = null,
             int? offset = null, int? count = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -257,7 +257,7 @@ namespace VkLibrary.Core.Methods
             if (count != null)
                 parameters.Add("count", count.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<WallpostFull>>("wall.getReposts", parameters);
+            return _vkontakte.GetAsync<ApiItemsResponse<WallpostFull>>("wall.getReposts", parameters);
         }
 
         /// <summary>
@@ -299,7 +299,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="long_">Geographical longitude of the check-in, in degrees (from -180 to 180).</param>
         /// <param name="placeId">ID of the location where the user was tagged.</param>
         /// <param name="markAsAds"></param>
-        public async Task<int> Edit(int? ownerId = null, int? postId = null, bool? friendsOnly = null,
+        public Task<int> Edit(int? ownerId = null, int? postId = null, bool? friendsOnly = null,
             string message = null, IEnumerable<string> attachments = null, string services = null, bool? signed = null,
             int? publishDate = null, uint? lat = null, uint? long_ = null, int? placeId = null,
             bool? markAsAds = null)
@@ -331,7 +331,7 @@ namespace VkLibrary.Core.Methods
             if (markAsAds != null)
                 parameters.Add("mark_as_ads", markAsAds.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("wall.edit", parameters);
+            return _vkontakte.GetAsync<int>("wall.edit", parameters);
         }
 
         /// <summary>
@@ -340,7 +340,7 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="ownerId">User ID or community ID. Use a negative value to designate a community ID.</param>
         /// <param name="postId">ID of the post to be deleted.</param>
-        public async Task<int> Delete(int? ownerId = null, int? postId = null)
+        public Task<int> Delete(int? ownerId = null, int? postId = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -349,7 +349,7 @@ namespace VkLibrary.Core.Methods
             if (postId != null)
                 parameters.Add("post_id", postId.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("wall.delete", parameters);
+            return _vkontakte.GetAsync<int>("wall.delete", parameters);
         }
 
         /// <summary>
@@ -361,7 +361,7 @@ namespace VkLibrary.Core.Methods
         /// a community ID.
         /// </param>
         /// <param name="postId">ID of the post to be restored.</param>
-        public async Task<int> Restore(int? ownerId = null, int? postId = null)
+        public Task<int> Restore(int? ownerId = null, int? postId = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -370,7 +370,7 @@ namespace VkLibrary.Core.Methods
             if (postId != null)
                 parameters.Add("post_id", postId.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("wall.restore", parameters);
+            return _vkontakte.GetAsync<int>("wall.restore", parameters);
         }
 
         /// <summary>
@@ -382,7 +382,7 @@ namespace VkLibrary.Core.Methods
         /// value to designate a community ID.
         /// </param>
         /// <param name="postId">Post ID.</param>
-        public async Task<int> Pin(int? ownerId = null, int? postId = null)
+        public Task<int> Pin(int? ownerId = null, int? postId = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -391,7 +391,7 @@ namespace VkLibrary.Core.Methods
             if (postId != null)
                 parameters.Add("post_id", postId.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("wall.pin", parameters);
+            return _vkontakte.GetAsync<int>("wall.pin", parameters);
         }
 
         /// <summary>
@@ -403,7 +403,7 @@ namespace VkLibrary.Core.Methods
         /// value to designate a community ID.
         /// </param>
         /// <param name="postId">Post ID.</param>
-        public async Task<int> Unpin(int? ownerId = null, int? postId = null)
+        public Task<int> Unpin(int? ownerId = null, int? postId = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -412,7 +412,7 @@ namespace VkLibrary.Core.Methods
             if (postId != null)
                 parameters.Add("post_id", postId.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("wall.unpin", parameters);
+            return _vkontakte.GetAsync<int>("wall.unpin", parameters);
         }
 
         /// <summary>
@@ -431,7 +431,7 @@ namespace VkLibrary.Core.Methods
         /// Specify '0' if you do not want to truncate comments.;
         /// </param>
         /// <param name="extended"></param>
-        public async Task<CommentsResponse> GetComments(int? ownerId = null, int? postId = null,
+        public Task<CommentsResponse> GetComments(int? ownerId = null, int? postId = null,
             bool? needLikes = null, int? startCommentId = null, int? offset = null, int? count = null,
             string sort = null, int? previewLength = null, bool? extended = null)
         {
@@ -456,7 +456,7 @@ namespace VkLibrary.Core.Methods
             if (extended != null)
                 parameters.Add("extended", extended.ToApiString());
 
-            return await _vkontakte.GetAsync<CommentsResponse>("wall.getComments", parameters);
+            return _vkontakte.GetAsync<CommentsResponse>("wall.getComments", parameters);
         }
 
         /// <summary>
@@ -485,7 +485,7 @@ namespace VkLibrary.Core.Methods
         /// </param>
         /// <param name="stickerId">Sticker ID.</param>
         /// <param name="guid">Unique identifier to avoid repeated comments.</param>
-        public async Task<CreateCommentResponse> CreateComment(int? ownerId = null, int? postId = null,
+        public Task<CreateCommentResponse> CreateComment(int? ownerId = null, int? postId = null,
             bool? fromGroup = null, string message = null, int? replyToComment = null,
             IEnumerable<string> attachments = null, int? stickerId = null, string guid = null)
         {
@@ -508,7 +508,7 @@ namespace VkLibrary.Core.Methods
             if (guid != null)
                 parameters.Add("guid", guid);
 
-            return await _vkontakte.GetAsync<CreateCommentResponse>("wall.createComment", parameters);
+            return _vkontakte.GetAsync<CreateCommentResponse>("wall.createComment", parameters);
         }
 
         /// <summary>
@@ -530,7 +530,7 @@ namespace VkLibrary.Core.Methods
         /// '%media_id%' — Media attachment ID.;
         /// Example:; "photo100172_166443618,photo66748_265827614"
         /// </param>
-        public async Task<int> EditComment(int? ownerId = null, int? commentId = null, string message = null,
+        public Task<int> EditComment(int? ownerId = null, int? commentId = null, string message = null,
             IEnumerable<string> attachments = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -544,7 +544,7 @@ namespace VkLibrary.Core.Methods
             if (attachments != null)
                 parameters.Add("attachments", attachments.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("wall.editComment", parameters);
+            return _vkontakte.GetAsync<int>("wall.editComment", parameters);
         }
 
         /// <summary>
@@ -553,7 +553,7 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="ownerId">User ID or community ID. Use a negative value to designate a community ID.;</param>
         /// <param name="commentId">Comment ID.</param>
-        public async Task<int> DeleteComment(int? ownerId = null, int? commentId = null)
+        public Task<int> DeleteComment(int? ownerId = null, int? commentId = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -562,7 +562,7 @@ namespace VkLibrary.Core.Methods
             if (commentId != null)
                 parameters.Add("comment_id", commentId.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("wall.deleteComment", parameters);
+            return _vkontakte.GetAsync<int>("wall.deleteComment", parameters);
         }
 
         /// <summary>
@@ -571,7 +571,7 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="ownerId">User ID or community ID. Use a negative value to designate a community ID.</param>
         /// <param name="commentId">Comment ID.</param>
-        public async Task<int> RestoreComment(int? ownerId = null, int? commentId = null)
+        public Task<int> RestoreComment(int? ownerId = null, int? commentId = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -580,7 +580,7 @@ namespace VkLibrary.Core.Methods
             if (commentId != null)
                 parameters.Add("comment_id", commentId.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("wall.restoreComment", parameters);
+            return _vkontakte.GetAsync<int>("wall.restoreComment", parameters);
         }
 
         /// <summary>
@@ -593,7 +593,7 @@ namespace VkLibrary.Core.Methods
         /// Reason for the complaint:; '0' – spam; '1' – child pornography; '2' – extremism; '3' – violence;
         /// '4' – drug propaganda; '5' – adult material; '6' – insult; abuse
         /// </param>
-        public async Task<int> ReportPost(int? ownerId = null, int? postId = null, int? reason = null)
+        public Task<int> ReportPost(int? ownerId = null, int? postId = null, int? reason = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -604,7 +604,7 @@ namespace VkLibrary.Core.Methods
             if (reason != null)
                 parameters.Add("reason", reason.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("wall.reportPost", parameters);
+            return _vkontakte.GetAsync<int>("wall.reportPost", parameters);
         }
 
         /// <summary>
@@ -617,7 +617,7 @@ namespace VkLibrary.Core.Methods
         /// Reason for the complaint:; '0' – spam; '1' – child pornography; '2' – extremism; '3' – violence;
         /// '4' – drug propaganda; '5' – adult material; '6' – insult; abuse
         /// </param>
-        public async Task<int> ReportComment(int? ownerId = null, int? commentId = null, int? reason = null)
+        public Task<int> ReportComment(int? ownerId = null, int? commentId = null, int? reason = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -628,7 +628,7 @@ namespace VkLibrary.Core.Methods
             if (reason != null)
                 parameters.Add("reason", reason.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("wall.reportComment", parameters);
+            return _vkontakte.GetAsync<int>("wall.reportComment", parameters);
         }
     }
 }

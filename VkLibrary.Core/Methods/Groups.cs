@@ -22,7 +22,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="groupId">ID or screen name of the community.</param>
         /// <param name="userId">User ID.</param>
         /// <param name="userIds">User IDs.</param>
-        public async Task<int> IsMember(string groupId = null, int? userId = null, IEnumerable<int?> userIds = null)
+        public Task<int> IsMember(string groupId = null, int? userId = null, IEnumerable<int?> userIds = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -34,7 +34,7 @@ namespace VkLibrary.Core.Methods
                 parameters.Add("user_ids", userIds.ToApiString());
             parameters.Add("extended", false.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("groups.isMember", parameters);
+            return _vkontakte.GetAsync<int>("groups.isMember", parameters);
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="groupIds">IDs or screen names of communities.</param>
         /// <param name="groupId">ID or screen name of the community.</param>
         /// <param name="fields">Group fields to return.;</param>
-        public async Task<IEnumerable<GroupFull>> GetById(IEnumerable<string> groupIds = null, string groupId = null,
+        public Task<IEnumerable<GroupFull>> GetById(IEnumerable<string> groupIds = null, string groupId = null,
             IEnumerable<string> fields = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -56,7 +56,7 @@ namespace VkLibrary.Core.Methods
             if (fields != null)
                 parameters.Add("fields", fields.ToApiString());
 
-            return await _vkontakte.GetAsync<IEnumerable<GroupFull>>("groups.getById", parameters);
+            return _vkontakte.GetAsync<IEnumerable<GroupFull>>("groups.getById", parameters);
         }
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="fields">Profile fields to return.;</param>
         /// <param name="offset">Offset needed to return a specific subset of communities.</param>
         /// <param name="count">Number of communities to return.</param>
-        public async Task<ApiItemsResponse<GroupFull>> Get(int? userId = null, bool? extended = true,
+        public Task<ApiItemsResponse<GroupFull>> Get(int? userId = null, bool? extended = true,
             IEnumerable<string> filter = null, IEnumerable<string> fields = null, int? offset = null, int? count = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -95,7 +95,7 @@ namespace VkLibrary.Core.Methods
             if (count != null)
                 parameters.Add("count", count.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<GroupFull>>("groups.get", parameters);
+            return _vkontakte.GetAsync<ApiItemsResponse<GroupFull>>("groups.get", parameters);
         }
 
         /// <summary>
@@ -120,7 +120,7 @@ namespace VkLibrary.Core.Methods
         /// *'friends' – only friends in this community will be returned;; *'unsure' – only those who pressed
         /// 'I may attend' will be returned (if it's an event).
         /// </param>
-        public async Task<ApiItemsResponse<T>> GetMembers<T>(int? groupId = null, string sort = null,
+        public Task<ApiItemsResponse<T>> GetMembers<T>(int? groupId = null, string sort = null,
             int? offset = null, int? count = null, IEnumerable<string> fields = null, string filter = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -138,7 +138,7 @@ namespace VkLibrary.Core.Methods
             if (filter != null)
                 parameters.Add("filter", filter);
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<T>>("groups.getMembers", parameters);
+            return _vkontakte.GetAsync<ApiItemsResponse<T>>("groups.getMembers", parameters);
         }
 
         /// <summary>
@@ -150,7 +150,7 @@ namespace VkLibrary.Core.Methods
         /// Optional parameter which is taken into account when 'gid' belongs to the event:; '1' — Perhaps I
         /// will attend; '0' — I will be there for sure (default); ;
         /// </param>
-        public async Task<int> Join(int? groupId = null, string notSure = null)
+        public Task<int> Join(int? groupId = null, string notSure = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -159,7 +159,7 @@ namespace VkLibrary.Core.Methods
             if (notSure != null)
                 parameters.Add("not_sure", notSure);
 
-            return await _vkontakte.GetAsync<int>("groups.join", parameters);
+            return _vkontakte.GetAsync<int>("groups.join", parameters);
         }
 
         /// <summary>
@@ -167,14 +167,14 @@ namespace VkLibrary.Core.Methods
         /// Docs: <see href="https://vk.com/dev/groups.leave">groups.leave</see>
         /// </summary>
         /// <param name="groupId">ID or screen name of the community.</param>
-        public async Task<int> Leave(int? groupId = null)
+        public Task<int> Leave(int? groupId = null)
         {
             var parameters = new Dictionary<string, string>();
 
             if (groupId != null)
                 parameters.Add("group_id", groupId.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("groups.leave", parameters);
+            return _vkontakte.GetAsync<int>("groups.leave", parameters);
         }
 
         /// <summary>
@@ -198,7 +198,7 @@ namespace VkLibrary.Core.Methods
         /// Number of communities to return.; "Note that you can not receive more than first thousand of
         /// results, regardless of 'count' and 'offset' values."
         /// </param>
-        public async Task<ApiItemsResponse<Group>> Search(string q = null, string type = null, int? countryId = null,
+        public Task<ApiItemsResponse<Group>> Search(string q = null, string type = null, int? countryId = null,
             int? cityId = null, bool? future = null, bool? market = null, int? sort = null, int? offset = null,
             int? count = null)
         {
@@ -223,7 +223,7 @@ namespace VkLibrary.Core.Methods
             if (count != null)
                 parameters.Add("count", count.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<Group>>("groups.search", parameters);
+            return _vkontakte.GetAsync<ApiItemsResponse<Group>>("groups.search", parameters);
         }
 
         /// <summary>
@@ -232,7 +232,7 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="categoryId">Category id received from [vk.com/dev/groups.getCatalogInfo|groups.getCatalogInfo].</param>
         /// <param name="subcategoryId">Subcategory id received from [vk.com/dev/groups.getCatalogInfo|groups.getCatalogInfo].</param>
-        public async Task<ApiItemsResponse<Group>> GetCatalog(int? categoryId = null, int? subcategoryId = null)
+        public Task<ApiItemsResponse<Group>> GetCatalog(int? categoryId = null, int? subcategoryId = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -241,7 +241,7 @@ namespace VkLibrary.Core.Methods
             if (subcategoryId != null)
                 parameters.Add("subcategory_id", subcategoryId.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<Group>>("groups.getCatalog", parameters);
+            return _vkontakte.GetAsync<ApiItemsResponse<Group>>("groups.getCatalog", parameters);
         }
 
         /// <summary>
@@ -250,7 +250,7 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="extended">1 – to return communities count and three communities for preview.; By default: 0.</param>
         /// <param name="subcategories">1 – to return subcategories info.; By default: 0.</param>
-        public async Task<GetCatalogInfoResponse> GetCatalogInfo(bool? extended = null, bool? subcategories = null)
+        public Task<GetCatalogInfoResponse> GetCatalogInfo(bool? extended = null, bool? subcategories = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -259,7 +259,7 @@ namespace VkLibrary.Core.Methods
             if (subcategories != null)
                 parameters.Add("subcategories", subcategories.ToApiString());
 
-            return await _vkontakte.GetAsync<GetCatalogInfoResponse>("groups.getCatalogInfo", parameters);
+            return _vkontakte.GetAsync<GetCatalogInfoResponse>("groups.getCatalogInfo", parameters);
         }
 
         /// <summary>
@@ -269,7 +269,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="offset">Offset needed to return a specific subset of invitations.</param>
         /// <param name="count">Number of invitations to return.</param>
         /// <param name="extended">'1' — to return additional [vk.com/dev/fields_groups|fields] for communities..</param>
-        public async Task<ApiItemsResponse<GroupXtrInvitedBy>> GetInvites(int? offset = null, int? count = null,
+        public Task<ApiItemsResponse<GroupXtrInvitedBy>> GetInvites(int? offset = null, int? count = null,
             bool? extended = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -281,7 +281,7 @@ namespace VkLibrary.Core.Methods
             if (extended != null)
                 parameters.Add("extended", extended.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<GroupXtrInvitedBy>>("groups.getInvites", parameters);
+            return _vkontakte.GetAsync<ApiItemsResponse<GroupXtrInvitedBy>>("groups.getInvites", parameters);
         }
 
         /// <summary>
@@ -302,7 +302,7 @@ namespace VkLibrary.Core.Methods
         /// Case for declension of user name and surname. Possible values:; *'nom' — nominative (default);;
         /// *'gen' — genitive;; *'dat' — dative;; *'acc' — accusative; ; *'ins' — instrumental;; *'abl' — prepositional.
         /// </param>
-        public async Task<ApiItemsResponse<UserFull>> GetInvitedUsers(int? groupId = null, int? offset = null,
+        public Task<ApiItemsResponse<UserFull>> GetInvitedUsers(int? groupId = null, int? offset = null,
             int? count = null, IEnumerable<string> fields = null, string nameCase = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -318,7 +318,7 @@ namespace VkLibrary.Core.Methods
             if (nameCase != null)
                 parameters.Add("name_case", nameCase);
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<UserFull>>("groups.getInvitedUsers", parameters);
+            return _vkontakte.GetAsync<ApiItemsResponse<UserFull>>("groups.getInvitedUsers", parameters);
         }
 
         /// <summary>
@@ -337,7 +337,7 @@ namespace VkLibrary.Core.Methods
         /// '1' — text of comment will be visible to the user;; '0' — text of comment will be
         /// invisible to the user. ; By default: '0'.
         /// </param>
-        public async Task<int> BanUser(int? groupId = null, int? userId = null, int? endDate = null,
+        public Task<int> BanUser(int? groupId = null, int? userId = null, int? endDate = null,
             int? reason = null, string comment = null, bool? commentVisible = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -355,7 +355,7 @@ namespace VkLibrary.Core.Methods
             if (commentVisible != null)
                 parameters.Add("comment_visible", commentVisible.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("groups.banUser", parameters);
+            return _vkontakte.GetAsync<int>("groups.banUser", parameters);
         }
 
         /// <summary>
@@ -364,7 +364,7 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="groupId">Community ID.</param>
         /// <param name="userId">User ID.</param>
-        public async Task<int> UnbanUser(int? groupId = null, int? userId = null)
+        public Task<int> UnbanUser(int? groupId = null, int? userId = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -373,7 +373,7 @@ namespace VkLibrary.Core.Methods
             if (userId != null)
                 parameters.Add("user_id", userId.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("groups.unbanUser", parameters);
+            return _vkontakte.GetAsync<int>("groups.unbanUser", parameters);
         }
 
         /// <summary>
@@ -385,7 +385,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="count">Number of users to return.</param>
         /// <param name="fields"></param>
         /// <param name="userId"></param>
-        public async Task<ApiItemsResponse<UserXtrBanInfo>> GetBanned(int? groupId = null, int? offset = null,
+        public Task<ApiItemsResponse<UserXtrBanInfo>> GetBanned(int? groupId = null, int? offset = null,
             int? count = null, IEnumerable<string> fields = null, int? userId = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -401,7 +401,7 @@ namespace VkLibrary.Core.Methods
             if (userId != null)
                 parameters.Add("user_id", userId.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<UserXtrBanInfo>>("groups.getBanned", parameters);
+            return _vkontakte.GetAsync<ApiItemsResponse<UserXtrBanInfo>>("groups.getBanned", parameters);
         }
 
         /// <summary>
@@ -416,7 +416,7 @@ namespace VkLibrary.Core.Methods
         /// Public page subtype. Possible values:; *'1' – place or small business;; *'2' – company,
         /// organization or website;; *'3' – famous person or group of people;; *'4' – product or work of art.
         /// </param>
-        public async Task<Group> Create(string title = null, string description = null, string type = null,
+        public Task<Group> Create(string title = null, string description = null, string type = null,
             int? publicCategory = null, int? subtype = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -432,7 +432,7 @@ namespace VkLibrary.Core.Methods
             if (subtype != null)
                 parameters.Add("subtype", subtype.ToApiString());
 
-            return await _vkontakte.GetAsync<Group>("groups.create", parameters);
+            return _vkontakte.GetAsync<Group>("groups.create", parameters);
         }
 
         /// <summary>
@@ -518,7 +518,7 @@ namespace VkLibrary.Core.Methods
         /// </param>
         /// <param name="obsceneStopwords">Stopwords filter in comments. Possible values: ; *'0' – disabled;; *'1' – enabled.</param>
         /// <param name="obsceneWords">Keywords for stopwords filter.</param>
-        public async Task<int> Edit(int? groupId = null, string title = null, string description = null,
+        public Task<int> Edit(int? groupId = null, string title = null, string description = null,
             string screenName = null, int? access = null, string website = null, string subject = null,
             string email = null, string phone = null, string rss = null, int? eventStartDate = null,
             int? eventFinishDate = null, int? eventGroupId = null, int? publicCategory = null,
@@ -611,7 +611,7 @@ namespace VkLibrary.Core.Methods
             if (obsceneWords != null)
                 parameters.Add("obscene_words", obsceneWords.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("groups.edit", parameters);
+            return _vkontakte.GetAsync<int>("groups.edit", parameters);
         }
 
         /// <summary>
@@ -625,7 +625,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="cityId">City ID.</param>
         /// <param name="latitude">Geographical latitude.</param>
         /// <param name="longitude">Geographical longitude.</param>
-        public async Task<EditPlaceResponse> EditPlace(int? groupId = null, string title = null, string address = null,
+        public Task<EditPlaceResponse> EditPlace(int? groupId = null, string title = null, string address = null,
             int? countryId = null, int? cityId = null, uint? latitude = null, uint? longitude = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -645,7 +645,7 @@ namespace VkLibrary.Core.Methods
             if (longitude != null)
                 parameters.Add("longitude", longitude.ToApiString());
 
-            return await _vkontakte.GetAsync<EditPlaceResponse>("groups.editPlace", parameters);
+            return _vkontakte.GetAsync<EditPlaceResponse>("groups.editPlace", parameters);
         }
 
         /// <summary>
@@ -653,14 +653,14 @@ namespace VkLibrary.Core.Methods
         /// Docs: <see href="https://vk.com/dev/groups.getSettings">groups.getSettings</see>
         /// </summary>
         /// <param name="groupId">Community ID.</param>
-        public async Task<GroupSettings> GetSettings(int? groupId = null)
+        public Task<GroupSettings> GetSettings(int? groupId = null)
         {
             var parameters = new Dictionary<string, string>();
 
             if (groupId != null)
                 parameters.Add("group_id", groupId.ToApiString());
 
-            return await _vkontakte.GetAsync<GroupSettings>("groups.getSettings", parameters);
+            return _vkontakte.GetAsync<GroupSettings>("groups.getSettings", parameters);
         }
 
         /// <summary>
@@ -671,7 +671,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="offset">Offset needed to return a specific subset of results.</param>
         /// <param name="count">Number of results to return.</param>
         /// <param name="fields">Profile fields to return.;</param>
-        public async Task<ApiItemsResponse<int?>> GetRequests(int? groupId = null, int? offset = null,
+        public Task<ApiItemsResponse<int?>> GetRequests(int? groupId = null, int? offset = null,
             int? count = null, IEnumerable<string> fields = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -685,7 +685,7 @@ namespace VkLibrary.Core.Methods
             if (fields != null)
                 parameters.Add("fields", fields.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<int?>>("groups.getRequests", parameters);
+            return _vkontakte.GetAsync<ApiItemsResponse<int?>>("groups.getRequests", parameters);
         }
 
         /// <summary>
@@ -699,7 +699,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="contactPosition">Position to show in Contacts block.</param>
         /// <param name="contactPhone">Contact phone.</param>
         /// <param name="contactEmail">Contact e-mail.</param>
-        public async Task<int> EditManager(int? groupId = null, int? userId = null, string role = null,
+        public Task<int> EditManager(int? groupId = null, int? userId = null, string role = null,
             bool? isContact = null, string contactPosition = null, string contactPhone = null,
             string contactEmail = null)
         {
@@ -720,7 +720,7 @@ namespace VkLibrary.Core.Methods
             if (contactEmail != null)
                 parameters.Add("contact_email", contactEmail);
 
-            return await _vkontakte.GetAsync<int>("groups.editManager", parameters);
+            return _vkontakte.GetAsync<int>("groups.editManager", parameters);
         }
 
         /// <summary>
@@ -729,7 +729,7 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="groupId">Community ID.</param>
         /// <param name="userId">User ID.</param>
-        public async Task<int> Invite(int? groupId = null, int? userId = null)
+        public Task<int> Invite(int? groupId = null, int? userId = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -738,7 +738,7 @@ namespace VkLibrary.Core.Methods
             if (userId != null)
                 parameters.Add("user_id", userId.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("groups.invite", parameters);
+            return _vkontakte.GetAsync<int>("groups.invite", parameters);
         }
 
         /// <summary>
@@ -748,7 +748,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="groupId">Community ID.</param>
         /// <param name="link">Link URL.</param>
         /// <param name="text">Description text for the link.</param>
-        public async Task<GroupLink> AddLink(int? groupId = null, string link = null, string text = null)
+        public Task<GroupLink> AddLink(int? groupId = null, string link = null, string text = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -759,7 +759,7 @@ namespace VkLibrary.Core.Methods
             if (text != null)
                 parameters.Add("text", text);
 
-            return await _vkontakte.GetAsync<GroupLink>("groups.addLink", parameters);
+            return _vkontakte.GetAsync<GroupLink>("groups.addLink", parameters);
         }
 
         /// <summary>
@@ -768,7 +768,7 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="groupId">Community ID.</param>
         /// <param name="linkId">Link ID.</param>
-        public async Task<int> DeleteLink(int? groupId = null, int? linkId = null)
+        public Task<int> DeleteLink(int? groupId = null, int? linkId = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -777,7 +777,7 @@ namespace VkLibrary.Core.Methods
             if (linkId != null)
                 parameters.Add("link_id", linkId.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("groups.deleteLink", parameters);
+            return _vkontakte.GetAsync<int>("groups.deleteLink", parameters);
         }
 
         /// <summary>
@@ -787,7 +787,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="groupId">Community ID.</param>
         /// <param name="linkId">Link ID.</param>
         /// <param name="text">New description text for the link.</param>
-        public async Task<int> EditLink(int? groupId = null, int? linkId = null, string text = null)
+        public Task<int> EditLink(int? groupId = null, int? linkId = null, string text = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -798,7 +798,7 @@ namespace VkLibrary.Core.Methods
             if (text != null)
                 parameters.Add("text", text);
 
-            return await _vkontakte.GetAsync<int>("groups.editLink", parameters);
+            return _vkontakte.GetAsync<int>("groups.editLink", parameters);
         }
 
         /// <summary>
@@ -808,7 +808,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="groupId">Community ID.</param>
         /// <param name="linkId">Link ID.</param>
         /// <param name="after">ID of the link after which to place the link with 'link_id'.</param>
-        public async Task<int> ReorderLink(int? groupId = null, int? linkId = null, int? after = null)
+        public Task<int> ReorderLink(int? groupId = null, int? linkId = null, int? after = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -819,7 +819,7 @@ namespace VkLibrary.Core.Methods
             if (after != null)
                 parameters.Add("after", after.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("groups.reorderLink", parameters);
+            return _vkontakte.GetAsync<int>("groups.reorderLink", parameters);
         }
 
         /// <summary>
@@ -828,7 +828,7 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="groupId">Community ID.</param>
         /// <param name="userId">User ID.</param>
-        public async Task<int> RemoveUser(int? groupId = null, int? userId = null)
+        public Task<int> RemoveUser(int? groupId = null, int? userId = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -837,7 +837,7 @@ namespace VkLibrary.Core.Methods
             if (userId != null)
                 parameters.Add("user_id", userId.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("groups.removeUser", parameters);
+            return _vkontakte.GetAsync<int>("groups.removeUser", parameters);
         }
 
         /// <summary>
@@ -846,7 +846,7 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="groupId">Community ID.</param>
         /// <param name="userId">User ID.</param>
-        public async Task<int> ApproveRequest(int? groupId = null, int? userId = null)
+        public Task<int> ApproveRequest(int? groupId = null, int? userId = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -855,7 +855,7 @@ namespace VkLibrary.Core.Methods
             if (userId != null)
                 parameters.Add("user_id", userId.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("groups.approveRequest", parameters);
+            return _vkontakte.GetAsync<int>("groups.approveRequest", parameters);
         }
 
         /// <summary>
@@ -863,14 +863,14 @@ namespace VkLibrary.Core.Methods
         /// Docs: <see href="https://vk.com/dev/groups.getCallbackConfirmationCode">groups.getCallbackConfirmationCode</see>
         /// </summary>
         /// <param name="groupId">Community ID.</param>
-        public async Task<GetCallbackConfirmationCodeResponse> GetCallbackConfirmationCode(int? groupId = null)
+        public Task<GetCallbackConfirmationCodeResponse> GetCallbackConfirmationCode(int? groupId = null)
         {
             var parameters = new Dictionary<string, string>();
 
             if (groupId != null)
                 parameters.Add("group_id", groupId.ToApiString());
 
-            return await _vkontakte.GetAsync<GetCallbackConfirmationCodeResponse>("groups.getCallbackConfirmationCode",
+            return _vkontakte.GetAsync<GetCallbackConfirmationCodeResponse>("groups.getCallbackConfirmationCode",
                 parameters);
         }
 
@@ -879,14 +879,14 @@ namespace VkLibrary.Core.Methods
         /// Docs: <see href="https://vk.com/dev/groups.getCallbackServerSettings">groups.getCallbackServerSettings</see>
         /// </summary>
         /// <param name="groupId">Community ID.</param>
-        public async Task<GetCallbackServerSettingsResponse> GetCallbackServerSettings(int? groupId = null)
+        public Task<GetCallbackServerSettingsResponse> GetCallbackServerSettings(int? groupId = null)
         {
             var parameters = new Dictionary<string, string>();
 
             if (groupId != null)
                 parameters.Add("group_id", groupId.ToApiString());
 
-            return await _vkontakte.GetAsync<GetCallbackServerSettingsResponse>("groups.getCallbackServerSettings",
+            return _vkontakte.GetAsync<GetCallbackServerSettingsResponse>("groups.getCallbackServerSettings",
                 parameters);
         }
 
@@ -895,14 +895,14 @@ namespace VkLibrary.Core.Methods
         /// Docs: <see href="https://vk.com/dev/groups.getCallbackSettings">groups.getCallbackSettings</see>
         /// </summary>
         /// <param name="groupId">Community ID.</param>
-        public async Task<GetCallbackSettingsResponse> GetCallbackSettings(int? groupId = null)
+        public Task<GetCallbackSettingsResponse> GetCallbackSettings(int? groupId = null)
         {
             var parameters = new Dictionary<string, string>();
 
             if (groupId != null)
                 parameters.Add("group_id", groupId.ToApiString());
 
-            return await _vkontakte.GetAsync<GetCallbackSettingsResponse>("groups.getCallbackSettings", parameters);
+            return _vkontakte.GetAsync<GetCallbackSettingsResponse>("groups.getCallbackSettings", parameters);
         }
 
         /// <summary>
@@ -911,7 +911,7 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="groupId">Community ID.</param>
         /// <param name="serverUrl">Server URL.</param>
-        public async Task<SetCallbackServerResponse> SetCallbackServer(int? groupId = null, string serverUrl = null)
+        public Task<SetCallbackServerResponse> SetCallbackServer(int? groupId = null, string serverUrl = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -920,7 +920,7 @@ namespace VkLibrary.Core.Methods
             if (serverUrl != null)
                 parameters.Add("server_url", serverUrl);
 
-            return await _vkontakte.GetAsync<SetCallbackServerResponse>("groups.setCallbackServer", parameters);
+            return _vkontakte.GetAsync<SetCallbackServerResponse>("groups.setCallbackServer", parameters);
         }
 
         /// <summary>
@@ -929,7 +929,7 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="groupId">Community ID.</param>
         /// <param name="secretKey">Callback API secret key.</param>
-        public async Task<int> SetCallbackServerSettings(int? groupId = null, string secretKey = null)
+        public Task<int> SetCallbackServerSettings(int? groupId = null, string secretKey = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -938,7 +938,7 @@ namespace VkLibrary.Core.Methods
             if (secretKey != null)
                 parameters.Add("secret_key", secretKey);
 
-            return await _vkontakte.GetAsync<int>("groups.setCallbackServerSettings", parameters);
+            return _vkontakte.GetAsync<int>("groups.setCallbackServerSettings", parameters);
         }
 
         /// <summary>
@@ -964,7 +964,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="marketCommentNew">New comment to market item notifications ('0' — disabled, '1' — enabled).</param>
         /// <param name="groupJoin">Joined community notifications ('0' — disabled, '1' — enabled).</param>
         /// <param name="groupLeave">Left community notifications ('0' — disabled, '1' — enabled).</param>
-        public async Task<int> SetCallbackSettings(int? groupId = null, bool? messageNew = null,
+        public Task<int> SetCallbackSettings(int? groupId = null, bool? messageNew = null,
             bool? messageAllow = null, bool? messageDeny = null, bool? photoNew = null, bool? audioNew = null,
             bool? videoNew = null, bool? wallReplyNew = null, bool? wallReplyEdit = null,
             bool? wallPostNew = null, bool? boardPostNew = null, bool? boardPostEdit = null,
@@ -1013,7 +1013,7 @@ namespace VkLibrary.Core.Methods
             if (groupLeave != null)
                 parameters.Add("group_leave", groupLeave.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("groups.setCallbackSettings", parameters);
+            return _vkontakte.GetAsync<int>("groups.setCallbackSettings", parameters);
         }
     }
 }

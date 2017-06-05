@@ -22,7 +22,7 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="count">number of returned orders.</param>
         /// <param name="testMode">if this parameter is set to 1, this method returns a list of test mode orders. By default — 0.</param>
-        public async Task<IEnumerable<Order>> Get(int? count = null, bool? testMode = null)
+        public Task<IEnumerable<Order>> Get(int? count = null, bool? testMode = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -31,7 +31,7 @@ namespace VkLibrary.Core.Methods
             if (testMode != null)
                 parameters.Add("test_mode", testMode.ToApiString());
 
-            return await _vkontakte.GetAsync<IEnumerable<Order>>("orders.get", parameters);
+            return _vkontakte.GetAsync<IEnumerable<Order>>("orders.get", parameters);
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="orderId">order ID.</param>
         /// <param name="orderIds">order IDs (when information about several orders is requested).</param>
         /// <param name="testMode">if this parameter is set to 1, this method returns a list of test mode orders. By default — 0.</param>
-        public async Task<IEnumerable<Order>> GetById(int? orderId = null, IEnumerable<int?> orderIds = null,
+        public Task<IEnumerable<Order>> GetById(int? orderId = null, IEnumerable<int?> orderIds = null,
             bool? testMode = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -53,7 +53,7 @@ namespace VkLibrary.Core.Methods
             if (testMode != null)
                 parameters.Add("test_mode", testMode.ToApiString());
 
-            return await _vkontakte.GetAsync<IEnumerable<Order>>("orders.getById", parameters);
+            return _vkontakte.GetAsync<IEnumerable<Order>>("orders.getById", parameters);
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace VkLibrary.Core.Methods
         /// </param>
         /// <param name="appOrderId">internal ID of the order in the application.</param>
         /// <param name="testMode">if this parameter is set to 1, this method returns a list of test mode orders. By default — 0.</param>
-        public async Task<string> ChangeState(int? orderId = null, string action = null, int? appOrderId = null,
+        public Task<string> ChangeState(int? orderId = null, string action = null, int? appOrderId = null,
             bool? testMode = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -82,7 +82,7 @@ namespace VkLibrary.Core.Methods
             if (testMode != null)
                 parameters.Add("test_mode", testMode.ToApiString());
 
-            return await _vkontakte.GetAsync<string>("orders.changeState", parameters);
+            return _vkontakte.GetAsync<string>("orders.changeState", parameters);
         }
 
         /// <summary>
@@ -90,7 +90,7 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="userId"></param>
         /// <param name="votes"></param>
-        public async Task<Amount> GetAmount(int? userId = null, IEnumerable<string> votes = null)
+        public Task<Amount> GetAmount(int? userId = null, IEnumerable<string> votes = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -99,7 +99,7 @@ namespace VkLibrary.Core.Methods
             if (votes != null)
                 parameters.Add("votes", votes.ToApiString());
 
-            return await _vkontakte.GetAsync<Amount>("orders.getAmount", parameters);
+            return _vkontakte.GetAsync<Amount>("orders.getAmount", parameters);
         }
     }
 }

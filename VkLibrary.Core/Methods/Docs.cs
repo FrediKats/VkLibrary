@@ -27,7 +27,7 @@ namespace VkLibrary.Core.Methods
         /// ID of the user or community that owns the documents. Use a negative value to designate a
         /// community ID.
         /// </param>
-        public async Task<ApiItemsResponse<Doc>> Get(int? count = null, int? offset = null, int? ownerId = null)
+        public Task<ApiItemsResponse<Doc>> Get(int? count = null, int? offset = null, int? ownerId = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -38,7 +38,7 @@ namespace VkLibrary.Core.Methods
             if (ownerId != null)
                 parameters.Add("owner_id", ownerId.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<Doc>>("docs.get", parameters);
+            return _vkontakte.GetAsync<ApiItemsResponse<Doc>>("docs.get", parameters);
         }
 
         /// <summary>
@@ -46,14 +46,14 @@ namespace VkLibrary.Core.Methods
         /// Docs: <see href="https://vk.com/dev/docs.getById">docs.getById</see>
         /// </summary>
         /// <param name="docs">Document IDs. Example: ; "66748_91488,66748_91455";</param>
-        public async Task<IEnumerable<Doc>> GetById(IEnumerable<string> docs = null)
+        public Task<IEnumerable<Doc>> GetById(IEnumerable<string> docs = null)
         {
             var parameters = new Dictionary<string, string>();
 
             if (docs != null)
                 parameters.Add("docs", docs.ToApiString());
 
-            return await _vkontakte.GetAsync<IEnumerable<Doc>>("docs.getById", parameters);
+            return _vkontakte.GetAsync<IEnumerable<Doc>>("docs.getById", parameters);
         }
 
         /// <summary>
@@ -61,14 +61,14 @@ namespace VkLibrary.Core.Methods
         /// Docs: <see href="https://vk.com/dev/docs.getUploadServer">docs.getUploadServer</see>
         /// </summary>
         /// <param name="groupId">Community ID (if the document will be uploaded to the community).</param>
-        public async Task<GetUploadServerResponse> GetUploadServer(int? groupId = null)
+        public Task<GetUploadServerResponse> GetUploadServer(int? groupId = null)
         {
             var parameters = new Dictionary<string, string>();
 
             if (groupId != null)
                 parameters.Add("group_id", groupId.ToApiString());
 
-            return await _vkontakte.GetAsync<GetUploadServerResponse>("docs.getUploadServer", parameters);
+            return _vkontakte.GetAsync<GetUploadServerResponse>("docs.getUploadServer", parameters);
         }
 
         /// <summary>
@@ -76,14 +76,14 @@ namespace VkLibrary.Core.Methods
         /// Docs: <see href="https://vk.com/dev/docs.getWallUploadServer">docs.getWallUploadServer</see>
         /// </summary>
         /// <param name="groupId">Community ID (if the document will be uploaded to the community).</param>
-        public async Task<GetWallUploadServerResponse> GetWallUploadServer(int? groupId = null)
+        public Task<GetWallUploadServerResponse> GetWallUploadServer(int? groupId = null)
         {
             var parameters = new Dictionary<string, string>();
 
             if (groupId != null)
                 parameters.Add("group_id", groupId.ToApiString());
 
-            return await _vkontakte.GetAsync<GetWallUploadServerResponse>("docs.getWallUploadServer", parameters);
+            return _vkontakte.GetAsync<GetWallUploadServerResponse>("docs.getWallUploadServer", parameters);
         }
 
         /// <summary>
@@ -93,7 +93,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="file">This parameter is returned when the file is [vk.com/dev/upload_files_2|uploaded to the server].</param>
         /// <param name="title">Document title.</param>
         /// <param name="tags">Document tags.</param>
-        public async Task<IEnumerable<Doc>> Save(string file = null, string title = null, string tags = null)
+        public Task<IEnumerable<Doc>> Save(string file = null, string title = null, string tags = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -104,7 +104,7 @@ namespace VkLibrary.Core.Methods
             if (tags != null)
                 parameters.Add("tags", tags);
 
-            return await _vkontakte.GetAsync<IEnumerable<Doc>>("docs.save", parameters);
+            return _vkontakte.GetAsync<IEnumerable<Doc>>("docs.save", parameters);
         }
 
         /// <summary>
@@ -116,7 +116,7 @@ namespace VkLibrary.Core.Methods
         /// community ID.
         /// </param>
         /// <param name="docId">Document ID.</param>
-        public async Task<int> Delete(int? ownerId = null, int? docId = null)
+        public Task<int> Delete(int? ownerId = null, int? docId = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -125,7 +125,7 @@ namespace VkLibrary.Core.Methods
             if (docId != null)
                 parameters.Add("doc_id", docId.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("docs.delete", parameters);
+            return _vkontakte.GetAsync<int>("docs.delete", parameters);
         }
 
         /// <summary>
@@ -138,7 +138,7 @@ namespace VkLibrary.Core.Methods
         /// </param>
         /// <param name="docId">Document ID.</param>
         /// <param name="accessKey">Access key. This parameter is required if 'access_key' was returned with the document's data.</param>
-        public async Task<AddResponse> Add(int? ownerId = null, int? docId = null, string accessKey = null)
+        public Task<AddResponse> Add(int? ownerId = null, int? docId = null, string accessKey = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -149,7 +149,7 @@ namespace VkLibrary.Core.Methods
             if (accessKey != null)
                 parameters.Add("access_key", accessKey);
 
-            return await _vkontakte.GetAsync<AddResponse>("docs.add", parameters);
+            return _vkontakte.GetAsync<AddResponse>("docs.add", parameters);
         }
 
         /// <summary>
@@ -160,14 +160,14 @@ namespace VkLibrary.Core.Methods
         /// ID of the user or community that owns the documents. Use a negative value to designate a
         /// community ID.
         /// </param>
-        public async Task<ApiItemsResponse<DocTypes>> GetTypes(int? ownerId = null)
+        public Task<ApiItemsResponse<DocTypes>> GetTypes(int? ownerId = null)
         {
             var parameters = new Dictionary<string, string>();
 
             if (ownerId != null)
                 parameters.Add("owner_id", ownerId.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<DocTypes>>("docs.getTypes", parameters);
+            return _vkontakte.GetAsync<ApiItemsResponse<DocTypes>>("docs.getTypes", parameters);
         }
 
         /// <summary>
@@ -177,7 +177,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="q">Search query string.</param>
         /// <param name="count">Number of results to return.</param>
         /// <param name="offset">Offset needed to return a specific subset of results.</param>
-        public async Task<ApiItemsResponse<Doc>> Search(string q = null, int? count = null, int? offset = null)
+        public Task<ApiItemsResponse<Doc>> Search(string q = null, int? count = null, int? offset = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -188,7 +188,7 @@ namespace VkLibrary.Core.Methods
             if (offset != null)
                 parameters.Add("offset", offset.ToApiString());
 
-            return await _vkontakte.GetAsync<ApiItemsResponse<Doc>>("docs.search", parameters);
+            return _vkontakte.GetAsync<ApiItemsResponse<Doc>>("docs.search", parameters);
         }
 
         /// <summary>
@@ -199,7 +199,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="docId">Document ID.</param>
         /// <param name="title">Document title.</param>
         /// <param name="tags">Document tags.</param>
-        public async Task<int> Edit(int? ownerId = null, int? docId = null, string title = null,
+        public Task<int> Edit(int? ownerId = null, int? docId = null, string title = null,
             IEnumerable<string> tags = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -213,7 +213,7 @@ namespace VkLibrary.Core.Methods
             if (tags != null)
                 parameters.Add("tags", tags.ToApiString());
 
-            return await _vkontakte.GetAsync<int>("docs.edit", parameters);
+            return _vkontakte.GetAsync<int>("docs.edit", parameters);
         }
     }
 }
