@@ -34,7 +34,7 @@ module Extensions =
         lib
 
     /// Awaits a task and returns results.
-    let awaitForResults (task: Task<'a>) = 
+    let await (task: Task<'a>) = 
         async {
             let! result = 
                 task 

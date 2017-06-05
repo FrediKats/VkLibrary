@@ -13,10 +13,7 @@ namespace VkLibrary.Core.Methods
     {
         private readonly Vkontakte _vkontakte;
 
-        internal Groups(Vkontakte vkontakte)
-        {
-            _vkontakte = vkontakte;
-        }
+        internal Groups(Vkontakte vkontakte) => _vkontakte = vkontakte;
 
         /// <summary>
         /// Returns information specifying whether a user is a member of a community.
@@ -25,9 +22,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="groupId">ID or screen name of the community.</param>
         /// <param name="userId">User ID.</param>
         /// <param name="userIds">User IDs.</param>
-        /// <param name="extended">'1' — to return an extended response with additional fields.; By default: '0'.</param>
-        public async Task<int> IsMember(string groupId = null, int? userId = null, IEnumerable<int?> userIds = null,
-            bool? extended = null)
+        public async Task<int> IsMember(string groupId = null, int? userId = null, IEnumerable<int?> userIds = null)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -37,8 +32,7 @@ namespace VkLibrary.Core.Methods
                 parameters.Add("user_id", userId.ToApiString());
             if (userIds != null)
                 parameters.Add("user_ids", userIds.ToApiString());
-            if (extended != null)
-                parameters.Add("extended", extended.ToApiString());
+            parameters.Add("extended", false.ToApiString());
 
             return await _vkontakte.GetAsync<int>("groups.isMember", parameters);
         }

@@ -11,7 +11,7 @@ module DirectAuth =
     open VkLibrary.Core.Auth
     open VkLibrary.Core
     open Extensions
-    
+
     [<Test>]
     /// Direct auth login test.
     let directAuthTest () =
@@ -19,6 +19,7 @@ module DirectAuth =
         let login = Constants.login
         let pass = Constants.password
         lib.DirectAuth.Login(login, pass, ScopeSettings.CanAccessAdsCabinet)
-        |> awaitForResults
+        |> await
         |> fun x -> x.Token
         |> should not' (be Null)
+

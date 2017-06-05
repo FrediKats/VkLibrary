@@ -363,8 +363,14 @@
     <Compile Include="Types\Users\UsersArray.cs" />
     <Compile Include="Types\Users\UserXtrCounters.cs" />
     <Compile Include="Types\Users\UserXtrType.cs" />
+    <Compile Include="Types\Utils\City.cs" />
+    <Compile Include="Types\Utils\Country.cs" />
     <Compile Include="Types\Utils\DomainResolved.cs" />
     <Compile Include="Types\Utils\LinkChecked.cs" />
+    <Compile Include="Types\Utils\LinkInfoFull.cs" />
+    <Compile Include="Types\Utils\LinkInfo.cs" />
+    <Compile Include="Types\Utils\LinkInfoXtrStats.cs" />
+    <Compile Include="Types\Utils\SexAge.cs" />
     <Compile Include="Types\Video\CatBlock.cs" />
     <Compile Include="Types\Video\CatElement.cs" />
     <Compile Include="Types\Video\SaveResult.cs" />

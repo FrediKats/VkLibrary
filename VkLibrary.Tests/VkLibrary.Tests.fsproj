@@ -57,8 +57,8 @@
     <Compile Include="Tools.fs" />
     <Compile Include="OAuth.fs" />
     <Compile Include="DirectAuth.fs" />
-    <Compile Include="OpenMethods.fs" />
     <Compile Include="PostMethods.fs" />
+    <Compile Include="OpenMethods.fs" />
     <Compile Include="Methods.fs" />
     <None Include="Script.fsx" />
     <Content Include="packages.config" />

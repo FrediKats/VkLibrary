@@ -11,10 +11,7 @@ namespace VkLibrary.Core.Methods
     {
         private readonly Vkontakte _vkontakte;
 
-        internal Likes(Vkontakte vkontakte)
-        {
-            _vkontakte = vkontakte;
-        }
+        internal Likes(Vkontakte vkontakte) => _vkontakte = vkontakte;
 
         /// <summary>
         /// Returns a list of IDs of users who added the specified object to their 'Likes' list.
@@ -48,18 +45,14 @@ namespace VkLibrary.Core.Methods
         /// Specifies which users are returned:; '1' — to return only the current user's friends; '0' —
         /// to return all users (default)
         /// </param>
-        /// <param name="extended">
-        /// Specifies whether extended information will be returned.; '1' — to return extended information
-        /// about users and communities from the 'Likes' list; '0' — to return no additional information (default)
-        /// </param>
         /// <param name="offset">Offset needed to select a specific subset of users.</param>
         /// <param name="count">
         /// Number of user IDs to return (maximum '1000').; Default is '100' if 'friends_only' is set to '0';
         /// otherwise, the default is '10' if 'friends_only' is set to '1'.;
         /// </param>
         /// <param name="skipOwn"></param>
-        public async Task<ApiItemsResponse<int?>> GetList(string type = null, int? ownerId = null, int? itemId = null,
-            string pageUrl = null, string filter = null, bool? friendsOnly = null, bool? extended = null,
+        public async Task<ApiItemsResponse<int?>> GetList(string type = null, int? ownerId = null, 
+            int? itemId = null, string pageUrl = null, string filter = null, bool? friendsOnly = null, 
             int? offset = null, int? count = null, bool? skipOwn = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -76,8 +69,6 @@ namespace VkLibrary.Core.Methods
                 parameters.Add("filter", filter);
             if (friendsOnly != null)
                 parameters.Add("friends_only", friendsOnly.ToApiString());
-            if (extended != null)
-                parameters.Add("extended", extended.ToApiString());
             if (offset != null)
                 parameters.Add("offset", offset.ToApiString());
             if (count != null)
@@ -85,6 +76,7 @@ namespace VkLibrary.Core.Methods
             if (skipOwn != null)
                 parameters.Add("skip_own", skipOwn.ToApiString());
 
+            parameters.Add("extended", false.ToApiString());
             return await _vkontakte.GetAsync<ApiItemsResponse<int?>>("likes.getList", parameters);
         }
 

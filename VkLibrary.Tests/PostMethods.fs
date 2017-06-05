@@ -12,14 +12,14 @@ module PostMethods =
     open VkLibrary.Core
     open Newtonsoft.Json.Linq
     open System.Collections.Generic
-    
+
     [<Test>]
     /// Post async test.
     let postTest () =
         let uploader = signedLib().UploadHelper
         let url = Uri <| "http://httpbin.org/post"
-        uploader.PostAsync<JToken>(url, Array.create 2 1uy,"doc", "doc")
-        |> awaitForResults
+        uploader.PostAsync<JToken>(url, Array.create 2 1uy, "doc", "doc")
+        |> await
         |> tee log
         |> fun x -> x.["files"].["doc"]
         |> string
@@ -35,7 +35,7 @@ module PostMethods =
                 "one", Array.create 2 1uy;
                 "two", Array.create 2 1uy; ]
             |> Dictionary<_, _>)
-        |> awaitForResults
+        |> await
         |> tee log
         |> ignore
 
