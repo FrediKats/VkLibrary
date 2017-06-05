@@ -1,5 +1,9 @@
+<a href="https://www.nuget.org/packages/VkLibrary.Core/"><img src="https://img.shields.io/badge/.NET%20Standard-1.2-green.svg"></a>
+ <a href="https://www.nuget.org/packages/VkLibrary.Core/"><img src="https://img.shields.io/nuget/v/VkLibrary.Core.svg"></a>
+ <a href="https://www.nuget.org/packages/VkLibrary.Core/"><img src="https://img.shields.io/nuget/dt/VkLibrary.Core.svg"></a>
+
 # VkLibrary
-<b>VkLibrary</b> is an unofficial <a href="https://vk.com/dev">VK.COM API</a> library implemented in C# and covering almost all existing <a href="https://vk.com/dev/methods">API methods and types</a>, contains helper methods for <a href="https://vk.com/dev/access_token">DirectAuth and OAuth</a>, contains methods for easy file uploading to VK.COM servers using POST requests. Huge parts of it were generated using <a href="https://github.com/VKCOM/vk-api-schema">JSON Schema</a> and Python scripts. Instructions on how to use the library are provided below.
+<b>VkLibrary</b> is an unofficial <a href="https://vk.com/dev">vk.com API</a> library implemented in C# and covering almost all existing <a href="https://vk.com/dev/methods">API methods and types</a>, contains helper methods for <a href="https://vk.com/dev/access_token">DirectAuth and OAuth</a>, contains methods for easy file uploading to vk.com servers using POST requests. Huge parts of it were generated using <a href="https://github.com/VKCOM/vk-api-schema">JSON Schema</a> and Python scripts. Instructions on how to use the library are provided below.
 
 ## Contents
 - <a href="#getting-started">Getting started</a>
@@ -8,7 +12,8 @@
 - <a href="#calling-api-methods">Calling API methods</a>
 - <a href="#uploading-files">Uploading files</a>
 - <a href="#executing-scripts-in-vkscript">Executing scripts in VkScript</a>
-- <a href="#for-f-lovers">For F# lovers</a>
+- <a href="#for-f-developers">For F# developers</a>
+- <a href="#for-visual-basic-developers">For Visual Basic developers</a>
 - <a href="#reporting-bugs">Reporting bugs</a>
 - <a href="#roadmap">Roadmap</a>
 
@@ -38,11 +43,11 @@ var vk = new Vkontakte(
 ```
 
 ## Authentication
-Most methods require a valid access token. To get that token using <b>OAuth</b>, you should show a WebView-like control to a user, navigate him to authentication page and handle future redirects. More info can be found <a href="http://vk.com/dev/auth_mobile">here</a>. There are some examples below on how to get things done in UWP:
+Most methods require a valid access token. To get that token using <b>OAuth</b>, you should show a WebView-like control to a user, navigate him to authentication page and handle future redirects. More info can be found <a href="http://vk.com/dev/auth_mobile">here</a>. There is an example below on how to get things done in UWP:
 ```c#
 // Firstly we build an OAuth url and launch it. (assuming that WebView is a declared Web View control)
 var url = vk.OAuth.GetAuthUrl(ScopeSettings.CanAccessMessages, AuthDisplayType.Mobile);
-WebView.Navigate(new Uri(url));
+webView.Navigate(new Uri(url));
 
 // Secondly we subscribe to WebView's navigation starting event:
 void OnNavigationStarting(WebView sender, EventArgs args)
@@ -144,35 +149,42 @@ Outputs:
 }]
 ```
 
-## For F# Lovers
-VkLibrary can also be used with F# programming language. Here are some simple examples below on how to use this library:
+## For F# Developers
+VkLibrary can also be used with <a href="http://fsharp.org/">F# programming language</a>!
 ```f#
-// Library initialization is simple:
-use lib = new Vkontakte (string 1234567, JsonParsingType.UseStream)
-
-// Let's create a generic function to simulate C# await operator for Task<'a>.
+// Before we start, let's create a generic to simulate 
+// C# await operator for Task<'a>.
 let await (task: Task<'a>) = 
     async {
         let! result = task |> Async.AwaitTask 
         return result 
     } |> Async.RunSynchronously
  
-// Then we define a simple helper function to make types nullable:
-let nbl (x: 'a) = x |> Nullable<'a> 
- 
-// So we can call library methods in a familiar way and get results!
-let friends = await <| lib.Friends.Get()
+// Firstly we need to initialize the library:
+use lib = new Vkontakte (string 1234567, JsonParsingType.UseStream)
 
-// Named optional arguments with default values can be passed to the lib like this:
-let friends = 
-    lib.Friends.Get(userId=nbl 1234567, count=nbl 10)
+// So we can call library methods in a familiar way!
+let friends = await <| lib.Friends.Get()
+let firstFriend = 
+    lib.Friends.Get(userId = Nullable 1234567, count = Nullable 1)
     |> await
+    |> fun x -> x.Items.[0]
+```
+
+## For Visual Basic Developers
+Using VkLibrary with Visual Basic is pretty much the same as using it with C#. Examples:
+```vb
+Dim vk = new Vkontakte("12345", JsonParsingType.UseStream)
+Dim result = Await vk.Friends.Get(userId := 12345, count := 10)
 ```
 
 ## Reporting Bugs
-Please, report any bugs you find in the lib! Use this link to open a new issue:
+Please, report any bugs you find! Use this link to submit a bug-report:
 - <a href="https://github.com/Worldbeater/VkLibrary/issues/new">Open an issue</a>
 
 ## Roadmap
 - Add long polling support
 - Test and fix bugs left
+
+## License Info
+Licensed under the <a href="https://github.com/Worldbeater/VkLibrary/blob/master/LICENSE.md">MIT license</a>.
