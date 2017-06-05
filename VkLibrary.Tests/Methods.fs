@@ -14,16 +14,12 @@ module Methods =
     open VkLibrary.Core.Responses.Newsfeed
     open VkLibrary.Core.Auth
 
-    // Locally stored library.
-    let mutable lib = null
-    
     [<OneTimeSetUp>]
     /// Methods fixture setup.
-    let fixtureSetUp () = 
-        lib <-
-            getLib Constants.officialAppId String.Empty Constants.apiVersion
-            |> tee (fun x -> x.AccessToken <- AccessToken ())
-            |> tee (fun x -> x.AccessToken.Token <- Constants.accessToken)
+    let lib =
+        getLib Constants.officialAppId String.Empty Constants.apiVersion
+        |> tee (fun x -> x.AccessToken <- AccessToken ())
+        |> tee (fun x -> x.AccessToken.Token <- Constants.accessToken)
 
     [<OneTimeTearDown>]
     /// Dispose library when tests have completed.

@@ -13,13 +13,9 @@ module OpenMethods =
     open VkLibrary.Core.Responses.Newsfeed
     open System.Collections.Generic
 
-    // Locally stored library.
-    let mutable lib = null
-    
     [<OneTimeSetUp>]
     /// Methods fixture setup.
-    let fixtureSetUp () = 
-        lib <- getLib Constants.officialAppId String.Empty Constants.apiVersion
+    let lib = getLib Constants.officialAppId String.Empty Constants.apiVersion
 
     [<OneTimeTearDown>]
     /// Dispose library when tests have completed.
