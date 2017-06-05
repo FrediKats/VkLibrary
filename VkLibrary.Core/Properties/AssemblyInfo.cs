@@ -5,7 +5,7 @@ using System.Reflection;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("VkLibrary.Core")]
-[assembly: AssemblyDescription("VkLibrary is an unofficial VK.COM client library implemented in C#. It covers all existing VK.COM API methods and types, contains helper methods for DirectAuth and OAuth, contains methods for easy file uploading to VK.COM servers using POST requests.")]
+[assembly: AssemblyDescription("VkLibrary is an unofficial vk.com client library implemented in C#. It covers all existing vk.com API methods and types, contains helper methods for direct auth and OAuth, contains methods for easy file uploading to vk.com servers using post requests.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Artjom Graf")]
 [assembly: AssemblyProduct("VkLibrary.Core")]
@@ -24,5 +24,5 @@ using System.Reflection;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.1.0")]
+[assembly: AssemblyVersion("1.0.2.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
