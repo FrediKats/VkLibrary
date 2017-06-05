@@ -9,10 +9,11 @@
 - <a href="#uploading-files">Uploading files</a>
 - <a href="#executing-scripts-in-vkscript">Executing scripts in VkScript</a>
 - <a href="#for-f-lovers">For F# lovers</a>
+- <a href="#reporting-bugs">Reporting bugs</a>
 - <a href="#roadmap">Roadmap</a>
 
 ## Getting Started
-To use VkLibrary in your project you should install a <b>VkLibrary.Core</b> nuget package:
+To use VkLibrary in your project you should install a <a href="https://www.nuget.org/packages/VkLibrary.Core/">VkLibrary.Core</a> nuget package:
 ```
 PM> Install-Package VkLibrary.Core
 ```
@@ -44,7 +45,7 @@ var url = vk.OAuth.GetAuthUrl(ScopeSettings.CanAccessMessages, AuthDisplayType.M
 WebView.Navigate(new Uri(url));
 
 // Secondly we subscribe to WebView's navigation starting event:
-private async void WebViewNavigationStarting(WebView sender, WebViewNavigationStartingEventArgs args)
+void OnNavigationStarting(WebView sender, EventArgs args)
 {
     // And try to parse url when redirecting:
     var result = vk.OAuth.ParseResponseUrl(args.Uri);
@@ -54,17 +55,13 @@ private async void WebViewNavigationStarting(WebView sender, WebViewNavigationSt
         vk.AccessToken = result.AccessToken;
         
         // So library will sign all future requests using 'token' value.
-        var token = result.AccessToken.Token;
+        var token = vk.AccessToken.Token;
     }
 }
 ```
-If you are developing vk application that was <a href="https://vk.com/dev/auth_direct">approved</a> by vk administration, you can use Direct Auth extensions. You need to write the following code to perform user authentication:
+If you are developing an application that was <a href="https://vk.com/dev/auth_direct">approved</a> by vk administration, you can use Direct Auth extensions. You need to write the following code to perform user authentication:
 ```c#
-var accessToken = await vk.DirectAuth.Login(
-    login: "example@example.com",   // User's login (e-mail or phone)
-    password: "123456789",          // User's password
-    scope: ScopeSettings.CanDoStuff // Scope settings
-);
+var accessToken = await vk.DirectAuth.Login("login", "password", ScopeSettings.CanAccessWhatever);
 ```
 
 ## Calling API Methods
@@ -81,14 +78,10 @@ var users = await vk.Users.Get(
 );
 
 // Returns last 10 messages from a conversation.
-var messages = await vk.Messages.GetHistory(
-    userId: "12345", count: 10
-);
+var messages = await vk.Messages.GetHistory(userId: "12345", count: 10);
   
 // Sends message to a user. Returns 1 if OK, 0 if not OK.
-var ok = await vk.Messages.Send(
-    userId: "12345", message: "Hey! What's up?"
-);
+var ok = await vk.Messages.Send(userId: "12345", message: "Hey! What's up?");
 ```
 If you find an API method that VkLibrary does not support (this is unlikely, but may happen), use a generic <b>GetAsync</b> method:
 ```c#
@@ -100,12 +93,12 @@ var friends = vk.GetAsync<ApiItemsResponse<UserFull>>("friends.get",
     }
 );
 
-// The code above is the same as:
+// The code above is equivalent to:
 var friends = vk.Friends.Get(userId: 1234567, count: 10);
 ```
 
 ## Uploading Files
-VkLibrary has a helper section containing methods for <a href="https://vk.com/dev/upload_files">photos, videos, audios and documents uploading</a>. This section is called <b>UploadHelper</b>. There is an example below on how to upload a document to VK servers:
+VkLibrary has a helpers section containing methods for <a href="https://vk.com/dev/upload_files">photos, videos, audios and documents uploading</a>. This section is called <b>UploadHelper</b>. There is an example below on how to upload a document to VK servers:
 ```c#
 // Get documents upload server.
 var server = await vk.Docs.GetUploadServer();
@@ -175,6 +168,10 @@ let friends =
     lib.Friends.Get(userId=nbl 1234567, count=nbl 10)
     |> await
 ```
+
+## Reporting Bugs
+Please, report any bugs you find in the lib! Use this link to open a new issue:
+- <a href="https://github.com/Worldbeater/VkLibrary/issues/new">Open an issue</a>
 
 ## Roadmap
 - Add long polling support
