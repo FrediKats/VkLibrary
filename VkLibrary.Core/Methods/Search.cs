@@ -10,11 +10,7 @@ namespace VkLibrary.Core.Methods
     public class Search
     {
         private readonly Vkontakte _vkontakte;
-
-        internal Search(Vkontakte vkontakte)
-        {
-            _vkontakte = vkontakte;
-        }
+        internal Search(Vkontakte vkontakte) => _vkontakte = vkontakte;
 
         /// <summary>
         /// Allows the programmer to do a quick search for any substring.

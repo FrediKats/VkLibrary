@@ -124,7 +124,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="deviceYear">Device year.</param>
         /// <param name="deviceId">Unique device ID.</param>
         /// <param name="systemVersion">String version of device operating system.</param>
-        /// <param name="settings">Push settings in a [vk.com/dev/push_settings|special format].</param>
+        /// <param name="settings">Push settings in a special format.</param>
         public Task<int> RegisterDevice(string token = null, string deviceModel = null, int? deviceYear = null,
             string deviceId = null, string systemVersion = null, string settings = null)
         {
@@ -212,9 +212,9 @@ namespace VkLibrary.Core.Methods
         /// Docs: <see href="https://vk.com/dev/account.setPushSettings">account.setPushSettings</see>
         /// </summary>
         /// <param name="deviceId">Unique device ID.</param>
-        /// <param name="settings">Push settings in a [vk.com/dev/push_settings|special format].</param>
+        /// <param name="settings">Push settings in a special format.</param>
         /// <param name="key">Notification key.</param>
-        /// <param name="value">New value for the key in a [vk.com/dev/push_settings|special format].</param>
+        /// <param name="value">New value for the key in a special format.</param>
         public Task<int> SetPushSettings(string deviceId = null, string settings = null, string key = null,
             IEnumerable<string> value = null)
         {
@@ -350,12 +350,12 @@ namespace VkLibrary.Core.Methods
         }
 
         /// <summary>
-        /// Changes a user password after access is successfully restored with the [vk.com/dev/auth.restore|auth.restore]
+        /// Changes a user password after access is successfully restored with the auth.restore
         /// method.
         /// Docs: <see href="https://vk.com/dev/account.changePassword">account.changePassword</see>
         /// </summary>
         /// <param name="restoreSid">
-        /// Session id received after the [vk.com/dev/auth.restore|auth.restore] method is executed.; (If
+        /// Session id received after the auth.restore method is executed.; (If
         /// the password is changed right after the access was restored)
         /// </param>
         /// <param name="changePasswordHash">

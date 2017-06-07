@@ -12,11 +12,7 @@ namespace VkLibrary.Core.Methods
     public class Friends
     {
         private readonly Vkontakte _vkontakte;
-
-        internal Friends(Vkontakte vkontakte)
-        {
-            _vkontakte = vkontakte;
-        }
+        internal Friends(Vkontakte vkontakte) => _vkontakte = vkontakte;
 
         /// <summary>
         /// Returns a list of user IDs or detailed information about a user's friends.
@@ -26,12 +22,12 @@ namespace VkLibrary.Core.Methods
         /// <param name="order">
         /// Sort order: ; 'name' — by name (enabled only if the 'fields' parameter is used); 'hints' — by
         /// rating, similar to how friends are sorted in My friends section; ; This parameter is available only for
-        /// [vk.com/dev/standalone|desktop applications].
+        /// desktop applications.
         /// </param>
         /// <param name="listId">
-        /// ID of the friend list returned by the [vk.com/dev/friends.getLists|friends.getLists] method to be
+        /// ID of the friend list returned by the friends.getLists method to be
         /// used as the source. This parameter is taken into account only when the uid parameter is set to the current user
-        /// ID.; ; This parameter is available only for [vk.com/dev/standalone|desktop applications].
+        /// ID.; ; This parameter is available only for desktop applications.
         /// </param>
         /// <param name="count">Number of friends to return.</param>
         /// <param name="offset">Offset needed to return a specific subset of friends.</param>
@@ -383,9 +379,9 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="filter">
         /// Types of potential friends to return:; 'mutual' — users with many mutual friends ; 'contacts' —
-        /// users found with the [vk.com/dev/account.importContacts|account.importContacts] method ; 'mutual_contacts' — users
+        /// users found with the account.importContacts method ; 'mutual_contacts' — users
         /// who imported the same contacts as the current user with the
-        /// [vk.com/dev/account.importContacts|account.importContacts] method
+        /// account.importContacts method
         /// </param>
         /// <param name="count">Number of suggestions to return.</param>
         /// <param name="offset">Offset needed to return a specific subset of suggestions.</param>

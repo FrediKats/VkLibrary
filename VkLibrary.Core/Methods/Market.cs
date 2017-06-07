@@ -24,7 +24,7 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="ownerId">
         /// ID of an item owner community; "Note that community id in the 'owner_id' parameter should be
-        /// negative number. For example 'owner_id'=-1 matches the [vk.com/apiclub|VK API] community "
+        /// negative number. For example 'owner_id'=-1 matches the VK API community "
         /// </param>
         /// <param name="count">Number of items to return.</param>
         /// <param name="offset">Offset needed to return a specific subset of results.</param>
@@ -140,7 +140,7 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="ownerId">
         /// identifier of an album owner community; "Note that community id in the 'owner_id' parameter
-        /// should be negative number. For example 'owner_id'=-1 matches the [vk.com/apiclub|VK API] community "
+        /// should be negative number. For example 'owner_id'=-1 matches the VK API community "
         /// </param>
         /// <param name="albumIds">collections identifiers to obtain data from</param>
         public Task<ApiItemsResponse<MarketAlbum>> GetAlbumById(int? ownerId = null,
@@ -222,7 +222,7 @@ namespace VkLibrary.Core.Methods
         /// '1' — comments will be returned as numbered objects, in addition lists of 'profiles' and
         /// 'groups' objects will be returned.
         /// </param>
-        /// <param name="fields">List of additional profile fields to return. See the [vk.com/dev/fields|details]</param>
+        /// <param name="fields">List of additional profile fields to return. See the details</param>
         public Task<ApiItemsResponse<WallComment>> GetComments(int? ownerId = null, int? itemId = null,
             bool? needLikes = null, int? startCommentId = null, int? count = null, string sort = null,
             bool? extended = null, IEnumerable<string> fields = null)
@@ -255,7 +255,7 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="ownerId">
         /// identifier of an item owner community; "Note that community id in the 'owner_id' parameter
-        /// should be negative number. For example 'owner_id'=-1 matches the [vk.com/apiclub|VK API] community "
+        /// should be negative number. For example 'owner_id'=-1 matches the VK API community "
         /// </param>
         /// <param name="commentId">comment id</param>
         public Task<int> DeleteComment(int? ownerId = null, int? commentId = null)
@@ -276,7 +276,7 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="ownerId">
         /// identifier of an item owner community; "Note that community id in the 'owner_id' parameter
-        /// should be negative number. For example 'owner_id'=-1 matches the [vk.com/apiclub|VK API] community "
+        /// should be negative number. For example 'owner_id'=-1 matches the VK API community "
         /// </param>
         /// <param name="commentId">deleted comment id</param>
         public Task<int> RestoreComment(int? ownerId = null, int? commentId = null)

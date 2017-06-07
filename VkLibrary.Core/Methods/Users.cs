@@ -11,11 +11,7 @@ namespace VkLibrary.Core.Methods
     public class Users
     {
         private readonly Vkontakte _vkontakte;
-
-        internal Users(Vkontakte vkontakte)
-        {
-            _vkontakte = vkontakte;
-        }
+        internal Users(Vkontakte vkontakte) => _vkontakte = vkontakte;
 
         /// <summary>
         /// Returns detailed information on users.

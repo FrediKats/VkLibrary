@@ -11,11 +11,7 @@ namespace VkLibrary.Core.Methods
     public class Docs
     {
         private readonly Vkontakte _vkontakte;
-
-        internal Docs(Vkontakte vkontakte)
-        {
-            _vkontakte = vkontakte;
-        }
+        internal Docs(Vkontakte vkontakte) => _vkontakte = vkontakte;
 
         /// <summary>
         /// Returns detailed information about user or community documents.
@@ -87,10 +83,10 @@ namespace VkLibrary.Core.Methods
         }
 
         /// <summary>
-        /// Saves a document after [vk.com/dev/upload_files_2|uploading it to a server].
+        /// Saves a document after uploading it to a server.
         /// Docs: <see href="https://vk.com/dev/docs.save">docs.save</see>
         /// </summary>
-        /// <param name="file">This parameter is returned when the file is [vk.com/dev/upload_files_2|uploaded to the server].</param>
+        /// <param name="file">This parameter is returned when the file is uploaded to the server.</param>
         /// <param name="title">Document title.</param>
         /// <param name="tags">Document tags.</param>
         public Task<IEnumerable<Doc>> Save(string file = null, string title = null, string tags = null)

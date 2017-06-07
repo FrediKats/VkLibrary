@@ -12,11 +12,7 @@ namespace VkLibrary.Core.Methods
     public class Messages
     {
         private readonly Vkontakte _vkontakte;
-
-        internal Messages(Vkontakte vkontakte)
-        {
-            _vkontakte = vkontakte;
-        }
+        internal Messages(Vkontakte vkontakte) => _vkontakte = vkontakte;
 
         /// <summary>
         /// Returns a list of the current user's incoming or outgoing private messages.
@@ -178,7 +174,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="startFrom">Message ID to start return results from.</param>
         /// <param name="count">Number of objects to return.</param>
         /// <param name="photoSizes">'1' — to return photo sizes in a</param>
-        /// <param name="fields">Additional profile [vk.com/dev/fields|fields] to return. </param>
+        /// <param name="fields">Additional profile fields to return. </param>
         public Task<ApiItemsResponse<AttachmentsContainer>> GetHistoryAttachments(int? peerId = null,
             string mediaType = null, string startFrom = null, int? count = null, bool? photoSizes = null,
             IEnumerable<string> fields = null)
@@ -381,7 +377,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="useSsl">'1' — to use SSL.</param>
         /// <param name="needPts">
         /// '1' — to return the 'pts' field, needed for the
-        /// [vk.com/dev/messages.getLongPollHistory|messages.getLongPollHistory] method.
+        /// messages.getLongPollHistory method.
         /// </param>
         public Task<LongpollParams> GetLongPollServer(bool? useSsl = null, bool? needPts = null)
         {
@@ -401,18 +397,18 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="ts">
         /// Last value of the 'ts' parameter returned from the Long Poll server or by using
-        /// [vk.com/dev/messages.getLongPollHistory|messages.getLongPollHistory] method.
+        /// messages.getLongPollHistory method.
         /// </param>
         /// <param name="pts">
         /// Lsat value of 'pts' parameter returned from the Long Poll server or by using
-        /// [vk.com/dev/messages.getLongPollHistory|messages.getLongPollHistory] method.
+        /// messages.getLongPollHistory method.
         /// </param>
         /// <param name="previewLength">
         /// Number of characters after which to truncate a previewed message. To preview the full
         /// message, specify '0'.; "NOTE: Messages are not truncated by default. Messages are truncated by words."
         /// </param>
         /// <param name="onlines">'1' — to return history with online users only.</param>
-        /// <param name="fields">Additional profile [vk.com/dev/fields|fields] to return.</param>
+        /// <param name="fields">Additional profile fields to return.</param>
         /// <param name="eventsLimit">Maximum number of events to return.</param>
         /// <param name="msgsLimit">Maximum number of messages to return.</param>
         /// <param name="maxMsgId">
@@ -642,7 +638,7 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="file">
         /// Upload URL from the 'response' field returned by the
-        /// [vk.com/dev/photos.getChatUploadServer|photos.getChatUploadServer] method upon successfully uploading an image.
+        /// photos.getChatUploadServer method upon successfully uploading an image.
         /// </param>
         public Task<SetChatPhotoResponse> SetChatPhoto(string file = null)
         {

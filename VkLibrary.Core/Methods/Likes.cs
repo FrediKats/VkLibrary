@@ -10,7 +10,6 @@ namespace VkLibrary.Core.Methods
     public class Likes
     {
         private readonly Vkontakte _vkontakte;
-
         internal Likes(Vkontakte vkontakte) => _vkontakte = vkontakte;
 
         /// <summary>
@@ -21,7 +20,7 @@ namespace VkLibrary.Core.Methods
         /// ; Object type:; 'post' — post on user or community wall; 'comment' — comment on a wall post; 'photo'
         /// — photo; 'audio' — audio; 'video' — video; 'note' — note; 'photo_comment' — comment on the photo; 'video_comment' —
         /// comment on the video; 'topic_comment' — comment in the discussion; 'sitepage' — page of the site where the
-        /// [vk.com/dev/Like|Like widget] is installed
+        /// Like widget is installed
         /// </param>
         /// <param name="ownerId">
         /// ID of the user, community, or application that owns the object. If the 'type' parameter is set
@@ -31,10 +30,10 @@ namespace VkLibrary.Core.Methods
         /// </param>
         /// <param name="itemId">
         /// Object ID. If 'type' is set as 'sitepage', 'item_id' can include the 'page_id' parameter value
-        /// used during initialization of the [vk.com/dev/Like|Like widget].
+        /// used during initialization of the Like widget.
         /// </param>
         /// <param name="pageUrl">
-        /// URL of the page where the [vk.com/dev/Like|Like widget] is installed. Used instead of the
+        /// URL of the page where the Like widget is installed. Used instead of the
         /// 'item_id' parameter.
         /// </param>
         /// <param name="filter">
@@ -88,7 +87,7 @@ namespace VkLibrary.Core.Methods
         /// Object type:; 'post' — post on user or community wall; 'comment' — comment on a wall post; 'photo' —
         /// photo; 'audio' — audio; 'video' — video; 'note' — note; 'photo_comment' — comment on the photo; 'video_comment' —
         /// comment on the video; 'topic_comment' — comment in the discussion; 'sitepage' — page of the site where the
-        /// [vk.com/dev/Like|Like widget] is installed
+        /// Like widget is installed
         /// </param>
         /// <param name="ownerId">ID of the user or community that owns the object.</param>
         /// <param name="itemId">Object ID.</param>
@@ -118,7 +117,7 @@ namespace VkLibrary.Core.Methods
         /// Object type:; 'post' — post on user or community wall; 'comment' — comment on a wall post; 'photo' —
         /// photo; 'audio' — audio; 'video' — video; 'note' — note; 'photo_comment' — comment on the photo; 'video_comment' —
         /// comment on the video; 'topic_comment' — comment in the discussion; 'sitepage' — page of the site where the
-        /// [vk.com/dev/Like|Like widget] is installed
+        /// Like widget is installed
         /// </param>
         /// <param name="ownerId">ID of the user or community that owns the object.</param>
         /// <param name="itemId">Object ID.</param>

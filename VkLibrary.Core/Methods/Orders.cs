@@ -10,11 +10,7 @@ namespace VkLibrary.Core.Methods
     public class Orders
     {
         private readonly Vkontakte _vkontakte;
-
-        internal Orders(Vkontakte vkontakte)
-        {
-            _vkontakte = vkontakte;
-        }
+        internal Orders(Vkontakte vkontakte) => _vkontakte = vkontakte;
 
         /// <summary>
         /// Returns a list of orders.
@@ -64,7 +60,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="action">
         /// action to be done with the order. ; ; Available actions:; *cancel — to cancel unconfirmed order.;
         /// *charge — to confirm unconfirmed order. Applies only if processing of
-        /// [vk.com/dev/payments_status|order_change_state] notification failed.; *refund — to cancel confirmed order.;
+        /// order_change_state notification failed.; *refund — to cancel confirmed order.;
         /// </param>
         /// <param name="appOrderId">internal ID of the order in the application.</param>
         /// <param name="testMode">if this parameter is set to 1, this method returns a list of test mode orders. By default — 0.</param>

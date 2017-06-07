@@ -8,7 +8,7 @@ namespace VkLibrary.Core.Converters
     /// JSON converter used to ignore strange VK API behaviour
     /// (returning arrays instead of objects, etc.)
     /// </summary>
-    public class InvalidTypeJsonConverter : JsonConverter
+    internal class InvalidTypeJsonConverter : JsonConverter
     {
         public override bool CanConvert(Type objectType) => objectType != null;
 

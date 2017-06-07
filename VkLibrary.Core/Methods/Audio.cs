@@ -12,11 +12,7 @@ namespace VkLibrary.Core.Methods
     public class Audio
     {
         private readonly Vkontakte _vkontakte;
-
-        internal Audio(Vkontakte vkontakte)
-        {
-            _vkontakte = vkontakte;
-        }
+        internal Audio(Vkontakte vkontakte) => _vkontakte = vkontakte;
 
         /// <summary>
         /// Returns a list of audio files of a user or community.
@@ -72,8 +68,7 @@ namespace VkLibrary.Core.Methods
         /// Docs: <see href="https://vk.com/dev/audio.getLyrics">audio.getLyrics</see>
         /// </summary>
         /// <param name="lyricsId">
-        /// Lyrics ID (could be obtained with [vk.com/dev/audio.get|audio.get],
-        /// [vk.com/dev/audio.getById|audio.getById], or [vk.com/dev/audio.search|audio.search] methods).
+        /// Lyrics ID (could be obtained with audio.get, audio.search methods).
         /// </param>
         public Task<Lyrics> GetLyrics(int? lyricsId = null)
         {
@@ -96,7 +91,7 @@ namespace VkLibrary.Core.Methods
         /// </param>
         /// <param name="lyrics">'1' — to return only audio files that have associated lyrics.</param>
         /// <param name="performerOnly">'1' — to search only by artist name.</param>
-        /// <param name="sort">Sort order: ; '1' — by duration;; '2' — by popularity;; '0' — by date added.</param>
+        /// <param name="sort">Sort order: '1' — by duration;; '2' — by popularity;; '0' — by date added.</param>
         /// <param name="searchOwn">'1' — to search among current user's audios. By default: '0'.</param>
         /// <param name="offset">Offset needed to return a specific subset of audio files.</param>
         /// <param name="count">Number of audio files to return.</param>
@@ -127,7 +122,7 @@ namespace VkLibrary.Core.Methods
         }
 
         /// <summary>
-        /// Returns the server address to [vk.com/dev/upload_files_2|upload audio files].
+        /// Returns the server address to upload audio files.
         /// Docs: <see href="https://vk.com/dev/audio.getUploadServer">audio.getUploadServer</see>
         /// </summary>
         public Task<GetUploadServerResponse> GetUploadServer()
@@ -139,21 +134,12 @@ namespace VkLibrary.Core.Methods
         }
 
         /// <summary>
-        /// Saves audio files after successful [vk.com/dev/upload_files_2|uploading].
+        /// Saves audio files after successful uploading.
         /// Docs: <see href="https://vk.com/dev/audio.save">audio.save</see>
         /// </summary>
-        /// <param name="server">
-        /// This parameter is returned when the audio file is [vk.com/dev/upload_files_2|uploaded to the
-        /// server].
-        /// </param>
-        /// <param name="audio">
-        /// This parameter is returned when the audio file is [vk.com/dev/upload_files_2|uploaded to the
-        /// server].
-        /// </param>
-        /// <param name="hash">
-        /// This parameter is returned when the audio file is [vk.com/dev/upload_files_2|uploaded to the
-        /// server].
-        /// </param>
+        /// <param name="server">This parameter is returned when the audio file is uploaded to the server.</param>
+        /// <param name="audio">This parameter is returned when the audio file is uploaded to the server.</param>
+        /// <param name="hash">This parameter is returned when the audio file is uploaded to the server.</param>
         /// <param name="artist">The name of the artist. By default, this is obtained from ID3 tags.</param>
         /// <param name="title">The title of the audio file. By default, this is obtained from ID3 tags.</param>
         public Task<IEnumerable<Types.Audio.Audio>> Save(int? server = null, string audio = null,
@@ -225,7 +211,7 @@ namespace VkLibrary.Core.Methods
         }
 
         /// <summary>
-        /// Edits an audio file on a user or community page.;
+        /// Edits an audio file on a user or community page.
         /// Docs: <see href="https://vk.com/dev/audio.edit">audio.edit</see>
         /// </summary>
         /// <param name="ownerId">ID of the user or community that owns the audio file.</param>
@@ -233,7 +219,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="artist">Name of the artist.</param>
         /// <param name="title">Title of the audio file.</param>
         /// <param name="text">Text of the lyrics of the audio file.</param>
-        /// <param name="genreId">Genre of the audio file. See the list of [vk.com/dev/audio_genres|audio genres].</param>
+        /// <param name="genreId">Genre of the audio file. See the list of audio genres.</param>
         /// <param name="noSearch">
         /// '1' — audio file will not be available for search; '0' — audio file will be available for
         /// search (default)
@@ -287,7 +273,7 @@ namespace VkLibrary.Core.Methods
         }
 
         /// <summary>
-        /// Restores a [vk.com/dev/audio.delete|deleted] audio file.
+        /// Restores a deleted audio file.
         /// Docs: <see href="https://vk.com/dev/audio.restore">audio.restore</see>
         /// </summary>
         /// <param name="audioId">Audio file ID.</param>
@@ -489,7 +475,7 @@ namespace VkLibrary.Core.Methods
         /// Docs: <see href="https://vk.com/dev/audio.getPopular">audio.getPopular</see>
         /// </summary>
         /// <param name="onlyEng">'1' — to return only foreign audio files; '0' — to return all audio files;</param>
-        /// <param name="genreId">Genre ID. See the list of [vk.com/dev/audio_genres|audio genres].</param>
+        /// <param name="genreId">Genre ID. See the list of audio genres.</param>
         /// <param name="offset">Offset needed to return a specific subset of audio files.</param>
         /// <param name="count">Number of audio files to return.</param>
         public Task<IEnumerable<AudioFull>> GetPopular(bool? onlyEng = null, int? genreId = null,

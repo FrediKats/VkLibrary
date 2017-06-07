@@ -12,11 +12,7 @@ namespace VkLibrary.Core.Methods
     public class Video
     {
         private readonly Vkontakte _vkontakte;
-
-        internal Video(Vkontakte vkontakte)
-        {
-            _vkontakte = vkontakte;
-        }
+        internal Video(Vkontakte vkontakte) => _vkontakte = vkontakte;
 
         /// <summary>
         /// Returns detailed information about videos.
@@ -63,10 +59,10 @@ namespace VkLibrary.Core.Methods
         /// <param name="name">New video title.</param>
         /// <param name="desc">New video description.</param>
         /// <param name="privacyView">
-        /// Privacy settings in a [vk.com/dev/privacy_setting|special format].; Privacy setting is
+        /// Privacy settings in a special format.; Privacy setting is
         /// available for videos uploaded to own profile by user.
         /// </param>
-        /// <param name="privacyComment">Privacy settings for comments in a [vk.com/dev/privacy_setting|special format].</param>
+        /// <param name="privacyComment">Privacy settings for comments in a special format.</param>
         /// <param name="noComments">Disable comments for the group video.</param>
         /// <param name="repeat">'1' — to repeat the playback of the video; '0' — to play the video once;</param>
         public Task<int> Edit(int? ownerId = null, int? videoId = null, string name = null, string desc = null,

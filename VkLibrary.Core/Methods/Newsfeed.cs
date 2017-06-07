@@ -12,11 +12,7 @@ namespace VkLibrary.Core.Methods
     public class Newsfeed
     {
         private readonly Vkontakte _vkontakte;
-
-        internal Newsfeed(Vkontakte vkontakte)
-        {
-            _vkontakte = vkontakte;
-        }
+        internal Newsfeed(Vkontakte vkontakte) => _vkontakte = vkontakte;
 
         /// <summary>
         /// Returns data required to show newsfeed for the current user.
@@ -34,7 +30,7 @@ namespace VkLibrary.Core.Methods
         /// Sources to obtain news from, separated by commas.; ; User IDs can be specified in formats ''
         /// or 'u' ; where '' is the user's friend ID.; ; Community IDs can be specified in formats '-' or 'g' ; where '' is
         /// the community ID.; ; If the parameter is not set, all of the user's friends and communities are returned, except
-        /// for banned sources, which can be obtained with the [vk.com/dev/newsfeed.getBanned|newsfeed.getBanned] method.;
+        /// for banned sources, which can be obtained with the newsfeed.getBanned method.;
         /// </param>
         /// <param name="startFrom">
         /// identifier required to get the next page of results. ; Value for this parameter is returned in
@@ -45,7 +41,7 @@ namespace VkLibrary.Core.Methods
         /// 'new_offset' parameter returned by this method.
         /// </param>
         /// <param name="fields">
-        /// Additional fields of [vk.com/dev/fields|profiles] and [vk.com/dev/fields_groups|communities] to
+        /// Additional fields of communities to
         /// return.
         /// </param>
         public Task<NewsFeedResponse> Get(IEnumerable<string> filters = null, bool? returnBanned = null,
@@ -86,7 +82,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="startFrom">'new_from' value obtained in previous call.</param>
         /// <param name="count">Number of news items to return.</param>
         /// <param name="fields">
-        /// Additional fields of [vk.com/dev/fields|profiles] and [vk.com/dev/fields_groups|communities] to
+        /// Additional fields of communities to
         /// return.
         /// </param>
         public Task<NewsFeedResponse> GetRecommended(int? startTime = null, int? endTime = null,
@@ -133,7 +129,7 @@ namespace VkLibrary.Core.Methods
         /// 'next_from' field.
         /// </param>
         /// <param name="fields">
-        /// Additional fields of [vk.com/dev/fields|profiles] and [vk.com/dev/fields_groups|communities] to
+        /// Additional fields of communities to
         /// return.
         /// </param>
         public Task<NewsFeedResponse> GetComments(int? count = null, IEnumerable<string> filters = null,
@@ -316,7 +312,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="endTime">Latest timestamp (in Unix time) of a news item to return. By default, the current time.</param>
         /// <param name="startFrom"></param>
         /// <param name="fields">
-        /// Additional fields of [vk.com/dev/fields|profiles] and [vk.com/dev/fields_groups|communities] to
+        /// Additional fields of communities to
         /// return.
         /// </param>
         public Task<ApiItemsResponse<WallpostFull>> Search(string q = null, bool? extended = null,
@@ -436,8 +432,8 @@ namespace VkLibrary.Core.Methods
         /// <param name="count">amount of communities or users to return.</param>
         /// <param name="shuffle">shuffle the returned list or not.</param>
         /// <param name="fields">
-        /// list of extra fields to be returned. See available fields for [vk.com/dev/fields|users] and
-        /// [vk.com/dev/fields_groups|communities].
+        /// list of extra fields to be returned. See available fields for users and
+        /// communities.
         /// </param>
         public Task<ApiItemsResponse<object>> GetSuggestedSources(int? offset = null, int? count = null,
             bool? shuffle = null, IEnumerable<string> fields = null)

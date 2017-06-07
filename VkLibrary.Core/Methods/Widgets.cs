@@ -10,22 +10,12 @@ namespace VkLibrary.Core.Methods
     public class Widgets
     {
         private readonly Vkontakte _vkontakte;
-
-        internal Widgets(Vkontakte vkontakte)
-        {
-            _vkontakte = vkontakte;
-        }
+        internal Widgets(Vkontakte vkontakte) => _vkontakte = vkontakte;
 
         /// <summary>
-        /// Gets a list of comments for the page added through the [vk.com/dev/Comments|Comments widget].
+        /// Gets a list of comments for the page added through the Comments widget.
         /// Docs: <see href="https://vk.com/dev/widgets.getComments">widgets.getComments</see>
         /// </summary>
-        /// <param name="widgetApiId"></param>
-        /// <param name="url"></param>
-        /// <param name="pageId"></param>
-        /// <param name="order"></param>
-        /// <param name="fields"></param>
-        /// <param name="count"></param>
         public Task<GetCommentsResponse> GetComments(int? widgetApiId = null, string url = null,
             string pageId = null, string order = null, IEnumerable<string> fields = null, int? count = null)
         {
@@ -48,14 +38,9 @@ namespace VkLibrary.Core.Methods
         }
 
         /// <summary>
-        /// Gets a list of application/site pages where the [vk.com/dev/Comments|Comments widget] or [vk.com/dev/Like|Like
-        /// widget] is installed.
+        /// Gets a list of application/site pages where the Comments widget or Like widget is installed.
         /// Docs: <see href="https://vk.com/dev/widgets.getPages">widgets.getPages</see>
         /// </summary>
-        /// <param name="widgetApiId"></param>
-        /// <param name="order"></param>
-        /// <param name="period"></param>
-        /// <param name="count"></param>
         public Task<GetPagesResponse> GetPages(int? widgetApiId = null, string order = null,
             string period = null, int? count = null)
         {

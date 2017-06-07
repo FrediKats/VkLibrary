@@ -10,11 +10,7 @@ namespace VkLibrary.Core.Methods
     public class Secure
     {
         private readonly Vkontakte _vkontakte;
-
-        internal Secure(Vkontakte vkontakte)
-        {
-            _vkontakte = vkontakte;
-        }
+        internal Secure(Vkontakte vkontakte) => _vkontakte = vkontakte;
 
         /// <summary>
         /// Checks the user authentication in 'IFrame' and 'Flash' apps using the 'access_token' parameter.

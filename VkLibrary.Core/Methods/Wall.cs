@@ -12,7 +12,6 @@ namespace VkLibrary.Core.Methods
     public class Wall
     {
         private readonly Vkontakte _vkontakte;
-
         internal Wall(Vkontakte vkontakte) => _vkontakte = vkontakte;
 
         /// <summary>

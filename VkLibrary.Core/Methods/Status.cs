@@ -9,11 +9,7 @@ namespace VkLibrary.Core.Methods
     public class Status
     {
         private readonly Vkontakte _vkontakte;
-
-        internal Status(Vkontakte vkontakte)
-        {
-            _vkontakte = vkontakte;
-        }
+        internal Status(Vkontakte vkontakte) => _vkontakte = vkontakte;
 
         /// <summary>
         /// Returns data required to show the status of a user or community.

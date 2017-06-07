@@ -11,11 +11,7 @@ namespace VkLibrary.Core.Methods
     public class Leads
     {
         private readonly Vkontakte _vkontakte;
-
-        internal Leads(Vkontakte vkontakte)
-        {
-            _vkontakte = vkontakte;
-        }
+        internal Leads(Vkontakte vkontakte) => _vkontakte = vkontakte;
 
         /// <summary>
         /// Completes the lead started by user.

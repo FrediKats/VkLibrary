@@ -86,9 +86,8 @@ namespace VkLibrary.Core
         /// </summary>
         /// <param name="url">Server url</param>
         /// <param name="files">Files name-bytes pairs</param>
-        /// <returns></returns>
-        public async Task<PhotoUploadResponse> UploadPhotos(string url, Dictionary<string, byte[]> files) => 
-            await PostMultipleAsync<PhotoUploadResponse>(new Uri(url), files);
+        public Task<PhotoUploadResponse> UploadPhotos(string url, Dictionary<string, byte[]> files) => 
+            PostMultipleAsync<PhotoUploadResponse>(new Uri(url), files);
 
         /// <summary>
         /// Uploads a photo to conversation.
@@ -96,9 +95,8 @@ namespace VkLibrary.Core
         /// <param name="url">Server url</param>
         /// <param name="fileName">File name</param>
         /// <param name="bytes">Photo bytes</param>
-        /// <returns></returns>
-        public async Task<MessageUploadResponse> UploadMessagesPhoto(string url, string fileName, byte[] bytes) => 
-            await PostAsync<MessageUploadResponse>(new Uri(url), bytes, "photo", fileName);
+        public Task<MessageUploadResponse> UploadMessagesPhoto(string url, string fileName, byte[] bytes) => 
+            PostAsync<MessageUploadResponse>(new Uri(url), bytes, "photo", fileName);
 
         /// <summary>
         /// Uploads document to vk.
@@ -106,9 +104,8 @@ namespace VkLibrary.Core
         /// <param name="url">Server url</param>
         /// <param name="fileName">File name</param>
         /// <param name="bytes">Doc bytes</param>
-        /// <returns></returns>
-        public async Task<DocUploadResponse> UploadDocument(string url, string fileName, byte[] bytes) => 
-            await PostAsync<DocUploadResponse>(new Uri(url), bytes, "file", fileName);
+        public Task<DocUploadResponse> UploadDocument(string url, string fileName, byte[] bytes) => 
+            PostAsync<DocUploadResponse>(new Uri(url), bytes, "file", fileName);
 
         /// <summary>
         /// Uploads video to vk.
@@ -116,9 +113,8 @@ namespace VkLibrary.Core
         /// <param name="url">Server url</param>
         /// <param name="fileName">File name</param>
         /// <param name="bytes">Video bytes</param>
-        /// <returns></returns>
-        public async Task<UploadResponse> UploadVideo(string url, string fileName, byte[] bytes) => 
-            await PostAsync<UploadResponse>(new Uri(url), bytes, "video_file", fileName);
+        public Task<UploadResponse> UploadVideo(string url, string fileName, byte[] bytes) => 
+            PostAsync<UploadResponse>(new Uri(url), bytes, "video_file", fileName);
 
         /// <summary>
         /// Uploads an MP3 audio to vk.
@@ -126,8 +122,7 @@ namespace VkLibrary.Core
         /// <param name="url">Upload url</param>
         /// <param name="fileName">File name</param>
         /// <param name="bytes">Audio bytes</param>
-        /// <returns></returns>
-        public async Task<AudioUploadResponse> UploadAudio(string url, string fileName, byte[] bytes) => 
-            await PostAsync<AudioUploadResponse>(new Uri(url), bytes, "file", fileName);
+        public Task<AudioUploadResponse> UploadAudio(string url, string fileName, byte[] bytes) => 
+            PostAsync<AudioUploadResponse>(new Uri(url), bytes, "file", fileName);
     }
 }

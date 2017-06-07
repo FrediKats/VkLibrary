@@ -10,11 +10,7 @@ namespace VkLibrary.Core.Methods
     public class Gifts
     {
         private readonly Vkontakte _vkontakte;
-
-        internal Gifts(Vkontakte vkontakte)
-        {
-            _vkontakte = vkontakte;
-        }
+        internal Gifts(Vkontakte vkontakte) => _vkontakte = vkontakte;
 
         /// <summary>
         /// Returns a list of user gifts.

@@ -11,11 +11,7 @@ namespace VkLibrary.Core.Methods
     public class Ads
     {
         private readonly Vkontakte _vkontakte;
-
-        internal Ads(Vkontakte vkontakte)
-        {
-            _vkontakte = vkontakte;
-        }
+        internal Ads(Vkontakte vkontakte) => _vkontakte = vkontakte;
 
         /// <summary>
         /// Returns a list of advertising accounts.
@@ -24,8 +20,6 @@ namespace VkLibrary.Core.Methods
         public Task<IEnumerable<Types.Ads.Account>> GetAccounts()
         {
             var parameters = new Dictionary<string, string>();
-
-
             return _vkontakte.GetAsync<IEnumerable<Types.Ads.Account>>("ads.getAccounts", parameters);
         }
 
@@ -702,7 +696,7 @@ namespace VkLibrary.Core.Methods
         /// Returns a list of possible ad categories.
         /// Docs: <see href="https://vk.com/dev/ads.getCategories">ads.getCategories</see>
         /// </summary>
-        /// <param name="lang">Language. The full list of supported languages is [vk.com/dev/api_requests|here].</param>
+        /// <param name="lang">Language. The full list of supported languages is here.</param>
         public Task<IEnumerable<Category>> GetCategories(string lang = null)
         {
             var parameters = new Dictionary<string, string>();

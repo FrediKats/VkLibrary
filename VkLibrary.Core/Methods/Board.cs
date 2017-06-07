@@ -10,11 +10,7 @@ namespace VkLibrary.Core.Methods
     public class Board
     {
         private readonly Vkontakte _vkontakte;
-
-        internal Board(Vkontakte vkontakte)
-        {
-            _vkontakte = vkontakte;
-        }
+        internal Board(Vkontakte vkontakte) => _vkontakte = vkontakte;
 
         /// <summary>
         /// Returns a list of topics on a community's discussion board.

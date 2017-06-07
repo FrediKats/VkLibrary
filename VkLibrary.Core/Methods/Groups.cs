@@ -12,7 +12,6 @@ namespace VkLibrary.Core.Methods
     public class Groups
     {
         private readonly Vkontakte _vkontakte;
-
         internal Groups(Vkontakte vkontakte) => _vkontakte = vkontakte;
 
         /// <summary>
@@ -230,8 +229,8 @@ namespace VkLibrary.Core.Methods
         /// Returns communities list for a catalog category.
         /// Docs: <see href="https://vk.com/dev/groups.getCatalog">groups.getCatalog</see>
         /// </summary>
-        /// <param name="categoryId">Category id received from [vk.com/dev/groups.getCatalogInfo|groups.getCatalogInfo].</param>
-        /// <param name="subcategoryId">Subcategory id received from [vk.com/dev/groups.getCatalogInfo|groups.getCatalogInfo].</param>
+        /// <param name="categoryId">Category id received from groups.getCatalogInfo.</param>
+        /// <param name="subcategoryId">Subcategory id received from groups.getCatalogInfo.</param>
         public Task<ApiItemsResponse<Group>> GetCatalog(int? categoryId = null, int? subcategoryId = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -268,7 +267,7 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="offset">Offset needed to return a specific subset of invitations.</param>
         /// <param name="count">Number of invitations to return.</param>
-        /// <param name="extended">'1' — to return additional [vk.com/dev/fields_groups|fields] for communities..</param>
+        /// <param name="extended">'1' — to return additional fields for communities..</param>
         public Task<ApiItemsResponse<GroupXtrInvitedBy>> GetInvites(int? offset = null, int? count = null,
             bool? extended = null)
         {
@@ -875,7 +874,7 @@ namespace VkLibrary.Core.Methods
         }
 
         /// <summary>
-        /// Returns [vk.com/dev/callback_api|Callback API] server settings for the community.
+        /// Returns Callback API server settings for the community.
         /// Docs: <see href="https://vk.com/dev/groups.getCallbackServerSettings">groups.getCallbackServerSettings</see>
         /// </summary>
         /// <param name="groupId">Community ID.</param>
@@ -891,7 +890,7 @@ namespace VkLibrary.Core.Methods
         }
 
         /// <summary>
-        /// Returns [vk.com/dev/callback_api|Callback API] notifications settings.
+        /// Returns Callback API notifications settings.
         /// Docs: <see href="https://vk.com/dev/groups.getCallbackSettings">groups.getCallbackSettings</see>
         /// </summary>
         /// <param name="groupId">Community ID.</param>
@@ -906,7 +905,7 @@ namespace VkLibrary.Core.Methods
         }
 
         /// <summary>
-        /// Allow to set [vk.com/dev/callback_api|Callback API] server URL for the community. ; ;
+        /// Allow to set Callback API server URL for the community. ; ;
         /// Docs: <see href="https://vk.com/dev/groups.setCallbackServer">groups.setCallbackServer</see>
         /// </summary>
         /// <param name="groupId">Community ID.</param>
@@ -924,7 +923,7 @@ namespace VkLibrary.Core.Methods
         }
 
         /// <summary>
-        /// Allow to set [vk.com/dev/callback_api|Callback API] server settings.
+        /// Allow to set Callback API server settings.
         /// Docs: <see href="https://vk.com/dev/groups.setCallbackServerSettings">groups.setCallbackServerSettings</see>
         /// </summary>
         /// <param name="groupId">Community ID.</param>

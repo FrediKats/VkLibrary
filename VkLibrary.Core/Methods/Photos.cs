@@ -151,9 +151,9 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="albumId">ID of the album to save photos to.</param>
         /// <param name="groupId">ID of the community to save photos to.</param>
-        /// <param name="server">Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].</param>
-        /// <param name="photosList">Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].</param>
-        /// <param name="hash">Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].</param>
+        /// <param name="server">Parameter returned when photos are uploaded to server.</param>
+        /// <param name="photosList">Parameter returned when photos are uploaded to server.</param>
+        /// <param name="hash">Parameter returned when photos are uploaded to server.</param>
         /// <param name="latitude">Geographical latitude, in degrees (from '-90' to '90').</param>
         /// <param name="longitude">Geographical longitude, in degrees (from '-180' to '180').</param>
         /// <param name="caption">Text describing the photo. 2048 digits max.</param>
@@ -348,7 +348,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="extended">'1' — to return detailed information about photos</param>
         /// <param name="offset">Offset needed to return a specific subset of photos. By default, '0'.</param>
         /// <param name="count">Number of photos to return.</param>
-        /// <param name="photoSizes">'1' – to return image sizes in [vk.com/dev/photo_sizes|special format].</param>
+        /// <param name="photoSizes">'1' – to return image sizes in special format.</param>
         /// <param name="noServiceAlbums">
         /// '1' – to return photos only from standard albums; '0' – to return all photos including
         /// those in service albums, e.g., 'My wall photos' (default)

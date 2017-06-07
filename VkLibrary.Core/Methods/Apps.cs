@@ -9,11 +9,7 @@ namespace VkLibrary.Core.Methods
     public class Apps
     {
         private readonly Vkontakte _vkontakte;
-
-        internal Apps(Vkontakte vkontakte)
-        {
-            _vkontakte = vkontakte;
-        }
+        internal Apps(Vkontakte vkontakte) => _vkontakte = vkontakte;
 
         /// <summary>
         /// Returns user score in app

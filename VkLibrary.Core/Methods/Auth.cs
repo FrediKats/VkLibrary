@@ -10,11 +10,7 @@ namespace VkLibrary.Core.Methods
     public class Auth
     {
         private readonly Vkontakte _vkontakte;
-
-        internal Auth(Vkontakte vkontakte)
-        {
-            _vkontakte = vkontakte;
-        }
+        internal Auth(Vkontakte vkontakte) => _vkontakte = vkontakte;
 
         /// <summary>
         /// Checks a user's phone number for correctness.
@@ -50,12 +46,12 @@ namespace VkLibrary.Core.Methods
         /// <param name="clientId">Your application ID.</param>
         /// <param name="clientSecret"></param>
         /// <param name="phone">
-        /// User's phone number. Can be pre-checked with the [vk.com/dev/auth.checkPhone|auth.checkPhone]
+        /// User's phone number. Can be pre-checked with the auth.checkPhone
         /// method.
         /// </param>
         /// <param name="password">
         /// User's password (minimum of 6 characters). Can be specified later with the
-        /// [vk.com/dev/auth.confirm|auth.confirm] method.
+        /// auth.confirm method.
         /// </param>
         /// <param name="testMode">
         /// '1' — test mode, in which the user will not be registered and the phone number will not be
@@ -98,7 +94,7 @@ namespace VkLibrary.Core.Methods
         }
 
         /// <summary>
-        /// Completes a user's registration (begun with the [vk.com/dev/auth.signup|auth.signup] method) using an authorization
+        /// Completes a user's registration (begun with the auth.signup method) using an authorization
         /// code.
         /// Docs: <see href="https://vk.com/dev/auth.confirm">auth.confirm</see>
         /// </summary>
@@ -134,7 +130,7 @@ namespace VkLibrary.Core.Methods
 
         /// <summary>
         /// Allows to restore account access using a code received via SMS.; ; " This method is only available for apps with
-        /// [vk.com/dev/auth_direct|Direct authorization] access. "
+        /// Direct authorization access. "
         /// Docs: <see href="https://vk.com/dev/auth.restore">auth.restore</see>
         /// </summary>
         /// <param name="phone">user phone number.</param>

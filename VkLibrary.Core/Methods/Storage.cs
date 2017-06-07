@@ -9,11 +9,7 @@ namespace VkLibrary.Core.Methods
     public class Storage
     {
         private readonly Vkontakte _vkontakte;
-
-        internal Storage(Vkontakte vkontakte)
-        {
-            _vkontakte = vkontakte;
-        }
+        internal Storage(Vkontakte vkontakte) => _vkontakte = vkontakte;
 
         /// <summary>
         /// Returns a value of variable with the name set by key parameter.

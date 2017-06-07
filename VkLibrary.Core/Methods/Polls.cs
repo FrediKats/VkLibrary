@@ -10,19 +10,14 @@ namespace VkLibrary.Core.Methods
     public class Polls
     {
         private readonly Vkontakte _vkontakte;
-
-        internal Polls(Vkontakte vkontakte)
-        {
-            _vkontakte = vkontakte;
-        }
+        internal Polls(Vkontakte vkontakte) => _vkontakte = vkontakte;
 
         /// <summary>
         /// Returns detailed information about a poll by its ID.
         /// Docs: <see href="https://vk.com/dev/polls.getById">polls.getById</see>
         /// </summary>
         /// <param name="ownerId">
-        /// ID of the user or community that owns the poll. Use a negative value to designate a community
-        /// ID.
+        /// ID of the user or community that owns the poll. Use a negative value to designate a community ID.
         /// </param>
         /// <param name="isBoard">'1' – poll is in a board, '0' – poll is on a wall. ; '0' by default.</param>
         /// <param name="pollId">Poll ID.</param>

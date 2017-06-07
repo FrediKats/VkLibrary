@@ -10,11 +10,7 @@ namespace VkLibrary.Core.Methods
     public class Notes
     {
         private readonly Vkontakte _vkontakte;
-
-        internal Notes(Vkontakte vkontakte)
-        {
-            _vkontakte = vkontakte;
-        }
+        internal Notes(Vkontakte vkontakte) => _vkontakte = vkontakte;
 
         /// <summary>
         /// Returns a list of notes created by a user.

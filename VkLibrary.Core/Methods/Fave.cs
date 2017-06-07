@@ -15,11 +15,7 @@ namespace VkLibrary.Core.Methods
     public class Fave
     {
         private readonly Vkontakte _vkontakte;
-
-        internal Fave(Vkontakte vkontakte)
-        {
-            _vkontakte = vkontakte;
-        }
+        internal Fave(Vkontakte vkontakte) => _vkontakte = vkontakte;
 
         /// <summary>
         /// Returns a list of users whom the current user has bookmarked.; ;
@@ -45,7 +41,7 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="offset">Offset needed to return a specific subset of photos.</param>
         /// <param name="count">Number of photos to return.</param>
-        /// <param name="photoSizes">'1' — to return photo sizes in a [vk.com/dev/photo_sizes|special format].</param>
+        /// <param name="photoSizes">'1' — to return photo sizes in a special format.</param>
         public Task<ApiItemsResponse<Photo>> GetPhotos(int? offset = null, int? count = null,
             bool? photoSizes = null)
         {
@@ -222,7 +218,7 @@ namespace VkLibrary.Core.Methods
         /// Removes link from the user's faves.
         /// Docs: <see href="https://vk.com/dev/fave.removeLink">fave.removeLink</see>
         /// </summary>
-        /// <param name="linkId">Link ID (can be obtained by [vk.com/dev/faves.getLinks|faves.getLinks] method).</param>
+        /// <param name="linkId">Link ID (can be obtained by faves.getLinks method).</param>
         public Task<int> RemoveLink(string linkId = null)
         {
             var parameters = new Dictionary<string, string>();

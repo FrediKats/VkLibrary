@@ -5,7 +5,6 @@ namespace VkLibrary.Core
     /// <summary>
     /// API error class.
     /// </summary>
-    [JsonObject]
     public class ApiError
     {
         /// <summary>

@@ -10,11 +10,7 @@ namespace VkLibrary.Core.Methods
     public class Pages
     {
         private readonly Vkontakte _vkontakte;
-
-        internal Pages(Vkontakte vkontakte)
-        {
-            _vkontakte = vkontakte;
-        }
+        internal Pages(Vkontakte vkontakte) => _vkontakte = vkontakte;
 
         /// <summary>
         /// Returns information about a wiki page.

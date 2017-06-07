@@ -10,11 +10,7 @@ namespace VkLibrary.Core.Methods
     public class Stats
     {
         private readonly Vkontakte _vkontakte;
-
-        internal Stats(Vkontakte vkontakte)
-        {
-            _vkontakte = vkontakte;
-        }
+        internal Stats(Vkontakte vkontakte) => _vkontakte = vkontakte;
 
         /// <summary>
         /// Returns statistics of a community or an application.

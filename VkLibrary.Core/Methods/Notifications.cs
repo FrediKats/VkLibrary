@@ -10,11 +10,7 @@ namespace VkLibrary.Core.Methods
     public class Notifications
     {
         private readonly Vkontakte _vkontakte;
-
-        internal Notifications(Vkontakte vkontakte)
-        {
-            _vkontakte = vkontakte;
-        }
+        internal Notifications(Vkontakte vkontakte) => _vkontakte = vkontakte;
 
         /// <summary>
         /// Returns a list of notifications about other users' feedback to the current user's wall posts.

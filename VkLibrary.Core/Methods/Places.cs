@@ -11,11 +11,7 @@ namespace VkLibrary.Core.Methods
     public class Places
     {
         private readonly Vkontakte _vkontakte;
-
-        internal Places(Vkontakte vkontakte)
-        {
-            _vkontakte = vkontakte;
-        }
+        internal Places(Vkontakte vkontakte) => _vkontakte = vkontakte;
 
         /// <summary>
         /// Adds a new location to the location database.
@@ -23,18 +19,18 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="type">
         /// ID of the location's type (e.g., '1' — Home, '2' — Work). To get location type IDs, use the
-        /// [vk.com/dev/places.getTypes|places.getTypes] method.
+        /// places.getTypes method.
         /// </param>
         /// <param name="title">Title of the location.</param>
         /// <param name="latitude">Geographical latitude, in degrees (from '-90' to '90').</param>
         /// <param name="longitude">Geographical longitude, in degrees (from '-180' to '180').</param>
         /// <param name="country">
         /// ID of the location's country. To get country IDs, use the
-        /// [vk.com/dev/database.getCountries|database.getCountries] method.
+        /// database.getCountries method.
         /// </param>
         /// <param name="city">
         /// ID of the location's city. To get city IDs, use the
-        /// [vk.com/dev/database.getCities|database.getCities] method.
+        /// database.getCities method.
         /// </param>
         /// <param name="address">Street address of the location (e.g., '125 Elm Street').</param>
         public Task<AddResponse> Add(int? type = null, string title = null, uint? latitude = null,

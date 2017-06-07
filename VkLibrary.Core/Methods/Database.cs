@@ -11,7 +11,6 @@ namespace VkLibrary.Core.Methods
     public class Database
     {
         private readonly Vkontakte _vkontakte;
-
         internal Database(Vkontakte vkontakte) => _vkontakte = vkontakte;
 
         /// <summary>
@@ -22,7 +21,7 @@ namespace VkLibrary.Core.Methods
         /// '1' — to return a full list of all countries; '0' — to return a list of countries near the
         /// current user's country (default).;
         /// </param>
-        /// <param name="code">Country codes in [vk.com/dev/country_codes|ISO 3166-1 alpha-2] standard.</param>
+        /// <param name="code">Country codes in ISO 3166-1 alpha-2 standard.</param>
         /// <param name="offset">Offset needed to return a specific subset of countries.</param>
         /// <param name="count">Number of countries to return.</param>
         public Task<ApiItemsResponse<Country>> GetCountries(bool? needAll = null, string code = null,
@@ -46,7 +45,7 @@ namespace VkLibrary.Core.Methods
         /// Returns a list of regions.
         /// Docs: <see href="https://vk.com/dev/database.getRegions">database.getRegions</see>
         /// </summary>
-        /// <param name="countryId">Country ID, received in [vk.com/dev/database.getCountries|database.getCountries] method.</param>
+        /// <param name="countryId">Country ID, received in database.getCountries method.</param>
         /// <param name="q">Search query.</param>
         /// <param name="offset">Offset needed to return specific subset of regions.</param>
         /// <param name="count">Number of regions to return.</param>

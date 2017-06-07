@@ -5,8 +5,6 @@ namespace VkLibrary.Core
     /// <summary>
     /// Main API response object that helds all information.
     /// </summary>
-    /// <typeparam name="T">Generic</typeparam>
-    [JsonObject]
     public class ApiResponse<T>
     {
         /// <summary>
