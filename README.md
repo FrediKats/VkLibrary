@@ -1,10 +1,10 @@
 <a href="https://www.nuget.org/packages/VkLibrary.Core/"><img src="https://img.shields.io/badge/.NET%20Standard-1.2-green.svg"></a>
 <a href="https://www.nuget.org/packages/VkLibrary.Core/"><img src="https://img.shields.io/nuget/v/VkLibrary.Core.svg"></a>
 <a href="https://www.nuget.org/packages/VkLibrary.Core/"><img src="https://img.shields.io/nuget/dt/VkLibrary.Core.svg"></a>
-<a href="https://www.nuget.org/packages/VkLibrary.Core/"><img src="https://img.shields.io/github/issues/Worldbeater/VkLibrary.svg"></a>
-<a href="https://www.nuget.org/packages/VkLibrary.Core/"><img src="https://img.shields.io/github/license/worldbeater/VkLibrary.svg"></a>
+<a href="https://github.com/Worldbeater/VkLibrary/issues"><img src="https://img.shields.io/github/issues/Worldbeater/VkLibrary.svg"></a>
+<a href="https://github.com/Worldbeater/VkLibrary/blob/master/LICENSE.md"><img src="https://img.shields.io/github/license/worldbeater/VkLibrary.svg"></a>
 
-# VkLibrary
+# VkLibrary <a href="https://www.nuget.org/packages/VkLibrary.Core/"><img src="https://worldbeater.github.io/logos/VkLibrary.png" width="22" height="22"></a>
 <b>VkLibrary</b> is an unofficial <a href="https://vk.com/dev">vk.com API</a> library implemented in C# and covering almost all existing <a href="https://vk.com/dev/methods">API methods and types</a>, contains helper methods for <a href="https://vk.com/dev/access_token">DirectAuth and OAuth</a>, contains methods for easy file uploading to vk.com servers using POST requests. Huge parts of it were generated using <a href="https://github.com/VKCOM/vk-api-schema">JSON Schema</a> and Python scripts. Instructions on how to use the library are provided below.
 
 ## Contents
