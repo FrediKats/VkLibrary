@@ -5,6 +5,9 @@ using VkLibrary.Core.Types.Wall;
 
 namespace VkLibrary.Core.Types.Notifications
 {
+    /// <summary>
+    /// API NotificationsComment object.
+    /// </summary>
     public class NotificationsComment
     {
         /// <summary>

@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Responses.Auth
 {
+    /// <summary>
+    /// API SignupResponse.
+    /// </summary>
     public class SignupResponse
     {
         /// <summary>

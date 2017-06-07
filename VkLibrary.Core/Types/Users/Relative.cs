@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Users
 {
+    /// <summary>
+    /// API Relative object.
+    /// </summary>
     public class Relative
     {
         /// <summary>

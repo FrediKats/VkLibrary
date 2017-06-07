@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Leads
 {
+    /// <summary>
+    /// API Start object.
+    /// </summary>
     public class Start
     {
         /// <summary>

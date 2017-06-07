@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Photos
 {
+    /// <summary>
+    /// API PhotoXtrRealOffset object.
+    /// </summary>
     public class PhotoXtrRealOffset : Photo
     {
         /// <summary>

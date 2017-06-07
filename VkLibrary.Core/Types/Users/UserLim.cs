@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Users
 {
+    /// <summary>
+    /// API UserLim object.
+    /// </summary>
     public class UserLim
     {
         /// <summary>

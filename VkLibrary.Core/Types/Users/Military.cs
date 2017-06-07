@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Users
 {
+    /// <summary>
+    /// API Military object.
+    /// </summary>
     public class Military
     {
         /// <summary>

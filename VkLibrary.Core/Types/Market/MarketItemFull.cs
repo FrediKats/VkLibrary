@@ -5,6 +5,9 @@ using VkLibrary.Core.Types.Photos;
 
 namespace VkLibrary.Core.Types.Market
 {
+    /// <summary>
+    /// API MarketItemFull object.
+    /// </summary>
     public class MarketItemFull : MarketItem
     {
         /// <summary>

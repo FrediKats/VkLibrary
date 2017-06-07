@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Ads
 {
+    /// <summary>
+    /// API LinkStatus object.
+    /// </summary>
     public class LinkStatus
     {
         /// <summary>

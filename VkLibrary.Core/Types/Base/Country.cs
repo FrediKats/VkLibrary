@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Base
 {
+    /// <summary>
+    /// API Country object.
+    /// </summary>
     public class Country
     {
         /// <summary>

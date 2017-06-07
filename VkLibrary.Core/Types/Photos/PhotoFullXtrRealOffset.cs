@@ -3,6 +3,9 @@ using VkLibrary.Core.Types.Base;
 
 namespace VkLibrary.Core.Types.Photos
 {
+    /// <summary>
+    /// API PhotoFullXtrRealOffset object.
+    /// </summary>
     public class PhotoFullXtrRealOffset : Photo
     {
         /// <summary>

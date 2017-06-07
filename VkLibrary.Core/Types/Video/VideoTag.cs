@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Video
 {
+    /// <summary>
+    /// API VideoTag object.
+    /// </summary>
     public class VideoTag
     {
         /// <summary>

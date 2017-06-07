@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Friends
 {
+    /// <summary>
+    /// API Requests object.
+    /// </summary>
     public class Requests
     {
         /// <summary>

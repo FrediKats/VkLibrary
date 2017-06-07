@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Base
 {
+    /// <summary>
+    /// API LinkButtonAction object.
+    /// </summary>
     public class LinkButtonAction
     {
         /// <summary>

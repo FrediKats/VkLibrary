@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Photos
 {
+    /// <summary>
+    /// API PhotoTag object.
+    /// </summary>
     public class PhotoTag
     {
         /// <summary>

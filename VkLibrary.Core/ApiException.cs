@@ -9,6 +9,11 @@ namespace VkLibrary.Core
     public class ApiException : Exception
     {
         private readonly ApiError _apiError;
+
+        /// <summary>
+        /// Creates a new instance of ApiException to hold ApiError.
+        /// </summary>
+        /// <param name="apiError">ApiError info</param>
         public ApiException(ApiError apiError) => _apiError = apiError;
 
         /// <summary>

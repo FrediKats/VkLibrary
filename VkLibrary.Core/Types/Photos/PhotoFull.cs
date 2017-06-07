@@ -3,6 +3,9 @@ using VkLibrary.Core.Types.Base;
 
 namespace VkLibrary.Core.Types.Photos
 {
+    /// <summary>
+    /// API PhotoFull object.
+    /// </summary>
     public class PhotoFull : Photo
     {
         /// <summary>

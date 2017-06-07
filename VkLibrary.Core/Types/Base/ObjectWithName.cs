@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Base
 {
+    /// <summary>
+    /// API ObjectWithName object.
+    /// </summary>
     public class ObjectWithName
     {
         /// <summary>

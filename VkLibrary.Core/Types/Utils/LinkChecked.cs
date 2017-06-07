@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Utils
 {
+    /// <summary>
+    /// API LinkChecked object.
+    /// </summary>
     public class LinkChecked
     {
         /// <summary>

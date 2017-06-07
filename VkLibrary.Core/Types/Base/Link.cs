@@ -3,6 +3,9 @@ using VkLibrary.Core.Types.Photos;
 
 namespace VkLibrary.Core.Types.Base
 {
+    /// <summary>
+    /// API Link object.
+    /// </summary>
     public class Link
     {
         /// <summary>

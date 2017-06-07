@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Utils
 {
+    /// <summary>
+    /// API DomainResolved object.
+    /// </summary>
     public class DomainResolved
     {
         /// <summary>

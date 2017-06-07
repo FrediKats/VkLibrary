@@ -3,6 +3,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Users
 {
+    /// <summary>
+    /// API UsersArray object.
+    /// </summary>
     public class UsersArray
     {
         /// <summary>

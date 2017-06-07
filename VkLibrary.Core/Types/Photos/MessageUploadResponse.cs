@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Photos
 {
+    /// <summary>
+    /// API MessageUploadResponse object.
+    /// </summary>
     public class MessageUploadResponse
     {
         /// <summary>

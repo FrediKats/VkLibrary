@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Responses.Ads
 {
+    /// <summary>
+    /// API CreateTargetGroupResponse.
+    /// </summary>
     public class CreateTargetGroupResponse
     {
         /// <summary>

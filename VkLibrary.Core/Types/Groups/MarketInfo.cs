@@ -3,6 +3,9 @@ using VkLibrary.Core.Types.Market;
 
 namespace VkLibrary.Core.Types.Groups
 {
+    /// <summary>
+    /// API MarketInfo object.
+    /// </summary>
     public class MarketInfo
     {
         /// <summary>

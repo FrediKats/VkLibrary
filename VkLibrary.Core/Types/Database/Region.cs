@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Database
 {
+    /// <summary>
+    /// API Region object.
+    /// </summary>
     public class Region
     {
         /// <summary>

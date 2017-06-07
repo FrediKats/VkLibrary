@@ -3,6 +3,9 @@ using VkLibrary.Core.Types.Messages;
 
 namespace VkLibrary.Core.Responses.Messages
 {
+    /// <summary>
+    /// API DeleteChatPhotoResponse.
+    /// </summary>
     public class DeleteChatPhotoResponse
     {
         /// <summary>

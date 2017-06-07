@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Users
 {
+    /// <summary>
+    /// API UserFullXtrType object.
+    /// </summary>
     public class UserFullXtrType : UserFull
     {
         /// <summary>

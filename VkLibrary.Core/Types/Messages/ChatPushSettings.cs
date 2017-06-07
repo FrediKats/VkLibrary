@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Messages
 {
+    /// <summary>
+    /// API ChatPushSettings object.
+    /// </summary>
     public class ChatPushSettings
     {
         /// <summary>

@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Notes
 {
+    /// <summary>
+    /// API Note object.
+    /// </summary>
     public class Note
     {
         /// <summary>

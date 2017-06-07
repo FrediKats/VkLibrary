@@ -4,6 +4,9 @@ using VkLibrary.Core.Types.Base;
 
 namespace VkLibrary.Core.Types.Video
 {
+    /// <summary>
+    /// API VideoFull object.
+    /// </summary>
     public class VideoFull : Video
     {
         /// <summary>

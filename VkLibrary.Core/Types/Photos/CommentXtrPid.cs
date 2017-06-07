@@ -5,6 +5,9 @@ using VkLibrary.Core.Types.Wall;
 
 namespace VkLibrary.Core.Types.Photos
 {
+    /// <summary>
+    /// API CommentXtrPid object.
+    /// </summary>
     public class CommentXtrPid
     {
         /// <summary>

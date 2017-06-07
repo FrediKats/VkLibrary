@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Newsfeed
 {
+    /// <summary>
+    /// API NewsfeedNote object.
+    /// </summary>
     public class NewsfeedNote
     {
         /// <summary>

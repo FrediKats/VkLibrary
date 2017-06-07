@@ -3,6 +3,9 @@ using VkLibrary.Core.Types.Account;
 
 namespace VkLibrary.Core.Responses.Account
 {
+    /// <summary>
+    /// API SaveProfileInfoResponse.
+    /// </summary>
     public class SaveProfileInfoResponse
     {
         /// <summary>

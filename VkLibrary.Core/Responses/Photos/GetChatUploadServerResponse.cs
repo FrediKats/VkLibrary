@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Responses.Photos
 {
+    /// <summary>
+    /// API GetChatUploadServerResponse.
+    /// </summary>
     public class GetChatUploadServerResponse
     {
         /// <summary>

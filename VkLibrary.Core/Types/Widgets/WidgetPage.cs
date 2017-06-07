@@ -3,6 +3,9 @@ using VkLibrary.Core.Types.Base;
 
 namespace VkLibrary.Core.Types.Widgets
 {
+    /// <summary>
+    /// API WidgetPage object.
+    /// </summary>
     public class WidgetPage
     {
         /// <summary>

@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Responses.Likes
 {
+    /// <summary>
+    /// API DeleteResponse.
+    /// </summary>
     public class DeleteResponse
     {
         /// <summary>

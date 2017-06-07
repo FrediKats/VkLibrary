@@ -3,6 +3,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Video
 {
+    /// <summary>
+    /// API CatBlock object.
+    /// </summary>
     public class CatBlock
     {
         /// <summary>

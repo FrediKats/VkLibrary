@@ -2,6 +2,9 @@
 
 namespace VkLibrary.Core.Types.Utils
 {
+    /// <summary>
+    /// API SexAge object.
+    /// </summary>
     public class SexAge
     {
         /// <summary>

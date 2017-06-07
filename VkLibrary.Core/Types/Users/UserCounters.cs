@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Users
 {
+    /// <summary>
+    /// API UserCounters object.
+    /// </summary>
     public class UserCounters
     {
         /// <summary>

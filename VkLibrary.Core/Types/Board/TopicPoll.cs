@@ -4,6 +4,9 @@ using VkLibrary.Core.Types.Polls;
 
 namespace VkLibrary.Core.Types.Board
 {
+    /// <summary>
+    /// API TopicPoll object.
+    /// </summary>
     public class TopicPoll
     {
         /// <summary>

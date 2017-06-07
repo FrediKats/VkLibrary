@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Audio
 {
+    /// <summary>
+    /// API Lyrics object.
+    /// </summary>
     public class Lyrics
     {
         /// <summary>

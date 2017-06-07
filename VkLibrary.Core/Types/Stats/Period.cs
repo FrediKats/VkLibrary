@@ -3,6 +3,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Stats
 {
+    /// <summary>
+    /// API Period object.
+    /// </summary>
     public class Period
     {
         /// <summary>

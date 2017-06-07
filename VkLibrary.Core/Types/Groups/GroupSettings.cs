@@ -4,6 +4,9 @@ using VkLibrary.Core.Types.Places;
 
 namespace VkLibrary.Core.Types.Groups
 {
+    /// <summary>
+    /// API GroupSettings object.
+    /// </summary>
     public class GroupSettings
     {
         /// <summary>

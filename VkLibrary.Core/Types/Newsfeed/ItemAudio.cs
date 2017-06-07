@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Newsfeed
 {
+    /// <summary>
+    /// API ItemAudio object.
+    /// </summary>
     public class ItemAudio
     {
         /// <summary>

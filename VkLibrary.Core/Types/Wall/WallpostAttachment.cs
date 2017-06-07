@@ -10,6 +10,9 @@ using VkLibrary.Core.Types.Polls;
 
 namespace VkLibrary.Core.Types.Wall
 {
+    /// <summary>
+    /// API WallpostAttachment object.
+    /// </summary>
     public class WallpostAttachment
     {
         /// <summary>

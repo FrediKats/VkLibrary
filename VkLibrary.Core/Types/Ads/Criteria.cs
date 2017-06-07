@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Ads
 {
+    /// <summary>
+    /// API Criteria object.
+    /// </summary>
     public class Criteria
     {
         /// <summary>

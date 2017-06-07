@@ -3,6 +3,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Messages
 {
+    /// <summary>
+    /// API LongpollMessages object.
+    /// </summary>
     public class LongpollMessages
     {
         /// <summary>

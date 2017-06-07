@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Groups
 {
+    /// <summary>
+    /// API MemberRole object.
+    /// </summary>
     public class MemberRole
     {
         /// <summary>

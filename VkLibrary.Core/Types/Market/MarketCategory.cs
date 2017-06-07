@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Market
 {
+    /// <summary>
+    /// API MarketCategory object.
+    /// </summary>
     public class MarketCategory
     {
         /// <summary>

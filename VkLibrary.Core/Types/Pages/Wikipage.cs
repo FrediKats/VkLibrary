@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Pages
 {
+    /// <summary>
+    /// API Wikipage object.
+    /// </summary>
     public class Wikipage
     {
         /// <summary>

@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Users
 {
+    /// <summary>
+    /// API LastSeen object.
+    /// </summary>
     public class LastSeen
     {
         /// <summary>

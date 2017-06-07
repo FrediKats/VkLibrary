@@ -3,6 +3,9 @@ using VkLibrary.Core.Types.Photos;
 
 namespace VkLibrary.Core.Types.Market
 {
+    /// <summary>
+    /// API MarketAlbum object.
+    /// </summary>
     public class MarketAlbum
     {
         /// <summary>

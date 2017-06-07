@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Responses.Audio
 {
+    /// <summary>
+    /// API AddAlbumResponse.
+    /// </summary>
     public class AddAlbumResponse
     {
         /// <summary>

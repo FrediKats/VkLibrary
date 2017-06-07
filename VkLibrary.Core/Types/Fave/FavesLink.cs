@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Fave
 {
+    /// <summary>
+    /// API FavesLink object.
+    /// </summary>
     public class FavesLink
     {
         /// <summary>

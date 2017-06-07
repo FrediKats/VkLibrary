@@ -12,10 +12,7 @@ namespace VkLibrary.Core.Methods
     {
         private readonly Vkontakte _vkontakte;
 
-        internal Database(Vkontakte vkontakte)
-        {
-            _vkontakte = vkontakte;
-        }
+        internal Database(Vkontakte vkontakte) => _vkontakte = vkontakte;
 
         /// <summary>
         /// Returns a list of countries.

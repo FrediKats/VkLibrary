@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Ads
 {
+    /// <summary>
+    /// API AdLayout object.
+    /// </summary>
     public class AdLayout
     {
         /// <summary>

@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Notifications
 {
+    /// <summary>
+    /// API Notification object.
+    /// </summary>
     public class Notification
     {
         /// <summary>

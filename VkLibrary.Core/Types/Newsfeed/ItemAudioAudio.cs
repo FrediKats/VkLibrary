@@ -4,6 +4,9 @@ using VkLibrary.Core.Types.Audio;
 
 namespace VkLibrary.Core.Types.Newsfeed
 {
+    /// <summary>
+    /// API ItemAudioAudio object.
+    /// </summary>
     public class ItemAudioAudio
     {
         /// <summary>

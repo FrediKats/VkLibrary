@@ -3,6 +3,9 @@ using VkLibrary.Core.Types.Users;
 
 namespace VkLibrary.Core.Types.Widgets
 {
+    /// <summary>
+    /// API CommentRepliesItem object.
+    /// </summary>
     public class CommentRepliesItem
     {
         /// <summary>

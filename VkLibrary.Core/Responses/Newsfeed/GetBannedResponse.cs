@@ -3,6 +3,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Responses.Newsfeed
 {
+    /// <summary>
+    /// API GetBannedResponse.
+    /// </summary>
     public class GetBannedResponse
     {
         /// <summary>

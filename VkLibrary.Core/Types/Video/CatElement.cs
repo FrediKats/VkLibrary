@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Video
 {
+    /// <summary>
+    /// API CatElement object.
+    /// </summary>
     public class CatElement
     {
         /// <summary>

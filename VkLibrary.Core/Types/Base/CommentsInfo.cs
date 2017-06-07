@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Base
 {
+    /// <summary>
+    /// API CommentsInfo object.
+    /// </summary>
     public class CommentsInfo
     {
         /// <summary>

@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Responses.Groups
 {
+    /// <summary>
+    /// API SetCallbackServerResponse.
+    /// </summary>
     public class SetCallbackServerResponse
     {
         /// <summary>

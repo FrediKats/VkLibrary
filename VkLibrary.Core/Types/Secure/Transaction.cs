@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Secure
 {
+    /// <summary>
+    /// API Transaction object.
+    /// </summary>
     public class Transaction
     {
         /// <summary>

@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Groups
 {
+    /// <summary>
+    /// API GroupLink object.
+    /// </summary>
     public class GroupLink
     {
         /// <summary>

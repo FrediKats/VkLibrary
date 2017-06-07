@@ -3,6 +3,9 @@ using VkLibrary.Core.Types.Wall;
 
 namespace VkLibrary.Core.Types.Newsfeed
 {
+    /// <summary>
+    /// API ItemWallpost object.
+    /// </summary>
     public class ItemWallpost : WallpostFull
     {
         /// <summary>

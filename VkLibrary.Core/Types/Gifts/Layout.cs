@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Gifts
 {
+    /// <summary>
+    /// API Layout object.
+    /// </summary>
     public class Layout
     {
         /// <summary>

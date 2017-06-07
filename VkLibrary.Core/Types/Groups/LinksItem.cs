@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Groups
 {
+    /// <summary>
+    /// API LinksItem object.
+    /// </summary>
     public class LinksItem
     {
         /// <summary>

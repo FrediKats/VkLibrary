@@ -2,6 +2,9 @@
 
 namespace VkLibrary.Core.Types.Messages
 {
+    /// <summary>
+    /// API AttachmentsContainer object.
+    /// </summary>
     public class AttachmentsContainer
     {
         /// <summary>

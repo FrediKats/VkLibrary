@@ -56,6 +56,14 @@ module Methods =
         |> should not' (be Null)
 
     [<Test>]
+    /// Wall get comments test.
+    let wallGetCommentsTest () =
+        lib.Wall.GetComments(postId = nbl 1570)
+        |> await
+        |> fun x -> x.Count
+        |> should be ofExactType<int>
+
+    [<Test>]
     /// Get shortened url history tests.
     let utilsGetLastShortenedLinksTest () =
         lib.Utils.GetLastShortenedLinks(nbl 10, nbl 0)
@@ -64,7 +72,7 @@ module Methods =
         |> tee log
         |> should not' (be Null)
 
-    [<Test; Ignore("Links spam.")>]
+    [<Test; Ignore("Links spam")>]
     /// Shorten url test.
     let utilsGetShortLinkTest () =
         lib.Utils.GetShortLink("google.ru")
@@ -109,3 +117,43 @@ module Methods =
         |> fun x -> x.Count
         |> should be (greaterThanOrEqualTo 0)
 
+    [<Test>]
+    /// Groups search test.
+    let groupsSearchTest () =
+        lib.Groups.Search("Live")
+        |> await
+        |> fun x -> x.Items
+        |> Seq.length
+        |> should be (greaterThan 0)
+
+    [<Test>]
+    /// Docs get test.
+    let docsGetTest () =
+        lib.Docs.Get(nbl 10, nbl 0)
+        |> await
+        |> fun x -> x.Count
+        |> should be (greaterThan 0)
+
+    [<Test>]
+    /// Docs search test.
+    let docsSearchTest () =
+        lib.Docs.Search("word", nbl 5, nbl 1)
+        |> await
+        |> fun x -> x.Count
+        |> should be (greaterThan 0)
+
+    [<Test>]
+    /// Gifts get test.
+    let giftsGetTest () =
+        lib.Gifts.Get()
+        |> await
+        |> fun x -> x.Count
+        |> should be (greaterThanOrEqualTo 0)
+
+    [<Test>]
+    /// Notes get test.
+    let notesGetTest () =
+        lib.Notes.Get()
+        |> await
+        |> fun x -> x.Count
+        |> should be (greaterThanOrEqualTo 0)

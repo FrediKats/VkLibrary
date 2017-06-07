@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Leads
 {
+    /// <summary>
+    /// API Checked object.
+    /// </summary>
     public class Checked
     {
         /// <summary>

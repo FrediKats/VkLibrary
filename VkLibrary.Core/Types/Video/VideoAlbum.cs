@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Video
 {
+    /// <summary>
+    /// API VideoAlbum object.
+    /// </summary>
     public class VideoAlbum
     {
         /// <summary>

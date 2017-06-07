@@ -4,6 +4,9 @@ using VkLibrary.Core.Types.Base;
 
 namespace VkLibrary.Core.Types.Wall
 {
+    /// <summary>
+    /// API WallpostFull object.
+    /// </summary>
     public class WallpostFull : Wallpost
     {
         /// <summary>

@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Audio
 {
+    /// <summary>
+    /// API AudioUploadResponse object.
+    /// </summary>
     public class AudioUploadResponse
     {
         /// <summary>

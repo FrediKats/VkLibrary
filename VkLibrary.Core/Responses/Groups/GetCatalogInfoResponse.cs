@@ -4,6 +4,9 @@ using VkLibrary.Core.Types.Groups;
 
 namespace VkLibrary.Core.Responses.Groups
 {
+    /// <summary>
+    /// API GetCatalogInfoResponse.
+    /// </summary>
     public class GetCatalogInfoResponse
     {
         /// <summary>

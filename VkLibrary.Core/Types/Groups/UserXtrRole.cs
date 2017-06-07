@@ -3,6 +3,9 @@ using VkLibrary.Core.Types.Users;
 
 namespace VkLibrary.Core.Types.Groups
 {
+    /// <summary>
+    /// API UserXtrRole object.
+    /// </summary>
     public class UserXtrRole : UserFull
     {
         /// <summary>

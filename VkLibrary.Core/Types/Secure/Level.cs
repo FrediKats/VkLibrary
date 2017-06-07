@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Secure
 {
+    /// <summary>
+    /// API Level object.
+    /// </summary>
     public class Level
     {
         /// <summary>

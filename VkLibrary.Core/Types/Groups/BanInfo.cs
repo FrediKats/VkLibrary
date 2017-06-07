@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Groups
 {
+    /// <summary>
+    /// API BanInfo object.
+    /// </summary>
     public class BanInfo
     {
         /// <summary>

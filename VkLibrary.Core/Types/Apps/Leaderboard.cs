@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Apps
 {
+    /// <summary>
+    /// API Leaderboard object.
+    /// </summary>
     public class Leaderboard
     {
         /// <summary>

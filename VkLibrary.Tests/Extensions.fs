@@ -25,18 +25,12 @@ module Extensions =
     /// Awaits a task and returns results.
     let await (task: Task<'a>) = 
         async {
-            let! result = 
-                task 
-                |> Async.AwaitTask 
+            // Task delay for disable query spam
+            let! _ = Task.Delay 300 |> Async.AwaitTask
+            let! result = task |> Async.AwaitTask 
             return result 
         } |> Async.RunSynchronously
         
-    /// Awaits a task returning void.
-    let awaitVoid (task: Task) = 
-        task 
-        |> Async.AwaitIAsyncResult 
-        |> Async.Ignore
-
     /// Short syntax for nullable conversion.
     let nbl (x: 'a) = x |> Nullable<'a>
 

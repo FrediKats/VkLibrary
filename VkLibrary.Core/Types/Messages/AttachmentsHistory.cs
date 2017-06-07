@@ -6,6 +6,9 @@ using VkLibrary.Core.Types.Photos;
 
 namespace VkLibrary.Core.Types.Messages
 {
+    /// <summary>
+    /// API AttachmentsHistory object.
+    /// </summary>
     public class AttachmentsHistory
     {
         /// <summary>

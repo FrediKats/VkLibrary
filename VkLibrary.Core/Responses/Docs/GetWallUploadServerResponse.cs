@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Responses.Docs
 {
+    /// <summary>
+    /// API GetWallUploadServerResponse.
+    /// </summary>
     public class GetWallUploadServerResponse
     {
         /// <summary>

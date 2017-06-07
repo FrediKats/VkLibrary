@@ -3,6 +3,9 @@ using VkLibrary.Core.Types.Users;
 
 namespace VkLibrary.Core.Types.Messages
 {
+    /// <summary>
+    /// API UserXtrInvitedBy object.
+    /// </summary>
     public class UserXtrInvitedBy : UserXtrType
     {
         /// <summary>

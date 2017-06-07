@@ -4,6 +4,9 @@ using VkLibrary.Core.Types.Users;
 
 namespace VkLibrary.Core.Types.Friends
 {
+    /// <summary>
+    /// API UserXtrLists object.
+    /// </summary>
     public class UserXtrLists : UserFull
     {
         /// <summary>

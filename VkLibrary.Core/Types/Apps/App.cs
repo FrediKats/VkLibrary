@@ -4,6 +4,9 @@ using VkLibrary.Core.Types.Photos;
 
 namespace VkLibrary.Core.Types.Apps
 {
+    /// <summary>
+    /// API App object.
+    /// </summary>
     public class App
     {
         /// <summary>

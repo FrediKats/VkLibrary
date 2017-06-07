@@ -3,6 +3,9 @@ using VkLibrary.Core.Types.Audio;
 
 namespace VkLibrary.Core.Types.Status
 {
+    /// <summary>
+    /// API Status object.
+    /// </summary>
     public class Status
     {
         /// <summary>

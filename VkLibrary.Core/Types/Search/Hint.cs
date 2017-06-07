@@ -4,6 +4,9 @@ using VkLibrary.Core.Types.Users;
 
 namespace VkLibrary.Core.Types.Search
 {
+    /// <summary>
+    /// API Hint object.
+    /// </summary>
     public class Hint
     {
         /// <summary>

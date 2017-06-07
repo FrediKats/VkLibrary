@@ -3,6 +3,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Newsfeed
 {
+    /// <summary>
+    /// API ItemVideoVideo object.
+    /// </summary>
     public class ItemVideoVideo
     {
         /// <summary>

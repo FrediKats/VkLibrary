@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Polls
 {
+    /// <summary>
+    /// API Answer object.
+    /// </summary>
     public class Answer
     {
         /// <summary>

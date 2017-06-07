@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Secure
 {
+    /// <summary>
+    /// API TokenChecked object.
+    /// </summary>
     public class TokenChecked
     {
         /// <summary>

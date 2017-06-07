@@ -6,6 +6,9 @@ using VkLibrary.Core.Types.Wall;
 
 namespace VkLibrary.Core.Types.Widgets
 {
+    /// <summary>
+    /// API WidgetComment object.
+    /// </summary>
     public class WidgetComment
     {
         /// <summary>

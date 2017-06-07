@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Account
 {
+    /// <summary>
+    /// API Offer object.
+    /// </summary>
     public class Offer
     {
         /// <summary>

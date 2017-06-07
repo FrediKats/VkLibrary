@@ -3,6 +3,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Base
 {
+    /// <summary>
+    /// API Error object.
+    /// </summary>
     public class Error
     {
         /// <summary>

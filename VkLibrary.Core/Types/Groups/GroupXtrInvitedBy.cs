@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Groups
 {
+    /// <summary>
+    /// API GroupXtrInvitedBy object.
+    /// </summary>
     public class GroupXtrInvitedBy
     {
         /// <summary>

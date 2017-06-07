@@ -4,6 +4,9 @@ using VkLibrary.Core.Types.Wall;
 
 namespace VkLibrary.Core.Types.Board
 {
+    /// <summary>
+    /// API TopicComment object.
+    /// </summary>
     public class TopicComment
     {
         /// <summary>

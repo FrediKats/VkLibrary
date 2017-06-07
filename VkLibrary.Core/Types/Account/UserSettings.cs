@@ -5,6 +5,9 @@ using VkLibrary.Core.Types.Users;
 
 namespace VkLibrary.Core.Types.Account
 {
+    /// <summary>
+    /// API UserSettings object.
+    /// </summary>
     public class UserSettings
     {
         /// <summary>

@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Database
 {
+    /// <summary>
+    /// API School object.
+    /// </summary>
     public class School
     {
         /// <summary>

@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Messages
 {
+    /// <summary>
+    /// API LastActivity object.
+    /// </summary>
     public class LastActivity
     {
         /// <summary>

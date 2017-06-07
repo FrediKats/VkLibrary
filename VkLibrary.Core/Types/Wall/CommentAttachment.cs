@@ -8,6 +8,9 @@ using VkLibrary.Core.Types.Photos;
 
 namespace VkLibrary.Core.Types.Wall
 {
+    /// <summary>
+    /// API CommentAttachment object.
+    /// </summary>
     public class CommentAttachment
     {
         /// <summary>

@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Base
 {
+    /// <summary>
+    /// API LinkRating object.
+    /// </summary>
     public class LinkRating
     {
         /// <summary>

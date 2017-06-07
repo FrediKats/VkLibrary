@@ -4,6 +4,9 @@ using VkLibrary.Core.Types.Users;
 
 namespace VkLibrary.Core.Responses.Users
 {
+    /// <summary>
+    /// API GetSubscriptionsResponse.
+    /// </summary>
     public class GetSubscriptionsResponse
     {
         /// <summary>

@@ -5,6 +5,9 @@ using VkLibrary.Core.Types.Base;
 
 namespace VkLibrary.Core.Types.Groups
 {
+    /// <summary>
+    /// API GroupFull object.
+    /// </summary>
     public class GroupFull : Group
     {
         /// <summary>

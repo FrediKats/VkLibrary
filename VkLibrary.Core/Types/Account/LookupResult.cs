@@ -3,6 +3,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Account
 {
+    /// <summary>
+    /// API LookupResult object.
+    /// </summary>
     public class LookupResult
     {
         /// <summary>

@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Users
 {
+    /// <summary>
+    /// API UserMin object.
+    /// </summary>
     public class UserMin
     {
         /// <summary>

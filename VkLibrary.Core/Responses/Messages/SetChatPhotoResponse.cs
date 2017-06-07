@@ -3,6 +3,9 @@ using VkLibrary.Core.Types.Messages;
 
 namespace VkLibrary.Core.Responses.Messages
 {
+    /// <summary>
+    /// API SetChatPhotoResponse.
+    /// </summary>
     public class SetChatPhotoResponse
     {
         /// <summary>

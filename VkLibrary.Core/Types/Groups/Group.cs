@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Groups
 {
+    /// <summary>
+    /// API Group object.
+    /// </summary>
     public class Group
     {
         /// <summary>

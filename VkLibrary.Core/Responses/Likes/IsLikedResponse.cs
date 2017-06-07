@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Responses.Likes
 {
+    /// <summary>
+    /// API IsLikedResponse.
+    /// </summary>
     public class IsLikedResponse
     {
         /// <summary>

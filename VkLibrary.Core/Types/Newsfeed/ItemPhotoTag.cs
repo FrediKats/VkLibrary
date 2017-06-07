@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Newsfeed
 {
+    /// <summary>
+    /// API ItemPhotoTag object.
+    /// </summary>
     public class ItemPhotoTag
     {
         /// <summary>

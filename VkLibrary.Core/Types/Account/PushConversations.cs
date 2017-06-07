@@ -3,6 +3,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Account
 {
+    /// <summary>
+    /// API PushConversations object.
+    /// </summary>
     public class PushConversations
     {
         /// <summary>

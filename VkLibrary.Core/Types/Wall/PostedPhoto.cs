@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Wall
 {
+    /// <summary>
+    /// API PostedPhoto object.
+    /// </summary>
     public class PostedPhoto
     {
         /// <summary>

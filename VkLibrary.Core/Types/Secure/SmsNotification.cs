@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Secure
 {
+    /// <summary>
+    /// API SmsNotification object.
+    /// </summary>
     public class SmsNotification
     {
         /// <summary>

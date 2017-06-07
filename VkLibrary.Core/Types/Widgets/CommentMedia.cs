@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Widgets
 {
+    /// <summary>
+    /// API CommentMedia object.
+    /// </summary>
     public class CommentMedia
     {
         /// <summary>

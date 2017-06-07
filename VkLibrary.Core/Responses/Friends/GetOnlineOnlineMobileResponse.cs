@@ -3,6 +3,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Responses.Friends
 {
+    /// <summary>
+    /// API GetOnlineOnlineMobileResponse.
+    /// </summary>
     public class GetOnlineOnlineMobileResponse
     {
         /// <summary>

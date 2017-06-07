@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Wall
 {
+    /// <summary>
+    /// API Graffiti object.
+    /// </summary>
     public class Graffiti
     {
         /// <summary>

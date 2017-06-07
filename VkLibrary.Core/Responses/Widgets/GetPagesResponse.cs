@@ -4,6 +4,9 @@ using VkLibrary.Core.Types.Widgets;
 
 namespace VkLibrary.Core.Responses.Widgets
 {
+    /// <summary>
+    /// API GetPagesResponse.
+    /// </summary>
     public class GetPagesResponse
     {
         /// <summary>

@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Users
 {
+    /// <summary>
+    /// API Occupation object.
+    /// </summary>
     public class Occupation
     {
         /// <summary>

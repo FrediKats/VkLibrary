@@ -9,6 +9,9 @@ using VkLibrary.Core.Types.Wall;
 
 namespace VkLibrary.Core.Types.Messages
 {
+    /// <summary>
+    /// API MessageAttachment object.
+    /// </summary>
     public class MessageAttachment
     {
         /// <summary>

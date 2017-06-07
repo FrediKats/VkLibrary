@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Messages
 {
+    /// <summary>
+    /// API Dialog object.
+    /// </summary>
     public class Dialog
     {
         /// <summary>

@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Responses.Leads
 {
+    /// <summary>
+    /// API MetricHitResponse.
+    /// </summary>
     public class MetricHitResponse
     {
         /// <summary>

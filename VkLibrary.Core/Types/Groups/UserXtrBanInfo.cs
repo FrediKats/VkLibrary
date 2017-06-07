@@ -6,6 +6,9 @@ using VkLibrary.Core.Types.Users;
 
 namespace VkLibrary.Core.Types.Groups
 {
+    /// <summary>
+    /// API UserXtrBanInfo object.
+    /// </summary>
     public class UserXtrBanInfo
     {
         /// <summary>

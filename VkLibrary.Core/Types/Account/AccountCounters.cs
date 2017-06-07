@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Account
 {
+    /// <summary>
+    /// API AccountCounters object.
+    /// </summary>
     public class AccountCounters
     {
         /// <summary>

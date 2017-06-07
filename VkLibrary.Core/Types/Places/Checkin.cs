@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Places
 {
+    /// <summary>
+    /// API Checkin object.
+    /// </summary>
     public class Checkin
     {
         /// <summary>

@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Places
 {
+    /// <summary>
+    /// API Types object.
+    /// </summary>
     public class Types
     {
         /// <summary>

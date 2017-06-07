@@ -4,6 +4,9 @@ using VkLibrary.Core.Types.Base;
 
 namespace VkLibrary.Core.Types.Ads
 {
+    /// <summary>
+    /// API Category object.
+    /// </summary>
     public class Category
     {
         /// <summary>

@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Stats
 {
+    /// <summary>
+    /// API City object.
+    /// </summary>
     public class City
     {
         /// <summary>

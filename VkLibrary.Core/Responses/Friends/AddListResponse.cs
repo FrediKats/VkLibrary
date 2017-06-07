@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Responses.Friends
 {
+    /// <summary>
+    /// API AddListResponse.
+    /// </summary>
     public class AddListResponse
     {
         /// <summary>

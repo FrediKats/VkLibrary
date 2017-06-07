@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Ads
 {
+    /// <summary>
+    /// API DemoStats object.
+    /// </summary>
     public class DemoStats
     {
         /// <summary>

@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Stats
 {
+    /// <summary>
+    /// API Age object.
+    /// </summary>
     public class Age
     {
         /// <summary>

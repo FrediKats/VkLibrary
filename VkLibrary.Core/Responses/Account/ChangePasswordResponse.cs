@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Responses.Account
 {
+    /// <summary>
+    /// API ChangePasswordResponse.
+    /// </summary>
     public class ChangePasswordResponse
     {
         /// <summary>

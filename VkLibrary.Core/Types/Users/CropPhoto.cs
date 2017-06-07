@@ -3,6 +3,9 @@ using VkLibrary.Core.Types.Photos;
 
 namespace VkLibrary.Core.Types.Users
 {
+    /// <summary>
+    /// API CropPhoto object.
+    /// </summary>
     public class CropPhoto
     {
         /// <summary>

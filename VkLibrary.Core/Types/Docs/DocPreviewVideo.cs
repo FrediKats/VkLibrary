@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Docs
 {
+    /// <summary>
+    /// API DocPreviewVideo object.
+    /// </summary>
     public class DocPreviewVideo
     {
         /// <summary>

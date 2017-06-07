@@ -4,6 +4,9 @@ using VkLibrary.Core.Types.Photos;
 
 namespace VkLibrary.Core.Types.Docs
 {
+    /// <summary>
+    /// API DocPreviewPhoto object.
+    /// </summary>
     public class DocPreviewPhoto
     {
         /// <summary>

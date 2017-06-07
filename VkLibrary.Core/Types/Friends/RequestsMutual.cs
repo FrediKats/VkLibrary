@@ -3,6 +3,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Friends
 {
+    /// <summary>
+    /// API RequestsMutual object.
+    /// </summary>
     public class RequestsMutual
     {
         /// <summary>

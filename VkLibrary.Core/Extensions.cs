@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Linq;
 
 namespace VkLibrary.Core
 {
@@ -13,17 +14,20 @@ namespace VkLibrary.Core
         /// </summary>
         /// <param name="variable">Object to convert</param>
         /// <returns>Stringified value</returns>
-        internal static string ToApiString(this object variable)
+        public static string ToApiString(this object variable)
         {
             // Check for booleans.
             var type = variable.GetType();
             if (type == typeof(bool)) return (bool) variable ? "1" : "0";
 
             // Check for sequences.
-            var enumerable = variable as IEnumerable<object>;
-            return enumerable != null
-                ? string.Join(",", enumerable)
-                : variable.ToString();
+            var enumerable = variable as IEnumerable;
+            if (enumerable == null || variable is string)
+                return variable.ToString();
+
+            // Check-convert.
+            var tempList = (from object o in enumerable select o).ToList();
+            return string.Join(",", tempList);
         }
     }
 }

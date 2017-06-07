@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Docs
 {
+    /// <summary>
+    /// API DocTypes object.
+    /// </summary>
     public class DocTypes
     {
         /// <summary>

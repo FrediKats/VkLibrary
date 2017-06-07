@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Wall
 {
+    /// <summary>
+    /// API WallpostAttached object.
+    /// </summary>
     public class WallpostAttached : WallpostFull
     {
         /// <summary>

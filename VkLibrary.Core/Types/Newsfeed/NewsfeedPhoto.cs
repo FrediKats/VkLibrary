@@ -4,6 +4,9 @@ using VkLibrary.Core.Types.Photos;
 
 namespace VkLibrary.Core.Types.Newsfeed
 {
+    /// <summary>
+    /// API NewsfeedPhoto object.
+    /// </summary>
     public class NewsfeedPhoto : Photo
     {
         /// <summary>

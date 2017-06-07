@@ -4,6 +4,9 @@ using VkLibrary.Core.Types.Base;
 
 namespace VkLibrary.Core.Types.Messages
 {
+    /// <summary>
+    /// API Message object.
+    /// </summary>
     public class Message
     {
         /// <summary>

@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Wall
 {
+    /// <summary>
+    /// API AttachedNote object.
+    /// </summary>
     public class AttachedNote
     {
         /// <summary>

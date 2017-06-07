@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Responses.Groups
 {
+    /// <summary>
+    /// API EditPlaceResponse.
+    /// </summary>
     public class EditPlaceResponse
     {
         /// <summary>

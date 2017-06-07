@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Photos
 {
+    /// <summary>
+    /// API PhotoSizes object.
+    /// </summary>
     public class PhotoSizes
     {
         /// <summary>

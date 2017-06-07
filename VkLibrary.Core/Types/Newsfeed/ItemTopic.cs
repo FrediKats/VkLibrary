@@ -3,6 +3,9 @@ using VkLibrary.Core.Types.Base;
 
 namespace VkLibrary.Core.Types.Newsfeed
 {
+    /// <summary>
+    /// API ItemTopic object.
+    /// </summary>
     public class ItemTopic
     {
         /// <summary>

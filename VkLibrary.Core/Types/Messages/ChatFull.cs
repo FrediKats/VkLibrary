@@ -3,6 +3,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Messages
 {
+    /// <summary>
+    /// API ChatFull object.
+    /// </summary>
     public class ChatFull
     {
         /// <summary>

@@ -3,6 +3,9 @@ using VkLibrary.Core.Types.Base;
 
 namespace VkLibrary.Core.Types.Database
 {
+    /// <summary>
+    /// API City object.
+    /// </summary>
     public class City : Object
     {
         /// <summary>

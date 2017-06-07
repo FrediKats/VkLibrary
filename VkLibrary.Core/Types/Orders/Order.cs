@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Orders
 {
+    /// <summary>
+    /// API Order object.
+    /// </summary>
     public class Order
     {
         /// <summary>

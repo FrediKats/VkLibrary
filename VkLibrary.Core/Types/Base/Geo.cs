@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Base
 {
+    /// <summary>
+    /// API Geo object.
+    /// </summary>
     public class Geo
     {
         /// <summary>

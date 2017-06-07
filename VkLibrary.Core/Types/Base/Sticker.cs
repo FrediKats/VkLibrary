@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Base
 {
+    /// <summary>
+    /// API Sticker object.
+    /// </summary>
     public class Sticker
     {
         /// <summary>

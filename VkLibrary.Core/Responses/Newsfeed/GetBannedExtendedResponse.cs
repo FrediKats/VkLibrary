@@ -5,6 +5,9 @@ using VkLibrary.Core.Types.Users;
 
 namespace VkLibrary.Core.Responses.Newsfeed
 {
+    /// <summary>
+    /// API GetBannedExtendedResponse.
+    /// </summary>
     public class GetBannedExtendedResponse
     {
         /// <summary>

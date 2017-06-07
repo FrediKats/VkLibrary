@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Widgets
 {
+    /// <summary>
+    /// API WidgetLikes object.
+    /// </summary>
     public class WidgetLikes
     {
         /// <summary>

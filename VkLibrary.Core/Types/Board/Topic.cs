@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Board
 {
+    /// <summary>
+    /// API Topic object.
+    /// </summary>
     public class Topic
     {
         /// <summary>

@@ -23,10 +23,10 @@ namespace VkLibrary.Core
         private readonly string _apiVersion;
         private readonly string _appId;
 
-        public const string DirectAuthUrl = "https://oauth.vk.com/";
-        public const string OAuthUrl = "https://oauth.vk.com/authorize";
-        public const string OAuthRedirectUrl = "https://oauth.vk.com/blank.html";
-        public const string MethodBase = "https://api.vk.com/method/";
+        internal const string DirectAuthUrl = "https://oauth.vk.com/";
+        internal const string OAuthUrl = "https://oauth.vk.com/authorize";
+        internal const string OAuthRedirectUrl = "https://oauth.vk.com/blank.html";
+        private const string MethodBase = "https://api.vk.com/method/";
 
         /// <summary>
         /// Initializes the library.

@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Base
 {
+    /// <summary>
+    /// API RepostsInfo object.
+    /// </summary>
     public class RepostsInfo
     {
         /// <summary>

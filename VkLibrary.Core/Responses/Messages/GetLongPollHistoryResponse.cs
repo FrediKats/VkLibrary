@@ -4,6 +4,9 @@ using VkLibrary.Core.Types.Messages;
 
 namespace VkLibrary.Core.Responses.Messages
 {
+    /// <summary>
+    /// API GetLongPollHistoryResponse.
+    /// </summary>
     public class GetLongPollHistoryResponse
     {
         /// <summary>

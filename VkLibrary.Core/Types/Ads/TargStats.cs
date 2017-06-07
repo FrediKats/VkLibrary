@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Ads
 {
+    /// <summary>
+    /// API TargStats object.
+    /// </summary>
     public class TargStats
     {
         /// <summary>

@@ -2,6 +2,9 @@
 
 namespace VkLibrary.Core.Types.Utils
 {
+    /// <summary>
+    /// API LinkInfo object.
+    /// </summary>
     public class LinkInfo
     {
         /// <summary>

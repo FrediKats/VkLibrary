@@ -5,6 +5,9 @@ using VkLibrary.Core.Types.Base;
 
 namespace VkLibrary.Core.Types.Users
 {
+    /// <summary>
+    /// API UserFull object.
+    /// </summary>
     public class UserFull : User
     {
         /// <summary>

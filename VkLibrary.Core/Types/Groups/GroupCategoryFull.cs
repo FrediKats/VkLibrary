@@ -3,6 +3,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Groups
 {
+    /// <summary>
+    /// API GroupCategoryFull object.
+    /// </summary>
     public class GroupCategoryFull
     {
         /// <summary>

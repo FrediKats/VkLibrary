@@ -3,6 +3,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Polls
 {
+    /// <summary>
+    /// API VotersUsers object.
+    /// </summary>
     public class VotersUsers
     {
         /// <summary>

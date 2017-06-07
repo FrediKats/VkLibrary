@@ -3,6 +3,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Orders
 {
+    /// <summary>
+    /// API Amount object.
+    /// </summary>
     public class Amount
     {
         /// <summary>

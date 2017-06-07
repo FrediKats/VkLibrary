@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Users
 {
+    /// <summary>
+    /// API CropPhotoRect object.
+    /// </summary>
     public class CropPhotoRect
     {
         /// <summary>

@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Responses.Market
 {
+    /// <summary>
+    /// API AddResponse.
+    /// </summary>
     public class AddResponse
     {
         /// <summary>

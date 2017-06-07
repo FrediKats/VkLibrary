@@ -3,6 +3,9 @@ using VkLibrary.Core.Types.Users;
 
 namespace VkLibrary.Core.Types.Account
 {
+    /// <summary>
+    /// API UserXtrContact object.
+    /// </summary>
     public class UserXtrContact : UserFull
     {
         /// <summary>

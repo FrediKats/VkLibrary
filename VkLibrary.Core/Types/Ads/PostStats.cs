@@ -3,6 +3,9 @@ using VkLibrary.Core.Types.Stats;
 
 namespace VkLibrary.Core.Types.Ads
 {
+    /// <summary>
+    /// API PostStats object.
+    /// </summary>
     public class PostStats : WallpostStat
     {
         /// <summary>

@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Responses.Wall
 {
+    /// <summary>
+    /// API PostResponse.
+    /// </summary>
     public class PostResponse
     {
         /// <summary>

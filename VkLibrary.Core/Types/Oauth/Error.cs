@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace VkLibrary.Core.Types.Oauth
 {
+    /// <summary>
+    /// API Error object.
+    /// </summary>
     public class Error
     {
         /// <summary>
