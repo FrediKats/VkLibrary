@@ -52,8 +52,8 @@ module Methods =
     let newsfeedGetTest () =
         lib.Newsfeed.Get(filters = ["post"], count = nbl 1)
         |> await
-        |> fun x -> x.Items
-        |> should not' (be Null)
+        |> fun x -> x.NextFrom.Length
+        |> should be (greaterThan 0)
 
     [<Test>]
     /// Wall get comments test.
