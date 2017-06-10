@@ -3165,6 +3165,7 @@
   "projectFileDependencyGroups": {
     "": [
       "Microsoft.NETCore.Portable.Compatibility >= 1.0.1",
+      "NETStandard.Library >= 1.6.1",
       "Newtonsoft.Json >= 10.0.2"
     ],
     ".NETStandard,Version=v1.2": []
@@ -3182,6 +3183,7 @@
     },
     "dependencies": {
       "Microsoft.NETCore.Portable.Compatibility": "1.0.1",
+      "NETStandard.Library": "[1.6.1, )",
       "Newtonsoft.Json": "10.0.2"
     },
     "frameworks": {

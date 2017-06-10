@@ -1,4 +1,4 @@
-﻿namespace VkLibrary.Core.LongPolling.Flags
+﻿namespace VkLibrary.Core.LongPolling
 {
     /// <summary>
     /// Each element of the updates array represents its own an array

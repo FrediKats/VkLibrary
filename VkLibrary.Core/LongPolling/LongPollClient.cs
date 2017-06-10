@@ -4,7 +4,6 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using VkLibrary.Core.LongPolling.Flags;
 
 namespace VkLibrary.Core.LongPolling
 {

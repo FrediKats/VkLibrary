@@ -51,11 +51,11 @@
     <Compile Include="Auth\OAuthResult.cs" />
     <Compile Include="Converters\InvalidTypeJsonConverter.cs" />
     <Compile Include="Extensions.cs" />
-    <Compile Include="LongPolling\Flags\AnswerFlags.cs" />
-    <Compile Include="LongPolling\Flags\DialogFlags.cs" />
-    <Compile Include="LongPolling\Flags\LongPollMessageCodes.cs" />
-    <Compile Include="LongPolling\Flags\MessageFlags.cs" />
-    <Compile Include="LongPolling\Flags\PlatformFlags.cs" />
+    <Compile Include="LongPolling\AnswerFlags.cs" />
+    <Compile Include="LongPolling\DialogFlags.cs" />
+    <Compile Include="LongPolling\LongPollMessageCodes.cs" />
+    <Compile Include="LongPolling\MessageFlags.cs" />
+    <Compile Include="LongPolling\PlatformFlags.cs" />
     <Compile Include="LongPolling\LongPollClient.cs" />
     <Compile Include="Methods\Account.cs" />
     <Compile Include="Methods\Ads.cs" />

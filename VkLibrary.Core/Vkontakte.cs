@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using VkLibrary.Core.Auth;
 using VkLibrary.Core.LongPolling;
-using VkLibrary.Core.LongPolling.Flags;
 using VkLibrary.Core.Methods;
 
 namespace VkLibrary.Core

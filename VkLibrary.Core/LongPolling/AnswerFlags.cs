@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace VkLibrary.Core.LongPolling.Flags
+namespace VkLibrary.Core.LongPolling
 {
     /// <summary>
     /// Additional answer options codes list. 

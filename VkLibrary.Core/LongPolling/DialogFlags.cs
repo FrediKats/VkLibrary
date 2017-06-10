@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace VkLibrary.Core.LongPolling.Flags
+namespace VkLibrary.Core.LongPolling
 {
     /// <summary>
     /// Each dialog has flags, which are values received by summing up 

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace VkLibrary.Core.LongPolling.Flags
+namespace VkLibrary.Core.LongPolling
 {
     /// <summary>
     /// If mode contains flag 64, then in messages with code 8 (friend is offline), 
