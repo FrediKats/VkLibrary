@@ -17,7 +17,7 @@ namespace VkLibrary.Core.Types.Messages
         /// Timestamp
         /// </summary>
         [JsonProperty("ts")]
-        public int? Ts { get; set; }
+        public int Ts { get; set; }
 
         /// <summary>
         /// Key

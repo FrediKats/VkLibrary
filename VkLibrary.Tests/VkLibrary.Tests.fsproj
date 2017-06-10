@@ -11,9 +11,10 @@
     <OutputType>Library</OutputType>
     <RootNamespace>VkLibrary.Tests</RootNamespace>
     <AssemblyName>VkLibrary.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <TargetFSharpCoreVersion>4.4.1.0</TargetFSharpCoreVersion>
     <Name>VkLibrary.Tests</Name>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -60,6 +61,7 @@
     <Compile Include="PostMethods.fs" />
     <Compile Include="OpenMethods.fs" />
     <Compile Include="Methods.fs" />
+    <Compile Include="LongPolling.fs" />
     <None Include="Script.fsx" />
     <Content Include="packages.config" />
   </ItemGroup>

@@ -9,8 +9,9 @@ namespace VkLibrary.Core
     public static class Extensions
     {
         /// <summary>
-        /// Converts certain string to API string based on
-        /// Vkontakte APU syntax rules.
+        /// Converts objects to API strings based on Vkontakte API syntax rules. 
+        /// For example: true -> 1; false -> 0; string -> string; 
+        /// seq of strings -> string1, string2, ...stringN.
         /// </summary>
         /// <param name="variable">Object to convert</param>
         /// <returns>Stringified value</returns>

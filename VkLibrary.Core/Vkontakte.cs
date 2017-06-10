@@ -6,6 +6,8 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using VkLibrary.Core.Auth;
+using VkLibrary.Core.LongPolling;
+using VkLibrary.Core.LongPolling.Flags;
 using VkLibrary.Core.Methods;
 
 namespace VkLibrary.Core
@@ -26,7 +28,7 @@ namespace VkLibrary.Core
         internal const string DirectAuthUrl = "https://oauth.vk.com/";
         internal const string OAuthUrl = "https://oauth.vk.com/authorize";
         internal const string OAuthRedirectUrl = "https://oauth.vk.com/blank.html";
-        private const string MethodBase = "https://api.vk.com/method/";
+        internal const string MethodBase = "https://api.vk.com/method/";
 
         /// <summary>
         /// Initializes the library.
@@ -193,6 +195,28 @@ namespace VkLibrary.Core
         /// User access token.
         /// </summary>
         public AccessToken AccessToken { get; set; }
+
+        /// <summary>
+        /// Inits a LongPollClient using extended settings.
+        /// Docs: <see href="https://vk.com/dev/using_longpoll">Using LongPoll</see>
+        /// </summary>
+        /// <param name="key">Secret session key.</param>
+        /// <param name="server">Server address to which you need to send the request</param>
+        /// <param name="ts">Number of the last event from which you want to receive data</param>
+        /// <param name="mode">Additional answer options.</param>
+        /// <param name="version">
+        /// Actual version: 1. For version 0 (default), community IDs will arrive in the format 
+        /// group_id + 1000000000 for saving backward compatibility. 
+        /// We recommend using the updated version.
+        /// </param>
+        /// <param name="wait">
+        /// Waiting period (as most proxy servers terminate the connection after 30 seconds, 
+        /// we recommend indicating wait = 25). Maximum: 90. 
+        /// </param>
+        /// <returns>Running Long Poll Client instance.</returns>
+        public LongPollClient StartLongPollClient(string server, string key, int ts, 
+            int version = 1, int wait = 25, AnswerFlags mode = AnswerFlags.ReceiveAttachments) => 
+            new LongPollClient(this, server, key, ts, version, wait, mode);
 
         #region API sections
 

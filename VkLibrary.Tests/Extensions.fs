@@ -10,6 +10,10 @@ module Extensions =
     open System.Collections.Generic
     open VkLibrary.Core
 
+    /// Subscribes delegate to event.
+    let inline (+=) (event: IEvent<'a, 'b>) (handler: 'b -> unit) =
+        event.Add handler
+
     /// Returns prepared library instance.
     let getLibFull app parse secret version logger = 
         new Vkontakte (app, parse, secret, version, logger)
@@ -27,6 +31,13 @@ module Extensions =
         async {
             // Task delay for disable query spam
             let! _ = Task.Delay 300 |> Async.AwaitTask
+            let! result = task |> Async.AwaitTask 
+            return result 
+        } |> Async.RunSynchronously
+
+    /// Awaits a task and returns results.
+    let wait (task: Task) = 
+        async {
             let! result = task |> Async.AwaitTask 
             return result 
         } |> Async.RunSynchronously

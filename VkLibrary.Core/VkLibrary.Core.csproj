@@ -51,6 +51,12 @@
     <Compile Include="Auth\OAuthResult.cs" />
     <Compile Include="Converters\InvalidTypeJsonConverter.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="LongPolling\Flags\AnswerFlags.cs" />
+    <Compile Include="LongPolling\Flags\DialogFlags.cs" />
+    <Compile Include="LongPolling\Flags\LongPollMessageCodes.cs" />
+    <Compile Include="LongPolling\Flags\MessageFlags.cs" />
+    <Compile Include="LongPolling\Flags\PlatformFlags.cs" />
+    <Compile Include="LongPolling\LongPollClient.cs" />
     <Compile Include="Methods\Account.cs" />
     <Compile Include="Methods\Ads.cs" />
     <Compile Include="Methods\Apps.cs" />
@@ -405,5 +411,6 @@
     <Compile Include="UploadHelper.cs" />
     <Compile Include="Vkontakte.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
 </Project>
