@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace VkLibrary.Core
 {
@@ -18,5 +19,25 @@ namespace VkLibrary.Core
         /// </summary>
         [JsonProperty("error_msg")]
         public string ErrorMessage { get; set; }
+
+        /// <summary>
+        /// Contains captcha sid when error code equals 14, 
+        /// otherwise null.
+        /// </summary>
+        [JsonProperty("captcha_sid")]
+        public string CaptchaSid { get; set; }
+
+        /// <summary>
+        /// Contains captcha image url when error code is
+        /// 14, otherwise null.
+        /// </summary>
+        [JsonProperty("captcha_img")]
+        public string CaptchaImg { get; set; }
+
+        /// <summary>
+        /// Additional request parameters JSON array.
+        /// </summary>
+        [JsonProperty("request_params")]
+        public JArray RequestParams { get; set; }
     }
 }
