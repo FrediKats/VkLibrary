@@ -29,17 +29,22 @@ namespace VkLibrary.Core
         internal const string OAuthRedirectUrl = "https://oauth.vk.com/blank.html";
         internal const string MethodBase = "https://api.vk.com/method/";
 
+        private string _captchaSid;
+        private string _captchaKey;
+
         /// <summary>
         /// Initializes the library.
         /// </summary>
-        /// <param name="appId">Unique app identifier</param>
+        /// <param name="appId">Unique app identifier. Can be found in vk.com/dev app settings.</param>
         /// <param name="jsonParsingType">How JSON should be parsed</param>
-        /// <param name="clientSecret">App access key</param>
-        /// <param name="apiVersion">API version</param>
-        /// <param name="logger">Custom logger</param>
-        public Vkontakte(string appId, JsonParsingType jsonParsingType, 
-            string clientSecret = null, string apiVersion = "5.63",
-            Action<object> logger = null)
+        /// <param name="clientSecret">
+        /// App secret key. Used in Secure Methods section 
+        /// and with DirectAuth/OAuth authentication.
+        /// </param>
+        /// <param name="apiVersion">API version.</param>
+        /// <param name="logger">Custom logger, for example 'Console.WriteLine' or 'Debug.WriteLine'.</param>
+        public Vkontakte(string appId, JsonParsingType jsonParsingType, string clientSecret = null, 
+            string apiVersion = "5.63", Action<object> logger = null)
         {
             _appId = appId;
             _logger = logger;
@@ -62,6 +67,15 @@ namespace VkLibrary.Core
             if (!string.IsNullOrEmpty(AccessToken?.Token))
                 parameters.Add("access_token", AccessToken.Token);
             parameters.Add("v", _apiVersion);
+
+            // Add captcha if not null and then erase it.
+            if (_captchaSid != null && _captchaKey != null)
+            {
+                parameters.Add("captcha_sid", _captchaSid);
+                parameters.Add("captcha_key", _captchaKey);
+                _captchaSid = null;
+                _captchaKey = null;
+            }
 
             // Build request url with parameters.
             var urlString = BuildUrl(string.Concat(MethodBase, method), parameters);
@@ -402,6 +416,20 @@ namespace VkLibrary.Core
         #endregion
 
         #region Helper methods
+
+        /// <summary>
+        /// If any action is performed too frequently, an API request may return "Captcha needed" error. 
+        /// After that a user needs to enter a code from the image and resend a request with a Captcha 
+        /// code input in the request parameters. Use SetCaptchaForNextRequest method to set the captcha 
+        /// codes for ONLY ONE next request.
+        /// </summary>
+        /// <param name="captchaSid">Received ID by ApiException</param>
+        /// <param name="captchaKey">Text input, answer for captcha</param>
+        public void SetCaptchaForNextRequest(string captchaSid, string captchaKey)
+        {
+            _captchaSid = captchaSid;
+            _captchaKey = captchaKey;
+        }
 
         /// <summary>
         /// Returns app id that library uses now.

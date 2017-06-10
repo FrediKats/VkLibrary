@@ -169,6 +169,9 @@ namespace VkLibrary.Core.LongPolling
                     case LongPollMessageCodes.UserTypingInDialog:
                         Call(UserTypingInDialogEvent, array);
                         break;
+                    case LongPollMessageCodes.UserTypingInConversation:
+                        Call(UserTypingInConversationEvent, array);
+                        break;
                     case LongPollMessageCodes.UserCall:
                         Call(UserCallEvent, array);
                         break;
@@ -213,82 +216,104 @@ namespace VkLibrary.Core.LongPolling
         public event EventHandler<JArray> ResponseReceived;
 
         /// <summary>
-        /// ReplaceMessageFlags LongPoll event.
+        /// ReplaceMessageFlags LongPoll event. 
+        /// Item1 is MessageId, Item2 is Flags, Item3 is JToken that may contain additional fields.
         /// </summary>
         public event EventHandler<Tuple<int, MessageFlags, JToken>> ReplaceMessageFlagsEvent;
 
         /// <summary>
         /// InstallMessageFlags LongPoll event.
+        /// Item1 is MessageId, Item2 is Flags, Item3 is JToken that may contain additional fields.
         /// </summary>
         public event EventHandler<Tuple<int, MessageFlags, JToken>> InstallMessageFlagsEvent;
 
         /// <summary>
         /// ResetMessageFlags LongPoll event.
+        /// Item1 is MessageId, Item2 is Flags, Item3 is JToken that may contain additional fields.
         /// </summary>
         public event EventHandler<Tuple<int, MessageFlags, JToken>> ResetMessageFlagsEvent;
 
         /// <summary>
-        /// AddMessage LongPoll event.
+        /// AddMessage LongPoll event. 
+        /// Item1 is MessageId, Item2 is Flags, Item3 is JToken that may contain additional fields.
         /// </summary>
         public event EventHandler<Tuple<int, MessageFlags, JToken>> AddMessageEvent;
 
         /// <summary>
         /// ReadAllIncomingMessages LongPoll event.
+        /// Item1 is PeerId, Item2 is LocalId.
         /// </summary>
         public event EventHandler<Tuple<int, int>> ReadAllIncomingMessagesEvent;
 
         /// <summary>
         /// ReadAllOutgoingMessages LongPoll event.
+        /// Item1 is PeerId, Item2 is LocalId.
         /// </summary>
         public event EventHandler<Tuple<int, int>> ReadAllOutgoingMessagesEvent;
 
         /// <summary>
         /// FriendOnline LongPoll event.
+        /// Item1 is -UserId, Item2 is Extra.
         /// </summary>
         public event EventHandler<Tuple<int, PlatformFlags>> FriendOnlineEvent;
 
         /// <summary>
         /// FriendOffline LongPoll event.
+        /// Item1 is -UserId, Item2 is Flags.
         /// </summary>
         public event EventHandler<Tuple<int, PlatformFlags>> FriendOfflineEvent;
 
         /// <summary>
         /// ResetDialogFlags LongPoll event.
+        /// Item1 is PeerId, Item2 is Mask.
         /// </summary>
         public event EventHandler<Tuple<int, DialogFlags>> ResetDialogFlagsEvent;
 
         /// <summary>
         /// ReplaceDialogFlags LongPoll event.
+        /// Item1 is PeerId, Item2 is Flags.
         /// </summary>
         public event EventHandler<Tuple<int, DialogFlags>> ReplaceDialogFlagsEvent;
 
         /// <summary>
         /// InstallDialogFlags LongPoll event.
+        /// Item1 is PeerId, Item2 is Mask.
         /// </summary>
         public event EventHandler<Tuple<int, DialogFlags>> InstallDialogFlagsEvent;
 
         /// <summary>
         /// ConversationChanged LongPoll event.
+        /// Item1 is ChatId, Item2 is Self.
         /// </summary>
         public event EventHandler<Tuple<int, int>> ConversationChangedEvent;
 
         /// <summary>
         /// UserTypingInDialog LongPoll event.
+        /// Item1 is UserId, Item2 is Flags.
         /// </summary>
         public event EventHandler<Tuple<int, MessageFlags>> UserTypingInDialogEvent;
 
         /// <summary>
+        /// UserTypingInDialog LongPoll event.
+        /// Item1 is UserId, Item2 is ChatId.
+        /// </summary>
+        public event EventHandler<Tuple<int, MessageFlags>> UserTypingInConversationEvent;
+
+        /// <summary>
         /// UserCall LongPoll event.
+        /// Item1 is UserId, Item2 is CallId.
         /// </summary>
         public event EventHandler<Tuple<int, int>> UserCallEvent;
 
         /// <summary>
         /// CounterUpdate LongPoll event.
+        /// ItemId is Count, Item2 is Zero.
         /// </summary>
         public event EventHandler<Tuple<int, int>> CounterUpdateEvent;
 
         /// <summary>
         /// NotificationSettingsChanged LongPoll event.
+        /// Item1 is PeerId, Item2 is Sound, Item3 is DisabledUntil.
         /// </summary>
         public event EventHandler<Tuple<int, int, int>> NotificationSettingsChangedEvent;
 

@@ -26,6 +26,14 @@ module Methods =
     let fixtureTearDown () = lib.Dispose()
 
     [<Test>]
+    /// SetCaptcha test.
+    let captchaTest () =
+        lib.SetCaptchaForNextRequest("foo", "bar")
+        lib.Execute<int>("return 42;")
+        |> await
+        |> should equal 42
+
+    [<Test>]
     /// Stored procedures tests.
     let executeTest () =
         lib.Execute("return 40 + 2;")

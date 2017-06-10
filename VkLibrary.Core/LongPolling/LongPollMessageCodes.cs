@@ -90,7 +90,7 @@
         /// <summary>
         /// User $user_id began typing in the conversation $chat_id. 
         /// </summary>
-        UserTypingInConversation = 61,
+        UserTypingInConversation = 62,
 
         /// <summary>
         /// User $user_id completed a call with the ID $call_id. 

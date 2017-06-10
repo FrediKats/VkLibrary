@@ -30,6 +30,11 @@ namespace VkLibrary.Core.Methods
             if (ip != null)
                 parameters.Add("ip", ip);
 
+            // Add client secret.
+            var secretCode = _vkontakte.GetClientSecret();
+            if (secretCode != null)
+                parameters.Add("client_secret", secretCode.ToApiString());
+
             return _vkontakte.GetAsync<TokenChecked>("secure.checkToken", parameters);
         }
     }

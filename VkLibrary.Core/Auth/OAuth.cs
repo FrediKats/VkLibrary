@@ -27,7 +27,7 @@ namespace VkLibrary.Core.Auth
                 {"client_id", _library.GetAppId()},
                 {"response_type", "token"},
                 {"v", _library.GetApiVersion()},
-                {"scope", ((int) scope).ToString()}
+                {"scope", ((int) scope).ToString()},
             };
 
             // Create result url.
