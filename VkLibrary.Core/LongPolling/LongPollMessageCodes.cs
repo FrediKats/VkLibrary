@@ -54,7 +54,7 @@
 
         /// <summary>
         /// Reset dialog flags $peer_id. Corresponds to the operation 
-        /// (PEER_FLAGS &= ~$flags). An event is returned only for 
+        /// (PEER_FLAGS &amp;= ~$flags). An event is returned only for 
         /// community messages. 
         /// </summary>
         ResetDialogFlags = 10,

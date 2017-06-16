@@ -131,16 +131,16 @@ namespace VkLibrary.Core.LongPolling
                 switch (eventCode)
                 {
                     case LongPollMessageCodes.ReplaceMessageFlags:
-                        Call(ReplaceMessageFlagsEvent, array);
+                        CallEx(ReplaceMessageFlagsEvent, array);
                         break;
                     case LongPollMessageCodes.InstallMessageFlags:
-                        Call(InstallMessageFlagsEvent, array);
+                        CallEx(InstallMessageFlagsEvent, array);
                         break;
                     case LongPollMessageCodes.ResetMessageFlags:
-                        Call(ResetMessageFlagsEvent, array);
+                        CallEx(ResetMessageFlagsEvent, array);
                         break;
                     case LongPollMessageCodes.AddMessage:
-                        Call(AddMessageEvent, array);
+                        CallEx(AddMessageEvent, array);
                         break;
                     case LongPollMessageCodes.ReadAllIncomingMessages:
                         Call(ReadAllIncomingMessagesEvent, array);
@@ -187,20 +187,14 @@ namespace VkLibrary.Core.LongPolling
             }
         }
 
-        /// <summary>
-        /// Call double-tupled event handler.
-        /// </summary>
-        /// <param name="eventHandler">Handler to call.</param>
-        /// <param name="token">JArray to parse</param>
+        private void CallEx<TFirst, TSecond>(EventHandler<Tuple<TFirst, TSecond, JArray>> eventHandler, JArray token) =>
+            eventHandler?.Invoke(this, new Tuple<TFirst, TSecond, JArray>(token[1].ToObject<TFirst>(),
+                token[2].ToObject<TSecond>(), token));
+
         private void Call<TFirst, TSecond>(EventHandler<Tuple<TFirst, TSecond>> eventHandler, JArray token) =>
             eventHandler?.Invoke(this, new Tuple<TFirst, TSecond>(token[1].ToObject<TFirst>(),
                 token[2].ToObject<TSecond>()));
 
-        /// <summary>
-        /// Call triple-tupled event handler.
-        /// </summary>
-        /// <param name="eventHandler">Handler to call.</param>
-        /// <param name="token">JArray to parse</param>
         private void Call<TFirst, TSecond, TThird>(EventHandler<Tuple<TFirst, TSecond, TThird>> eventHandler, JArray token) =>
             eventHandler?.Invoke(this, new Tuple<TFirst, TSecond, TThird>(token[1].ToObject<TFirst>(), 
                 token[2].ToObject<TSecond>(), token[3].ToObject<TThird>()));
@@ -219,25 +213,25 @@ namespace VkLibrary.Core.LongPolling
         /// ReplaceMessageFlags LongPoll event. 
         /// Item1 is MessageId, Item2 is Flags, Item3 is JToken that may contain additional fields.
         /// </summary>
-        public event EventHandler<Tuple<int, MessageFlags, JToken>> ReplaceMessageFlagsEvent;
+        public event EventHandler<Tuple<int, MessageFlags, JArray>> ReplaceMessageFlagsEvent;
 
         /// <summary>
         /// InstallMessageFlags LongPoll event.
         /// Item1 is MessageId, Item2 is Flags, Item3 is JToken that may contain additional fields.
         /// </summary>
-        public event EventHandler<Tuple<int, MessageFlags, JToken>> InstallMessageFlagsEvent;
+        public event EventHandler<Tuple<int, MessageFlags, JArray>> InstallMessageFlagsEvent;
 
         /// <summary>
         /// ResetMessageFlags LongPoll event.
         /// Item1 is MessageId, Item2 is Flags, Item3 is JToken that may contain additional fields.
         /// </summary>
-        public event EventHandler<Tuple<int, MessageFlags, JToken>> ResetMessageFlagsEvent;
+        public event EventHandler<Tuple<int, MessageFlags, JArray>> ResetMessageFlagsEvent;
 
         /// <summary>
         /// AddMessage LongPoll event. 
         /// Item1 is MessageId, Item2 is Flags, Item3 is JToken that may contain additional fields.
         /// </summary>
-        public event EventHandler<Tuple<int, MessageFlags, JToken>> AddMessageEvent;
+        public event EventHandler<Tuple<int, MessageFlags, JArray>> AddMessageEvent;
 
         /// <summary>
         /// ReadAllIncomingMessages LongPoll event.
