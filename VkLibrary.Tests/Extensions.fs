@@ -30,7 +30,7 @@ module Extensions =
     let await (task: Task<'a>) = 
         async {
             // Task delay for disable query spam
-            let! _ = Task.Delay 300 |> Async.AwaitTask
+            let! _ = Task.Delay 400 |> Async.AwaitTask
             let! result = task |> Async.AwaitTask 
             return result 
         } |> Async.RunSynchronously

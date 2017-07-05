@@ -21,26 +21,8 @@ namespace VkLibrary.Core.LongPolling
         /// <summary>
         /// Inits a LongPollClient using extended settings.
         /// </summary>
-        /// <param name="key">Secret session key.</param>
         /// <param name="vkontakte">Library instance whose logger to use</param>
-        /// <param name="server">Server address to which you need to send the request</param>
-        /// <param name="ts">Number of the last event from which you want to receive data</param>
-        /// <param name="mode">Additional answer options.</param>
-        /// <param name="version">
-        /// Actual version: 1. For version 0 (default), community IDs will arrive in the format 
-        /// group_id + 1000000000 for saving backward compatibility. 
-        /// We recommend using the updated version.
-        /// </param>
-        /// <param name="wait">
-        /// Waiting period (as most proxy servers terminate the connection after 30 seconds, 
-        /// we recommend indicating wait = 25). Maximum: 90. 
-        /// </param>
-        internal LongPollClient(Vkontakte vkontakte, string server, string key, int ts, 
-            int version = 1, int wait = 25, AnswerFlags mode = AnswerFlags.ReceiveAttachments)
-        {
-            _vkontakte = vkontakte;
-            StartListener(server, key, ts, version, wait, mode);
-        }
+        internal LongPollClient(Vkontakte vkontakte) => _vkontakte = vkontakte;
 
         /// <summary>
         /// Builds LongPollServer url.
@@ -60,24 +42,28 @@ namespace VkLibrary.Core.LongPolling
         /// </param>
         /// <returns>Built request url that can be used to retrieve data from vk long poll servers.</returns>
         /// ReSharper disable once MemberCanBePrivate.Global
-        public static string GetRequestUrl(string server, string key, int ts, int version = 1,
-            int wait = 25, AnswerFlags mode = AnswerFlags.ReceiveAttachments) =>
-            Vkontakte.BuildUrl($"https://{server}", new Dictionary<string, string>
+        public static string GetRequestUrl(string server, 
+            string key, int ts, int version = 1, int wait = 25, 
+            AnswerFlags mode = AnswerFlags.ReceiveAttachments)
+        {
+            return Vkontakte.BuildUrl($"https://{server}", new Dictionary<string, string>
             {
-                { "version", version.ToString() },
-                { "wait", wait.ToString() },
-                { "mode", ((int)mode).ToString() },
-                { "ts", ts.ToString() },
-                { "act", "a_check" },
-                { "key", key }
+                {"version", version.ToString()},
+                {"wait", wait.ToString()},
+                {"mode", ((int) mode).ToString()},
+                {"ts", ts.ToString()},
+                {"act", "a_check"},
+                {"key", key}
             });
+        }
 
         /// <summary>
         /// Starts a long poll listener.
         /// </summary>
-        private async void StartListener(string server, string key, 
-            int ts, int version, int wait, AnswerFlags mode) => 
-            await Task.Run(async () =>
+        internal Task StartListener(string server, string key, 
+            int ts, int version, int wait, AnswerFlags mode)
+        {
+            return Task.Run(async () =>
             {
                 while (!_stopped)
                 {
@@ -103,6 +89,7 @@ namespace VkLibrary.Core.LongPolling
                     ts = (int) responseToken["ts"];
                 }
             });
+        }
 
         #endregion
 

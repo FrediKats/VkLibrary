@@ -12,6 +12,7 @@ module LongPolling =
     open VkLibrary.Core
     open VkLibrary.Core.Auth
     open System.Threading.Tasks
+    open System.Diagnostics
 
     [<OneTimeSetUp>]
     /// Methods fixture setup.

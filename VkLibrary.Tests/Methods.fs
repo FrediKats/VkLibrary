@@ -34,6 +34,14 @@ module Methods =
         |> should equal 42
 
     [<Test>]
+    /// Wall get test.
+    let wallGetTest () =
+        lib.Wall.Get(nbl 1)
+        |> await
+        |> fun x -> x.Count
+        |> should be ofExactType<int>
+
+    [<Test>]
     /// Stored procedures tests.
     let executeTest () =
         lib.Execute("return 40 + 2;")
@@ -66,7 +74,7 @@ module Methods =
     [<Test>]
     /// Wall get comments test.
     let wallGetCommentsTest () =
-        lib.Wall.GetComments(postId = nbl 1570)
+        lib.Wall.GetComments(postId = nbl 1571)
         |> await
         |> fun x -> x.Count
         |> should be ofExactType<int>

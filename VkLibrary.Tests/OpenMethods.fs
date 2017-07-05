@@ -23,16 +23,6 @@ module OpenMethods =
     let fixtureTearDown () = lib.Dispose()
 
     [<Test>]
-    /// Universal GetAsync query test.
-    let genericGetAsyncUnsignedTest () =
-        ("wall.get", dict ["owner_id", "1"] 
-            |> Dictionary)
-        |> lib.GetAsync<NewsFeedResponse>
-        |> await
-        |> fun x -> x.Count
-        |> should be ofExactType<int>
-
-    [<Test>]
     /// Universal GetAsync query test with token signing.
     let genericGetAsyncSignedTest () =
         ("newsfeed.get", dict [
@@ -44,14 +34,6 @@ module OpenMethods =
         |> await
         |> fun x -> x.Items
         |> should not' (be Null)
-    
-    [<Test>]
-    /// Wall get test.
-    let wallGetTest () =
-        lib.Wall.Get(nbl 1)
-        |> await
-        |> fun x -> x.Count
-        |> should be ofExactType<int>
 
     [<Test>]
     /// Users get by id tests.

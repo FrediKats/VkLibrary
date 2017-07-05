@@ -228,8 +228,12 @@ namespace VkLibrary.Core
         /// </param>
         /// <returns>Running Long Poll Client instance.</returns>
         public LongPollClient StartLongPollClient(string server, string key, int ts, 
-            int version = 1, int wait = 25, AnswerFlags mode = AnswerFlags.ReceiveAttachments) => 
-            new LongPollClient(this, server, key, ts, version, wait, mode);
+            int version = 1, int wait = 25, AnswerFlags mode = AnswerFlags.ReceiveAttachments)
+        {
+            var client = new LongPollClient(this);
+            client.StartListener(server, key, ts, version, wait, mode);
+            return client;
+        }
 
         #region API sections
 
