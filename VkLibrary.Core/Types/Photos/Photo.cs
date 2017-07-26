@@ -36,7 +36,13 @@ namespace VkLibrary.Core.Types.Photos
         /// Longitude
         /// </summary>
         [JsonProperty("long")]
-        public int? Long { get; set; }
+        public double? Long { get; set; }
+
+        /// <summary>
+        /// Latitude
+        /// </summary>
+        [JsonProperty("lat")]
+        public double? Lat { get; set; }
 
         /// <summary>
         /// ID of the user who have uploaded the photo
@@ -73,12 +79,6 @@ namespace VkLibrary.Core.Types.Photos
         /// </summary>
         [JsonProperty("photo_1280")]
         public string Photo1280 { get; set; }
-
-        /// <summary>
-        /// Latitude
-        /// </summary>
-        [JsonProperty("lat")]
-        public int? Lat { get; set; }
 
         /// <summary>
         /// Photo owner's ID
