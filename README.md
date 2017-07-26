@@ -2,13 +2,11 @@
   <img src="https://worldbeater.github.io/logos/VkLibrary.png" width="100" height="100">
 </a>
 
-<a href="https://worldbeater.github.io/vklibrary/articles/intro.html"><img src="https://img.shields.io/badge/.NET%20Standard-1.2-green.svg"></a>
-<a href="https://worldbeater.github.io/vklibrary/articles/intro.html"><img src="https://img.shields.io/nuget/v/VkLibrary.Core.svg"></a>
-<a href="https://worldbeater.github.io/vklibrary/articles/intro.html"><img src="https://img.shields.io/nuget/dt/VkLibrary.Core.svg"></a>
-<a href="https://worldbeater.github.io/vklibrary/articles/intro.html"><img src="https://img.shields.io/github/issues/Worldbeater/VkLibrary.svg"></a>
-<a href="https://github.com/Worldbeater/VkLibrary/blob/master/LICENSE.md"><img src="https://img.shields.io/github/license/worldbeater/VkLibrary.svg"></a>
-
 <b>VkLibrary</b> is an <i>unofficial</i> <a href="https://vk.com/dev">VK API</a> library implemented in C# and covering almost all existing API methods and types, containing helper methods for DirectAuth and OAuth, containing methods for easy file uploading to vk servers using POST requests. Huge parts of it were generated using official JSON Schema to provide full API coverage.
+
+|Targets|Nuget|Downloads|Issues|License|
+|------|:------:|:------:|:------:|:------:|
+| <a href="https://docs.microsoft.com/en-us/dotnet/standard/net-standard"><img src="https://img.shields.io/badge/.NET%20Standard-1.1-green.svg"></a> | <a href="https://www.nuget.org/packages/VkLibrary.Core/"><img src="https://img.shields.io/nuget/v/VkLibrary.Core.svg"></a> | <a href="https://www.nuget.org/packages/VkLibrary.Core/"><img src="https://img.shields.io/nuget/dt/VkLibrary.Core.svg"></a> | <a href="https://github.com/Worldbeater/VkLibrary/issues"><img src="https://img.shields.io/github/issues/Worldbeater/VkLibrary.svg"></a> | <a href="https://github.com/Worldbeater/VkLibrary/blob/master/LICENSE.md"><img src="https://img.shields.io/github/license/worldbeater/VkLibrary.svg"></a> |
 
 # Quick Start
 To use the library in your project you should install a <a href="https://www.nuget.org/packages/VkLibrary.Core/">VkLibrary.Core</a> nuget package using PM console or GUI:
