@@ -227,11 +227,11 @@ namespace VkLibrary.Core
         /// we recommend indicating wait = 25). Maximum: 90. 
         /// </param>
         /// <returns>Running Long Poll Client instance.</returns>
-        public LongPollClient StartLongPollClient(string server, string key, int ts, 
+        public async Task<LongPollClient> StartLongPollClient(string server, string key, int ts, 
             int version = 1, int wait = 25, AnswerFlags mode = AnswerFlags.ReceiveAttachments)
         {
             var client = new LongPollClient(this);
-            client.StartListener(server, key, ts, version, wait, mode);
+            await client.StartListener(server, key, ts, version, wait, mode);
             return client;
         }
 

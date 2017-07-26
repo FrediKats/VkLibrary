@@ -10,7 +10,7 @@ namespace VkLibrary.Core.LongPolling
     /// <summary>
     /// Represents long poll client.
     /// </summary>
-    public class LongPollClient : IDisposable
+    public class LongPollClient
     {
         private readonly HttpClient _httpClient = new HttpClient();
         private readonly Vkontakte _vkontakte;
@@ -60,10 +60,10 @@ namespace VkLibrary.Core.LongPolling
         /// <summary>
         /// Starts a long poll listener.
         /// </summary>
-        internal Task StartListener(string server, string key, 
+        internal async Task StartListener(string server, string key, 
             int ts, int version, int wait, AnswerFlags mode)
         {
-            return Task.Run(async () =>
+            await Task.Factory.StartNew(async () =>
             {
                 while (!_stopped)
                 {
@@ -80,15 +80,17 @@ namespace VkLibrary.Core.LongPolling
                     if (failure != null || updates == null)
                     {
                         OnLongPollFailureReceived(failure == null ? -1 : (int) failure);
-                        Dispose();
-                        return;
+                        Stop();
                     }
-
-                    // Raise messageReceived and continue.
-                    OnLongPollMessageReceived(updates);
-                    ts = (int) responseToken["ts"];
+                    else
+                    {
+                        // Raise messageReceived and continue.
+                        OnLongPollMessageReceived(updates);
+                        ts = (int)responseToken["ts"];
+                    }
                 }
-            });
+                _httpClient?.Dispose();
+            }, TaskCreationOptions.LongRunning);
         }
 
         #endregion
@@ -324,19 +326,9 @@ namespace VkLibrary.Core.LongPolling
         private void Log(object o) => _vkontakte.Log(o);
 
         /// <summary>
-        /// Stops current long poll client.
+        /// Stops and disposes this long poll client.
         /// </summary>
         public void Stop() => _stopped = true;
-
-        /// <summary>
-        /// Disposes object.
-        /// </summary>
-        public void Dispose()
-        {
-            // Stop and free resources.
-            _stopped = true;
-            _httpClient?.Dispose();
-        }
 
         #endregion
     }

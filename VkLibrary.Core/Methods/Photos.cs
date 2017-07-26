@@ -67,6 +67,33 @@ namespace VkLibrary.Core.Methods
         }
 
         /// <summary>
+        /// Returns a list of a user's or community's photo albums.
+        /// </summary>
+        /// <param name="ownerId">ID of the user or community that owns the albums.</param>
+        /// <param name="albumIds">Album IDs. </param>
+        /// <param name="offset">Offset needed to return a specific subset of albums.</param>
+        /// <param name="count">Number of albums to return.</param>
+        /// <param name="needSystem">true — to return system albums with negative IDs</param>
+        /// <param name="needCovers">true — to return an additional thumb_src field </param>
+        /// <param name="photoSizes">1 — to return photo sizes in a special format</param>
+        public Task<ApiItemsResponse<PhotoAlbumFull>> GetAlbums(
+            int? ownerId = null, IEnumerable<string> albumIds = null, int? offset = null, int? count = null,
+            bool? needSystem = null, bool? needCovers = null, bool? photoSizes = null)
+        {
+            var parameters = new Dictionary<string, string>();
+            
+            if (ownerId != null) parameters.Add("owner_id", ownerId.ToApiString());
+            if (albumIds != null) parameters.Add("album_ids", albumIds.ToApiString());
+            if (offset != null) parameters.Add("offset", offset.ToApiString());
+            if (count != null) parameters.Add("count", count.ToApiString());
+            if (needSystem != null) parameters.Add("need_system", needSystem.ToApiString());
+            if (needCovers != null) parameters.Add("need_covers", needCovers.ToApiString());
+            if (photoSizes != null) parameters.Add("photo_sizes", photoSizes.ToApiString());
+
+            return _vkontakte.GetAsync<ApiItemsResponse<PhotoAlbumFull>>("photos.getAlbums", parameters);
+        }
+
+        /// <summary>
         /// Get chat upload server.
         /// Docs: <see href="https://vk.com/dev/photos.getChatUploadServer">photos.getChatUploadServer</see>
         /// </summary>

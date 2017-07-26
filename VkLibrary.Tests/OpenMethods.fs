@@ -84,7 +84,7 @@ module OpenMethods =
     let groupsIsMemberTest () =
         lib.Groups.IsMember(string 1, nbl 1)
         |> await
-        |> should equal 1
+        |> should be (greaterThanOrEqualTo 0)
 
     [<Test>]
     /// Check link util test.

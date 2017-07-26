@@ -38,9 +38,10 @@ module LongPolling =
     /// Start long poll server test.
     let startLongPollServerTest() =
         let server = await <| lib.Messages.GetLongPollServer()
-        use client = 
+        let client = 
             (server.Server, server.Key, server.Ts)
             |> lib.StartLongPollClient
+            |> await
         let mutable success = false
         client.ResponseReceived += 
             fun jArray -> 

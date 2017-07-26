@@ -25,12 +25,21 @@ module Methods =
     /// Dispose library when tests have completed.
     let fixtureTearDown () = lib.Dispose()
 
+    [<Test>] 
+    /// Get albums test.
+    let photosGetAlbumsTest () =
+        lib.Photos.GetAlbums(ownerId=Nullable -44695971)
+        |> await
+        |> fun x -> x.Items.[0].Id
+        |> should be (greaterThan 0)
+
     [<Test>]
     /// SetCaptcha test.
     let captchaTest () =
         lib.SetCaptchaForNextRequest("foo", "bar")
         lib.Execute<int>("return 42;")
         |> await
+        |> tee log
         |> should equal 42
 
     [<Test>]
