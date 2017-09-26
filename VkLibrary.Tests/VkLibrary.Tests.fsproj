@@ -11,7 +11,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>VkLibrary.Tests</RootNamespace>
     <AssemblyName>VkLibrary.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <TargetFSharpCoreVersion>4.4.1.0</TargetFSharpCoreVersion>
     <Name>VkLibrary.Tests</Name>
     <TargetFrameworkProfile />

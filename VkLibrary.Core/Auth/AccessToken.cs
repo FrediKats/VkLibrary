@@ -21,39 +21,31 @@ namespace VkLibrary.Core.Auth
         public double ExpiresIn { get; set; }
 
         /// <summary>
-        /// Expires in DateTime.
-        /// </summary>
-        public DateTime ExpiresInDateTime => DateTime.Now.Add(TimeSpan.FromSeconds(ExpiresIn));
-
-        /// <summary>
         /// User ID that owns this token.
         /// </summary>
         [JsonProperty("user_id")]
         public int UserId { get; set; }
 
         /// <summary>
+        /// Expires in DateTime.
+        /// </summary>
+        private DateTime ExpiresInDateTime => DateTime.Now.Add(TimeSpan.FromSeconds(ExpiresIn));
+
+        /// <summary>
         /// Has access token expired?
         /// </summary>
-        public bool HasExpired => ExpiresInDateTime != DateTime.MinValue && DateTime.Now > ExpiresInDateTime;
+        public bool HasExpired => ExpiresIn != default(double) && DateTime.Now > ExpiresInDateTime;
 
         /// <summary>
-        /// Stringifies token data.
+        /// Creates token from a string.
         /// </summary>
-        public override string ToString() => $"{Token} {ExpiresIn} {UserId}";
-
-        /// <summary>
-        /// Deserializes token from a string.
-        /// </summary>
-        /// <param name="s">String</param>
-        public static AccessToken FromString(string s)
+        /// <param name="token">Token as string.</param>
+        /// <param name="userId">User id.</param>
+        public static AccessToken FromString(string token, int userId) => new AccessToken
         {
-            var split = s.Split(' ');
-            return new AccessToken
-            {
-                Token = split[0],
-                ExpiresIn = double.Parse(split[1]),
-                UserId = int.Parse(split[2])
-            };
-        } 
+            Token = token,
+            ExpiresIn = default(double),
+            UserId = userId
+        };
     }
 }

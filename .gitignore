@@ -66,3 +66,6 @@ VkLibrary.Tests/Constants.fs
 *.sln
 *.suo
 .vs/VkLibrary/v15/sqlite3/storage.ide
+*.sqlite
+VkLibrary.Tests/Constants.fs
+VkLibrary.Core/project.lock.json
