@@ -78,6 +78,12 @@ If you are developing an application that was <a href="https://vk.com/dev/auth_d
 vk.AccessToken = await vk.DirectAuth.Login("login", "pass", ScopeSettings.CanAccessWhatever);
 ```
 
+# Authentication using existing access token
+If you'd like to use existing access token to authenticate a user, please use:
+```csharp
+vk.AccessToken = AccessToken.FromString("bjh234h5435...", 12345);
+```
+
 # Calling API Methods
 All API methods are listed <a href="https://vk.com/dev/methods">here</a>. Calling them from VkLibrary is quite simple.
 
