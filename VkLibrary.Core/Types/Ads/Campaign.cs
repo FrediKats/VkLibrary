@@ -11,7 +11,7 @@ namespace VkLibrary.Core.Types.Ads
         /// Campaign start time, as Unixtime
         /// </summary>
         [JsonProperty("start_time")]
-        public int? StartTime { get; set; }
+        public double? StartTime { get; set; }
 
         /// <summary>
         /// Campaign status
@@ -29,7 +29,7 @@ namespace VkLibrary.Core.Types.Ads
         /// Campaign title
         /// </summary>
         [JsonProperty("name")]
-        public int? Name { get; set; }
+        public string Name { get; set; }
 
         /// <summary>
         /// Campaign's total limit, rubles
@@ -53,6 +53,6 @@ namespace VkLibrary.Core.Types.Ads
         /// Campaign stop time, as Unixtime
         /// </summary>
         [JsonProperty("stop_time")]
-        public int? StopTime { get; set; }
+        public double? StopTime { get; set; }
     }
 }

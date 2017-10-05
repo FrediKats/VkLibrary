@@ -2,17 +2,16 @@
 
 open FsUnit
 open NUnit.Framework
+open System
+open Extensions
+open VkLibrary.Core
+open System.Collections.Generic
+open VkLibrary.Core.Responses.Newsfeed
+open VkLibrary.Core.Auth
 
 [<TestFixture>]
 /// Common queries used in library.
 module Methods =
-
-    open System
-    open Extensions
-    open VkLibrary.Core
-    open System.Collections.Generic
-    open VkLibrary.Core.Responses.Newsfeed
-    open VkLibrary.Core.Auth
 
     [<OneTimeSetUp>]
     /// Methods fixture setup.
@@ -182,3 +181,11 @@ module Methods =
         |> await
         |> fun x -> x.Count
         |> should be (greaterThanOrEqualTo 0)
+
+    [<Test>]
+    let campaignsGetTest () =
+        lib.Ads.GetCampaigns(accountId=nbl Constants.accountId)
+        |> await
+        |> Seq.item 0
+        |> fun x -> x.Id
+        |> should be (greaterThan 0)

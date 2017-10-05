@@ -24,3 +24,6 @@ module Constants =
 
     [<Literal>] /// API access token.
     let accessToken = " "
+    
+    [<Literal>] /// Ads account id
+    let accountId = 0
