@@ -203,7 +203,7 @@ namespace VkLibrary.Core.Methods
             if (markAsAds != null)
                 parameters.Add("mark_as_ads", markAsAds.ToApiString());
 
-            return _vkontakte.GetAsync<PostResponse>("wall.post", parameters);
+            return _vkontakte.PostAsync<PostResponse>("wall.post", parameters);
         }
 
         /// <summary>
