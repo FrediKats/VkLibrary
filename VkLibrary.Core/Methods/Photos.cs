@@ -210,6 +210,44 @@ namespace VkLibrary.Core.Methods
             return _vkontakte.GetAsync<IEnumerable<Photo>>("photos.save", parameters);
         }
 
+
+        /// <summary>
+        /// Saves wall photo after successful uploading.
+        /// Docs: <see href="https://vk.com/dev/photos.saveWallPhoto">photos.save</see>
+        /// </summary>
+        /// <param name="userId">ID of the user to save photos to.</param>
+        /// <param name="groupId">ID of the community to save photos to.</param>
+        /// <param name="server">Parameter returned when photos are uploaded to server.</param>
+        /// <param name="photo">Parameter returned when photos are uploaded to server.</param>
+        /// <param name="hash">Parameter returned when photos are uploaded to server.</param>
+        /// <param name="latitude">Geographical latitude, in degrees (from '-90' to '90').</param>
+        /// <param name="longitude">Geographical longitude, in degrees (from '-180' to '180').</param>
+        /// <param name="caption">Text describing the photo. 2048 digits max.</param>
+        public Task<IEnumerable<Photo>> SaveWallPhoto(uint? userId = null, uint? groupId = null, int? server = null, string photo = null,
+            string hash = null, uint? latitude = null, uint? longitude = null, string caption = null)
+        {
+            var parameters = new Dictionary<string, string>();
+
+            if (userId != null)
+                parameters.Add("user_id", groupId.ToApiString());
+            if (groupId != null)
+                parameters.Add("group_id", groupId.ToApiString());
+            if (server != null)
+                parameters.Add("server", server.ToApiString());
+            if (photo != null)
+                parameters.Add("photo", photo);
+            if (hash != null)
+                parameters.Add("hash", hash);
+            if (latitude != null)
+                parameters.Add("latitude", latitude.ToApiString());
+            if (longitude != null)
+                parameters.Add("longitude", longitude.ToApiString());
+            if (caption != null)
+                parameters.Add("caption", caption);
+
+            return _vkontakte.GetAsync<IEnumerable<Photo>>("photos.saveWallPhoto", parameters);
+        }
+
         /// <summary>
         /// Allows to copy a photo to the "Saved photos" album
         /// Docs: <see href="https://vk.com/dev/photos.copy">photos.copy</see>
