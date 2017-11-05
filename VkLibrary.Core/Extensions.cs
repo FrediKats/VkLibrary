@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Globalization;
 using System.Linq;
 
 namespace VkLibrary.Core
@@ -21,9 +22,11 @@ namespace VkLibrary.Core
             var type = variable.GetType();
             if (type == typeof(bool)) return (bool) variable ? "1" : "0";
 
+            // Check for doubles.
+            if (variable is double @double) return @double.ToString(CultureInfo.InvariantCulture);
+
             // Check for sequences.
-            var enumerable = variable as IEnumerable;
-            if (enumerable == null || variable is string)
+            if (!(variable is IEnumerable enumerable) || variable is string)
                 return variable.ToString();
 
             // Check-convert.

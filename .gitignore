@@ -48,7 +48,10 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-packages/
+.vs
+.idea
+.vscode
+packages
 VkLibrary.Core/obj
 VkLibrary.Core/bin
 VkLibrary.Core/.vs

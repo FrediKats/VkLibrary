@@ -25,8 +25,8 @@ namespace VkLibrary.Core.Methods
         /// 'can_post', 'universities';
         /// </param>
         /// <param name="nameCase">
-        /// Case for declension of user name and surname:; 'nom' — nominative (default); 'gen' — genitive ;
-        /// 'dat' — dative; 'acc' — accusative ; 'ins' — instrumental ; 'abl' — prepositional
+        /// Case for declension of user name and surname:; 'nom' â€” nominative (default); 'gen' â€” genitive ;
+        /// 'dat' â€” dative; 'acc' â€” accusative ; 'ins' â€” instrumental ; 'abl' â€” prepositional
         /// </param>
         public Task<IEnumerable<UserXtrCounters>> Get(IEnumerable<string> userIds = null,
             IEnumerable<string> fields = null, string nameCase = null)
@@ -48,7 +48,7 @@ namespace VkLibrary.Core.Methods
         /// Docs: <see href="https://vk.com/dev/users.search">users.search</see>
         /// </summary>
         /// <param name="q">Search query string (e.g., 'Vasya Babich').</param>
-        /// <param name="sort">Sort order:; '1' — by date registered; '0' — by rating</param>
+        /// <param name="sort">Sort order:; '1' â€” by date registered; '0' â€” by rating</param>
         /// <param name="offset">Offset needed to return a specific subset of users.</param>
         /// <param name="count">Number of users to return.</param>
         /// <param name="fields">
@@ -64,18 +64,18 @@ namespace VkLibrary.Core.Methods
         /// <param name="universityYear">Year of graduation from an institution of higher education.</param>
         /// <param name="universityFaculty">Faculty ID.</param>
         /// <param name="universityChair">Chair ID.</param>
-        /// <param name="sex">'1' — female; '2' — male; '0' — any (default)</param>
+        /// <param name="sex">'1' â€” female; '2' â€” male; '0' â€” any (default)</param>
         /// <param name="status">
-        /// Relationship status:; '1' — Not married; '2' — In a relationship; '3' — Engaged; '4' — Married;
-        /// '5' — It's complicated; '6' — Actively searching; '7' — In love
+        /// Relationship status:; '1' â€” Not married; '2' â€” In a relationship; '3' â€” Engaged; '4' â€” Married;
+        /// '5' â€” It's complicated; '6' â€” Actively searching; '7' â€” In love
         /// </param>
         /// <param name="ageFrom">Minimum age.</param>
         /// <param name="ageTo">Maximum age.</param>
         /// <param name="birthDay">Day of birth.</param>
         /// <param name="birthMonth">Month of birth.</param>
         /// <param name="birthYear">Year of birth.</param>
-        /// <param name="online">'1' — online only; '0' — all users</param>
-        /// <param name="hasPhoto">'1' — with photo only; '0' — all users</param>
+        /// <param name="online">'1' â€” online only; '0' â€” all users</param>
+        /// <param name="hasPhoto">'1' â€” with photo only; '0' â€” all users</param>
         /// <param name="schoolCountry">ID of the country where users finished school.</param>
         /// <param name="schoolCity">ID of the city where users finished school.</param>
         /// <param name="schoolClass"></param>
@@ -190,7 +190,7 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="userId">User ID.</param>
         /// <param name="extended">
-        /// '1' — to return a combined list of users and communities; '0' — to return separate lists of
+        /// '1' â€” to return a combined list of users and communities; '0' â€” to return separate lists of
         /// users and communities (default)
         /// </param>
         /// <param name="offset">Offset needed to return a specific subset of subscriptions.</param>
@@ -228,8 +228,8 @@ namespace VkLibrary.Core.Methods
         /// 'online'.;
         /// </param>
         /// <param name="nameCase">
-        /// Case for declension of user name and surname:; 'nom' — nominative (default); 'gen' — genitive ;
-        /// 'dat' — dative; 'acc' — accusative ; 'ins' — instrumental ; 'abl' — prepositional
+        /// Case for declension of user name and surname:; 'nom' â€” nominative (default); 'gen' â€” genitive ;
+        /// 'dat' â€” dative; 'acc' â€” accusative ; 'ins' â€” instrumental ; 'abl' â€” prepositional
         /// </param>
         public Task<ApiItemsResponse<T>> GetFollowers<T>(int? userId = null, int? offset = null,
             int? count = null, IEnumerable<string> fields = null, string nameCase = null)
@@ -256,8 +256,8 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="userId">ID of the user about whom a complaint is being made.</param>
         /// <param name="type">
-        /// Type of complaint:; 'porn' – pornography; 'spam' – spamming; 'insult' – abusive behavior;
-        /// 'advertisment' – disruptive advertisements
+        /// Type of complaint:; 'porn' â€“ pornography; 'spam' â€“ spamming; 'insult' â€“ abusive behavior;
+        /// 'advertisment' â€“ disruptive advertisements
         /// </param>
         /// <param name="comment">Comment describing the complaint.</param>
         public Task<int> Report(int? userId = null, string type = null, string comment = null)
@@ -282,7 +282,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="longitude">geographic longitude of the place a user is located, in degrees (from -180 to 180)</param>
         /// <param name="accuracy">current location accuracy in meters</param>
         /// <param name="timeout">time when a user disappears from location search results, in seconds</param>
-        /// <param name="radius">search zone radius type (1 to 4); :* 1 – 300 m;; :* 2 – 2400 m;; :* 3 – 18 km;; :* 4 – 150 km.</param>
+        /// <param name="radius">search zone radius type (1 to 4); :* 1 â€“ 300 m;; :* 2 â€“ 2400 m;; :* 3 â€“ 18 km;; :* 4 â€“ 150 km.</param>
         /// <param name="fields">
         /// list of additional fields to return.; Available values: sex, bdate, city, country, photo_50,
         /// photo_100, photo_200_orig, photo_200, photo_400_orig, photo_max, photo_max_orig, online, online_mobile, domain,
@@ -291,8 +291,8 @@ namespace VkLibrary.Core.Methods
         /// screen_name, maiden_name, timezone, occupation
         /// </param>
         /// <param name="nameCase">
-        /// Case for declension of user name and surname: ; nom –nominative (default) ; gen – genitive ;
-        /// dat – dative ; acc – accusative ; ins – instrumental ; abl – prepositional
+        /// Case for declension of user name and surname: ; nom â€“nominative (default) ; gen â€“ genitive ;
+        /// dat â€“ dative ; acc â€“ accusative ; ins â€“ instrumental ; abl â€“ prepositional
         /// </param>
         public Task<ApiItemsResponse<UserFull>> GetNearby(uint? latitude = null, uint? longitude = null,
             int? accuracy = null, int? timeout = null, int? radius = null, IEnumerable<string> fields = null,
