@@ -90,6 +90,40 @@ namespace VkLibrary.Core
         }
 
         /// <summary>
+        /// Sends POST request to vk server.
+        /// </summary>
+        /// <param name="method">Method shortcut</param>
+        /// <param name="parameters">Parameters dict</param>
+        /// <returns></returns>
+        public async Task<TResult> PostAsync<TResult>(string method, Dictionary<string, string> parameters)
+        {
+            // Add token and api version info to request.
+            if (!string.IsNullOrEmpty(AccessToken?.Token))
+                parameters.Add("access_token", AccessToken.Token);
+            parameters.Add("v", _apiVersion);
+
+            // Add captcha if not null and then erase it.
+            if (_captchaSid != null && _captchaKey != null)
+            {
+                parameters.Add("captcha_sid", _captchaSid);
+                parameters.Add("captcha_key", _captchaKey);
+                _captchaSid = null;
+                _captchaKey = null;
+            }
+
+            // Build request url with parameters.
+            var urlString = string.Concat(MethodBase, method);
+            Log($"Invoking {method}: {urlString}");
+
+            // Post response and parse it based on parsing type.
+            var response =
+                await DeserializePostInPrefferedWay<ApiResponse<TResult>>
+                (urlString, parameters).ConfigureAwait(false);
+            ProcessErrors(response.Error);
+            return response.Response;
+        }
+
+        /// <summary>
         /// Checks for any API errors and throws
         /// an exception of type ApiException.
         /// </summary>
@@ -154,6 +188,69 @@ namespace VkLibrary.Core
             using (var responseMessage = await _httpClient.GetAsync(urlString).ConfigureAwait(false))
             {
                 var str = await responseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+                Log($"Response: {str}");
+                var response = JsonConvert.DeserializeObject<TResult>(str);
+                Log("Response successfully deserialized.");
+                return response;
+            }
+        }
+
+        /// <summary>
+        /// Deserializes Post response in a preffered way.
+        /// </summary>
+        /// <typeparam name="TResult">Type of result object</typeparam>
+        /// <param name="urlString">Url string to Post response from</param>
+        /// <param name="parameters">Parameters dict</param>
+        /// <returns>Object of TResult type</returns>
+        internal Task<TResult> DeserializePostInPrefferedWay<TResult>(string urlString, Dictionary<string, string> parameters)
+        {
+            switch (_jsonParsingType)
+            {
+                case JsonParsingType.UseStream:
+                    return DeserializePostFromStream<TResult>(urlString, parameters);
+                case JsonParsingType.UseString:
+                    return DeserializePostFromString<TResult>(urlString, parameters);
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        /// <summary>
+        /// Deserializes object using Stream and JsonConverter. 
+        /// Optimal for performance.
+        /// </summary>
+        /// <typeparam name="TResult">Type of result object</typeparam>
+        /// <param name="urlString">Url string to Post response from</param>
+        /// <param name="parameters">Parameters dict</param>
+        /// <returns>Object of TResult type</returns>
+        private async Task<TResult> DeserializePostFromStream<TResult>(string urlString, Dictionary<string, string> parameters)
+        {
+            using (var encodedContent = new FormUrlEncodedContent(parameters))
+            using (var httpResponse = await _httpClient.PostAsync(urlString, encodedContent).ConfigureAwait(false))
+            using (var streamReader = new StreamReader(await httpResponse.Content.ReadAsStreamAsync()))
+            using (var jsonReader = new JsonTextReader(streamReader))
+            {
+                var serializer = new JsonSerializer();
+                var response = serializer.Deserialize<TResult>(jsonReader);
+                Log("Response successfully deserialized.");
+                return response;
+            }
+        }
+
+        /// <summary>
+        /// Deserializes object from string and logs more debug info.
+        /// Optimal for debugging.
+        /// </summary>
+        /// <typeparam name="TResult">Type of result object</typeparam>
+        /// <param name="urlString">Url string to Post response from</param>
+        /// <param name="parameters">Parameters dict</param>
+        /// <returns>Object of TResult type</returns>
+        private async Task<TResult> DeserializePostFromString<TResult>(string urlString, Dictionary<string, string> parameters)
+        {
+            using (var encodedContent = new FormUrlEncodedContent(parameters))
+            using (var httpResponse = await _httpClient.PostAsync(urlString, encodedContent).ConfigureAwait(false))
+            {
+                var str = await httpResponse.Content.ReadAsStringAsync();
                 Log($"Response: {str}");
                 var response = JsonConvert.DeserializeObject<TResult>(str);
                 Log("Response successfully deserialized.");
