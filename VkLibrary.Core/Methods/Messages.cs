@@ -18,7 +18,7 @@ namespace VkLibrary.Core.Methods
         /// Returns a list of the current user's incoming or outgoing private messages.
         /// Docs: <see href="https://vk.com/dev/messages.get">messages.get</see>
         /// </summary>
-        /// <param name="out_">'1' — to return outgoing messages; '0' — to return incoming messages (default)</param>
+        /// <param name="out_">'1' â€” to return outgoing messages; '0' â€” to return incoming messages (default)</param>
         /// <param name="offset">Offset needed to return a specific subset of messages.</param>
         /// <param name="count">Number of messages to return.</param>
         /// <param name="timeOffset">
@@ -51,7 +51,7 @@ namespace VkLibrary.Core.Methods
             if (lastMessageId != null)
                 parameters.Add("last_message_id", lastMessageId.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<Message>>("messages.get", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<Message>>("messages.get", parameters);
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace VkLibrary.Core.Methods
         /// Number of characters after which to truncate a previewed message. To preview the full
         /// message, specify '0'.; "NOTE: Messages are not truncated by default. Messages are truncated by words."
         /// </param>
-        /// <param name="unread">'1' — return unread messages only.</param>
+        /// <param name="unread">'1' â€” return unread messages only.</param>
         public Task<ApiItemsResponse<Dialog>> GetDialogs(int? offset = null, int? count = null,
             int? startMessageId = null, int? previewLength = null, bool? unread = null)
         {
@@ -82,7 +82,7 @@ namespace VkLibrary.Core.Methods
             if (unread != null)
                 parameters.Add("unread", unread.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<Dialog>>("messages.getDialogs", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<Dialog>>("messages.getDialogs", parameters);
         }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace VkLibrary.Core.Methods
             if (messageIds != null)
                 parameters.Add("message_ids", messageIds.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<Message>>("messages.getById", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<Message>>("messages.getById", parameters);
         }
 
         /// <summary>
@@ -125,7 +125,7 @@ namespace VkLibrary.Core.Methods
             if (count != null)
                 parameters.Add("count", count.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<Message>>("messages.search", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<Message>>("messages.search", parameters);
         }
 
         /// <summary>
@@ -138,7 +138,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="peerId"></param>
         /// <param name="startMessageId">Starting message ID from which to return history.</param>
         /// <param name="rev">
-        /// Sort order:; '1' — return messages in chronological order.; '0' — return messages in reverse
+        /// Sort order:; '1' â€” return messages in chronological order.; '0' â€” return messages in reverse
         /// chronological order.
         /// </param>
         public Task<ApiItemsResponse<Message>> GetHistory(int? offset = null, int? count = null,
@@ -159,7 +159,7 @@ namespace VkLibrary.Core.Methods
             if (rev != null)
                 parameters.Add("rev", rev.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<Message>>("messages.getHistory", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<Message>>("messages.getHistory", parameters);
         }
 
         /// <summary>
@@ -173,7 +173,7 @@ namespace VkLibrary.Core.Methods
         /// </param>
         /// <param name="startFrom">Message ID to start return results from.</param>
         /// <param name="count">Number of objects to return.</param>
-        /// <param name="photoSizes">'1' — to return photo sizes in a</param>
+        /// <param name="photoSizes">'1' â€” to return photo sizes in a</param>
         /// <param name="fields">Additional profile fields to return. </param>
         public Task<ApiItemsResponse<AttachmentsContainer>> GetHistoryAttachments(int? peerId = null,
             string mediaType = null, string startFrom = null, int? count = null, bool? photoSizes = null,
@@ -194,7 +194,7 @@ namespace VkLibrary.Core.Methods
             if (fields != null)
                 parameters.Add("fields", fields.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<AttachmentsContainer>>("messages.getHistoryAttachments",
+            return _vkontakte.RequestAsync<ApiItemsResponse<AttachmentsContainer>>("messages.getHistoryAttachments",
                 parameters);
         }
 
@@ -202,7 +202,7 @@ namespace VkLibrary.Core.Methods
         /// Sends a message.
         /// Docs: <see href="https://vk.com/dev/messages.send">messages.send</see>
         /// </summary>
-        /// <param name="userId">User ID (by default — current user).</param>
+        /// <param name="userId">User ID (by default â€” current user).</param>
         /// <param name="randomId">Unique identifier to avoid resending the message.</param>
         /// <param name="peerId">
         /// Destination ID.; ; "For user:; 'User ID', e.g. '12345'.; ; For chat:; '2000000000' + 'chat_id',
@@ -216,8 +216,8 @@ namespace VkLibrary.Core.Methods
         /// <param name="long_">Geographical longitude of a check-in, in degrees (from -180 to 180).</param>
         /// <param name="attachment">
         /// (Required if 'message' is not set.) List of objects attached to the message, separated by commas, in the following
-        /// format:; "%owner_id%_%media_id%"; '' — Type of media attachment:; 'photo' — photo; 'video' — video; 'audio' — audio; 'doc' —
-        /// document; 'wall' — wall post; '%owner_id%' — ID of the media attachment owner.; '%media_id%' — media attachment ID.; ; Example:; "photo100172_166443618"
+        /// format:; "%owner_id%_%media_id%"; '' â€” Type of media attachment:; 'photo' â€” photo; 'video' â€” video; 'audio' â€” audio; 'doc' â€”
+        /// document; 'wall' â€” wall post; '%owner_id%' â€” ID of the media attachment owner.; '%media_id%' â€” media attachment ID.; ; Example:; "photo100172_166443618"
         /// </param>
         /// <param name="forwardMessages">
         /// ID of forwarded messages, separated with a comma. Listed messages of the sender will be
@@ -259,7 +259,7 @@ namespace VkLibrary.Core.Methods
             if (notification != null)
                 parameters.Add("notification", notification.ToApiString());
 
-            return _vkontakte.GetAsync<int?>("messages.send", parameters);
+            return _vkontakte.RequestAsync<int?>("messages.send", parameters);
         }
 
         /// <summary>
@@ -267,7 +267,7 @@ namespace VkLibrary.Core.Methods
         /// Docs: <see href="https://vk.com/dev/messages.delete">messages.delete</see>
         /// </summary>
         /// <param name="messageIds">Message IDs.</param>
-        /// <param name="spam">'1' — to mark message as spam.</param>
+        /// <param name="spam">'1' â€” to mark message as spam.</param>
         public Task<JToken> Delete(IEnumerable<int?> messageIds = null, bool? spam = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -277,7 +277,7 @@ namespace VkLibrary.Core.Methods
             if (spam != null)
                 parameters.Add("spam", spam.ToApiString());
 
-            return _vkontakte.GetAsync<JToken>("messages.delete", parameters);
+            return _vkontakte.RequestAsync<JToken>("messages.delete", parameters);
         }
 
         /// <summary>
@@ -308,7 +308,7 @@ namespace VkLibrary.Core.Methods
             if (count != null)
                 parameters.Add("count", count.ToApiString());
 
-            return _vkontakte.GetAsync<int>("messages.deleteDialog", parameters);
+            return _vkontakte.RequestAsync<int>("messages.deleteDialog", parameters);
         }
 
         /// <summary>
@@ -323,7 +323,7 @@ namespace VkLibrary.Core.Methods
             if (messageId != null)
                 parameters.Add("message_id", messageId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("messages.restore", parameters);
+            return _vkontakte.RequestAsync<int>("messages.restore", parameters);
         }
 
         /// <summary>
@@ -348,7 +348,7 @@ namespace VkLibrary.Core.Methods
             if (startMessageId != null)
                 parameters.Add("start_message_id", startMessageId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("messages.markAsRead", parameters);
+            return _vkontakte.RequestAsync<int>("messages.markAsRead", parameters);
         }
 
         /// <summary>
@@ -356,7 +356,7 @@ namespace VkLibrary.Core.Methods
         /// Docs: <see href="https://vk.com/dev/messages.markAsImportant">messages.markAsImportant</see>
         /// </summary>
         /// <param name="messageIds">IDs of messages to mark as important.</param>
-        /// <param name="important">'1' — to add a star (mark as important); '0' — to remove the star</param>
+        /// <param name="important">'1' â€” to add a star (mark as important); '0' â€” to remove the star</param>
         public Task<IEnumerable<int?>> MarkAsImportant(IEnumerable<int?> messageIds = null,
             int? important = null)
         {
@@ -367,16 +367,16 @@ namespace VkLibrary.Core.Methods
             if (important != null)
                 parameters.Add("important", important.ToApiString());
 
-            return _vkontakte.GetAsync<IEnumerable<int?>>("messages.markAsImportant", parameters);
+            return _vkontakte.RequestAsync<IEnumerable<int?>>("messages.markAsImportant", parameters);
         }
 
         /// <summary>
         /// Returns data required for connection to a Long Poll server.
         /// Docs: <see href="https://vk.com/dev/messages.getLongPollServer">messages.getLongPollServer</see>
         /// </summary>
-        /// <param name="useSsl">'1' — to use SSL.</param>
+        /// <param name="useSsl">'1' â€” to use SSL.</param>
         /// <param name="needPts">
-        /// '1' — to return the 'pts' field, needed for the
+        /// '1' â€” to return the 'pts' field, needed for the
         /// messages.getLongPollHistory method.
         /// </param>
         public Task<LongpollParams> GetLongPollServer(bool? useSsl = null, bool? needPts = null)
@@ -388,7 +388,7 @@ namespace VkLibrary.Core.Methods
             if (needPts != null)
                 parameters.Add("need_pts", needPts.ToApiString());
 
-            return _vkontakte.GetAsync<LongpollParams>("messages.getLongPollServer", parameters);
+            return _vkontakte.RequestAsync<LongpollParams>("messages.getLongPollServer", parameters);
         }
 
         /// <summary>
@@ -407,7 +407,7 @@ namespace VkLibrary.Core.Methods
         /// Number of characters after which to truncate a previewed message. To preview the full
         /// message, specify '0'.; "NOTE: Messages are not truncated by default. Messages are truncated by words."
         /// </param>
-        /// <param name="onlines">'1' — to return history with online users only.</param>
+        /// <param name="onlines">'1' â€” to return history with online users only.</param>
         /// <param name="fields">Additional profile fields to return.</param>
         /// <param name="eventsLimit">Maximum number of events to return.</param>
         /// <param name="msgsLimit">Maximum number of messages to return.</param>
@@ -439,7 +439,7 @@ namespace VkLibrary.Core.Methods
             if (maxMsgId != null)
                 parameters.Add("max_msg_id", maxMsgId.ToApiString());
 
-            return _vkontakte.GetAsync<GetLongPollHistoryResponse>("messages.getLongPollHistory", parameters);
+            return _vkontakte.RequestAsync<GetLongPollHistoryResponse>("messages.getLongPollHistory", parameters);
         }
 
         /// <summary>
@@ -450,8 +450,8 @@ namespace VkLibrary.Core.Methods
         /// <param name="chatIds">Chat IDs.</param>
         /// <param name="fields">Profile fields to return.;</param>
         /// <param name="nameCase">
-        /// Case for declension of user name and surname:; 'nom' — nominative (default); 'gen' — genitive ;
-        /// 'dat' — dative; 'acc' — accusative ; 'ins' — instrumental ; 'abl' — prepositional
+        /// Case for declension of user name and surname:; 'nom' â€” nominative (default); 'gen' â€” genitive ;
+        /// 'dat' â€” dative; 'acc' â€” accusative ; 'ins' â€” instrumental ; 'abl' â€” prepositional
         /// </param>
         public Task<Chat> GetChat(int? chatId = null, IEnumerable<int?> chatIds = null,
             IEnumerable<string> fields = null, string nameCase = null)
@@ -467,7 +467,7 @@ namespace VkLibrary.Core.Methods
             if (nameCase != null)
                 parameters.Add("name_case", nameCase);
 
-            return _vkontakte.GetAsync<Chat>("messages.getChat", parameters);
+            return _vkontakte.RequestAsync<Chat>("messages.getChat", parameters);
         }
 
         /// <summary>
@@ -485,7 +485,7 @@ namespace VkLibrary.Core.Methods
             if (title != null)
                 parameters.Add("title", title);
 
-            return _vkontakte.GetAsync<int?>("messages.createChat", parameters);
+            return _vkontakte.RequestAsync<int?>("messages.createChat", parameters);
         }
 
         /// <summary>
@@ -503,7 +503,7 @@ namespace VkLibrary.Core.Methods
             if (title != null)
                 parameters.Add("title", title);
 
-            return _vkontakte.GetAsync<int>("messages.editChat", parameters);
+            return _vkontakte.RequestAsync<int>("messages.editChat", parameters);
         }
 
         /// <summary>
@@ -514,8 +514,8 @@ namespace VkLibrary.Core.Methods
         /// <param name="chatIds">Chat IDs.</param>
         /// <param name="fields">Profile fields to return.;</param>
         /// <param name="nameCase">
-        /// Case for declension of user name and surname:; 'nom' — nominative (default); 'gen' — genitive;
-        /// 'dat' — dative; 'acc' — accusative; 'ins' — instrumental; 'abl' — prepositional
+        /// Case for declension of user name and surname:; 'nom' â€” nominative (default); 'gen' â€” genitive;
+        /// 'dat' â€” dative; 'acc' â€” accusative; 'ins' â€” instrumental; 'abl' â€” prepositional
         /// </param>
         public Task<IEnumerable<int?>> GetChatUsers(int? chatId = null, IEnumerable<int?> chatIds = null,
             IEnumerable<string> fields = null, string nameCase = null)
@@ -531,7 +531,7 @@ namespace VkLibrary.Core.Methods
             if (nameCase != null)
                 parameters.Add("name_case", nameCase);
 
-            return _vkontakte.GetAsync<IEnumerable<int?>>("messages.getChatUsers", parameters);
+            return _vkontakte.RequestAsync<IEnumerable<int?>>("messages.getChatUsers", parameters);
         }
 
         /// <summary>
@@ -539,7 +539,7 @@ namespace VkLibrary.Core.Methods
         /// Docs: <see href="https://vk.com/dev/messages.setActivity">messages.setActivity</see>
         /// </summary>
         /// <param name="userId">User ID.</param>
-        /// <param name="type">'typing' — user has started to type.</param>
+        /// <param name="type">'typing' â€” user has started to type.</param>
         /// <param name="peerId">
         /// Destination ID.; ; "For user:; 'User ID', e.g. '12345'.; ; For chat:; '2000000000' + 'chat_id',
         /// e.g. '2000000001'.; ; For community:; '- community ID', e.g. '-12345'.; "
@@ -555,7 +555,7 @@ namespace VkLibrary.Core.Methods
             if (peerId != null)
                 parameters.Add("peer_id", peerId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("messages.setActivity", parameters);
+            return _vkontakte.RequestAsync<int>("messages.setActivity", parameters);
         }
 
         /// <summary>
@@ -577,7 +577,7 @@ namespace VkLibrary.Core.Methods
             if (fields != null)
                 parameters.Add("fields", fields.ToApiString());
 
-            return _vkontakte.GetAsync<IEnumerable<object>>("messages.searchDialogs", parameters);
+            return _vkontakte.RequestAsync<IEnumerable<object>>("messages.searchDialogs", parameters);
         }
 
         /// <summary>
@@ -595,7 +595,7 @@ namespace VkLibrary.Core.Methods
             if (userId != null)
                 parameters.Add("user_id", userId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("messages.addChatUser", parameters);
+            return _vkontakte.RequestAsync<int>("messages.addChatUser", parameters);
         }
 
         /// <summary>
@@ -614,7 +614,7 @@ namespace VkLibrary.Core.Methods
             if (userId != null)
                 parameters.Add("user_id", userId);
 
-            return _vkontakte.GetAsync<int>("messages.removeChatUser", parameters);
+            return _vkontakte.RequestAsync<int>("messages.removeChatUser", parameters);
         }
 
         /// <summary>
@@ -629,7 +629,7 @@ namespace VkLibrary.Core.Methods
             if (userId != null)
                 parameters.Add("user_id", userId.ToApiString());
 
-            return _vkontakte.GetAsync<LastActivity>("messages.getLastActivity", parameters);
+            return _vkontakte.RequestAsync<LastActivity>("messages.getLastActivity", parameters);
         }
 
         /// <summary>
@@ -647,7 +647,7 @@ namespace VkLibrary.Core.Methods
             if (file != null)
                 parameters.Add("file", file);
 
-            return _vkontakte.GetAsync<SetChatPhotoResponse>("messages.setChatPhoto", parameters);
+            return _vkontakte.RequestAsync<SetChatPhotoResponse>("messages.setChatPhoto", parameters);
         }
 
         /// <summary>
@@ -662,7 +662,7 @@ namespace VkLibrary.Core.Methods
             if (chatId != null)
                 parameters.Add("chat_id", chatId.ToApiString());
 
-            return _vkontakte.GetAsync<DeleteChatPhotoResponse>("messages.deleteChatPhoto", parameters);
+            return _vkontakte.RequestAsync<DeleteChatPhotoResponse>("messages.deleteChatPhoto", parameters);
         }
 
         /// <summary>
@@ -677,7 +677,7 @@ namespace VkLibrary.Core.Methods
             if (groupId != null)
                 parameters.Add("group_id", groupId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("messages.denyMessagesFromCommunity", parameters);
+            return _vkontakte.RequestAsync<int>("messages.denyMessagesFromCommunity", parameters);
         }
 
         /// <summary>
@@ -692,7 +692,7 @@ namespace VkLibrary.Core.Methods
             if (groupId != null)
                 parameters.Add("group_id", groupId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("messages.allowMessagesFromCommunity", parameters);
+            return _vkontakte.RequestAsync<int>("messages.allowMessagesFromCommunity", parameters);
         }
 
         /// <summary>
@@ -711,7 +711,7 @@ namespace VkLibrary.Core.Methods
             if (userId != null)
                 parameters.Add("user_id", userId.ToApiString());
 
-            return _vkontakte.GetAsync<IsMessagesFromGroupAllowedResponse>("messages.isMessagesFromGroupAllowed",
+            return _vkontakte.RequestAsync<IsMessagesFromGroupAllowedResponse>("messages.isMessagesFromGroupAllowed",
                 parameters);
         }
     }

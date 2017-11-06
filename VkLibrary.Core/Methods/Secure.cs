@@ -31,11 +31,11 @@ namespace VkLibrary.Core.Methods
                 parameters.Add("ip", ip);
 
             // Add client secret.
-            var secretCode = _vkontakte.GetClientSecret();
+            var secretCode = _vkontakte.AppSecret;
             if (secretCode != null)
                 parameters.Add("client_secret", secretCode.ToApiString());
 
-            return _vkontakte.GetAsync<TokenChecked>("secure.checkToken", parameters);
+            return _vkontakte.RequestAsync<TokenChecked>("secure.checkToken", parameters);
         }
     }
 }

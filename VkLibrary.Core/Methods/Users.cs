@@ -40,7 +40,7 @@ namespace VkLibrary.Core.Methods
             if (nameCase != null)
                 parameters.Add("name_case", nameCase);
 
-            return _vkontakte.GetAsync<IEnumerable<UserXtrCounters>>("users.get", parameters);
+            return _vkontakte.RequestAsync<IEnumerable<UserXtrCounters>>("users.get", parameters);
         }
 
         /// <summary>
@@ -166,7 +166,7 @@ namespace VkLibrary.Core.Methods
             if (fromList != null)
                 parameters.Add("from_list", fromList.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<UserFull>>("users.search", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<UserFull>>("users.search", parameters);
         }
 
         /// <summary>
@@ -181,7 +181,7 @@ namespace VkLibrary.Core.Methods
             if (userId != null)
                 parameters.Add("user_id", userId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("users.isAppUser", parameters);
+            return _vkontakte.RequestAsync<int>("users.isAppUser", parameters);
         }
 
         /// <summary>
@@ -212,7 +212,7 @@ namespace VkLibrary.Core.Methods
             if (fields != null)
                 parameters.Add("fields", fields.ToApiString());
 
-            return _vkontakte.GetAsync<GetSubscriptionsResponse>("users.getSubscriptions", parameters);
+            return _vkontakte.RequestAsync<GetSubscriptionsResponse>("users.getSubscriptions", parameters);
         }
 
         /// <summary>
@@ -247,7 +247,7 @@ namespace VkLibrary.Core.Methods
             if (nameCase != null)
                 parameters.Add("name_case", nameCase);
 
-            return _vkontakte.GetAsync<ApiItemsResponse<T>>("users.getFollowers", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<T>>("users.getFollowers", parameters);
         }
 
         /// <summary>
@@ -271,7 +271,7 @@ namespace VkLibrary.Core.Methods
             if (comment != null)
                 parameters.Add("comment", comment);
 
-            return _vkontakte.GetAsync<int>("users.report", parameters);
+            return _vkontakte.RequestAsync<int>("users.report", parameters);
         }
 
         /// <summary>
@@ -315,7 +315,7 @@ namespace VkLibrary.Core.Methods
             if (nameCase != null)
                 parameters.Add("name_case", nameCase);
 
-            return _vkontakte.GetAsync<ApiItemsResponse<UserFull>>("users.getNearby", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<UserFull>>("users.getNearby", parameters);
         }
     }
 }

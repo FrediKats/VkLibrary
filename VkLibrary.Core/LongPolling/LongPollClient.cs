@@ -18,15 +18,11 @@ namespace VkLibrary.Core.LongPolling
 
         #region Constructors and Listeners
 
-        /// <summary>
-        /// Inits a LongPollClient using extended settings.
-        /// </summary>
+        /// <summary>Inits a LongPollClient using extended settings.</summary>
         /// <param name="vkontakte">Library instance whose logger to use</param>
         internal LongPollClient(Vkontakte vkontakte) => _vkontakte = vkontakte;
 
-        /// <summary>
-        /// Builds LongPollServer url.
-        /// </summary>
+        /// <summary>Builds LongPollServer url.</summary>
         /// <param name="key">Secret session key.</param>
         /// <param name="server">Server address to which you need to send the request</param>
         /// <param name="ts">Number of the last event from which you want to receive data</param>
@@ -42,11 +38,11 @@ namespace VkLibrary.Core.LongPolling
         /// </param>
         /// <returns>Built request url that can be used to retrieve data from vk long poll servers.</returns>
         /// ReSharper disable once MemberCanBePrivate.Global
-        public static string GetRequestUrl(string server, 
+        public Uri GetRequestUrl(string server, 
             string key, int ts, int version = 1, int wait = 25, 
             AnswerFlags mode = AnswerFlags.ReceiveAttachments)
         {
-            return Vkontakte.BuildUrl($"https://{server}", new Dictionary<string, string>
+            return _vkontakte.HttpService.BuildGetRequestUrl($"https://{server}", new Dictionary<string, string>
             {
                 {"version", version.ToString()},
                 {"wait", wait.ToString()},
@@ -60,8 +56,7 @@ namespace VkLibrary.Core.LongPolling
         /// <summary>
         /// Starts a long poll listener.
         /// </summary>
-        internal async Task StartListener(string server, string key, 
-            int ts, int version, int wait, AnswerFlags mode)
+        internal async Task StartListener(string server, string key, int ts, int version, int wait, AnswerFlags mode)
         {
             await Task.Factory.StartNew(async () =>
             {
@@ -323,7 +318,7 @@ namespace VkLibrary.Core.LongPolling
         /// Logs to debug using internal logger.
         /// </summary>
         /// <param name="o">Object to stringify and log</param>
-        private void Log(object o) => _vkontakte.Log(o);
+        private void Log(object o) => _vkontakte.Logger.Log(o);
 
         /// <summary>
         /// Stops and disposes this long poll client.

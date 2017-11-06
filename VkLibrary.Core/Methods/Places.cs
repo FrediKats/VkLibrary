@@ -18,7 +18,7 @@ namespace VkLibrary.Core.Methods
         /// Docs: <see href="https://vk.com/dev/places.add">places.add</see>
         /// </summary>
         /// <param name="type">
-        /// ID of the location's type (e.g., '1' — Home, '2' — Work). To get location type IDs, use the
+        /// ID of the location's type (e.g., '1' â€” Home, '2' â€” Work). To get location type IDs, use the
         /// places.getTypes method.
         /// </param>
         /// <param name="title">Title of the location.</param>
@@ -53,7 +53,7 @@ namespace VkLibrary.Core.Methods
             if (address != null)
                 parameters.Add("address", address);
 
-            return _vkontakte.GetAsync<AddResponse>("places.add", parameters);
+            return _vkontakte.RequestAsync<AddResponse>("places.add", parameters);
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace VkLibrary.Core.Methods
             if (places != null)
                 parameters.Add("places", places.ToApiString());
 
-            return _vkontakte.GetAsync<IEnumerable<PlaceMin>>("places.getById", parameters);
+            return _vkontakte.RequestAsync<IEnumerable<PlaceMin>>("places.getById", parameters);
         }
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="city">City ID.</param>
         /// <param name="latitude">Geographical latitude of the initial search point, in degrees (from '-90' to '90').</param>
         /// <param name="longitude">Geographical longitude of the initial search point, in degrees (from '-180' to '180').</param>
-        /// <param name="radius">Radius of the search zone:; '1' — 100 m. (default); '2' — 800 m.; '3' — 6 km.; '4' — 50 km.</param>
+        /// <param name="radius">Radius of the search zone:; '1' â€” 100 m. (default); '2' â€” 800 m.; '3' â€” 6 km.; '4' â€” 50 km.</param>
         /// <param name="offset">Offset needed to return a specific subset of locations.</param>
         /// <param name="count">Number of locations to return.</param>
         public Task<ApiItemsResponse<PlaceFull>> Search(string q = null, int? city = null, uint? latitude = null,
@@ -102,7 +102,7 @@ namespace VkLibrary.Core.Methods
             if (count != null)
                 parameters.Add("count", count.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<PlaceFull>>("places.search", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<PlaceFull>>("places.search", parameters);
         }
 
         /// <summary>
@@ -114,7 +114,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="latitude">Geographical latitude of the check-in, in degrees (from '-90' to '90').</param>
         /// <param name="longitude">Geographical longitude of the check-in, in degrees (from '-180' to '180').</param>
         /// <param name="friendsOnly">
-        /// '1' — Check-in will be available only for friends.; '0' — Check-in will be available for all
+        /// '1' â€” Check-in will be available only for friends.; '0' â€” Check-in will be available for all
         /// users (default).
         /// </param>
         /// <param name="services">
@@ -139,7 +139,7 @@ namespace VkLibrary.Core.Methods
             if (services != null)
                 parameters.Add("services", services.ToApiString());
 
-            return _vkontakte.GetAsync<CheckinResponse>("places.checkin", parameters);
+            return _vkontakte.RequestAsync<CheckinResponse>("places.checkin", parameters);
         }
 
         /// <summary>
@@ -154,10 +154,10 @@ namespace VkLibrary.Core.Methods
         /// <param name="count">Number of check-ins to return. (Ignored if 'timestamp' is not null.)</param>
         /// <param name="timestamp">Specifies that only those check-ins created after the specified timestamp will be returned.</param>
         /// <param name="friendsOnly">
-        /// '1' — to return only check-ins with set geographical coordinates. (Ignored if 'latitude' and
+        /// '1' â€” to return only check-ins with set geographical coordinates. (Ignored if 'latitude' and
         /// 'longitude' are not set.)
         /// </param>
-        /// <param name="needPlaces">'1' — to return location information with the check-ins. (Ignored if 'place' is not set.);</param>
+        /// <param name="needPlaces">'1' â€” to return location information with the check-ins. (Ignored if 'place' is not set.);</param>
         public Task<ApiItemsResponse<Checkin>> GetCheckins(uint? latitude = null, uint? longitude = null,
             int? place = null, int? userId = null, int? offset = null, int? count = null, int? timestamp = null,
             bool? friendsOnly = null, bool? needPlaces = null)
@@ -183,7 +183,7 @@ namespace VkLibrary.Core.Methods
             if (needPlaces != null)
                 parameters.Add("need_places", needPlaces.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<Checkin>>("places.getCheckins", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<Checkin>>("places.getCheckins", parameters);
         }
 
         /// <summary>
@@ -195,7 +195,7 @@ namespace VkLibrary.Core.Methods
             var parameters = new Dictionary<string, string>();
 
 
-            return _vkontakte.GetAsync<IEnumerable<Types.Places.Types>>("places.getTypes", parameters);
+            return _vkontakte.RequestAsync<IEnumerable<Types.Places.Types>>("places.getTypes", parameters);
         }
     }
 }

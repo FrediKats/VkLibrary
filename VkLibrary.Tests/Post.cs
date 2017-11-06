@@ -35,7 +35,7 @@ namespace VkLibrary.Tests
                     {"one", new byte[] {1}},
                     {"two", new byte[] {1}}
                 });
-            Log(response.ToString());
+            Logger.Log(response.ToString());
             response.Should().NotBeNull();
         }
     }

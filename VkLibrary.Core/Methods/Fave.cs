@@ -32,7 +32,7 @@ namespace VkLibrary.Core.Methods
             if (count != null)
                 parameters.Add("count", count.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<UserMin>>("fave.getUsers", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<UserMin>>("fave.getUsers", parameters);
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="offset">Offset needed to return a specific subset of photos.</param>
         /// <param name="count">Number of photos to return.</param>
-        /// <param name="photoSizes">'1' — to return photo sizes in a special format.</param>
+        /// <param name="photoSizes">'1' â€” to return photo sizes in a special format.</param>
         public Task<ApiItemsResponse<Photo>> GetPhotos(int? offset = null, int? count = null,
             bool? photoSizes = null)
         {
@@ -54,7 +54,7 @@ namespace VkLibrary.Core.Methods
             if (photoSizes != null)
                 parameters.Add("photo_sizes", photoSizes.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<Photo>>("fave.getPhotos", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<Photo>>("fave.getPhotos", parameters);
         }
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="offset">Offset needed to return a specific subset of posts.</param>
         /// <param name="count">Number of posts to return.</param>
-        /// <param name="extended">'1' — to return additional 'wall', 'profiles', and 'groups' fields.; ; By default: '0'.</param>
+        /// <param name="extended">'1' â€” to return additional 'wall', 'profiles', and 'groups' fields.; ; By default: '0'.</param>
         public Task<NewsFeedResponse> GetPosts(int? offset = null, int? count = null, bool? extended = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -75,7 +75,7 @@ namespace VkLibrary.Core.Methods
             if (extended != null)
                 parameters.Add("extended", extended.ToApiString());
 
-            return _vkontakte.GetAsync<NewsFeedResponse>("fave.getPosts", parameters);
+            return _vkontakte.RequestAsync<NewsFeedResponse>("fave.getPosts", parameters);
         }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace VkLibrary.Core.Methods
             if (extended != null)
                 parameters.Add("extended", extended.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<VideoFull>>("fave.getVideos", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<VideoFull>>("fave.getVideos", parameters);
         }
 
         /// <summary>
@@ -115,7 +115,7 @@ namespace VkLibrary.Core.Methods
             if (count != null)
                 parameters.Add("count", count.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<FavesLink>>("fave.getLinks", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<FavesLink>>("fave.getLinks", parameters);
         }
 
         /// <summary>
@@ -123,7 +123,7 @@ namespace VkLibrary.Core.Methods
         /// Docs: <see href="https://vk.com/dev/fave.getMarketItems">fave.getMarketItems</see>
         /// </summary>
         /// <param name="count">Number of results to return. ;</param>
-        /// <param name="extended">'1' – to return additional fields 'likes, can_comment, can_repost, photos'. By default: '0'.</param>
+        /// <param name="extended">'1' â€“ to return additional fields 'likes, can_comment, can_repost, photos'. By default: '0'.</param>
         public Task<ApiItemsResponse<MarketItem>> GetMarketItems(int? count = null, bool? extended = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -133,7 +133,7 @@ namespace VkLibrary.Core.Methods
             if (extended != null)
                 parameters.Add("extended", extended.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<MarketItem>>("fave.getMarketItems", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<MarketItem>>("fave.getMarketItems", parameters);
         }
 
         /// <summary>
@@ -148,7 +148,7 @@ namespace VkLibrary.Core.Methods
             if (userId != null)
                 parameters.Add("user_id", userId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("fave.addUser", parameters);
+            return _vkontakte.RequestAsync<int>("fave.addUser", parameters);
         }
 
         /// <summary>
@@ -163,7 +163,7 @@ namespace VkLibrary.Core.Methods
             if (userId != null)
                 parameters.Add("user_id", userId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("fave.removeUser", parameters);
+            return _vkontakte.RequestAsync<int>("fave.removeUser", parameters);
         }
 
         /// <summary>
@@ -178,7 +178,7 @@ namespace VkLibrary.Core.Methods
             if (groupId != null)
                 parameters.Add("group_id", groupId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("fave.addGroup", parameters);
+            return _vkontakte.RequestAsync<int>("fave.addGroup", parameters);
         }
 
         /// <summary>
@@ -193,7 +193,7 @@ namespace VkLibrary.Core.Methods
             if (groupId != null)
                 parameters.Add("group_id", groupId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("fave.removeGroup", parameters);
+            return _vkontakte.RequestAsync<int>("fave.removeGroup", parameters);
         }
 
         /// <summary>
@@ -211,7 +211,7 @@ namespace VkLibrary.Core.Methods
             if (text != null)
                 parameters.Add("text", text);
 
-            return _vkontakte.GetAsync<int>("fave.addLink", parameters);
+            return _vkontakte.RequestAsync<int>("fave.addLink", parameters);
         }
 
         /// <summary>
@@ -226,7 +226,7 @@ namespace VkLibrary.Core.Methods
             if (linkId != null)
                 parameters.Add("link_id", linkId);
 
-            return _vkontakte.GetAsync<int>("fave.removeLink", parameters);
+            return _vkontakte.RequestAsync<int>("fave.removeLink", parameters);
         }
     }
 }

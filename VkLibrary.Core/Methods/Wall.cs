@@ -25,12 +25,12 @@ namespace VkLibrary.Core.Methods
         /// <param name="offset">Offset needed to return a specific subset of posts.</param>
         /// <param name="count">Number of posts to return (maximum 100).</param>
         /// <param name="filter">
-        /// Filter to apply: 'owner' — posts by the wall owner; 'others' — posts by someone else; 'all' —
-        /// posts by the wall owner and others (default); 'postponed' — timed posts (only available for calls with an
-        /// 'access_token'); 'suggests' — suggested posts on a community wall
+        /// Filter to apply: 'owner' ï¿½ posts by the wall owner; 'others' ï¿½ posts by someone else; 'all' ï¿½
+        /// posts by the wall owner and others (default); 'postponed' ï¿½ timed posts (only available for calls with an
+        /// 'access_token'); 'suggests' ï¿½ suggested posts on a community wall
         /// </param>
         /// <param name="extended">
-        /// '1' — to return 'wall', 'profiles', and 'groups' fields; '0' — to return no additional fields
+        /// '1' ï¿½ to return 'wall', 'profiles', and 'groups' fields; '0' ï¿½ to return no additional fields
         /// (default)
         /// </param>
         /// <param name="fields"></param>
@@ -55,7 +55,7 @@ namespace VkLibrary.Core.Methods
             if (fields != null)
                 parameters.Add("fields", fields.ToApiString());
 
-            return _vkontakte.GetAsync<NewsFeedResponse>("wall.get", parameters);
+            return _vkontakte.RequestAsync<NewsFeedResponse>("wall.get", parameters);
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="ownerId">user or community id. Remember that for a community 'owner_id' must be negative.</param>
         /// <param name="domain">user or community screen name.</param>
         /// <param name="query">search query string.</param>
-        /// <param name="ownersOnly">'1' – returns only page owner's posts.</param>
+        /// <param name="ownersOnly">'1' ï¿½ returns only page owner's posts.</param>
         /// <param name="count">count of posts to return.</param>
         /// <param name="extended">count of posts to return.</param>
         /// <param name="fields"></param>
@@ -89,7 +89,7 @@ namespace VkLibrary.Core.Methods
             if (fields != null)
                 parameters.Add("fields", fields.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<WallpostFull>>("wall.get", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<WallpostFull>>("wall.get", parameters);
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace VkLibrary.Core.Methods
         /// community ID. Example:; "93388_21539,93388_20904,2943_4276,-1_1"
         /// </param>
         /// <param name="extended">
-        /// '1' — to return user and community objects needed to display posts; '0' — no additional fields
+        /// '1' ï¿½ to return user and community objects needed to display posts; '0' ï¿½ no additional fields
         /// are returned (default)
         /// </param>
         /// <param name="copyHistoryDepth">
@@ -123,7 +123,7 @@ namespace VkLibrary.Core.Methods
             if (fields != null)
                 parameters.Add("fields", fields.ToApiString());
 
-            return _vkontakte.GetAsync<NewsFeedResponse>("wall.getById", parameters);
+            return _vkontakte.RequestAsync<NewsFeedResponse>("wall.getById", parameters);
         }
 
         /// <summary>
@@ -132,24 +132,24 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="ownerId">User ID or community ID. Use a negative value to designate a community ID.</param>
         /// <param name="friendsOnly">
-        /// '1' — post will be available to friends only; '0' — post will be available to all users
+        /// '1' ï¿½ post will be available to friends only; '0' ï¿½ post will be available to all users
         /// (default)
         /// </param>
         /// <param name="fromGroup">
-        /// For a community:; '1' — post will be published by the community; '0' — post will be published
+        /// For a community:; '1' ï¿½ post will be published by the community; '0' ï¿½ post will be published
         /// by the user (default)
         /// </param>
         /// <param name="message">(Required if 'attachments' is not set.) Text of the post.</param>
         /// <param name="attachments">
         /// (Required if 'message' is not set.) List of objects attached to the post, in the following format:; 
         /// "%owner_id%_%media_id%, %owner_id%_%media_id%"; 
-        /// '' — Type of media attachment:; 
-        /// 'photo' — photo; 
-        /// 'video' — video; 
-        /// 'audio' — audio; 
-        /// 'doc' — document; 
-        /// '%owner_id%' — Media attachment owner ID.; 
-        /// '%media_id%' — Media attachment ID.;
+        /// '' ï¿½ Type of media attachment:; 
+        /// 'photo' ï¿½ photo; 
+        /// 'video' ï¿½ video; 
+        /// 'audio' ï¿½ audio; 
+        /// 'doc' ï¿½ document; 
+        /// '%owner_id%' ï¿½ Media attachment owner ID.; 
+        /// '%media_id%' ï¿½ Media attachment ID.;
         /// Example:; "photo100172_166443618,photo66748_265827614"
         /// </param>
         /// <param name="services">
@@ -157,8 +157,8 @@ namespace VkLibrary.Core.Methods
         /// Sample values: 'twitter', 'facebook'.
         /// </param>
         /// <param name="signed">
-        /// Only for posts in communities with 'from_group' set to '1':; '1' — post will be signed with the
-        /// name of the posting user; '0' — post will not be signed (default)
+        /// Only for posts in communities with 'from_group' set to '1':; '1' ï¿½ post will be signed with the
+        /// name of the posting user; '0' ï¿½ post will not be signed (default)
         /// </param>
         /// <param name="publishDate">Publication date (in Unix time). If used, posting will be delayed until the set time.</param>
         /// <param name="lat">Geographical latitude of a check-in, in degrees (from -90 to 90).</param>
@@ -203,7 +203,7 @@ namespace VkLibrary.Core.Methods
             if (markAsAds != null)
                 parameters.Add("mark_as_ads", markAsAds.ToApiString());
 
-            return _vkontakte.PostAsync<PostResponse>("wall.post", parameters);
+            return _vkontakte.RequestAsync<PostResponse>("wall.post", parameters);
         }
 
         /// <summary>
@@ -228,7 +228,7 @@ namespace VkLibrary.Core.Methods
             if (markAsAds != null)
                 parameters.Add("mark_as_ads", markAsAds.ToApiString());
 
-            return _vkontakte.GetAsync<RepostResponse>("wall.repost", parameters);
+            return _vkontakte.RequestAsync<RepostResponse>("wall.repost", parameters);
         }
 
         /// <summary>
@@ -256,7 +256,7 @@ namespace VkLibrary.Core.Methods
             if (count != null)
                 parameters.Add("count", count.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<WallpostFull>>("wall.getReposts", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<WallpostFull>>("wall.getReposts", parameters);
         }
 
         /// <summary>
@@ -266,20 +266,20 @@ namespace VkLibrary.Core.Methods
         /// <param name="ownerId">User ID or community ID. Use a negative value to designate a community ID.</param>
         /// <param name="postId">Post ID.</param>
         /// <param name="friendsOnly">
-        /// (Applies only when editing a scheduled post.); '1' — post will be available to friends only;
-        /// '0' — post will be available to all users (default)
+        /// (Applies only when editing a scheduled post.); '1' ï¿½ post will be available to friends only;
+        /// '0' ï¿½ post will be available to all users (default)
         /// </param>
         /// <param name="message">(Required if 'attachments' is not set.) Text of the post.</param>
         /// <param name="attachments">
         /// (Required if 'message' is not set.) List of objects attached to the post, in the following format:; 
         /// "%owner_id%_%media_id%, %owner_id%_%media_id%"; 
-        /// '' — Type of media attachment:; 
-        /// 'photo' — photo; 
-        /// 'video' — video; 
-        /// 'audio' — audio; 
-        /// 'doc' — document; 
-        /// '%owner_id%' — Media attachment owner ID.; 
-        /// '%media_id%' — Media attachment ID.;
+        /// '' ï¿½ Type of media attachment:; 
+        /// 'photo' ï¿½ photo; 
+        /// 'video' ï¿½ video; 
+        /// 'audio' ï¿½ audio; 
+        /// 'doc' ï¿½ document; 
+        /// '%owner_id%' ï¿½ Media attachment owner ID.; 
+        /// '%media_id%' ï¿½ Media attachment ID.;
         /// Example:; "photo100172_166443618,photo66748_265827614,http://habrahabr.ru"
         /// </param>
         /// <param name="services">
@@ -287,7 +287,7 @@ namespace VkLibrary.Core.Methods
         /// if the user has so requested. Sample values: 'twitter', 'facebook'.
         /// </param>
         /// <param name="signed">
-        /// (Applies only to a post that was created "as community" on a community wall.); '1' — to add the
+        /// (Applies only to a post that was created "as community" on a community wall.); '1' ï¿½ to add the
         /// signature of the user who created the post
         /// </param>
         /// <param name="publishDate">
@@ -330,7 +330,7 @@ namespace VkLibrary.Core.Methods
             if (markAsAds != null)
                 parameters.Add("mark_as_ads", markAsAds.ToApiString());
 
-            return _vkontakte.GetAsync<int>("wall.edit", parameters);
+            return _vkontakte.RequestAsync<int>("wall.edit", parameters);
         }
 
         /// <summary>
@@ -348,7 +348,7 @@ namespace VkLibrary.Core.Methods
             if (postId != null)
                 parameters.Add("post_id", postId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("wall.delete", parameters);
+            return _vkontakte.RequestAsync<int>("wall.delete", parameters);
         }
 
         /// <summary>
@@ -369,7 +369,7 @@ namespace VkLibrary.Core.Methods
             if (postId != null)
                 parameters.Add("post_id", postId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("wall.restore", parameters);
+            return _vkontakte.RequestAsync<int>("wall.restore", parameters);
         }
 
         /// <summary>
@@ -390,7 +390,7 @@ namespace VkLibrary.Core.Methods
             if (postId != null)
                 parameters.Add("post_id", postId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("wall.pin", parameters);
+            return _vkontakte.RequestAsync<int>("wall.pin", parameters);
         }
 
         /// <summary>
@@ -411,7 +411,7 @@ namespace VkLibrary.Core.Methods
             if (postId != null)
                 parameters.Add("post_id", postId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("wall.unpin", parameters);
+            return _vkontakte.RequestAsync<int>("wall.unpin", parameters);
         }
 
         /// <summary>
@@ -420,11 +420,11 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="ownerId">User ID or community ID. Use a negative value to designate a community ID.</param>
         /// <param name="postId">Post ID.</param>
-        /// <param name="needLikes">'1' — to return the 'likes' field; '0' — not to return the 'likes' field (default)</param>
+        /// <param name="needLikes">'1' ï¿½ to return the 'likes' field; '0' ï¿½ not to return the 'likes' field (default)</param>
         /// <param name="startCommentId"></param>
         /// <param name="offset">Offset needed to return a specific subset of comments.</param>
         /// <param name="count">Number of comments to return (maximum 100).</param>
-        /// <param name="sort">Sort order:; 'asc' — chronological; 'desc' — reverse chronological</param>
+        /// <param name="sort">Sort order:; 'asc' ï¿½ chronological; 'desc' ï¿½ reverse chronological</param>
         /// <param name="previewLength">
         /// Number of characters at which to truncate comments when previewed. By default, '90'.
         /// Specify '0' if you do not want to truncate comments.;
@@ -455,7 +455,7 @@ namespace VkLibrary.Core.Methods
             if (extended != null)
                 parameters.Add("extended", extended.ToApiString());
 
-            return _vkontakte.GetAsync<CommentsResponse>("wall.getComments", parameters);
+            return _vkontakte.RequestAsync<CommentsResponse>("wall.getComments", parameters);
         }
 
         /// <summary>
@@ -465,7 +465,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="ownerId">User ID or community ID. Use a negative value to designate a community ID.</param>
         /// <param name="postId">Post ID.</param>
         /// <param name="fromGroup">
-        /// '1' — to post the comment as from the community;; '0' — (default) to post the comment as from
+        /// '1' ï¿½ to post the comment as from the community;; '0' ï¿½ (default) to post the comment as from
         /// the user.
         /// </param>
         /// <param name="message">(Required if 'attachments' is not set.) Text of the comment.</param>
@@ -473,13 +473,13 @@ namespace VkLibrary.Core.Methods
         /// <param name="attachments">
         /// (Required if 'message' is not set.) List of objects attached to the post, in the following format:; 
         /// "%owner_id%_%media_id%, %owner_id%_%media_id%"; 
-        /// '' — Type of media attachment:; 
-        /// 'photo' — photo; 
-        /// 'video' — video; 
-        /// 'audio' — audio; 
-        /// 'doc' — document; 
-        /// '%owner_id%' — Media attachment owner ID.; 
-        /// '%media_id%' — Media attachment ID.;
+        /// '' ï¿½ Type of media attachment:; 
+        /// 'photo' ï¿½ photo; 
+        /// 'video' ï¿½ video; 
+        /// 'audio' ï¿½ audio; 
+        /// 'doc' ï¿½ document; 
+        /// '%owner_id%' ï¿½ Media attachment owner ID.; 
+        /// '%media_id%' ï¿½ Media attachment ID.;
         /// Example:; "photo100172_166443618,photo66748_265827614"
         /// </param>
         /// <param name="stickerId">Sticker ID.</param>
@@ -507,7 +507,7 @@ namespace VkLibrary.Core.Methods
             if (guid != null)
                 parameters.Add("guid", guid);
 
-            return _vkontakte.GetAsync<CreateCommentResponse>("wall.createComment", parameters);
+            return _vkontakte.RequestAsync<CreateCommentResponse>("wall.createComment", parameters);
         }
 
         /// <summary>
@@ -520,13 +520,13 @@ namespace VkLibrary.Core.Methods
         /// <param name="attachments">
         /// (Required if 'message' is not set.) List of objects attached to the post, in the following format:; 
         /// "%owner_id%_%media_id%, %owner_id%_%media_id%"; 
-        /// '' — Type of media attachment:; 
-        /// 'photo' — photo; 
-        /// 'video' — video; 
-        /// 'audio' — audio; 
-        /// 'doc' — document; 
-        /// '%owner_id%' — Media attachment owner ID.; 
-        /// '%media_id%' — Media attachment ID.;
+        /// '' ï¿½ Type of media attachment:; 
+        /// 'photo' ï¿½ photo; 
+        /// 'video' ï¿½ video; 
+        /// 'audio' ï¿½ audio; 
+        /// 'doc' ï¿½ document; 
+        /// '%owner_id%' ï¿½ Media attachment owner ID.; 
+        /// '%media_id%' ï¿½ Media attachment ID.;
         /// Example:; "photo100172_166443618,photo66748_265827614"
         /// </param>
         public Task<int> EditComment(int? ownerId = null, int? commentId = null, string message = null,
@@ -543,7 +543,7 @@ namespace VkLibrary.Core.Methods
             if (attachments != null)
                 parameters.Add("attachments", attachments.ToApiString());
 
-            return _vkontakte.GetAsync<int>("wall.editComment", parameters);
+            return _vkontakte.RequestAsync<int>("wall.editComment", parameters);
         }
 
         /// <summary>
@@ -561,7 +561,7 @@ namespace VkLibrary.Core.Methods
             if (commentId != null)
                 parameters.Add("comment_id", commentId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("wall.deleteComment", parameters);
+            return _vkontakte.RequestAsync<int>("wall.deleteComment", parameters);
         }
 
         /// <summary>
@@ -579,7 +579,7 @@ namespace VkLibrary.Core.Methods
             if (commentId != null)
                 parameters.Add("comment_id", commentId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("wall.restoreComment", parameters);
+            return _vkontakte.RequestAsync<int>("wall.restoreComment", parameters);
         }
 
         /// <summary>
@@ -589,8 +589,8 @@ namespace VkLibrary.Core.Methods
         /// <param name="ownerId">ID of the user or community that owns the wall.</param>
         /// <param name="postId">Post ID.</param>
         /// <param name="reason">
-        /// Reason for the complaint:; '0' – spam; '1' – child pornography; '2' – extremism; '3' – violence;
-        /// '4' – drug propaganda; '5' – adult material; '6' – insult; abuse
+        /// Reason for the complaint:; '0' ï¿½ spam; '1' ï¿½ child pornography; '2' ï¿½ extremism; '3' ï¿½ violence;
+        /// '4' ï¿½ drug propaganda; '5' ï¿½ adult material; '6' ï¿½ insult; abuse
         /// </param>
         public Task<int> ReportPost(int? ownerId = null, int? postId = null, int? reason = null)
         {
@@ -603,7 +603,7 @@ namespace VkLibrary.Core.Methods
             if (reason != null)
                 parameters.Add("reason", reason.ToApiString());
 
-            return _vkontakte.GetAsync<int>("wall.reportPost", parameters);
+            return _vkontakte.RequestAsync<int>("wall.reportPost", parameters);
         }
 
         /// <summary>
@@ -613,8 +613,8 @@ namespace VkLibrary.Core.Methods
         /// <param name="ownerId">ID of the user or community that owns the wall.</param>
         /// <param name="commentId">Comment ID.</param>
         /// <param name="reason">
-        /// Reason for the complaint:; '0' – spam; '1' – child pornography; '2' – extremism; '3' – violence;
-        /// '4' – drug propaganda; '5' – adult material; '6' – insult; abuse
+        /// Reason for the complaint:; '0' ï¿½ spam; '1' ï¿½ child pornography; '2' ï¿½ extremism; '3' ï¿½ violence;
+        /// '4' ï¿½ drug propaganda; '5' ï¿½ adult material; '6' ï¿½ insult; abuse
         /// </param>
         public Task<int> ReportComment(int? ownerId = null, int? commentId = null, int? reason = null)
         {
@@ -627,7 +627,7 @@ namespace VkLibrary.Core.Methods
             if (reason != null)
                 parameters.Add("reason", reason.ToApiString());
 
-            return _vkontakte.GetAsync<int>("wall.reportComment", parameters);
+            return _vkontakte.RequestAsync<int>("wall.reportComment", parameters);
         }
     }
 }

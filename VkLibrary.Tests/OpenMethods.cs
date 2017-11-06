@@ -15,7 +15,7 @@ namespace VkLibrary.Tests
 
         [Fact]
         public void GenericGetAsyncSigned() => Api
-            .GetAsync<NewsFeedResponse>("newsfeed.get", new Dictionary<string, string>
+            .RequestAsync<NewsFeedResponse>("newsfeed.get", new Dictionary<string, string>
             {
                 {"filters", "post"},
                 {"count", "1"},

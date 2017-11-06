@@ -31,7 +31,7 @@ namespace VkLibrary.Core.Methods
             if (comment != null)
                 parameters.Add("comment", comment);
 
-            return _vkontakte.GetAsync<Complete>("leads.complete", parameters);
+            return _vkontakte.RequestAsync<Complete>("leads.complete", parameters);
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace VkLibrary.Core.Methods
             if (secret != null)
                 parameters.Add("secret", secret);
 
-            return _vkontakte.GetAsync<Start>("leads.start", parameters);
+            return _vkontakte.RequestAsync<Start>("leads.start", parameters);
         }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace VkLibrary.Core.Methods
             if (dateEnd != null)
                 parameters.Add("date_end", dateEnd);
 
-            return _vkontakte.GetAsync<Lead>("leads.getStats", parameters);
+            return _vkontakte.RequestAsync<Lead>("leads.getStats", parameters);
         }
 
         /// <summary>
@@ -86,10 +86,10 @@ namespace VkLibrary.Core.Methods
         /// <param name="offset">Offset needed to return a specific subset of results.</param>
         /// <param name="count">Number of results to return.</param>
         /// <param name="status">
-        /// Action type. Possible values:; *'0' — start;; *'1' — finish;; *'2' — blocking users;; *'3' — start
-        /// in a test mode;; *'4' — finish in a test mode.;
+        /// Action type. Possible values:; *'0' â€” start;; *'1' â€” finish;; *'2' â€” blocking users;; *'3' â€” start
+        /// in a test mode;; *'4' â€” finish in a test mode.;
         /// </param>
-        /// <param name="reverse">Sort order. Possible values:; *'1' — chronological;; *'0' — reverse chronological.</param>
+        /// <param name="reverse">Sort order. Possible values:; *'1' â€” chronological;; *'0' â€” reverse chronological.</param>
         public Task<IEnumerable<Entry>> GetUsers(int? offerId = null, string secret = null, int? offset = null,
             int? count = null, int? status = null, bool? reverse = null)
         {
@@ -108,7 +108,7 @@ namespace VkLibrary.Core.Methods
             if (reverse != null)
                 parameters.Add("reverse", reverse.ToApiString());
 
-            return _vkontakte.GetAsync<IEnumerable<Entry>>("leads.getUsers", parameters);
+            return _vkontakte.RequestAsync<IEnumerable<Entry>>("leads.getUsers", parameters);
         }
 
         /// <summary>
@@ -133,7 +133,7 @@ namespace VkLibrary.Core.Methods
             if (country != null)
                 parameters.Add("country", country);
 
-            return _vkontakte.GetAsync<Checked>("leads.checkUser", parameters);
+            return _vkontakte.RequestAsync<Checked>("leads.checkUser", parameters);
         }
 
         /// <summary>
@@ -148,7 +148,7 @@ namespace VkLibrary.Core.Methods
             if (data != null)
                 parameters.Add("data", data);
 
-            return _vkontakte.GetAsync<MetricHitResponse>("leads.metricHit", parameters);
+            return _vkontakte.RequestAsync<MetricHitResponse>("leads.metricHit", parameters);
         }
     }
 }

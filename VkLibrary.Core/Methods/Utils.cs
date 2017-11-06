@@ -21,7 +21,7 @@ namespace VkLibrary.Core.Methods
         {
             var parameters = new Dictionary<string, string>();
             if (url != null) parameters.Add("url", url);
-            return _vkontakte.GetAsync<LinkChecked>("utils.checkLink", parameters);
+            return _vkontakte.RequestAsync<LinkChecked>("utils.checkLink", parameters);
         }
 
         /// <summary>
@@ -36,14 +36,14 @@ namespace VkLibrary.Core.Methods
         {
             var parameters = new Dictionary<string, string>();
             if (screenName != null) parameters.Add("screen_name", screenName);
-            return _vkontakte.GetAsync<DomainResolved>("utils.resolveScreenName", parameters);
+            return _vkontakte.RequestAsync<DomainResolved>("utils.resolveScreenName", parameters);
         }
 
         /// <summary>
         /// Returns the current time of the VK server.
         /// Docs: <see href="https://vk.com/dev/utils.getServerTime">utils.getServerTime</see>
         /// </summary>
-        public Task<int?> GetServerTime() => _vkontakte.GetAsync<int?>(
+        public Task<int?> GetServerTime() => _vkontakte.RequestAsync<int?>(
             "utils.getServerTime", new Dictionary<string, string>());
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace VkLibrary.Core.Methods
             if (private_ != null)
                 parameters.Add("private", private_.ToApiString());
 
-            return _vkontakte.GetAsync<LinkInfo>("utils.getShortLink", parameters);
+            return _vkontakte.RequestAsync<LinkInfo>("utils.getShortLink", parameters);
         }
 
         /// <summary>
@@ -73,8 +73,8 @@ namespace VkLibrary.Core.Methods
         /// <param name="interval">Interval. Possible values: hour; day; week; month; forever.</param>
         /// <param name="intervalsCount">Number of intervals to return. </param>
         /// <param name="extended">
-        /// 1 — to return extended stats data (sex, age, geo).
-        ///  0 (by default) — to return views number only.
+        /// 1 â€” to return extended stats data (sex, age, geo).
+        ///  0 (by default) â€” to return views number only.
         /// </param>
         public Task<LinkInfoXtrStats> GetLinkStats(string key, string accessKey = null, 
             string interval = null, int? intervalsCount = null, bool? extended = null)
@@ -92,7 +92,7 @@ namespace VkLibrary.Core.Methods
             if (extended != null)
                 parameters.Add("extended", extended.ToApiString());
 
-            return _vkontakte.GetAsync<LinkInfoXtrStats>("utils.getLinkStats", parameters);
+            return _vkontakte.RequestAsync<LinkInfoXtrStats>("utils.getLinkStats", parameters);
         }
 
         /// <summary>
@@ -108,7 +108,7 @@ namespace VkLibrary.Core.Methods
             if (count != null) parameters.Add("count", count.ToApiString());
             if (offset != null) parameters.Add("offset", offset.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<LinkInfoFull>>("utils.getLastShortenedLinks", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<LinkInfoFull>>("utils.getLastShortenedLinks", parameters);
         }
 
         /// <summary>
@@ -119,7 +119,7 @@ namespace VkLibrary.Core.Methods
         {
             var parameters = new Dictionary<string, string>();
             if (key != null) parameters.Add("key", key);
-            return _vkontakte.GetAsync<int?>("utils.deleteFromLastShortened", parameters);
+            return _vkontakte.RequestAsync<int?>("utils.deleteFromLastShortened", parameters);
         }
     }
 }

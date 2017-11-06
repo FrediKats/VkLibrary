@@ -33,7 +33,7 @@ namespace VkLibrary.Core.Methods
                 parameters.Add("user_ids", userIds.ToApiString());
             parameters.Add("extended", false.ToApiString());
 
-            return _vkontakte.GetAsync<int>("groups.isMember", parameters);
+            return _vkontakte.RequestAsync<int>("groups.isMember", parameters);
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace VkLibrary.Core.Methods
             if (fields != null)
                 parameters.Add("fields", fields.ToApiString());
 
-            return _vkontakte.GetAsync<IEnumerable<GroupFull>>("groups.getById", parameters);
+            return _vkontakte.RequestAsync<IEnumerable<GroupFull>>("groups.getById", parameters);
         }
 
         /// <summary>
@@ -64,14 +64,14 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="userId">User ID.</param>
         /// <param name="extended">
-        /// '1' — to return complete information about a user's communities; '0' — to return a list of
+        /// '1' â€” to return complete information about a user's communities; '0' â€” to return a list of
         /// community IDs without any additional fields (default);
         /// </param>
         /// <param name="filter">
-        /// Types of communities to return:; 'admin' — to return communities administered by the user ;
-        /// 'editor' — to return communities where the user is an administrator or editor; 'moder' — to return communities
-        /// where the user is an administrator, editor, or moderator; 'groups' — to return only groups; 'publics' — to return
-        /// only public pages; 'events' — to return only events
+        /// Types of communities to return:; 'admin' â€” to return communities administered by the user ;
+        /// 'editor' â€” to return communities where the user is an administrator or editor; 'moder' â€” to return communities
+        /// where the user is an administrator, editor, or moderator; 'groups' â€” to return only groups; 'publics' â€” to return
+        /// only public pages; 'events' â€” to return only events
         /// </param>
         /// <param name="fields">Profile fields to return.;</param>
         /// <param name="offset">Offset needed to return a specific subset of communities.</param>
@@ -94,7 +94,7 @@ namespace VkLibrary.Core.Methods
             if (count != null)
                 parameters.Add("count", count.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<GroupFull>>("groups.get", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<GroupFull>>("groups.get", parameters);
         }
 
         /// <summary>
@@ -116,7 +116,7 @@ namespace VkLibrary.Core.Methods
         /// counters'.
         /// </param>
         /// <param name="filter">
-        /// *'friends' – only friends in this community will be returned;; *'unsure' – only those who pressed
+        /// *'friends' â€“ only friends in this community will be returned;; *'unsure' â€“ only those who pressed
         /// 'I may attend' will be returned (if it's an event).
         /// </param>
         public Task<ApiItemsResponse<T>> GetMembers<T>(int? groupId = null, string sort = null,
@@ -137,7 +137,7 @@ namespace VkLibrary.Core.Methods
             if (filter != null)
                 parameters.Add("filter", filter);
 
-            return _vkontakte.GetAsync<ApiItemsResponse<T>>("groups.getMembers", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<T>>("groups.getMembers", parameters);
         }
 
         /// <summary>
@@ -146,8 +146,8 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="groupId">ID or screen name of the community.</param>
         /// <param name="notSure">
-        /// Optional parameter which is taken into account when 'gid' belongs to the event:; '1' — Perhaps I
-        /// will attend; '0' — I will be there for sure (default); ;
+        /// Optional parameter which is taken into account when 'gid' belongs to the event:; '1' â€” Perhaps I
+        /// will attend; '0' â€” I will be there for sure (default); ;
         /// </param>
         public Task<int> Join(int? groupId = null, string notSure = null)
         {
@@ -158,7 +158,7 @@ namespace VkLibrary.Core.Methods
             if (notSure != null)
                 parameters.Add("not_sure", notSure);
 
-            return _vkontakte.GetAsync<int>("groups.join", parameters);
+            return _vkontakte.RequestAsync<int>("groups.join", parameters);
         }
 
         /// <summary>
@@ -173,7 +173,7 @@ namespace VkLibrary.Core.Methods
             if (groupId != null)
                 parameters.Add("group_id", groupId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("groups.leave", parameters);
+            return _vkontakte.RequestAsync<int>("groups.leave", parameters);
         }
 
         /// <summary>
@@ -184,12 +184,12 @@ namespace VkLibrary.Core.Methods
         /// <param name="type">Community type. Possible values: 'group, page, event.'</param>
         /// <param name="countryId">Country ID.</param>
         /// <param name="cityId">City ID. If this parameter is transmitted, country_id is ignored.</param>
-        /// <param name="future">'1' — to return only upcoming events. Works with the 'type' = 'event' only.</param>
-        /// <param name="market">'1' — to return communities with enabled market only.</param>
+        /// <param name="future">'1' â€” to return only upcoming events. Works with the 'type' = 'event' only.</param>
+        /// <param name="market">'1' â€” to return communities with enabled market only.</param>
         /// <param name="sort">
-        /// Sort order. Possible values:; *'0' — default sorting (similar the full version of the site);; *'1' —
-        /// by growth speed;; *'2'— by the "day attendance/members number" ratio;; *'3' — by the "Likes number/members number"
-        /// ratio;; *'4' — by the "comments number/members number" ratio;; *'5' — by the "boards entries number/members number"
+        /// Sort order. Possible values:; *'0' â€” default sorting (similar the full version of the site);; *'1' â€”
+        /// by growth speed;; *'2'â€” by the "day attendance/members number" ratio;; *'3' â€” by the "Likes number/members number"
+        /// ratio;; *'4' â€” by the "comments number/members number" ratio;; *'5' â€” by the "boards entries number/members number"
         /// ratio.; ;
         /// </param>
         /// <param name="offset">Offset needed to return a specific subset of results.</param>
@@ -222,7 +222,7 @@ namespace VkLibrary.Core.Methods
             if (count != null)
                 parameters.Add("count", count.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<Group>>("groups.search", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<Group>>("groups.search", parameters);
         }
 
         /// <summary>
@@ -240,15 +240,15 @@ namespace VkLibrary.Core.Methods
             if (subcategoryId != null)
                 parameters.Add("subcategory_id", subcategoryId.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<Group>>("groups.getCatalog", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<Group>>("groups.getCatalog", parameters);
         }
 
         /// <summary>
         /// Returns categories list for communities catalog
         /// Docs: <see href="https://vk.com/dev/groups.getCatalogInfo">groups.getCatalogInfo</see>
         /// </summary>
-        /// <param name="extended">1 – to return communities count and three communities for preview.; By default: 0.</param>
-        /// <param name="subcategories">1 – to return subcategories info.; By default: 0.</param>
+        /// <param name="extended">1 â€“ to return communities count and three communities for preview.; By default: 0.</param>
+        /// <param name="subcategories">1 â€“ to return subcategories info.; By default: 0.</param>
         public Task<GetCatalogInfoResponse> GetCatalogInfo(bool? extended = null, bool? subcategories = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -258,7 +258,7 @@ namespace VkLibrary.Core.Methods
             if (subcategories != null)
                 parameters.Add("subcategories", subcategories.ToApiString());
 
-            return _vkontakte.GetAsync<GetCatalogInfoResponse>("groups.getCatalogInfo", parameters);
+            return _vkontakte.RequestAsync<GetCatalogInfoResponse>("groups.getCatalogInfo", parameters);
         }
 
         /// <summary>
@@ -267,7 +267,7 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="offset">Offset needed to return a specific subset of invitations.</param>
         /// <param name="count">Number of invitations to return.</param>
-        /// <param name="extended">'1' — to return additional fields for communities..</param>
+        /// <param name="extended">'1' â€” to return additional fields for communities..</param>
         public Task<ApiItemsResponse<GroupXtrInvitedBy>> GetInvites(int? offset = null, int? count = null,
             bool? extended = null)
         {
@@ -280,7 +280,7 @@ namespace VkLibrary.Core.Methods
             if (extended != null)
                 parameters.Add("extended", extended.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<GroupXtrInvitedBy>>("groups.getInvites", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<GroupXtrInvitedBy>>("groups.getInvites", parameters);
         }
 
         /// <summary>
@@ -298,8 +298,8 @@ namespace VkLibrary.Core.Methods
         /// counters'.
         /// </param>
         /// <param name="nameCase">
-        /// Case for declension of user name and surname. Possible values:; *'nom' — nominative (default);;
-        /// *'gen' — genitive;; *'dat' — dative;; *'acc' — accusative; ; *'ins' — instrumental;; *'abl' — prepositional.
+        /// Case for declension of user name and surname. Possible values:; *'nom' â€” nominative (default);;
+        /// *'gen' â€” genitive;; *'dat' â€” dative;; *'acc' â€” accusative; ; *'ins' â€” instrumental;; *'abl' â€” prepositional.
         /// </param>
         public Task<ApiItemsResponse<UserFull>> GetInvitedUsers(int? groupId = null, int? offset = null,
             int? count = null, IEnumerable<string> fields = null, string nameCase = null)
@@ -317,7 +317,7 @@ namespace VkLibrary.Core.Methods
             if (nameCase != null)
                 parameters.Add("name_case", nameCase);
 
-            return _vkontakte.GetAsync<ApiItemsResponse<UserFull>>("groups.getInvitedUsers", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<UserFull>>("groups.getInvitedUsers", parameters);
         }
 
         /// <summary>
@@ -328,12 +328,12 @@ namespace VkLibrary.Core.Methods
         /// <param name="userId">User ID.</param>
         /// <param name="endDate">Date (in Unix time) when the user will be removed from the blacklist.</param>
         /// <param name="reason">
-        /// Reason for ban:; '1' — spam; '2' — verbal abuse; '3' — strong language; '4' — irrelevant messages;
-        /// '0' — other (default)
+        /// Reason for ban:; '1' â€” spam; '2' â€” verbal abuse; '3' â€” strong language; '4' â€” irrelevant messages;
+        /// '0' â€” other (default)
         /// </param>
         /// <param name="comment">Text of comment to ban.</param>
         /// <param name="commentVisible">
-        /// '1' — text of comment will be visible to the user;; '0' — text of comment will be
+        /// '1' â€” text of comment will be visible to the user;; '0' â€” text of comment will be
         /// invisible to the user. ; By default: '0'.
         /// </param>
         public Task<int> BanUser(int? groupId = null, int? userId = null, int? endDate = null,
@@ -354,7 +354,7 @@ namespace VkLibrary.Core.Methods
             if (commentVisible != null)
                 parameters.Add("comment_visible", commentVisible.ToApiString());
 
-            return _vkontakte.GetAsync<int>("groups.banUser", parameters);
+            return _vkontakte.RequestAsync<int>("groups.banUser", parameters);
         }
 
         /// <summary>
@@ -372,7 +372,7 @@ namespace VkLibrary.Core.Methods
             if (userId != null)
                 parameters.Add("user_id", userId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("groups.unbanUser", parameters);
+            return _vkontakte.RequestAsync<int>("groups.unbanUser", parameters);
         }
 
         /// <summary>
@@ -400,7 +400,7 @@ namespace VkLibrary.Core.Methods
             if (userId != null)
                 parameters.Add("user_id", userId.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<UserXtrBanInfo>>("groups.getBanned", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<UserXtrBanInfo>>("groups.getBanned", parameters);
         }
 
         /// <summary>
@@ -409,11 +409,11 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="title">Community title.</param>
         /// <param name="description">Community description (ignored for 'type' = 'public').</param>
-        /// <param name="type">Community type. Possible values:; *'group' – group;; *'event' – event;; *'public' – public page</param>
+        /// <param name="type">Community type. Possible values:; *'group' â€“ group;; *'event' â€“ event;; *'public' â€“ public page</param>
         /// <param name="publicCategory">Category ID (for 'type' = 'public' only).</param>
         /// <param name="subtype">
-        /// Public page subtype. Possible values:; *'1' – place or small business;; *'2' – company,
-        /// organization or website;; *'3' – famous person or group of people;; *'4' – product or work of art.
+        /// Public page subtype. Possible values:; *'1' â€“ place or small business;; *'2' â€“ company,
+        /// organization or website;; *'3' â€“ famous person or group of people;; *'4' â€“ product or work of art.
         /// </param>
         public Task<Group> Create(string title = null, string description = null, string type = null,
             int? publicCategory = null, int? subtype = null)
@@ -431,7 +431,7 @@ namespace VkLibrary.Core.Methods
             if (subtype != null)
                 parameters.Add("subtype", subtype.ToApiString());
 
-            return _vkontakte.GetAsync<Group>("groups.create", parameters);
+            return _vkontakte.RequestAsync<Group>("groups.create", parameters);
         }
 
         /// <summary>
@@ -442,18 +442,18 @@ namespace VkLibrary.Core.Methods
         /// <param name="title">Community title.</param>
         /// <param name="description">Community description.</param>
         /// <param name="screenName">Community screen name.</param>
-        /// <param name="access">Community type. Possible values:; *'0' – open;; *'1' – closed;; *'2' – private.</param>
+        /// <param name="access">Community type. Possible values:; *'0' â€“ open;; *'1' â€“ closed;; *'2' â€“ private.</param>
         /// <param name="website">Website that will be displayed in the community information field.</param>
         /// <param name="subject">
-        /// Community subject. Possible values: ; *'1' – auto/moto;; *'2' – activity holidays;; *'3' –
-        /// business;; *'4' – pets;; *'5' – health;; *'6' – dating and communication; ; *'7' – games;; *'8' – IT (computers and
-        /// software);; *'9' – cinema;; *'10' – beauty and fashion;; *'11' – cooking;; *'12' – art and culture;; *'13' –
-        /// literature;; *'14' – mobile services and internet;; *'15' – music;; *'16' – science and technology;; *'17' – real
-        /// estate;; *'18' – news and media;; *'19' – security;; *'20' – education;; *'21' – home and renovations;; *'22' –
-        /// politics;; *'23' – food;; *'24' – industry;; *'25' – travel;; *'26' – work;; *'27' – entertainment;; *'28' –
-        /// religion;; *'29' – family;; *'30' – sports;; *'31' – insurance;; *'32' – television;; *'33' – goods and services;;
-        /// *'34' – hobbies;; *'35' – finance;; *'36' – photo;; *'37' – esoterics;; *'38' – electronics and appliances;; *'39'
-        /// – erotic;; *'40' – humor;; *'41' – society, humanities;; *'42' – design and graphics.
+        /// Community subject. Possible values: ; *'1' â€“ auto/moto;; *'2' â€“ activity holidays;; *'3' â€“
+        /// business;; *'4' â€“ pets;; *'5' â€“ health;; *'6' â€“ dating and communication; ; *'7' â€“ games;; *'8' â€“ IT (computers and
+        /// software);; *'9' â€“ cinema;; *'10' â€“ beauty and fashion;; *'11' â€“ cooking;; *'12' â€“ art and culture;; *'13' â€“
+        /// literature;; *'14' â€“ mobile services and internet;; *'15' â€“ music;; *'16' â€“ science and technology;; *'17' â€“ real
+        /// estate;; *'18' â€“ news and media;; *'19' â€“ security;; *'20' â€“ education;; *'21' â€“ home and renovations;; *'22' â€“
+        /// politics;; *'23' â€“ food;; *'24' â€“ industry;; *'25' â€“ travel;; *'26' â€“ work;; *'27' â€“ entertainment;; *'28' â€“
+        /// religion;; *'29' â€“ family;; *'30' â€“ sports;; *'31' â€“ insurance;; *'32' â€“ television;; *'33' â€“ goods and services;;
+        /// *'34' â€“ hobbies;; *'35' â€“ finance;; *'36' â€“ photo;; *'37' â€“ esoterics;; *'38' â€“ electronics and appliances;; *'39'
+        /// â€“ erotic;; *'40' â€“ humor;; *'41' â€“ society, humanities;; *'42' â€“ design and graphics.
         /// </param>
         /// <param name="email">Organizer email (for events).</param>
         /// <param name="phone">Organizer phone number (for events).</param>
@@ -468,54 +468,54 @@ namespace VkLibrary.Core.Methods
         /// <param name="publicSubcategory">Public page subcategory ID.</param>
         /// <param name="publicDate">Founding date of a company or organization owning the community in "dd.mm.YYYY" format.</param>
         /// <param name="wall">
-        /// Wall settings. Possible values:; *'0' – disabled;; *'1' – open;; *'2' – limited (groups and events
-        /// only);; *'3' – closed (groups and events only).;
+        /// Wall settings. Possible values:; *'0' â€“ disabled;; *'1' â€“ open;; *'2' â€“ limited (groups and events
+        /// only);; *'3' â€“ closed (groups and events only).;
         /// </param>
         /// <param name="topics">
-        /// Board topics settings. Possbile values: ; *'0' – disabled;; *'1' – open;; *'2' – limited (for
+        /// Board topics settings. Possbile values: ; *'0' â€“ disabled;; *'1' â€“ open;; *'2' â€“ limited (for
         /// groups and events only).;
         /// </param>
         /// <param name="photos">
-        /// Photos settings. Possible values:; *'0' – disabled;; *'1' – open;; *'2' – limited (for groups and
+        /// Photos settings. Possible values:; *'0' â€“ disabled;; *'1' â€“ open;; *'2' â€“ limited (for groups and
         /// events only).;
         /// </param>
         /// <param name="video">
-        /// Video settings. Possible values:; *'0' – disabled;; *'1' – open;; *'2' – limited (for groups and
+        /// Video settings. Possible values:; *'0' â€“ disabled;; *'1' â€“ open;; *'2' â€“ limited (for groups and
         /// events only).
         /// </param>
         /// <param name="audio">
-        /// Audio settings. Possible values:; *'0' – disabled;; *'1' – open;; *'2' – limited (for groups and
+        /// Audio settings. Possible values:; *'0' â€“ disabled;; *'1' â€“ open;; *'2' â€“ limited (for groups and
         /// events only).
         /// </param>
-        /// <param name="links">Links settings (for public pages only). Possible values:; *'0' – disabled;; *'1' – enabled.;</param>
-        /// <param name="events">Events settings (for public pages only). Possible values:; *'0' – disabled;; *'1' – enabled.;</param>
-        /// <param name="places">Places settings (for public pages only). Possible values:; *'0' – disabled;; *'1' – enabled.;</param>
-        /// <param name="contacts">Contacts settings (for public pages only). Possible values:; *'0' – disabled;; *'1' – enabled.;</param>
+        /// <param name="links">Links settings (for public pages only). Possible values:; *'0' â€“ disabled;; *'1' â€“ enabled.;</param>
+        /// <param name="events">Events settings (for public pages only). Possible values:; *'0' â€“ disabled;; *'1' â€“ enabled.;</param>
+        /// <param name="places">Places settings (for public pages only). Possible values:; *'0' â€“ disabled;; *'1' â€“ enabled.;</param>
+        /// <param name="contacts">Contacts settings (for public pages only). Possible values:; *'0' â€“ disabled;; *'1' â€“ enabled.;</param>
         /// <param name="docs">
-        /// Documents settings. Possible values:; *'0' – disabled;; *'1' – open;; *'2' – limited (for groups and
+        /// Documents settings. Possible values:; *'0' â€“ disabled;; *'1' â€“ open;; *'2' â€“ limited (for groups and
         /// events only).
         /// </param>
         /// <param name="wiki">
-        /// Wiki pages settings. Possible values:; *'0' – disabled;; *'1' – open;; *'2' – limited (for groups
+        /// Wiki pages settings. Possible values:; *'0' â€“ disabled;; *'1' â€“ open;; *'2' â€“ limited (for groups
         /// and events only).
         /// </param>
-        /// <param name="messages">Community messages. Possible values:; *'0' — disabled;; *'1' — enabled.</param>
-        /// <param name="ageLimits">Community age limits. Possible values:; *'1' — no limits;; *'2' — 16+;; *'3' — 18+.</param>
-        /// <param name="market">Market settings. Possible values:; *'0' – disabled;; *'1' – enabled.</param>
-        /// <param name="marketComments">market comments settings. Possible values:; *'0' – disabled;; *'1' – enabled.</param>
+        /// <param name="messages">Community messages. Possible values:; *'0' â€” disabled;; *'1' â€” enabled.</param>
+        /// <param name="ageLimits">Community age limits. Possible values:; *'1' â€” no limits;; *'2' â€” 16+;; *'3' â€” 18+.</param>
+        /// <param name="market">Market settings. Possible values:; *'0' â€“ disabled;; *'1' â€“ enabled.</param>
+        /// <param name="marketComments">market comments settings. Possible values:; *'0' â€“ disabled;; *'1' â€“ enabled.</param>
         /// <param name="marketCountry">Market delivery countries.</param>
         /// <param name="marketCity">Market delivery cities (if only one country is specified).</param>
         /// <param name="marketCurrency">
-        /// Market currency settings. Possbile values: ; *'643' – Russian rubles;; *'980' – Ukrainian
-        /// hryvnia;; *'398' – Kazakh tenge;; *'978' – Euro;; *'840' – US dollars
+        /// Market currency settings. Possbile values: ; *'643' â€“ Russian rubles;; *'980' â€“ Ukrainian
+        /// hryvnia;; *'398' â€“ Kazakh tenge;; *'978' â€“ Euro;; *'840' â€“ US dollars
         /// </param>
         /// <param name="marketContact">Seller contact for market.; Set '0' for community messages.</param>
         /// <param name="marketWiki">ID of a wiki page with market description.</param>
         /// <param name="obsceneFilter">
-        /// Obscene expressions filter in comments. Possible values: ; *'0' – disabled;; *'1' –
+        /// Obscene expressions filter in comments. Possible values: ; *'0' â€“ disabled;; *'1' â€“
         /// enabled.
         /// </param>
-        /// <param name="obsceneStopwords">Stopwords filter in comments. Possible values: ; *'0' – disabled;; *'1' – enabled.</param>
+        /// <param name="obsceneStopwords">Stopwords filter in comments. Possible values: ; *'0' â€“ disabled;; *'1' â€“ enabled.</param>
         /// <param name="obsceneWords">Keywords for stopwords filter.</param>
         public Task<int> Edit(int? groupId = null, string title = null, string description = null,
             string screenName = null, int? access = null, string website = null, string subject = null,
@@ -610,7 +610,7 @@ namespace VkLibrary.Core.Methods
             if (obsceneWords != null)
                 parameters.Add("obscene_words", obsceneWords.ToApiString());
 
-            return _vkontakte.GetAsync<int>("groups.edit", parameters);
+            return _vkontakte.RequestAsync<int>("groups.edit", parameters);
         }
 
         /// <summary>
@@ -644,7 +644,7 @@ namespace VkLibrary.Core.Methods
             if (longitude != null)
                 parameters.Add("longitude", longitude.ToApiString());
 
-            return _vkontakte.GetAsync<EditPlaceResponse>("groups.editPlace", parameters);
+            return _vkontakte.RequestAsync<EditPlaceResponse>("groups.editPlace", parameters);
         }
 
         /// <summary>
@@ -659,7 +659,7 @@ namespace VkLibrary.Core.Methods
             if (groupId != null)
                 parameters.Add("group_id", groupId.ToApiString());
 
-            return _vkontakte.GetAsync<GroupSettings>("groups.getSettings", parameters);
+            return _vkontakte.RequestAsync<GroupSettings>("groups.getSettings", parameters);
         }
 
         /// <summary>
@@ -684,7 +684,7 @@ namespace VkLibrary.Core.Methods
             if (fields != null)
                 parameters.Add("fields", fields.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<int?>>("groups.getRequests", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<int?>>("groups.getRequests", parameters);
         }
 
         /// <summary>
@@ -694,7 +694,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="groupId">Community ID.</param>
         /// <param name="userId">User ID.</param>
         /// <param name="role">Manager role. Possible values:; *'moderator';; *'editor';; *'administrator'.</param>
-        /// <param name="isContact">'1' — to show the manager in Contacts block of the community.</param>
+        /// <param name="isContact">'1' â€” to show the manager in Contacts block of the community.</param>
         /// <param name="contactPosition">Position to show in Contacts block.</param>
         /// <param name="contactPhone">Contact phone.</param>
         /// <param name="contactEmail">Contact e-mail.</param>
@@ -719,7 +719,7 @@ namespace VkLibrary.Core.Methods
             if (contactEmail != null)
                 parameters.Add("contact_email", contactEmail);
 
-            return _vkontakte.GetAsync<int>("groups.editManager", parameters);
+            return _vkontakte.RequestAsync<int>("groups.editManager", parameters);
         }
 
         /// <summary>
@@ -737,7 +737,7 @@ namespace VkLibrary.Core.Methods
             if (userId != null)
                 parameters.Add("user_id", userId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("groups.invite", parameters);
+            return _vkontakte.RequestAsync<int>("groups.invite", parameters);
         }
 
         /// <summary>
@@ -758,7 +758,7 @@ namespace VkLibrary.Core.Methods
             if (text != null)
                 parameters.Add("text", text);
 
-            return _vkontakte.GetAsync<GroupLink>("groups.addLink", parameters);
+            return _vkontakte.RequestAsync<GroupLink>("groups.addLink", parameters);
         }
 
         /// <summary>
@@ -776,7 +776,7 @@ namespace VkLibrary.Core.Methods
             if (linkId != null)
                 parameters.Add("link_id", linkId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("groups.deleteLink", parameters);
+            return _vkontakte.RequestAsync<int>("groups.deleteLink", parameters);
         }
 
         /// <summary>
@@ -797,7 +797,7 @@ namespace VkLibrary.Core.Methods
             if (text != null)
                 parameters.Add("text", text);
 
-            return _vkontakte.GetAsync<int>("groups.editLink", parameters);
+            return _vkontakte.RequestAsync<int>("groups.editLink", parameters);
         }
 
         /// <summary>
@@ -818,7 +818,7 @@ namespace VkLibrary.Core.Methods
             if (after != null)
                 parameters.Add("after", after.ToApiString());
 
-            return _vkontakte.GetAsync<int>("groups.reorderLink", parameters);
+            return _vkontakte.RequestAsync<int>("groups.reorderLink", parameters);
         }
 
         /// <summary>
@@ -836,7 +836,7 @@ namespace VkLibrary.Core.Methods
             if (userId != null)
                 parameters.Add("user_id", userId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("groups.removeUser", parameters);
+            return _vkontakte.RequestAsync<int>("groups.removeUser", parameters);
         }
 
         /// <summary>
@@ -854,7 +854,7 @@ namespace VkLibrary.Core.Methods
             if (userId != null)
                 parameters.Add("user_id", userId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("groups.approveRequest", parameters);
+            return _vkontakte.RequestAsync<int>("groups.approveRequest", parameters);
         }
 
         /// <summary>
@@ -869,7 +869,7 @@ namespace VkLibrary.Core.Methods
             if (groupId != null)
                 parameters.Add("group_id", groupId.ToApiString());
 
-            return _vkontakte.GetAsync<GetCallbackConfirmationCodeResponse>("groups.getCallbackConfirmationCode",
+            return _vkontakte.RequestAsync<GetCallbackConfirmationCodeResponse>("groups.getCallbackConfirmationCode",
                 parameters);
         }
 
@@ -885,7 +885,7 @@ namespace VkLibrary.Core.Methods
             if (groupId != null)
                 parameters.Add("group_id", groupId.ToApiString());
 
-            return _vkontakte.GetAsync<GetCallbackServerSettingsResponse>("groups.getCallbackServerSettings",
+            return _vkontakte.RequestAsync<GetCallbackServerSettingsResponse>("groups.getCallbackServerSettings",
                 parameters);
         }
 
@@ -901,7 +901,7 @@ namespace VkLibrary.Core.Methods
             if (groupId != null)
                 parameters.Add("group_id", groupId.ToApiString());
 
-            return _vkontakte.GetAsync<GetCallbackSettingsResponse>("groups.getCallbackSettings", parameters);
+            return _vkontakte.RequestAsync<GetCallbackSettingsResponse>("groups.getCallbackSettings", parameters);
         }
 
         /// <summary>
@@ -919,7 +919,7 @@ namespace VkLibrary.Core.Methods
             if (serverUrl != null)
                 parameters.Add("server_url", serverUrl);
 
-            return _vkontakte.GetAsync<SetCallbackServerResponse>("groups.setCallbackServer", parameters);
+            return _vkontakte.RequestAsync<SetCallbackServerResponse>("groups.setCallbackServer", parameters);
         }
 
         /// <summary>
@@ -937,7 +937,7 @@ namespace VkLibrary.Core.Methods
             if (secretKey != null)
                 parameters.Add("secret_key", secretKey);
 
-            return _vkontakte.GetAsync<int>("groups.setCallbackServerSettings", parameters);
+            return _vkontakte.RequestAsync<int>("groups.setCallbackServerSettings", parameters);
         }
 
         /// <summary>
@@ -945,24 +945,24 @@ namespace VkLibrary.Core.Methods
         /// Docs: <see href="https://vk.com/dev/groups.setCallbackSettings">groups.setCallbackSettings</see>
         /// </summary>
         /// <param name="groupId">Community ID.</param>
-        /// <param name="messageNew">New messages notifications ('0' — disabled, '1' — enabled).</param>
-        /// <param name="messageAllow">Allowed messages notifications ('0' — disabled, '1' — enabled).</param>
-        /// <param name="messageDeny">Denied messages notifications ('0' — disabled, '1' — enabled).</param>
-        /// <param name="photoNew">New photos notifications ('0' — disabled, '1' — enabled).</param>
-        /// <param name="audioNew">New audios notifications ('0' — disabled, '1' — enabled).</param>
-        /// <param name="videoNew">New videos notifications ('0' — disabled, '1' — enabled).</param>
-        /// <param name="wallReplyNew">New wall replies notifications ('0' — disabled, '1' — enabled).</param>
-        /// <param name="wallReplyEdit">Wall replies edited notifications ('0' — disabled, '1' — enabled).</param>
-        /// <param name="wallPostNew">New wall posts notifications ('0' — disabled, '1' — enabled).</param>
-        /// <param name="boardPostNew">New board posts notifications ('0' — disabled, '1' — enabled).</param>
-        /// <param name="boardPostEdit">Board posts edited notifications ('0' — disabled, '1' — enabled).</param>
-        /// <param name="boardPostRestore">Board posts restored notifications ('0' — disabled, '1' — enabled).</param>
-        /// <param name="boardPostDelete">Board posts deleted notifications ('0' — disabled, '1' — enabled).</param>
-        /// <param name="photoCommentNew">New comment to photo notifications ('0' — disabled, '1' — enabled).</param>
-        /// <param name="videoCommentNew">New comment to video notifications ('0' — disabled, '1' — enabled).</param>
-        /// <param name="marketCommentNew">New comment to market item notifications ('0' — disabled, '1' — enabled).</param>
-        /// <param name="groupJoin">Joined community notifications ('0' — disabled, '1' — enabled).</param>
-        /// <param name="groupLeave">Left community notifications ('0' — disabled, '1' — enabled).</param>
+        /// <param name="messageNew">New messages notifications ('0' â€” disabled, '1' â€” enabled).</param>
+        /// <param name="messageAllow">Allowed messages notifications ('0' â€” disabled, '1' â€” enabled).</param>
+        /// <param name="messageDeny">Denied messages notifications ('0' â€” disabled, '1' â€” enabled).</param>
+        /// <param name="photoNew">New photos notifications ('0' â€” disabled, '1' â€” enabled).</param>
+        /// <param name="audioNew">New audios notifications ('0' â€” disabled, '1' â€” enabled).</param>
+        /// <param name="videoNew">New videos notifications ('0' â€” disabled, '1' â€” enabled).</param>
+        /// <param name="wallReplyNew">New wall replies notifications ('0' â€” disabled, '1' â€” enabled).</param>
+        /// <param name="wallReplyEdit">Wall replies edited notifications ('0' â€” disabled, '1' â€” enabled).</param>
+        /// <param name="wallPostNew">New wall posts notifications ('0' â€” disabled, '1' â€” enabled).</param>
+        /// <param name="boardPostNew">New board posts notifications ('0' â€” disabled, '1' â€” enabled).</param>
+        /// <param name="boardPostEdit">Board posts edited notifications ('0' â€” disabled, '1' â€” enabled).</param>
+        /// <param name="boardPostRestore">Board posts restored notifications ('0' â€” disabled, '1' â€” enabled).</param>
+        /// <param name="boardPostDelete">Board posts deleted notifications ('0' â€” disabled, '1' â€” enabled).</param>
+        /// <param name="photoCommentNew">New comment to photo notifications ('0' â€” disabled, '1' â€” enabled).</param>
+        /// <param name="videoCommentNew">New comment to video notifications ('0' â€” disabled, '1' â€” enabled).</param>
+        /// <param name="marketCommentNew">New comment to market item notifications ('0' â€” disabled, '1' â€” enabled).</param>
+        /// <param name="groupJoin">Joined community notifications ('0' â€” disabled, '1' â€” enabled).</param>
+        /// <param name="groupLeave">Left community notifications ('0' â€” disabled, '1' â€” enabled).</param>
         public Task<int> SetCallbackSettings(int? groupId = null, bool? messageNew = null,
             bool? messageAllow = null, bool? messageDeny = null, bool? photoNew = null, bool? audioNew = null,
             bool? videoNew = null, bool? wallReplyNew = null, bool? wallReplyEdit = null,
@@ -1012,7 +1012,7 @@ namespace VkLibrary.Core.Methods
             if (groupLeave != null)
                 parameters.Add("group_leave", groupLeave.ToApiString());
 
-            return _vkontakte.GetAsync<int>("groups.setCallbackSettings", parameters);
+            return _vkontakte.RequestAsync<int>("groups.setCallbackSettings", parameters);
         }
     }
 }

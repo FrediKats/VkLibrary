@@ -18,7 +18,7 @@ namespace VkLibrary.Core.Methods
         /// Docs: <see href="https://vk.com/dev/database.getCountries">database.getCountries</see>
         /// </summary>
         /// <param name="needAll">
-        /// '1' — to return a full list of all countries; '0' — to return a list of countries near the
+        /// '1' â€” to return a full list of all countries; '0' â€” to return a list of countries near the
         /// current user's country (default).;
         /// </param>
         /// <param name="code">Country codes in ISO 3166-1 alpha-2 standard.</param>
@@ -38,7 +38,7 @@ namespace VkLibrary.Core.Methods
             if (count != null)
                 parameters.Add("count", count.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<Country>>("database.getCountries", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<Country>>("database.getCountries", parameters);
         }
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace VkLibrary.Core.Methods
             if (count != null)
                 parameters.Add("count", count.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<Region>>("database.getRegions", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<Region>>("database.getRegions", parameters);
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace VkLibrary.Core.Methods
             if (streetIds != null)
                 parameters.Add("street_ids", streetIds.ToApiString());
 
-            return _vkontakte.GetAsync<IEnumerable<Street>>("database.getStreetsById", parameters);
+            return _vkontakte.RequestAsync<IEnumerable<Street>>("database.getStreetsById", parameters);
         }
 
         /// <summary>
@@ -93,7 +93,7 @@ namespace VkLibrary.Core.Methods
             if (countryIds != null)
                 parameters.Add("country_ids", countryIds.ToApiString());
 
-            return _vkontakte.GetAsync<IEnumerable<Country>>("database.getCountriesById", parameters);
+            return _vkontakte.RequestAsync<IEnumerable<Country>>("database.getCountriesById", parameters);
         }
 
         /// <summary>
@@ -104,7 +104,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="regionId">Region ID.</param>
         /// <param name="q">Search query.</param>
         /// <param name="needAll">
-        /// '1' — to return all cities in the country; '0' — to return major cities in the country
+        /// '1' â€” to return all cities in the country; '0' â€” to return major cities in the country
         /// (default);
         /// </param>
         /// <param name="offset">Offset needed to return a specific subset of cities.</param>
@@ -127,7 +127,7 @@ namespace VkLibrary.Core.Methods
             if (count != null)
                 parameters.Add("count", count.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<City>>("database.getCities", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<City>>("database.getCities", parameters);
         }
 
         /// <summary>
@@ -142,7 +142,7 @@ namespace VkLibrary.Core.Methods
             if (cityIds != null)
                 parameters.Add("city_ids", cityIds.ToApiString());
 
-            return _vkontakte.GetAsync<IEnumerable<Object>>("database.getCitiesById", parameters);
+            return _vkontakte.RequestAsync<IEnumerable<Object>>("database.getCitiesById", parameters);
         }
 
         /// <summary>
@@ -170,7 +170,7 @@ namespace VkLibrary.Core.Methods
             if (count != null)
                 parameters.Add("count", count.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<University>>("database.getUniversities", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<University>>("database.getUniversities", parameters);
         }
 
         /// <summary>
@@ -195,7 +195,7 @@ namespace VkLibrary.Core.Methods
             if (count != null)
                 parameters.Add("count", count.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<School>>("database.getSchools", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<School>>("database.getSchools", parameters);
         }
 
         /// <summary>
@@ -210,7 +210,7 @@ namespace VkLibrary.Core.Methods
             if (countryId != null)
                 parameters.Add("country_id", countryId.ToApiString());
 
-            return _vkontakte.GetAsync<IEnumerable<IEnumerable<string>>>("database.getSchoolClasses", parameters);
+            return _vkontakte.RequestAsync<IEnumerable<IEnumerable<string>>>("database.getSchoolClasses", parameters);
         }
 
         /// <summary>
@@ -232,7 +232,7 @@ namespace VkLibrary.Core.Methods
             if (count != null)
                 parameters.Add("count", count.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<Faculty>>("database.getFaculties", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<Faculty>>("database.getFaculties", parameters);
         }
 
         /// <summary>
@@ -254,7 +254,7 @@ namespace VkLibrary.Core.Methods
             if (count != null)
                 parameters.Add("count", count.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<Object>>("database.getChairs", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<Object>>("database.getChairs", parameters);
         }
     }
 }

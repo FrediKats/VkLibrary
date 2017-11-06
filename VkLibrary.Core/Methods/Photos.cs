@@ -45,7 +45,7 @@ namespace VkLibrary.Core.Methods
             if (offset != null) parameters.Add("offset", offset.ToApiString());
             if (count != null) parameters.Add("count", count.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<PhotoFull>>("photos.get", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<PhotoFull>>("photos.get", parameters);
         }
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace VkLibrary.Core.Methods
             if (extended != null) parameters.Add("extended", extended.ToApiString());
             if (photoSizes != null) parameters.Add("photo_sizes", photoSizes.ToApiString());
 
-            return _vkontakte.GetAsync<IEnumerable<PhotoFull>>("photos.getById", parameters);
+            return _vkontakte.RequestAsync<IEnumerable<PhotoFull>>("photos.getById", parameters);
         }
 
         /// <summary>
@@ -73,9 +73,9 @@ namespace VkLibrary.Core.Methods
         /// <param name="albumIds">Album IDs. </param>
         /// <param name="offset">Offset needed to return a specific subset of albums.</param>
         /// <param name="count">Number of albums to return.</param>
-        /// <param name="needSystem">true — to return system albums with negative IDs</param>
-        /// <param name="needCovers">true — to return an additional thumb_src field </param>
-        /// <param name="photoSizes">1 — to return photo sizes in a special format</param>
+        /// <param name="needSystem">true â€” to return system albums with negative IDs</param>
+        /// <param name="needCovers">true â€” to return an additional thumb_src field </param>
+        /// <param name="photoSizes">1 â€” to return photo sizes in a special format</param>
         public Task<ApiItemsResponse<PhotoAlbumFull>> GetAlbums(
             int? ownerId = null, IEnumerable<string> albumIds = null, int? offset = null, int? count = null,
             bool? needSystem = null, bool? needCovers = null, bool? photoSizes = null)
@@ -90,7 +90,7 @@ namespace VkLibrary.Core.Methods
             if (needCovers != null) parameters.Add("need_covers", needCovers.ToApiString());
             if (photoSizes != null) parameters.Add("photo_sizes", photoSizes.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<PhotoAlbumFull>>("photos.getAlbums", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<PhotoAlbumFull>>("photos.getAlbums", parameters);
         }
 
         /// <summary>
@@ -110,7 +110,7 @@ namespace VkLibrary.Core.Methods
             if (cropWidth != null)
                 parameters.Add("crop_width", cropWidth.ToApiString());
 
-            return _vkontakte.GetAsync<GetChatUploadServerResponse>(
+            return _vkontakte.RequestAsync<GetChatUploadServerResponse>(
                 "photos.getChatUploadServer", parameters);
         }
 
@@ -121,7 +121,7 @@ namespace VkLibrary.Core.Methods
         public Task<GetChatUploadServerResponse> GetMessagesUploadServer()
         {
             var parameters = new Dictionary<string, string>();
-            return _vkontakte.GetAsync<GetChatUploadServerResponse>(
+            return _vkontakte.RequestAsync<GetChatUploadServerResponse>(
                 "photos.getMessagesUploadServer", parameters);
         }
 
@@ -137,7 +137,7 @@ namespace VkLibrary.Core.Methods
             if (ownerId != 0)
                 parameters.Add("owner_id", ownerId.ToApiString());
 
-            return _vkontakte.GetAsync<GetChatUploadServerResponse>(
+            return _vkontakte.RequestAsync<GetChatUploadServerResponse>(
                 "photos.getOwnerPhotoUploadServer", parameters);
         }
 
@@ -152,7 +152,7 @@ namespace VkLibrary.Core.Methods
 
             parameters.Add("group_id", groupId.ToApiString());
 
-            return _vkontakte.GetAsync<GetChatUploadServerResponse>(
+            return _vkontakte.RequestAsync<GetChatUploadServerResponse>(
                 "photos.getWallUploadServer", parameters);
         }
 
@@ -168,7 +168,7 @@ namespace VkLibrary.Core.Methods
             if (groupId != 0)
                 parameters.Add("group_id", groupId.ToApiString());
 
-            return _vkontakte.GetAsync<GetChatUploadServerResponse>(
+            return _vkontakte.RequestAsync<GetChatUploadServerResponse>(
                 "photos.getUploadServer", parameters);
         }
 
@@ -207,7 +207,7 @@ namespace VkLibrary.Core.Methods
             if (caption != null)
                 parameters.Add("caption", caption);
 
-            return _vkontakte.GetAsync<IEnumerable<Photo>>("photos.save", parameters);
+            return _vkontakte.RequestAsync<IEnumerable<Photo>>("photos.save", parameters);
         }
 
 
@@ -245,7 +245,7 @@ namespace VkLibrary.Core.Methods
             if (caption != null)
                 parameters.Add("caption", caption);
 
-            return _vkontakte.GetAsync<IEnumerable<Photo>>("photos.saveWallPhoto", parameters);
+            return _vkontakte.RequestAsync<IEnumerable<Photo>>("photos.saveWallPhoto", parameters);
         }
 
         /// <summary>
@@ -266,7 +266,7 @@ namespace VkLibrary.Core.Methods
             if (accessKey != null)
                 parameters.Add("access_key", accessKey);
 
-            return _vkontakte.GetAsync<int?>("photos.copy", parameters);
+            return _vkontakte.RequestAsync<int?>("photos.copy", parameters);
         }
 
         /// <summary>
@@ -307,7 +307,7 @@ namespace VkLibrary.Core.Methods
             if (deletePlace != null)
                 parameters.Add("delete_place", deletePlace.ToApiString());
 
-            return _vkontakte.GetAsync<int>("photos.edit", parameters);
+            return _vkontakte.RequestAsync<int>("photos.edit", parameters);
         }
 
         /// <summary>
@@ -328,7 +328,7 @@ namespace VkLibrary.Core.Methods
             if (photoId != null)
                 parameters.Add("photo_id", photoId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("photos.move", parameters);
+            return _vkontakte.RequestAsync<int>("photos.move", parameters);
         }
 
         /// <summary>
@@ -349,7 +349,7 @@ namespace VkLibrary.Core.Methods
             if (albumId != null)
                 parameters.Add("album_id", albumId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("photos.makeCover", parameters);
+            return _vkontakte.RequestAsync<int>("photos.makeCover", parameters);
         }
 
         /// <summary>
@@ -374,7 +374,7 @@ namespace VkLibrary.Core.Methods
             if (after != null)
                 parameters.Add("after", after.ToApiString());
 
-            return _vkontakte.GetAsync<int>("photos.reorderAlbums", parameters);
+            return _vkontakte.RequestAsync<int>("photos.reorderAlbums", parameters);
         }
 
         /// <summary>
@@ -399,7 +399,7 @@ namespace VkLibrary.Core.Methods
             if (after != null)
                 parameters.Add("after", after.ToApiString());
 
-            return _vkontakte.GetAsync<int>("photos.reorderPhotos", parameters);
+            return _vkontakte.RequestAsync<int>("photos.reorderPhotos", parameters);
         }
 
         /// <summary>
@@ -410,17 +410,17 @@ namespace VkLibrary.Core.Methods
         /// ID of a user or community that owns the photos.; Use a negative value to designate a community
         /// ID.
         /// </param>
-        /// <param name="extended">'1' — to return detailed information about photos</param>
+        /// <param name="extended">'1' â€” to return detailed information about photos</param>
         /// <param name="offset">Offset needed to return a specific subset of photos. By default, '0'.</param>
         /// <param name="count">Number of photos to return.</param>
-        /// <param name="photoSizes">'1' – to return image sizes in special format.</param>
+        /// <param name="photoSizes">'1' â€“ to return image sizes in special format.</param>
         /// <param name="noServiceAlbums">
-        /// '1' – to return photos only from standard albums; '0' – to return all photos including
+        /// '1' â€“ to return photos only from standard albums; '0' â€“ to return all photos including
         /// those in service albums, e.g., 'My wall photos' (default)
         /// </param>
-        /// <param name="needHidden">'1' – to show information about photos being hidden from the block above the wall.</param>
+        /// <param name="needHidden">'1' â€“ to show information about photos being hidden from the block above the wall.</param>
         /// <param name="skipHidden">
-        /// '1' – not to return photos being hidden from the block above the wall. Works only with
+        /// '1' â€“ not to return photos being hidden from the block above the wall. Works only with
         /// owner_id>0, no_service_albums is ignored.
         /// </param>
         public Task<ApiItemsResponse<PhotoXtrRealOffset>> GetAll(int? ownerId = null, bool? extended = null,
@@ -446,7 +446,7 @@ namespace VkLibrary.Core.Methods
             if (skipHidden != null)
                 parameters.Add("skip_hidden", skipHidden.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<PhotoXtrRealOffset>>("photos.getAll", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<PhotoXtrRealOffset>>("photos.getAll", parameters);
         }
 
         /// <summary>
@@ -456,9 +456,9 @@ namespace VkLibrary.Core.Methods
         /// <param name="userId">User ID.</param>
         /// <param name="offset">Offset needed to return a specific subset of photos. By default, '0'.</param>
         /// <param name="count">Number of photos to return. Maximum value is 1000.</param>
-        /// <param name="extended">'1' — to return an additional 'likes' field; '0' — (default)</param>
+        /// <param name="extended">'1' â€” to return an additional 'likes' field; '0' â€” (default)</param>
         /// <param name="sort">
-        /// Sort order:; '1' — by date the tag was added in ascending order; '0' — by date the tag was added in
+        /// Sort order:; '1' â€” by date the tag was added in ascending order; '0' â€” by date the tag was added in
         /// descending order
         /// </param>
         public Task<ApiItemsResponse<Photo>> GetUserPhotos(int? userId = null, int? offset = null,
@@ -477,7 +477,7 @@ namespace VkLibrary.Core.Methods
             if (sort != null)
                 parameters.Add("sort", sort);
 
-            return _vkontakte.GetAsync<ApiItemsResponse<Photo>>("photos.getUserPhotos", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<Photo>>("photos.getUserPhotos", parameters);
         }
 
         /// <summary>
@@ -495,7 +495,7 @@ namespace VkLibrary.Core.Methods
             if (groupId != null)
                 parameters.Add("group_id", groupId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("photos.deleteAlbum", parameters);
+            return _vkontakte.RequestAsync<int>("photos.deleteAlbum", parameters);
         }
 
         /// <summary>
@@ -513,7 +513,7 @@ namespace VkLibrary.Core.Methods
             if (photoId != null)
                 parameters.Add("photo_id", photoId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("photos.delete", parameters);
+            return _vkontakte.RequestAsync<int>("photos.delete", parameters);
         }
 
         /// <summary>
@@ -531,7 +531,7 @@ namespace VkLibrary.Core.Methods
             if (photoId != null)
                 parameters.Add("photo_id", photoId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("photos.restore", parameters);
+            return _vkontakte.RequestAsync<int>("photos.restore", parameters);
         }
 
         /// <summary>
@@ -552,7 +552,7 @@ namespace VkLibrary.Core.Methods
             if (tagId != null)
                 parameters.Add("tag_id", tagId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("photos.confirmTag", parameters);
+            return _vkontakte.RequestAsync<int>("photos.confirmTag", parameters);
         }
 
         /// <summary>
@@ -561,11 +561,11 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="ownerId">ID of the user or community that owns the photo.</param>
         /// <param name="photoId">Photo ID.</param>
-        /// <param name="needLikes">'1' — to return an additional 'likes' field; '0' — (default)</param>
+        /// <param name="needLikes">'1' â€” to return an additional 'likes' field; '0' â€” (default)</param>
         /// <param name="startCommentId"></param>
         /// <param name="offset">Offset needed to return a specific subset of comments. By default, '0'.</param>
         /// <param name="count">Number of comments to return.</param>
-        /// <param name="sort">Sort order:; 'asc' — old first; 'desc' — new first</param>
+        /// <param name="sort">Sort order:; 'asc' â€” old first; 'desc' â€” new first</param>
         /// <param name="accessKey"></param>
         /// <param name="extended"></param>
         /// <param name="fields"></param>
@@ -596,7 +596,7 @@ namespace VkLibrary.Core.Methods
             if (fields != null)
                 parameters.Add("fields", fields.ToApiString());
 
-            return _vkontakte.GetAsync<CommentsResponse>("photos.getComments", parameters);
+            return _vkontakte.RequestAsync<CommentsResponse>("photos.getComments", parameters);
         }
 
         /// <summary>
@@ -606,7 +606,7 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="ownerId">ID of the user or community that owns the album(s).</param>
         /// <param name="albumId">Album ID. If the parameter is not set, comments on all of the user's albums will be returned.</param>
-        /// <param name="needLikes">'1' — to return an additional 'likes' field; '0' — (default)</param>
+        /// <param name="needLikes">'1' â€” to return an additional 'likes' field; '0' â€” (default)</param>
         /// <param name="offset">Offset needed to return a specific subset of comments. By default, '0'.</param>
         /// <param name="count">Number of comments to return. By default, '20'. Maximum value, '100'.</param>
         public Task<ApiItemsResponse<CommentXtrPid>> GetAllComments(int? ownerId = null, int? albumId = null,
@@ -625,7 +625,7 @@ namespace VkLibrary.Core.Methods
             if (count != null)
                 parameters.Add("count", count.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<CommentXtrPid>>("photos.getAllComments", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<CommentXtrPid>>("photos.getAllComments", parameters);
         }
 
         /// <summary>
@@ -638,16 +638,16 @@ namespace VkLibrary.Core.Methods
         /// <param name="attachments">
         /// (Required if 'message' is not set.) List of objects attached to the post, in the following format:; 
         /// "%owner_id%_%media_id%, %owner_id%_%media_id%"; 
-        /// '' — Type of media attachment:; 
-        /// 'photo' — photo; 
-        /// 'video' — video; 
-        /// 'audio' — audio; 
-        /// 'doc' — document; 
-        /// '%owner_id%' — Media attachment owner ID.; 
-        /// '%media_id%' — Media attachment ID.;
+        /// '' â€” Type of media attachment:; 
+        /// 'photo' â€” photo; 
+        /// 'video' â€” video; 
+        /// 'audio' â€” audio; 
+        /// 'doc' â€” document; 
+        /// '%owner_id%' â€” Media attachment owner ID.; 
+        /// '%media_id%' â€” Media attachment ID.;
         /// Example:; "photo100172_166443618,photo66748_265827614"
         /// </param>
-        /// <param name="fromGroup">'1' — to post a comment from the community</param>
+        /// <param name="fromGroup">'1' â€” to post a comment from the community</param>
         /// <param name="replyToComment"></param>
         /// <param name="stickerId"></param>
         /// <param name="accessKey"></param>
@@ -677,7 +677,7 @@ namespace VkLibrary.Core.Methods
             if (guid != null)
                 parameters.Add("guid", guid);
 
-            return _vkontakte.GetAsync<int?>("photos.createComment", parameters);
+            return _vkontakte.RequestAsync<int?>("photos.createComment", parameters);
         }
 
         /// <summary>
@@ -695,7 +695,7 @@ namespace VkLibrary.Core.Methods
             if (commentId != null)
                 parameters.Add("comment_id", commentId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("photos.deleteComment", parameters);
+            return _vkontakte.RequestAsync<int>("photos.deleteComment", parameters);
         }
 
         /// <summary>
@@ -713,7 +713,7 @@ namespace VkLibrary.Core.Methods
             if (commentId != null)
                 parameters.Add("comment_id", commentId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("photos.restoreComment", parameters);
+            return _vkontakte.RequestAsync<int>("photos.restoreComment", parameters);
         }
 
         /// <summary>
@@ -726,10 +726,10 @@ namespace VkLibrary.Core.Methods
         /// <param name="attachments">
         /// (Required if 'message' is not set.) List of objects attached to the post, in the following format:; 
         /// "%owner_id%_%media_id%, %owner_id%_%media_id%"; 
-        /// '' — Type of media attachment:; 
-        /// 'photo' — photo; 'video' — video; 'audio' — audio; 'doc' — document; 
-        /// '%owner_id%' — Media attachment owner ID.; 
-        /// '%media_id%' — Media attachment ID.;
+        /// '' â€” Type of media attachment:; 
+        /// 'photo' â€” photo; 'video' â€” video; 'audio' â€” audio; 'doc' â€” document; 
+        /// '%owner_id%' â€” Media attachment owner ID.; 
+        /// '%media_id%' â€” Media attachment ID.;
         /// Example:; "photo100172_166443618,photo66748_265827614"
         /// </param>
         public Task<int> EditComment(int? ownerId = null, int? commentId = null, string message = null,
@@ -746,7 +746,7 @@ namespace VkLibrary.Core.Methods
             if (attachments != null)
                 parameters.Add("attachments", attachments.ToApiString());
 
-            return _vkontakte.GetAsync<int>("photos.editComment", parameters);
+            return _vkontakte.RequestAsync<int>("photos.editComment", parameters);
         }
 
         /// <summary>
@@ -768,7 +768,7 @@ namespace VkLibrary.Core.Methods
             if (accessKey != null)
                 parameters.Add("access_key", accessKey);
 
-            return _vkontakte.GetAsync<IEnumerable<PhotoTag>>("photos.getTags", parameters);
+            return _vkontakte.RequestAsync<IEnumerable<PhotoTag>>("photos.getTags", parameters);
         }
 
         /// <summary>
@@ -802,7 +802,7 @@ namespace VkLibrary.Core.Methods
             if (y2 != null)
                 parameters.Add("y2", y2.ToApiString());
 
-            return _vkontakte.GetAsync<int?>("photos.putTag", parameters);
+            return _vkontakte.RequestAsync<int?>("photos.putTag", parameters);
         }
 
         /// <summary>
@@ -823,7 +823,7 @@ namespace VkLibrary.Core.Methods
             if (tagId != null)
                 parameters.Add("tag_id", tagId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("photos.removeTag", parameters);
+            return _vkontakte.RequestAsync<int>("photos.removeTag", parameters);
         }
 
         /// <summary>
@@ -841,7 +841,7 @@ namespace VkLibrary.Core.Methods
             if (count != null)
                 parameters.Add("count", count.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<PhotoXtrTagInfo>>("photos.getNewTags", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<PhotoXtrTagInfo>>("photos.getNewTags", parameters);
         }
     }
 }

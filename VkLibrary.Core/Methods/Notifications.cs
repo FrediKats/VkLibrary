@@ -19,9 +19,9 @@ namespace VkLibrary.Core.Methods
         /// <param name="count">Number of notifications to return.</param>
         /// <param name="startFrom"></param>
         /// <param name="filters">
-        /// Type of notifications to return:; 'wall' — wall posts; 'mentions' — mentions in wall posts,
-        /// comments, or topics; 'comments' — comments to wall posts, photos, and videos; 'likes' — likes; 'reposted' — wall
-        /// posts that are copied from the current user's wall; 'followers' — new followers; 'friends' — accepted friend
+        /// Type of notifications to return:; 'wall' â€” wall posts; 'mentions' â€” mentions in wall posts,
+        /// comments, or topics; 'comments' â€” comments to wall posts, photos, and videos; 'likes' â€” likes; 'reposted' â€” wall
+        /// posts that are copied from the current user's wall; 'followers' â€” new followers; 'friends' â€” accepted friend
         /// requests
         /// </param>
         /// <param name="startTime">Earliest timestamp (in Unix time) of a notification to return. By default, 24 hours ago.</param>
@@ -42,7 +42,7 @@ namespace VkLibrary.Core.Methods
             if (endTime != null)
                 parameters.Add("end_time", endTime.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<Notification>>("notifications.get", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<Notification>>("notifications.get", parameters);
         }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace VkLibrary.Core.Methods
             var parameters = new Dictionary<string, string>();
 
 
-            return _vkontakte.GetAsync<int>("notifications.markAsViewed", parameters);
+            return _vkontakte.RequestAsync<int>("notifications.markAsViewed", parameters);
         }
     }
 }

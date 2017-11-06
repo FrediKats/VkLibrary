@@ -22,20 +22,20 @@ namespace VkLibrary.Core.Methods
         /// parameter is set, the 'order', 'offset', and 'count' parameters are ignored.
         /// </param>
         /// <param name="order">
-        /// Sort order:; '1' — by date updated in reverse chronological order.; '2' — by date created in
-        /// reverse chronological order.; '-1' — by date updated in chronological order.; '-2' — by date created in
+        /// Sort order:; '1' â€” by date updated in reverse chronological order.; '2' â€” by date created in
+        /// reverse chronological order.; '-1' â€” by date updated in chronological order.; '-2' â€” by date created in
         /// chronological order.; ; If no sort order is specified, topics are returned in the order specified by the group
         /// administrator. Pinned topics are returned first, regardless of the sorting.
         /// </param>
         /// <param name="offset">Offset needed to return a specific subset of topics.</param>
         /// <param name="count">Number of topics to return.</param>
         /// <param name="extended">
-        /// '1' — to return information about users who created topics or who posted there last; '0' — to
+        /// '1' â€” to return information about users who created topics or who posted there last; '0' â€” to
         /// return no additional fields (default)
         /// </param>
         /// <param name="preview">
-        /// '1' — to return the first comment in each topic;; '2' — to return the last comment in each
-        /// topic;; '0' — to return no comments.; ; By default: '0'.
+        /// '1' â€” to return the first comment in each topic;; '2' â€” to return the last comment in each
+        /// topic;; '0' â€” to return no comments.; ; By default: '0'.
         /// </param>
         /// <param name="previewLength">
         /// Number of characters after which to truncate the previewed comment. To preview the full
@@ -64,7 +64,7 @@ namespace VkLibrary.Core.Methods
             if (previewLength != null)
                 parameters.Add("preview_length", previewLength.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<Topic>>("board.getTopics", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<Topic>>("board.getTopics", parameters);
         }
 
         /// <summary>
@@ -73,16 +73,16 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="groupId">ID of the community that owns the discussion board.</param>
         /// <param name="topicId">Topic ID.</param>
-        /// <param name="needLikes">'1' — to return the 'likes' field; '0' — not to return the 'likes' field (default)</param>
+        /// <param name="needLikes">'1' â€” to return the 'likes' field; '0' â€” not to return the 'likes' field (default)</param>
         /// <param name="startCommentId"></param>
         /// <param name="offset">Offset needed to return a specific subset of comments.</param>
         /// <param name="count">Number of comments to return.</param>
         /// <param name="extended">
-        /// '1' — to return information about users who posted comments; '0' — to return no additional
+        /// '1' â€” to return information about users who posted comments; '0' â€” to return no additional
         /// fields (default)
         /// </param>
         /// <param name="sort">
-        /// Sort order:; 'asc' — by creation date in chronological order; 'desc' — by creation date in reverse
+        /// Sort order:; 'asc' â€” by creation date in chronological order; 'desc' â€” by creation date in reverse
         /// chronological order;
         /// </param>
         public Task<ApiItemsResponse<TopicComment>> GetComments(int? groupId = null, int? topicId = null,
@@ -108,7 +108,7 @@ namespace VkLibrary.Core.Methods
             if (sort != null)
                 parameters.Add("sort", sort);
 
-            return _vkontakte.GetAsync<ApiItemsResponse<TopicComment>>("board.getComments", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<TopicComment>>("board.getComments", parameters);
         }
 
         /// <summary>
@@ -119,19 +119,19 @@ namespace VkLibrary.Core.Methods
         /// <param name="title">Topic title.</param>
         /// <param name="text">Text of the topic.</param>
         /// <param name="fromGroup">
-        /// For a community:; '1' — to post the topic as by the community; '0' — to post the topic as by
+        /// For a community:; '1' â€” to post the topic as by the community; '0' â€” to post the topic as by
         /// the user (default)
         /// </param>
         /// <param name="attachments">
         /// (Required if 'message' is not set.) List of objects attached to the post, in the following format:; 
         /// "%owner_id%_%media_id%, %owner_id%_%media_id%"; 
-        /// '' — Type of media attachment:; 
-        /// 'photo' — photo; 
-        /// 'video' — video; 
-        /// 'audio' — audio; 
-        /// 'doc' — document; 
-        /// '%owner_id%' — Media attachment owner ID.; 
-        /// '%media_id%' — Media attachment ID.;
+        /// '' â€” Type of media attachment:; 
+        /// 'photo' â€” photo; 
+        /// 'video' â€” video; 
+        /// 'audio' â€” audio; 
+        /// 'doc' â€” document; 
+        /// '%owner_id%' â€” Media attachment owner ID.; 
+        /// '%media_id%' â€” Media attachment ID.;
         /// Example:; "photo100172_166443618,photo66748_265827614"
         /// </param>
         public Task<int?> AddTopic(int? groupId = null, string title = null, string text = null,
@@ -150,7 +150,7 @@ namespace VkLibrary.Core.Methods
             if (attachments != null)
                 parameters.Add("attachments", attachments.ToApiString());
 
-            return _vkontakte.GetAsync<int?>("board.addTopic", parameters);
+            return _vkontakte.RequestAsync<int?>("board.addTopic", parameters);
         }
 
         /// <summary>
@@ -163,17 +163,17 @@ namespace VkLibrary.Core.Methods
         /// <param name="attachments">
         /// (Required if 'message' is not set.) List of objects attached to the post, in the following format:; 
         /// "%owner_id%_%media_id%, %owner_id%_%media_id%"; 
-        /// '' — Type of media attachment:; 
-        /// 'photo' — photo; 
-        /// 'video' — video; 
-        /// 'audio' — audio; 
-        /// 'doc' — document; 
-        /// '%owner_id%' — Media attachment owner ID.; 
-        /// '%media_id%' — Media attachment ID.;
+        /// '' â€” Type of media attachment:; 
+        /// 'photo' â€” photo; 
+        /// 'video' â€” video; 
+        /// 'audio' â€” audio; 
+        /// 'doc' â€” document; 
+        /// '%owner_id%' â€” Media attachment owner ID.; 
+        /// '%media_id%' â€” Media attachment ID.;
         /// Example:; "photo100172_166443618,photo66748_265827614"
         /// </param>
         /// <param name="fromGroup">
-        /// '1' — to post the comment as by the community; '0' — to post the comment as by the user
+        /// '1' â€” to post the comment as by the community; '0' â€” to post the comment as by the user
         /// (default)
         /// </param>
         /// <param name="stickerId">Sticker ID.</param>
@@ -198,7 +198,7 @@ namespace VkLibrary.Core.Methods
             if (guid != null)
                 parameters.Add("guid", guid);
 
-            return _vkontakte.GetAsync<int?>("board.createComment", parameters);
+            return _vkontakte.RequestAsync<int?>("board.createComment", parameters);
         }
 
         /// <summary>
@@ -216,7 +216,7 @@ namespace VkLibrary.Core.Methods
             if (topicId != null)
                 parameters.Add("topic_id", topicId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("board.deleteTopic", parameters);
+            return _vkontakte.RequestAsync<int>("board.deleteTopic", parameters);
         }
 
         /// <summary>
@@ -237,7 +237,7 @@ namespace VkLibrary.Core.Methods
             if (title != null)
                 parameters.Add("title", title);
 
-            return _vkontakte.GetAsync<int>("board.editTopic", parameters);
+            return _vkontakte.RequestAsync<int>("board.editTopic", parameters);
         }
 
         /// <summary>
@@ -251,13 +251,13 @@ namespace VkLibrary.Core.Methods
         /// <param name="attachments">
         /// (Required if 'message' is not set.) List of objects attached to the post, in the following format:; 
         /// "%owner_id%_%media_id%, %owner_id%_%media_id%"; 
-        /// '' — Type of media attachment:; 
-        /// 'photo' — photo; 
-        /// 'video' — video; 
-        /// 'audio' — audio; 
-        /// 'doc' — document; 
-        /// '%owner_id%' — Media attachment owner ID.; 
-        /// '%media_id%' — Media attachment ID.;
+        /// '' â€” Type of media attachment:; 
+        /// 'photo' â€” photo; 
+        /// 'video' â€” video; 
+        /// 'audio' â€” audio; 
+        /// 'doc' â€” document; 
+        /// '%owner_id%' â€” Media attachment owner ID.; 
+        /// '%media_id%' â€” Media attachment ID.;
         /// Example:; "photo100172_166443618,photo66748_265827614"
         /// </param>
         public Task<int> EditComment(int? groupId = null, int? topicId = null, int? commentId = null,
@@ -276,7 +276,7 @@ namespace VkLibrary.Core.Methods
             if (attachments != null)
                 parameters.Add("attachments", attachments.ToApiString());
 
-            return _vkontakte.GetAsync<int>("board.editComment", parameters);
+            return _vkontakte.RequestAsync<int>("board.editComment", parameters);
         }
 
         /// <summary>
@@ -297,7 +297,7 @@ namespace VkLibrary.Core.Methods
             if (commentId != null)
                 parameters.Add("comment_id", commentId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("board.restoreComment", parameters);
+            return _vkontakte.RequestAsync<int>("board.restoreComment", parameters);
         }
 
         /// <summary>
@@ -318,7 +318,7 @@ namespace VkLibrary.Core.Methods
             if (commentId != null)
                 parameters.Add("comment_id", commentId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("board.deleteComment", parameters);
+            return _vkontakte.RequestAsync<int>("board.deleteComment", parameters);
         }
 
         /// <summary>
@@ -336,7 +336,7 @@ namespace VkLibrary.Core.Methods
             if (topicId != null)
                 parameters.Add("topic_id", topicId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("board.openTopic", parameters);
+            return _vkontakte.RequestAsync<int>("board.openTopic", parameters);
         }
 
         /// <summary>
@@ -354,7 +354,7 @@ namespace VkLibrary.Core.Methods
             if (topicId != null)
                 parameters.Add("topic_id", topicId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("board.closeTopic", parameters);
+            return _vkontakte.RequestAsync<int>("board.closeTopic", parameters);
         }
 
         /// <summary>
@@ -372,7 +372,7 @@ namespace VkLibrary.Core.Methods
             if (topicId != null)
                 parameters.Add("topic_id", topicId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("board.fixTopic", parameters);
+            return _vkontakte.RequestAsync<int>("board.fixTopic", parameters);
         }
 
         /// <summary>
@@ -390,7 +390,7 @@ namespace VkLibrary.Core.Methods
             if (topicId != null)
                 parameters.Add("topic_id", topicId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("board.unfixTopic", parameters);
+            return _vkontakte.RequestAsync<int>("board.unfixTopic", parameters);
         }
     }
 }

@@ -30,7 +30,7 @@ namespace VkLibrary.Core.Methods
             if (offset != null)
                 parameters.Add("offset", offset.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<Gift>>("gifts.get", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<Gift>>("gifts.get", parameters);
         }
     }
 }

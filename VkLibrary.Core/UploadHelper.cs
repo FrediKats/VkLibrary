@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -20,6 +18,7 @@ namespace VkLibrary.Core
     public class UploadHelper
     {
         private readonly Vkontakte _library;
+        
         internal UploadHelper(Vkontakte library) => _library = library;
 
         /// <summary>
@@ -32,22 +31,9 @@ namespace VkLibrary.Core
         /// <returns>String response</returns>
         public async Task<T> PostAsync<T>(Uri uri, byte[] bytes, string type, string fileName)
         {
-            using (var client = new HttpClient())
-            using (var content = new MultipartFormDataContent())
-            using (var streamContent = new ByteArrayContent(bytes))
-            {
-                _library.Log($"Uploading {type} named \"{fileName}\" to VK.COM server: {uri}");
-                streamContent.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
-                {
-                    FileName = fileName,
-                    Name = type
-                };
-                content.Add(streamContent);
-                using (var responseMessage = await client.PostAsync(uri, content))
-                using (var responseStream = await responseMessage.Content.ReadAsStreamAsync())
-                using (var streamReader = new StreamReader(responseStream, Encoding.UTF8))
-                    return JsonConvert.DeserializeObject<T>(streamReader.ReadToEnd());
-            }
+            using (var responseStream = await _library.HttpService.PostSingleFileAsync(uri, bytes, type, fileName))
+            using (var streamReader = new StreamReader(responseStream, Encoding.UTF8))
+                return JsonConvert.DeserializeObject<T>(streamReader.ReadToEnd());
         }
 
         /// <summary>
@@ -58,27 +44,9 @@ namespace VkLibrary.Core
         /// <returns>String response</returns>
         public async Task<T> PostMultipleAsync<T>(Uri uri, Dictionary<string, byte[]> files)
         {
-            using (var client = new HttpClient())
-            using (var content = new MultipartFormDataContent())
-            {
-                var counter = 1;
-                foreach (var entry in files)
-                {
-                    var streamContent = new ByteArrayContent(entry.Value);
-                    _library.Log($"Uploading file {counter} named \"{entry.Key}\" to VK.COM server: {uri}");
-                    streamContent.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
-                    {
-                        FileName = entry.Key,
-                        Name = $"file{counter}"
-                    };
-                    content.Add(streamContent);
-                    counter++;
-                }
-                using (var responseMessage = await client.PostAsync(uri, content))
-                using (var responseStream = await responseMessage.Content.ReadAsStreamAsync())
-                using (var streamReader = new StreamReader(responseStream, Encoding.UTF8))
-                    return JsonConvert.DeserializeObject<T>(streamReader.ReadToEnd());
-            }
+            using (var responseStream = await _library.HttpService.PostMultipleFilesAsync(uri, files))
+            using (var streamReader = new StreamReader(responseStream, Encoding.UTF8))
+                return JsonConvert.DeserializeObject<T>(streamReader.ReadToEnd());
         }
 
         /// <summary>

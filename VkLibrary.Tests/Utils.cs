@@ -5,8 +5,8 @@ using System.Linq;
 using FluentAssertions;
 using VkLibrary.Core;
 using VkLibrary.Tests.Helpers;
-using Xunit;
 using Xunit.Abstractions;
+using Xunit;
 
 namespace VkLibrary.Tests
 {
@@ -29,15 +29,6 @@ namespace VkLibrary.Tests
             var expected = new DateTime(2009, 2, 13, 23, 31, 30);
             var real = Vkontakte.UnixTimeToDateTime(1234567890);
             real.Should().Be(expected);
-        }
-
-        [Fact]
-        public void QueryBuilder()
-        {
-            const string baseUrl = "http://a.bcd/ef.gh";
-            var parameters = new Dictionary<string, string> {{"foo", "bar"}, {"key", "1234"}};
-            var response = Vkontakte.BuildUrl(baseUrl, parameters);
-            response.Should().Be("http://a.bcd/ef.gh?foo=bar&key=1234");
         }
 
         [Theory, InlineData(true), InlineData(false)]

@@ -24,7 +24,7 @@ namespace VkLibrary.Core.Methods
         /// </param>
         /// <param name="albumId">Audio album ID.</param>
         /// <param name="audioIds">IDs of the audio files to return.</param>
-        /// <param name="needUser">'1' — to return information about users who uploaded audio files</param>
+        /// <param name="needUser">'1' â€” to return information about users who uploaded audio files</param>
         /// <param name="offset">Offset needed to return a specific subset of audio files.</param>
         /// <param name="count">Number of audio files to return.</param>
         public Task<ApiItemsResponse<AudioFull>> Get(int? ownerId = null, int? albumId = null,
@@ -45,7 +45,7 @@ namespace VkLibrary.Core.Methods
             if (count != null)
                 parameters.Add("count", count.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<AudioFull>>("audio.get", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<AudioFull>>("audio.get", parameters);
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace VkLibrary.Core.Methods
             if (audios != null)
                 parameters.Add("audios", audios.ToApiString());
 
-            return _vkontakte.GetAsync<IEnumerable<AudioFull>>("audio.getById", parameters);
+            return _vkontakte.RequestAsync<IEnumerable<AudioFull>>("audio.getById", parameters);
         }
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace VkLibrary.Core.Methods
             if (lyricsId != null)
                 parameters.Add("lyrics_id", lyricsId.ToApiString());
 
-            return _vkontakte.GetAsync<Lyrics>("audio.getLyrics", parameters);
+            return _vkontakte.RequestAsync<Lyrics>("audio.getLyrics", parameters);
         }
 
         /// <summary>
@@ -86,13 +86,13 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="q">Search query string (e.g., 'The Beatles').</param>
         /// <param name="autoComplete">
-        /// '1' — to correct for mistakes in the search query (e.g., if you enter 'Beetles', the system
+        /// '1' â€” to correct for mistakes in the search query (e.g., if you enter 'Beetles', the system
         /// will search for 'Beatles').
         /// </param>
-        /// <param name="lyrics">'1' — to return only audio files that have associated lyrics.</param>
-        /// <param name="performerOnly">'1' — to search only by artist name.</param>
-        /// <param name="sort">Sort order: '1' — by duration;; '2' — by popularity;; '0' — by date added.</param>
-        /// <param name="searchOwn">'1' — to search among current user's audios. By default: '0'.</param>
+        /// <param name="lyrics">'1' â€” to return only audio files that have associated lyrics.</param>
+        /// <param name="performerOnly">'1' â€” to search only by artist name.</param>
+        /// <param name="sort">Sort order: '1' â€” by duration;; '2' â€” by popularity;; '0' â€” by date added.</param>
+        /// <param name="searchOwn">'1' â€” to search among current user's audios. By default: '0'.</param>
         /// <param name="offset">Offset needed to return a specific subset of audio files.</param>
         /// <param name="count">Number of audio files to return.</param>
         public Task<ApiItemsResponse<AudioFull>> Search(string q = null, bool? autoComplete = null,
@@ -118,7 +118,7 @@ namespace VkLibrary.Core.Methods
             if (count != null)
                 parameters.Add("count", count.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<AudioFull>>("audio.search", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<AudioFull>>("audio.search", parameters);
         }
 
         /// <summary>
@@ -130,7 +130,7 @@ namespace VkLibrary.Core.Methods
             var parameters = new Dictionary<string, string>();
 
 
-            return _vkontakte.GetAsync<GetUploadServerResponse>("audio.getUploadServer", parameters);
+            return _vkontakte.RequestAsync<GetUploadServerResponse>("audio.getUploadServer", parameters);
         }
 
         /// <summary>
@@ -158,7 +158,7 @@ namespace VkLibrary.Core.Methods
             if (title != null)
                 parameters.Add("title", title);
 
-            return _vkontakte.GetAsync<IEnumerable<Types.Audio.Audio>>("audio.save", parameters);
+            return _vkontakte.RequestAsync<IEnumerable<Types.Audio.Audio>>("audio.save", parameters);
         }
 
         /// <summary>
@@ -186,7 +186,7 @@ namespace VkLibrary.Core.Methods
             if (albumId != null)
                 parameters.Add("album_id", albumId.ToApiString());
 
-            return _vkontakte.GetAsync<int?>("audio.add", parameters);
+            return _vkontakte.RequestAsync<int?>("audio.add", parameters);
         }
 
         /// <summary>
@@ -207,7 +207,7 @@ namespace VkLibrary.Core.Methods
             if (ownerId != null)
                 parameters.Add("owner_id", ownerId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("audio.delete", parameters);
+            return _vkontakte.RequestAsync<int>("audio.delete", parameters);
         }
 
         /// <summary>
@@ -221,7 +221,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="text">Text of the lyrics of the audio file.</param>
         /// <param name="genreId">Genre of the audio file. See the list of audio genres.</param>
         /// <param name="noSearch">
-        /// '1' — audio file will not be available for search; '0' — audio file will be available for
+        /// '1' â€” audio file will not be available for search; '0' â€” audio file will be available for
         /// search (default)
         /// </param>
         public Task<int?> Edit(int? ownerId = null, int? audioId = null, string artist = null,
@@ -244,7 +244,7 @@ namespace VkLibrary.Core.Methods
             if (noSearch != null)
                 parameters.Add("no_search", noSearch.ToApiString());
 
-            return _vkontakte.GetAsync<int?>("audio.edit", parameters);
+            return _vkontakte.RequestAsync<int?>("audio.edit", parameters);
         }
 
         /// <summary>
@@ -269,7 +269,7 @@ namespace VkLibrary.Core.Methods
             if (after != null)
                 parameters.Add("after", after.ToApiString());
 
-            return _vkontakte.GetAsync<int>("audio.reorder", parameters);
+            return _vkontakte.RequestAsync<int>("audio.reorder", parameters);
         }
 
         /// <summary>
@@ -287,7 +287,7 @@ namespace VkLibrary.Core.Methods
             if (ownerId != null)
                 parameters.Add("owner_id", ownerId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("audio.restore", parameters);
+            return _vkontakte.RequestAsync<int>("audio.restore", parameters);
         }
 
         /// <summary>
@@ -309,7 +309,7 @@ namespace VkLibrary.Core.Methods
             if (count != null)
                 parameters.Add("count", count.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<AudioAlbum>>("audio.getAlbums", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<AudioAlbum>>("audio.getAlbums", parameters);
         }
 
         /// <summary>
@@ -327,7 +327,7 @@ namespace VkLibrary.Core.Methods
             if (title != null)
                 parameters.Add("title", title);
 
-            return _vkontakte.GetAsync<AddAlbumResponse>("audio.addAlbum", parameters);
+            return _vkontakte.RequestAsync<AddAlbumResponse>("audio.addAlbum", parameters);
         }
 
         /// <summary>
@@ -348,7 +348,7 @@ namespace VkLibrary.Core.Methods
             if (title != null)
                 parameters.Add("title", title);
 
-            return _vkontakte.GetAsync<int>("audio.editAlbum", parameters);
+            return _vkontakte.RequestAsync<int>("audio.editAlbum", parameters);
         }
 
         /// <summary>
@@ -366,7 +366,7 @@ namespace VkLibrary.Core.Methods
             if (albumId != null)
                 parameters.Add("album_id", albumId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("audio.deleteAlbum", parameters);
+            return _vkontakte.RequestAsync<int>("audio.deleteAlbum", parameters);
         }
 
         /// <summary>
@@ -388,7 +388,7 @@ namespace VkLibrary.Core.Methods
             if (audioIds != null)
                 parameters.Add("audio_ids", audioIds.ToApiString());
 
-            return _vkontakte.GetAsync<int>("audio.moveToAlbum", parameters);
+            return _vkontakte.RequestAsync<int>("audio.moveToAlbum", parameters);
         }
 
         /// <summary>
@@ -412,7 +412,7 @@ namespace VkLibrary.Core.Methods
             if (targetIds != null)
                 parameters.Add("target_ids", targetIds.ToApiString());
 
-            return _vkontakte.GetAsync<IEnumerable<int?>>("audio.setBroadcast", parameters);
+            return _vkontakte.RequestAsync<IEnumerable<int?>>("audio.setBroadcast", parameters);
         }
 
         /// <summary>
@@ -420,11 +420,11 @@ namespace VkLibrary.Core.Methods
         /// Docs: <see href="https://vk.com/dev/audio.getBroadcastList">audio.getBroadcastList</see>
         /// </summary>
         /// <param name="filter">
-        /// Types of objects to return:; 'friends' — only friends; 'groups' — only communities; 'all' — both
+        /// Types of objects to return:; 'friends' â€” only friends; 'groups' â€” only communities; 'all' â€” both
         /// friends and communities (default)
         /// </param>
         /// <param name="active">
-        /// '1' — to return only friends and communities that are broadcasting at the moment.; '0' — to return
+        /// '1' â€” to return only friends and communities that are broadcasting at the moment.; '0' â€” to return
         /// all friends and communities (default).
         /// </param>
         public Task<IEnumerable<UserBroadcast>> GetBroadcastList(string filter = null, bool? active = null)
@@ -436,7 +436,7 @@ namespace VkLibrary.Core.Methods
             if (active != null)
                 parameters.Add("active", active.ToApiString());
 
-            return _vkontakte.GetAsync<IEnumerable<UserBroadcast>>("audio.getBroadcastList", parameters);
+            return _vkontakte.RequestAsync<IEnumerable<UserBroadcast>>("audio.getBroadcastList", parameters);
         }
 
         /// <summary>
@@ -450,7 +450,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="userId">Use to get recommendations based on a user's playlist. User ID. By default, the current user ID.;</param>
         /// <param name="offset">Offset needed to return a specific subset of audio files.</param>
         /// <param name="count">Number of audio files to return.</param>
-        /// <param name="shuffle">'1' — shuffle on</param>
+        /// <param name="shuffle">'1' â€” shuffle on</param>
         public Task<IEnumerable<AudioFull>> GetRecommendations(string targetAudio = null, int? userId = null,
             int? offset = null, int? count = null, bool? shuffle = null)
         {
@@ -467,14 +467,14 @@ namespace VkLibrary.Core.Methods
             if (shuffle != null)
                 parameters.Add("shuffle", shuffle.ToApiString());
 
-            return _vkontakte.GetAsync<IEnumerable<AudioFull>>("audio.getRecommendations", parameters);
+            return _vkontakte.RequestAsync<IEnumerable<AudioFull>>("audio.getRecommendations", parameters);
         }
 
         /// <summary>
         /// Returns a list of audio files from the "Popular".
         /// Docs: <see href="https://vk.com/dev/audio.getPopular">audio.getPopular</see>
         /// </summary>
-        /// <param name="onlyEng">'1' — to return only foreign audio files; '0' — to return all audio files;</param>
+        /// <param name="onlyEng">'1' â€” to return only foreign audio files; '0' â€” to return all audio files;</param>
         /// <param name="genreId">Genre ID. See the list of audio genres.</param>
         /// <param name="offset">Offset needed to return a specific subset of audio files.</param>
         /// <param name="count">Number of audio files to return.</param>
@@ -492,7 +492,7 @@ namespace VkLibrary.Core.Methods
             if (count != null)
                 parameters.Add("count", count.ToApiString());
 
-            return _vkontakte.GetAsync<IEnumerable<AudioFull>>("audio.getPopular", parameters);
+            return _vkontakte.RequestAsync<IEnumerable<AudioFull>>("audio.getPopular", parameters);
         }
 
         /// <summary>
@@ -507,7 +507,7 @@ namespace VkLibrary.Core.Methods
             if (ownerId != null)
                 parameters.Add("owner_id", ownerId.ToApiString());
 
-            return _vkontakte.GetAsync<int?>("audio.getCount", parameters);
+            return _vkontakte.RequestAsync<int?>("audio.getCount", parameters);
         }
     }
 }
