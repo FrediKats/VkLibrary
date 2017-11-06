@@ -10,10 +10,8 @@ namespace VkLibrary.Tests.Helpers
         protected ClassFixtureBase(int id, string secret, string token, ITestOutputHelper testOutputHelper)
         {
             Logger = new XUnitLogger(testOutputHelper);
-            Api = new Vkontakte(id, secret, "5.63", RequestMethod.Get, ParseJson.FromString, 
-                Logger, new DefaultHttpService(Logger)) {
-                AccessToken = AccessToken.FromString(token, id)
-            };
+            var accessToken = AccessToken.FromString(token, id);
+            Api = new Vkontakte(id, secret, Logger) {AccessToken = accessToken};
         }
 
         protected Vkontakte Api { get; }

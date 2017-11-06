@@ -19,6 +19,8 @@ namespace VkLibrary.Core
         private readonly ParseJson _parseJson;
         private string _captchaSid;
         private string _captchaKey;
+        
+        #region Constructors
 
         /// <summary>
         /// Initializes the library.
@@ -29,14 +31,34 @@ namespace VkLibrary.Core
         /// <param name="requestMethod">GET or POST requests the library should use?</param>
         /// <param name="parseJson">Should the library log received JSONs or focus on performance?</param>
         public Vkontakte(int appId, string appSecret, string apiVersion = "5.63",
-            RequestMethod requestMethod = RequestMethod.Get, 
-            ParseJson parseJson = ParseJson.FromString)
+            RequestMethod requestMethod = RequestMethod.Get, ParseJson parseJson = ParseJson.FromString)
         {
             AppId = appId;
             AppSecret = appSecret;
             ApiVersion = apiVersion;
             Logger = new DefaultLogger();
             HttpService = new DefaultHttpService(Logger);
+            _requestMethod = requestMethod;
+            _parseJson = parseJson;
+        }
+        
+        /// <summary>
+        /// Initializes the library with extended parameters.
+        /// </summary>
+        /// <param name="appId">Unique VK app identifier. Get it at vk.com/dev -> App Settings</param>
+        /// <param name="appSecret">App secret key. Used only with secure section methods and with direct auth.</param>
+        /// <param name="apiVersion">API version the library is going to use. Min: 5.63</param>
+        /// <param name="requestMethod">GET or POST requests the library should use?</param>
+        /// <param name="parseJson">Should the library log received JSONs or focus on performance?</param>
+        /// <param name="logger">Logger the library should use. By default is logs info into DEBUG output.</param>
+        public Vkontakte(int appId, string appSecret, ILogger logger, string apiVersion = "5.63",
+            RequestMethod requestMethod = RequestMethod.Get, ParseJson parseJson = ParseJson.FromString)
+        {
+            AppId = appId;
+            Logger = logger;
+            AppSecret = appSecret;
+            ApiVersion = apiVersion;
+            HttpService = new DefaultHttpService(logger);
             _requestMethod = requestMethod;
             _parseJson = parseJson;
         }
@@ -54,9 +76,9 @@ namespace VkLibrary.Core
         /// HttpService the library should use. You can inject your own implementation of IHttpService 
         /// into the library if default one does not suite you for some reasons.
         /// </param>
-        public Vkontakte(int appId, string appSecret, string apiVersion, 
-            RequestMethod requestMethod, ParseJson parseJson,
-            ILogger logger, IHttpService httpService)
+        public Vkontakte(int appId, string appSecret, ILogger logger, IHttpService httpService, 
+            string apiVersion = "5.63", RequestMethod requestMethod = RequestMethod.Get, 
+            ParseJson parseJson = ParseJson.FromString)
         {
             AppId = appId;
             Logger = logger;
@@ -66,6 +88,8 @@ namespace VkLibrary.Core
             _requestMethod = requestMethod;
             _parseJson = parseJson;
         }
+        
+        #endregion
 
         /// <summary>
         /// Http service which library uses to send requests.
@@ -138,15 +162,19 @@ namespace VkLibrary.Core
                 }
             }
         }
-        
+
         /// <summary>
         /// Send POST or GET requests based on initialization preferences.
         /// </summary>
-        private Task<Stream> RequestForStream(Uri url, Dictionary<string, string> parameters) => 
-            new Dictionary<RequestMethod, Task<Stream>> {
-                {RequestMethod.Get, HttpService.GetForStreamAsync(url, parameters)},
-                {RequestMethod.Post, HttpService.PostForStreamAsync(url, parameters)}
-            }[_requestMethod];
+        private Task<Stream> RequestForStream(Uri url, Dictionary<string, string> parameters)
+        {
+            switch (_requestMethod)
+            {
+                case RequestMethod.Get: return HttpService.GetForStreamAsync(url, parameters);
+                case RequestMethod.Post: return HttpService.PostForStreamAsync(url, parameters);
+                default: throw new ArgumentOutOfRangeException();
+            }
+        }
 
         /// <summary>
         /// Executes given script written in VKSCRIPT language on VK servers.
