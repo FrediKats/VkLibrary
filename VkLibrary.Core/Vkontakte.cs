@@ -62,6 +62,31 @@ namespace VkLibrary.Core
             _requestMethod = requestMethod;
             _parseJson = parseJson;
         }
+        
+        /// <summary>
+        /// Initializes the library with extended parameters.
+        /// </summary>
+        /// <param name="appId">Unique VK app identifier. Get it at vk.com/dev -> App Settings</param>
+        /// <param name="appSecret">App secret key. Used only with secure section methods and with direct auth.</param>
+        /// <param name="apiVersion">API version the library is going to use. Min: 5.63</param>
+        /// <param name="requestMethod">GET or POST requests the library should use?</param>
+        /// <param name="parseJson">Should the library log received JSONs or focus on performance?</param>
+        /// <param name="httpService">
+        /// HttpService the library should use. You can inject your own implementation of IHttpService 
+        /// into the library if default one does not suite you for some reasons.
+        /// </param>
+        public Vkontakte(int appId, string appSecret, IHttpService httpService, 
+            string apiVersion = "5.63", RequestMethod requestMethod = RequestMethod.Get, 
+            ParseJson parseJson = ParseJson.FromString)
+        {
+            AppId = appId;
+            AppSecret = appSecret;
+            ApiVersion = apiVersion;
+            HttpService = httpService;
+            Logger = new DefaultLogger();
+            _requestMethod = requestMethod;
+            _parseJson = parseJson;
+        }
 
         /// <summary>
         /// Initializes the library with extended parameters.
