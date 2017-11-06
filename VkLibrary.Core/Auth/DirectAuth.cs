@@ -9,7 +9,9 @@ namespace VkLibrary.Core.Auth
     /// </summary>
     public class DirectAuth
     {
+        private const string DirectAuthUrl = "https://oauth.vk.com/";
         private readonly Vkontakte _library;
+        
         internal DirectAuth(Vkontakte vkontakte) => _library = vkontakte;
 
         /// <summary>
@@ -22,12 +24,12 @@ namespace VkLibrary.Core.Auth
         /// <returns>AccessToken</returns>
         public async Task<AccessToken> Login(string login, string password, ScopeSettings scope)
         {
-            _library.Log("Invoking direct auth login...");
-            var clientSecret = _library.GetClientSecret();
-            var appId = _library.GetAppId();
+            _library.Logger.Log("Invoking direct auth login...");
+            var clientSecret = _library.AppSecret;
+            var appId = _library.AppId;
 
             // Both client secret and app id must be specified.
-            if (clientSecret == null || appId == null)
+            if (clientSecret == null || appId == default(int))
                 throw new Exception("App ID and Client Secret must be specified.");
 
             // Login and password must be specified.
@@ -40,25 +42,20 @@ namespace VkLibrary.Core.Auth
                 {"grant_type", "password"},
                 {"scope", ((int) scope).ToString()},
                 {"client_secret", clientSecret},
-                {"client_id", appId}
+                {"client_id", appId.ToString()}
             };
 
-            // Build request url.
-            var url = Vkontakte.BuildUrl(string.Concat(
-                Vkontakte.DirectAuthUrl, "token"), parameters);
-
-            // Deserialize token.
-            var token = await _library
-                .DeserializeGetInPrefferedWay<AccessToken>(url)
-                .ConfigureAwait(false);
+            // Build request url, send request and deserialize response.
+            var url = new Uri(string.Concat(DirectAuthUrl, "token"));
+            var token = await _library.Deserialize<AccessToken>(url, parameters).ConfigureAwait(false);
 
             // Manage return types.
             if (token?.Token == null)
             {
-                _library.Log("Failed to get token!");
+                _library.Logger.Log("Failed to get token!");
                 return null;
             }
-            _library.Log("Successfully got and saved token.");
+            _library.Logger.Log("Successfully got and saved token.");
             _library.AccessToken = token;
             return token;
         }

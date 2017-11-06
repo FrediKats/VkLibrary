@@ -19,7 +19,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="ownerId">
         /// ID of the user or community that owns the poll. Use a negative value to designate a community ID.
         /// </param>
-        /// <param name="isBoard">'1' – poll is in a board, '0' – poll is on a wall. ; '0' by default.</param>
+        /// <param name="isBoard">'1' â€“ poll is in a board, '0' â€“ poll is on a wall. ; '0' by default.</param>
         /// <param name="pollId">Poll ID.</param>
         public Task<Poll> GetById(int? ownerId = null, bool? isBoard = null, int? pollId = null)
         {
@@ -32,7 +32,7 @@ namespace VkLibrary.Core.Methods
             if (pollId != null)
                 parameters.Add("poll_id", pollId.ToApiString());
 
-            return _vkontakte.GetAsync<Poll>("polls.getById", parameters);
+            return _vkontakte.RequestAsync<Poll>("polls.getById", parameters);
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace VkLibrary.Core.Methods
             if (isBoard != null)
                 parameters.Add("is_board", isBoard.ToApiString());
 
-            return _vkontakte.GetAsync<int>("polls.addVote", parameters);
+            return _vkontakte.RequestAsync<int>("polls.addVote", parameters);
         }
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace VkLibrary.Core.Methods
             if (isBoard != null)
                 parameters.Add("is_board", isBoard.ToApiString());
 
-            return _vkontakte.GetAsync<int>("polls.deleteVote", parameters);
+            return _vkontakte.RequestAsync<int>("polls.deleteVote", parameters);
         }
 
         /// <summary>
@@ -102,11 +102,11 @@ namespace VkLibrary.Core.Methods
         /// <param name="pollId">Poll ID.</param>
         /// <param name="answerIds">Answer IDs.</param>
         /// <param name="isBoard"></param>
-        /// <param name="friendsOnly">'1' — to return only current user's friends; '0' — to return all users (default);</param>
-        /// <param name="offset">Offset needed to return a specific subset of voters.; '0' — (default)</param>
+        /// <param name="friendsOnly">'1' â€” to return only current user's friends; '0' â€” to return all users (default);</param>
+        /// <param name="offset">Offset needed to return a specific subset of voters.; '0' â€” (default)</param>
         /// <param name="count">
         /// Number of user IDs to return (if the 'friends_only' parameter is not set, maximum '1000'; otherwise
-        /// '10').; '100' — (default)
+        /// '10').; '100' â€” (default)
         /// </param>
         /// <param name="fields">
         /// Profile fields to return. Sample values: 'nickname', 'screen_name', 'sex', 'bdate (birthdate)',
@@ -114,8 +114,8 @@ namespace VkLibrary.Core.Methods
         /// 'online', 'counters'.;
         /// </param>
         /// <param name="nameCase">
-        /// Case for declension of user name and surname: ; 'nom' — nominative (default) ; 'gen' — genitive
-        /// ; 'dat' — dative ; 'acc' — accusative ; 'ins' — instrumental ; 'abl' — prepositional
+        /// Case for declension of user name and surname: ; 'nom' â€” nominative (default) ; 'gen' â€” genitive
+        /// ; 'dat' â€” dative ; 'acc' â€” accusative ; 'ins' â€” instrumental ; 'abl' â€” prepositional
         /// </param>
         public Task<IEnumerable<Voters>> GetVoters(int? ownerId = null, int? pollId = null,
             IEnumerable<int?> answerIds = null, bool? isBoard = null, bool? friendsOnly = null, int? offset = null,
@@ -142,7 +142,7 @@ namespace VkLibrary.Core.Methods
             if (nameCase != null)
                 parameters.Add("name_case", nameCase);
 
-            return _vkontakte.GetAsync<IEnumerable<Voters>>("polls.getVoters", parameters);
+            return _vkontakte.RequestAsync<IEnumerable<Voters>>("polls.getVoters", parameters);
         }
 
         /// <summary>
@@ -151,7 +151,7 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="question">question text</param>
         /// <param name="isAnonymous">
-        /// '1' – anonymous poll, participants list is hidden;; '0' – public poll, participants list is
+        /// '1' â€“ anonymous poll, participants list is hidden;; '0' â€“ public poll, participants list is
         /// available;; Default value is '0'.
         /// </param>
         /// <param name="ownerId">
@@ -176,7 +176,7 @@ namespace VkLibrary.Core.Methods
             if (addAnswers != null)
                 parameters.Add("add_answers", addAnswers);
 
-            return _vkontakte.GetAsync<Poll>("polls.create", parameters);
+            return _vkontakte.RequestAsync<Poll>("polls.create", parameters);
         }
 
         /// <summary>
@@ -188,7 +188,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="question">new question text</param>
         /// <param name="addAnswers">answers list, for example: ; "["yes","no","maybe"]"</param>
         /// <param name="editAnswers">
-        /// object containing answers that need to be edited;; key – answer id, value – new answer
+        /// object containing answers that need to be edited;; key â€“ answer id, value â€“ new answer
         /// text.; Example:; {"382967099":"option1", "382967103":"option2"}"
         /// </param>
         /// <param name="deleteAnswers">list of answer ids to be deleted. For example:; "[382967099, 382967103]"</param>
@@ -210,7 +210,7 @@ namespace VkLibrary.Core.Methods
             if (deleteAnswers != null)
                 parameters.Add("delete_answers", deleteAnswers);
 
-            return _vkontakte.GetAsync<int>("polls.edit", parameters);
+            return _vkontakte.RequestAsync<int>("polls.edit", parameters);
         }
     }
 }

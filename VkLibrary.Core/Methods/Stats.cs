@@ -34,7 +34,7 @@ namespace VkLibrary.Core.Methods
             if (dateTo != null)
                 parameters.Add("date_to", dateTo);
 
-            return _vkontakte.GetAsync<IEnumerable<Period>>("stats.get", parameters);
+            return _vkontakte.RequestAsync<IEnumerable<Period>>("stats.get", parameters);
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace VkLibrary.Core.Methods
             var parameters = new Dictionary<string, string>();
 
 
-            return _vkontakte.GetAsync<int>("stats.trackVisitor", parameters);
+            return _vkontakte.RequestAsync<int>("stats.trackVisitor", parameters);
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace VkLibrary.Core.Methods
             if (postId != null)
                 parameters.Add("post_id", postId.ToApiString());
 
-            return _vkontakte.GetAsync<IEnumerable<WallpostStat>>("stats.getPostReach", parameters);
+            return _vkontakte.RequestAsync<IEnumerable<WallpostStat>>("stats.getPostReach", parameters);
         }
     }
 }

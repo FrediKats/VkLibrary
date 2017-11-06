@@ -34,7 +34,7 @@ namespace VkLibrary.Core.Methods
             if (searchGlobal != null)
                 parameters.Add("search_global", searchGlobal.ToApiString());
 
-            return _vkontakte.GetAsync<IEnumerable<Hint>>("search.getHints", parameters);
+            return _vkontakte.RequestAsync<IEnumerable<Hint>>("search.getHints", parameters);
         }
     }
 }

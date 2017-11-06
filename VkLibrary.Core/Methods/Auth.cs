@@ -34,7 +34,7 @@ namespace VkLibrary.Core.Methods
             if (authByPhone != null)
                 parameters.Add("auth_by_phone", authByPhone.ToApiString());
 
-            return _vkontakte.GetAsync<int>("auth.checkPhone", parameters);
+            return _vkontakte.RequestAsync<int>("auth.checkPhone", parameters);
         }
 
         /// <summary>
@@ -54,14 +54,14 @@ namespace VkLibrary.Core.Methods
         /// auth.confirm method.
         /// </param>
         /// <param name="testMode">
-        /// '1' — test mode, in which the user will not be registered and the phone number will not be
-        /// checked for availability; '0' — default mode (default)
+        /// '1' â€” test mode, in which the user will not be registered and the phone number will not be
+        /// checked for availability; '0' â€” default mode (default)
         /// </param>
         /// <param name="voice">
-        /// '1' — call the phone number and leave a voice message of the authorization code; '0' — send the
+        /// '1' â€” call the phone number and leave a voice message of the authorization code; '0' â€” send the
         /// code by SMS (default)
         /// </param>
-        /// <param name="sex">'1' — female; '2' — male</param>
+        /// <param name="sex">'1' â€” female; '2' â€” male</param>
         /// <param name="sid">Session ID required for method recall when SMS was not delivered.</param>
         public Task<SignupResponse> Signup(string firstName = null, string lastName = null,
             int? clientId = null, string clientSecret = null, string phone = null, string password = null,
@@ -90,7 +90,7 @@ namespace VkLibrary.Core.Methods
             if (sid != null)
                 parameters.Add("sid", sid);
 
-            return _vkontakte.GetAsync<SignupResponse>("auth.signup", parameters);
+            return _vkontakte.RequestAsync<SignupResponse>("auth.signup", parameters);
         }
 
         /// <summary>
@@ -125,7 +125,7 @@ namespace VkLibrary.Core.Methods
             if (intro != null)
                 parameters.Add("intro", intro.ToApiString());
 
-            return _vkontakte.GetAsync<ConfirmResponse>("auth.confirm", parameters);
+            return _vkontakte.RequestAsync<ConfirmResponse>("auth.confirm", parameters);
         }
 
         /// <summary>
@@ -141,7 +141,7 @@ namespace VkLibrary.Core.Methods
             if (phone != null)
                 parameters.Add("phone", phone);
 
-            return _vkontakte.GetAsync<RestoreResponse>("auth.restore", parameters);
+            return _vkontakte.RequestAsync<RestoreResponse>("auth.restore", parameters);
         }
     }
 }

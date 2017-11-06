@@ -34,7 +34,7 @@ namespace VkLibrary.Core.Methods
             if (count != null)
                 parameters.Add("count", count.ToApiString());
 
-            return _vkontakte.GetAsync<GetCommentsResponse>("widgets.getComments", parameters);
+            return _vkontakte.RequestAsync<GetCommentsResponse>("widgets.getComments", parameters);
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace VkLibrary.Core.Methods
             if (count != null)
                 parameters.Add("count", count.ToApiString());
 
-            return _vkontakte.GetAsync<GetPagesResponse>("widgets.getPages", parameters);
+            return _vkontakte.RequestAsync<GetPagesResponse>("widgets.getPages", parameters);
         }
     }
 }

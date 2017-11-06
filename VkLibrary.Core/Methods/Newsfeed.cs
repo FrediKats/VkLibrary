@@ -19,10 +19,10 @@ namespace VkLibrary.Core.Methods
         /// Docs: <see href="https://vk.com/dev/newsfeed.get">newsfeed.get</see>
         /// </summary>
         /// <param name="filters">
-        /// Filters to apply:; 'post' — new wall posts; 'photo' — new photos; 'photo_tag' — new photo tags;
-        /// 'wall_photo' — new wall photos; 'friend' — new friends; 'note' — new notes
+        /// Filters to apply:; 'post' â€” new wall posts; 'photo' â€” new photos; 'photo_tag' â€” new photo tags;
+        /// 'wall_photo' â€” new wall photos; 'friend' â€” new friends; 'note' â€” new notes
         /// </param>
-        /// <param name="returnBanned">'1' — to return news items from banned sources</param>
+        /// <param name="returnBanned">'1' â€” to return news items from banned sources</param>
         /// <param name="startTime">Earliest timestamp (in Unix time) of a news item to return. By default, 24 hours ago.</param>
         /// <param name="endTime">Latest timestamp (in Unix time) of a news item to return. By default, the current time.</param>
         /// <param name="maxPhotos">Maximum number of photos to return. By default, '5'.</param>
@@ -69,7 +69,7 @@ namespace VkLibrary.Core.Methods
             if (fields != null)
                 parameters.Add("fields", fields.ToApiString());
 
-            return _vkontakte.GetAsync<NewsFeedResponse>("newsfeed.get", parameters);
+            return _vkontakte.RequestAsync<NewsFeedResponse>("newsfeed.get", parameters);
         }
 
         /// <summary>
@@ -103,7 +103,7 @@ namespace VkLibrary.Core.Methods
             if (fields != null)
                 parameters.Add("fields", fields.ToApiString());
 
-            return _vkontakte.GetAsync<NewsFeedResponse>("newsfeed.getRecommended", parameters);
+            return _vkontakte.RequestAsync<NewsFeedResponse>("newsfeed.getRecommended", parameters);
         }
 
         /// <summary>
@@ -115,8 +115,8 @@ namespace VkLibrary.Core.Methods
         /// this method.
         /// </param>
         /// <param name="filters">
-        /// Filters to apply:; 'post' — new comments on wall posts; 'photo' — new comments on photos; 'video'
-        /// — new comments on videos; 'topic' — new comments on discussions; 'note' — new comments on notes;
+        /// Filters to apply:; 'post' â€” new comments on wall posts; 'photo' â€” new comments on photos; 'video'
+        /// â€” new comments on videos; 'topic' â€” new comments on discussions; 'note' â€” new comments on notes;
         /// </param>
         /// <param name="reposts">
         /// Object ID, comments on repost of which shall be returned, e.g. 'wall1_45486'. (If the parameter
@@ -153,7 +153,7 @@ namespace VkLibrary.Core.Methods
             if (fields != null)
                 parameters.Add("fields", fields.ToApiString());
 
-            return _vkontakte.GetAsync<NewsFeedResponse>("newsfeed.getComments", parameters);
+            return _vkontakte.RequestAsync<NewsFeedResponse>("newsfeed.getComments", parameters);
         }
 
         /// <summary>
@@ -181,18 +181,18 @@ namespace VkLibrary.Core.Methods
             if (count != null)
                 parameters.Add("count", count.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<WallpostToId>>("newsfeed.getMentions", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<WallpostToId>>("newsfeed.getMentions", parameters);
         }
 
         /// <summary>
         /// Returns a list of users and communities banned from the current user's newsfeed.
         /// Docs: <see href="https://vk.com/dev/newsfeed.getBanned">newsfeed.getBanned</see>
         /// </summary>
-        /// <param name="extended">'1' — return extra information about users and communities</param>
+        /// <param name="extended">'1' â€” return extra information about users and communities</param>
         /// <param name="fields">Profile fields to return.; ;</param>
         /// <param name="nameCase">
-        /// Case for declension of user name and surname:; 'nom' — nominative (default); 'gen' — genitive ;
-        /// 'dat' — dative; 'acc' — accusative ; 'ins' — instrumental ; 'abl' — prepositional
+        /// Case for declension of user name and surname:; 'nom' â€” nominative (default); 'gen' â€” genitive ;
+        /// 'dat' â€” dative; 'acc' â€” accusative ; 'ins' â€” instrumental ; 'abl' â€” prepositional
         /// </param>
         public Task<GetBannedResponse> GetBanned(bool? extended = null, IEnumerable<string> fields = null,
             string nameCase = null)
@@ -206,7 +206,7 @@ namespace VkLibrary.Core.Methods
             if (nameCase != null)
                 parameters.Add("name_case", nameCase);
 
-            return _vkontakte.GetAsync<GetBannedResponse>("newsfeed.getBanned", parameters);
+            return _vkontakte.RequestAsync<GetBannedResponse>("newsfeed.getBanned", parameters);
         }
 
         /// <summary>
@@ -224,7 +224,7 @@ namespace VkLibrary.Core.Methods
             if (groupIds != null)
                 parameters.Add("group_ids", groupIds.ToApiString());
 
-            return _vkontakte.GetAsync<int>("newsfeed.addBan", parameters);
+            return _vkontakte.RequestAsync<int>("newsfeed.addBan", parameters);
         }
 
         /// <summary>
@@ -242,7 +242,7 @@ namespace VkLibrary.Core.Methods
             if (groupIds != null)
                 parameters.Add("group_ids", groupIds.ToApiString());
 
-            return _vkontakte.GetAsync<int>("newsfeed.deleteBan", parameters);
+            return _vkontakte.RequestAsync<int>("newsfeed.deleteBan", parameters);
         }
 
         /// <summary>
@@ -250,12 +250,12 @@ namespace VkLibrary.Core.Methods
         /// Docs: <see href="https://vk.com/dev/newsfeed.ignoreItem">newsfeed.ignoreItem</see>
         /// </summary>
         /// <param name="type">
-        /// Item type. Possible values:; *'wall' – post on the wall;; *'tag' – tag on a photo;; *'profilephoto'
-        /// – profile photo;; *'video' – video;; *'audio' – audio.
+        /// Item type. Possible values:; *'wall' â€“ post on the wall;; *'tag' â€“ tag on a photo;; *'profilephoto'
+        /// â€“ profile photo;; *'video' â€“ video;; *'audio' â€“ audio.
         /// </param>
         /// <param name="ownerId">
         /// Item owner's identifier (user or community); "Note that community id must be negative. ;
-        /// 'owner_id=1' – user ; 'owner_id=-1' – community "
+        /// 'owner_id=1' â€“ user ; 'owner_id=-1' â€“ community "
         /// </param>
         /// <param name="itemId">Item identifier</param>
         public Task<int> IgnoreItem(string type = null, int? ownerId = null, int? itemId = null)
@@ -269,7 +269,7 @@ namespace VkLibrary.Core.Methods
             if (itemId != null)
                 parameters.Add("item_id", itemId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("newsfeed.ignoreItem", parameters);
+            return _vkontakte.RequestAsync<int>("newsfeed.ignoreItem", parameters);
         }
 
         /// <summary>
@@ -277,12 +277,12 @@ namespace VkLibrary.Core.Methods
         /// Docs: <see href="https://vk.com/dev/newsfeed.unignoreItem">newsfeed.unignoreItem</see>
         /// </summary>
         /// <param name="type">
-        /// Item type. Possible values:; *'wall' – post on the wall;; *'tag' – tag on a photo;; *'profilephoto'
-        /// – profile photo;; *'video' – video;; *'audio' – audio.
+        /// Item type. Possible values:; *'wall' â€“ post on the wall;; *'tag' â€“ tag on a photo;; *'profilephoto'
+        /// â€“ profile photo;; *'video' â€“ video;; *'audio' â€“ audio.
         /// </param>
         /// <param name="ownerId">
         /// Item owner's identifier (user or community); "Note that community id must be negative. ;
-        /// 'owner_id=1' – user ; 'owner_id=-1' – community "
+        /// 'owner_id=1' â€“ user ; 'owner_id=-1' â€“ community "
         /// </param>
         /// <param name="itemId">Item identifier</param>
         public Task<int> UnignoreItem(string type = null, int? ownerId = null, int? itemId = null)
@@ -296,7 +296,7 @@ namespace VkLibrary.Core.Methods
             if (itemId != null)
                 parameters.Add("item_id", itemId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("newsfeed.unignoreItem", parameters);
+            return _vkontakte.RequestAsync<int>("newsfeed.unignoreItem", parameters);
         }
 
         /// <summary>
@@ -304,7 +304,7 @@ namespace VkLibrary.Core.Methods
         /// Docs: <see href="https://vk.com/dev/newsfeed.search">newsfeed.search</see>
         /// </summary>
         /// <param name="q">Search query string (e.g., 'New Year').</param>
-        /// <param name="extended">'1' — to return additional information about the user or community that placed the post.</param>
+        /// <param name="extended">'1' â€” to return additional information about the user or community that placed the post.</param>
         /// <param name="count">Number of posts to return.</param>
         /// <param name="latitude">Geographical latitude point (in degrees, -90 to 90) within which to search.;</param>
         /// <param name="longitude">Geographical longitude point (in degrees, -180 to 180) within which to search.;</param>
@@ -340,7 +340,7 @@ namespace VkLibrary.Core.Methods
             if (fields != null)
                 parameters.Add("fields", fields.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<WallpostFull>>("newsfeed.search", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<WallpostFull>>("newsfeed.search", parameters);
         }
 
         /// <summary>
@@ -355,7 +355,7 @@ namespace VkLibrary.Core.Methods
             if (listIds != null)
                 parameters.Add("list_ids", listIds.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<List>>("newsfeed.getLists", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<List>>("newsfeed.getLists", parameters);
         }
 
         /// <summary>
@@ -383,7 +383,7 @@ namespace VkLibrary.Core.Methods
             if (noReposts != null)
                 parameters.Add("no_reposts", noReposts.ToApiString());
 
-            return _vkontakte.GetAsync<int?>("newsfeed.saveList", parameters);
+            return _vkontakte.RequestAsync<int?>("newsfeed.saveList", parameters);
         }
 
         /// <summary>
@@ -397,7 +397,7 @@ namespace VkLibrary.Core.Methods
             if (listId != null)
                 parameters.Add("list_id", listId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("newsfeed.deleteList", parameters);
+            return _vkontakte.RequestAsync<int>("newsfeed.deleteList", parameters);
         }
 
         /// <summary>
@@ -405,8 +405,8 @@ namespace VkLibrary.Core.Methods
         /// Docs: <see href="https://vk.com/dev/newsfeed.unsubscribe">newsfeed.unsubscribe</see>
         /// </summary>
         /// <param name="type">
-        /// Type of object from which to unsubscribe:; 'note' — note; 'photo' — photo; 'post' — post on user
-        /// wall or community wall; 'topic' — topic; 'video' — video
+        /// Type of object from which to unsubscribe:; 'note' â€” note; 'photo' â€” photo; 'post' â€” post on user
+        /// wall or community wall; 'topic' â€” topic; 'video' â€” video
         /// </param>
         /// <param name="ownerId">Object owner ID.</param>
         /// <param name="itemId">Object ID.</param>
@@ -421,7 +421,7 @@ namespace VkLibrary.Core.Methods
             if (itemId != null)
                 parameters.Add("item_id", itemId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("newsfeed.unsubscribe", parameters);
+            return _vkontakte.RequestAsync<int>("newsfeed.unsubscribe", parameters);
         }
 
         /// <summary>
@@ -449,7 +449,7 @@ namespace VkLibrary.Core.Methods
             if (fields != null)
                 parameters.Add("fields", fields.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<object>>("newsfeed.getSuggestedSources", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<object>>("newsfeed.getSuggestedSources", parameters);
         }
     }
 }

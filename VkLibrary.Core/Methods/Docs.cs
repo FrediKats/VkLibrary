@@ -34,7 +34,7 @@ namespace VkLibrary.Core.Methods
             if (ownerId != null)
                 parameters.Add("owner_id", ownerId.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<Doc>>("docs.get", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<Doc>>("docs.get", parameters);
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace VkLibrary.Core.Methods
             if (docs != null)
                 parameters.Add("docs", docs.ToApiString());
 
-            return _vkontakte.GetAsync<IEnumerable<Doc>>("docs.getById", parameters);
+            return _vkontakte.RequestAsync<IEnumerable<Doc>>("docs.getById", parameters);
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace VkLibrary.Core.Methods
             if (groupId != null)
                 parameters.Add("group_id", groupId.ToApiString());
 
-            return _vkontakte.GetAsync<GetUploadServerResponse>("docs.getUploadServer", parameters);
+            return _vkontakte.RequestAsync<GetUploadServerResponse>("docs.getUploadServer", parameters);
         }
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace VkLibrary.Core.Methods
             if (groupId != null)
                 parameters.Add("group_id", groupId.ToApiString());
 
-            return _vkontakte.GetAsync<GetWallUploadServerResponse>("docs.getWallUploadServer", parameters);
+            return _vkontakte.RequestAsync<GetWallUploadServerResponse>("docs.getWallUploadServer", parameters);
         }
 
         /// <summary>
@@ -100,7 +100,7 @@ namespace VkLibrary.Core.Methods
             if (tags != null)
                 parameters.Add("tags", tags);
 
-            return _vkontakte.GetAsync<IEnumerable<Doc>>("docs.save", parameters);
+            return _vkontakte.RequestAsync<IEnumerable<Doc>>("docs.save", parameters);
         }
 
         /// <summary>
@@ -121,7 +121,7 @@ namespace VkLibrary.Core.Methods
             if (docId != null)
                 parameters.Add("doc_id", docId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("docs.delete", parameters);
+            return _vkontakte.RequestAsync<int>("docs.delete", parameters);
         }
 
         /// <summary>
@@ -145,7 +145,7 @@ namespace VkLibrary.Core.Methods
             if (accessKey != null)
                 parameters.Add("access_key", accessKey);
 
-            return _vkontakte.GetAsync<AddResponse>("docs.add", parameters);
+            return _vkontakte.RequestAsync<AddResponse>("docs.add", parameters);
         }
 
         /// <summary>
@@ -163,7 +163,7 @@ namespace VkLibrary.Core.Methods
             if (ownerId != null)
                 parameters.Add("owner_id", ownerId.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<DocTypes>>("docs.getTypes", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<DocTypes>>("docs.getTypes", parameters);
         }
 
         /// <summary>
@@ -184,7 +184,7 @@ namespace VkLibrary.Core.Methods
             if (offset != null)
                 parameters.Add("offset", offset.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<Doc>>("docs.search", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<Doc>>("docs.search", parameters);
         }
 
         /// <summary>
@@ -209,7 +209,7 @@ namespace VkLibrary.Core.Methods
             if (tags != null)
                 parameters.Add("tags", tags.ToApiString());
 
-            return _vkontakte.GetAsync<int>("docs.edit", parameters);
+            return _vkontakte.RequestAsync<int>("docs.edit", parameters);
         }
     }
 }

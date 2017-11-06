@@ -29,7 +29,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="count">Number of items to return.</param>
         /// <param name="offset">Offset needed to return a specific subset of results.</param>
         /// <param name="extended">
-        /// '1' – method will return additional fields: 'likes, can_comment, car_repost, photos'. These
+        /// '1' â€“ method will return additional fields: 'likes, can_comment, car_repost, photos'. These
         /// parameters are not returned by default.
         /// </param>
         public Task<ApiItemsResponse<MarketItem>> Get(int? ownerId = null, int? count = null, int? offset = null,
@@ -46,7 +46,7 @@ namespace VkLibrary.Core.Methods
             if (extended != null)
                 parameters.Add("extended", extended.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<MarketItem>>("market.get", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<MarketItem>>("market.get", parameters);
         }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace VkLibrary.Core.Methods
         /// Comma-separated ids list: {user id}_{item id}.; If an item belongs to a community -{community
         /// id} is used. ; " 'Videos' value example: ; '-4363_136089719,13245770_137352259'"
         /// </param>
-        /// <param name="extended">'1' – to return additional fields: 'likes, can_comment, car_repost, photos'. By default: '0'.</param>
+        /// <param name="extended">'1' â€“ to return additional fields: 'likes, can_comment, car_repost, photos'. By default: '0'.</param>
         public Task<ApiItemsResponse<MarketItem>> GetById(IEnumerable<string> itemIds = null,
             bool? extended = null)
         {
@@ -68,7 +68,7 @@ namespace VkLibrary.Core.Methods
             if (extended != null)
                 parameters.Add("extended", extended.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<MarketItem>>("market.getById", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<MarketItem>>("market.getById", parameters);
         }
 
         /// <summary>
@@ -80,10 +80,10 @@ namespace VkLibrary.Core.Methods
         /// <param name="priceFrom">Minimum item price value.</param>
         /// <param name="priceTo">Maximum item price value.</param>
         /// <param name="tags">Comma-separated tag IDs list.</param>
-        /// <param name="rev">'0' — do not use reverse order, '1' — use reverse order</param>
+        /// <param name="rev">'0' â€” do not use reverse order, '1' â€” use reverse order</param>
         /// <param name="offset">Offset needed to return a specific subset of results.</param>
         /// <param name="count">Number of items to return.</param>
-        /// <param name="extended">'1' – to return additional fields: 'likes, can_comment, car_repost, photos'. By default: '0'.</param>
+        /// <param name="extended">'1' â€“ to return additional fields: 'likes, can_comment, car_repost, photos'. By default: '0'.</param>
         public Task<ApiItemsResponse<MarketItem>> Search(int? ownerId = null, string q = null,
             int? priceFrom = null, int? priceTo = null, IEnumerable<int?> tags = null, int? rev = null,
             int? offset = null, int? count = null, bool? extended = null)
@@ -109,7 +109,7 @@ namespace VkLibrary.Core.Methods
             if (extended != null)
                 parameters.Add("extended", extended.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<MarketItem>>("market.search", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<MarketItem>>("market.search", parameters);
         }
 
         /// <summary>
@@ -131,7 +131,7 @@ namespace VkLibrary.Core.Methods
             if (count != null)
                 parameters.Add("count", count.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<MarketAlbum>>("market.getAlbums", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<MarketAlbum>>("market.getAlbums", parameters);
         }
 
         /// <summary>
@@ -153,7 +153,7 @@ namespace VkLibrary.Core.Methods
             if (albumIds != null)
                 parameters.Add("album_ids", albumIds.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<MarketAlbum>>("market.getAlbumById", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<MarketAlbum>>("market.getAlbumById", parameters);
         }
 
         /// <summary>
@@ -166,13 +166,13 @@ namespace VkLibrary.Core.Methods
         /// <param name="attachments">
         /// (Required if 'message' is not set.) List of objects attached to the post, in the following format:; 
         /// "%owner_id%_%media_id%, %owner_id%_%media_id%"; 
-        /// '' — Type of media attachment:; 
-        /// 'photo' — photo; 
-        /// 'video' — video; 
-        /// 'audio' — audio; 
-        /// 'doc' — document; 
-        /// '%owner_id%' — Media attachment owner ID.; 
-        /// '%media_id%' — Media attachment ID.;
+        /// '' â€” Type of media attachment:; 
+        /// 'photo' â€” photo; 
+        /// 'video' â€” video; 
+        /// 'audio' â€” audio; 
+        /// 'doc' â€” document; 
+        /// '%owner_id%' â€” Media attachment owner ID.; 
+        /// '%media_id%' â€” Media attachment ID.;
         /// Example:; "photo100172_166443618,photo66748_265827614"
         /// </param>
         /// <param name="fromGroup">
@@ -205,7 +205,7 @@ namespace VkLibrary.Core.Methods
             if (guid != null)
                 parameters.Add("guid", guid);
 
-            return _vkontakte.GetAsync<int?>("market.createComment", parameters);
+            return _vkontakte.RequestAsync<int?>("market.createComment", parameters);
         }
 
         /// <summary>
@@ -214,12 +214,12 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="ownerId">ID of an item owner community</param>
         /// <param name="itemId">Item ID.</param>
-        /// <param name="needLikes">'1' — to return likes info.</param>
+        /// <param name="needLikes">'1' â€” to return likes info.</param>
         /// <param name="startCommentId">ID of a comment to start a list from (details below).</param>
         /// <param name="count">Number of results to return.</param>
-        /// <param name="sort">Sort order ('asc' — from old to new, 'desc' — from new to old)</param>
+        /// <param name="sort">Sort order ('asc' â€” from old to new, 'desc' â€” from new to old)</param>
         /// <param name="extended">
-        /// '1' — comments will be returned as numbered objects, in addition lists of 'profiles' and
+        /// '1' â€” comments will be returned as numbered objects, in addition lists of 'profiles' and
         /// 'groups' objects will be returned.
         /// </param>
         /// <param name="fields">List of additional profile fields to return. See the details</param>
@@ -246,7 +246,7 @@ namespace VkLibrary.Core.Methods
             if (fields != null)
                 parameters.Add("fields", fields.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<WallComment>>("market.getComments", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<WallComment>>("market.getComments", parameters);
         }
 
         /// <summary>
@@ -267,7 +267,7 @@ namespace VkLibrary.Core.Methods
             if (commentId != null)
                 parameters.Add("comment_id", commentId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("market.deleteComment", parameters);
+            return _vkontakte.RequestAsync<int>("market.deleteComment", parameters);
         }
 
         /// <summary>
@@ -288,7 +288,7 @@ namespace VkLibrary.Core.Methods
             if (commentId != null)
                 parameters.Add("comment_id", commentId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("market.restoreComment", parameters);
+            return _vkontakte.RequestAsync<int>("market.restoreComment", parameters);
         }
 
         /// <summary>
@@ -301,13 +301,13 @@ namespace VkLibrary.Core.Methods
         /// <param name="attachments">
         /// (Required if 'message' is not set.) List of objects attached to the post, in the following format:; 
         /// "%owner_id%_%media_id%, %owner_id%_%media_id%"; 
-        /// '' — Type of media attachment:; 
-        /// 'photo' — photo; 
-        /// 'video' — video; 
-        /// 'audio' — audio; 
-        /// 'doc' — document; 
-        /// '%owner_id%' — Media attachment owner ID.; 
-        /// '%media_id%' — Media attachment ID.;
+        /// '' â€” Type of media attachment:; 
+        /// 'photo' â€” photo; 
+        /// 'video' â€” video; 
+        /// 'audio' â€” audio; 
+        /// 'doc' â€” document; 
+        /// '%owner_id%' â€” Media attachment owner ID.; 
+        /// '%media_id%' â€” Media attachment ID.;
         /// Example:; "photo100172_166443618,photo66748_265827614"
         /// </param>
         public Task<int> EditComment(int? ownerId = null, int? commentId = null, string message = null,
@@ -324,7 +324,7 @@ namespace VkLibrary.Core.Methods
             if (attachments != null)
                 parameters.Add("attachments", attachments.ToApiString());
 
-            return _vkontakte.GetAsync<int>("market.editComment", parameters);
+            return _vkontakte.RequestAsync<int>("market.editComment", parameters);
         }
 
         /// <summary>
@@ -334,8 +334,8 @@ namespace VkLibrary.Core.Methods
         /// <param name="ownerId">ID of an item owner community.</param>
         /// <param name="commentId">Comment ID.</param>
         /// <param name="reason">
-        /// Complaint reason. Possible values:; *'0' — spam;; *'1' — child porn;; *'2' — extremism;; *'3' —
-        /// violence;; *'4' — drugs propaganda;; *'5' — adult materials;; *'6' — insult.
+        /// Complaint reason. Possible values:; *'0' â€” spam;; *'1' â€” child porn;; *'2' â€” extremism;; *'3' â€”
+        /// violence;; *'4' â€” drugs propaganda;; *'5' â€” adult materials;; *'6' â€” insult.
         /// </param>
         public Task<int> ReportComment(int? ownerId = null, int? commentId = null, int? reason = null)
         {
@@ -348,7 +348,7 @@ namespace VkLibrary.Core.Methods
             if (reason != null)
                 parameters.Add("reason", reason.ToApiString());
 
-            return _vkontakte.GetAsync<int>("market.reportComment", parameters);
+            return _vkontakte.RequestAsync<int>("market.reportComment", parameters);
         }
 
         /// <summary>
@@ -366,7 +366,7 @@ namespace VkLibrary.Core.Methods
             if (offset != null)
                 parameters.Add("offset", offset.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<MarketCategory>>("market.getCategories", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<MarketCategory>>("market.getCategories", parameters);
         }
 
         /// <summary>
@@ -376,8 +376,8 @@ namespace VkLibrary.Core.Methods
         /// <param name="ownerId">ID of an item owner community.</param>
         /// <param name="itemId">Item ID.</param>
         /// <param name="reason">
-        /// Complaint reason. Possible values:; *'0' — spam;; *'1' — child porn;; *'2' — extremism;; *'3' —
-        /// violence;; *'4' — drugs propaganda;; *'5' — adult materials;; *'6' — insult.
+        /// Complaint reason. Possible values:; *'0' â€” spam;; *'1' â€” child porn;; *'2' â€” extremism;; *'3' â€”
+        /// violence;; *'4' â€” drugs propaganda;; *'5' â€” adult materials;; *'6' â€” insult.
         /// </param>
         public Task<int> Report(int? ownerId = null, int? itemId = null, int? reason = null)
         {
@@ -390,7 +390,7 @@ namespace VkLibrary.Core.Methods
             if (reason != null)
                 parameters.Add("reason", reason.ToApiString());
 
-            return _vkontakte.GetAsync<int>("market.report", parameters);
+            return _vkontakte.RequestAsync<int>("market.report", parameters);
         }
 
         /// <summary>
@@ -402,7 +402,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="description">Item description.</param>
         /// <param name="categoryId">Item category ID.</param>
         /// <param name="price">Item price.</param>
-        /// <param name="deleted">Item status ('1' — deleted, '0' — not deleted).</param>
+        /// <param name="deleted">Item status ('1' â€” deleted, '0' â€” not deleted).</param>
         /// <param name="mainPhotoId">Cover photo ID.</param>
         /// <param name="photoIds">IDs of additional photos.</param>
         public Task<AddResponse> Add(int? ownerId = null, string name = null, string description = null,
@@ -428,7 +428,7 @@ namespace VkLibrary.Core.Methods
             if (photoIds != null)
                 parameters.Add("photo_ids", photoIds.ToApiString());
 
-            return _vkontakte.GetAsync<AddResponse>("market.add", parameters);
+            return _vkontakte.RequestAsync<AddResponse>("market.add", parameters);
         }
 
         /// <summary>
@@ -441,7 +441,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="description">Item description.</param>
         /// <param name="categoryId">Item category ID.</param>
         /// <param name="price">Item price.</param>
-        /// <param name="deleted">Item status ('1' — deleted, '0' — not deleted).</param>
+        /// <param name="deleted">Item status ('1' â€” deleted, '0' â€” not deleted).</param>
         /// <param name="mainPhotoId">Cover photo ID.</param>
         /// <param name="photoIds">IDs of additional photos.</param>
         public Task<int> Edit(int? ownerId = null, int? itemId = null, string name = null,
@@ -469,7 +469,7 @@ namespace VkLibrary.Core.Methods
             if (photoIds != null)
                 parameters.Add("photo_ids", photoIds.ToApiString());
 
-            return _vkontakte.GetAsync<int>("market.edit", parameters);
+            return _vkontakte.RequestAsync<int>("market.edit", parameters);
         }
 
         /// <summary>
@@ -487,7 +487,7 @@ namespace VkLibrary.Core.Methods
             if (itemId != null)
                 parameters.Add("item_id", itemId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("market.delete", parameters);
+            return _vkontakte.RequestAsync<int>("market.delete", parameters);
         }
 
         /// <summary>
@@ -505,7 +505,7 @@ namespace VkLibrary.Core.Methods
             if (itemId != null)
                 parameters.Add("item_id", itemId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("market.restore", parameters);
+            return _vkontakte.RequestAsync<int>("market.restore", parameters);
         }
 
         /// <summary>
@@ -533,7 +533,7 @@ namespace VkLibrary.Core.Methods
             if (after != null)
                 parameters.Add("after", after.ToApiString());
 
-            return _vkontakte.GetAsync<int>("market.reorderItems", parameters);
+            return _vkontakte.RequestAsync<int>("market.reorderItems", parameters);
         }
 
         /// <summary>
@@ -558,7 +558,7 @@ namespace VkLibrary.Core.Methods
             if (after != null)
                 parameters.Add("after", after.ToApiString());
 
-            return _vkontakte.GetAsync<int>("market.reorderAlbums", parameters);
+            return _vkontakte.RequestAsync<int>("market.reorderAlbums", parameters);
         }
 
         /// <summary>
@@ -568,7 +568,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="ownerId">ID of an item owner community.</param>
         /// <param name="title">Collection title.</param>
         /// <param name="photoId">Cover photo ID.</param>
-        /// <param name="mainAlbum">Set as main ('1' – set, '0' – no).</param>
+        /// <param name="mainAlbum">Set as main ('1' â€“ set, '0' â€“ no).</param>
         public Task<AddAlbumResponse> AddAlbum(int? ownerId = null, string title = null, int? photoId = null,
             bool? mainAlbum = null)
         {
@@ -583,7 +583,7 @@ namespace VkLibrary.Core.Methods
             if (mainAlbum != null)
                 parameters.Add("main_album", mainAlbum.ToApiString());
 
-            return _vkontakte.GetAsync<AddAlbumResponse>("market.addAlbum", parameters);
+            return _vkontakte.RequestAsync<AddAlbumResponse>("market.addAlbum", parameters);
         }
 
         /// <summary>
@@ -594,7 +594,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="albumId">Collection ID.</param>
         /// <param name="title">Collection title.</param>
         /// <param name="photoId">Cover photo id</param>
-        /// <param name="mainAlbum">Set as main ('1' – set, '0' – no).</param>
+        /// <param name="mainAlbum">Set as main ('1' â€“ set, '0' â€“ no).</param>
         public Task<int> EditAlbum(int? ownerId = null, int? albumId = null, string title = null,
             int? photoId = null, bool? mainAlbum = null)
         {
@@ -611,7 +611,7 @@ namespace VkLibrary.Core.Methods
             if (mainAlbum != null)
                 parameters.Add("main_album", mainAlbum.ToApiString());
 
-            return _vkontakte.GetAsync<int>("market.editAlbum", parameters);
+            return _vkontakte.RequestAsync<int>("market.editAlbum", parameters);
         }
 
         /// <summary>
@@ -629,7 +629,7 @@ namespace VkLibrary.Core.Methods
             if (albumId != null)
                 parameters.Add("album_id", albumId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("market.deleteAlbum", parameters);
+            return _vkontakte.RequestAsync<int>("market.deleteAlbum", parameters);
         }
 
         /// <summary>
@@ -651,7 +651,7 @@ namespace VkLibrary.Core.Methods
             if (albumIds != null)
                 parameters.Add("album_ids", albumIds.ToApiString());
 
-            return _vkontakte.GetAsync<int>("market.removeFromAlbum", parameters);
+            return _vkontakte.RequestAsync<int>("market.removeFromAlbum", parameters);
         }
 
         /// <summary>
@@ -672,7 +672,7 @@ namespace VkLibrary.Core.Methods
             if (albumIds != null)
                 parameters.Add("album_ids", albumIds.ToApiString());
 
-            return _vkontakte.GetAsync<int>("market.addToAlbum", parameters);
+            return _vkontakte.RequestAsync<int>("market.addToAlbum", parameters);
         }
     }
 }

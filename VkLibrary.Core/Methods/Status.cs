@@ -26,7 +26,7 @@ namespace VkLibrary.Core.Methods
             if (groupId != null)
                 parameters.Add("group_id", groupId.ToApiString());
 
-            return _vkontakte.GetAsync<Types.Status.Status>("status.get", parameters);
+            return _vkontakte.RequestAsync<Types.Status.Status>("status.get", parameters);
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace VkLibrary.Core.Methods
             if (groupId != null)
                 parameters.Add("group_id", groupId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("status.set", parameters);
+            return _vkontakte.RequestAsync<int>("status.set", parameters);
         }
     }
 }

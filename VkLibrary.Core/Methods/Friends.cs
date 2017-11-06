@@ -20,7 +20,7 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="userId">User ID. By default, the current user ID.</param>
         /// <param name="order">
-        /// Sort order: ; 'name' — by name (enabled only if the 'fields' parameter is used); 'hints' — by
+        /// Sort order: ; 'name' â€” by name (enabled only if the 'fields' parameter is used); 'hints' â€” by
         /// rating, similar to how friends are sorted in My friends section; ; This parameter is available only for
         /// desktop applications.
         /// </param>
@@ -37,8 +37,8 @@ namespace VkLibrary.Core.Methods
         /// 'rate', 'contacts', 'education'.;
         /// </param>
         /// <param name="nameCase">
-        /// Case for declension of user name and surname: ; 'nom' — nominative (default) ; 'gen' — genitive
-        /// ; 'dat' — dative ; 'acc' — accusative ; 'ins' — instrumental ; 'abl' — prepositional
+        /// Case for declension of user name and surname: ; 'nom' â€” nominative (default) ; 'gen' â€” genitive
+        /// ; 'dat' â€” dative ; 'acc' â€” accusative ; 'ins' â€” instrumental ; 'abl' â€” prepositional
         /// </param>
         public Task<ApiItemsResponse<UserFull>> Get(int? userId = null, string order = null, int? listId = null,
             int? count = null, int? offset = null, IEnumerable<string> fields = null, string nameCase = null)
@@ -60,7 +60,7 @@ namespace VkLibrary.Core.Methods
             if (nameCase != null)
                 parameters.Add("name_case", nameCase);
 
-            return _vkontakte.GetAsync<ApiItemsResponse<UserFull>>("friends.get", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<UserFull>>("friends.get", parameters);
         }
 
         /// <summary>
@@ -69,8 +69,8 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="userId">User ID.</param>
         /// <param name="listId">Friend list ID. If this parameter is not set, information about all online friends is returned.</param>
-        /// <param name="onlineMobile">'1' — to return an additional 'online_mobile' field; '0' — (default);</param>
-        /// <param name="order">Sort order:; 'random' — random order</param>
+        /// <param name="onlineMobile">'1' â€” to return an additional 'online_mobile' field; '0' â€” (default);</param>
+        /// <param name="order">Sort order:; 'random' â€” random order</param>
         /// <param name="count">Number of friends to return.</param>
         /// <param name="offset">Offset needed to return a specific subset of friends.</param>
         public Task<IEnumerable<int?>> GetOnline(int? userId = null, int? listId = null,
@@ -91,7 +91,7 @@ namespace VkLibrary.Core.Methods
             if (offset != null)
                 parameters.Add("offset", offset.ToApiString());
 
-            return _vkontakte.GetAsync<IEnumerable<int?>>("friends.getOnline", parameters);
+            return _vkontakte.RequestAsync<IEnumerable<int?>>("friends.getOnline", parameters);
         }
 
         /// <summary>
@@ -110,7 +110,7 @@ namespace VkLibrary.Core.Methods
         /// IDs of the users whose friends will be checked against the friends of the user specified in
         /// 'source_uid'.
         /// </param>
-        /// <param name="order">Sort order:; 'random' — random order</param>
+        /// <param name="order">Sort order:; 'random' â€” random order</param>
         /// <param name="count">Number of mutual friends to return.</param>
         /// <param name="offset">Offset needed to return a specific subset of mutual friends.</param>
         public Task<IEnumerable<int?>> GetMutual(int? sourceUid = null, int? targetUid = null,
@@ -131,7 +131,7 @@ namespace VkLibrary.Core.Methods
             if (offset != null)
                 parameters.Add("offset", offset.ToApiString());
 
-            return _vkontakte.GetAsync<IEnumerable<int?>>("friends.getMutual", parameters);
+            return _vkontakte.RequestAsync<IEnumerable<int?>>("friends.getMutual", parameters);
         }
 
         /// <summary>
@@ -146,7 +146,7 @@ namespace VkLibrary.Core.Methods
             if (count != null)
                 parameters.Add("count", count.ToApiString());
 
-            return _vkontakte.GetAsync<IEnumerable<int?>>("friends.getRecent", parameters);
+            return _vkontakte.RequestAsync<IEnumerable<int?>>("friends.getRecent", parameters);
         }
 
         /// <summary>
@@ -156,13 +156,13 @@ namespace VkLibrary.Core.Methods
         /// <param name="offset">Offset needed to return a specific subset of friend requests.</param>
         /// <param name="count">Number of friend requests to return (default 100, maximum 1000).</param>
         /// <param name="needViewed">
-        /// '1' — to return response messages from users who have sent a friend request or, if 'suggested'
+        /// '1' â€” to return response messages from users who have sent a friend request or, if 'suggested'
         /// is set to '1', to return a list of suggested friends
         /// </param>
-        /// <param name="needMutual">'1' — to return a list of mutual friends (up to 20), if any</param>
-        /// <param name="out_">'1' — to return outgoing requests; '0' — to return incoming requests (default)</param>
-        /// <param name="sort">Sort order:; '1' — by number of mutual friends; '0' — by date</param>
-        /// <param name="suggested">'1' — to return a list of suggested friends; '0' — to return friend requests (default)</param>
+        /// <param name="needMutual">'1' â€” to return a list of mutual friends (up to 20), if any</param>
+        /// <param name="out_">'1' â€” to return outgoing requests; '0' â€” to return incoming requests (default)</param>
+        /// <param name="sort">Sort order:; '1' â€” by number of mutual friends; '0' â€” by date</param>
+        /// <param name="suggested">'1' â€” to return a list of suggested friends; '0' â€” to return friend requests (default)</param>
         public Task<ApiItemsResponse<T>> GetRequests<T>(bool? needViewed = null, int? offset = null,
             int? count = null, bool? needMutual = null, bool? out_ = null, int? sort = null, bool? suggested = null)
         {
@@ -186,7 +186,7 @@ namespace VkLibrary.Core.Methods
             if (suggested != null)
                 parameters.Add("suggested", suggested.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<T>>("friends.getRequests", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<T>>("friends.getRequests", parameters);
         }
 
         /// <summary>
@@ -207,7 +207,7 @@ namespace VkLibrary.Core.Methods
             if (follow != null)
                 parameters.Add("follow", follow.ToApiString());
 
-            return _vkontakte.GetAsync<int?>("friends.add", parameters);
+            return _vkontakte.RequestAsync<int?>("friends.add", parameters);
         }
 
         /// <summary>
@@ -225,7 +225,7 @@ namespace VkLibrary.Core.Methods
             if (listIds != null)
                 parameters.Add("list_ids", listIds.ToApiString());
 
-            return _vkontakte.GetAsync<int>("friends.edit", parameters);
+            return _vkontakte.RequestAsync<int>("friends.edit", parameters);
         }
 
         /// <summary>
@@ -243,7 +243,7 @@ namespace VkLibrary.Core.Methods
             if (userId != null)
                 parameters.Add("user_id", userId.ToApiString());
 
-            return _vkontakte.GetAsync<DeleteResponse>("friends.delete", parameters);
+            return _vkontakte.RequestAsync<DeleteResponse>("friends.delete", parameters);
         }
 
         /// <summary>
@@ -251,7 +251,7 @@ namespace VkLibrary.Core.Methods
         /// Docs: <see href="https://vk.com/dev/friends.getLists">friends.getLists</see>
         /// </summary>
         /// <param name="userId">User ID.</param>
-        /// <param name="returnSystem">'1' — to return system friend lists. By default: '0'.</param>
+        /// <param name="returnSystem">'1' â€” to return system friend lists. By default: '0'.</param>
         public Task<ApiItemsResponse<FriendsList>> GetLists(int? userId = null, bool? returnSystem = null)
         {
             var parameters = new Dictionary<string, string>();
@@ -261,7 +261,7 @@ namespace VkLibrary.Core.Methods
             if (returnSystem != null)
                 parameters.Add("return_system", returnSystem.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<FriendsList>>("friends.getLists", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<FriendsList>>("friends.getLists", parameters);
         }
 
         /// <summary>
@@ -279,7 +279,7 @@ namespace VkLibrary.Core.Methods
             if (userIds != null)
                 parameters.Add("user_ids", userIds.ToApiString());
 
-            return _vkontakte.GetAsync<AddListResponse>("friends.addList", parameters);
+            return _vkontakte.RequestAsync<AddListResponse>("friends.addList", parameters);
         }
 
         /// <summary>
@@ -307,7 +307,7 @@ namespace VkLibrary.Core.Methods
             if (deleteUserIds != null)
                 parameters.Add("delete_user_ids", deleteUserIds.ToApiString());
 
-            return _vkontakte.GetAsync<int>("friends.editList", parameters);
+            return _vkontakte.RequestAsync<int>("friends.editList", parameters);
         }
 
         /// <summary>
@@ -322,7 +322,7 @@ namespace VkLibrary.Core.Methods
             if (listId != null)
                 parameters.Add("list_id", listId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("friends.deleteList", parameters);
+            return _vkontakte.RequestAsync<int>("friends.deleteList", parameters);
         }
 
         /// <summary>
@@ -334,7 +334,7 @@ namespace VkLibrary.Core.Methods
             var parameters = new Dictionary<string, string>();
 
 
-            return _vkontakte.GetAsync<IEnumerable<int?>>("friends.getAppUsers", parameters);
+            return _vkontakte.RequestAsync<IEnumerable<int?>>("friends.getAppUsers", parameters);
         }
 
         /// <summary>
@@ -358,7 +358,7 @@ namespace VkLibrary.Core.Methods
             if (fields != null)
                 parameters.Add("fields", fields.ToApiString());
 
-            return _vkontakte.GetAsync<IEnumerable<UserXtrPhone>>("friends.getByPhones", parameters);
+            return _vkontakte.RequestAsync<IEnumerable<UserXtrPhone>>("friends.getByPhones", parameters);
         }
 
         /// <summary>
@@ -370,7 +370,7 @@ namespace VkLibrary.Core.Methods
             var parameters = new Dictionary<string, string>();
 
 
-            return _vkontakte.GetAsync<int>("friends.deleteAllRequests", parameters);
+            return _vkontakte.RequestAsync<int>("friends.deleteAllRequests", parameters);
         }
 
         /// <summary>
@@ -378,8 +378,8 @@ namespace VkLibrary.Core.Methods
         /// Docs: <see href="https://vk.com/dev/friends.getSuggestions">friends.getSuggestions</see>
         /// </summary>
         /// <param name="filter">
-        /// Types of potential friends to return:; 'mutual' — users with many mutual friends ; 'contacts' —
-        /// users found with the account.importContacts method ; 'mutual_contacts' — users
+        /// Types of potential friends to return:; 'mutual' â€” users with many mutual friends ; 'contacts' â€”
+        /// users found with the account.importContacts method ; 'mutual_contacts' â€” users
         /// who imported the same contacts as the current user with the
         /// account.importContacts method
         /// </param>
@@ -391,8 +391,8 @@ namespace VkLibrary.Core.Methods
         /// 'online', 'counters'.;
         /// </param>
         /// <param name="nameCase">
-        /// Case for declension of user name and surname: ; 'nom' — nominative (default) ; 'gen' — genitive
-        /// ; 'dat' — dative ; 'acc' — accusative ; 'ins' — instrumental ; 'abl' — prepositional
+        /// Case for declension of user name and surname: ; 'nom' â€” nominative (default) ; 'gen' â€” genitive
+        /// ; 'dat' â€” dative ; 'acc' â€” accusative ; 'ins' â€” instrumental ; 'abl' â€” prepositional
         /// </param>
         public Task<ApiItemsResponse<UserFull>> GetSuggestions(IEnumerable<string> filter = null,
             int? count = null, int? offset = null, IEnumerable<string> fields = null, string nameCase = null)
@@ -410,7 +410,7 @@ namespace VkLibrary.Core.Methods
             if (nameCase != null)
                 parameters.Add("name_case", nameCase);
 
-            return _vkontakte.GetAsync<ApiItemsResponse<UserFull>>("friends.getSuggestions", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<UserFull>>("friends.getSuggestions", parameters);
         }
 
         /// <summary>
@@ -419,7 +419,7 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="userIds">IDs of the users whose friendship status to check.</param>
         /// <param name="needSign">
-        /// '1' — to return 'sign' field. 'sign' is
+        /// '1' â€” to return 'sign' field. 'sign' is
         /// md5("{id}_{user_id}_{friends_status}_{application_secret}"), where id is current user ID.; This field allows to
         /// check that data has not been modified by the client.; By default: '0'.
         /// </param>
@@ -433,7 +433,7 @@ namespace VkLibrary.Core.Methods
             if (needSign != null)
                 parameters.Add("need_sign", needSign.ToApiString());
 
-            return _vkontakte.GetAsync<IEnumerable<FriendStatus>>("friends.areFriends", parameters);
+            return _vkontakte.RequestAsync<IEnumerable<FriendStatus>>("friends.areFriends", parameters);
         }
 
         /// <summary>
@@ -446,8 +446,8 @@ namespace VkLibrary.Core.Methods
         /// 'rate', 'contacts', 'education'.;
         /// </param>
         /// <param name="nameCase">
-        /// Case for declension of user name and surname: ; 'nom' — nominative (default) ; 'gen' — genitive
-        /// ; 'dat' — dative ; 'acc' — accusative ; 'ins' — instrumental ; 'abl' — prepositional
+        /// Case for declension of user name and surname: ; 'nom' â€” nominative (default) ; 'gen' â€” genitive
+        /// ; 'dat' â€” dative ; 'acc' â€” accusative ; 'ins' â€” instrumental ; 'abl' â€” prepositional
         /// </param>
         public Task<ApiItemsResponse<int?>> GetAvailableForCall(IEnumerable<string> fields = null,
             string nameCase = null)
@@ -459,7 +459,7 @@ namespace VkLibrary.Core.Methods
             if (nameCase != null)
                 parameters.Add("name_case", nameCase);
 
-            return _vkontakte.GetAsync<ApiItemsResponse<int?>>("friends.getAvailableForCall", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<int?>>("friends.getAvailableForCall", parameters);
         }
 
         /// <summary>
@@ -474,8 +474,8 @@ namespace VkLibrary.Core.Methods
         /// 'online';
         /// </param>
         /// <param name="nameCase">
-        /// Case for declension of user name and surname:; 'nom' — nominative (default); 'gen' — genitive ;
-        /// 'dat' — dative; 'acc' — accusative ; 'ins' — instrumental ; 'abl' — prepositional
+        /// Case for declension of user name and surname:; 'nom' â€” nominative (default); 'gen' â€” genitive ;
+        /// 'dat' â€” dative; 'acc' â€” accusative ; 'ins' â€” instrumental ; 'abl' â€” prepositional
         /// </param>
         /// <param name="offset">Offset needed to return a specific subset of friends.</param>
         /// <param name="count">Number of friends to return.</param>
@@ -497,7 +497,7 @@ namespace VkLibrary.Core.Methods
             if (count != null)
                 parameters.Add("count", count.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<UserFull>>("friends.search", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<UserFull>>("friends.search", parameters);
         }
     }
 }

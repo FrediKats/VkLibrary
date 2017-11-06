@@ -31,7 +31,7 @@ namespace VkLibrary.Core.Methods
             if (count != null)
                 parameters.Add("count", count.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<Note>>("notes.get", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<Note>>("notes.get", parameters);
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace VkLibrary.Core.Methods
             if (ownerId != null)
                 parameters.Add("owner_id", ownerId.ToApiString());
 
-            return _vkontakte.GetAsync<Note>("notes.getById", parameters);
+            return _vkontakte.RequestAsync<Note>("notes.getById", parameters);
         }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace VkLibrary.Core.Methods
             if (privacyComment != null)
                 parameters.Add("privacy_comment", privacyComment.ToApiString());
 
-            return _vkontakte.GetAsync<int?>("notes.add", parameters);
+            return _vkontakte.RequestAsync<int?>("notes.add", parameters);
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace VkLibrary.Core.Methods
             if (privacyComment != null)
                 parameters.Add("privacy_comment", privacyComment.ToApiString());
 
-            return _vkontakte.GetAsync<int>("notes.edit", parameters);
+            return _vkontakte.RequestAsync<int>("notes.edit", parameters);
         }
 
         /// <summary>
@@ -117,7 +117,7 @@ namespace VkLibrary.Core.Methods
             if (noteId != null)
                 parameters.Add("note_id", noteId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("notes.delete", parameters);
+            return _vkontakte.RequestAsync<int>("notes.delete", parameters);
         }
 
         /// <summary>
@@ -139,7 +139,7 @@ namespace VkLibrary.Core.Methods
             if (count != null)
                 parameters.Add("count", count.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<NoteComment>>("notes.getComments", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<NoteComment>>("notes.getComments", parameters);
         }
 
         /// <summary>
@@ -167,7 +167,7 @@ namespace VkLibrary.Core.Methods
             if (guid != null)
                 parameters.Add("guid", guid);
 
-            return _vkontakte.GetAsync<int?>("notes.createComment", parameters);
+            return _vkontakte.RequestAsync<int?>("notes.createComment", parameters);
         }
 
         /// <summary>
@@ -188,7 +188,7 @@ namespace VkLibrary.Core.Methods
             if (message != null)
                 parameters.Add("message", message);
 
-            return _vkontakte.GetAsync<int>("notes.editComment", parameters);
+            return _vkontakte.RequestAsync<int>("notes.editComment", parameters);
         }
 
         /// <summary>
@@ -206,7 +206,7 @@ namespace VkLibrary.Core.Methods
             if (ownerId != null)
                 parameters.Add("owner_id", ownerId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("notes.deleteComment", parameters);
+            return _vkontakte.RequestAsync<int>("notes.deleteComment", parameters);
         }
 
         /// <summary>
@@ -224,7 +224,7 @@ namespace VkLibrary.Core.Methods
             if (ownerId != null)
                 parameters.Add("owner_id", ownerId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("notes.restoreComment", parameters);
+            return _vkontakte.RequestAsync<int>("notes.restoreComment", parameters);
         }
     }
 }

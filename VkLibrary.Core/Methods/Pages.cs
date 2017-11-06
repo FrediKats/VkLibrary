@@ -18,11 +18,11 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="ownerId">Page owner ID.</param>
         /// <param name="pageId">Wiki page ID.</param>
-        /// <param name="global">'1' — to return information about a global wiki page</param>
-        /// <param name="sitePreview">'1' — resulting wiki page is a preview for the attached link</param>
+        /// <param name="global">'1' â€” to return information about a global wiki page</param>
+        /// <param name="sitePreview">'1' â€” resulting wiki page is a preview for the attached link</param>
         /// <param name="title">Wiki page title.</param>
         /// <param name="needSource"></param>
-        /// <param name="needHtml">'1' — to return the page as HTML;</param>
+        /// <param name="needHtml">'1' â€” to return the page as HTML;</param>
         public Task<WikipageFull> Get(int? ownerId = null, int? pageId = null, bool? global = null,
             bool? sitePreview = null, string title = null, bool? needSource = null, bool? needHtml = null)
         {
@@ -43,7 +43,7 @@ namespace VkLibrary.Core.Methods
             if (needHtml != null)
                 parameters.Add("need_html", needHtml.ToApiString());
 
-            return _vkontakte.GetAsync<WikipageFull>("pages.get", parameters);
+            return _vkontakte.RequestAsync<WikipageFull>("pages.get", parameters);
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace VkLibrary.Core.Methods
             if (title != null)
                 parameters.Add("title", title);
 
-            return _vkontakte.GetAsync<int?>("pages.save", parameters);
+            return _vkontakte.RequestAsync<int?>("pages.save", parameters);
         }
 
         /// <summary>
@@ -82,11 +82,11 @@ namespace VkLibrary.Core.Methods
         /// <param name="groupId">ID of the community that owns the wiki page.</param>
         /// <param name="userId"></param>
         /// <param name="view">
-        /// Who can view the wiki page:; '1' — only community members; '2' — all users can view the page; '0' —
+        /// Who can view the wiki page:; '1' â€” only community members; '2' â€” all users can view the page; '0' â€”
         /// only community managers
         /// </param>
         /// <param name="edit">
-        /// Who can edit the wiki page:; '1' — only community members; '2' — all users can edit the page; '0' —
+        /// Who can edit the wiki page:; '1' â€” only community members; '2' â€” all users can edit the page; '0' â€”
         /// only community managers
         /// </param>
         public Task<int?> SaveAccess(int? pageId = null, int? groupId = null, int? userId = null,
@@ -105,7 +105,7 @@ namespace VkLibrary.Core.Methods
             if (edit != null)
                 parameters.Add("edit", edit.ToApiString());
 
-            return _vkontakte.GetAsync<int?>("pages.saveAccess", parameters);
+            return _vkontakte.RequestAsync<int?>("pages.saveAccess", parameters);
         }
 
         /// <summary>
@@ -127,7 +127,7 @@ namespace VkLibrary.Core.Methods
             if (userId != null)
                 parameters.Add("user_id", userId.ToApiString());
 
-            return _vkontakte.GetAsync<IEnumerable<WikipageVersion>>("pages.getHistory", parameters);
+            return _vkontakte.RequestAsync<IEnumerable<WikipageVersion>>("pages.getHistory", parameters);
         }
 
         /// <summary>
@@ -142,7 +142,7 @@ namespace VkLibrary.Core.Methods
             if (groupId != null)
                 parameters.Add("group_id", groupId.ToApiString());
 
-            return _vkontakte.GetAsync<IEnumerable<Wikipage>>("pages.getTitles", parameters);
+            return _vkontakte.RequestAsync<IEnumerable<Wikipage>>("pages.getTitles", parameters);
         }
 
         /// <summary>
@@ -152,7 +152,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="versionId"></param>
         /// <param name="groupId">ID of the community that owns the wiki page.</param>
         /// <param name="userId"></param>
-        /// <param name="needHtml">'1' — to return the page as HTML</param>
+        /// <param name="needHtml">'1' â€” to return the page as HTML</param>
         public Task<WikipageFull> GetVersion(int? versionId = null, int? groupId = null, int? userId = null,
             bool? needHtml = null)
         {
@@ -167,7 +167,7 @@ namespace VkLibrary.Core.Methods
             if (needHtml != null)
                 parameters.Add("need_html", needHtml.ToApiString());
 
-            return _vkontakte.GetAsync<WikipageFull>("pages.getVersion", parameters);
+            return _vkontakte.RequestAsync<WikipageFull>("pages.getVersion", parameters);
         }
 
         /// <summary>
@@ -185,7 +185,7 @@ namespace VkLibrary.Core.Methods
             if (groupId != null)
                 parameters.Add("group_id", groupId.ToApiString());
 
-            return _vkontakte.GetAsync<string>("pages.parseWiki", parameters);
+            return _vkontakte.RequestAsync<string>("pages.parseWiki", parameters);
         }
 
         /// <summary>
@@ -200,7 +200,7 @@ namespace VkLibrary.Core.Methods
             if (url != null)
                 parameters.Add("url", url);
 
-            return _vkontakte.GetAsync<int>("pages.clearCache", parameters);
+            return _vkontakte.RequestAsync<int>("pages.clearCache", parameters);
         }
     }
 }

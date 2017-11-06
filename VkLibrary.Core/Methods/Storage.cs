@@ -29,7 +29,7 @@ namespace VkLibrary.Core.Methods
             if (userId != null)
                 parameters.Add("user_id", userId.ToApiString());
 
-            return _vkontakte.GetAsync<string>("storage.get", parameters);
+            return _vkontakte.RequestAsync<string>("storage.get", parameters);
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace VkLibrary.Core.Methods
             if (userId != null)
                 parameters.Add("user_id", userId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("storage.set", parameters);
+            return _vkontakte.RequestAsync<int>("storage.set", parameters);
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace VkLibrary.Core.Methods
             if (count != null)
                 parameters.Add("count", count.ToApiString());
 
-            return _vkontakte.GetAsync<IEnumerable<string>>("storage.getKeys", parameters);
+            return _vkontakte.RequestAsync<IEnumerable<string>>("storage.getKeys", parameters);
         }
     }
 }

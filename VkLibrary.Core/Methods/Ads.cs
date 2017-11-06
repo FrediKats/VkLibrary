@@ -20,7 +20,7 @@ namespace VkLibrary.Core.Methods
         public Task<IEnumerable<Types.Ads.Account>> GetAccounts()
         {
             var parameters = new Dictionary<string, string>();
-            return _vkontakte.GetAsync<IEnumerable<Types.Ads.Account>>("ads.getAccounts", parameters);
+            return _vkontakte.RequestAsync<IEnumerable<Types.Ads.Account>>("ads.getAccounts", parameters);
         }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace VkLibrary.Core.Methods
             if (accountId != null)
                 parameters.Add("account_id", accountId.ToApiString());
 
-            return _vkontakte.GetAsync<IEnumerable<Client>>("ads.getClients", parameters);
+            return _vkontakte.RequestAsync<IEnumerable<Client>>("ads.getClients", parameters);
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace VkLibrary.Core.Methods
             if (data != null)
                 parameters.Add("data", data);
 
-            return _vkontakte.GetAsync<IEnumerable<int?>>("ads.createClients", parameters);
+            return _vkontakte.RequestAsync<IEnumerable<int?>>("ads.createClients", parameters);
         }
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace VkLibrary.Core.Methods
             if (data != null)
                 parameters.Add("data", data);
 
-            return _vkontakte.GetAsync<int?>("ads.updateClients", parameters);
+            return _vkontakte.RequestAsync<int?>("ads.updateClients", parameters);
         }
 
         /// <summary>
@@ -95,7 +95,7 @@ namespace VkLibrary.Core.Methods
             if (ids != null)
                 parameters.Add("ids", ids);
 
-            return _vkontakte.GetAsync<int?>("ads.deleteClients", parameters);
+            return _vkontakte.RequestAsync<int?>("ads.deleteClients", parameters);
         }
 
         /// <summary>
@@ -105,8 +105,8 @@ namespace VkLibrary.Core.Methods
         /// <param name="accountId">Advertising account ID.</param>
         /// <param name="clientId">'For advertising agencies'. ID of the client advertising campaigns are retrieved from.</param>
         /// <param name="includeDeleted">
-        /// Flag that specifies whether archived ads shall be shown.; *0 — show only active
-        /// campaigns;; *1 — show all campaigns.;
+        /// Flag that specifies whether archived ads shall be shown.; *0 â€” show only active
+        /// campaigns;; *1 â€” show all campaigns.;
         /// </param>
         /// <param name="campaignIds">
         /// Filter of advertising campaigns to show. ; Serialized JSON array with campaign IDs. Only
@@ -127,7 +127,7 @@ namespace VkLibrary.Core.Methods
             if (campaignIds != null)
                 parameters.Add("campaign_ids", campaignIds);
 
-            return _vkontakte.GetAsync<IEnumerable<Campaign>>("ads.getCampaigns", parameters);
+            return _vkontakte.RequestAsync<IEnumerable<Campaign>>("ads.getCampaigns", parameters);
         }
 
         /// <summary>
@@ -148,7 +148,7 @@ namespace VkLibrary.Core.Methods
             if (data != null)
                 parameters.Add("data", data);
 
-            return _vkontakte.GetAsync<IEnumerable<int?>>("ads.createCampaigns", parameters);
+            return _vkontakte.RequestAsync<IEnumerable<int?>>("ads.createCampaigns", parameters);
         }
 
         /// <summary>
@@ -169,7 +169,7 @@ namespace VkLibrary.Core.Methods
             if (data != null)
                 parameters.Add("data", data);
 
-            return _vkontakte.GetAsync<int?>("ads.updateCampaigns", parameters);
+            return _vkontakte.RequestAsync<int?>("ads.updateCampaigns", parameters);
         }
 
         /// <summary>
@@ -187,7 +187,7 @@ namespace VkLibrary.Core.Methods
             if (ids != null)
                 parameters.Add("ids", ids);
 
-            return _vkontakte.GetAsync<int?>("ads.deleteCampaigns", parameters);
+            return _vkontakte.RequestAsync<int?>("ads.deleteCampaigns", parameters);
         }
 
         /// <summary>
@@ -197,8 +197,8 @@ namespace VkLibrary.Core.Methods
         /// <param name="accountId">Advertising account ID.</param>
         /// <param name="clientId">'Available and required for advertising agencies.' ID of the client ads are retrieved from.</param>
         /// <param name="includeDeleted">
-        /// Flag that specifies whether archived ads shall be shown:; *0 — show only active ads;; *1
-        /// — show all ads.;
+        /// Flag that specifies whether archived ads shall be shown:; *0 â€” show only active ads;; *1
+        /// â€” show all ads.;
         /// </param>
         /// <param name="campaignIds">
         /// Filter by advertising campaigns. ; Serialized JSON array with campaign IDs. If the parameter
@@ -234,7 +234,7 @@ namespace VkLibrary.Core.Methods
             if (offset != null)
                 parameters.Add("offset", offset.ToApiString());
 
-            return _vkontakte.GetAsync<IEnumerable<Ad>>("ads.getAds", parameters);
+            return _vkontakte.RequestAsync<IEnumerable<Ad>>("ads.getAds", parameters);
         }
 
         /// <summary>
@@ -244,8 +244,8 @@ namespace VkLibrary.Core.Methods
         /// <param name="accountId">Advertising account ID.</param>
         /// <param name="clientId">'For advertising agencies.' ID of the client ads are retrieved from.</param>
         /// <param name="includeDeleted">
-        /// Flag that specifies whether archived ads shall be shown.; *0 — show only active ads;; *1
-        /// — show all ads.;
+        /// Flag that specifies whether archived ads shall be shown.; *0 â€” show only active ads;; *1
+        /// â€” show all ads.;
         /// </param>
         /// <param name="campaignIds">
         /// Filter by advertising campaigns.; Serialized JSON array with campaign IDs. If the parameter
@@ -281,7 +281,7 @@ namespace VkLibrary.Core.Methods
             if (offset != null)
                 parameters.Add("offset", offset.ToApiString());
 
-            return _vkontakte.GetAsync<IEnumerable<AdLayout>>("ads.getAdsLayout", parameters);
+            return _vkontakte.RequestAsync<IEnumerable<AdLayout>>("ads.getAdsLayout", parameters);
         }
 
         /// <summary>
@@ -291,8 +291,8 @@ namespace VkLibrary.Core.Methods
         /// <param name="accountId">Advertising account ID.</param>
         /// <param name="clientId">'For advertising agencies.' ID of the client ads are retrieved from.</param>
         /// <param name="includeDeleted">
-        /// flag that specifies whether archived ads shall be shown:; *0 — show only active ads;; *1
-        /// — show all ads.
+        /// flag that specifies whether archived ads shall be shown:; *0 â€” show only active ads;; *1
+        /// â€” show all ads.
         /// </param>
         /// <param name="campaignIds">
         /// Filter by advertising campaigns.; Serialized JSON array with campaign IDs. If the parameter
@@ -328,7 +328,7 @@ namespace VkLibrary.Core.Methods
             if (offset != null)
                 parameters.Add("offset", offset.ToApiString());
 
-            return _vkontakte.GetAsync<IEnumerable<TargSettings>>("ads.getAdsTargeting", parameters);
+            return _vkontakte.RequestAsync<IEnumerable<TargSettings>>("ads.getAdsTargeting", parameters);
         }
 
         /// <summary>
@@ -349,7 +349,7 @@ namespace VkLibrary.Core.Methods
             if (data != null)
                 parameters.Add("data", data);
 
-            return _vkontakte.GetAsync<IEnumerable<int?>>("ads.createAds", parameters);
+            return _vkontakte.RequestAsync<IEnumerable<int?>>("ads.createAds", parameters);
         }
 
         /// <summary>
@@ -370,7 +370,7 @@ namespace VkLibrary.Core.Methods
             if (data != null)
                 parameters.Add("data", data);
 
-            return _vkontakte.GetAsync<IEnumerable<int?>>("ads.updateAds", parameters);
+            return _vkontakte.RequestAsync<IEnumerable<int?>>("ads.updateAds", parameters);
         }
 
         /// <summary>
@@ -388,7 +388,7 @@ namespace VkLibrary.Core.Methods
             if (ids != null)
                 parameters.Add("ids", ids);
 
-            return _vkontakte.GetAsync<IEnumerable<int?>>("ads.deleteAds", parameters);
+            return _vkontakte.RequestAsync<IEnumerable<int?>>("ads.deleteAds", parameters);
         }
 
         /// <summary>
@@ -397,8 +397,8 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="accountId">Advertising account ID.</param>
         /// <param name="linkType">
-        /// Object type:; *'community' — community;; *'post' — community post;; *'application' — VK
-        /// application;; *'video' — video;; *'site' — external site.
+        /// Object type:; *'community' â€” community;; *'post' â€” community post;; *'application' â€” VK
+        /// application;; *'video' â€” video;; *'site' â€” external site.
         /// </param>
         /// <param name="linkUrl">Object URL.</param>
         /// <param name="campaignId">Campaign ID</param>
@@ -416,7 +416,7 @@ namespace VkLibrary.Core.Methods
             if (campaignId != null)
                 parameters.Add("campaign_id", campaignId.ToApiString());
 
-            return _vkontakte.GetAsync<LinkStatus>("ads.checkLink", parameters);
+            return _vkontakte.RequestAsync<LinkStatus>("ads.checkLink", parameters);
         }
 
         /// <summary>
@@ -425,26 +425,26 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="accountId">Advertising account ID.</param>
         /// <param name="idsType">
-        /// Type of requested objects listed in 'ids' parameter:; *ad — ads;; *campaign — campaigns;;
-        /// *client — clients;; *office — account.;
+        /// Type of requested objects listed in 'ids' parameter:; *ad â€” ads;; *campaign â€” campaigns;;
+        /// *client â€” clients;; *office â€” account.;
         /// </param>
         /// <param name="ids">
         /// IDs requested ads, campaigns, clients or account, separated with a comma, depending on the value set
         /// in 'ids_type'. Maximum 2000 objects.
         /// </param>
         /// <param name="period">
-        /// Data grouping by dates:; *day — statistics by days;; *month — statistics by months;; *overall —
+        /// Data grouping by dates:; *day â€” statistics by days;; *month â€” statistics by months;; *overall â€”
         /// overall statistics.; 'date_from' and 'date_to' parameters set temporary limits.
         /// </param>
         /// <param name="dateFrom">
         /// Date to show statistics from. For different value of 'period' different date format is used:;
-        /// *day: YYYY-MM-DD, example: 2011-09-27 — September 27, 2011; **0 — day it was created on;; *month: YYYY-MM, example:
-        /// 2011-09 — September 2011; **0 — month it was created in;; *overall: 0.;
+        /// *day: YYYY-MM-DD, example: 2011-09-27 â€” September 27, 2011; **0 â€” day it was created on;; *month: YYYY-MM, example:
+        /// 2011-09 â€” September 2011; **0 â€” month it was created in;; *overall: 0.;
         /// </param>
         /// <param name="dateTo">
         /// Date to show statistics to. For different value of 'period' different date format is used:; *day:
-        /// YYYY-MM-DD, example: 2011-09-27 — September 27, 2011; **0 — current day;; *month: YYYY-MM, example: 2011-09 —
-        /// September 2011; **0 — current month;; *overall: 0.
+        /// YYYY-MM-DD, example: 2011-09-27 â€” September 27, 2011; **0 â€” current day;; *month: YYYY-MM, example: 2011-09 â€”
+        /// September 2011; **0 â€” current month;; *overall: 0.
         /// </param>
         public Task<IEnumerable<Types.Ads.Stats>> GetStatistics(int? accountId = null, string idsType = null,
             string ids = null, string period = null, string dateFrom = null, string dateTo = null)
@@ -464,7 +464,7 @@ namespace VkLibrary.Core.Methods
             if (dateTo != null)
                 parameters.Add("date_to", dateTo);
 
-            return _vkontakte.GetAsync<IEnumerable<Types.Ads.Stats>>("ads.getStatistics", parameters);
+            return _vkontakte.RequestAsync<IEnumerable<Types.Ads.Stats>>("ads.getStatistics", parameters);
         }
 
         /// <summary>
@@ -472,24 +472,24 @@ namespace VkLibrary.Core.Methods
         /// Docs: <see href="https://vk.com/dev/ads.getDemographics">ads.getDemographics</see>
         /// </summary>
         /// <param name="accountId">Advertising account ID.</param>
-        /// <param name="idsType">Type of requested objects listed in 'ids' parameter:; *ad — ads;; *campaign — campaigns.;</param>
+        /// <param name="idsType">Type of requested objects listed in 'ids' parameter:; *ad â€” ads;; *campaign â€” campaigns.;</param>
         /// <param name="ids">
         /// IDs requested ads or campaigns, separated with a comma, depending on the value set in 'ids_type'.
         /// Maximum 2000 objects.
         /// </param>
         /// <param name="period">
-        /// Data grouping by dates:; *day — statistics by days;; *month — statistics by months;; *overall —
+        /// Data grouping by dates:; *day â€” statistics by days;; *month â€” statistics by months;; *overall â€”
         /// overall statistics.; 'date_from' and 'date_to' parameters set temporary limits.
         /// </param>
         /// <param name="dateFrom">
         /// Date to show statistics from. For different value of 'period' different date format is used:;
-        /// *day: YYYY-MM-DD, example: 2011-09-27 — September 27, 2011; **0 — day it was created on;; *month: YYYY-MM, example:
-        /// 2011-09 — September 2011; **0 — month it was created in;; *overall: 0.
+        /// *day: YYYY-MM-DD, example: 2011-09-27 â€” September 27, 2011; **0 â€” day it was created on;; *month: YYYY-MM, example:
+        /// 2011-09 â€” September 2011; **0 â€” month it was created in;; *overall: 0.
         /// </param>
         /// <param name="dateTo">
         /// Date to show statistics to. For different value of 'period' different date format is used:; *day:
-        /// YYYY-MM-DD, example: 2011-09-27 — September 27, 2011; **0 — current day;; *month: YYYY-MM, example: 2011-09 —
-        /// September 2011; **0 — current month;; *overall: 0.
+        /// YYYY-MM-DD, example: 2011-09-27 â€” September 27, 2011; **0 â€” current day;; *month: YYYY-MM, example: 2011-09 â€”
+        /// September 2011; **0 â€” current month;; *overall: 0.
         /// </param>
         public Task<IEnumerable<DemoStats>> GetDemographics(int? accountId = null, string idsType = null,
             string ids = null, string period = null, string dateFrom = null, string dateTo = null)
@@ -509,7 +509,7 @@ namespace VkLibrary.Core.Methods
             if (dateTo != null)
                 parameters.Add("date_to", dateTo);
 
-            return _vkontakte.GetAsync<IEnumerable<DemoStats>>("ads.getDemographics", parameters);
+            return _vkontakte.RequestAsync<IEnumerable<DemoStats>>("ads.getDemographics", parameters);
         }
 
         /// <summary>
@@ -527,7 +527,7 @@ namespace VkLibrary.Core.Methods
             if (adsIds != null)
                 parameters.Add("ads_ids", adsIds);
 
-            return _vkontakte.GetAsync<IEnumerable<PostStats>>("ads.getAdsPostsReach", parameters);
+            return _vkontakte.RequestAsync<IEnumerable<PostStats>>("ads.getAdsPostsReach", parameters);
         }
 
         /// <summary>
@@ -542,7 +542,7 @@ namespace VkLibrary.Core.Methods
             if (accountId != null)
                 parameters.Add("account_id", accountId.ToApiString());
 
-            return _vkontakte.GetAsync<int?>("ads.getBudget", parameters);
+            return _vkontakte.RequestAsync<int?>("ads.getBudget", parameters);
         }
 
         /// <summary>
@@ -557,7 +557,7 @@ namespace VkLibrary.Core.Methods
             if (accountId != null)
                 parameters.Add("account_id", accountId.ToApiString());
 
-            return _vkontakte.GetAsync<IEnumerable<Types.Ads.Users>>("ads.getOfficeUsers", parameters);
+            return _vkontakte.RequestAsync<IEnumerable<Types.Ads.Users>>("ads.getOfficeUsers", parameters);
         }
 
         /// <summary>
@@ -578,7 +578,7 @@ namespace VkLibrary.Core.Methods
             if (data != null)
                 parameters.Add("data", data);
 
-            return _vkontakte.GetAsync<bool?>("ads.addOfficeUsers", parameters);
+            return _vkontakte.RequestAsync<bool?>("ads.addOfficeUsers", parameters);
         }
 
         /// <summary>
@@ -596,7 +596,7 @@ namespace VkLibrary.Core.Methods
             if (ids != null)
                 parameters.Add("ids", ids);
 
-            return _vkontakte.GetAsync<bool?>("ads.removeOfficeUsers", parameters);
+            return _vkontakte.RequestAsync<bool?>("ads.removeOfficeUsers", parameters);
         }
 
         /// <summary>
@@ -610,14 +610,14 @@ namespace VkLibrary.Core.Methods
         /// </param>
         /// <param name="adId">ID of an ad which targeting parameters shall be analyzed.</param>
         /// <param name="adFormat">
-        /// Ad format. Possible values:; *'1' — image and text;; *'2' — big image;; *'3' — exclusive
-        /// format;; *'4' — community, square image;; *'7' — special app format;; *'8' — special community format;; *'9' — post
-        /// in community;; *'10' — app board.
+        /// Ad format. Possible values:; *'1' â€” image and text;; *'2' â€” big image;; *'3' â€” exclusive
+        /// format;; *'4' â€” community, square image;; *'7' â€” special app format;; *'8' â€” special community format;; *'9' â€” post
+        /// in community;; *'10' â€” app board.
         /// </param>
         /// <param name="adPlatform">
-        /// Platforms to use for ad showing. Possible values:; (for 'ad_format' = '1'); *'0' — VK and
-        /// partner sites;; *'1' — VK only.; (for 'ad_format' = '9'); *'all' — all platforms;; *'desktop' — desktop version;;
-        /// *'mobile' — mobile version and apps.
+        /// Platforms to use for ad showing. Possible values:; (for 'ad_format' = '1'); *'0' â€” VK and
+        /// partner sites;; *'1' â€” VK only.; (for 'ad_format' = '9'); *'all' â€” all platforms;; *'desktop' â€” desktop version;;
+        /// *'mobile' â€” mobile version and apps.
         /// </param>
         /// <param name="linkUrl">URL for the advertised object.</param>
         /// <param name="linkDomain">Domain of the advertised object.</param>
@@ -642,7 +642,7 @@ namespace VkLibrary.Core.Methods
             if (linkDomain != null)
                 parameters.Add("link_domain", linkDomain);
 
-            return _vkontakte.GetAsync<TargStats>("ads.getTargetingStats", parameters);
+            return _vkontakte.RequestAsync<TargStats>("ads.getTargetingStats", parameters);
         }
 
         /// <summary>
@@ -650,15 +650,15 @@ namespace VkLibrary.Core.Methods
         /// Docs: <see href="https://vk.com/dev/ads.getSuggestions">ads.getSuggestions</see>
         /// </summary>
         /// <param name="section">
-        /// Section, suggestions are retrieved in. Available values:; *countries — request of a list of
+        /// Section, suggestions are retrieved in. Available values:; *countries â€” request of a list of
         /// countries. If q is not set or blank, a short list of countries is shown. Otherwise, a full list of countries is
-        /// shown.; *regions — requested list of regions. 'country' parameter is required.; *cities — requested list of cities.
-        /// 'country' parameter is required.; *districts — requested list of districts. 'cities' parameter is required.;
-        /// *stations — requested list of subway stations. 'cities' parameter is required.; *streets — requested list of
-        /// streets. 'cities' parameter is required.; *schools — requested list of educational organizations. 'cities'
-        /// parameter is required.; *interests — requested list of interests.; *positions — requested list of positions
-        /// (professions).; *group_types — requested list of group types.; *religions — requested list of religious
-        /// commitments.; *browsers — requested list of browsers and mobile devices.;
+        /// shown.; *regions â€” requested list of regions. 'country' parameter is required.; *cities â€” requested list of cities.
+        /// 'country' parameter is required.; *districts â€” requested list of districts. 'cities' parameter is required.;
+        /// *stations â€” requested list of subway stations. 'cities' parameter is required.; *streets â€” requested list of
+        /// streets. 'cities' parameter is required.; *schools â€” requested list of educational organizations. 'cities'
+        /// parameter is required.; *interests â€” requested list of interests.; *positions â€” requested list of positions
+        /// (professions).; *group_types â€” requested list of group types.; *religions â€” requested list of religious
+        /// commitments.; *browsers â€” requested list of browsers and mobile devices.;
         /// </param>
         /// <param name="ids">
         /// Objects IDs separated by commas. If the parameter is passed, 'q, country, cities' should not be
@@ -668,8 +668,8 @@ namespace VkLibrary.Core.Methods
         /// <param name="country">ID of the country objects are searched in.</param>
         /// <param name="cities">IDs of cities where objects are searched in, separated with a comma.</param>
         /// <param name="lang">
-        /// Language of the returned string values. Supported languages:; *ru — Russian;; *ua — Ukrainian;; *en
-        /// — English.;
+        /// Language of the returned string values. Supported languages:; *ru â€” Russian;; *ua â€” Ukrainian;; *en
+        /// â€” English.;
         /// </param>
         public Task<IEnumerable<TargSuggestions>> GetSuggestions(string section = null, string ids = null,
             string q = null, int? country = null, string cities = null, string lang = null)
@@ -689,7 +689,7 @@ namespace VkLibrary.Core.Methods
             if (lang != null)
                 parameters.Add("lang", lang);
 
-            return _vkontakte.GetAsync<IEnumerable<TargSuggestions>>("ads.getSuggestions", parameters);
+            return _vkontakte.RequestAsync<IEnumerable<TargSuggestions>>("ads.getSuggestions", parameters);
         }
 
         /// <summary>
@@ -704,7 +704,7 @@ namespace VkLibrary.Core.Methods
             if (lang != null)
                 parameters.Add("lang", lang);
 
-            return _vkontakte.GetAsync<IEnumerable<Category>>("ads.getCategories", parameters);
+            return _vkontakte.RequestAsync<IEnumerable<Category>>("ads.getCategories", parameters);
         }
 
         /// <summary>
@@ -712,8 +712,8 @@ namespace VkLibrary.Core.Methods
         /// Docs: <see href="https://vk.com/dev/ads.getUploadURL">ads.getUploadURL</see>
         /// </summary>
         /// <param name="adFormat">
-        /// Ad format:; *1 — image and text;; *2 — big image;; *3 — exclusive format;; *4 — community,
-        /// square image;; *7 — special app format.
+        /// Ad format:; *1 â€” image and text;; *2 â€” big image;; *3 â€” exclusive format;; *4 â€” community,
+        /// square image;; *7 â€” special app format.
         /// </param>
         public Task<string> GetUploadUrl(int? adFormat = null)
         {
@@ -722,7 +722,7 @@ namespace VkLibrary.Core.Methods
             if (adFormat != null)
                 parameters.Add("ad_format", adFormat.ToApiString());
 
-            return _vkontakte.GetAsync<string>("ads.getUploadURL", parameters);
+            return _vkontakte.RequestAsync<string>("ads.getUploadURL", parameters);
         }
 
         /// <summary>
@@ -734,11 +734,11 @@ namespace VkLibrary.Core.Methods
             var parameters = new Dictionary<string, string>();
 
 
-            return _vkontakte.GetAsync<string>("ads.getVideoUploadURL", parameters);
+            return _vkontakte.RequestAsync<string>("ads.getVideoUploadURL", parameters);
         }
 
         /// <summary>
-        /// Returns information about current state of a counter — number of remaining runs of methods and time to the next
+        /// Returns information about current state of a counter â€” number of remaining runs of methods and time to the next
         /// counter nulling in seconds.
         /// Docs: <see href="https://vk.com/dev/ads.getFloodStats">ads.getFloodStats</see>
         /// </summary>
@@ -750,7 +750,7 @@ namespace VkLibrary.Core.Methods
             if (accountId != null)
                 parameters.Add("account_id", accountId.ToApiString());
 
-            return _vkontakte.GetAsync<FloodStats>("ads.getFloodStats", parameters);
+            return _vkontakte.RequestAsync<FloodStats>("ads.getFloodStats", parameters);
         }
 
         /// <summary>
@@ -768,7 +768,7 @@ namespace VkLibrary.Core.Methods
             if (adId != null)
                 parameters.Add("ad_id", adId.ToApiString());
 
-            return _vkontakte.GetAsync<RejectReason>("ads.getRejectionReason", parameters);
+            return _vkontakte.RequestAsync<RejectReason>("ads.getRejectionReason", parameters);
         }
 
         /// <summary>
@@ -781,11 +781,11 @@ namespace VkLibrary.Core.Methods
         /// 'Only for advertising agencies.'; ID of the client with the advertising account where the group
         /// will be created.;
         /// </param>
-        /// <param name="name">Name of the target group — a string up to 64 characters long.</param>
+        /// <param name="name">Name of the target group â€” a string up to 64 characters long.</param>
         /// <param name="domain">Domain of the site where user accounting code will be placed.</param>
         /// <param name="lifetime">
         /// 'For groups with auditory created with pixel code only.'; ; Number of days after that users will
-        /// be automatically removed from the group. '0' — not to remove users.;
+        /// be automatically removed from the group. '0' â€” not to remove users.;
         /// </param>
         public Task<CreateTargetGroupResponse> CreateTargetGroup(int? accountId = null, int? clientId = null,
             string name = null, string domain = null, int? lifetime = null)
@@ -803,7 +803,7 @@ namespace VkLibrary.Core.Methods
             if (lifetime != null)
                 parameters.Add("lifetime", lifetime.ToApiString());
 
-            return _vkontakte.GetAsync<CreateTargetGroupResponse>("ads.createTargetGroup", parameters);
+            return _vkontakte.RequestAsync<CreateTargetGroupResponse>("ads.createTargetGroup", parameters);
         }
 
         /// <summary>
@@ -816,11 +816,11 @@ namespace VkLibrary.Core.Methods
         /// group will be created.;
         /// </param>
         /// <param name="targetGroupId">Group ID.</param>
-        /// <param name="name">New name of the target group — a string up to 64 characters long.</param>
+        /// <param name="name">New name of the target group â€” a string up to 64 characters long.</param>
         /// <param name="domain">Domain of the site where user accounting code will be placed.</param>
         /// <param name="lifetime">
         /// 'Only for the groups that get audience from sites with user accounting code.'; Time in days when
-        /// users added to a retarget group will be automatically excluded from it. ; '0' – automatic exclusion is off.
+        /// users added to a retarget group will be automatically excluded from it. ; '0' â€“ automatic exclusion is off.
         /// </param>
         public Task<int> UpdateTargetGroup(int? accountId = null, int? clientId = null,
             int? targetGroupId = null, string name = null, string domain = null, int? lifetime = null)
@@ -840,7 +840,7 @@ namespace VkLibrary.Core.Methods
             if (lifetime != null)
                 parameters.Add("lifetime", lifetime.ToApiString());
 
-            return _vkontakte.GetAsync<int>("ads.updateTargetGroup", parameters);
+            return _vkontakte.RequestAsync<int>("ads.updateTargetGroup", parameters);
         }
 
         /// <summary>
@@ -865,7 +865,7 @@ namespace VkLibrary.Core.Methods
             if (targetGroupId != null)
                 parameters.Add("target_group_id", targetGroupId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("ads.deleteTargetGroup", parameters);
+            return _vkontakte.RequestAsync<int>("ads.deleteTargetGroup", parameters);
         }
 
         /// <summary>
@@ -877,7 +877,7 @@ namespace VkLibrary.Core.Methods
         /// 'Only for advertising agencies.'; ID of the client with the advertising account where the group
         /// will be created.;
         /// </param>
-        /// <param name="extended">'1' — to return pixel code.</param>
+        /// <param name="extended">'1' â€” to return pixel code.</param>
         public Task<IEnumerable<TargetGroup>> GetTargetGroups(int? accountId = null, int? clientId = null,
             bool? extended = null)
         {
@@ -890,7 +890,7 @@ namespace VkLibrary.Core.Methods
             if (extended != null)
                 parameters.Add("extended", extended.ToApiString());
 
-            return _vkontakte.GetAsync<IEnumerable<TargetGroup>>("ads.getTargetGroups", parameters);
+            return _vkontakte.RequestAsync<IEnumerable<TargetGroup>>("ads.getTargetGroups", parameters);
         }
 
         /// <summary>
@@ -918,7 +918,7 @@ namespace VkLibrary.Core.Methods
             if (contacts != null)
                 parameters.Add("contacts", contacts);
 
-            return _vkontakte.GetAsync<int?>("ads.importTargetContacts", parameters);
+            return _vkontakte.RequestAsync<int?>("ads.importTargetContacts", parameters);
         }
     }
 }

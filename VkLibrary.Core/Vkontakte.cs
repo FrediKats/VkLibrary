@@ -1,74 +1,99 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using VkLibrary.Core.Auth;
 using VkLibrary.Core.LongPolling;
-using VkLibrary.Core.Methods;
+using VkLibrary.Core.Services;
 
 namespace VkLibrary.Core
 {
     /// <summary>
-    /// Library main class that should be instantiated to work with VK API.
+    /// Vkontakte .NET API.
     /// </summary>
-    /// ReSharper disable once ClassNeverInstantiated.Global
-    public class Vkontakte : IDisposable
+    public partial class Vkontakte : IDisposable
     {
-        private readonly JsonParsingType _jsonParsingType;
-        private readonly HttpClient _httpClient;
-        private readonly Action<object> _logger;
-        private readonly string _clientSecret;
-        private readonly string _apiVersion;
-        private readonly string _appId;
-
-        internal const string DirectAuthUrl = "https://oauth.vk.com/";
-        internal const string OAuthUrl = "https://oauth.vk.com/authorize";
-        internal const string OAuthRedirectUrl = "https://oauth.vk.com/blank.html";
-        internal const string MethodBase = "https://api.vk.com/method/";
-
+        private const string MethodBase = "https://api.vk.com/method/";
+        private readonly RequestMethod _requestMethod;
+        private readonly ParseJson _parseJson;
         private string _captchaSid;
         private string _captchaKey;
 
         /// <summary>
         /// Initializes the library.
         /// </summary>
-        /// <param name="appId">Unique app identifier. Can be found in vk.com/dev app settings.</param>
-        /// <param name="jsonParsingType">How JSON should be parsed</param>
-        /// <param name="clientSecret">
-        /// App secret key. Used in Secure Methods section 
-        /// and with DirectAuth/OAuth authentication.
+        /// <param name="appId">Unique VK app identifier. Get it at vk.com/dev -> App Settings</param>
+        /// <param name="appSecret">App secret key. Used only with secure section methods and with direct auth.</param>
+        /// <param name="apiVersion">API version the library is going to use. Min: 5.63</param>
+        /// <param name="requestMethod">GET or POST requests the library should use?</param>
+        /// <param name="parseJson">Should the library log received JSONs or focus on performance?</param>
+        public Vkontakte(int appId, string appSecret, string apiVersion = "5.63",
+            RequestMethod requestMethod = RequestMethod.Get, 
+            ParseJson parseJson = ParseJson.FromString)
+        {
+            AppId = appId;
+            AppSecret = appSecret;
+            ApiVersion = apiVersion;
+            Logger = new DefaultLogger();
+            HttpService = new DefaultHttpService(Logger);
+            _requestMethod = requestMethod;
+            _parseJson = parseJson;
+        }
+
+        /// <summary>
+        /// Initializes the library with extended parameters.
+        /// </summary>
+        /// <param name="appId">Unique VK app identifier. Get it at vk.com/dev -> App Settings</param>
+        /// <param name="appSecret">App secret key. Used only with secure section methods and with direct auth.</param>
+        /// <param name="apiVersion">API version the library is going to use. Min: 5.63</param>
+        /// <param name="requestMethod">GET or POST requests the library should use?</param>
+        /// <param name="parseJson">Should the library log received JSONs or focus on performance?</param>
+        /// <param name="logger">Logger the library should use. By default is logs info into DEBUG output.</param>
+        /// <param name="httpService">
+        /// HttpService the library should use. You can inject your own implementation of IHttpService 
+        /// into the library if default one does not suite you for some reasons.
         /// </param>
-        /// <param name="apiVersion">API version.</param>
-        /// <param name="logger">Custom logger, for example 'Console.WriteLine' or 'Debug.WriteLine'.</param>
-        public Vkontakte(string appId, JsonParsingType jsonParsingType, string clientSecret = null, 
-            string apiVersion = "5.63", Action<object> logger = null)
+        public Vkontakte(int appId, string appSecret, string apiVersion, 
+            RequestMethod requestMethod, ParseJson parseJson,
+            ILogger logger, IHttpService httpService)
         {
-            _appId = appId;
-            _logger = logger;
-            _apiVersion = apiVersion;
-            _clientSecret = clientSecret;
-            _jsonParsingType = jsonParsingType;
-            _httpClient = new HttpClient();
-            Log("Library initialized.");
+            AppId = appId;
+            Logger = logger;
+            AppSecret = appSecret;
+            ApiVersion = apiVersion;
+            HttpService = httpService;
+            _requestMethod = requestMethod;
+            _parseJson = parseJson;
         }
 
         /// <summary>
-        /// Sends GET request to vk server.
+        /// Http service which library uses to send requests.
         /// </summary>
-        /// <param name="method">Method shortcut</param>
-        /// <param name="parameters">Parameters dict</param>
+        internal IHttpService HttpService { get; }
+        
+        /// <summary>
+        /// Logger that library uses to log information.
+        /// </summary>
+        internal ILogger Logger { get; }
+
+        /// <summary>
+        /// Sends GET or POST request and deserializes response from STREAM or from LOGGABLE STRING 
+        /// based on settings passed during initialization. Also supplies request with AccessToken, 
+        /// Captcha, ApiVersion if these properties are not null. Throws ApiException if error 
+        /// has been received from Vkontakte API servers. 
+        /// </summary>
+        /// <param name="method"></param>
+        /// <param name="parameters"></param>
+        /// <typeparam name="TResult"></typeparam>
         /// <returns></returns>
-        public async Task<TResult> GetAsync<TResult>(string method, Dictionary<string, string> parameters)
+        /// <exception cref="ApiException"></exception>
+        public async Task<TResult> RequestAsync<TResult>(string method, Dictionary<string, string> parameters)
         {
-            // Add token and api version info to request.
             if (!string.IsNullOrEmpty(AccessToken?.Token))
                 parameters.Add("access_token", AccessToken.Token);
-            parameters.Add("v", _apiVersion);
-
-            // Add captcha if not null and then erase it.
+            parameters.Add("v", ApiVersion);
+            
             if (_captchaSid != null && _captchaKey != null)
             {
                 parameters.Add("captcha_sid", _captchaSid);
@@ -76,197 +101,52 @@ namespace VkLibrary.Core
                 _captchaSid = null;
                 _captchaKey = null;
             }
-
-            // Build request url with parameters.
-            var urlString = BuildUrl(string.Concat(MethodBase, method), parameters);
-            Log($"Invoking {method}: {urlString}");
-
-            // Get response and parse it based on parsing type.
-            var response = 
-                await DeserializeGetInPrefferedWay<ApiResponse<TResult>>
-                (urlString).ConfigureAwait(false);
-            ProcessErrors(response.Error);
-            return response.Response;
+            
+            var url = new Uri(string.Concat(MethodBase, method));
+            var response = await Deserialize<ApiResponse<TResult>>(url, parameters);
+            if (response.Error == null) return response.Response;
+            
+            var error = response.Error;
+            Logger.Log($"Received API error. Code: {error.Code}. About: \"{error.ErrorMessage}\"");
+            throw new ApiException(error);
         }
 
         /// <summary>
-        /// Sends POST request to vk server.
+        /// Sends POST or GET requests and deserializes objects from stream. If 
         /// </summary>
-        /// <param name="method">Method shortcut</param>
-        /// <param name="parameters">Parameters dict</param>
+        /// <param name="url"></param>
+        /// <param name="parameters"></param>
+        /// <typeparam name="TResult"></typeparam>
         /// <returns></returns>
-        public async Task<TResult> PostAsync<TResult>(string method, Dictionary<string, string> parameters)
+        internal async Task<TResult> Deserialize<TResult>(Uri url, Dictionary<string, string> parameters)
         {
-            // Add token and api version info to request.
-            if (!string.IsNullOrEmpty(AccessToken?.Token))
-                parameters.Add("access_token", AccessToken.Token);
-            parameters.Add("v", _apiVersion);
-
-            // Add captcha if not null and then erase it.
-            if (_captchaSid != null && _captchaKey != null)
-            {
-                parameters.Add("captcha_sid", _captchaSid);
-                parameters.Add("captcha_key", _captchaKey);
-                _captchaSid = null;
-                _captchaKey = null;
-            }
-
-            // Build request url with parameters.
-            var urlString = string.Concat(MethodBase, method);
-            Log($"Invoking {method}: {urlString}");
-
-            // Post response and parse it based on parsing type.
-            var response =
-                await DeserializePostInPrefferedWay<ApiResponse<TResult>>
-                (urlString, parameters).ConfigureAwait(false);
-            ProcessErrors(response.Error);
-            return response.Response;
-        }
-
-        /// <summary>
-        /// Checks for any API errors and throws
-        /// an exception of type ApiException.
-        /// </summary>
-        /// <param name="apiError">API error to parse.</param>
-        private void ProcessErrors(ApiError apiError)
-        {
-            if (apiError == null) return;
-            Log("Received API error. " +
-                $"Code: {apiError.Code}, " +
-                $"About: \"{apiError.ErrorMessage}\"");
-            throw new ApiException(apiError);
-        }
-
-        /// <summary>
-        /// Deserializes Get response in a preffered way.
-        /// </summary>
-        /// <typeparam name="TResult">Type of result object</typeparam>
-        /// <param name="urlString">Url string to get response from</param>
-        /// <returns>Object of TResult type</returns>
-        internal Task<TResult> DeserializeGetInPrefferedWay<TResult>(string urlString)
-        {
-            switch (_jsonParsingType)
-            {
-                case JsonParsingType.UseStream:
-                    return DeserializeGetFromStream<TResult>(urlString);
-                case JsonParsingType.UseString:
-                    return DeserializeGetFromString<TResult>(urlString);
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-        }
-
-        /// <summary>
-        /// Deserializes object using Stream and JsonConverter. 
-        /// Optimal for performance.
-        /// </summary>
-        /// <typeparam name="TResult">Type of result object</typeparam>
-        /// <param name="urlString">Url string to get response from</param>
-        /// <returns>Object of TResult type</returns>
-        private async Task<TResult> DeserializeGetFromStream<TResult>(string urlString)
-        {
-            using (var stream = await _httpClient.GetStreamAsync(urlString).ConfigureAwait(false))
+            using (var stream = await RequestForStream(url, parameters).ConfigureAwait(false))
             using (var streamReader = new StreamReader(stream))
             using (var jsonReader = new JsonTextReader(streamReader))
             {
                 var serializer = new JsonSerializer();
-                var response = serializer.Deserialize<TResult>(jsonReader);
-                Log("Response successfully deserialized.");
-                return response;
+                Logger.Log("Response has been successfully received, deserializing...");
+                switch (_parseJson)
+                {
+                    case ParseJson.FromStream:
+                        return serializer.Deserialize<TResult>(jsonReader);
+                    case ParseJson.FromString:
+                        var loggableString = streamReader.ReadToEnd();
+                        Logger.Log($"Received: {loggableString}");
+                        return JsonConvert.DeserializeObject<TResult>(loggableString);
+                    default: throw new ArgumentOutOfRangeException();
+                }
             }
         }
-
+        
         /// <summary>
-        /// Deserializes object from string and logs more debug info.
-        /// Optimal for debugging.
+        /// Send POST or GET requests based on initialization preferences.
         /// </summary>
-        /// <typeparam name="TResult">Type of result object</typeparam>
-        /// <param name="urlString">Url string to get response from</param>
-        /// <returns>Object of TResult type</returns>
-        private async Task<TResult> DeserializeGetFromString<TResult>(string urlString)
-        {
-            using (var responseMessage = await _httpClient.GetAsync(urlString).ConfigureAwait(false))
-            {
-                var str = await responseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
-                Log($"Response: {str}");
-                var response = JsonConvert.DeserializeObject<TResult>(str);
-                Log("Response successfully deserialized.");
-                return response;
-            }
-        }
-
-        /// <summary>
-        /// Deserializes Post response in a preffered way.
-        /// </summary>
-        /// <typeparam name="TResult">Type of result object</typeparam>
-        /// <param name="urlString">Url string to Post response from</param>
-        /// <param name="parameters">Parameters dict</param>
-        /// <returns>Object of TResult type</returns>
-        internal Task<TResult> DeserializePostInPrefferedWay<TResult>(string urlString, Dictionary<string, string> parameters)
-        {
-            switch (_jsonParsingType)
-            {
-                case JsonParsingType.UseStream:
-                    return DeserializePostFromStream<TResult>(urlString, parameters);
-                case JsonParsingType.UseString:
-                    return DeserializePostFromString<TResult>(urlString, parameters);
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-        }
-
-        /// <summary>
-        /// Deserializes object using Stream and JsonConverter. 
-        /// Optimal for performance.
-        /// </summary>
-        /// <typeparam name="TResult">Type of result object</typeparam>
-        /// <param name="urlString">Url string to Post response from</param>
-        /// <param name="parameters">Parameters dict</param>
-        /// <returns>Object of TResult type</returns>
-        private async Task<TResult> DeserializePostFromStream<TResult>(string urlString, Dictionary<string, string> parameters)
-        {
-            using (var encodedContent = new FormUrlEncodedContent(parameters))
-            using (var httpResponse = await _httpClient.PostAsync(urlString, encodedContent).ConfigureAwait(false))
-            using (var streamReader = new StreamReader(await httpResponse.Content.ReadAsStreamAsync()))
-            using (var jsonReader = new JsonTextReader(streamReader))
-            {
-                var serializer = new JsonSerializer();
-                var response = serializer.Deserialize<TResult>(jsonReader);
-                Log("Response successfully deserialized.");
-                return response;
-            }
-        }
-
-        /// <summary>
-        /// Deserializes object from string and logs more debug info.
-        /// Optimal for debugging.
-        /// </summary>
-        /// <typeparam name="TResult">Type of result object</typeparam>
-        /// <param name="urlString">Url string to Post response from</param>
-        /// <param name="parameters">Parameters dict</param>
-        /// <returns>Object of TResult type</returns>
-        private async Task<TResult> DeserializePostFromString<TResult>(string urlString, Dictionary<string, string> parameters)
-        {
-            using (var encodedContent = new FormUrlEncodedContent(parameters))
-            using (var httpResponse = await _httpClient.PostAsync(urlString, encodedContent).ConfigureAwait(false))
-            {
-                var str = await httpResponse.Content.ReadAsStringAsync();
-                Log($"Response: {str}");
-                var response = JsonConvert.DeserializeObject<TResult>(str);
-                Log("Response successfully deserialized.");
-                return response;
-            }
-        }
-
-        /// <summary>
-        /// Creates url string from parameters dict and method base.
-        /// </summary>
-        /// <param name="baseString">Main url part</param>
-        /// <param name="parameters">Params dict</param>
-        /// <returns></returns>
-        public static string BuildUrl(string baseString, Dictionary<string, string> parameters) => 
-            string.Concat($"{baseString}?", string.Join("&", parameters.Select(i =>
-                $"{Uri.EscapeDataString(i.Key)}={Uri.EscapeDataString(i.Value)}")));
+        private Task<Stream> RequestForStream(Uri url, Dictionary<string, string> parameters) => 
+            new Dictionary<RequestMethod, Task<Stream>> {
+                {RequestMethod.Get, HttpService.GetForStreamAsync(url, parameters)},
+                {RequestMethod.Post, HttpService.PostForStreamAsync(url, parameters)}
+            }[_requestMethod];
 
         /// <summary>
         /// Executes given script written in VKSCRIPT language on VK servers.
@@ -275,15 +155,8 @@ namespace VkLibrary.Core
         /// <typeparam name="TResult">Type to return</typeparam>
         /// <param name="script">Your code</param>
         /// <returns>Object of a given type, determined by a script.</returns>
-        public async Task<TResult> Execute<TResult>(string script) => 
-            await GetAsync<TResult>("execute", new Dictionary<string, string>
-                { {"code", script} });
-
-        /// <summary>
-        /// Logs information to Debug output.
-        /// </summary>
-        /// <param name="obj">Object to show</param>
-        internal void Log(object obj) => _logger?.Invoke($"[VKLIBRARY.CORE]: {obj}");
+        public Task<TResult> Execute<TResult>(string script) => RequestAsync<TResult>("execute", 
+            new Dictionary<string, string> { {"code", script} });
 
         /// <summary>
         /// Converts Unix timestamp to regular DateTime.
@@ -300,11 +173,6 @@ namespace VkLibrary.Core
         /// <returns>Converted Unix Timestamp</returns>
         public static double DateTimeToUnixTime(DateTime dateTime) => 
             dateTime.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
-
-        /// <summary>
-        /// User access token.
-        /// </summary>
-        public AccessToken AccessToken { get; set; }
 
         /// <summary>
         /// Inits a LongPollClient using extended settings.
@@ -332,192 +200,6 @@ namespace VkLibrary.Core
             return client;
         }
 
-        #region API sections
-
-        /// <summary>
-        /// API part related to direct auth.
-        /// </summary>
-        public DirectAuth DirectAuth => new DirectAuth(this);
-
-        /// <summary>
-        /// API files upload helper. Contains upload methods.
-        /// </summary>
-        public UploadHelper UploadHelper => new UploadHelper(this);
-
-        /// <summary>
-        /// OAuth helpers API section.
-        /// </summary>
-        public OAuth OAuth => new OAuth(this);
-
-        /// <summary>
-        /// Account API section.
-        /// </summary>
-        public Account Account => new Account(this);
-
-        /// <summary>
-        /// Ads API section.
-        /// </summary>
-        public Ads Ads => new Ads(this);
-
-        /// <summary>
-        /// Apps API section.
-        /// </summary>
-        public Apps Apps => new Apps(this);
-
-        /// <summary>
-        /// Audio API section.
-        /// </summary>
-        public Audio Audio => new Audio(this);
-
-        /// <summary>
-        /// Board API section.
-        /// </summary>
-        public Board Board => new Board(this);
-
-        /// <summary>
-        /// Database API section.
-        /// </summary>
-        public Database Database => new Database(this);
-
-        /// <summary>
-        /// Docs API section.
-        /// </summary>
-        public Docs Docs => new Docs(this);
-
-        /// <summary>
-        /// Fave API section.
-        /// </summary>
-        public Fave Fave => new Fave(this);
-
-        /// <summary>
-        /// Friends API section.
-        /// </summary>
-        public Friends Friends => new Friends(this);
-
-        /// <summary>
-        /// Gifts API section.
-        /// </summary>
-        public Gifts Gifts => new Gifts(this);
-
-        /// <summary>
-        /// Groups API section.
-        /// </summary>
-        public Groups Groups => new Groups(this);
-
-        /// <summary>
-        /// Leads API section.
-        /// </summary>
-        public Leads Leads => new Leads(this);
-
-        /// <summary>
-        /// Likes API section.
-        /// </summary>
-        public Likes Likes => new Likes(this);
-
-        /// <summary>
-        /// Market API section.
-        /// </summary>
-        public Market Market => new Market(this);
-
-        /// <summary>
-        /// Messages API section.
-        /// </summary>
-        public Messages Messages => new Messages(this);
-
-        /// <summary>
-        /// Newsfeed API section.
-        /// </summary>
-        public Newsfeed Newsfeed => new Newsfeed(this);
-
-        /// <summary>
-        /// Notes API section.
-        /// </summary>
-        public Notes Notes => new Notes(this);
-
-        /// <summary>
-        /// Notifications API section.
-        /// </summary>
-        public Notifications Notifications => new Notifications(this);
-
-        /// <summary>
-        /// Orders API section.
-        /// </summary>
-        public Orders Orders => new Orders(this);
-
-        /// <summary>
-        /// Pages API section.
-        /// </summary>
-        public Pages Pages => new Pages(this);
-
-        /// <summary>
-        /// Photos API section.
-        /// </summary>
-        public Photos Photos => new Photos(this);
-
-        /// <summary>
-        /// Places API section.
-        /// </summary>
-        public Places Places => new Places(this);
-
-        /// <summary>
-        /// Polls API section.
-        /// </summary>
-        public Polls Polls => new Polls(this);
-
-        /// <summary>
-        /// Search API section.
-        /// </summary>
-        public Search Search => new Search(this);
-
-        /// <summary>
-        /// Secure API section.
-        /// </summary>
-        public Secure Secure => new Secure(this);
-
-        /// <summary>
-        /// Stats API section.
-        /// </summary>
-        public Stats Stats => new Stats(this);
-
-        /// <summary>
-        /// Status API section.
-        /// </summary>
-        public Status Status => new Status(this);
-
-        /// <summary>
-        /// Storage API section.
-        /// </summary>
-        public Storage Storage => new Storage(this);
-
-        /// <summary>
-        /// Users API section.
-        /// </summary>
-        public Users Users => new Users(this);
-
-        /// <summary>
-        /// Utils API section.
-        /// </summary>
-        public Utils Utils => new Utils(this);
-
-        /// <summary>
-        /// Video API section.
-        /// </summary>
-        public Video Video => new Video(this);
-
-        /// <summary>
-        /// Wall API section.
-        /// </summary>
-        public Wall Wall => new Wall(this);
-
-        /// <summary>
-        /// Widgets API section.
-        /// </summary>
-        public Widgets Widgets => new Widgets(this);
-
-        #endregion
-
-        #region Helper methods
-
         /// <summary>
         /// If any action is performed too frequently, an API request may return "Captcha needed" error. 
         /// After that a user needs to enter a code from the image and resend a request with a Captcha 
@@ -528,50 +210,68 @@ namespace VkLibrary.Core
         /// <param name="captchaKey">Text input, answer for captcha</param>
         public void SetCaptchaForNextRequest(string captchaSid, string captchaKey)
         {
-            _captchaSid = captchaSid;
-            _captchaKey = captchaKey;
+            _captchaSid = captchaSid; _captchaKey = captchaKey;
         }
+        
+        /// <summary>
+        /// Application identifier for current library instance.
+        /// </summary>
+        public int AppId { get; }
+        
+        /// <summary>
+        /// Application secret key used for secure API sections for current library instance.
+        /// </summary>
+        public string AppSecret { get; }
+        
+        /// <summary>
+        /// API version that current library instance uses.
+        /// </summary>
+        public string ApiVersion { get; }
 
         /// <summary>
-        /// Returns app id that library uses now.
+        /// User access token.
         /// </summary>
-        /// <returns></returns>
-        public string GetAppId() => _appId;
+        public AccessToken AccessToken { get; set; }
 
         /// <summary>
-        /// Returns api version that library uses now.
+        /// Disposes internaly stored HttpService.
         /// </summary>
-        public string GetApiVersion() => _apiVersion;
-
-        /// <summary>
-        /// Returns client secret that library uses now. 
-        /// </summary>
-        public string GetClientSecret() => _clientSecret;
-
-        /// <summary>
-        /// Pattern for disposing httpClient.
-        /// </summary>
-        public void Dispose() => _httpClient?.Dispose();
-
-        #endregion
+        public void Dispose() => HttpService?.Dispose();
     }
 
     /// <summary>
-    /// Json parsing type.
+    /// Determines how the library should parse JSONs received from API servers.
     /// </summary>
-    public enum JsonParsingType
+    public enum ParseJson
     {
         /// <summary>
-        /// To minimize memory usage and the number of objects allocated,
+        /// To minimize memory usage and the number of strings allocated in memory,
         /// Json.NET supports serializing and deserializing directly from a stream.
-        /// Use this for better performance when parsing JSONs.
+        /// Use this in production for better performance.
         /// </summary>
-        UseStream,
-
+        FromStream,
         /// <summary>
-        /// Loads Json into a string, logs it to the DEBUG output, and then
-        /// deserializes. Use this for testing purposes.
+        /// Loads JSON into a string, logs it using Logger, and then deserializes. 
+        /// Use this for testing purposes only.
         /// </summary>
-        UseString
+        FromString
+    }
+
+    /// <summary>
+    /// Determines which request method should be used when sending queries to Vkontakte API.
+    /// GET option is generally a good choice for testing and debugging as GET queries are
+    /// easy to read and understand. But when sending LARGE objects to VK API servers 
+    /// consider using POST option.
+    /// </summary>
+    public enum RequestMethod
+    {
+        /// <summary>
+        /// Use GET method when querying VK servers.
+        /// </summary>
+        Get,
+        /// <summary>
+        /// Use POST method when querying VK servers.
+        /// </summary>
+        Post
     }
 }

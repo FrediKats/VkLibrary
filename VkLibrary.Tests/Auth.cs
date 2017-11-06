@@ -35,9 +35,9 @@ namespace VkLibrary.Tests
             const AuthDisplayType authDisplayType = AuthDisplayType.Page;
             var response = Api.OAuth.GetAuthUrl(scopeSettings, authDisplayType);
             
-            var query = new Uri(response).Query;
+            var query = response.Query;
             var decodedQuery = WebUtility.HtmlDecode(query);
-            Log(decodedQuery);
+            Logger.Log(decodedQuery);
             
             var parameters = decodedQuery
                 .Substring(1)

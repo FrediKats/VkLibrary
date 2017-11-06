@@ -26,7 +26,7 @@ namespace VkLibrary.Core.Methods
             if (filter != null)
                 parameters.Add("filter", filter.ToApiString());
 
-            return _vkontakte.GetAsync<AccountCounters>("account.getCounters", parameters);
+            return _vkontakte.RequestAsync<AccountCounters>("account.getCounters", parameters);
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace VkLibrary.Core.Methods
             if (name != null)
                 parameters.Add("name", name);
 
-            return _vkontakte.GetAsync<int>("account.setNameInMenu", parameters);
+            return _vkontakte.RequestAsync<int>("account.setNameInMenu", parameters);
         }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace VkLibrary.Core.Methods
             if (voip != null)
                 parameters.Add("voip", voip.ToApiString());
 
-            return _vkontakte.GetAsync<int>("account.setOnline", parameters);
+            return _vkontakte.RequestAsync<int>("account.setOnline", parameters);
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace VkLibrary.Core.Methods
             var parameters = new Dictionary<string, string>();
 
 
-            return _vkontakte.GetAsync<int>("account.setOffline", parameters);
+            return _vkontakte.RequestAsync<int>("account.setOffline", parameters);
         }
 
         /// <summary>
@@ -85,7 +85,7 @@ namespace VkLibrary.Core.Methods
         /// </param>
         /// <param name="mycontact">Contact of a current user on a specified service</param>
         /// <param name="returnAll">
-        /// '1' – also return contacts found using this service before, '0' – return only contacts found
+        /// '1' â€“ also return contacts found using this service before, '0' â€“ return only contacts found
         /// using 'contacts' field.
         /// </param>
         /// <param name="fields">
@@ -109,7 +109,7 @@ namespace VkLibrary.Core.Methods
             if (fields != null)
                 parameters.Add("fields", fields.ToApiString());
 
-            return _vkontakte.GetAsync<LookupResult>("account.lookupContacts", parameters);
+            return _vkontakte.RequestAsync<LookupResult>("account.lookupContacts", parameters);
         }
 
         /// <summary>
@@ -143,7 +143,7 @@ namespace VkLibrary.Core.Methods
             if (settings != null)
                 parameters.Add("settings", settings);
 
-            return _vkontakte.GetAsync<int>("account.registerDevice", parameters);
+            return _vkontakte.RequestAsync<int>("account.registerDevice", parameters);
         }
 
         /// <summary>
@@ -158,7 +158,7 @@ namespace VkLibrary.Core.Methods
             if (deviceId != null)
                 parameters.Add("device_id", deviceId);
 
-            return _vkontakte.GetAsync<int>("account.unregisterDevice", parameters);
+            return _vkontakte.RequestAsync<int>("account.unregisterDevice", parameters);
         }
 
         /// <summary>
@@ -172,7 +172,7 @@ namespace VkLibrary.Core.Methods
         /// e.g. '2000000001'.; ; For community:; '- Community ID', e.g. '-12345'.; "
         /// </param>
         /// <param name="sound">
-        /// '1' — to enable sound in this dialog, '0' — to disable sound. Only if 'peer_id' contains user or
+        /// '1' â€” to enable sound in this dialog, '0' â€” to disable sound. Only if 'peer_id' contains user or
         /// community ID.
         /// </param>
         public Task<int> SetSilenceMode(string deviceId = null, int? time = null, int? peerId = null,
@@ -189,7 +189,7 @@ namespace VkLibrary.Core.Methods
             if (sound != null)
                 parameters.Add("sound", sound.ToApiString());
 
-            return _vkontakte.GetAsync<int>("account.setSilenceMode", parameters);
+            return _vkontakte.RequestAsync<int>("account.setSilenceMode", parameters);
         }
 
         /// <summary>
@@ -204,7 +204,7 @@ namespace VkLibrary.Core.Methods
             if (deviceId != null)
                 parameters.Add("device_id", deviceId);
 
-            return _vkontakte.GetAsync<PushSettings>("account.getPushSettings", parameters);
+            return _vkontakte.RequestAsync<PushSettings>("account.getPushSettings", parameters);
         }
 
         /// <summary>
@@ -229,7 +229,7 @@ namespace VkLibrary.Core.Methods
             if (value != null)
                 parameters.Add("value", value.ToApiString());
 
-            return _vkontakte.GetAsync<int>("account.setPushSettings", parameters);
+            return _vkontakte.RequestAsync<int>("account.setPushSettings", parameters);
         }
 
         /// <summary>
@@ -244,7 +244,7 @@ namespace VkLibrary.Core.Methods
             if (userId != null)
                 parameters.Add("user_id", userId.ToApiString());
 
-            return _vkontakte.GetAsync<int?>("account.getAppPermissions", parameters);
+            return _vkontakte.RequestAsync<int?>("account.getAppPermissions", parameters);
         }
 
         /// <summary>
@@ -260,7 +260,7 @@ namespace VkLibrary.Core.Methods
             if (count != null)
                 parameters.Add("count", count.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<Offer>>("account.getActiveOffers", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<Offer>>("account.getActiveOffers", parameters);
         }
 
         /// <summary>
@@ -275,7 +275,7 @@ namespace VkLibrary.Core.Methods
             if (userId != null)
                 parameters.Add("user_id", userId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("account.banUser", parameters);
+            return _vkontakte.RequestAsync<int>("account.banUser", parameters);
         }
 
         /// <summary>
@@ -290,7 +290,7 @@ namespace VkLibrary.Core.Methods
             if (userId != null)
                 parameters.Add("user_id", userId.ToApiString());
 
-            return _vkontakte.GetAsync<int>("account.unbanUser", parameters);
+            return _vkontakte.RequestAsync<int>("account.unbanUser", parameters);
         }
 
         /// <summary>
@@ -308,7 +308,7 @@ namespace VkLibrary.Core.Methods
             if (count != null)
                 parameters.Add("count", count.ToApiString());
 
-            return _vkontakte.GetAsync<ApiItemsResponse<UserMin>>("account.getBanned", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<UserMin>>("account.getBanned", parameters);
         }
 
         /// <summary>
@@ -316,9 +316,9 @@ namespace VkLibrary.Core.Methods
         /// Docs: <see href="https://vk.com/dev/account.getInfo">account.getInfo</see>
         /// </summary>
         /// <param name="fields">
-        /// Fields to return. Possible values:; *'country' — user country;; *'https_required' — is "HTTPS
-        /// only" option enabled;; *'own_posts_default' — is "Show my posts only" option is enabled;; *'no_wall_replies' — are
-        /// wall replies disabled or not;; *'intro' — is intro passed by user or not;; *'lang' — user language.; ; By default:
+        /// Fields to return. Possible values:; *'country' â€” user country;; *'https_required' â€” is "HTTPS
+        /// only" option enabled;; *'own_posts_default' â€” is "Show my posts only" option is enabled;; *'no_wall_replies' â€” are
+        /// wall replies disabled or not;; *'intro' â€” is intro passed by user or not;; *'lang' â€” user language.; ; By default:
         /// all.
         /// </param>
         public Task<Info> GetInfo(IEnumerable<string> fields = null)
@@ -328,7 +328,7 @@ namespace VkLibrary.Core.Methods
             if (fields != null)
                 parameters.Add("fields", fields.ToApiString());
 
-            return _vkontakte.GetAsync<Info>("account.getInfo", parameters);
+            return _vkontakte.RequestAsync<Info>("account.getInfo", parameters);
         }
 
         /// <summary>
@@ -346,7 +346,7 @@ namespace VkLibrary.Core.Methods
             if (value != null)
                 parameters.Add("value", value);
 
-            return _vkontakte.GetAsync<int>("account.setInfo", parameters);
+            return _vkontakte.RequestAsync<int>("account.setInfo", parameters);
         }
 
         /// <summary>
@@ -378,7 +378,7 @@ namespace VkLibrary.Core.Methods
             if (newPassword != null)
                 parameters.Add("new_password", newPassword);
 
-            return _vkontakte.GetAsync<ChangePasswordResponse>("account.changePassword", parameters);
+            return _vkontakte.RequestAsync<ChangePasswordResponse>("account.changePassword", parameters);
         }
 
         /// <summary>
@@ -390,7 +390,7 @@ namespace VkLibrary.Core.Methods
             var parameters = new Dictionary<string, string>();
 
 
-            return _vkontakte.GetAsync<UserSettings>("account.getProfileInfo", parameters);
+            return _vkontakte.RequestAsync<UserSettings>("account.getProfileInfo", parameters);
         }
 
         /// <summary>
@@ -405,17 +405,17 @@ namespace VkLibrary.Core.Methods
         /// ID of the name change request to be canceled. If this parameter is sent, all the others
         /// are ignored.
         /// </param>
-        /// <param name="sex">User sex. Possible values: ; * '1' – female;; * '2' – male.</param>
+        /// <param name="sex">User sex. Possible values: ; * '1' â€“ female;; * '2' â€“ male.</param>
         /// <param name="relation">
-        /// User relationship status. Possible values: ; * '1' – single;; * '2' – in a relationship;; * '3'
-        /// – engaged;; * '4' – married;; * '5' – it's complicated;; * '6' – actively searching;; * '7' – in love;; * '0' – not
+        /// User relationship status. Possible values: ; * '1' â€“ single;; * '2' â€“ in a relationship;; * '3'
+        /// â€“ engaged;; * '4' â€“ married;; * '5' â€“ it's complicated;; * '6' â€“ actively searching;; * '7' â€“ in love;; * '0' â€“ not
         /// specified.
         /// </param>
         /// <param name="relationPartnerId">ID of the relationship partner.</param>
         /// <param name="bdate">User birth date, format: DD.MM.YYYY.</param>
         /// <param name="bdateVisibility">
-        /// Birth date visibility. Returned values: ; * '1' – show birth date;; * '2' – show only
-        /// month and day;; * '0' – hide birth date.
+        /// Birth date visibility. Returned values: ; * '1' â€“ show birth date;; * '2' â€“ show only
+        /// month and day;; * '0' â€“ hide birth date.
         /// </param>
         /// <param name="homeTown">User home town.</param>
         /// <param name="countryId">User country.</param>
@@ -457,7 +457,7 @@ namespace VkLibrary.Core.Methods
             if (status != null)
                 parameters.Add("status", status);
 
-            return _vkontakte.GetAsync<SaveProfileInfoResponse>("account.saveProfileInfo", parameters);
+            return _vkontakte.RequestAsync<SaveProfileInfoResponse>("account.saveProfileInfo", parameters);
         }
     }
 }

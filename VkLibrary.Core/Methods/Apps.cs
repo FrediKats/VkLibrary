@@ -23,7 +23,7 @@ namespace VkLibrary.Core.Methods
             if (userId != null)
                 parameters.Add("user_id", userId.ToApiString());
 
-            return _vkontakte.GetAsync<int?>("apps.getScore", parameters);
+            return _vkontakte.RequestAsync<int?>("apps.getScore", parameters);
         }
     }
 }

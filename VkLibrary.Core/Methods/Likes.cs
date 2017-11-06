@@ -17,9 +17,9 @@ namespace VkLibrary.Core.Methods
         /// Docs: <see href="https://vk.com/dev/likes.getList">likes.getList</see>
         /// </summary>
         /// <param name="type">
-        /// ; Object type:; 'post' — post on user or community wall; 'comment' — comment on a wall post; 'photo'
-        /// — photo; 'audio' — audio; 'video' — video; 'note' — note; 'photo_comment' — comment on the photo; 'video_comment' —
-        /// comment on the video; 'topic_comment' — comment in the discussion; 'sitepage' — page of the site where the
+        /// ; Object type:; 'post' â€” post on user or community wall; 'comment' â€” comment on a wall post; 'photo'
+        /// â€” photo; 'audio' â€” audio; 'video' â€” video; 'note' â€” note; 'photo_comment' â€” comment on the photo; 'video_comment' â€”
+        /// comment on the video; 'topic_comment' â€” comment in the discussion; 'sitepage' â€” page of the site where the
         /// Like widget is installed
         /// </param>
         /// <param name="ownerId">
@@ -37,11 +37,11 @@ namespace VkLibrary.Core.Methods
         /// 'item_id' parameter.
         /// </param>
         /// <param name="filter">
-        /// Filters to apply:; 'likes' — returns information about all users who liked the object (default);
-        /// 'copies' — returns information only about users who told their friends about the object
+        /// Filters to apply:; 'likes' â€” returns information about all users who liked the object (default);
+        /// 'copies' â€” returns information only about users who told their friends about the object
         /// </param>
         /// <param name="friendsOnly">
-        /// Specifies which users are returned:; '1' — to return only the current user's friends; '0' —
+        /// Specifies which users are returned:; '1' â€” to return only the current user's friends; '0' â€”
         /// to return all users (default)
         /// </param>
         /// <param name="offset">Offset needed to select a specific subset of users.</param>
@@ -76,7 +76,7 @@ namespace VkLibrary.Core.Methods
                 parameters.Add("skip_own", skipOwn.ToApiString());
 
             parameters.Add("extended", false.ToApiString());
-            return _vkontakte.GetAsync<ApiItemsResponse<int?>>("likes.getList", parameters);
+            return _vkontakte.RequestAsync<ApiItemsResponse<int?>>("likes.getList", parameters);
         }
 
         /// <summary>
@@ -84,9 +84,9 @@ namespace VkLibrary.Core.Methods
         /// Docs: <see href="https://vk.com/dev/likes.add">likes.add</see>
         /// </summary>
         /// <param name="type">
-        /// Object type:; 'post' — post on user or community wall; 'comment' — comment on a wall post; 'photo' —
-        /// photo; 'audio' — audio; 'video' — video; 'note' — note; 'photo_comment' — comment on the photo; 'video_comment' —
-        /// comment on the video; 'topic_comment' — comment in the discussion; 'sitepage' — page of the site where the
+        /// Object type:; 'post' â€” post on user or community wall; 'comment' â€” comment on a wall post; 'photo' â€”
+        /// photo; 'audio' â€” audio; 'video' â€” video; 'note' â€” note; 'photo_comment' â€” comment on the photo; 'video_comment' â€”
+        /// comment on the video; 'topic_comment' â€” comment in the discussion; 'sitepage' â€” page of the site where the
         /// Like widget is installed
         /// </param>
         /// <param name="ownerId">ID of the user or community that owns the object.</param>
@@ -106,7 +106,7 @@ namespace VkLibrary.Core.Methods
             if (accessKey != null)
                 parameters.Add("access_key", accessKey);
 
-            return _vkontakte.GetAsync<AddResponse>("likes.add", parameters);
+            return _vkontakte.RequestAsync<AddResponse>("likes.add", parameters);
         }
 
         /// <summary>
@@ -114,9 +114,9 @@ namespace VkLibrary.Core.Methods
         /// Docs: <see href="https://vk.com/dev/likes.delete">likes.delete</see>
         /// </summary>
         /// <param name="type">
-        /// Object type:; 'post' — post on user or community wall; 'comment' — comment on a wall post; 'photo' —
-        /// photo; 'audio' — audio; 'video' — video; 'note' — note; 'photo_comment' — comment on the photo; 'video_comment' —
-        /// comment on the video; 'topic_comment' — comment in the discussion; 'sitepage' — page of the site where the
+        /// Object type:; 'post' â€” post on user or community wall; 'comment' â€” comment on a wall post; 'photo' â€”
+        /// photo; 'audio' â€” audio; 'video' â€” video; 'note' â€” note; 'photo_comment' â€” comment on the photo; 'video_comment' â€”
+        /// comment on the video; 'topic_comment' â€” comment in the discussion; 'sitepage' â€” page of the site where the
         /// Like widget is installed
         /// </param>
         /// <param name="ownerId">ID of the user or community that owns the object.</param>
@@ -132,7 +132,7 @@ namespace VkLibrary.Core.Methods
             if (itemId != null)
                 parameters.Add("item_id", itemId.ToApiString());
 
-            return _vkontakte.GetAsync<DeleteResponse>("likes.delete", parameters);
+            return _vkontakte.RequestAsync<DeleteResponse>("likes.delete", parameters);
         }
 
         /// <summary>
@@ -141,9 +141,9 @@ namespace VkLibrary.Core.Methods
         /// </summary>
         /// <param name="userId">User ID.</param>
         /// <param name="type">
-        /// Object type:; 'post' — post on user or community wall; 'comment' — comment on a wall post; 'photo' —
-        /// photo; 'audio' — audio; 'video' — video; 'note' — note; 'photo_comment' — comment on the photo; 'video_comment' —
-        /// comment on the video; 'topic_comment' — comment in the discussion
+        /// Object type:; 'post' â€” post on user or community wall; 'comment' â€” comment on a wall post; 'photo' â€”
+        /// photo; 'audio' â€” audio; 'video' â€” video; 'note' â€” note; 'photo_comment' â€” comment on the photo; 'video_comment' â€”
+        /// comment on the video; 'topic_comment' â€” comment in the discussion
         /// </param>
         /// <param name="ownerId">ID of the user or community that owns the object.</param>
         /// <param name="itemId">Object ID.</param>
@@ -161,7 +161,7 @@ namespace VkLibrary.Core.Methods
             if (itemId != null)
                 parameters.Add("item_id", itemId.ToApiString());
 
-            return _vkontakte.GetAsync<IsLikedResponse>("likes.isLiked", parameters);
+            return _vkontakte.RequestAsync<IsLikedResponse>("likes.isLiked", parameters);
         }
     }
 }
