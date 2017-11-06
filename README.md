@@ -29,7 +29,10 @@ Now we can initialize the library. Here is the simpliest way to do this:
 ```csharp
 var vk = new Vkontakte(1234567, string.Empty);
 ```
-We only need to specify application ID received on previous step and optionally application secret code. If you are not going to use direct auth or any other methods from secure API section, you may use string.Empty as the second argument to quickly get started. VkLibrary also contains additional extended constructors, using them you can customize almost everything. Let's take a look at an example:
+We only need to specify application ID received on previous step and optionally application secret code. If you are not going to use direct auth or any other methods from secure API section, you may use string.Empty as the second argument to quickly get started. 
+
+### Extended scenarios
+VkLibrary also contains additional extended constructors, using them you can customize almost everything. Let's take a look at an example:
 ```csharp
 var api = new Vkontakte(
   appId: 1234567, 
@@ -52,17 +55,15 @@ There may be some cases when you would like to customize default HttpService imp
 class CustomLogger : ILogger { /* implementation */ }
 class CustomHttpService : IHttpService { /* implementation */ }
 
-var customLogger = new CustomLogger();
-var customhttpService = new CustomHttpService();
-var api = new Vkontakte(
-  appId: 1234567, 
-  appSecret: "fb4f44tbuyh5k",
-  apiVersion: "5.63",
-  requestMethod: RequestMethod.Get,
-  parseJson: ParseJson.FromString,
-  httpService: customHttpService,
-  logger: customLogger
-);
+var api = new Vkontakte(1234567, string.Empty, new CustomHttpService(), new CustomLogger());
+```
+
+There is another example below demonstrating how to quickly get started with a console logger:
+```csharp
+class ConsoleLogger : ILogger {
+  public void Log(object o) => Console.WriteLine(o?.ToString());
+}
+var api = new Vkontakte(3502561, string.Empty, new ConsoleLogger());
 ```
 
 # Authentication using OAuth
@@ -311,8 +312,6 @@ use lib = new Vkontakte(1234567, "")
 ```
 So we can call library methods in a familiar way! To pass nullable parameters use <b>Nullable</b> keyword.
 ```fsharp
-let friends = await <| lib.Friends.Get()
-
 let friends = await <| lib.Friends.Get(userId = Nullable 1234567, count = Nullable 1)
 ```
 
