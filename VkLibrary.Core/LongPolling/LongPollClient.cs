@@ -275,7 +275,7 @@ namespace VkLibrary.Core.LongPolling
         /// UserTypingInDialog LongPoll event.
         /// Item1 is UserId, Item2 is ChatId.
         /// </summary>
-        public event EventHandler<Tuple<int, MessageFlags>> UserTypingInConversationEvent;
+        public event EventHandler<Tuple<int, int>> UserTypingInConversationEvent;
 
         /// <summary>
         /// UserCall LongPoll event.

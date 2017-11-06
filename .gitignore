@@ -59,6 +59,7 @@ VkLibrary.Tests/bin
 VkLibrary.Tests/obj
 VkLibrary.Tests/.vs
 VkLibrary.Tests/Constants.fs
+VkLibrary.Tests/Helpers/Constants.fs
 *.props
 *.targets
 *.user
