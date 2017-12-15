@@ -19,7 +19,7 @@ namespace VkLibrary.Core.Auth
             DoIfKey("error_description", response, s => ErrorDescription = s);
             DoIfKey("error_reason", response, s => ErrorReason = s);
             DoIfKey("access_token", response, s => AccessToken.Token = s);
-            DoIfKey("expires_id", response, s => AccessToken.ExpiresIn = double.Parse(s));
+            DoIfKey("expires_id", response, s => AccessToken.ExpiresIn = int.Parse(s));
             DoIfKey("user_id", response, s => AccessToken.UserId = int.Parse(s));
         }
 

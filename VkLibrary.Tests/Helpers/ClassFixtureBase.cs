@@ -11,7 +11,7 @@ namespace VkLibrary.Tests.Helpers
         {
             Logger = new XUnitLogger(testOutputHelper);
             var accessToken = AccessToken.FromString(token, id);
-            Api = new Vkontakte(id, secret, Logger) {AccessToken = accessToken};
+            Api = new Vkontakte(id, Logger, secret) {AccessToken = accessToken};
         }
 
         protected Vkontakte Api { get; }

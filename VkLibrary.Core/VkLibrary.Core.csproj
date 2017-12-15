@@ -2,7 +2,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard1.1</TargetFramework>
-    <ApplicationIcon></ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
     <RepositoryUrl>https://github.com/Worldbeater/VkLibrary.Core</RepositoryUrl>
     <Version>1.1.1</Version>
     <Authors>Artjom Graf</Authors>
