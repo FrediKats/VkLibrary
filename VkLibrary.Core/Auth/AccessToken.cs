@@ -18,7 +18,7 @@ namespace VkLibrary.Core.Auth
         /// Expires in UnixTimeStamp.
         /// </summary>
         [JsonProperty("expires_in")]
-        public double ExpiresIn { get; set; }
+        public int ExpiresIn { get; set; }
 
         /// <summary>
         /// User ID that owns this token.
@@ -34,17 +34,17 @@ namespace VkLibrary.Core.Auth
         /// <summary>
         /// Has access token expired?
         /// </summary>
-        public bool HasExpired => ExpiresIn != default(double) && DateTime.Now > ExpiresInDateTime;
+        public bool HasExpired => ExpiresIn != 0 && DateTime.Now > ExpiresInDateTime;
 
         /// <summary>
         /// Creates token from a string.
         /// </summary>
         /// <param name="token">Token as string.</param>
         /// <param name="userId">User id.</param>
-        public static AccessToken FromString(string token, int userId) => new AccessToken
+        public static AccessToken FromString(string token, int userId = 0) => new AccessToken
         {
             Token = token,
-            ExpiresIn = default(double),
+            ExpiresIn = default(int),
             UserId = userId
         };
     }
