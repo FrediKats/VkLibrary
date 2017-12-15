@@ -1,7 +1,3 @@
-<a href="https://github.com/worldbeater/VkLibrary">
-  <img src="https://worldbeater.github.io/logos/VkLibrary.png" width="100" height="100">
-</a>
-
 <b>VkLibrary</b> is an <i>unofficial</i> <a href="https://vk.com/dev">VK API</a> library implemented in C# and covering almost all existing API methods and types, containing helper methods for DirectAuth and OAuth, containing methods for easy file uploading to vk servers using POST requests. Huge parts of it were generated using official JSON Schema to provide full API coverage.
 
 |Targets|Nuget|Downloads|Issues|License|
@@ -30,41 +26,6 @@ Now we can initialize the library. Here is the simpliest way to do this:
 var vk = new Vkontakte(1234567, string.Empty);
 ```
 We only need to specify application ID received on previous step and optionally application secret code. If you are not going to use direct auth or any other methods from secure API section, you may use string.Empty as the second argument to quickly get started. 
-
-### Extended scenarios
-VkLibrary also contains additional extended constructors, using them you can customize almost everything. Let's take a look at an example:
-```csharp
-var api = new Vkontakte(
-  appId: 1234567, 
-  appSecret: "fb4f44tbuyh5k",
-  apiVersion: "5.63",
-  requestMethod: RequestMethod.Get,
-  parseJson: ParseJson.FromString
-);
-```
-Here we tell the library to use 1234567 application id with "fb4f44tbuyh5k" secret code, process requests using 5.63 API version, perform GET requests and parse received JSONs from strings.
-
-<b>ParseJson</b> option determines how the library should parse JSONs received from VK servers.
-- <i>ParseJson.FromString</i>: loads JSON into a string, logs it using default logger and only after that deserializes. Use this for testing purposes only due to potential high memory usage and performance issues;
-- <i>ParseJson.FromStream</i>: to minimize memory usage and the number of strings allocated in memory, JSON.NET supports deserializing objects directly from a stream. Use this option in production for better performance.
-
-<b>RequestMethod</b> determines which request method should be used when sending queries to Vkontakte API. GET option is generally a good choice for testing and debugging as GET queries are easy to read and understand. But when sending LARGE objects to VK API servers consider using POST option, otherwise you'll receive "414 URI Too Long" error.
-
-There may be some cases when you would like to customize default HttpService implementation. To do this, simply implement <b>IHttpService</b> interface and pass your new class instance to VkLibrary.Core via extended constructor. The same thing you can do with a default logger, you'll need an <b>ILogger</b> interface. Default implementations of ILogger and IHttpService are <b>DefaultLogger</b> and <b>DefaultHttpService</b> respectively.
-```csharp
-class CustomLogger : ILogger { /* implementation */ }
-class CustomHttpService : IHttpService { /* implementation */ }
-
-var api = new Vkontakte(1234567, string.Empty, new CustomHttpService(), new CustomLogger());
-```
-
-There is another example below demonstrating how to quickly get started with a console logger:
-```csharp
-class ConsoleLogger : ILogger {
-  public void Log(object o) => Console.WriteLine(o?.ToString());
-}
-var api = new Vkontakte(3502561, string.Empty, new ConsoleLogger());
-```
 
 # Authentication using OAuth
 As we already know, most methods require a valid access token. To get that token using <b>OAuth</b>, show a WebView-like control to a user, navigate him to authentication page and handle future redirects. More info can be found <a href="http://vk.com/dev/auth_mobile">in official docs</a>.
@@ -292,6 +253,44 @@ If we don't need our long poll client anymore, we should stop it.
 longPollClient.Stop();
 ```
 
+# Extended Scenarios
+
+VkLibrary also contains additional extended constructors, using them you can customize almost everything. 
+Let's take a look at an example:
+```csharp
+var api = new Vkontakte(
+  appId: 1234567, 
+  appSecret: "fb4f44tbuyh5k",
+  apiVersion: "5.63",
+  requestMethod: RequestMethod.Get,
+  parseJson: ParseJson.FromString
+);
+```
+Here we tell the library to use 1234567 application id with "fb4f44tbuyh5k" secret code, process requests using 5.63 API version, perform GET requests and parse received JSONs from strings.
+
+<b>ParseJson</b> option determines how the library should parse JSONs received from VK servers.
+- <i>ParseJson.FromString</i>: loads JSON into a string, logs it using default logger and only after that deserializes. Use this for testing purposes only due to potential high memory usage and performance issues;
+- <i>ParseJson.FromStream</i>: to minimize memory usage and the number of strings allocated in memory, JSON.NET supports deserializing objects directly from a stream. Use this option in production for better performance.
+
+<b>RequestMethod</b> determines which request method should be used when sending queries to Vkontakte API. GET option is generally a good choice for testing and debugging as GET queries are easy to read and understand. But when sending LARGE objects to VK API servers consider using POST option, otherwise you'll receive "414 URI Too Long" error.
+
+There may be some cases when you would like to customize default HttpService implementation. To do this, simply implement <b>IHttpService</b> interface and pass your new class instance to VkLibrary.Core via extended constructor. The same thing you can do with a default logger, you'll need an <b>ILogger</b> interface. Default implementations of ILogger and IHttpService are <b>DefaultLogger</b> and <b>DefaultHttpService</b> respectively.
+```csharp
+class CustomLogger : ILogger { /* implementation */ }
+class CustomHttpService : IHttpService { /* implementation */ }
+
+var api = new Vkontakte(1234567, string.Empty, new CustomHttpService(), new CustomLogger());
+```
+
+There is another example below demonstrating how to quickly get started with a console logger:
+```csharp
+var api = new Vkontakte(3502561, string.Empty, new ConsoleLogger());
+
+class ConsoleLogger : ILogger { 
+    public void Log(object o) => Console.WriteLine(o?.ToString()); 
+}
+```
+
 # Other .NET languages
 
 ## For F# Developers
@@ -308,11 +307,16 @@ let await (task: Task<'a>) =
 ```
 Then we need to initialize the library:
 ```fsharp
-use lib = new Vkontakte(1234567, "")
+use lib = new Vkontakte(1234567, "your_secret_code")
 ```
 So we can call library methods in a familiar way! To pass nullable parameters use <b>Nullable</b> keyword.
 ```fsharp
 let friends = await <| lib.Friends.Get(userId = Nullable 1234567, count = Nullable 1)
+```
+F# gives us an ability to create annonymous interface implementations and that's cool! Using this feature you can write code like this and inject a custom logger into VkLibrary.Core:
+```fsharp
+let logger = { new ILogger with member __.Log o = printfn "%A" o }
+use api = new Vkontakte(1234567, "your_secret_code", logger = logger)
 ```
 
 ## For Visual Basic Developers
