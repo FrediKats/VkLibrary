@@ -160,11 +160,14 @@ namespace VkLibrary.Core.Methods
         /// Get photos upload server.
         /// Docs: <see href="https://vk.com/dev/photos.getUploadServer">photos.getUploadServer</see>
         /// </summary>
+        /// <param name="albumId">Album id.</param>
         /// <param name="groupId">Group id.</param>
-        public Task<GetChatUploadServerResponse> GetUploadServer(uint groupId = 0)
+        public Task<GetChatUploadServerResponse> GetUploadServer(int albumId = 0, uint groupId = 0)
         {
             var parameters = new Dictionary<string, string>();
 
+            if (albumId != 0)
+                parameters.Add("album_id", albumId.ToApiString());
             if (groupId != 0)
                 parameters.Add("group_id", groupId.ToApiString());
 
@@ -185,7 +188,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="longitude">Geographical longitude, in degrees (from '-180' to '180').</param>
         /// <param name="caption">Text describing the photo. 2048 digits max.</param>
         public Task<IEnumerable<Photo>> Save(
-            int? albumId = null, int? groupId = null, int? server = null, string photosList = null,
+            int? albumId = null, uint? groupId = null, int? server = null, string photosList = null,
             string hash = null, uint? latitude = null, uint? longitude = null, string caption = null)
         {
             var parameters = new Dictionary<string, string>();
