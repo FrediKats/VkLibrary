@@ -55,10 +55,11 @@ namespace VkLibrary.Core.Methods
                 parameters.Add("count", count.ToApiString());
             if (offset != null)
                 parameters.Add("offset", offset.ToApiString());
-            if (fields != null)
-                parameters.Add("fields", fields.ToApiString());
             if (nameCase != null)
                 parameters.Add("name_case", nameCase);
+
+            // Add name parameter to prevent loading an array of integers.
+            parameters.Add("fields", fields != null ? fields.ToApiString() : new[] {"name"}.ToApiString());
 
             return _vkontakte.RequestAsync<ApiItemsResponse<UserFull>>("friends.get", parameters);
         }
