@@ -1,16 +1,16 @@
-<b>VkLibrary</b> is an <i>unofficial</i> <a href="https://vk.com/dev">VK API</a> library implemented in C# and covering almost all existing API methods and types, containing helper methods for DirectAuth and OAuth, containing methods for easy file uploading to vk servers using POST requests. Huge parts of it were generated using official JSON Schema to provide full API coverage.
-
 |Targets|Nuget|Downloads|Issues|License|
 |------|:------:|:------:|:------:|:------:|
 | <a href="https://docs.microsoft.com/en-us/dotnet/standard/net-standard"><img src="https://img.shields.io/badge/.NET%20Standard-1.1-green.svg"></a> | <a href="https://www.nuget.org/packages/VkLibrary.Core/"><img src="https://img.shields.io/nuget/v/VkLibrary.Core.svg"></a> | <a href="https://www.nuget.org/packages/VkLibrary.Core/"><img src="https://img.shields.io/nuget/dt/VkLibrary.Core.svg"></a> | <a href="https://github.com/Worldbeater/VkLibrary/issues"><img src="https://img.shields.io/github/issues/Worldbeater/VkLibrary.svg"></a> | <a href="https://github.com/Worldbeater/VkLibrary/blob/master/LICENSE.md"><img src="https://img.shields.io/github/license/worldbeater/VkLibrary.svg"></a> |
 
+<b>VkLibrary</b> is an unofficial <a href="https://vk.com/dev">vkontakte</a> library implemented in C# and covering almost all existing API methods and types.
+
 # Quick Start
-To use the library in your project you should install a <a href="https://www.nuget.org/packages/VkLibrary.Core/">VkLibrary.Core</a> nuget package using PM console or GUI:
-```
+The library is delivered via <a href="https://www.nuget.org/packages/VkLibrary.Core/">NuGet Package Manager</a>:
+```powershell
 Install-Package VkLibrary.Core
 ```
 If you are targeting .NET Core, use the following command:
-```
+```cmd
 dotnet add package VkLibrary.Core
 ```
 
@@ -21,16 +21,14 @@ To run most API methods you need to pass an <b>access_token</b>, a special acces
 The first thing you need to do in order to get application id and access token is to register a VK application. Go to <a href="https://vk.com/apps?act=manage">my apps</a> section and select "Create an application". After you'r done with it, you will find app id and client secret code in application's settings section. More detailed instructions can be found <a href="https://vk.com/dev/manuals">here</a>.
 
 ## Initializing the Library
-Now we can initialize the library. Here is the simpliest way to do this:
 ```csharp
 var vk = new Vkontakte(1234567, string.Empty);
 ```
-We only need to specify application ID received on previous step and optionally application secret code. If you are not going to use direct auth or any other methods from secure API section, you may use string.Empty as the second argument to quickly get started. 
+Use your app's secret code instead of ```string.Empty``` if you are going to work with secure API section.
 
 # Authentication using OAuth
 As we already know, most methods require a valid access token. To get that token using <b>OAuth</b>, show a WebView-like control to a user, navigate him to authentication page and handle future redirects. More info can be found <a href="http://vk.com/dev/auth_mobile">in official docs</a>.
 
-## Example
 Here is a small instruction on how to get things done using UWP. Imagine we have a XAML-declared WebView control named <b>BrowserView</b>. Firstly we build an OAuth url and launch it using preffered ScopeSettings. Secondly we navigate our WebView control to url we've just built:
 ```csharp
 var url = vk.OAuth.GetAuthUrl(ScopeSettings.CanAccessMessages, AuthDisplayType.Mobile);
@@ -63,9 +61,8 @@ vk.AccessToken = await vk.DirectAuth.Login("login", "pass", ScopeSettings.CanAcc
 ```
 
 # Calling API Methods
-All API methods are listed <a href="https://vk.com/dev/methods">here</a>. Calling them from VkLibrary is quite simple.
+All API methods are listed <a href="https://vk.com/dev/methods">here</a>.
 
-## Examples
 Returns a list of current user's friends by invoking <a href="https://vk.com/dev/friends.get">friends.get</a> API method:
 ```csharp
 var friends = await vk.Friends.Get();
@@ -90,7 +87,7 @@ var ok = await vk.Messages.Send(userId: "12345", message: "Hey! What's up?");
 ```
 
 ## Invoking RequestAsync<TResponse>
-If you find an API method that VkLibrary does not support (this is unlikely, but may happen), use a generic <b>GetAsync</b> method. For example, method invocation with these parameters returns first 10 people, who are friends of a person whose id is equal to <b>1234567</b>.
+If you find an API method that VkLibrary does not support (this is unlikely, but may happen), use <b>GetAsync</b> method.
 ```csharp
 var friends = await vk.RequestAsync<ApiItemsResponse<UserFull>>(
   "friends.get", new Dictionary<string, string> {
@@ -107,7 +104,6 @@ var friends = await vk.Friends.Get(userId: 1234567, count: 10);
 # Executing Scripts
 <a href="https://vk.com/dev/execute">API</a> provides an ability to execute code on vk servers. Such code should be written in <a href="https://vk.com/dev/execute">VkScript</a>, a language similar to ActionScript or JavaScript, and end with a <b>return %expression%</b> statement.
 
-## Example
 If we send this kind of execute request:
 ```csharp
 var script = "return [API.users.isAppUser(), API.friends.get()];";
@@ -125,40 +121,26 @@ The server will answer with a similar response:
 VkLibrary has a helpers section containing methods for <a href="https://vk.com/dev/upload_files">photos, videos, audios and documents uploading</a>. This section is called <b>UploadHelper</b>. Here are some examples on how to use these helpers.
 
 ## Document Uploading Example
-Firstly we get documents upload server.
 ```csharp
 var server = await vk.Docs.GetUploadServer();
-```
-Then we upload a document to the server we've just received.
-```csharp
 var response = await vk.UploadHelper.UploadDocument(
     server.UploadUrl, // Server url received using GetUploadServer
     "Document.docx",  // Document name 
     bytes             // Bytes representing the document
 );
-```
-Finally we save the document with desired name and tags and receive it's instance as an API object.
-```csharp
 var document = await vk.Docs.Save(
-    response.File,   // Data received on previous step
-    "My document!",  // Name for the document
+    response.File,   // File received on previous step
+    "My document!",  // Document name
     "usefull, stuff" // Tags separated by comas
 );
 ```
 
 ## Photo for Messages Uploading Example
-Firstly we get messages upload server.
 ```csharp
 var uploadServer = await App.vk.Photos.GetMessagesUploadServer();
-```
-Then we upload a photo to the server we received on previous step.
-```csharp
 var uploadResponse = await App.vk.UploadHelper.UploadMessagesPhoto(
     uploadServer.UploadUrl, file.Name, bytes
 );
-```
-Finally we save the photo and receive it's instance containing information about it's sizes.
-```csharp
 var uploadResult = await App.vk.Photos.Save(
     uploadResponse.Photo,
     uploadResponse.Server,
@@ -170,7 +152,6 @@ var uploadResult = await App.vk.Photos.Save(
 # Generic PostAsync<T>
 If there are no POST methods in UploadHelper that can suite you, use generic ones: <b>PostAsync<T></b> or <b>PostMultipleAsync<T></b>.
 
-## Examples
 Uploads multiple photos to vk servers using PostMultipleAsync method.
 ```csharp
 var response = await vk.UploadHelper.PostMultipleAsync<PhotoUploadResponse>(new Uri(url), files);  
@@ -219,12 +200,9 @@ Long polling is a technology that allows the receiving of information about new 
 VkLibrary provides a simple event-based wrapper to work with the LongPoll server in an easy way. This wrapper is named <a href="../api/VkLibrary.Core.LongPolling.LongPollClient.html">LongPollClient</a> and is located in <a href="../api/VkLibrary.Core.LongPolling.html">VkLibrary.Core.LongPolling namespace</a>. Let's learn how it works.
 
 ## Starting a Long Poll Client
-Firstly we need to get new <a href="../api/VkLibrary.Core.Types.Messages.LongpollParams.html">long poll server parameters</a> from API.
+Firstly we need to get new <a href="../api/VkLibrary.Core.Types.Messages.LongpollParams.html">long poll server parameters</a> from API. Then we need to start a <a href="../api/VkLibrary.Core.LongPolling.LongPollClient.html">long poll client</a> to work with. 
 ```csharp
 var longPollParams = await vk.Messages.GetLongPollServer();
-```
-Then we need to start a <a href="../api/VkLibrary.Core.LongPolling.LongPollClient.html">long poll client</a> to work with. 
-```csharp
 var longPollClient = vk.StartLongPollClient(
   longPollParams.Server, // Server received on previous step
   longPollParams.Key,    // Secret session key
@@ -239,12 +217,6 @@ longPollClient.FriendOnlineEvent += (sender, args) => Console.WriteLine(
   $"Friend with id {args.Item1} is now online! He uses {args.Item2} platform."
 );
 ```
-Then let's subscribe to <b>CounterUpdateEvent</b> to be notified when message counters are updated:
-```csharp
-longPollClient.CounterUpdateEvent += (sender, args) => Console.WriteLine(
-  $"Now new messages counter equals {args.Item1}."
-);
-```
 Info about all available events with description can be found <a href="../api/VkLibrary.Core.LongPolling.LongPollClient.html">here</a>.
 
 ## Stopping and Disposing
@@ -256,7 +228,6 @@ longPollClient.Stop();
 # Extended Scenarios
 
 VkLibrary also contains additional extended constructors, using them you can customize almost everything. 
-Let's take a look at an example:
 ```csharp
 var api = new Vkontakte(
   appId: 1234567, 
@@ -266,68 +237,39 @@ var api = new Vkontakte(
   parseJson: ParseJson.FromString
 );
 ```
-Here we tell the library to use 1234567 application id with "fb4f44tbuyh5k" secret code, process requests using 5.63 API version, perform GET requests and parse received JSONs from strings.
 
 <b>ParseJson</b> option determines how the library should parse JSONs received from VK servers.
 - <i>ParseJson.FromString</i>: loads JSON into a string, logs it using default logger and only after that deserializes. Use this for testing purposes only due to potential high memory usage and performance issues;
 - <i>ParseJson.FromStream</i>: to minimize memory usage and the number of strings allocated in memory, JSON.NET supports deserializing objects directly from a stream. Use this option in production for better performance.
 
-<b>RequestMethod</b> determines which request method should be used when sending queries to Vkontakte API. GET option is generally a good choice for testing and debugging as GET queries are easy to read and understand. But when sending LARGE objects to VK API servers consider using POST option, otherwise you'll receive "414 URI Too Long" error.
+<b>RequestMethod</b> determines which request method should be used when sending queries to Vkontakte API. GET option is generally a good choice for testing and debugging as GET queries are easy to read and understand. But when sending large objects to VK API servers consider using POST option, otherwise you'll receive "414 URI Too Long" error.
 
-There may be some cases when you would like to customize default HttpService implementation. To do this, simply implement <b>IHttpService</b> interface and pass your new class instance to VkLibrary.Core via extended constructor. The same thing you can do with a default logger, you'll need an <b>ILogger</b> interface. Default implementations of ILogger and IHttpService are <b>DefaultLogger</b> and <b>DefaultHttpService</b> respectively.
+There may be some cases when you would like to customize default HttpService implementation. To do this, simply implement <b>IHttpService</b> interface and pass your new class instance to VkLibrary.Core via an extended constructor. The same thing you can do with a default logger, you'll need an <b>ILogger</b> interface. Default implementations of ILogger and IHttpService are <b>DefaultLogger</b> and <b>DefaultHttpService</b> respectively.
 ```csharp
 class CustomLogger : ILogger { /* implementation */ }
 class CustomHttpService : IHttpService { /* implementation */ }
-
 var api = new Vkontakte(1234567, string.Empty, new CustomHttpService(), new CustomLogger());
-```
-
-There is another example below demonstrating how to quickly get started with a console logger:
-```csharp
-var api = new Vkontakte(3502561, string.Empty, new ConsoleLogger());
-
-class ConsoleLogger : ILogger { 
-    public void Log(object o) => Console.WriteLine(o?.ToString()); 
-}
 ```
 
 # Other .NET languages
 
 ## For F# Developers
 VkLibrary can also be used with <a href="http://fsharp.org/">F# programming language</a>!
-
-### Examples
-Before we start, let's create a generic function to simulate C#'s await operator for Task<'a>.
-```fsharp
-let await (task: Task<'a>) = 
-    async {
-        let! result = task |> Async.AwaitTask 
-        return result 
-    } |> Async.RunSynchronously
-```
-Then we need to initialize the library:
 ```fsharp
 use lib = new Vkontakte(1234567, "your_secret_code")
+lib.Friends.Get(userId = Nullable 1234567, count = Nullable 1)
+|> Async.AwaitTask
+|> Async.RunSynchronously
 ```
-So we can call library methods in a familiar way! To pass nullable parameters use <b>Nullable</b> keyword.
-```fsharp
-let friends = await <| lib.Friends.Get(userId = Nullable 1234567, count = Nullable 1)
-```
-F# gives us an ability to create annonymous interface implementations and that's cool! Using this feature you can write code like this and inject a custom logger into VkLibrary.Core:
+F# gives us an ability to create annonymous interface implementations! Using this feature you can write code like this and inject a custom logger into VkLibrary.Core:
 ```fsharp
 let logger = { new ILogger with member __.Log o = printfn "%A" o }
 use api = new Vkontakte(1234567, "your_secret_code", logger = logger)
 ```
 
 ## For Visual Basic Developers
-Using VkLibrary with Visual Basic is pretty much the same as using it with C#.
-
-### Examples
-As always, firstly we need to initialize the library.
+Using VkLibrary with Visual Basic is pretty much the same as using it with C#. 
 ```vb
 Dim vk = new Vkontakte(12345, String.Empty)
-```
-Then we can call library methods in a familiar way!
-```vb
-Dim result = Await vk.Friends.Get(userId := 12345, count := 10)
+Dim response = Await vk.Friends.Get(userId := 12345, count := 10)
 ```
