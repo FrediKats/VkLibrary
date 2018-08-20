@@ -33,7 +33,11 @@ namespace VkLibrary.Core
         {
             using (var responseStream = await _library.HttpService.PostSingleFileAsync(uri, bytes, type, fileName))
             using (var streamReader = new StreamReader(responseStream, Encoding.UTF8))
-                return JsonConvert.DeserializeObject<T>(streamReader.ReadToEnd());
+            {
+                var response = streamReader.ReadToEnd();
+                _library.Logger.Log($"Upload response: {response}");
+                return JsonConvert.DeserializeObject<T>(response);
+            }
         }
 
         /// <summary>
@@ -46,7 +50,11 @@ namespace VkLibrary.Core
         {
             using (var responseStream = await _library.HttpService.PostMultipleFilesAsync(uri, files))
             using (var streamReader = new StreamReader(responseStream, Encoding.UTF8))
-                return JsonConvert.DeserializeObject<T>(streamReader.ReadToEnd());
+            {
+                var response = streamReader.ReadToEnd();
+                _library.Logger.Log($"Upload response: {response}");
+                return JsonConvert.DeserializeObject<T>(response);
+            }
         }
 
         /// <summary>
