@@ -1,10 +1,8 @@
-|Targets|Nuget|Downloads|Issues|License|
-|------|:------:|:------:|:------:|:------:|
-| <a href="https://docs.microsoft.com/en-us/dotnet/standard/net-standard"><img src="https://img.shields.io/badge/.NET%20Standard-1.1-green.svg"></a> | <a href="https://www.nuget.org/packages/VkLibrary.Core/"><img src="https://img.shields.io/nuget/v/VkLibrary.Core.svg"></a> | <a href="https://www.nuget.org/packages/VkLibrary.Core/"><img src="https://img.shields.io/nuget/dt/VkLibrary.Core.svg"></a> | <a href="https://github.com/Worldbeater/VkLibrary/issues"><img src="https://img.shields.io/github/issues/Worldbeater/VkLibrary.svg"></a> | <a href="https://github.com/Worldbeater/VkLibrary/blob/master/LICENSE.md"><img src="https://img.shields.io/github/license/worldbeater/VkLibrary.svg"></a> |
+<a href="https://docs.microsoft.com/en-us/dotnet/standard/net-standard"><img src="https://img.shields.io/badge/.NET%20Standard-1.1-green.svg"></a> <a href="https://www.nuget.org/packages/VkLibrary.Core/"><img src="https://img.shields.io/nuget/v/VkLibrary.Core.svg"></a> <a href="https://www.nuget.org/packages/VkLibrary.Core/"><img src="https://img.shields.io/nuget/dt/VkLibrary.Core.svg"></a> <a href="https://github.com/Worldbeater/VkLibrary/issues"><img src="https://img.shields.io/github/issues/Worldbeater/VkLibrary.svg"></a> <a href="https://github.com/Worldbeater/VkLibrary/blob/master/LICENSE.md"><img src="https://img.shields.io/github/license/worldbeater/VkLibrary.svg"></a>
 
-<b>VkLibrary</b> is an unofficial <a href="https://vk.com/dev">vkontakte</a> library implemented in C# and covering almost all existing API methods and types.
+<b>VkLibrary</b> is an unofficial <a href="https://vk.com/dev">vkontakte</a> API library implemented in C# and covering almost all existing API methods and types.
 
-# Quick Start
+# Installation
 The library is delivered via <a href="https://www.nuget.org/packages/VkLibrary.Core/">NuGet Package Manager</a>:
 ```powershell
 Install-Package VkLibrary.Core
@@ -20,11 +18,11 @@ To run most API methods you need to pass an <b>access_token</b>, a special acces
 ## Getting Application ID
 The first thing you need to do in order to get application id and access token is to register a VK application. Go to <a href="https://vk.com/apps?act=manage">my apps</a> section and select "Create an application". After you'r done with it, you will find app id and client secret code in application's settings section. More detailed instructions can be found <a href="https://vk.com/dev/manuals">here</a>.
 
-## Initializing the Library
+## Initializing the library
+Initialize the library using your <a href="https://vk.com/apps?act=manage">application id</a>.
 ```csharp
-var vk = new Vkontakte(1234567, string.Empty);
+var vk = new Vkontakte(1234567);
 ```
-Use your app's secret code instead of ```string.Empty``` if you are going to work with secure API section.
 
 # Authentication using OAuth
 As we already know, most methods require a valid access token. To get that token using <b>OAuth</b>, show a WebView-like control to a user, navigate him to authentication page and handle future redirects. More info can be found <a href="http://vk.com/dev/auth_mobile">in official docs</a>.
@@ -48,10 +46,10 @@ void OnNavigationStarting(WebView sender, EventArgs args)
 ```
 So VkLibrary will sign all future requests using AccessToken stored in AccessToken property. 
 
-# Authentication using existing access token
+# Authentication using an existing access token
 If you'd like to use an existing access token to authenticate a user, just use <b>AccessToken.FromString</b> method:
 ```csharp
-vk.AccessToken = AccessToken.FromString(accessTokenString, authenticatedUserId);
+vk.AccessToken = AccessToken.FromString(accessTokenString);
 ```
 
 # Authentication using Direct Auth
@@ -254,12 +252,13 @@ var api = new Vkontakte(1234567, string.Empty, new CustomHttpService(), new Cust
 # Other .NET languages
 
 ## For F# Developers
-VkLibrary can also be used with <a href="http://fsharp.org/">F# programming language</a>!
+VkLibrary can also be used with <a href="http://fsharp.org/">F# programming language</a>! Use <a href="https://github.com/rspeele/TaskBuilder.fs">TaskBuilder.fs</a> to improve your code quality.
 ```fsharp
-use lib = new Vkontakte(1234567, "your_secret_code")
-lib.Friends.Get(userId = Nullable 1234567, count = Nullable 1)
-|> Async.AwaitTask
-|> Async.RunSynchronously
+task {
+  use lib = new Vkontakte(1234567, "your_secret_code")
+  let! friends = lib.Friends.Get()
+  let! users = lib.Users.Get()
+}
 ```
 F# gives us an ability to create annonymous interface implementations! Using this feature you can write code like this and inject a custom logger into VkLibrary.Core:
 ```fsharp
