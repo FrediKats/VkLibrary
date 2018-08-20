@@ -20,7 +20,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="userIds">User IDs or screen names ('screen_name'). By default, current user ID.</param>
         /// <param name="fields">
         /// Profile fields to return. Sample values: 'nickname', 'screen_name', 'sex', 'bdate' (birthdate),
-        /// 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'has_mobile', 'contacts', 'education',
+        /// 'city', 'country', 'timezone', 'photo', 'photo_100', 'photo_max', 'has_mobile', 'contacts', 'education',
         /// 'online', 'counters', 'relation', 'last_seen', 'activity', 'can_write_private_message', 'can_see_all_posts',
         /// 'can_post', 'universities';
         /// </param>
@@ -53,7 +53,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="count">Number of users to return.</param>
         /// <param name="fields">
         /// Profile fields to return. Sample values: 'nickname', 'screen_name', 'sex', 'bdate' (birthdate),
-        /// 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'has_mobile', 'rate', 'contacts', 'education',
+        /// 'city', 'country', 'timezone', 'photo', 'photo_100', 'photo_max', 'has_mobile', 'rate', 'contacts', 'education',
         /// 'online';
         /// </param>
         /// <param name="city">City ID.</param>
@@ -224,7 +224,7 @@ namespace VkLibrary.Core.Methods
         /// <param name="count">Number of followers to return.</param>
         /// <param name="fields">
         /// Profile fields to return. Sample values: 'nickname', 'screen_name', 'sex', 'bdate' (birthdate),
-        /// 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'has_mobile', 'rate', 'contacts', 'education',
+        /// 'city', 'country', 'timezone', 'photo', 'photo_100', 'photo_max', 'has_mobile', 'rate', 'contacts', 'education',
         /// 'online'.;
         /// </param>
         /// <param name="nameCase">
