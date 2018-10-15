@@ -15,6 +15,55 @@ namespace VkLibrary.Core.Methods
         internal Messages(Vkontakte vkontakte) => _vkontakte = vkontakte;
 
         /// <summary>
+        /// Edits the message.
+        /// Docs: <see href="https://vk.com/dev/messages.edit">messages.edit</see>
+        /// </summary>
+        /// <param name="peerId">Destination ID.
+        /// For user: User ID, e.g. 12345. 
+        /// For chat: 2000000000 + chat_id, e.g. 2000000001. 
+        /// For community: - community ID, e.g. -12345. 
+        /// </param>
+        /// <param name="messageId">Message ID.</param>
+        /// <param name="message">Text of the message</param>
+        /// <param name="lat">Geographical latitude of a check-in, in degrees (from -90 to 90).</param>
+        /// <param name="longitude">Geographical longitude of a check-in, in degrees (from -180 to 180).</param>
+        /// <param name="attachment">List of objects attached to the message.</param>
+        /// <param name="keepForwardMessage">1 — to keep forwarded, messages.</param>
+        /// <param name="keepSnippets">1 — to keep attached snippets.</param>
+        /// <param name="groupId">Number of messages to return.</param>
+        /// <param name="dontParseLink">Number of messages to return.</param>
+        public Task<int> Edit(int? peerId = null, int? messageId = null, string message = null,
+            double? lat = null, double? longitude = null, IEnumerable<string> attachment = null,
+            bool? keepForwardMessage = null, bool? keepSnippets = null, int? groupId = null,
+            bool? dontParseLink = null)
+        {
+            var parameters = new Dictionary<string, string>();
+
+            if (peerId != null)
+                parameters.Add("peer_id", peerId.ToApiString());
+            if (messageId != null)
+                parameters.Add("message_id", messageId.ToApiString());
+            if (message != null)
+                parameters.Add("message", message.ToApiString());
+            if (lat != null)
+                parameters.Add("lat", lat.ToApiString());
+            if (longitude != null)
+                parameters.Add("long", longitude.ToApiString());
+            if (attachment != null)
+                parameters.Add("attachment", attachment.ToApiString());
+            if (keepForwardMessage != null)
+                parameters.Add("keep_forward_message", keepForwardMessage.ToApiString());
+            if (keepSnippets != null)
+                parameters.Add("keep_snippets", keepSnippets.ToApiString());
+            if (groupId != null)
+                parameters.Add("group_id", groupId.ToApiString());
+            if (dontParseLink != null)
+                parameters.Add("dont_parse_link", dontParseLink.ToApiString());
+
+            return _vkontakte.RequestAsync<int>("messages.edit", parameters);
+        }
+
+        /// <summary>
         /// Returns a list of the current user's incoming or outgoing private messages.
         /// Docs: <see href="https://vk.com/dev/messages.get">messages.get</see>
         /// </summary>
