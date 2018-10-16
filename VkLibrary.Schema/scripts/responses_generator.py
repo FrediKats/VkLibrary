@@ -5,13 +5,10 @@ from tools import to_camel_case, read_file, generate_instances
 
 # Generates response classes from JSON
 class JResponses:
-    def __init__(self, file, save=False, output=False):
-        print("Reading file {}...".format(file))
-        j_response = read_file(filename=file)
+    def __init__(self, j_response, output_folder, save=False, output=False):
 
-        print("Parsing methods...")
+        print("Parsing responses...")
         definitions = j_response["definitions"]
-        errors = 0
 
         # Parse regular responses
         for key in definitions:
@@ -32,7 +29,7 @@ class JResponses:
                 classname = to_camel_case("_".join(ls))
 
                 # Generate path
-                filename = constants.OUTPUT_FOLDER_NAME + "/Responses/{}/{}.cs".format(foldername, classname)
+                filename = output_folder + "Responses/{}/{}.cs".format(foldername, classname)
                 os.makedirs(os.path.dirname(filename), exist_ok=True)
 
                 # Output
@@ -46,8 +43,6 @@ class JResponses:
 
         # Log
         print("Total responses viewed: {}".format(len(definitions)))
-        print("Errors: {}".format(errors))
-        print("Parsed: {}".format(len(definitions) - errors))
 
     @classmethod
     def __parse_special_response(cls, item, name):

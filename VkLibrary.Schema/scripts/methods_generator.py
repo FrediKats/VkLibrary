@@ -1,4 +1,5 @@
 from itertools import groupby
+
 import os
 
 import constants
@@ -6,16 +7,11 @@ from tools import to_camel_case, read_file, generate_instances
 
 # Generates Methods from JSON
 class JMethods:
-    def __init__(self, file, save=False, output=False):
-
-        # Read file
-        print("Reading file {}...".format(file))
-        j_object = read_file(filename=file)
+    def __init__(self, j_object, output_folder, save=False, output=False):
+        print("Parsing methods...")
 
         # Get objects
-        print("Parsing methods...")
         methods = j_object["methods"]
-        errors = 0
 
         # Group items by methods sections
         grouping = {
@@ -55,7 +51,7 @@ namespace VkLib.Methods
                 mid += self.__parse_method(item)
             ending = "\n    }\n}\n"
             content = heading + mid + ending
-            filename = constants.OUTPUT_FOLDER_NAME + "/Methods/{}.cs".format(method_group)
+            filename = output_folder + "Methods/{}.cs".format(method_group)
 
             # Generate path
             os.makedirs(os.path.dirname(filename), exist_ok=True)
@@ -71,8 +67,6 @@ namespace VkLib.Methods
 
         # Log results
         print("Total methods parsed: {}".format(len(methods)))
-        print("Errors: {}".format(errors))
-        print("Parsed: {}".format(len(methods) - errors))
 
     @classmethod
     def __parse_method(cls, item):

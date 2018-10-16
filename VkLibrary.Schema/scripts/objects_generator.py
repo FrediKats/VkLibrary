@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import os
 
 import constants
@@ -5,15 +7,13 @@ from tools import to_camel_case, read_file, generate_instances
 
 # Generates classes from JSON
 class JObjects:
-    def __init__(self, file, save=False, output=False):
-        print("Reading file {}...".format(file))
-        # TODO: возможно стоит передавать уже json
-        j_object = read_file(filename=file)
+    error_list = []
 
-        print("Parsing objects...")
+    def __init__(self, j_object, output_folder, save=False, output=False):
+        print("Parsing classes...")
+
+
         definitions = j_object["definitions"]
-        errors = 0
-        errorList = []
 
         # Find enums and form their list
         for key in definitions:
@@ -30,8 +30,7 @@ class JObjects:
 
             # Check for NULL
             if content is None:
-                errorList.append(value)
-                errors += 1
+                self.error_list.append(value)
                 continue
 
             # Split data
@@ -50,19 +49,25 @@ class JObjects:
             # Generate files
             if save:
                 print("Saving...")
-                filename = constants.OUTPUT_FOLDER_NAME + "/Types/{}/{}.cs".format(folder_name, class_name)
+                filename = output_folder + "Types/{}/{}.cs".format(folder_name, class_name)
                 os.makedirs(os.path.dirname(filename), exist_ok=True)
                 with open(filename, "w+") as file:
                     file.write(content)
                 print("Saved to {}!".format(filename))
 
-        print("Total objects viewed: {}".format(len(definitions)))
-        print("Errors: {}".format(errors))
+        print("Total objects viewed: {} (Error - {}, Parsed - {})".format(len(definitions),
+            len(self.error_list),
+            len(definitions) - len(self.error_list)))
 
-        with open("debug.txt", "w+") as file:
-            file.write('\n'.join(errorList))
+    @classmethod
+    def print_errors(cls, filePath):
+        errors_data ='\n'.join(cls.error_list)
 
-        print("Parsed: {}".format(len(definitions) - errors))
+        if filePath == None:
+            print(errors_data)
+        else:
+            with open(filePath, "w+") as file:
+                file.write(errors_data)
 
     @classmethod
     def __parse_object(cls, item, key):

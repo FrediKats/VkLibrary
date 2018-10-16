@@ -16,5 +16,3 @@ SPECIAL_RESPONSES = dict()
 
 # Enums keys
 PSEUDO_ENUMS = list()
-
-OUTPUT_FOLDER_NAME = "NewTypes"
