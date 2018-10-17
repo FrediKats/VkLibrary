@@ -57,12 +57,12 @@ class JResponses:
             string = "using System;\n" \
                      "using System.Collections.Generic;\n" \
                      "using Newtonsoft.Json;\n" \
-                     "using VkLib.Types;\n" \
+                     "using {0}.Types;\n" \
                      "\n" \
-                     "namespace VkLib.Responses.{}\n" \
+                     "namespace {0}.Responses.{1}\n" \
                      "{{\n" \
-                     "    public class {}\n" \
-                     "    {{\n".format(category, classname)
+                     "    public class {2}\n" \
+                     "    {{\n".format(constants.OUTPUT_FOLDER, category, classname)
 
             # Iterate through properties
             for key in properties:
@@ -85,7 +85,7 @@ class JResponses:
                             ls = _ref.split("/")[2].split("_")
                             category = ls.pop(0).capitalize()
                             full_path = to_camel_case("_".join(ls))
-                            inner_type = "VkLib.Types.{}.{}".format(category, full_path)
+                            inner_type = constants.OUTPUT_FOLDER + ".Types.{}.{}".format(category, full_path)
 
                         else:
 
@@ -111,7 +111,7 @@ class JResponses:
                         ls = _ref.split("/")[2].split("_")
                         category = ls.pop(0).capitalize()
                         full_path = to_camel_case("_".join(ls))
-                        realtype = "VkLib.Types.{}.{}".format(category, full_path)
+                        realtype = constants.OUTPUT_FOLDER + ".Types.{}.{}".format(category, full_path)
 
                 description = value.get("description", None)
 
@@ -154,7 +154,7 @@ class JResponses:
                 ls = ref.split("/")[2].split("_")
                 _type = ls.pop(0).capitalize()
                 _name = to_camel_case("_".join(ls))
-                constants.STRUCT_RESPONSES[name] = "VkLib.Types.{}.{}".format(_type, _name)
+                constants.STRUCT_RESPONSES[name] = constants.OUTPUT_FOLDER + ".Types.{}.{}".format(_type, _name)
 
         elif items:
 
@@ -166,7 +166,8 @@ class JResponses:
                 ls = ref.split("/")[2].split("_")
                 _type = ls.pop(0).capitalize()
                 _name = to_camel_case("_".join(ls))
-                constants.STRUCT_RESPONSES[name] = "IEnumerable<VkLib.Types.{}.{}>".format(_type, _name)
+                constants.STRUCT_RESPONSES[name] = "IEnumerable<{}.Types.{}.{}>".format(
+                    constants.OUTPUT_FOLDER, _type, _name)
             elif _type:
                 sharp_type = constants.C_SHARP_TYPES.get(_type)
                 if sharp_type:
@@ -186,7 +187,8 @@ class JResponses:
                     ls = ref.split("/")[2].split("_")
                     category = ls.pop(0).capitalize()
                     _name = to_camel_case("_".join(ls))
-                    constants.STRUCT_RESPONSES[name] = "ApiItemsResponse<VkLib.Types.{}.{}>".format(
+                    constants.STRUCT_RESPONSES[name] = "ApiItemsResponse<{}.Types.{}.{}>".format(
+                        constants.OUTPUT_FOLDER,
                         category,
                         _name
                     )

@@ -108,24 +108,30 @@ class JObjects:
     def __parse_children(cls, all_of, key):
 
         print(all_of)
-        # Get and write name of a parent
-        first = all_of[0]
-        ref = first.get("$ref", None)
 
-        if ref:
+        properties = None
+        parents = []
 
-            # Prepare Title
-            ls = ref.split("/")[2].split("_")
-            category = ls.pop(0).capitalize()
-            classname = to_camel_case("_".join(ls))
-            title = cls.__write_title_for_class(str(), key, " : VkLib.Types.{}.{}".format(category, classname))
+        for child in all_of:
+            prop = child.get("properties", None)
+            if prop:
+                properties = prop
+            else:
+                # TODO: fix
+                ref = child.get("$ref", None)
+                ls = ref.split("/")[2].split("_")
+                category = ls.pop(0).capitalize()
+                classname = to_camel_case("_".join(ls))
+                parents.append("{}.Types.{}.{}".format(constants.OUTPUT_FOLDER, category, classname))
 
-            # Parse properties
-            properties = all_of[1]["properties"]
+        title = cls.__write_title_for_class(str(), key, ': ' + ', '.join(parents))
+        
+        output = ''
+        if not properties is None:
             output = cls.__parse_properties(properties, key)
 
-            # Return content
-            return title + output + "    }\n}\n"
+        # Return content
+        return title + output + "    }\n}\n"
 
     @classmethod
     def __parse_property(cls, data, name, key):
@@ -146,7 +152,13 @@ class JObjects:
             if data_type == "array":
                 data_type = data["items"].get("$ref", None)
                 if not data_type:
-                    data_type = constants.C_SHARP_TYPES[data["items"]["type"]]
+                    # TODO: fix
+                    if data["items"]["type"] == "array":
+                        sub_type = cls.__type_from_ref(data["items"]["items"]["$ref"])
+                        data_type = "IEnumerable<{}>".format(sub_type)
+                    else:
+                        data_type = constants.C_SHARP_TYPES[data["items"]["type"]]
+
                 else:
                     data_type = cls.__type_from_ref(data_type)
                 data_type = "IEnumerable<{}>".format(data_type)
@@ -228,7 +240,7 @@ class JObjects:
                   "using Newtonsoft.Json;\n" \
                   "using System.Collections.Generic;\n" \
                   "\n" \
-                  "namespace VkLib.Types.{} \n{{\n".format(category)
+                  "namespace {}.Types.{} \n{{\n".format(constants.OUTPUT_FOLDER, category)
         string += "    public class {}{}\n" \
                   "    {{\n".format(title, parent)
         return string
@@ -248,7 +260,7 @@ class JObjects:
                   "using Newtonsoft.Json;\n" \
                   "using System.Collections.Generic;\n" \
                   "\n" \
-                  "namespace VkLib.Types.{} \n{{\n".format(category)
+                  "namespace {}.Types.{} \n{{\n".format(constants.OUTPUT_FOLDER, category)
         string += "    public enum {}\n" \
                   "    {{\n".format(title)
         return string
@@ -268,4 +280,4 @@ class JObjects:
             ls = list(s.split('_'))
             category = ls.pop(0).capitalize()
             classname = to_camel_case("_".join(ls))
-            return "VkLib.Types.{}.{}".format(category, classname)
+            return "{}.Types.{}.{}".format(constants.OUTPUT_FOLDER, category, classname)

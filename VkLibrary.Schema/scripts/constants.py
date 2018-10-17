@@ -16,3 +16,5 @@ SPECIAL_RESPONSES = dict()
 
 # Enums keys
 PSEUDO_ENUMS = list()
+
+OUTPUT_FOLDER = "VkLibrary.Core"

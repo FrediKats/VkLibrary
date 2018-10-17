@@ -30,7 +30,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VkLib.Methods
+namespace {1}.Methods
 {{
     /// <summary>
     /// {0} API section.
@@ -43,7 +43,7 @@ namespace VkLib.Methods
         {{
             _vkontakte = vkontakte;
         }}
-""".format(method_group)
+""".format(method_group, constants.OUTPUT_FOLDER)
             mid = str()
 
             # Parse methods
@@ -140,7 +140,7 @@ namespace VkLib.Methods
             ls = response_type.split("_")
             category = ls.pop(0)
             response_name = to_camel_case("_".join(ls))
-            path = "VkLib.Responses.{}.{}".format(category.capitalize(), response_name)
+            path = constants.OUTPUT_FOLDER + ".Responses.{}.{}".format(category.capitalize(), response_name)
         return path
 
     @classmethod
@@ -208,6 +208,6 @@ namespace VkLib.Methods
         path = cls.__generate_response_path(item)
 
         # Concat
-        string += "\n            return await _vkontakte.GetAsync<{}>(\"{}\", parameters);\n" \
+        string += "\n            return await _vkontakte.RequestAsync<{}>(\"{}\", parameters);\n" \
             .format(path, item["name"]) + "        }\n"
         return string
