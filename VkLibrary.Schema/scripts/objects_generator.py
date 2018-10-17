@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import os
+import numbers
 
 import constants
 from tools import to_camel_case, read_file, generate_instances
@@ -75,13 +76,14 @@ class JObjects:
         # Get sub values
         properties = item.get("properties", None)
         enum = item.get("enum", None)
+        enumNames = item.get("enumNames", None)
         all_of = item.get("allOf", None)
 
         # Check and parse
         try:
             # Get inner props
             if properties:
-                out = cls.__write_title(str(), key, "")
+                out = cls.__write_title_for_class(str(), key, "")
                 out += cls.__parse_properties(properties, key)
                 out += "    }\n}\n"
                 return out
@@ -89,7 +91,10 @@ class JObjects:
                 out = cls.__parse_children(all_of, key)
                 return out
             elif enum:
-                return None
+                out = cls.__write_title_for_enum(str(), key)
+                out += cls.__parse_enum_data(key, enum, enumNames)
+                out += "\n    }\n}\n"
+                return out
             else:
                 raise KeyError("Unable to resolve this method.")
         except Exception:
@@ -113,7 +118,7 @@ class JObjects:
             ls = ref.split("/")[2].split("_")
             category = ls.pop(0).capitalize()
             classname = to_camel_case("_".join(ls))
-            title = cls.__write_title(str(), key, " : VkLib.Types.{}.{}".format(category, classname))
+            title = cls.__write_title_for_class(str(), key, " : VkLib.Types.{}.{}".format(category, classname))
 
             # Parse properties
             properties = all_of[1]["properties"]
@@ -193,7 +198,23 @@ class JObjects:
         return output
 
     @classmethod
-    def __write_title(cls, string, item, parent):
+    def __parse_enum_data(cls, key, enum, enumNames):
+        output = str()
+        if enumNames is None:
+            enumNames = enum
+
+        res = []
+        for e_name, e_value in zip(enumNames, enum):
+            e_name = e_name.replace(' ', '_')
+            e_name = to_camel_case(e_name)
+            if isinstance(e_value, numbers.Number):
+                e_name += " = {}".format(e_value)
+            res.append('        ' + e_name)
+        return ',\n'.join(res)
+
+
+    @classmethod
+    def __write_title_for_class(cls, string, item, parent):
 
         # Split to list
         ls = list(item.split('_'))
@@ -210,6 +231,26 @@ class JObjects:
                   "namespace VkLib.Types.{} \n{{\n".format(category)
         string += "    public class {}{}\n" \
                   "    {{\n".format(title, parent)
+        return string
+
+    @classmethod
+    def __write_title_for_enum(cls, string, item):
+
+        # Split to list
+        ls = list(item.split('_'))
+        for i, v in enumerate(ls):
+            ls[i] = v.capitalize()
+        category = ls.pop(0)
+        title = "".join(ls)
+
+        # Write text
+        string += "using System;\n" \
+                  "using Newtonsoft.Json;\n" \
+                  "using System.Collections.Generic;\n" \
+                  "\n" \
+                  "namespace VkLib.Types.{} \n{{\n".format(category)
+        string += "    public enum {}\n" \
+                  "    {{\n".format(title)
         return string
 
     @staticmethod
