@@ -4,19 +4,18 @@
     <TargetFramework>netstandard1.1</TargetFramework>
     <ApplicationIcon>
     </ApplicationIcon>
-    <RepositoryUrl>https://github.com/Worldbeater/VkLibrary.Core</RepositoryUrl>
-    <Version>1.1.3</Version>
-    <Authors>Artjom Graf</Authors>
+    <RepositoryUrl>https://github.com/worldbeater/VkLibrary</RepositoryUrl>
+    <Version>1.1.4</Version>
+    <Authors>Artyom G and Contributors</Authors>
     <Company>VkLibrary.Core</Company>
-    <PackageLicenseUrl>https://github.com/Worldbeater/VkLibrary.Core/blob/master/LICENSE.md</PackageLicenseUrl>
+    <PackageLicenseUrl>https://github.com/worldbeater/VkLibrary/blob/master/LICENSE.md</PackageLicenseUrl>
     <Description>VkLibrary is an unofficial vk.com client library implemented in C#. It covers all existing vk.com API methods and types, contains helper methods for direct auth and OAuth, contains methods for easy file uploading to vk.com servers using post requests.</Description>
-    <PackageProjectUrl>https://github.com/Worldbeater/VkLibrary.Core</PackageProjectUrl>
-    <PackageIconUrl>https://worldbeater.github.io/logos/VkLibrary.png</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/worldbeater/VkLibrary</PackageProjectUrl>
     <PackageTags>vk vk.com vkontakte vkontakte.ru api sdk library</PackageTags>
-    <Copyright>Copyright © 2017</Copyright>
-    <PackageReleaseNotes>Make non-required parameters optional</PackageReleaseNotes>
-    <AssemblyVersion>1.1.3.0</AssemblyVersion>
-    <FileVersion>1.1.2.0</FileVersion>
+    <Copyright>Copyright © 2018</Copyright>
+    <PackageReleaseNotes>Fixes and improvements</PackageReleaseNotes>
+    <AssemblyVersion>1.1.4.0</AssemblyVersion>
+    <FileVersion>1.1.4.0</FileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>bin\Debug\netstandard1.1\VkLibrary.Core.xml</DocumentationFile>
@@ -25,6 +24,6 @@
     <DocumentationFile>bin\Release\netstandard1.1\VkLibrary.Core.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
   </ItemGroup>
 </Project>
