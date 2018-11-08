@@ -29,6 +29,16 @@ namespace VkLibrary.Tests
         }
 
         [Fact]
+        public async void DirectAuthWithOfflineScope()
+        {
+            const string login = Constants.Login; 
+            const string password = Constants.Password;
+            var response = await Api.DirectAuth.Login(login, password, ScopeSettings.CanAccessOffline);
+
+            response.ExpiresIn.Should().Be(0);
+        }
+
+        [Fact]
         public void PrepareOAuthUrl()
         {
             const ScopeSettings scopeSettings = ScopeSettings.IamTheGod;
