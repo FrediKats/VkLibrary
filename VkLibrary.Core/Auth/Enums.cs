@@ -69,6 +69,11 @@ namespace VkLibrary.Core.Auth
         CanAccessAdsCabinet = 32768,
 
         /// <summary>
+        /// App can access API at any time.
+        /// </summary>
+        CanAccessOffline = 65536,
+
+        /// <summary>
         /// App can access docs.
         /// </summary>
         CanAccessDocs = 131072,

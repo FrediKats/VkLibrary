@@ -29,7 +29,7 @@ As we already know, most methods require a valid access token. To get that token
 
 Here is a small instruction on how to get things done using UWP. Imagine we have a XAML-declared WebView control named <b>BrowserView</b>. Firstly we build an OAuth url and launch it using preffered ScopeSettings. Secondly we navigate our WebView control to url we've just built:
 ```csharp
-var url = vk.OAuth.GetAuthUrl(ScopeSettings.CanAccessMessages, AuthDisplayType.Mobile);
+var url = vk.OAuth.GetAuthUrl(ScopeSettings.CanAccessMessages | ScopeSettings.CanAccessOffline, AuthDisplayType.Mobile);
 BrowserView.Navigate(new Uri(url));
 ```
 Then we subscribe to WebView's navigation starting event and try to parse WebView's url when user is being redirected.
