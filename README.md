@@ -1,9 +1,9 @@
 <a href="https://docs.microsoft.com/en-us/dotnet/standard/net-standard"><img src="https://img.shields.io/badge/.NET%20Standard-1.1-green.svg"></a> <a href="https://www.nuget.org/packages/VkLibrary.Core/"><img src="https://img.shields.io/nuget/v/VkLibrary.Core.svg"></a> <a href="https://www.nuget.org/packages/VkLibrary.Core/"><img src="https://img.shields.io/nuget/dt/VkLibrary.Core.svg"></a> <a href="https://github.com/Worldbeater/VkLibrary/issues"><img src="https://img.shields.io/github/issues/Worldbeater/VkLibrary.svg"></a> <a href="https://github.com/Worldbeater/VkLibrary/blob/master/LICENSE.md"><img src="https://img.shields.io/github/license/worldbeater/VkLibrary.svg"></a>
 
-<b>VkLibrary</b> is an unofficial <a href="https://vk.com/dev">vkontakte</a> API library implemented in C# and covering almost all existing API methods and types.
+> **Note** This project is no longer actively maintained. Consider using [VkNet library](https://github.com/vknet/vk) instead.
 
 # Installation
-The library is delivered via <a href="https://www.nuget.org/packages/VkLibrary.Core/">NuGet Package Manager</a>:
+The library is delivered via NuGet Package Manager:
 ```powershell
 Install-Package VkLibrary.Core
 ```
