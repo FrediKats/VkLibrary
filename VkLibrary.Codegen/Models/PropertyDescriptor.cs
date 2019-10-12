@@ -13,6 +13,7 @@ namespace VkLibrary.Codegen.Models
 
         public static PropertyDescriptor Create(string key, JToken body)
         {
+            //TODO: check default type like base_bool
             JToken type = body["type"];
             if (type == null)
             {

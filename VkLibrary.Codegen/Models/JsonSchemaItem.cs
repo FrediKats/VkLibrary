@@ -18,12 +18,10 @@ namespace VkLibrary.Codegen.Models
             var type = schemeObject["type"].Value<string>();
             JsonSchemaItemType itemType = type switch
             {
-                "object" when schemeObject.ContainsKey(ClassDescriptor.ClassPropertiesField) =>
-                JsonSchemaItemType.Class,
+                "object" when schemeObject.ContainsKey(ClassDescriptor.ClassPropertiesField) => JsonSchemaItemType.Class,
                 "object" => JsonSchemaItemType.Undefined,
-                "enum" => JsonSchemaItemType.Enum,
-                "string" => JsonSchemaItemType.Undefined,
-                "integer" => JsonSchemaItemType.Undefined,
+                "string" => JsonSchemaItemType.Enum,
+                "integer" => JsonSchemaItemType.Enum,
                 _ => throw new ArgumentException($"Invalid type: {type}")
             };
 
