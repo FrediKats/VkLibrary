@@ -12,6 +12,16 @@ namespace VkLibrary.Codegen.Types.TitleCase
         public string OriginalValue { get; }
         public string Value => NameToCamel();
 
+        public string ToSharpString()
+        {
+            return Value;
+        }
+
+        public string ToOriginalString()
+        {
+            return OriginalValue;
+        }
+
         public static CamelCaseTitle Of(string value)
         {
             return new CamelCaseTitle(value);
@@ -27,7 +37,7 @@ namespace VkLibrary.Codegen.Types.TitleCase
 
         public override string ToString()
         {
-            return Value;
+            return ToSharpString();
         }
     }
 }

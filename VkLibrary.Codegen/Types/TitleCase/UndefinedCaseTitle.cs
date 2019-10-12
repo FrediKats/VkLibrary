@@ -9,6 +9,16 @@
 
         public string OriginalValue { get; }
 
+        public string ToSharpString()
+        {
+            return OriginalValue;
+        }
+
+        public string ToOriginalString()
+        {
+            return OriginalValue;
+        }
+
         public static UndefinedCaseTitle Of(string value)
         {
             return new UndefinedCaseTitle(value);
