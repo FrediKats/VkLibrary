@@ -2,5 +2,7 @@
 {
     public interface ICustomCaseTitle
     {
+        string ToSharpString();
+        string ToOriginalString();
     }
 }
