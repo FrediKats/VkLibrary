@@ -18,12 +18,17 @@ namespace VkLibrary.Codegen
                 .Select(pair => JsonSchemaItem.Create(pair.Key, pair.Value))
                 .ToList();
 
-            List<ClassDescriptor> classes = items
-                .Where(i => i.ObjectType == JsonSchemaItemType.Class)
-                .Select(c => new ClassDescriptor(c))
+            //List<ClassDescriptor> classes = items
+            //    .Where(i => i.ObjectType == JsonSchemaItemType.Class)
+            //    .Select(c => new ClassDescriptor(c))
+            //    .ToList();
+
+            List<EnumDescriptor> enums = items
+                .Where(i => i.ObjectType == JsonSchemaItemType.Enum)
+                .Select(c => new EnumDescriptor(c))
                 .ToList();
 
-            classes.ForEach(Console.WriteLine);
+            enums.ForEach(Console.WriteLine);
 
             return items;
         }
