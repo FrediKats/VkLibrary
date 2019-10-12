@@ -30,11 +30,11 @@ namespace VkLibrary.Codegen.Generators
 
             //TODO: class description
             return
-                ClassDeclaration(classDescriptor.Title)
+                ClassDeclaration(classDescriptor.Title.ToSharpString())
                     .WithModifiers(
                         TokenList(
                             Token(
-                                CommonGenerator.AddComment($"API {classDescriptor.Title} object."),
+                                CommonGenerator.AddComment($"API {classDescriptor.Title.ToOriginalString()} object."),
                                 SyntaxKind.PublicKeyword,
                                 TriviaList())))
                     .WithMembers(

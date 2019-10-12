@@ -4,6 +4,7 @@ using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using VkLibrary.Codegen.Types;
+using VkLibrary.Codegen.Types.TitleCase;
 
 namespace VkLibrary.Codegen.Models
 {
@@ -16,7 +17,7 @@ namespace VkLibrary.Codegen.Models
             if (item.ObjectType != JsonSchemaItemType.Class)
                 throw new ArgumentException(item.ObjectType.ToString());
 
-            Title = item.Title;
+            Title = CamelCaseTitle.Of(item.Title);
 
             PropertyDescriptors =
                 JsonConvert
@@ -25,7 +26,7 @@ namespace VkLibrary.Codegen.Models
                     .ToList();
         }
 
-        public string Title { get; set; }
+        public ICustomCaseTitle Title { get; set; }
         public List<PropertyDescriptor> PropertyDescriptors { get; set; }
 
         public override string ToString()
