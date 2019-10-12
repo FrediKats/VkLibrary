@@ -1,4 +1,4 @@
-﻿using System;
+﻿using VkLibrary.Codegen.Generators;
 
 namespace VkLibrary.Codegen
 {
@@ -6,8 +6,8 @@ namespace VkLibrary.Codegen
     {
         static void Main(string[] args)
         {
-            JsonSchemaProvider.GetSchemeForResponses();
-
+            string outputPath = "";
+            FileGenerator.Process(outputPath);
         }
     }
 }
