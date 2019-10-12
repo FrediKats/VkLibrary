@@ -1,17 +1,10 @@
-﻿using System.Globalization;
-using System.Linq;
-
-namespace VkLibrary.Codegen.Tools
+﻿namespace VkLibrary.Codegen.Tools
 {
     public static class StringExtensions
     {
-        public static string NameToCamel(this string schemeObjectTitle)
+        public static string ToLogString<T>(this T instance)
         {
-            return schemeObjectTitle
-                .Split("_")
-                //.Skip(1)
-                .Select(s => char.ToUpper(s[0]) + s.Substring(1))
-                .Aggregate((a, b) => a + b);
+            return instance.ToString().Replace('\n', ' ');
         }
     }
 }
