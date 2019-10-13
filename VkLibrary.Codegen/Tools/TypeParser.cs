@@ -43,8 +43,7 @@ namespace VkLibrary.Codegen.Tools
                 "base" => "bool",
                 "integer" => "int",
                 "base_bool_int" => "int",
-                //TODO: validate
-                "number" => "int",
+                "number" => "double",
                 "String" => "string",
                 _ => type
             };

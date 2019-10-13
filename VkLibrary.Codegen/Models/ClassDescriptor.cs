@@ -21,6 +21,7 @@ namespace VkLibrary.Codegen.Models
                 throw new ArgumentException(item.ObjectType.ToString());
 
             Title = CamelCaseTitle.Of(item.Title);
+            Description = item.Description;
 
             JToken propertiesObject;
             if (item.Body.ContainsKey(AllOfGroupField))
@@ -60,9 +61,10 @@ namespace VkLibrary.Codegen.Models
                     .SelectMany(c => c.PropertyDescriptors));
         }
 
-        public ICustomCaseTitle Title { get; set; }
+        public ICustomCaseTitle Title { get; }
+        public string Description { get; }
         public List<ICustomCaseTitle> BaseClasses { get; } = new List<ICustomCaseTitle>();
-        public List<PropertyDescriptor> PropertyDescriptors { get; set; } = new List<PropertyDescriptor>();
+        public List<PropertyDescriptor> PropertyDescriptors { get; } = new List<PropertyDescriptor>();
 
         public override string ToString()
         {

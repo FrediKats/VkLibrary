@@ -17,16 +17,17 @@ namespace VkLibrary.Codegen.Models
                 throw new ArgumentException(item.ObjectType.ToString());
 
             Title = CamelCaseTitle.Of(item.Title);
+            Description = item.Description;
 
-
-            //TODO: bug with groups_group_subject
-            if (item.Body.Value<string>("type") == "integer")
+            //Known problems: bug with groups_group_subject
+            if (item.Body.Value<string>("type") == "integer" && item.Title != "groups_group_subject")
                 InitAsInt(item);
             else
                 InitAsString(item);
         }
 
         public CamelCaseTitle Title { get; }
+        public string Description { get; }
         public List<EnumValueDescriptor> Values { get; set; }
 
         private void InitAsInt(JsonSchemaItem item)

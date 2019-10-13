@@ -9,6 +9,7 @@ namespace VkLibrary.Codegen.Models
         public string Title { get; set; }
         public JsonSchemaItemType ObjectType { get; set; }
         public JObject Body { get; set; }
+        public string Description { get; set; }
 
         public static JsonSchemaItem Create(string key, JObject schemeObject)
         {
@@ -26,7 +27,13 @@ namespace VkLibrary.Codegen.Models
                 _ => throw new ArgumentException($"Invalid type: {type}")
             };
 
-            return new JsonSchemaItem {Body = schemeObject, Title = key, ObjectType = itemType};
+            return new JsonSchemaItem
+            {
+                Body = schemeObject,
+                Title = key,
+                ObjectType = itemType,
+                Description = schemeObject.Value<string>("description")
+            };
         }
 
         public override string ToString()
