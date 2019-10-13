@@ -12,25 +12,25 @@ namespace VkLibrary.Codegen.Generators
         public static CompilationUnitSyntax Generate(ClassDescriptor classDescriptor)
         {
             return CommonGenerator.CreateUsingAndNamespace()
-                .WithMembers(
-                    SingletonList(GenerateMainModel(classDescriptor)))
+                .AddMembers(GenerateMainModel(classDescriptor))
                 .NormalizeWhitespace();
         }
 
         private static MemberDeclarationSyntax GenerateMainModel(ClassDescriptor classDescriptor)
         {
-            MemberDeclarationSyntax[] properties =
-                classDescriptor.PropertyDescriptors.Select(GenerateProperties).ToArray();
+            MemberDeclarationSyntax[] properties = classDescriptor
+                .PropertyDescriptors
+                .Select(GenerateProperties)
+                .ToArray();
 
             //TODO: class description
             return
                 ClassDeclaration(classDescriptor.Title.ToSharpString())
-                    .WithModifiers(
-                        TokenList(
+                    .AddModifiers(
                             Token(
                                 CommonGenerator.AddComment($"API {classDescriptor.Title.ToOriginalString()} object."),
                                 SyntaxKind.PublicKeyword,
-                                TriviaList())))
+                                TriviaList()))
                     .WithMembers(
                         List(properties));
         }
@@ -45,28 +45,24 @@ namespace VkLibrary.Codegen.Generators
             return PropertyDeclaration(
                     ParseTypeName(propertyType),
                     Identifier(propertyName))
-                .WithAttributeLists(
-                    SingletonList(
-                        AttributeList(
-                                SingletonSeparatedList(
-                                    Attribute(
-                                            IdentifierName("JsonProperty"))
-                                        .WithArgumentList(
-                                            AttributeArgumentList(
-                                                SingletonSeparatedList(
-                                                    AttributeArgument(
-                                                        LiteralExpression(
-                                                            SyntaxKind
-                                                                .StringLiteralExpression,
-                                                            Literal(propertyJsonName))))))))
-                            .WithOpenBracketToken(
-                                Token(
-                                    CommonGenerator.AddComment(propertyComment),
-                                    SyntaxKind.OpenBracketToken,
-                                    TriviaList()))))
-                .WithModifiers(
-                    TokenList(
-                        Token(SyntaxKind.PublicKeyword)))
+                .AddAttributeLists(
+                    AttributeList(
+                            SingletonSeparatedList(
+                                Attribute(
+                                        IdentifierName("JsonProperty"))
+                                    .AddArgumentListArguments(
+                                        AttributeArgument(
+                                            LiteralExpression(
+                                                SyntaxKind
+                                                    .StringLiteralExpression,
+                                                Literal(propertyJsonName))))))
+                        .WithOpenBracketToken(
+                            Token(
+                                CommonGenerator.AddComment(propertyComment),
+                                SyntaxKind.OpenBracketToken,
+                                TriviaList())))
+                .AddModifiers(
+                    Token(SyntaxKind.PublicKeyword))
                 .WithAccessorList(
                     AccessorList(
                         List(
