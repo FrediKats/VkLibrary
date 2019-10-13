@@ -19,7 +19,8 @@ namespace VkLibrary.Codegen.Models
             JsonSchemaItemType itemType = type switch
             {
                 "object" when schemeObject.ContainsKey(ClassDescriptor.ClassPropertiesField) => JsonSchemaItemType.Class,
-                "object" => JsonSchemaItemType.Undefined,
+                "object" when schemeObject.ContainsKey(ClassDescriptor.AllOfGroupField) => JsonSchemaItemType.Class,
+                "object" when schemeObject.ContainsKey(ClassDescriptor.OneOfGroupField) => JsonSchemaItemType.Undefined,
                 "string" => JsonSchemaItemType.Enum,
                 "integer" => JsonSchemaItemType.Enum,
                 _ => throw new ArgumentException($"Invalid type: {type}")

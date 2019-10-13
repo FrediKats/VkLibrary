@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.IO;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -14,6 +14,8 @@ namespace VkLibrary.Codegen.Generators
             CheckFolder(directoryPath);
 
             List<ClassDescriptor> classes = JsonSchemaProvider.GetClassDescriptor();
+            classes.ForEach(c => c.MergePropertiesFromBaseClasses(classes));
+
             foreach (ClassDescriptor classDescriptor in classes)
             {
                 CompilationUnitSyntax unit = ClassGenerator.Generate(classDescriptor);
