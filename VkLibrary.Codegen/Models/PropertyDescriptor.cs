@@ -12,8 +12,6 @@ namespace VkLibrary.Codegen.Models
 
         public static PropertyDescriptor Create(string key, JToken body)
         {
-            //TODO: check default type like base_bool
-
             ICustomCaseTitle type = TypeParser.ParseType(body);
             return new PropertyDescriptor
             {

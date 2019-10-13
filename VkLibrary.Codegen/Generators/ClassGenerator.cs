@@ -23,32 +23,15 @@ namespace VkLibrary.Codegen.Generators
                 .Select(GenerateProperties)
                 .ToArray();
 
-            //TODO: class description
             return
-                GenerateClassDeclaration(classDescriptor)
+                ClassDeclaration(classDescriptor.Title.ToSharpString())
                     .AddModifiers(
                             Token(
-                                CommonGenerator.AddComment($"API {classDescriptor.Title.ToOriginalString()} object."),
+                                CommonGenerator.AddComment(classDescriptor.Description),
                                 SyntaxKind.PublicKeyword,
                                 TriviaList()))
                     .WithMembers(
                         List(properties));
-        }
-
-        private static ClassDeclarationSyntax GenerateClassDeclaration(ClassDescriptor classDescriptor)
-        {
-            //TODO: check if ok
-            ClassDeclarationSyntax classDeclaration = ClassDeclaration(classDescriptor.Title.ToSharpString());
-            return classDeclaration;
-
-            BaseTypeSyntax[] baseClasses = classDescriptor.BaseClasses
-                .Select(b => SimpleBaseType(IdentifierName(b.ToSharpString())))
-                .Select(s => s as BaseTypeSyntax)
-                .ToArray();
-
-            return baseClasses.Any()
-                ? classDeclaration.AddBaseListTypes(baseClasses)
-                : classDeclaration;
         }
 
         private static MemberDeclarationSyntax GenerateProperties(PropertyDescriptor propertyDescriptor)

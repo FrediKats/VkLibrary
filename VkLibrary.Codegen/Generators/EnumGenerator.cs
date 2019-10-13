@@ -23,11 +23,10 @@ namespace VkLibrary.Codegen.Generators
                 .Select(GenerateEnumValue)
                 .ToArray();
 
-            //TODO: add description
             return EnumDeclaration(enumDescriptor.Title.ToSharpString())
                 .AddModifiers(
                     Token(
-                        CommonGenerator.AddComment(enumDescriptor.Title.ToOriginalString()),
+                        CommonGenerator.AddComment(enumDescriptor.Description),
                         SyntaxKind.PublicKeyword,
                         TriviaList()))
                 .AddMembers(values);
