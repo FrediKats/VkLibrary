@@ -10,14 +10,14 @@ namespace VkLibrary.Codegen.Tools
         {
             if (body["type"] == null)
             {
-                return CamelCaseTitle.Of(GetTypeFromRef(body));
+                return MatchDefaultType(GetTypeFromRef(body));
             }
 
             if (body["type"].Type == JTokenType.Array)
             {
                 Log.Instance.Message($"Type composition: {body["type"].ToLogString()}");
 
-                return UndefinedCaseTitle.Of("object[]");
+                return UndefinedCaseTitle.Of("object");
             }
 
             if (body["type"].Value<string>() == "array")

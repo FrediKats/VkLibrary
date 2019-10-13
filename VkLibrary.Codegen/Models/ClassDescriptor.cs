@@ -24,7 +24,7 @@ namespace VkLibrary.Codegen.Models
             Description = item.Description;
 
             JToken propertiesObject;
-            if (item.Body.ContainsKey(AllOfGroupField))
+            if (item.Body[AllOfGroupField] != null)
             {
                 propertiesObject = item.Body[AllOfGroupField].FirstOrDefault(t => t[ClassPropertiesField] != null);
                 BaseClasses = item.Body[AllOfGroupField]
@@ -32,7 +32,7 @@ namespace VkLibrary.Codegen.Models
                     .Select(TypeParser.ParseType)
                     .ToList();
             }
-            else if (item.Body.ContainsKey(OneOfGroupField))
+            else if (item.Body[OneOfGroupField] != null)
             {
                 propertiesObject = item.Body[OneOfGroupField].FirstOrDefault(t => t[ClassPropertiesField] != null);
                 BaseClasses = item.Body[OneOfGroupField]

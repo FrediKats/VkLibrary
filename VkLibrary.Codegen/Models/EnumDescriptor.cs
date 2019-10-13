@@ -45,7 +45,7 @@ namespace VkLibrary.Codegen.Models
         {
             var values = item.Body[EnumField].ToObject<List<string>>();
 
-            if (!item.Body.ContainsKey(EnumNamesField))
+            if (item.Body[EnumNamesField] == null)
             {
                 Values = values
                     .Select(v => new EnumValueDescriptor(CamelCaseTitle.Of(v)))
