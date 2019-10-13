@@ -31,6 +31,14 @@ namespace VkLibrary.Codegen.Models
                     .Select(TypeMatcher.MatchDefaultType)
                     .ToList();
             }
+            else if (item.Body.ContainsKey(OneOfGroupField))
+            {
+                propertiesObject = item.Body[OneOfGroupField].FirstOrDefault(t => t[ClassPropertiesField] != null);
+                BaseClasses = item.Body[OneOfGroupField]
+                    .Where(t => t["$ref"] != null)
+                    .Select(TypeMatcher.MatchDefaultType)
+                    .ToList();
+            }
             else
             {
                 propertiesObject = item.Body;

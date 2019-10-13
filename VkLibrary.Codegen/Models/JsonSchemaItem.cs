@@ -20,7 +20,7 @@ namespace VkLibrary.Codegen.Models
             {
                 "object" when schemeObject.ContainsKey(ClassDescriptor.ClassPropertiesField) => JsonSchemaItemType.Class,
                 "object" when schemeObject.ContainsKey(ClassDescriptor.AllOfGroupField) => JsonSchemaItemType.Class,
-                "object" when schemeObject.ContainsKey(ClassDescriptor.OneOfGroupField) => JsonSchemaItemType.Undefined,
+                "object" when schemeObject.ContainsKey(ClassDescriptor.OneOfGroupField) => JsonSchemaItemType.Class,
                 "string" => JsonSchemaItemType.Enum,
                 "integer" => JsonSchemaItemType.Enum,
                 _ => throw new ArgumentException($"Invalid type: {type}")
