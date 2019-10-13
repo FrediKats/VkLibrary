@@ -19,43 +19,44 @@ namespace VkLibrary.Codegen.Generators
 
         private static MemberDeclarationSyntax GenerateMainModel(EnumDescriptor enumDescriptor)
         {
+            EnumMemberDeclarationSyntax[] values = enumDescriptor
+                .Values
+                .Select(GenerateEnumValue)
+                .ToArray();
+
             //TODO: add description
             return EnumDeclaration(enumDescriptor.Title.ToSharpString())
-                .WithModifiers(
-                    TokenList(
-                        Token(
-                            CommonGenerator.AddComment(enumDescriptor.Title.ToOriginalString()),
-                            SyntaxKind.PublicKeyword,
-                            TriviaList())))
-                .WithMembers(
-                    SeparatedList(enumDescriptor.Values.Select(GenerateEnumValue)));
+                .AddModifiers(
+                    Token(
+                        CommonGenerator.AddComment(enumDescriptor.Title.ToOriginalString()),
+                        SyntaxKind.PublicKeyword,
+                        TriviaList()))
+                .AddMembers(values);
         }
 
         private static EnumMemberDeclarationSyntax GenerateEnumValue(EnumValueDescriptor enumValue)
         {
-            EnumMemberDeclarationSyntax res = EnumMemberDeclaration(
-                    Identifier(enumValue.Name.ToSharpString()))
-                .WithAttributeLists(
-                    SingletonList(
+            EnumMemberDeclarationSyntax res =
+                EnumMemberDeclaration(
+                        Identifier(enumValue.Name.ToSharpString()))
+                    .AddAttributeLists(
                         AttributeList(
                                 SingletonSeparatedList(
                                     Attribute(
                                             IdentifierName("EnumMember"))
-                                        .WithArgumentList(
-                                            AttributeArgumentList(
-                                                SingletonSeparatedList(
-                                                    AttributeArgument(
-                                                            LiteralExpression(
-                                                                SyntaxKind.StringLiteralExpression,
-                                                                Literal(enumValue.Name.ToOriginalString())))
-                                                        .WithNameEquals(
-                                                            NameEquals(
-                                                                IdentifierName("Value"))))))))
+                                        .AddArgumentListArguments(
+                                            AttributeArgument(
+                                                    LiteralExpression(
+                                                        SyntaxKind.StringLiteralExpression,
+                                                        Literal(enumValue.Name.ToOriginalString())))
+                                                .WithNameEquals(
+                                                    NameEquals(
+                                                        IdentifierName("Value"))))))
                             .WithOpenBracketToken(
                                 Token(
                                     CommonGenerator.AddComment(enumValue.Description),
                                     SyntaxKind.OpenBracketToken,
-                                    TriviaList()))));
+                                    TriviaList())));
 
             if (enumValue.Value.HasValue)
                 res = res

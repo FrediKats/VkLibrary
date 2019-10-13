@@ -21,8 +21,7 @@ namespace VkLibrary.Codegen.Generators
         {
             return
                 CompilationUnit()
-                    .WithUsings(
-                        List(usingList))
+                    .AddUsings(usingList)
                     .WithMembers(
                         SingletonList<MemberDeclarationSyntax>(
                             NamespaceDeclaration(IdentifierName(namespaceIdentifier))));
