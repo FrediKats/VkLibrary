@@ -28,7 +28,7 @@ namespace VkLibrary.Codegen.Models
                 propertiesObject = item.Body[AllOfGroupField].FirstOrDefault(t => t[ClassPropertiesField] != null);
                 BaseClasses = item.Body[AllOfGroupField]
                     .Where(t => t["$ref"] != null)
-                    .Select(TypeMatcher.MatchDefaultType)
+                    .Select(TypeParser.ParseType)
                     .ToList();
             }
             else if (item.Body.ContainsKey(OneOfGroupField))
@@ -36,7 +36,7 @@ namespace VkLibrary.Codegen.Models
                 propertiesObject = item.Body[OneOfGroupField].FirstOrDefault(t => t[ClassPropertiesField] != null);
                 BaseClasses = item.Body[OneOfGroupField]
                     .Where(t => t["$ref"] != null)
-                    .Select(TypeMatcher.MatchDefaultType)
+                    .Select(TypeParser.ParseType)
                     .ToList();
             }
             else
