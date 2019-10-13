@@ -15,7 +15,7 @@ namespace VkLibrary.Codegen.Types.TitleCase
         public string ToSharpString()
         {
             //TODO: hack
-            if (Value.StartsWith("2"))
+            if (char.IsNumber(Value.First()))
                 return $"_{Value}";
             return Value;
         }
@@ -33,7 +33,7 @@ namespace VkLibrary.Codegen.Types.TitleCase
         public string NameToCamel()
         {
             return OriginalValue
-                .Split("_")
+                .Split('_', ' ')
                 .Select(s => char.ToUpper(s[0]) + s.Substring(1))
                 .Aggregate((a, b) => a + b);
         }

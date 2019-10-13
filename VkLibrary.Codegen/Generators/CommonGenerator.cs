@@ -7,7 +7,15 @@ namespace VkLibrary.Codegen.Generators
 {
     public class CommonGenerator
     {
-        public static CompilationUnitSyntax GenerateWithUsing(
+        public static CompilationUnitSyntax CreateUsingAndNamespace()
+        {
+            return CommonGenerator.GenerateWithUsing("VkLibrary.Core.Types",
+                UsingDirective(IdentifierName("Newtonsoft.Json")),
+                UsingDirective(IdentifierName("System")),
+                UsingDirective(IdentifierName("System.Runtime.Serialization")));
+        }
+
+        private static CompilationUnitSyntax GenerateWithUsing(
             string namespaceIdentifier,
             params UsingDirectiveSyntax[] usingList)
         {

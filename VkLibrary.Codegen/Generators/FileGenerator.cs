@@ -19,6 +19,12 @@ namespace VkLibrary.Codegen.Generators
                 CompilationUnitSyntax unit = ClassGenerator.Generate(classDescriptor);
                 WriteToFile($"{directoryPath}{classDescriptor.Title.ToSharpString()}.cs", unit);
             }
+            List<EnumDescriptor> enums = JsonSchemaProvider.GetEnumDescriptor();
+            foreach (EnumDescriptor enumDescriptor in enums)
+            {
+                CompilationUnitSyntax unit = EnumGenerator.Generate(enumDescriptor);
+                WriteToFile($"{directoryPath}{enumDescriptor.Title.ToSharpString()}.cs", unit);
+            }
         }
 
         private static void WriteToFile(string path, CompilationUnitSyntax content)
