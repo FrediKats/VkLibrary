@@ -12,8 +12,7 @@ namespace VkLibrary.Codegen.Generators
         public static CompilationUnitSyntax Generate(EnumDescriptor enumDescriptor)
         {
             return CommonGenerator
-                .CreateUsingAndNamespace()
-                .WithMembers(SingletonList(GenerateMainModel(enumDescriptor)))
+                .CreateWithUsingAndNamespace("VkLibrary.Core.Types", GenerateMainModel(enumDescriptor))
                 .NormalizeWhitespace();
         }
 

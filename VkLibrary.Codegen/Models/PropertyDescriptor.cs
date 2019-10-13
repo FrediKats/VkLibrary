@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
 using VkLibrary.Codegen.Tools;
 using VkLibrary.Codegen.Types.TitleCase;
 
@@ -17,12 +16,10 @@ namespace VkLibrary.Codegen.Models
             JToken type = body["type"];
             if (type == null)
             {
-                string typeRef = body["$ref"].ToString().Split('/').Last();
-                
                 return new PropertyDescriptor
                 {
                     Title = CamelCaseTitle.Of(key),
-                    Type = TypeMatcher.MathDefaultType(typeRef),
+                    Type = TypeMatcher.MatchDefaultType(body),
                     Description = body.Value<string>("description")
                 };
             }
@@ -43,7 +40,7 @@ namespace VkLibrary.Codegen.Models
             return new PropertyDescriptor
             {
                 Title = CamelCaseTitle.Of(key),
-                Type = TypeMatcher.MathDefaultType(body["type"].ToString()),
+                Type = TypeMatcher.MatchDefaultType(body["type"].ToString()),
                 Description = body.Value<string>("description")
             };
         }

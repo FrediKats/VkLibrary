@@ -7,24 +7,23 @@ namespace VkLibrary.Codegen.Generators
 {
     public class CommonGenerator
     {
-        public static CompilationUnitSyntax CreateUsingAndNamespace()
+        public static CompilationUnitSyntax CreateWithUsingAndNamespace(string namespaceIdentifier,
+            MemberDeclarationSyntax member)
         {
-            return CommonGenerator.GenerateWithUsing("VkLibrary.Core.Types",
+            UsingDirectiveSyntax[] usingList =
+            {
                 UsingDirective(IdentifierName("Newtonsoft.Json")),
                 UsingDirective(IdentifierName("System")),
-                UsingDirective(IdentifierName("System.Runtime.Serialization")));
-        }
+                UsingDirective(IdentifierName("System.Runtime.Serialization"))
+            };
 
-        private static CompilationUnitSyntax GenerateWithUsing(
-            string namespaceIdentifier,
-            params UsingDirectiveSyntax[] usingList)
-        {
             return
                 CompilationUnit()
                     .AddUsings(usingList)
                     .WithMembers(
                         SingletonList<MemberDeclarationSyntax>(
-                            NamespaceDeclaration(IdentifierName(namespaceIdentifier))));
+                            NamespaceDeclaration(IdentifierName(namespaceIdentifier))
+                                .AddMembers(member)));
         }
 
         public static SyntaxTriviaList AddComment(string commentText)
@@ -36,48 +35,47 @@ namespace VkLibrary.Codegen.Generators
                         List(
                             new XmlNodeSyntax[]
                             {
-                                XmlText()
-                                    .WithTextTokens(
-                                        TokenList(
-                                            XmlTextLiteral(
-                                                TriviaList(
-                                                    DocumentationCommentExterior("///")),
-                                                " ",
-                                                " ",
-                                                TriviaList()))),
                                 XmlExampleElement(
                                         SingletonList<XmlNodeSyntax>(
                                             XmlText()
                                                 .WithTextTokens(
-                                                    TokenList(XmlTextNewLine(
-                                                        TriviaList(),
-                                                        "\n",
-                                                        "\n",
-                                                        TriviaList()), XmlTextLiteral(
-                                                        TriviaList(
-                                                            DocumentationCommentExterior(
-                                                                "///")),
-                                                        $" {commentText}",
-                                                        $" {commentText}",
-                                                        TriviaList()), XmlTextNewLine(
-                                                        TriviaList(),
-                                                        "\n",
-                                                        "\n",
-                                                        TriviaList()), XmlTextLiteral(
-                                                        TriviaList(
-                                                            DocumentationCommentExterior(
-                                                                "///")),
-                                                        " ",
-                                                        " ",
-                                                        TriviaList())))))
+                                                    TokenList(
+                                                        XmlTextNewLine(
+                                                            TriviaList(),
+                                                            "\n",
+                                                            "\n",
+                                                            TriviaList()),
+                                                        XmlTextLiteral(
+                                                            TriviaList(
+                                                                DocumentationCommentExterior("    ///")),
+                                                            $" {commentText}",
+                                                            $" {commentText}",
+                                                            TriviaList()),
+                                                        XmlTextNewLine(
+                                                            TriviaList(),
+                                                            "\n",
+                                                            "\n",
+                                                            TriviaList())))))
                                     .WithStartTag(
                                         XmlElementStartTag(
-                                            XmlName(
-                                                Identifier("summary"))))
+                                                XmlName(
+                                                    Identifier("summary")))
+                                            .WithLessThanToken(
+                                                Token(
+                                                    TriviaList(
+                                                        DocumentationCommentExterior("///")),
+                                                    SyntaxKind.LessThanToken,
+                                                    TriviaList())))
                                     .WithEndTag(
                                         XmlElementEndTag(
-                                            XmlName(
-                                                Identifier("summary")))),
+                                                XmlName(
+                                                    Identifier("summary")))
+                                            .WithLessThanSlashToken(
+                                                Token(
+                                                    TriviaList(
+                                                        DocumentationCommentExterior("    ///")),
+                                                    SyntaxKind.LessThanSlashToken,
+                                                    TriviaList()))),
                                 XmlText()
                                     .WithTextTokens(
                                         TokenList(

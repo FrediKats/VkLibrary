@@ -11,8 +11,8 @@ namespace VkLibrary.Codegen.Generators
     {
         public static CompilationUnitSyntax Generate(ClassDescriptor classDescriptor)
         {
-            return CommonGenerator.CreateUsingAndNamespace()
-                .AddMembers(GenerateMainModel(classDescriptor))
+            return CommonGenerator
+                .CreateWithUsingAndNamespace("VkLibrary.Core.Types", GenerateMainModel(classDescriptor))
                 .NormalizeWhitespace();
         }
 
@@ -25,7 +25,7 @@ namespace VkLibrary.Codegen.Generators
 
             //TODO: class description
             return
-                ClassDeclaration(classDescriptor.Title.ToSharpString())
+                GenerateClassDeclaration(classDescriptor)
                     .AddModifiers(
                             Token(
                                 CommonGenerator.AddComment($"API {classDescriptor.Title.ToOriginalString()} object."),
@@ -33,6 +33,22 @@ namespace VkLibrary.Codegen.Generators
                                 TriviaList()))
                     .WithMembers(
                         List(properties));
+        }
+
+        private static ClassDeclarationSyntax GenerateClassDeclaration(ClassDescriptor classDescriptor)
+        {
+            //TODO: check if ok
+            ClassDeclarationSyntax classDeclaration = ClassDeclaration(classDescriptor.Title.ToSharpString());
+            return classDeclaration;
+
+            BaseTypeSyntax[] baseClasses = classDescriptor.BaseClasses
+                .Select(b => SimpleBaseType(IdentifierName(b.ToSharpString())))
+                .Select(s => s as BaseTypeSyntax)
+                .ToArray();
+
+            return baseClasses.Any()
+                ? classDeclaration.AddBaseListTypes(baseClasses)
+                : classDeclaration;
         }
 
         private static MemberDeclarationSyntax GenerateProperties(PropertyDescriptor propertyDescriptor)
