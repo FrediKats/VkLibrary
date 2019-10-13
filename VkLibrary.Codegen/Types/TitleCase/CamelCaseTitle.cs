@@ -14,6 +14,9 @@ namespace VkLibrary.Codegen.Types.TitleCase
 
         public string ToSharpString()
         {
+            //TODO: hack
+            if (Value.StartsWith("2"))
+                return $"_{Value}";
             return Value;
         }
 
