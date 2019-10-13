@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using VkLibrary.Codegen.Tools;
 
 namespace VkLibrary.Codegen.Types.TitleCase
 {
@@ -10,7 +11,7 @@ namespace VkLibrary.Codegen.Types.TitleCase
         }
 
         public string OriginalValue { get; }
-        public string Value => NameToCamel();
+        public string Value => OriginalValue.TitleToCamelCaseStyle();
 
         public string ToSharpString()
         {
@@ -28,14 +29,6 @@ namespace VkLibrary.Codegen.Types.TitleCase
         public static CamelCaseTitle Of(string value)
         {
             return new CamelCaseTitle(value);
-        }
-
-        public string NameToCamel()
-        {
-            return OriginalValue
-                .Split('_', ' ')
-                .Select(s => char.ToUpper(s[0]) + s.Substring(1))
-                .Aggregate((a, b) => a + b);
         }
 
         public override string ToString()
