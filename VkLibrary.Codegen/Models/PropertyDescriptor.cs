@@ -17,11 +17,12 @@ namespace VkLibrary.Codegen.Models
             JToken type = body["type"];
             if (type == null)
             {
-                Log.Instance.Message($"Type not defined: key - {key}, ref - {body["$ref"].ToLogString()}");
+                string typeRef = body["$ref"].ToString().Split('/').Last();
+                
                 return new PropertyDescriptor
                 {
                     Title = CamelCaseTitle.Of(key),
-                    Type = CamelCaseTitle.Of(body["$ref"].ToString().Split('/').Last()),
+                    Type = TypeMatcher.MathDefaultType(typeRef),
                     Description = body.Value<string>("description")
                 };
             }
@@ -29,10 +30,12 @@ namespace VkLibrary.Codegen.Models
             if (type.Type == JTokenType.Array)
             {
                 Log.Instance.Message($"Type composition: key - {key}, type - {body["type"].ToLogString()}");
+
+                //TODO: get array type
                 return new PropertyDescriptor
                 {
                     Title = CamelCaseTitle.Of(key),
-                    Type = UndefinedCaseTitle.Of(body["type"]?.ToString()),
+                    Type = UndefinedCaseTitle.Of("object[]"),
                     Description = body.Value<string>("description")
                 };
             }
@@ -40,7 +43,7 @@ namespace VkLibrary.Codegen.Models
             return new PropertyDescriptor
             {
                 Title = CamelCaseTitle.Of(key),
-                Type = CamelCaseTitle.Of(body["type"].ToString()),
+                Type = TypeMatcher.MathDefaultType(body["type"].ToString()),
                 Description = body.Value<string>("description")
             };
         }

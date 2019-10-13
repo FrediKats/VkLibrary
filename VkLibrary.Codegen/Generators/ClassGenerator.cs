@@ -20,7 +20,8 @@ namespace VkLibrary.Codegen.Generators
         private static CompilationUnitSyntax CreateUsingAndNamespace()
         {
             return CommonGenerator.GenerateWithUsing("VkLibrary.Core.Types",
-                UsingDirective(IdentifierName("Newtonsoft.Json")));
+                UsingDirective(IdentifierName("Newtonsoft.Json")),
+                UsingDirective(IdentifierName("System")));
         }
 
         private static MemberDeclarationSyntax GenerateMainModel(ClassDescriptor classDescriptor)
