@@ -16,7 +16,7 @@ namespace VkLibrary.Codegen.Models
             if (item.ObjectType != JsonSchemaItemType.Enum)
                 throw new ArgumentException(item.ObjectType.ToString());
 
-            Title = item.Title;
+            Title = CamelCaseTitle.Of(item.Title);
 
 
             //TODO: bug with groups_group_subject
@@ -26,7 +26,7 @@ namespace VkLibrary.Codegen.Models
                 InitAsString(item);
         }
 
-        public string Title { get; }
+        public CamelCaseTitle Title { get; }
         public List<EnumValueDescriptor> Values { get; set; }
 
         private void InitAsInt(JsonSchemaItem item)

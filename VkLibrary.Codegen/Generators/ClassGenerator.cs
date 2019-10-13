@@ -11,17 +11,10 @@ namespace VkLibrary.Codegen.Generators
     {
         public static CompilationUnitSyntax Generate(ClassDescriptor classDescriptor)
         {
-            return CreateUsingAndNamespace()
+            return CommonGenerator.CreateUsingAndNamespace()
                 .WithMembers(
                     SingletonList(GenerateMainModel(classDescriptor)))
                 .NormalizeWhitespace();
-        }
-
-        private static CompilationUnitSyntax CreateUsingAndNamespace()
-        {
-            return CommonGenerator.GenerateWithUsing("VkLibrary.Core.Types",
-                UsingDirective(IdentifierName("Newtonsoft.Json")),
-                UsingDirective(IdentifierName("System")));
         }
 
         private static MemberDeclarationSyntax GenerateMainModel(ClassDescriptor classDescriptor)
