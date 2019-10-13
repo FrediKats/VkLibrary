@@ -9,25 +9,47 @@ namespace VkLibrary.Codegen
 {
     public class JsonSchemaProvider
     {
-        public static readonly JsonSchemaModel ObjectSchemaModel;
+        private readonly JsonSchemaModel _objectSchemaModel;
 
-        static JsonSchemaProvider()
+        public JsonSchemaProvider(string filePath)
         {
-            ObjectSchemaModel = JsonConvert.DeserializeObject<JsonSchemaModel>(File.ReadAllText("Schemes/objects.json"));
+            _objectSchemaModel = JsonConvert.DeserializeObject<JsonSchemaModel>(File.ReadAllText(filePath));
         }
 
         public List<ClassDescriptor> GetClassDescriptor()
         {
-            return ObjectSchemaModel.Definitions
+            return _objectSchemaModel.Definitions
                 .Select(pair => JsonSchemaItem.Create(pair.Key, pair.Value))
                 .Where(i => i.ObjectType == JsonSchemaItemType.Class)
                 .Select(c => new ClassDescriptor(c))
                 .ToList();
         }
+        public List<ClassDescriptor> GetResponseClassDescriptors()
+        {
+            // known problem: bug with parsing
+            _objectSchemaModel.Definitions.Remove("messages_delete_response");
+            _objectSchemaModel.Definitions.Remove("newsfeed_getSuggestedSources_response");
+            _objectSchemaModel.Definitions.Remove("notifications_get_response");
+
+            return _objectSchemaModel.Definitions
+                .Select(pair => JsonSchemaItem.Create(pair.Key, pair.Value))
+                .Where(i => i.ObjectType == JsonSchemaItemType.Class)
+                .Select(ConvertIfNested)
+                .ToList();
+        }
+
+        public ClassDescriptor ConvertIfNested(JsonSchemaItem jsonSchemaItem)
+        {
+            if (jsonSchemaItem.Body["properties"]["response"].Value<string>("type") == "object")
+            {
+                jsonSchemaItem.Body = jsonSchemaItem.Body["properties"]["response"];
+            }
+            return new ClassDescriptor(jsonSchemaItem);
+        }
 
         public List<EnumDescriptor> GetEnumDescriptor()
         {
-            return ObjectSchemaModel.Definitions
+            return _objectSchemaModel.Definitions
                 .Select(pair => JsonSchemaItem.Create(pair.Key, pair.Value))
                 .Where(i => i.ObjectType == JsonSchemaItemType.Enum)
                 .Select(c => new EnumDescriptor(c))
@@ -36,7 +58,7 @@ namespace VkLibrary.Codegen
 
         public List<JsonSchemaItem> GetUndefined()
         {
-            return ObjectSchemaModel.Definitions
+            return _objectSchemaModel.Definitions
                 .Select(pair => JsonSchemaItem.Create(pair.Key, pair.Value))
                 .Where(i => i.ObjectType == JsonSchemaItemType.Undefined)
                 .ToList();

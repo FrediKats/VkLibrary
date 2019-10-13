@@ -8,7 +8,7 @@ namespace VkLibrary.Codegen.Models
     {
         public string Title { get; set; }
         public JsonSchemaItemType ObjectType { get; set; }
-        public JObject Body { get; set; }
+        public JToken Body { get; set; }
         public string Description { get; set; }
 
         public static JsonSchemaItem Create(string key, JObject schemeObject)

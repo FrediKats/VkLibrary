@@ -12,9 +12,18 @@ namespace VkLibrary.Codegen.Generators
     {
         public static void Process(string directoryPath)
         {
-            var provider = new JsonSchemaProvider();
-
             CheckFolder(directoryPath);
+
+            var objects = new JsonSchemaProvider("Schemes/objects.json");
+            var responses = new JsonSchemaProvider("Schemes/responses.json");
+            GenerateFromObject(objects, $"{directoryPath}/Objects/");
+            GenerateFromResponses(responses, $"{directoryPath}/Responses/");
+        }
+
+        private static void GenerateFromObject(JsonSchemaProvider provider, string directoryPath)
+        {
+            CheckFolder(directoryPath);
+
             List<ClassDescriptor> classes = provider.GetClassDescriptor();
             List<EnumDescriptor> enums = provider.GetEnumDescriptor();
 
@@ -31,8 +40,20 @@ namespace VkLibrary.Codegen.Generators
                 WriteToFile($"{directoryPath}{enumDescriptor.Title.ToSharpString()}.cs", unit);
             }
 
-            provider.GetUndefined()
-                .ForEach(i => Log.Instance.Message(i.Body.ToString()));
+            provider.GetUndefined().ForEach(i => Log.Instance.Message(i.Body.ToString()));
+        }
+
+        private static void GenerateFromResponses(JsonSchemaProvider provider, string directoryPath)
+        {
+            CheckFolder(directoryPath);
+
+            List<ClassDescriptor> responses = provider.GetResponseClassDescriptors();
+            foreach (ClassDescriptor classDescriptor in responses)
+            {
+                CompilationUnitSyntax unit = ClassGenerator.Generate(classDescriptor);
+                WriteToFile($"{directoryPath}{classDescriptor.Title.ToSharpString()}.cs", unit);
+            }
+            provider.GetUndefined().ForEach(i => Log.Instance.Message(i.Body.ToString()));
         }
 
         private static void WriteToFile(string path, CompilationUnitSyntax content)
