@@ -36,7 +36,7 @@ namespace VkLibrary.Codegen.Generators
 
         private static MemberDeclarationSyntax GenerateProperties(PropertyDescriptor propertyDescriptor)
         {
-            string propertyType = propertyDescriptor.Type.ToString();
+            string propertyType = propertyDescriptor.Type.ToSharpString();
             string propertyName = propertyDescriptor.Title.ToSharpString();
             string propertyComment = propertyDescriptor.Description;
             string propertyJsonName = propertyDescriptor.Title.ToOriginalString();

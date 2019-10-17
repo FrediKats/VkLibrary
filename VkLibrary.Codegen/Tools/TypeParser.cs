@@ -28,6 +28,22 @@ namespace VkLibrary.Codegen.Tools
             return MatchDefaultType(body.Value<string>("type"));
         }
 
+        public static ICustomCaseTitle ParseType(string type)
+        {
+            //if (type == null)
+            //{
+            //    return MatchDefaultType(GetTypeFromRef(body));
+            //}
+
+            //if (type == "array")
+            //{
+            //    return CamelCaseArrayTitle.Of(ParseType(body["items"]));
+            //}
+
+            //TODO: check if need other types support
+            return MatchDefaultType(type);
+        }
+
         private static string GetTypeFromRef(JToken body)
         {
             return body["$ref"]

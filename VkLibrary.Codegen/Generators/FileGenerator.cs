@@ -12,20 +12,18 @@ namespace VkLibrary.Codegen.Generators
     {
         public static void Process(string directoryPath)
         {
-            CheckFolder(directoryPath);
+            if (Directory.Exists(directoryPath))
+                Directory.Delete(directoryPath, true);
 
-            var objects = new JsonSchemaProvider("Schemes/objects.json");
-            var responses = new JsonSchemaProvider("Schemes/responses.json");
-            GenerateFromObject(objects, $"{directoryPath}/Objects/");
-            GenerateFromResponses(responses, $"{directoryPath}/Responses/");
+            var provider = new JsonSchemaProvider();
+            GenerateFromObject(provider, $"{directoryPath}/Objects/");
+            GenerateFromResponses(provider, $"{directoryPath}/Responses/");
         }
 
         private static void GenerateFromObject(JsonSchemaProvider provider, string directoryPath)
         {
-            CheckFolder(directoryPath);
-
-            List<ClassDescriptor> classes = provider.GetClassDescriptor();
-            List<EnumDescriptor> enums = provider.GetEnumDescriptor();
+            List<ClassDescriptor> classes = provider.GetObjectClassDescriptor();
+            List<EnumDescriptor> enums = provider.GetObjectEnumDescriptor();
 
             foreach (ClassDescriptor classDescriptor in classes)
             {
@@ -45,8 +43,6 @@ namespace VkLibrary.Codegen.Generators
 
         private static void GenerateFromResponses(JsonSchemaProvider provider, string directoryPath)
         {
-            CheckFolder(directoryPath);
-
             List<ClassDescriptor> responses = provider.GetResponseClassDescriptors();
             foreach (ClassDescriptor classDescriptor in responses)
             {
@@ -58,6 +54,8 @@ namespace VkLibrary.Codegen.Generators
 
         private static void WriteToFile(string path, CompilationUnitSyntax content)
         {
+            Directory.CreateDirectory(Path.GetDirectoryName(path));
+
             using (var workspace = new AdhocWorkspace())
             {
                 SyntaxNode formated = Formatter.Format(content, workspace);
@@ -66,13 +64,6 @@ namespace VkLibrary.Codegen.Generators
                     stream.Write(formated.ToString());
                 }
             }
-        }
-
-        private static void CheckFolder(string dirPath)
-        {
-            if (Directory.Exists(dirPath))
-                Directory.Delete(dirPath, true);
-            Directory.CreateDirectory(dirPath);
         }
     }
 }
