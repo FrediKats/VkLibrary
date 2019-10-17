@@ -10,13 +10,15 @@ namespace VkLibrary.Codegen
     public class JsonSchemaProvider
     {
         private readonly JsonSchemaModel _objectSchemaModel;
+        private readonly JsonSchemaModel _responseSchemaModel;
 
-        public JsonSchemaProvider(string filePath)
+        public JsonSchemaProvider()
         {
-            _objectSchemaModel = JsonConvert.DeserializeObject<JsonSchemaModel>(File.ReadAllText(filePath));
+            _objectSchemaModel = JsonConvert.DeserializeObject<JsonSchemaModel>(File.ReadAllText("Schemes/objects.json"));
+            _responseSchemaModel = JsonConvert.DeserializeObject<JsonSchemaModel>(File.ReadAllText("Schemes/responses.json"));
         }
 
-        public List<ClassDescriptor> GetClassDescriptor()
+        public List<ClassDescriptor> GetObjectClassDescriptor()
         {
             return _objectSchemaModel.Definitions
                 .Select(pair => JsonSchemaItem.Create(pair.Key, pair.Value))
@@ -27,18 +29,18 @@ namespace VkLibrary.Codegen
         public List<ClassDescriptor> GetResponseClassDescriptors()
         {
             // known problem: bug with parsing
-            _objectSchemaModel.Definitions.Remove("messages_delete_response");
-            _objectSchemaModel.Definitions.Remove("newsfeed_getSuggestedSources_response");
-            _objectSchemaModel.Definitions.Remove("notifications_get_response");
+            _responseSchemaModel.Definitions.Remove("messages_delete_response");
+            _responseSchemaModel.Definitions.Remove("newsfeed_getSuggestedSources_response");
+            _responseSchemaModel.Definitions.Remove("notifications_get_response");
 
-            return _objectSchemaModel.Definitions
+            return _responseSchemaModel.Definitions
                 .Select(pair => JsonSchemaItem.Create(pair.Key, pair.Value))
                 .Where(i => i.ObjectType == JsonSchemaItemType.Class)
                 .Select(ConvertIfNested)
                 .ToList();
         }
 
-        public ClassDescriptor ConvertIfNested(JsonSchemaItem jsonSchemaItem)
+        private ClassDescriptor ConvertIfNested(JsonSchemaItem jsonSchemaItem)
         {
             if (jsonSchemaItem.Body["properties"]["response"].Value<string>("type") == "object")
             {
@@ -47,7 +49,7 @@ namespace VkLibrary.Codegen
             return new ClassDescriptor(jsonSchemaItem);
         }
 
-        public List<EnumDescriptor> GetEnumDescriptor()
+        public List<EnumDescriptor> GetObjectEnumDescriptor()
         {
             return _objectSchemaModel.Definitions
                 .Select(pair => JsonSchemaItem.Create(pair.Key, pair.Value))
@@ -59,6 +61,7 @@ namespace VkLibrary.Codegen
         public List<JsonSchemaItem> GetUndefined()
         {
             return _objectSchemaModel.Definitions
+                .Concat(_responseSchemaModel.Definitions)
                 .Select(pair => JsonSchemaItem.Create(pair.Key, pair.Value))
                 .Where(i => i.ObjectType == JsonSchemaItemType.Undefined)
                 .ToList();
