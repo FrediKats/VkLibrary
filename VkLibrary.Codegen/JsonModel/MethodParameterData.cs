@@ -2,9 +2,9 @@
 {
     public class MethodParameterData
     {
-        public string Title { get; }
-        public string Descriptor { get; }
-        public string Type { get; }
-        public bool IsRequired { get; }
+        public string Name { get; set; }
+        public string Descriptor { get; set; }
+        public string Type { get; set; }
+        public bool IsRequired { get; set; }
     }
 }
