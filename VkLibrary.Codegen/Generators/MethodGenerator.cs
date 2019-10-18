@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -19,61 +20,53 @@ namespace VkLibrary.Codegen.Generators
 
         private static MemberDeclarationSyntax GenerateMainModel(string title, List<MethodDescriptor> methodScopeData)
         {
-            FieldDeclarationSyntax vkontakteField = FieldDeclaration(
-                    VariableDeclaration(
-                            IdentifierName("Vkontakte"))
-                        .WithVariables(
-                            SingletonSeparatedList(
+            FieldDeclarationSyntax vkontakteField =
+                FieldDeclaration(
+                        VariableDeclaration(
+                                IdentifierName("Vkontakte"))
+                            .AddVariables(
                                 VariableDeclarator(
-                                    Identifier("_vkontakte")))))
-                .WithModifiers(
-                    TokenList(
+                                    Identifier("_vkontakte"))))
+                    .AddModifiers(
                         Token(SyntaxKind.PrivateKeyword),
-                        Token(SyntaxKind.ReadOnlyKeyword)));
+                        Token(SyntaxKind.ReadOnlyKeyword));
 
-            ConstructorDeclarationSyntax constructor = ConstructorDeclaration(
-                    Identifier(title))
-                .WithModifiers(
-                    TokenList(
-                        Token(SyntaxKind.InternalKeyword)))
-                .WithParameterList(
-                    ParameterList(
-                        SingletonSeparatedList(
-                            Parameter(
-                                    Identifier("vkontakte"))
-                                .WithType(
-                                    IdentifierName("Vkontakte")))))
-                .WithExpressionBody(
-                    ArrowExpressionClause(
-                        AssignmentExpression(
-                            SyntaxKind.SimpleAssignmentExpression,
-                            IdentifierName("_vkontakte"),
-                            IdentifierName("vkontakte"))))
-                .WithSemicolonToken(
-                    Token(SyntaxKind.SemicolonToken));
+            ConstructorDeclarationSyntax constructor =
+                ConstructorDeclaration(
+                        Identifier(title))
+                    .AddModifiers(
+                        Token(SyntaxKind.InternalKeyword))
+                    .AddParameterListParameters(
+                        Parameter(
+                                Identifier("vkontakte"))
+                            .WithType(
+                                IdentifierName("Vkontakte")))
+                    .WithExpressionBody(
+                        ArrowExpressionClause(
+                            AssignmentExpression(
+                                SyntaxKind.SimpleAssignmentExpression,
+                                IdentifierName("_vkontakte"),
+                                IdentifierName("vkontakte"))))
+                    .WithSemicolonToken(
+                        Token(SyntaxKind.SemicolonToken));
 
             MemberDeclarationSyntax[] methods = methodScopeData.Select(GenerateMethod).ToArray();
 
             return ClassDeclaration(title)
-                .WithModifiers(
-                    TokenList(
-                        Token(SyntaxKind.PublicKeyword)))
+                .AddModifiers(Token(SyntaxKind.PublicKeyword))
                 .AddMembers(vkontakteField, constructor)
                 .AddMembers(methods);
         }
 
         public static MemberDeclarationSyntax GenerateMethod(MethodDescriptor methodDescriptor)
         {
-            GenericNameSyntax type = GenericName(
-                    Identifier("IEnumerable"))
-                .WithTypeArgumentList(
-                    TypeArgumentList(
-                        SingletonSeparatedList<TypeSyntax>(
-                            QualifiedName(
-                                QualifiedName(
-                                    IdentifierName("Types"),
-                                    IdentifierName("Ads")),
-                                IdentifierName("Account")))));
+            GenericNameSyntax type =
+                GenericName(
+                        Identifier("Task"))
+                    .WithTypeArgumentList(
+                        TypeArgumentList(
+                            SingletonSeparatedList<TypeSyntax>(
+                                IdentifierName(methodDescriptor.ResponseType.ToSharpString()))));
 
             LocalDeclarationStatementSyntax dictionary = LocalDeclarationStatement(
                 VariableDeclaration(
@@ -129,6 +122,15 @@ namespace VkLibrary.Codegen.Generators
                                 }))));
 
             //TODO: parameters generation
+            IfStatementSyntax[] agruments = methodDescriptor
+                .MethodParameterDescriptors
+                .Select(ArgumentInsertStatement)
+                .ToArray();
+
+            var statements = new List<StatementSyntax>();
+            statements.Add(dictionary);
+            statements.AddRange(agruments);
+            statements.Add(returnStatement);
 
             MethodDeclarationSyntax method = MethodDeclaration(
                     GenericName(
@@ -144,12 +146,71 @@ namespace VkLibrary.Codegen.Generators
                             CommonGenerator.AddComment(methodDescriptor.Descriptor),
                             SyntaxKind.PublicKeyword,
                             TriviaList())))
+                .AddParameterListParameters(
+                    methodDescriptor.MethodParameterDescriptors
+                        .Select(GenerateParameters)
+                        .ToArray())
                 .WithBody(
                     Block(
-                        dictionary,
-                        returnStatement));
+                        statements));
 
             return method;
+        }
+
+        private static ParameterSyntax GenerateParameters(MethodParameterDescriptor methodParameterDescriptor)
+        {
+            //TODO: check for nullability
+            string type = methodParameterDescriptor.Type.ToSharpString();
+            if (type == "int" || type == "Boolean" || type == "double")
+                type += "?";
+
+            return
+                Parameter(
+                        Identifier(methodParameterDescriptor.Title.ToSharpString()))
+                    .WithType(
+                        IdentifierName(
+                            type))
+                    .WithDefault(
+                        EqualsValueClause(
+                            LiteralExpression(
+                                SyntaxKind.NullLiteralExpression)));
+        }
+
+        private static IfStatementSyntax ArgumentInsertStatement(MethodParameterDescriptor methodParameterDescriptor)
+        {
+            string parameterName = methodParameterDescriptor.Title.ToSharpString();
+
+            IfStatementSyntax ifStatement = IfStatement(
+                BinaryExpression(
+                    SyntaxKind.NotEqualsExpression,
+                    IdentifierName(parameterName),
+                    LiteralExpression(
+                        SyntaxKind.NullLiteralExpression)),
+                ExpressionStatement(
+                    InvocationExpression(
+                            MemberAccessExpression(
+                                SyntaxKind.SimpleMemberAccessExpression,
+                                IdentifierName("parameters"),
+                                IdentifierName("Add")))
+                        .WithArgumentList(
+                            ArgumentList(
+                                SeparatedList<ArgumentSyntax>(
+                                    new SyntaxNodeOrToken[]
+                                    {
+                                        Argument(
+                                            LiteralExpression(
+                                                SyntaxKind.StringLiteralExpression,
+                                                Literal(methodParameterDescriptor.Title.ToOriginalString()))),
+                                        Token(SyntaxKind.CommaToken),
+                                        Argument(
+                                            InvocationExpression(
+                                                MemberAccessExpression(
+                                                    SyntaxKind.SimpleMemberAccessExpression,
+                                                    IdentifierName(parameterName),
+                                                    IdentifierName("ToApiString"))))
+                                    })))));
+
+            return ifStatement;
         }
     }
 }

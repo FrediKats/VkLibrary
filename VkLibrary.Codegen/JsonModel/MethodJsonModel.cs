@@ -4,6 +4,6 @@ namespace VkLibrary.Codegen.JsonModel
 {
     public class MethodJsonModel
     {
-        public List<MethodData> Methods { get; set; }
+        public MethodData[] Methods { get; set; }
     }
 }
