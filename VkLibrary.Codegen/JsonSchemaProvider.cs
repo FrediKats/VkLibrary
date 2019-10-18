@@ -2,6 +2,8 @@
 using System.IO;
 using System.Linq;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using VkLibrary.Codegen.JsonModel;
 using VkLibrary.Codegen.Models;
 using VkLibrary.Codegen.Types;
 
@@ -9,34 +11,73 @@ namespace VkLibrary.Codegen
 {
     public class JsonSchemaProvider
     {
-        private readonly JsonSchemaModel _objectSchemaModel;
-        private readonly JsonSchemaModel _responseSchemaModel;
+        private readonly List<JsonSchemaItem> _objectSchemaModel;
+        private readonly List<JsonSchemaItem> _responseSchemaModel;
+        private readonly List<MethodDescriptor> _methodsSchemaModel;
 
         public JsonSchemaProvider()
         {
-            _objectSchemaModel = JsonConvert.DeserializeObject<JsonSchemaModel>(File.ReadAllText("Schemes/objects.json"));
-            _responseSchemaModel = JsonConvert.DeserializeObject<JsonSchemaModel>(File.ReadAllText("Schemes/responses.json"));
+            _objectSchemaModel = JsonConvert
+                .DeserializeObject<JsonSchemaModel>(File.ReadAllText("Schemes/objects.json"))
+                .Definitions
+                .Select(pair => JsonSchemaItem.Create(pair.Key, pair.Value))
+                .ToList();
+
+            Dictionary<string, JObject> responseDefinition = JsonConvert
+                .DeserializeObject<JsonSchemaModel>(File.ReadAllText("Schemes/responses.json"))
+                .Definitions;
+            // known problem: bug with parsing
+            responseDefinition.Remove("messages_delete_response");
+            responseDefinition.Remove("newsfeed_getSuggestedSources_response");
+            responseDefinition.Remove("notifications_get_response");
+
+            _responseSchemaModel = responseDefinition
+                .Select(pair => JsonSchemaItem.Create(pair.Key, pair.Value))
+                .ToList();
+
+            _methodsSchemaModel = JsonConvert
+                .DeserializeObject<MethodJsonModel>(File.ReadAllText("Schemes/methods.json"))
+                .Methods
+                .Where(m => m.Description != null)
+                .Where(FilterUnsupportedMethods)
+                .Select(m => new MethodDescriptor(m))
+                .ToList();
         }
 
         public List<ClassDescriptor> GetObjectClassDescriptor()
         {
-            return _objectSchemaModel.Definitions
-                .Select(pair => JsonSchemaItem.Create(pair.Key, pair.Value))
+            return _objectSchemaModel
                 .Where(i => i.ObjectType == JsonSchemaItemType.Class)
                 .Select(c => new ClassDescriptor(c))
                 .ToList();
         }
+
+        public List<EnumDescriptor> GetObjectEnumDescriptor()
+        {
+            return _objectSchemaModel
+                .Where(i => i.ObjectType == JsonSchemaItemType.Enum)
+                .Select(c => new EnumDescriptor(c))
+                .ToList();
+        }
+
         public List<ClassDescriptor> GetResponseClassDescriptors()
         {
-            // known problem: bug with parsing
-            _responseSchemaModel.Definitions.Remove("messages_delete_response");
-            _responseSchemaModel.Definitions.Remove("newsfeed_getSuggestedSources_response");
-            _responseSchemaModel.Definitions.Remove("notifications_get_response");
-
-            return _responseSchemaModel.Definitions
-                .Select(pair => JsonSchemaItem.Create(pair.Key, pair.Value))
+            return _responseSchemaModel
                 .Where(i => i.ObjectType == JsonSchemaItemType.Class)
                 .Select(ConvertIfNested)
+                .ToList();
+        }
+
+        public List<MethodDescriptor> GetMethodDescriptors()
+        {
+            return _methodsSchemaModel;
+        }
+
+        public List<JsonSchemaItem> GetUndefined()
+        {
+            return _objectSchemaModel
+                .Concat(_responseSchemaModel)
+                .Where(i => i.ObjectType == JsonSchemaItemType.Undefined)
                 .ToList();
         }
 
@@ -49,22 +90,13 @@ namespace VkLibrary.Codegen
             return new ClassDescriptor(jsonSchemaItem);
         }
 
-        public List<EnumDescriptor> GetObjectEnumDescriptor()
+        private bool FilterUnsupportedMethods(MethodData methodData)
         {
-            return _objectSchemaModel.Definitions
-                .Select(pair => JsonSchemaItem.Create(pair.Key, pair.Value))
-                .Where(i => i.ObjectType == JsonSchemaItemType.Enum)
-                .Select(c => new EnumDescriptor(c))
-                .ToList();
-        }
+            //TODO: temp hack
+            if (methodData.Name == "storage.get")
+                return false;
 
-        public List<JsonSchemaItem> GetUndefined()
-        {
-            return _objectSchemaModel.Definitions
-                .Concat(_responseSchemaModel.Definitions)
-                .Select(pair => JsonSchemaItem.Create(pair.Key, pair.Value))
-                .Where(i => i.ObjectType == JsonSchemaItemType.Undefined)
-                .ToList();
+            return true;
         }
     }
 }

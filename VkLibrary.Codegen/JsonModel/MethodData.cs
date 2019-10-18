@@ -8,5 +8,10 @@ namespace VkLibrary.Codegen.JsonModel
         public string Description { get; set; }
         public MethodParameterData[] Parameters { get; set; }
         public JObject Responses { get; set; }
+
+        public MethodData()
+        {
+            Parameters = new MethodParameterData[0];
+        }
     }
 }

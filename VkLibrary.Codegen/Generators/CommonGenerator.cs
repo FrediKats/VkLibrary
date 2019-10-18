@@ -10,10 +10,13 @@ namespace VkLibrary.Codegen.Generators
         public static CompilationUnitSyntax CreateWithUsingAndNamespace(string namespaceIdentifier,
             MemberDeclarationSyntax member)
         {
+            //TODO: remove some of
             UsingDirectiveSyntax[] usingList =
             {
                 UsingDirective(IdentifierName("Newtonsoft.Json")),
                 UsingDirective(IdentifierName("System")),
+                UsingDirective(IdentifierName("System.Collections.Generic")),
+                UsingDirective(IdentifierName("System.Threading.Tasks")),
                 UsingDirective(IdentifierName("System.Runtime.Serialization"))
             };
 
