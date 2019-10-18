@@ -18,6 +18,7 @@ namespace VkLibrary.Codegen.Generators
             var provider = new JsonSchemaProvider();
             GenerateFromObject(provider, $"{directoryPath}/Objects/");
             GenerateFromResponses(provider, $"{directoryPath}/Responses/");
+            GenerateFromMethods(provider, $"{directoryPath}/");
         }
 
         private static void GenerateFromObject(JsonSchemaProvider provider, string directoryPath)
@@ -52,18 +53,22 @@ namespace VkLibrary.Codegen.Generators
             provider.GetUndefined().ForEach(i => Log.Instance.Message(i.Body.ToString()));
         }
 
+        private static void GenerateFromMethods(JsonSchemaProvider provider, string directoryPath)
+        {
+            CompilationUnitSyntax unit = MethodGenerator.Generate("Methods", provider.GetMethodDescriptors());
+            WriteToFile($"{directoryPath}Methods.cs", unit);
+            provider.GetUndefined().ForEach(i => Log.Instance.Message(i.Body.ToString()));
+        }
+
         private static void WriteToFile(string path, CompilationUnitSyntax content)
         {
             Directory.CreateDirectory(Path.GetDirectoryName(path));
 
-            using (var workspace = new AdhocWorkspace())
-            {
-                SyntaxNode formated = Formatter.Format(content, workspace);
-                using (var stream = new StreamWriter(File.Open(path, FileMode.OpenOrCreate)))
-                {
-                    stream.Write(formated.ToString());
-                }
-            }
+            using var workspace = new AdhocWorkspace();
+            using var stream = new StreamWriter(File.Open(path, FileMode.OpenOrCreate));
+            
+            SyntaxNode formated = Formatter.Format(content, workspace);
+            stream.Write(formated.ToString());
         }
     }
 }

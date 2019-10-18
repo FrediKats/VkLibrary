@@ -4,21 +4,20 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using VkLibrary.Codegen.Models;
-using VkLibrary.Codegen.Types.TitleCase;
 using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 
 namespace VkLibrary.Codegen.Generators
 {
     public class MethodGenerator
     {
-        public static CompilationUnitSyntax Generate(ICustomCaseTitle scope, List<MethodDescriptor> methodDescriptor)
+        public static CompilationUnitSyntax Generate(string title, List<MethodDescriptor> methodScopeData)
         {
             return CommonGenerator
-                .CreateWithUsingAndNamespace("VkLibrary.Core.Types", GenerateMainModel(scope, methodDescriptor))
+                .CreateWithUsingAndNamespace("VkLibrary.Core.Types", GenerateMainModel(title, methodScopeData))
                 .NormalizeWhitespace();
         }
 
-        private static MemberDeclarationSyntax GenerateMainModel(ICustomCaseTitle scope, List<MethodDescriptor> methodDescriptor)
+        private static MemberDeclarationSyntax GenerateMainModel(string title, List<MethodDescriptor> methodScopeData)
         {
             FieldDeclarationSyntax vkontakteField = FieldDeclaration(
                     VariableDeclaration(
@@ -33,7 +32,7 @@ namespace VkLibrary.Codegen.Generators
                         Token(SyntaxKind.ReadOnlyKeyword)));
 
             ConstructorDeclarationSyntax constructor = ConstructorDeclaration(
-                    Identifier(scope.ToSharpString()))
+                    Identifier(title))
                 .WithModifiers(
                     TokenList(
                         Token(SyntaxKind.InternalKeyword)))
@@ -53,23 +52,17 @@ namespace VkLibrary.Codegen.Generators
                 .WithSemicolonToken(
                     Token(SyntaxKind.SemicolonToken));
 
-            List<MethodDeclarationSyntax> methods = methodDescriptor.Select(GenerateMethod).ToList();
+            MemberDeclarationSyntax[] methods = methodScopeData.Select(GenerateMethod).ToArray();
 
-            return ClassDeclaration(scope.ToSharpString())
+            return ClassDeclaration(title)
                 .WithModifiers(
                     TokenList(
                         Token(SyntaxKind.PublicKeyword)))
-                .WithMembers(
-                    List(
-                        new MemberDeclarationSyntax[]
-                        {
-                            vkontakteField,
-                            constructor,
-                            
-                        }));
+                .AddMembers(vkontakteField, constructor)
+                .AddMembers(methods);
         }
 
-        public static MethodDeclarationSyntax GenerateMethod(MethodDescriptor methodDescriptor)
+        public static MemberDeclarationSyntax GenerateMethod(MethodDescriptor methodDescriptor)
         {
             GenericNameSyntax type = GenericName(
                     Identifier("IEnumerable"))
@@ -82,7 +75,7 @@ namespace VkLibrary.Codegen.Generators
                                     IdentifierName("Ads")),
                                 IdentifierName("Account")))));
 
-            var dictionary = LocalDeclarationStatement(
+            LocalDeclarationStatementSyntax dictionary = LocalDeclarationStatement(
                 VariableDeclaration(
                         IdentifierName("var"))
                     .AddVariables(
@@ -110,7 +103,7 @@ namespace VkLibrary.Codegen.Generators
                                         .WithArgumentList(
                                             ArgumentList())))));
 
-            var returnStatement = ReturnStatement(
+            ReturnStatementSyntax returnStatement = ReturnStatement(
                 InvocationExpression(
                         MemberAccessExpression(
                             SyntaxKind.SimpleMemberAccessExpression,
@@ -144,7 +137,7 @@ namespace VkLibrary.Codegen.Generators
                             TypeArgumentList(
                                 SingletonSeparatedList<TypeSyntax>(
                                     type))),
-                    Identifier("GetAccounts"))
+                    Identifier(methodDescriptor.Title.ToSharpString()))
                 .WithModifiers(
                     TokenList(
                         Token(

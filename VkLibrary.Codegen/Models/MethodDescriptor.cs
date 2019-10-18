@@ -14,7 +14,9 @@ namespace VkLibrary.Codegen.Models
 
         public MethodDescriptor(MethodData methodData)
         {
-            Title = CamelCaseTitle.Of(methodData.Name);
+
+            //TODO: hack
+            Title = CamelCaseTitle.Of(methodData.Name.Replace('.', '_'));
             Descriptor = methodData.Description;
             ResponseType = TypeParser.ParseType(methodData.Responses["response"]);
             MethodParameterDescriptors = methodData.Parameters.Select(MethodParameterDescriptor.Create).ToArray();
