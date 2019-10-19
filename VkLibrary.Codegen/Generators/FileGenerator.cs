@@ -64,7 +64,7 @@ namespace VkLibrary.Codegen.Generators
 
             foreach (IGrouping<string, MethodDescriptor> methodDescriptors in grouped)
             {
-                var title = $"{methodDescriptors.Key}Methods";
+                var title = $"{methodDescriptors.Key}";
                 CompilationUnitSyntax unit = MethodGenerator.Generate(CommonGenerator.MethodNamespace, title, methodDescriptors.ToList(), EntityType.Method);
                 WriteToFile($"{directoryPath}Methods/{title}.cs", unit);
             }

@@ -4,11 +4,11 @@ namespace VkLibrary.Codegen.Models
 {
     public class EnumValueDescriptor
     {
-        public EnumValueDescriptor(CamelCaseTitle name) : this(name, new int(), string.Empty)
+        public EnumValueDescriptor(CamelCaseTitle name) : this(name, null, string.Empty)
         {
         }
 
-        public EnumValueDescriptor(CamelCaseTitle name, string description) : this(name, new int(), description)
+        public EnumValueDescriptor(CamelCaseTitle name, string description) : this(name, null, description)
         {
         }
 
@@ -30,7 +30,7 @@ namespace VkLibrary.Codegen.Models
 
         public override string ToString()
         {
-            return $"[JsonName = {Name.OriginalValue}]{Name} = {Value} //{Description}";
+            return $"[JsonName = {Name.ToOriginalString()}]{Name} = {Value} //{Description}";
         }
     }
 }

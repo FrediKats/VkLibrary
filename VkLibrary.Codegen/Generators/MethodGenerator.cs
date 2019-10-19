@@ -67,15 +67,9 @@ namespace VkLibrary.Codegen.Generators
                 .WithMembers(List(statements));
         }
 
-        public static MemberDeclarationSyntax GenerateMethod(string title, MethodDescriptor methodDescriptor)
+        private static MemberDeclarationSyntax GenerateMethod(string title, MethodDescriptor methodDescriptor)
         {
-            GenericNameSyntax type =
-                GenericName(
-                        Identifier("Task"))
-                    .WithTypeArgumentList(
-                        TypeArgumentList(
-                            SingletonSeparatedList<TypeSyntax>(
-                                IdentifierName(methodDescriptor.ResponseType.ToSharpString()))));
+            TypeSyntax type = ParseTypeName(methodDescriptor.ResponseType.ToSharpString());
 
             LocalDeclarationStatementSyntax dictionary = LocalDeclarationStatement(
                 VariableDeclaration(

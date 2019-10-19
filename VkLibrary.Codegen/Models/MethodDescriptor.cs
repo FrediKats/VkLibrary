@@ -16,7 +16,7 @@ namespace VkLibrary.Codegen.Models
 
         public MethodDescriptor(MethodData methodData)
         {
-            (string scope, string camelTitle) = methodData.Name.SplitWithScope();
+            (string scope, string camelTitle) = methodData.Name.SplitFirstPart();
             Scope = CamelCaseTitle.Of(scope);
             Title = UndefinedCaseTitle.Of(methodData.Name, camelTitle.TitleToCamelCaseStyle());
             Descriptor = methodData.Description;
