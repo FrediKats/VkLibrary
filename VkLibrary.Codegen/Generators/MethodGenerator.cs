@@ -5,16 +5,20 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using VkLibrary.Codegen.Models;
+using VkLibrary.Codegen.Types;
 using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 
 namespace VkLibrary.Codegen.Generators
 {
     public class MethodGenerator
     {
-        public static CompilationUnitSyntax Generate(string title, List<MethodDescriptor> methodScopeData)
+        public static CompilationUnitSyntax Generate(string namespaceIdentifier, string title, List<MethodDescriptor> methodScopeData, EntityType entityType)
         {
             return CommonGenerator
-                .CreateWithUsingAndNamespace("VkLibrary.Core.Types", GenerateMainModel(title, methodScopeData))
+                .CreateWithUsingAndNamespace(
+                    namespaceIdentifier,
+                    GenerateMainModel(title, methodScopeData),
+                    entityType)
                 .NormalizeWhitespace();
         }
 
