@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using VkLibrary.Codegen.Tools;
 using VkLibrary.Codegen.Types;
 using VkLibrary.Codegen.Types.TitleCase;
 
@@ -16,6 +17,10 @@ namespace VkLibrary.Codegen.Models
             if (item.ObjectType != JsonSchemaItemType.Enum)
                 throw new ArgumentException(item.ObjectType.ToString());
 
+            //TODO: use without scope
+            (string scope, string camelTitle) = item.Title.SplitWithScope();
+
+            Scope = scope.TitleToCamelCaseStyle();
             Title = CamelCaseTitle.Of(item.Title);
             Description = item.Description;
 
@@ -26,6 +31,7 @@ namespace VkLibrary.Codegen.Models
                 InitAsString(item);
         }
 
+        public string Scope { get; }
         public CamelCaseTitle Title { get; }
         public string Description { get; }
         public List<EnumValueDescriptor> Values { get; set; }
