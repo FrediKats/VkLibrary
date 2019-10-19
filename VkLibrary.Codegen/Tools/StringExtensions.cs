@@ -17,5 +17,15 @@ namespace VkLibrary.Codegen.Tools
                 .Select(s => char.ToUpper(s[0]) + s.Substring(1))
                 .Aggregate((a, b) => a + b);
         }
+
+        public static (string Scope, string CamelTitle) SplitWithScope(this string snakeStyle)
+        {
+            var split = snakeStyle.Split(new[] {'_', '.'}, 2);
+
+            if (split.Length == 1)
+                return (null, snakeStyle);
+
+            return (split[0], split[1]);
+        }
     }
 }

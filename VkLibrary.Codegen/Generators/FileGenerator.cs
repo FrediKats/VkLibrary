@@ -34,13 +34,13 @@ namespace VkLibrary.Codegen.Generators
             {
                 classDescriptor.MergePropertiesFromBaseClasses(classes);
                 CompilationUnitSyntax unit = ClassGenerator.Generate(CommonGenerator.ObjectNamespace, classDescriptor, EntityType.ObjectClass);
-                WriteToFile($"{directoryPath}{classDescriptor.Title.ToSharpString()}.cs", unit);
+                WriteToFile($"{directoryPath}{classDescriptor.Scope}/{classDescriptor.Title.ToSharpString()}.cs", unit);
             }
 
             foreach (EnumDescriptor enumDescriptor in enums)
             {
                 CompilationUnitSyntax unit = EnumGenerator.Generate(CommonGenerator.ObjectNamespace, enumDescriptor, EntityType.ObjectEnum);
-                WriteToFile($"{directoryPath}{enumDescriptor.Title.ToSharpString()}.cs", unit);
+                WriteToFile($"{directoryPath}{enumDescriptor.Scope}/{enumDescriptor.Title.ToSharpString()}.cs", unit);
             }
         }
 
@@ -50,7 +50,7 @@ namespace VkLibrary.Codegen.Generators
             foreach (ClassDescriptor classDescriptor in responses)
             {
                 CompilationUnitSyntax unit = ClassGenerator.Generate(CommonGenerator.ResponseNamespace, classDescriptor, EntityType.Response);
-                WriteToFile($"{directoryPath}{classDescriptor.Title.ToSharpString()}.cs", unit);
+                WriteToFile($"{directoryPath}{classDescriptor.Scope}/{classDescriptor.Title.ToSharpString()}.cs", unit);
             }
         }
 

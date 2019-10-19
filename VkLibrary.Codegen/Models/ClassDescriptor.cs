@@ -20,6 +20,10 @@ namespace VkLibrary.Codegen.Models
             if (item.ObjectType != JsonSchemaItemType.Class)
                 throw new ArgumentException(item.ObjectType.ToString());
 
+            //TODO: use without scope
+            (string scope, string camelTitle) = item.Title.SplitWithScope();
+
+            Scope = scope.TitleToCamelCaseStyle();
             Title = CamelCaseTitle.Of(item.Title);
             Description = item.Description;
 
@@ -61,6 +65,7 @@ namespace VkLibrary.Codegen.Models
                     .SelectMany(c => c.PropertyDescriptors));
         }
 
+        public string Scope { get; }
         public ICustomCaseTitle Title { get; }
         public string Description { get; }
         public List<ICustomCaseTitle> BaseClasses { get; } = new List<ICustomCaseTitle>();
