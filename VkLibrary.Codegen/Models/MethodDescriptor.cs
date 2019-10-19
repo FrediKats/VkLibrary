@@ -12,11 +12,16 @@ namespace VkLibrary.Codegen.Models
         public ICustomCaseTitle ResponseType { get; set; }
         public MethodParameterDescriptor[] MethodParameterDescriptors { get; set; }
 
+        public ICustomCaseTitle Scope { get; set; }
+
         public MethodDescriptor(MethodData methodData)
         {
+            string[] splited = methodData.Name.Split('.', 2);
+            Scope = CamelCaseTitle.Of(splited.First());
+            CamelCaseTitle camelTitle = CamelCaseTitle.Of(splited.ElementAt(1));
 
             //TODO: hack
-            Title = CamelCaseTitle.Of(methodData.Name.Replace('.', '_'));
+            Title = UndefinedCaseTitle.Of(methodData.Name, camelTitle.Value);
             Descriptor = methodData.Description;
             ResponseType = TypeParser.ParseType(methodData.Responses["response"]);
             MethodParameterDescriptors = methodData.Parameters.Select(MethodParameterDescriptor.Create).ToArray();
