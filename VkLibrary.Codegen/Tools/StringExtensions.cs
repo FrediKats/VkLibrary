@@ -18,7 +18,22 @@ namespace VkLibrary.Codegen.Tools
                 .Aggregate((a, b) => a + b);
         }
 
-        public static (string Scope, string CamelTitle) SplitWithScope(this string snakeStyle)
+        public static string TitleToLowerCamelCaseStyle(this string spakeStyle)
+        {
+            (string scope, string camelTitle) = spakeStyle.SplitFirstPart();
+
+            if (scope == null)
+                return spakeStyle;
+
+            camelTitle = camelTitle
+                .Split('_', ' ')
+                .Select(s => char.ToUpper(s[0]) + s.Substring(1))
+                .Aggregate((a, b) => a + b);
+
+            return scope + camelTitle;
+        }
+
+        public static (string Scope, string CamelTitle) SplitFirstPart(this string snakeStyle)
         {
             string[] split = snakeStyle.Split(new[] {'_', '.'}, 2);
 

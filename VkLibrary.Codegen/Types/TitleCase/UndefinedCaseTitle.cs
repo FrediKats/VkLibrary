@@ -2,23 +2,30 @@
 {
     public class UndefinedCaseTitle : ICustomCaseTitle
     {
+        private readonly string _originalValue;
+        private readonly string _sharpValue;
+
         public UndefinedCaseTitle(string value)
         {
-            OriginalValue = value;
-            SharpValue = value;
+            _originalValue = value;
+            _sharpValue = value;
         }
 
         public UndefinedCaseTitle(string originalValue, string value)
         {
-            OriginalValue = originalValue;
-            SharpValue = value;
+            _originalValue = originalValue;
+            _sharpValue = value;
         }
 
-        public string OriginalValue { get; }
-        public string SharpValue { get; }
+        public string ToSharpString()
+        {
+            return _sharpValue;
+        }
 
-        public string ToSharpString() => SharpValue;
-        public string ToOriginalString() => OriginalValue;
+        public string ToOriginalString()
+        {
+            return _originalValue;
+        }
 
         public static UndefinedCaseTitle Of(string value)
         {
@@ -32,7 +39,7 @@
 
         public override string ToString()
         {
-            return SharpValue;
+            return _sharpValue;
         }
     }
 }

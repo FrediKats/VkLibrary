@@ -4,23 +4,30 @@ namespace VkLibrary.Codegen.Types.TitleCase
 {
     public class CamelCaseArrayTitle : ICustomCaseTitle
     {
+        private readonly string _originalValue;
+        private readonly string _value;
+
         public CamelCaseArrayTitle(string value)
         {
-            OriginalValue = $"{value}[]";
-            Value = $"{value.TitleToCamelCaseStyle()}[]";
+            _originalValue = $"{value}[]";
+            _value = $"{value.TitleToCamelCaseStyle()}[]";
         }
 
         public CamelCaseArrayTitle(string originalValue, string value)
         {
-            OriginalValue = $"{originalValue}[]";
-            Value = $"{value}[]";
+            _originalValue = $"{originalValue}[]";
+            _value = $"{value}[]";
         }
 
-        public string OriginalValue { get; }
-        public string Value { get; }
+        public string ToSharpString()
+        {
+            return _value;
+        }
 
-        public string ToSharpString() => Value;
-        public string ToOriginalString() => OriginalValue;
+        public string ToOriginalString()
+        {
+            return _originalValue;
+        }
 
         public static CamelCaseArrayTitle Of(ICustomCaseTitle innerType)
         {

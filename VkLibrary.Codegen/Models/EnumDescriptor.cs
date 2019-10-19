@@ -18,7 +18,7 @@ namespace VkLibrary.Codegen.Models
                 throw new ArgumentException(item.ObjectType.ToString());
 
             //TODO: use without scope
-            (string scope, string camelTitle) = item.Title.SplitWithScope();
+            (string scope, string camelTitle) = item.Title.SplitFirstPart();
 
             Scope = scope.TitleToCamelCaseStyle();
             Title = CamelCaseTitle.Of(item.Title);

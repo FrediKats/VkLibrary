@@ -15,7 +15,7 @@ namespace VkLibrary.Codegen.Models
         {
             return new MethodParameterDescriptor
             {
-                Title =  CamelCaseTitle.Of(parameterData.Name),
+                Title =  CamelCaseTitle.Of(parameterData.Name, true),
                 Descriptor =  parameterData.Descriptor,
                 IsRequired = parameterData.IsRequired,
                 Type = TypeParser.ParseType(parameterData.Type)
