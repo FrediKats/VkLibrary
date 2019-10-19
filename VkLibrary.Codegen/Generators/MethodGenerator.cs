@@ -24,23 +24,27 @@ namespace VkLibrary.Codegen.Generators
                 FieldDeclaration(
                         VariableDeclaration(
                                 IdentifierName("Vkontakte"))
-                            .AddVariables(
+                            .WithVariables(
+                                SingletonSeparatedList(
                                 VariableDeclarator(
-                                    Identifier("_vkontakte"))))
-                    .AddModifiers(
+                                    Identifier("_vkontakte")))))
+                    .WithModifiers(
+                        TokenList(
                         Token(SyntaxKind.PrivateKeyword),
-                        Token(SyntaxKind.ReadOnlyKeyword));
+                        Token(SyntaxKind.ReadOnlyKeyword)));
 
             ConstructorDeclarationSyntax constructor =
                 ConstructorDeclaration(
                         Identifier(title))
-                    .AddModifiers(
-                        Token(SyntaxKind.InternalKeyword))
-                    .AddParameterListParameters(
-                        Parameter(
-                                Identifier("vkontakte"))
-                            .WithType(
-                                IdentifierName("Vkontakte")))
+                    .WithModifiers(TokenList(
+                        Token(SyntaxKind.InternalKeyword)))
+                    .WithParameterList(
+                        ParameterList(
+                            SingletonSeparatedList(
+                                Parameter(
+                                        Identifier("vkontakte"))
+                                    .WithType(
+                                        IdentifierName("Vkontakte")))))
                     .WithExpressionBody(
                         ArrowExpressionClause(
                             AssignmentExpression(
@@ -50,15 +54,17 @@ namespace VkLibrary.Codegen.Generators
                     .WithSemicolonToken(
                         Token(SyntaxKind.SemicolonToken));
 
-            MemberDeclarationSyntax[] methods = methodScopeData.Select(GenerateMethod).ToArray();
+            var statements = new List<MemberDeclarationSyntax>();
+            statements.Add(vkontakteField);
+            statements.Add(constructor);
+            statements.AddRange(methodScopeData.Select(m => GenerateMethod(title, m)).ToList());
 
             return ClassDeclaration(title)
-                .AddModifiers(Token(SyntaxKind.PublicKeyword))
-                .AddMembers(vkontakteField, constructor)
-                .AddMembers(methods);
+                .WithModifiers(TokenList(Token(SyntaxKind.PublicKeyword)))
+                .WithMembers(List(statements));
         }
 
-        public static MemberDeclarationSyntax GenerateMethod(MethodDescriptor methodDescriptor)
+        public static MemberDeclarationSyntax GenerateMethod(string title, MethodDescriptor methodDescriptor)
         {
             GenericNameSyntax type =
                 GenericName(
@@ -71,7 +77,8 @@ namespace VkLibrary.Codegen.Generators
             LocalDeclarationStatementSyntax dictionary = LocalDeclarationStatement(
                 VariableDeclaration(
                         IdentifierName("var"))
-                    .AddVariables(
+                    .WithVariables(
+                        SingletonSeparatedList(
                         VariableDeclarator(
                                 Identifier("parameters"))
                             .WithInitializer(
@@ -94,7 +101,7 @@ namespace VkLibrary.Codegen.Generators
                                                                         .StringKeyword))
                                                             }))))
                                         .WithArgumentList(
-                                            ArgumentList())))));
+                                            ArgumentList()))))));
 
             ReturnStatementSyntax returnStatement = ReturnStatement(
                 InvocationExpression(
@@ -115,7 +122,7 @@ namespace VkLibrary.Codegen.Generators
                                     Argument(
                                         LiteralExpression(
                                             SyntaxKind.StringLiteralExpression,
-                                            Literal("ads.getAccounts"))),
+                                            Literal(methodDescriptor.Title.ToOriginalString()))),
                                     Token(SyntaxKind.CommaToken),
                                     Argument(
                                         IdentifierName("parameters"))
@@ -146,10 +153,12 @@ namespace VkLibrary.Codegen.Generators
                             CommonGenerator.AddComment(methodDescriptor.Descriptor),
                             SyntaxKind.PublicKeyword,
                             TriviaList())))
-                .AddParameterListParameters(
-                    methodDescriptor.MethodParameterDescriptors
-                        .Select(GenerateParameters)
-                        .ToArray())
+                .WithParameterList(
+                    ParameterList(
+                        SeparatedList(
+                            methodDescriptor.MethodParameterDescriptors
+                            .Select(GenerateParameters)
+                            .ToArray())))
                 .WithBody(
                     Block(
                         statements));

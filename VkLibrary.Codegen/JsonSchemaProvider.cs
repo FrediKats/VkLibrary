@@ -92,11 +92,15 @@ namespace VkLibrary.Codegen
 
         private bool FilterUnsupportedMethods(MethodData methodData)
         {
-            //TODO: temp hack
-            if (methodData.Name == "storage.get")
-                return false;
-
-            return true;
+            return methodData.Name switch
+            {
+                //TODO: temp hack
+                "storage.get" => false,
+                "messages.delete" => false,
+                "newsfeed.getSuggestedSources" => false,
+                "notifications.get" => false,
+                _ => true
+            };
         }
     }
 }

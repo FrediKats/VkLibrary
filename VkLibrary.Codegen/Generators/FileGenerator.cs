@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Formatting;
 using VkLibrary.Codegen.Models;
 using VkLibrary.Codegen.Tools;
+using VkLibrary.Codegen.Types.TitleCase;
 
 namespace VkLibrary.Codegen.Generators
 {
@@ -19,6 +21,8 @@ namespace VkLibrary.Codegen.Generators
             GenerateFromObject(provider, $"{directoryPath}/Objects/");
             GenerateFromResponses(provider, $"{directoryPath}/Responses/");
             GenerateFromMethods(provider, $"{directoryPath}/");
+
+            provider.GetUndefined().ForEach(i => Log.Instance.Message(i.Body.ToString()));
         }
 
         private static void GenerateFromObject(JsonSchemaProvider provider, string directoryPath)
@@ -38,8 +42,6 @@ namespace VkLibrary.Codegen.Generators
                 CompilationUnitSyntax unit = EnumGenerator.Generate(enumDescriptor);
                 WriteToFile($"{directoryPath}{enumDescriptor.Title.ToSharpString()}.cs", unit);
             }
-
-            provider.GetUndefined().ForEach(i => Log.Instance.Message(i.Body.ToString()));
         }
 
         private static void GenerateFromResponses(JsonSchemaProvider provider, string directoryPath)
@@ -50,14 +52,22 @@ namespace VkLibrary.Codegen.Generators
                 CompilationUnitSyntax unit = ClassGenerator.Generate(classDescriptor);
                 WriteToFile($"{directoryPath}{classDescriptor.Title.ToSharpString()}.cs", unit);
             }
-            provider.GetUndefined().ForEach(i => Log.Instance.Message(i.Body.ToString()));
         }
 
         private static void GenerateFromMethods(JsonSchemaProvider provider, string directoryPath)
         {
-            CompilationUnitSyntax unit = MethodGenerator.Generate("Methods", provider.GetMethodDescriptors());
-            WriteToFile($"{directoryPath}Methods.cs", unit);
-            provider.GetUndefined().ForEach(i => Log.Instance.Message(i.Body.ToString()));
+            List<IGrouping<string, MethodDescriptor>> grouped = 
+                provider
+                    .GetMethodDescriptors()
+                    .GroupBy(m => m.Scope.ToSharpString())
+                    .ToList();
+
+            foreach (IGrouping<string, MethodDescriptor> methodDescriptors in grouped)
+            {
+                var title = $"{methodDescriptors.Key}Methods";
+                CompilationUnitSyntax unit = MethodGenerator.Generate(title, methodDescriptors.ToList());
+                WriteToFile($"{directoryPath}Methods/{title}.cs", unit);
+            }
         }
 
         private static void WriteToFile(string path, CompilationUnitSyntax content)
@@ -65,7 +75,7 @@ namespace VkLibrary.Codegen.Generators
             Directory.CreateDirectory(Path.GetDirectoryName(path));
 
             using var workspace = new AdhocWorkspace();
-            using var stream = new StreamWriter(File.Open(path, FileMode.OpenOrCreate));
+            using var stream = new StreamWriter(File.Open(path, FileMode.Create));
             
             SyntaxNode formated = Formatter.Format(content, workspace);
             stream.Write(formated.ToString());
