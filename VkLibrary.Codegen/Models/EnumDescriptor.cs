@@ -25,7 +25,12 @@ namespace VkLibrary.Codegen.Models
             Description = item.Description;
 
             //Known problems: bug with groups_group_subject
-            if (item.Body.Value<string>("type") == "integer" && item.Title != "groups_group_subject")
+            if (item.Title == "groups_group_subject")
+            {
+                Log.Instance.Message("Vk still have wrong type for groups_group_subject");
+                InitAsInt(item);
+            }
+            if (item.Body.Value<string>("type") == "integer")
                 InitAsInt(item);
             else
                 InitAsString(item);

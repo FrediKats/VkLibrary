@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 
-namespace VkLibrary.Codegen.Models
+namespace VkLibrary.Codegen.JsonModel
 {
     public class JsonSchemaModel
     {

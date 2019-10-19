@@ -16,12 +16,9 @@ namespace VkLibrary.Codegen.Models
 
         public MethodDescriptor(MethodData methodData)
         {
-            string[] splited = methodData.Name.Split('.', 2);
-            Scope = CamelCaseTitle.Of(splited.First());
-            CamelCaseTitle camelTitle = CamelCaseTitle.Of(splited.ElementAt(1));
-
-            //TODO: hack
-            Title = UndefinedCaseTitle.Of(methodData.Name, camelTitle.Value);
+            (string scope, string camelTitle) = methodData.Name.SplitWithScope();
+            Scope = CamelCaseTitle.Of(scope);
+            Title = UndefinedCaseTitle.Of(methodData.Name, camelTitle.TitleToCamelCaseStyle());
             Descriptor = methodData.Description;
             ResponseType = TypeParser.ParseType(methodData.Responses["response"]);
             MethodParameterDescriptors = methodData.Parameters.Select(MethodParameterDescriptor.Create).ToArray();

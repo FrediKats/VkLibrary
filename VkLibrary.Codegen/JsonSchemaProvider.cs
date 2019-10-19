@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using VkLibrary.Codegen.JsonModel;
 using VkLibrary.Codegen.Models;
+using VkLibrary.Codegen.Tools;
 using VkLibrary.Codegen.Types;
 
 namespace VkLibrary.Codegen
@@ -26,10 +27,12 @@ namespace VkLibrary.Codegen
             Dictionary<string, JObject> responseDefinition = JsonConvert
                 .DeserializeObject<JsonSchemaModel>(File.ReadAllText("Schemes/responses.json"))
                 .Definitions;
+
             // known problem: bug with parsing
+            Log.Instance.Message("Skip type parse for: messages_delete_response");
+            Log.Instance.Message("Skip type parse for: newsfeed_getSuggestedSources_response");
             responseDefinition.Remove("messages_delete_response");
             responseDefinition.Remove("newsfeed_getSuggestedSources_response");
-            responseDefinition.Remove("notifications_get_response");
 
             _responseSchemaModel = responseDefinition
                 .Select(pair => JsonSchemaItem.Create(pair.Key, pair.Value))
@@ -63,7 +66,6 @@ namespace VkLibrary.Codegen
         public List<ClassDescriptor> GetResponseClassDescriptors()
         {
             return _responseSchemaModel
-                .Where(i => i.ObjectType == JsonSchemaItemType.Class)
                 .Select(ConvertIfNested)
                 .ToList();
         }
@@ -92,15 +94,19 @@ namespace VkLibrary.Codegen
 
         private bool FilterUnsupportedMethods(MethodData methodData)
         {
-            return methodData.Name switch
+            bool result = methodData.Name switch
             {
-                //TODO: temp hack
+                // known problem: bug with parsing
                 "storage.get" => false,
                 "messages.delete" => false,
                 "newsfeed.getSuggestedSources" => false,
-                "notifications.get" => false,
                 _ => true
             };
+
+            if (!result) 
+                Log.Instance.Message($"Skip type parse for: {methodData.Name}");
+
+            return result;
         }
     }
 }

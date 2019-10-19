@@ -15,10 +15,12 @@ namespace VkLibrary.Codegen.Types.TitleCase
 
         public string ToSharpString()
         {
+            if (!char.IsNumber(Value.First()))
+                return Value;
+
             //TODO: hack
-            if (char.IsNumber(Value.First()))
-                return $"_{Value}";
-            return Value;
+            Log.Instance.Message($"Replace variable name: [{Value}] => [_{Value}]");
+            return $"_{Value}";
         }
 
         public string ToOriginalString()
