@@ -14,10 +14,9 @@ namespace VkLibrary.Codegen.Generators
         {
             return CommonGenerator
                 .CreateWithUsingAndNamespace(
-                    namespaceIdentifier, 
+                    namespaceIdentifier,
                     GenerateMainModel(classDescriptor),
-                    entityType)
-                .NormalizeWhitespace();
+                    entityType);
         }
 
         private static MemberDeclarationSyntax GenerateMainModel(ClassDescriptor classDescriptor)

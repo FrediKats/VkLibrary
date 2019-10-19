@@ -73,6 +73,9 @@ namespace VkLibrary.Codegen.Generators
 
         public static SyntaxTriviaList AddComment(string commentText)
         {
+            if (string.IsNullOrEmpty(commentText))
+                return new SyntaxTriviaList();
+
             return TriviaList(
                 Trivia(
                     DocumentationCommentTrivia(
@@ -92,7 +95,7 @@ namespace VkLibrary.Codegen.Generators
                                                             TriviaList()),
                                                         XmlTextLiteral(
                                                             TriviaList(
-                                                                DocumentationCommentExterior("    ///")),
+                                                                DocumentationCommentExterior("///")),
                                                             $" {commentText}",
                                                             $" {commentText}",
                                                             TriviaList()),
@@ -118,7 +121,7 @@ namespace VkLibrary.Codegen.Generators
                                             .WithLessThanSlashToken(
                                                 Token(
                                                     TriviaList(
-                                                        DocumentationCommentExterior("    ///")),
+                                                        DocumentationCommentExterior("///")),
                                                     SyntaxKind.LessThanSlashToken,
                                                     TriviaList()))),
                                 XmlText()

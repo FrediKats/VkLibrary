@@ -76,7 +76,7 @@ namespace VkLibrary.Codegen.Generators
 
             using var workspace = new AdhocWorkspace();
             using var stream = new StreamWriter(File.Open(path, FileMode.Create));
-            
+
             SyntaxNode formated = Formatter.Format(content, workspace);
             stream.Write(formated.ToString());
         }
