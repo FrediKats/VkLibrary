@@ -18,8 +18,7 @@ namespace VkLibrary.Codegen.Generators
                 .CreateWithUsingAndNamespace(
                     namespaceIdentifier,
                     GenerateMainModel(title, methodScopeData),
-                    entityType)
-                .NormalizeWhitespace();
+                    entityType);
         }
 
         private static MemberDeclarationSyntax GenerateMainModel(string title, List<MethodDescriptor> methodScopeData)

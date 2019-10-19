@@ -16,8 +16,7 @@ namespace VkLibrary.Codegen.Generators
                 .CreateWithUsingAndNamespace(
                     namespaceIdentifier,
                     GenerateMainModel(enumDescriptor),
-                    entityType)
-                .NormalizeWhitespace();
+                    entityType);
         }
 
         private static MemberDeclarationSyntax GenerateMainModel(EnumDescriptor enumDescriptor)
