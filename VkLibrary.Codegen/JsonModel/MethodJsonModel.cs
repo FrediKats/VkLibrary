@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace VkLibrary.Codegen.JsonModel
+﻿namespace VkLibrary.Codegen.JsonModel
 {
     public class MethodJsonModel
     {

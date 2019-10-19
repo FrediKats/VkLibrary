@@ -22,6 +22,20 @@ namespace VkLibrary.Codegen.Models
             };
         }
 
-        //TODO: "enum" : 
+        //TODO: enum arguments like
+        //{
+        //    "name": "filters",
+        //    "description": "Filters to apply: 'youtube' — return YouTube videos only, 'vimeo' — return Vimeo videos only, 'short' — return short videos only, 'long' — return long videos only",
+        //    "type": "array",
+        //    "items": {
+        //        "type": "string",
+        //        "enum": [
+        //        "youtube",
+        //        "vimeo",
+        //        "short",
+        //        "long"
+        //            ]
+        //    }
+        //},
     }
 }

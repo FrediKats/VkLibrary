@@ -52,10 +52,17 @@ namespace VkLibrary.Codegen.Models
             if (propertiesObject != null)
                 PropertyDescriptors =
                     JsonConvert
-                        .DeserializeObject<Dictionary<string, JObject>>(propertiesObject[ClassPropertiesField].ToString())
+                        .DeserializeObject<Dictionary<string, JObject>>(propertiesObject[ClassPropertiesField]
+                            .ToString())
                         .Select(p => PropertyDescriptor.Create(p.Key, p.Value))
                         .ToList();
         }
+
+        public string Scope { get; }
+        public ICustomCaseTitle Title { get; }
+        public string Description { get; }
+        public List<ICustomCaseTitle> BaseClasses { get; } = new List<ICustomCaseTitle>();
+        public List<PropertyDescriptor> PropertyDescriptors { get; } = new List<PropertyDescriptor>();
 
         public void MergePropertiesFromBaseClasses(List<ClassDescriptor> classes)
         {
@@ -64,12 +71,6 @@ namespace VkLibrary.Codegen.Models
                     .Where(c => c.Title.ToOriginalString() == Title.ToOriginalString() && c != this)
                     .SelectMany(c => c.PropertyDescriptors));
         }
-
-        public string Scope { get; }
-        public ICustomCaseTitle Title { get; }
-        public string Description { get; }
-        public List<ICustomCaseTitle> BaseClasses { get; } = new List<ICustomCaseTitle>();
-        public List<PropertyDescriptor> PropertyDescriptors { get; } = new List<PropertyDescriptor>();
 
         public override string ToString()
         {

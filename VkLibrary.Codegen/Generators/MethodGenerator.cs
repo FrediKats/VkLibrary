@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using VkLibrary.Codegen.Models;
+using VkLibrary.Codegen.Tools;
 using VkLibrary.Codegen.Types;
 using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 
@@ -132,7 +132,6 @@ namespace VkLibrary.Codegen.Generators
                                         IdentifierName("parameters"))
                                 }))));
 
-            //TODO: parameters generation
             IfStatementSyntax[] agruments = methodDescriptor
                 .MethodParameterDescriptors
                 .Select(ArgumentInsertStatement)
@@ -172,10 +171,7 @@ namespace VkLibrary.Codegen.Generators
 
         private static ParameterSyntax GenerateParameters(MethodParameterDescriptor methodParameterDescriptor)
         {
-            //TODO: check for nullability
-            string type = methodParameterDescriptor.Type.ToSharpString();
-            if (type == "int" || type == "Boolean" || type == "double")
-                type += "?";
+            string type = TypeParser.AddNullabilityIfNeed(methodParameterDescriptor.Type.ToSharpString());
 
             return
                 Parameter(

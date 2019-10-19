@@ -6,8 +6,28 @@ namespace VkLibrary.Codegen.Tools
 {
     public static class TypeParser
     {
+        public static string AddNullabilityIfNeed(string type)
+        {
+            //TODO: parse is_require
+            if (type == "int" || type == "Boolean" || type == "double")
+                type += "?";
+
+            return type;
+        }
+
         public static ICustomCaseTitle ParseType(JToken body)
         {
+            if (body.Type == JTokenType.Array)
+            {
+                Log.Instance.Message($"Can't parse type from {body}. Probably problem with \"items\": []");
+                //Know problem: bug with 
+                //"items": {
+                //    "type": "array",
+                //    "items": []
+                //},
+                return UndefinedCaseTitle.Of("object");
+            }
+
             if (body["type"] == null)
             {
                 return MatchDefaultType(GetTypeFromRef(body));

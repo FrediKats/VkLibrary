@@ -20,12 +20,11 @@ namespace VkLibrary.Codegen.Tools
 
         public static (string Scope, string CamelTitle) SplitWithScope(this string snakeStyle)
         {
-            var split = snakeStyle.Split(new[] {'_', '.'}, 2);
+            string[] split = snakeStyle.Split(new[] {'_', '.'}, 2);
 
-            if (split.Length == 1)
-                return (null, snakeStyle);
-
-            return (split[0], split[1]);
+            return split.Length == 1
+                ? (null, snakeStyle)
+                : (split[0], split[1]);
         }
     }
 }
