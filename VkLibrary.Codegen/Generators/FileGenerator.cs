@@ -6,7 +6,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Formatting;
 using VkLibrary.Codegen.Models;
 using VkLibrary.Codegen.Tools;
-using VkLibrary.Codegen.Types.TitleCase;
+using VkLibrary.Codegen.Types;
 
 namespace VkLibrary.Codegen.Generators
 {
@@ -33,13 +33,13 @@ namespace VkLibrary.Codegen.Generators
             foreach (ClassDescriptor classDescriptor in classes)
             {
                 classDescriptor.MergePropertiesFromBaseClasses(classes);
-                CompilationUnitSyntax unit = ClassGenerator.Generate(classDescriptor);
+                CompilationUnitSyntax unit = ClassGenerator.Generate(CommonGenerator.ObjectNamespace, classDescriptor, EntityType.ObjectClass);
                 WriteToFile($"{directoryPath}{classDescriptor.Title.ToSharpString()}.cs", unit);
             }
 
             foreach (EnumDescriptor enumDescriptor in enums)
             {
-                CompilationUnitSyntax unit = EnumGenerator.Generate(enumDescriptor);
+                CompilationUnitSyntax unit = EnumGenerator.Generate(CommonGenerator.ObjectNamespace, enumDescriptor, EntityType.ObjectEnum);
                 WriteToFile($"{directoryPath}{enumDescriptor.Title.ToSharpString()}.cs", unit);
             }
         }
@@ -49,7 +49,7 @@ namespace VkLibrary.Codegen.Generators
             List<ClassDescriptor> responses = provider.GetResponseClassDescriptors();
             foreach (ClassDescriptor classDescriptor in responses)
             {
-                CompilationUnitSyntax unit = ClassGenerator.Generate(classDescriptor);
+                CompilationUnitSyntax unit = ClassGenerator.Generate(CommonGenerator.ResponseNamespace, classDescriptor, EntityType.Response);
                 WriteToFile($"{directoryPath}{classDescriptor.Title.ToSharpString()}.cs", unit);
             }
         }
@@ -65,7 +65,7 @@ namespace VkLibrary.Codegen.Generators
             foreach (IGrouping<string, MethodDescriptor> methodDescriptors in grouped)
             {
                 var title = $"{methodDescriptors.Key}Methods";
-                CompilationUnitSyntax unit = MethodGenerator.Generate(title, methodDescriptors.ToList());
+                CompilationUnitSyntax unit = MethodGenerator.Generate(CommonGenerator.MethodNamespace, title, methodDescriptors.ToList(), EntityType.Method);
                 WriteToFile($"{directoryPath}Methods/{title}.cs", unit);
             }
         }

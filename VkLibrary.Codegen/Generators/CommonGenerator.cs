@@ -1,32 +1,74 @@
-﻿using Microsoft.CodeAnalysis;
+﻿using System;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using VkLibrary.Codegen.Types;
 using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 
 namespace VkLibrary.Codegen.Generators
 {
     public class CommonGenerator
     {
-        public static CompilationUnitSyntax CreateWithUsingAndNamespace(string namespaceIdentifier,
-            MemberDeclarationSyntax member)
-        {
-            //TODO: remove some of
-            UsingDirectiveSyntax[] usingList =
-            {
-                UsingDirective(IdentifierName("Newtonsoft.Json")),
-                UsingDirective(IdentifierName("System")),
-                UsingDirective(IdentifierName("System.Collections.Generic")),
-                UsingDirective(IdentifierName("System.Threading.Tasks")),
-                UsingDirective(IdentifierName("System.Runtime.Serialization"))
-            };
+        public const string ResponseNamespace = "VkLibrary.Core.Responses";
+        public const string ObjectNamespace = "VkLibrary.Core.Objects";
+        public const string MethodNamespace = "VkLibrary.Core.Methods";
 
+
+        public static CompilationUnitSyntax CreateWithUsingAndNamespace(string namespaceIdentifier,
+            MemberDeclarationSyntax member,
+            EntityType entityType)
+        {
             return
                 CompilationUnit()
-                    .AddUsings(usingList)
+                    .AddUsings(GetUsingList(entityType))
                     .WithMembers(
                         SingletonList<MemberDeclarationSyntax>(
                             NamespaceDeclaration(IdentifierName(namespaceIdentifier))
                                 .AddMembers(member)));
+        }
+
+        private static UsingDirectiveSyntax[] GetUsingList(EntityType entityType)
+        {
+            switch (entityType)
+            {
+                case EntityType.ObjectClass:
+                    return new[]
+                    {
+                        UsingDirective(IdentifierName("Newtonsoft.Json")),
+                        UsingDirective(IdentifierName("System")),
+                        UsingDirective(IdentifierName("System.Collections.Generic"))
+                    };
+
+                case EntityType.ObjectEnum:
+                    return new[]
+                    {
+                        UsingDirective(IdentifierName("System.Runtime.Serialization"))
+                    };
+
+                case EntityType.Response:
+                    return new[]
+                    {
+                        UsingDirective(IdentifierName("Newtonsoft.Json")),
+                        UsingDirective(IdentifierName(ObjectNamespace)),
+                        UsingDirective(IdentifierName("System")),
+                        UsingDirective(IdentifierName("System.Collections.Generic")),
+                        UsingDirective(IdentifierName("System.Runtime.Serialization")),
+                        UsingDirective(IdentifierName("System.Threading.Tasks"))
+                    };
+
+                case EntityType.Method:
+                    return new[]
+                    {
+                        UsingDirective(IdentifierName(ObjectNamespace)),
+                        UsingDirective(IdentifierName(ResponseNamespace)),
+                        UsingDirective(IdentifierName("System")),
+                        UsingDirective(IdentifierName("System.Collections.Generic")),
+                        UsingDirective(IdentifierName("System.Threading.Tasks"))
+                    };
+
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(entityType), entityType, null);
+            }
         }
 
         public static SyntaxTriviaList AddComment(string commentText)

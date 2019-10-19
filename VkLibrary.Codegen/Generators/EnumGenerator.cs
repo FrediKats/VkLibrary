@@ -3,16 +3,20 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using VkLibrary.Codegen.Models;
+using VkLibrary.Codegen.Types;
 using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 
 namespace VkLibrary.Codegen.Generators
 {
     public class EnumGenerator
     {
-        public static CompilationUnitSyntax Generate(EnumDescriptor enumDescriptor)
+        public static CompilationUnitSyntax Generate(string namespaceIdentifier, EnumDescriptor enumDescriptor, EntityType entityType)
         {
             return CommonGenerator
-                .CreateWithUsingAndNamespace("VkLibrary.Core.Types", GenerateMainModel(enumDescriptor))
+                .CreateWithUsingAndNamespace(
+                    namespaceIdentifier,
+                    GenerateMainModel(enumDescriptor),
+                    entityType)
                 .NormalizeWhitespace();
         }
 

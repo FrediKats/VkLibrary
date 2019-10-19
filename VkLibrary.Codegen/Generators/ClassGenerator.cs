@@ -3,16 +3,20 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using VkLibrary.Codegen.Models;
+using VkLibrary.Codegen.Types;
 using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 
 namespace VkLibrary.Codegen.Generators
 {
     public class ClassGenerator
     {
-        public static CompilationUnitSyntax Generate(ClassDescriptor classDescriptor)
+        public static CompilationUnitSyntax Generate(string namespaceIdentifier, ClassDescriptor classDescriptor, EntityType entityType)
         {
             return CommonGenerator
-                .CreateWithUsingAndNamespace("VkLibrary.Core.Types", GenerateMainModel(classDescriptor))
+                .CreateWithUsingAndNamespace(
+                    namespaceIdentifier, 
+                    GenerateMainModel(classDescriptor),
+                    entityType)
                 .NormalizeWhitespace();
         }
 
