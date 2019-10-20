@@ -4,10 +4,6 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using VkLibrary.Core.Types.Audio;
-using VkLibrary.Core.Types.Docs;
-using VkLibrary.Core.Types.Photos;
-using VkLibrary.Core.Types.Video;
 
 namespace VkLibrary.Core
 {
@@ -57,48 +53,49 @@ namespace VkLibrary.Core
             }
         }
 
-        /// <summary>
-        /// Upload multiple photos to vk servers.
-        /// </summary>
-        /// <param name="url">Server url</param>
-        /// <param name="files">Files name-bytes pairs</param>
-        public Task<PhotoUploadResponse> UploadPhotos(string url, Dictionary<string, byte[]> files) => 
-            PostMultipleAsync<PhotoUploadResponse>(new Uri(url), files);
+        //TODO: Research
+        ///// <summary>
+        ///// Upload multiple photos to vk servers.
+        ///// </summary>
+        ///// <param name="url">Server url</param>
+        ///// <param name="files">Files name-bytes pairs</param>
+        //public Task<PhotoUploadResponse> UploadPhotos(string url, Dictionary<string, byte[]> files) =>
+        //    PostMultipleAsync<PhotoUploadResponse>(new Uri(url), files);
 
-        /// <summary>
-        /// Uploads a photo to conversation.
-        /// </summary>
-        /// <param name="url">Server url</param>
-        /// <param name="fileName">File name</param>
-        /// <param name="bytes">Photo bytes</param>
-        public Task<MessageUploadResponse> UploadMessagesPhoto(string url, string fileName, byte[] bytes) => 
-            PostAsync<MessageUploadResponse>(new Uri(url), bytes, "photo", fileName);
+        ///// <summary>
+        ///// Uploads a photo to conversation.
+        ///// </summary>
+        ///// <param name="url">Server url</param>
+        ///// <param name="fileName">File name</param>
+        ///// <param name="bytes">Photo bytes</param>
+        //public Task<MessageUploadResponse> UploadMessagesPhoto(string url, string fileName, byte[] bytes) =>
+        //    PostAsync<MessageUploadResponse>(new Uri(url), bytes, "photo", fileName);
 
-        /// <summary>
-        /// Uploads document to vk.
-        /// </summary>
-        /// <param name="url">Server url</param>
-        /// <param name="fileName">File name</param>
-        /// <param name="bytes">Doc bytes</param>
-        public Task<DocUploadResponse> UploadDocument(string url, string fileName, byte[] bytes) => 
-            PostAsync<DocUploadResponse>(new Uri(url), bytes, "file", fileName);
+        ///// <summary>
+        ///// Uploads document to vk.
+        ///// </summary>
+        ///// <param name="url">Server url</param>
+        ///// <param name="fileName">File name</param>
+        ///// <param name="bytes">Doc bytes</param>
+        //public Task<DocUploadResponse> UploadDocument(string url, string fileName, byte[] bytes) =>
+        //    PostAsync<DocUploadResponse>(new Uri(url), bytes, "file", fileName);
 
-        /// <summary>
-        /// Uploads video to vk.
-        /// </summary>
-        /// <param name="url">Server url</param>
-        /// <param name="fileName">File name</param>
-        /// <param name="bytes">Video bytes</param>
-        public Task<UploadResponse> UploadVideo(string url, string fileName, byte[] bytes) => 
-            PostAsync<UploadResponse>(new Uri(url), bytes, "video_file", fileName);
+        ///// <summary>
+        ///// Uploads video to vk.
+        ///// </summary>
+        ///// <param name="url">Server url</param>
+        ///// <param name="fileName">File name</param>
+        ///// <param name="bytes">Video bytes</param>
+        //public Task<UploadResponse> UploadVideo(string url, string fileName, byte[] bytes) =>
+        //    PostAsync<UploadResponse>(new Uri(url), bytes, "video_file", fileName);
 
-        /// <summary>
-        /// Uploads an MP3 audio to vk.
-        /// </summary>
-        /// <param name="url">Upload url</param>
-        /// <param name="fileName">File name</param>
-        /// <param name="bytes">Audio bytes</param>
-        public Task<AudioUploadResponse> UploadAudio(string url, string fileName, byte[] bytes) => 
-            PostAsync<AudioUploadResponse>(new Uri(url), bytes, "file", fileName);
+        ///// <summary>
+        ///// Uploads an MP3 audio to vk.
+        ///// </summary>
+        ///// <param name="url">Upload url</param>
+        ///// <param name="fileName">File name</param>
+        ///// <param name="bytes">Audio bytes</param>
+        //public Task<AudioUploadResponse> UploadAudio(string url, string fileName, byte[] bytes) =>
+        //    PostAsync<AudioUploadResponse>(new Uri(url), bytes, "file", fileName);
     }
 }

@@ -36,11 +36,6 @@ namespace VkLibrary.Core
         public Apps Apps => new Apps(this);
 
         /// <summary>
-        /// Audio API section.
-        /// </summary>
-        public Audio Audio => new Audio(this);
-
-        /// <summary>
         /// Board API section.
         /// </summary>
         public Board Board => new Board(this);
@@ -124,11 +119,6 @@ namespace VkLibrary.Core
         /// Photos API section.
         /// </summary>
         public Photos Photos => new Photos(this);
-
-        /// <summary>
-        /// Places API section.
-        /// </summary>
-        public Places Places => new Places(this);
 
         /// <summary>
         /// Polls API section.
