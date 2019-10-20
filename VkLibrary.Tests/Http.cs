@@ -32,7 +32,7 @@ namespace VkLibrary.Tests
         [Fact]
         public async void HttpBinGetForStream()
         {
-            var url = new Uri("http://httpbin.org/get");
+            var url = new Uri("https://httpbin.org/get");
             var parameters = new Dictionary<string, string> {{"foo", "bar"}};
             using (var defaultHttpService = new DefaultHttpService(Logger))
             using (var stream = await defaultHttpService.GetForStreamAsync(url, parameters))
@@ -49,7 +49,7 @@ namespace VkLibrary.Tests
         [Fact]
         public async void HttpBinPostForStream()
         {
-            var url = new Uri("http://httpbin.org/post");
+            var url = new Uri("https://httpbin.org/post");
             var parameters = new Dictionary<string, string> {{"foo", "bar"}};
             using (var defaultHttpService = new DefaultHttpService(Logger))
             using (var stream = await defaultHttpService.PostForStreamAsync(url, parameters))
@@ -67,7 +67,7 @@ namespace VkLibrary.Tests
         [Fact]
         public async void HttpBinPostSingle()
         {
-            var url = new Uri("http://httpbin.org/post");
+            var url = new Uri("https://httpbin.org/post");
             using (var defaultHttpService = new DefaultHttpService(Logger))
             using (var stream = await defaultHttpService.PostSingleFileAsync(url, new byte[] {1}, "doc", "doc"))
             using (var streamReader = new StreamReader(stream))
@@ -100,7 +100,7 @@ namespace VkLibrary.Tests
         public async void VkApiGetForStream()
         {
             var url = new Uri("https://api.vk.com/method/users.get");
-            var parameters = new Dictionary<string, string> {{"user_ids", "1"}};
+            var parameters = new Dictionary<string, string> {{"user_ids", "1"}, {"access_token", Constants.AccessToken}, {"v", "5.101"} };
             using (var defaultHttpService = new DefaultHttpService(Logger))
             using (var stream = await defaultHttpService.GetForStreamAsync(url, parameters))
             using (var streamReader = new StreamReader(stream))
@@ -118,7 +118,7 @@ namespace VkLibrary.Tests
         public async void VkApiPostForStream()
         {
             var url = new Uri("https://api.vk.com/method/users.get");
-            var parameters = new Dictionary<string, string> {{"user_ids", "1"}};
+            var parameters = new Dictionary<string, string> {{"user_ids", "1"}, { "access_token", Constants.AccessToken }, { "v", "5.101" } };
             using (var defaultHttpService = new DefaultHttpService(Logger))
             using (var stream = await defaultHttpService.PostForStreamAsync(url, parameters))
             using (var streamReader = new StreamReader(stream))

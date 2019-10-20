@@ -13,7 +13,7 @@ namespace VkLibrary.Tests
     public class Utils : ClassFixtureBase
     {
         public Utils(ITestOutputHelper testOutputHelper) : base(Constants.OfficialApplicationId, 
-            Constants.OfficialApplicationSecret, string.Empty, testOutputHelper) { }
+            Constants.OfficialApplicationSecret, Constants.AccessToken, testOutputHelper) { }
 
         [Fact]
         public void DateTimeToUnixTime()

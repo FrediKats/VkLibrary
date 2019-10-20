@@ -1,61 +1,57 @@
+using VkLibrary.Core.Objects;
+using VkLibrary.Core.Responses;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using VkLibrary.Core.Responses.Widgets;
 
 namespace VkLibrary.Core.Methods
 {
-    /// <summary>
-    /// Widgets API section.
-    /// </summary>
     public class Widgets
     {
         private readonly Vkontakte _vkontakte;
+
         internal Widgets(Vkontakte vkontakte) => _vkontakte = vkontakte;
 
-        /// <summary>
-        /// Gets a list of comments for the page added through the Comments widget.
-        /// Docs: <see href="https://vk.com/dev/widgets.getComments">widgets.getComments</see>
-        /// </summary>
-        public Task<GetCommentsResponse> GetComments(int? widgetApiId = null, string url = null,
-            string pageId = null, string order = null, IEnumerable<string> fields = null, int? count = null)
+        ///<summary>
+        /// Gets a list of comments for the page added through the [vk.com/dev/Comments|Comments widget].
+        ///</summary>
+        public Task<WidgetsGetCommentsResponse> GetComments(int? widgetApiId = null, String url = null, String pageId = null, String order = null, UsersFields[] fields = null, int? offset = null, int? count = null)
         {
             var parameters = new Dictionary<string, string>();
-
             if (widgetApiId != null)
                 parameters.Add("widget_api_id", widgetApiId.ToApiString());
             if (url != null)
-                parameters.Add("url", url);
+                parameters.Add("url", url.ToApiString());
             if (pageId != null)
-                parameters.Add("page_id", pageId);
+                parameters.Add("page_id", pageId.ToApiString());
             if (order != null)
-                parameters.Add("order", order);
+                parameters.Add("order", order.ToApiString());
             if (fields != null)
                 parameters.Add("fields", fields.ToApiString());
+            if (offset != null)
+                parameters.Add("offset", offset.ToApiString());
             if (count != null)
                 parameters.Add("count", count.ToApiString());
-
-            return _vkontakte.RequestAsync<GetCommentsResponse>("widgets.getComments", parameters);
+            return _vkontakte.RequestAsync<WidgetsGetCommentsResponse>("widgets.getComments", parameters);
         }
 
-        /// <summary>
-        /// Gets a list of application/site pages where the Comments widget or Like widget is installed.
-        /// Docs: <see href="https://vk.com/dev/widgets.getPages">widgets.getPages</see>
-        /// </summary>
-        public Task<GetPagesResponse> GetPages(int? widgetApiId = null, string order = null,
-            string period = null, int? count = null)
+        ///<summary>
+        /// Gets a list of application/site pages where the [vk.com/dev/Comments|Comments widget] or [vk.com/dev/Like|Like widget] is installed.
+        ///</summary>
+        public Task<WidgetsGetPagesResponse> GetPages(int? widgetApiId = null, String order = null, String period = null, int? offset = null, int? count = null)
         {
             var parameters = new Dictionary<string, string>();
-
             if (widgetApiId != null)
                 parameters.Add("widget_api_id", widgetApiId.ToApiString());
             if (order != null)
-                parameters.Add("order", order);
+                parameters.Add("order", order.ToApiString());
             if (period != null)
-                parameters.Add("period", period);
+                parameters.Add("period", period.ToApiString());
+            if (offset != null)
+                parameters.Add("offset", offset.ToApiString());
             if (count != null)
                 parameters.Add("count", count.ToApiString());
-
-            return _vkontakte.RequestAsync<GetPagesResponse>("widgets.getPages", parameters);
+            return _vkontakte.RequestAsync<WidgetsGetPagesResponse>("widgets.getPages", parameters);
         }
     }
 }
