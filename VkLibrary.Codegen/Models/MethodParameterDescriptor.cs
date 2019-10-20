@@ -13,12 +13,16 @@ namespace VkLibrary.Codegen.Models
 
         public static MethodParameterDescriptor Create(MethodParameterData parameterData)
         {
+            ICustomCaseTitle type = parameterData.Type == "array"
+                ? CamelCaseArrayTitle.Of(TypeParser.ParseType(parameterData.Items))
+                : TypeParser.MatchDefaultType(parameterData.Type);
+
             return new MethodParameterDescriptor
             {
                 Title =  CamelCaseTitle.Of(parameterData.Name, true),
                 Descriptor =  parameterData.Descriptor,
                 IsRequired = parameterData.IsRequired,
-                Type = TypeParser.ParseType(parameterData.Type)
+                Type = type
             };
         }
 
