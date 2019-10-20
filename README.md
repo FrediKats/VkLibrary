@@ -1,15 +1,13 @@
-<a href="https://docs.microsoft.com/en-us/dotnet/standard/net-standard"><img src="https://img.shields.io/badge/.NET%20Standard-1.1-green.svg"></a> <a href="https://www.nuget.org/packages/VkLibrary.Core/"><img src="https://img.shields.io/nuget/v/VkLibrary.Core.svg"></a> <a href="https://www.nuget.org/packages/VkLibrary.Core/"><img src="https://img.shields.io/nuget/dt/VkLibrary.Core.svg"></a> <a href="https://github.com/Worldbeater/VkLibrary/issues"><img src="https://img.shields.io/github/issues/Worldbeater/VkLibrary.svg"></a> <a href="https://github.com/Worldbeater/VkLibrary/blob/master/LICENSE.md"><img src="https://img.shields.io/github/license/worldbeater/VkLibrary.svg"></a>
-
-> **Note** This project is no longer actively maintained. Consider using [VkNet library](https://github.com/vknet/vk) instead.
+<a href="https://docs.microsoft.com/en-us/dotnet/standard/net-standard"><img src="https://img.shields.io/badge/.NET%20Standard-1.1-green.svg"></a> <a href="https://www.nuget.org/packages/VkApi.Wrapper/"><img src="https://img.shields.io/nuget/v/VkApi.Wrapper.svg"></a> <a href="https://www.nuget.org/packages/VkApi.Wrapper/"><img src="https://img.shields.io/nuget/dt/VkApi.Wrapper.svg"></a> <a href="https://github.com/inredikawb/VkLibrary/issues"><img src="https://img.shields.io/github/issues/Worldbeater/VkLibrary.svg"></a> <a href="https://github.com/inredikawb/VkLibrary/blob/master/LICENSE.md"><img src="https://img.shields.io/github/license/inredikawb/VkLibrary.svg"></a>
 
 # Installation
 The library is delivered via NuGet Package Manager:
 ```powershell
-Install-Package VkLibrary.Core
+Install-Package VkApi.Wrapper
 ```
 If you are targeting .NET Core, use the following command:
 ```cmd
-dotnet add package VkLibrary.Core
+dotnet add package VkApi.Wrapper
 ```
 
 # Getting Started
