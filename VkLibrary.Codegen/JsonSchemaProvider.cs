@@ -98,7 +98,7 @@ namespace VkLibrary.Codegen
             if (typeToReplace != null)
             {
                 typeToReplace = TypeParser
-                    .MatchDefaultType(typeToReplace)
+                    .ParseType(item.Body)
                     .ToSharpString();
                 TypeProvider.Instance.Register(originalTypeName, typeToReplace);
                 return false;
