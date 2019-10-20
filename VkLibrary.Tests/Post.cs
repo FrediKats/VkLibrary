@@ -11,7 +11,7 @@ namespace VkLibrary.Tests
     public class Post : ClassFixtureBase
     {
         public Post(ITestOutputHelper testOutputHelper) : base(Constants.OfficialApplicationId,
-            Constants.OfficialApplicationSecret, string.Empty, testOutputHelper) { }
+            Constants.OfficialApplicationSecret, Constants.AccessToken, testOutputHelper) { }
         
         [Fact]
         public async void PostSingle()

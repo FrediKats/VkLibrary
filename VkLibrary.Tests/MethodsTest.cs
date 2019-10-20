@@ -6,9 +6,9 @@ using Xunit.Abstractions;
 
 namespace VkLibrary.Tests
 {
-    public class Methods : ClassFixtureBase
+    public class MethodsTest : ClassFixtureBase
     {
-        public Methods(ITestOutputHelper testOutputHelper) : base(Constants.ApplicationId, 
+        public MethodsTest(ITestOutputHelper testOutputHelper) : base(Constants.ApplicationId, 
             string.Empty, Constants.AccessToken, testOutputHelper) { }
 
         [Fact]
