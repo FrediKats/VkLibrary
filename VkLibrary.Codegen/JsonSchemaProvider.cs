@@ -7,14 +7,15 @@ using VkLibrary.Codegen.JsonModel;
 using VkLibrary.Codegen.Models;
 using VkLibrary.Codegen.Tools;
 using VkLibrary.Codegen.Types;
+using VkLibrary.Codegen.Types.TitleCase;
 
 namespace VkLibrary.Codegen
 {
     public class JsonSchemaProvider
     {
+        private readonly List<MethodDescriptor> _methodsSchemaModel;
         private readonly List<JsonSchemaItem> _objectSchemaModel;
         private readonly List<JsonSchemaItem> _responseSchemaModel;
-        private readonly List<MethodDescriptor> _methodsSchemaModel;
 
         public JsonSchemaProvider()
         {
@@ -31,12 +32,17 @@ namespace VkLibrary.Codegen
             // known problem: bug with parsing
             Log.Instance.Message("Skip type parse for: messages_delete_response");
             Log.Instance.Message("Skip type parse for: newsfeed_getSuggestedSources_response");
+            Log.Instance.Message("Skip type parse for: account_getAppPermissions_response is equals to int");
             responseDefinition.Remove("messages_delete_response");
             responseDefinition.Remove("newsfeed_getSuggestedSources_response");
+            responseDefinition.Remove("account_getAppPermissions_response");
 
             _responseSchemaModel = responseDefinition
                 .Select(pair => JsonSchemaItem.Create(pair.Key, pair.Value))
                 .ToList();
+
+            _responseSchemaModel
+                .ForEach(r => { r.Body = r.Body["properties"]["response"]; });
 
             _methodsSchemaModel = JsonConvert
                 .DeserializeObject<MethodJsonModel>(File.ReadAllText("Schemes/methods.json"))
@@ -66,7 +72,8 @@ namespace VkLibrary.Codegen
         public List<ClassDescriptor> GetResponseClassDescriptors()
         {
             return _responseSchemaModel
-                .Select(ConvertIfNested)
+                .Where(FilterResponses)
+                .Select(r => new ClassDescriptor(r))
                 .ToList();
         }
 
@@ -75,21 +82,37 @@ namespace VkLibrary.Codegen
             return _methodsSchemaModel;
         }
 
+        public bool FilterResponses(JsonSchemaItem item)
+        {
+            string originalTypeName = CamelCaseTitle.Of(item.Title).ToSharpString();
+            string typeToReplace = null;
+
+            JToken refBlock = item.Body["$ref"];
+            if (refBlock != null)
+                typeToReplace = TypeParser.GetTypeFromRef(item.Body);
+
+            var jsonType = item.Body.Value<string>("type");
+            if (jsonType != null && jsonType != "object")
+                typeToReplace = jsonType;
+
+            if (typeToReplace != null)
+            {
+                typeToReplace = TypeParser
+                    .MatchDefaultType(typeToReplace)
+                    .ToSharpString();
+                TypeProvider.Instance.Register(originalTypeName, typeToReplace);
+                return false;
+            }
+
+            return true;
+        }
+
         public List<JsonSchemaItem> GetUndefined()
         {
             return _objectSchemaModel
                 .Concat(_responseSchemaModel)
                 .Where(i => i.ObjectType == JsonSchemaItemType.Undefined)
                 .ToList();
-        }
-
-        private ClassDescriptor ConvertIfNested(JsonSchemaItem jsonSchemaItem)
-        {
-            if (jsonSchemaItem.Body["properties"]["response"].Value<string>("type") == "object")
-            {
-                jsonSchemaItem.Body = jsonSchemaItem.Body["properties"]["response"];
-            }
-            return new ClassDescriptor(jsonSchemaItem);
         }
 
         private bool FilterUnsupportedMethods(MethodData methodData)
@@ -103,7 +126,7 @@ namespace VkLibrary.Codegen
                 _ => true
             };
 
-            if (!result) 
+            if (!result)
                 Log.Instance.Message($"Skip type parse for: {methodData.Name}");
 
             return result;

@@ -33,7 +33,6 @@ namespace VkLibrary.Codegen.Tools
             if (body["type"].Type == JTokenType.Array)
             {
                 Log.Instance.Message($"Type composition: {body["type"].ToLogString()}");
-
                 return UndefinedCaseTitle.Of("object");
             }
 
@@ -42,7 +41,7 @@ namespace VkLibrary.Codegen.Tools
             return MatchDefaultType(body.Value<string>("type"));
         }
 
-        private static string GetTypeFromRef(JToken body)
+        public static string GetTypeFromRef(JToken body)
         {
             return body["$ref"]
                 .ToString()

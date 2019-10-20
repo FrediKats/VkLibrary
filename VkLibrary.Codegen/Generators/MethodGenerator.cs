@@ -69,7 +69,8 @@ namespace VkLibrary.Codegen.Generators
 
         private static MemberDeclarationSyntax GenerateMethod(MethodDescriptor methodDescriptor)
         {
-            TypeSyntax type = ParseTypeName(methodDescriptor.ResponseType.ToSharpString());
+            string resolvedType = TypeProvider.Instance.Resolve(methodDescriptor.ResponseType.ToSharpString());
+            TypeSyntax type = ParseTypeName(resolvedType);
 
             LocalDeclarationStatementSyntax dictionary = LocalDeclarationStatement(
                 VariableDeclaration(
