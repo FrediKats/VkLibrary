@@ -60,14 +60,14 @@ namespace VkLibrary.Codegen.Generators
             var statements = new List<MemberDeclarationSyntax>();
             statements.Add(vkontakteField);
             statements.Add(constructor);
-            statements.AddRange(methodScopeData.Select(m => GenerateMethod(title, m)).ToList());
+            statements.AddRange(methodScopeData.Select(m => GenerateMethod(m)).ToList());
 
             return ClassDeclaration(title)
                 .WithModifiers(TokenList(Token(SyntaxKind.PublicKeyword)))
                 .WithMembers(List(statements));
         }
 
-        private static MemberDeclarationSyntax GenerateMethod(string title, MethodDescriptor methodDescriptor)
+        private static MemberDeclarationSyntax GenerateMethod(MethodDescriptor methodDescriptor)
         {
             TypeSyntax type = ParseTypeName(methodDescriptor.ResponseType.ToSharpString());
 
@@ -109,7 +109,7 @@ namespace VkLibrary.Codegen.Generators
                                     Identifier("RequestAsync"))
                                 .WithTypeArgumentList(
                                     TypeArgumentList(
-                                        SingletonSeparatedList<TypeSyntax>(
+                                        SingletonSeparatedList(
                                             type)))))
                     .WithArgumentList(
                         ArgumentList(
@@ -140,7 +140,7 @@ namespace VkLibrary.Codegen.Generators
                             Identifier("Task"))
                         .WithTypeArgumentList(
                             TypeArgumentList(
-                                SingletonSeparatedList<TypeSyntax>(
+                                SingletonSeparatedList(
                                     type))),
                     Identifier(methodDescriptor.Title.ToSharpString()))
                 .WithModifiers(
