@@ -1,556 +1,103 @@
+using VkLibrary.Core.Objects;
+using VkLibrary.Core.Responses;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using VkLibrary.Core.Responses.Groups;
-using VkLibrary.Core.Types.Groups;
-using VkLibrary.Core.Types.Users;
 
 namespace VkLibrary.Core.Methods
 {
-    /// <summary>
-    /// Groups API section.
-    /// </summary>
     public class Groups
     {
         private readonly Vkontakte _vkontakte;
+
         internal Groups(Vkontakte vkontakte) => _vkontakte = vkontakte;
 
-        /// <summary>
-        /// Returns information specifying whether a user is a member of a community.
-        /// Docs: <see href="https://vk.com/dev/groups.isMember">groups.isMember</see>
-        /// </summary>
-        /// <param name="groupId">ID or screen name of the community.</param>
-        /// <param name="userId">User ID.</param>
-        /// <param name="userIds">User IDs.</param>
-        public Task<int> IsMember(string groupId = null, int? userId = null, IEnumerable<int?> userIds = null)
+        ///<summary>
+        /// Allows to add a link to the community.
+        ///</summary>
+        public Task<GroupsGroupLink> AddLink(int? groupId = null, String link = null, String text = null)
         {
             var parameters = new Dictionary<string, string>();
-
-            if (groupId != null)
-                parameters.Add("group_id", groupId);
-            if (userId != null)
-                parameters.Add("user_id", userId.ToApiString());
-            if (userIds != null)
-                parameters.Add("user_ids", userIds.ToApiString());
-            parameters.Add("extended", false.ToApiString());
-
-            return _vkontakte.RequestAsync<int>("groups.isMember", parameters);
-        }
-
-        /// <summary>
-        /// Returns information about communities by their IDs.
-        /// Docs: <see href="https://vk.com/dev/groups.getById">groups.getById</see>
-        /// </summary>
-        /// <param name="groupIds">IDs or screen names of communities.</param>
-        /// <param name="groupId">ID or screen name of the community.</param>
-        /// <param name="fields">Group fields to return.;</param>
-        public Task<IEnumerable<GroupFull>> GetById(IEnumerable<string> groupIds = null, string groupId = null,
-            IEnumerable<string> fields = null)
-        {
-            var parameters = new Dictionary<string, string>();
-
-            if (groupIds != null)
-                parameters.Add("group_ids", groupIds.ToApiString());
-            if (groupId != null)
-                parameters.Add("group_id", groupId);
-            if (fields != null)
-                parameters.Add("fields", fields.ToApiString());
-
-            return _vkontakte.RequestAsync<IEnumerable<GroupFull>>("groups.getById", parameters);
-        }
-
-        /// <summary>
-        /// Returns a list of the communities to which a user belongs.; ;
-        /// Docs: <see href="https://vk.com/dev/groups.get">groups.get</see>
-        /// </summary>
-        /// <param name="userId">User ID.</param>
-        /// <param name="extended">
-        /// '1' — to return complete information about a user's communities; '0' — to return a list of
-        /// community IDs without any additional fields (default);
-        /// </param>
-        /// <param name="filter">
-        /// Types of communities to return:; 'admin' — to return communities administered by the user ;
-        /// 'editor' — to return communities where the user is an administrator or editor; 'moder' — to return communities
-        /// where the user is an administrator, editor, or moderator; 'groups' — to return only groups; 'publics' — to return
-        /// only public pages; 'events' — to return only events
-        /// </param>
-        /// <param name="fields">Profile fields to return.;</param>
-        /// <param name="offset">Offset needed to return a specific subset of communities.</param>
-        /// <param name="count">Number of communities to return.</param>
-        public Task<ApiItemsResponse<GroupFull>> Get(int? userId = null, bool? extended = true,
-            IEnumerable<string> filter = null, IEnumerable<string> fields = null, int? offset = null, int? count = null)
-        {
-            var parameters = new Dictionary<string, string>();
-
-            if (userId != null)
-                parameters.Add("user_id", userId.ToApiString());
-            if (extended != null)
-                parameters.Add("extended", extended.ToApiString());
-            if (filter != null)
-                parameters.Add("filter", filter.ToApiString());
-            if (fields != null)
-                parameters.Add("fields", fields.ToApiString());
-            if (offset != null)
-                parameters.Add("offset", offset.ToApiString());
-            if (count != null)
-                parameters.Add("count", count.ToApiString());
-
-            return _vkontakte.RequestAsync<ApiItemsResponse<GroupFull>>("groups.get", parameters);
-        }
-
-        /// <summary>
-        /// Returns a list of community members.
-        /// Docs: <see href="https://vk.com/dev/groups.getMembers">groups.getMembers</see>
-        /// </summary>
-        /// <param name="groupId">ID or screen name of the community.</param>
-        /// <param name="sort">
-        /// Sort order. Available values: 'id_asc', 'id_desc', 'time_asc', 'time_desc'.; 'time_asc' and
-        /// 'time_desc' are availavle only if the method is called by the group's 'moderator'.
-        /// </param>
-        /// <param name="offset">Offset needed to return a specific subset of community members.</param>
-        /// <param name="count">Number of community members to return.</param>
-        /// <param name="fields">
-        /// List of additional fields to be returned. ; Available values: 'sex, bdate, city, country,
-        /// photo_50, photo_100, photo_200_orig, photo_200, photo_400_orig, photo_max, photo_max_orig, online, online_mobile,
-        /// lists, domain, has_mobile, contacts, connections, site, education, universities, schools, can_post,
-        /// can_see_all_posts, can_see_audio, can_write_private_message, status, last_seen, common_count, relation, relatives,
-        /// counters'.
-        /// </param>
-        /// <param name="filter">
-        /// *'friends' – only friends in this community will be returned;; *'unsure' – only those who pressed
-        /// 'I may attend' will be returned (if it's an event).
-        /// </param>
-        public Task<ApiItemsResponse<T>> GetMembers<T>(int? groupId = null, string sort = null,
-            int? offset = null, int? count = null, IEnumerable<string> fields = null, string filter = null)
-        {
-            var parameters = new Dictionary<string, string>();
-
             if (groupId != null)
                 parameters.Add("group_id", groupId.ToApiString());
-            if (sort != null)
-                parameters.Add("sort", sort);
-            if (offset != null)
-                parameters.Add("offset", offset.ToApiString());
-            if (count != null)
-                parameters.Add("count", count.ToApiString());
-            if (fields != null)
-                parameters.Add("fields", fields.ToApiString());
-            if (filter != null)
-                parameters.Add("filter", filter);
-
-            return _vkontakte.RequestAsync<ApiItemsResponse<T>>("groups.getMembers", parameters);
+            if (link != null)
+                parameters.Add("link", link.ToApiString());
+            if (text != null)
+                parameters.Add("text", text.ToApiString());
+            return _vkontakte.RequestAsync<GroupsGroupLink>("groups.addLink", parameters);
         }
 
-        /// <summary>
-        /// With this method you can join the group or public page, and also confirm your participation in an event.
-        /// Docs: <see href="https://vk.com/dev/groups.join">groups.join</see>
-        /// </summary>
-        /// <param name="groupId">ID or screen name of the community.</param>
-        /// <param name="notSure">
-        /// Optional parameter which is taken into account when 'gid' belongs to the event:; '1' — Perhaps I
-        /// will attend; '0' — I will be there for sure (default); ;
-        /// </param>
-        public Task<int> Join(int? groupId = null, string notSure = null)
+        ///<summary>
+        /// Allows to approve join request to the community.
+        ///</summary>
+        public Task<BaseOkResponse> ApproveRequest(int? groupId = null, int? userId = null)
         {
             var parameters = new Dictionary<string, string>();
-
-            if (groupId != null)
-                parameters.Add("group_id", groupId.ToApiString());
-            if (notSure != null)
-                parameters.Add("not_sure", notSure);
-
-            return _vkontakte.RequestAsync<int>("groups.join", parameters);
-        }
-
-        /// <summary>
-        /// With this method you can leave a group, public page, or event.; ;
-        /// Docs: <see href="https://vk.com/dev/groups.leave">groups.leave</see>
-        /// </summary>
-        /// <param name="groupId">ID or screen name of the community.</param>
-        public Task<int> Leave(int? groupId = null)
-        {
-            var parameters = new Dictionary<string, string>();
-
-            if (groupId != null)
-                parameters.Add("group_id", groupId.ToApiString());
-
-            return _vkontakte.RequestAsync<int>("groups.leave", parameters);
-        }
-
-        /// <summary>
-        /// Returns a list of communities matching the search criteria.
-        /// Docs: <see href="https://vk.com/dev/groups.search">groups.search</see>
-        /// </summary>
-        /// <param name="q">Search query string.</param>
-        /// <param name="type">Community type. Possible values: 'group, page, event.'</param>
-        /// <param name="countryId">Country ID.</param>
-        /// <param name="cityId">City ID. If this parameter is transmitted, country_id is ignored.</param>
-        /// <param name="future">'1' — to return only upcoming events. Works with the 'type' = 'event' only.</param>
-        /// <param name="market">'1' — to return communities with enabled market only.</param>
-        /// <param name="sort">
-        /// Sort order. Possible values:; *'0' — default sorting (similar the full version of the site);; *'1' —
-        /// by growth speed;; *'2'— by the "day attendance/members number" ratio;; *'3' — by the "Likes number/members number"
-        /// ratio;; *'4' — by the "comments number/members number" ratio;; *'5' — by the "boards entries number/members number"
-        /// ratio.; ;
-        /// </param>
-        /// <param name="offset">Offset needed to return a specific subset of results.</param>
-        /// <param name="count">
-        /// Number of communities to return.; "Note that you can not receive more than first thousand of
-        /// results, regardless of 'count' and 'offset' values."
-        /// </param>
-        public Task<ApiItemsResponse<Group>> Search(string q = null, string type = null, int? countryId = null,
-            int? cityId = null, bool? future = null, bool? market = null, int? sort = null, int? offset = null,
-            int? count = null)
-        {
-            var parameters = new Dictionary<string, string>();
-
-            if (q != null)
-                parameters.Add("q", q);
-            if (type != null)
-                parameters.Add("type", type);
-            if (countryId != null)
-                parameters.Add("country_id", countryId.ToApiString());
-            if (cityId != null)
-                parameters.Add("city_id", cityId.ToApiString());
-            if (future != null)
-                parameters.Add("future", future.ToApiString());
-            if (market != null)
-                parameters.Add("market", market.ToApiString());
-            if (sort != null)
-                parameters.Add("sort", sort.ToApiString());
-            if (offset != null)
-                parameters.Add("offset", offset.ToApiString());
-            if (count != null)
-                parameters.Add("count", count.ToApiString());
-
-            return _vkontakte.RequestAsync<ApiItemsResponse<Group>>("groups.search", parameters);
-        }
-
-        /// <summary>
-        /// Returns communities list for a catalog category.
-        /// Docs: <see href="https://vk.com/dev/groups.getCatalog">groups.getCatalog</see>
-        /// </summary>
-        /// <param name="categoryId">Category id received from groups.getCatalogInfo.</param>
-        /// <param name="subcategoryId">Subcategory id received from groups.getCatalogInfo.</param>
-        public Task<ApiItemsResponse<Group>> GetCatalog(int? categoryId = null, int? subcategoryId = null)
-        {
-            var parameters = new Dictionary<string, string>();
-
-            if (categoryId != null)
-                parameters.Add("category_id", categoryId.ToApiString());
-            if (subcategoryId != null)
-                parameters.Add("subcategory_id", subcategoryId.ToApiString());
-
-            return _vkontakte.RequestAsync<ApiItemsResponse<Group>>("groups.getCatalog", parameters);
-        }
-
-        /// <summary>
-        /// Returns categories list for communities catalog
-        /// Docs: <see href="https://vk.com/dev/groups.getCatalogInfo">groups.getCatalogInfo</see>
-        /// </summary>
-        /// <param name="extended">1 – to return communities count and three communities for preview.; By default: 0.</param>
-        /// <param name="subcategories">1 – to return subcategories info.; By default: 0.</param>
-        public Task<GetCatalogInfoResponse> GetCatalogInfo(bool? extended = null, bool? subcategories = null)
-        {
-            var parameters = new Dictionary<string, string>();
-
-            if (extended != null)
-                parameters.Add("extended", extended.ToApiString());
-            if (subcategories != null)
-                parameters.Add("subcategories", subcategories.ToApiString());
-
-            return _vkontakte.RequestAsync<GetCatalogInfoResponse>("groups.getCatalogInfo", parameters);
-        }
-
-        /// <summary>
-        /// Returns a list of invitations to join communities and events.; ;
-        /// Docs: <see href="https://vk.com/dev/groups.getInvites">groups.getInvites</see>
-        /// </summary>
-        /// <param name="offset">Offset needed to return a specific subset of invitations.</param>
-        /// <param name="count">Number of invitations to return.</param>
-        /// <param name="extended">'1' — to return additional fields for communities..</param>
-        public Task<ApiItemsResponse<GroupXtrInvitedBy>> GetInvites(int? offset = null, int? count = null,
-            bool? extended = null)
-        {
-            var parameters = new Dictionary<string, string>();
-
-            if (offset != null)
-                parameters.Add("offset", offset.ToApiString());
-            if (count != null)
-                parameters.Add("count", count.ToApiString());
-            if (extended != null)
-                parameters.Add("extended", extended.ToApiString());
-
-            return _vkontakte.RequestAsync<ApiItemsResponse<GroupXtrInvitedBy>>("groups.getInvites", parameters);
-        }
-
-        /// <summary>
-        /// Returns invited users list of a community
-        /// Docs: <see href="https://vk.com/dev/groups.getInvitedUsers">groups.getInvitedUsers</see>
-        /// </summary>
-        /// <param name="groupId">Group ID to return invited users for.</param>
-        /// <param name="offset">Offset needed to return a specific subset of results.</param>
-        /// <param name="count">Number of results to return.</param>
-        /// <param name="fields">
-        /// List of additional fields to be returned. ; Available values: 'sex, bdate, city, country,
-        /// photo_50, photo_100, photo_200_orig, photo_200, photo_400_orig, photo_max, photo_max_orig, online, online_mobile,
-        /// lists, domain, has_mobile, contacts, connections, site, education, universities, schools, can_post,
-        /// can_see_all_posts, can_see_audio, can_write_private_message, status, last_seen, common_count, relation, relatives,
-        /// counters'.
-        /// </param>
-        /// <param name="nameCase">
-        /// Case for declension of user name and surname. Possible values:; *'nom' — nominative (default);;
-        /// *'gen' — genitive;; *'dat' — dative;; *'acc' — accusative; ; *'ins' — instrumental;; *'abl' — prepositional.
-        /// </param>
-        public Task<ApiItemsResponse<UserFull>> GetInvitedUsers(int? groupId = null, int? offset = null,
-            int? count = null, IEnumerable<string> fields = null, string nameCase = null)
-        {
-            var parameters = new Dictionary<string, string>();
-
-            if (groupId != null)
-                parameters.Add("group_id", groupId.ToApiString());
-            if (offset != null)
-                parameters.Add("offset", offset.ToApiString());
-            if (count != null)
-                parameters.Add("count", count.ToApiString());
-            if (fields != null)
-                parameters.Add("fields", fields.ToApiString());
-            if (nameCase != null)
-                parameters.Add("name_case", nameCase);
-
-            return _vkontakte.RequestAsync<ApiItemsResponse<UserFull>>("groups.getInvitedUsers", parameters);
-        }
-
-        /// <summary>
-        /// Adds a user to a community blacklist.
-        /// Docs: <see href="https://vk.com/dev/groups.banUser">groups.banUser</see>
-        /// </summary>
-        /// <param name="groupId">Community ID.</param>
-        /// <param name="userId">User ID.</param>
-        /// <param name="endDate">Date (in Unix time) when the user will be removed from the blacklist.</param>
-        /// <param name="reason">
-        /// Reason for ban:; '1' — spam; '2' — verbal abuse; '3' — strong language; '4' — irrelevant messages;
-        /// '0' — other (default)
-        /// </param>
-        /// <param name="comment">Text of comment to ban.</param>
-        /// <param name="commentVisible">
-        /// '1' — text of comment will be visible to the user;; '0' — text of comment will be
-        /// invisible to the user. ; By default: '0'.
-        /// </param>
-        public Task<int> BanUser(int? groupId = null, int? userId = null, int? endDate = null,
-            int? reason = null, string comment = null, bool? commentVisible = null)
-        {
-            var parameters = new Dictionary<string, string>();
-
             if (groupId != null)
                 parameters.Add("group_id", groupId.ToApiString());
             if (userId != null)
                 parameters.Add("user_id", userId.ToApiString());
-            if (endDate != null)
-                parameters.Add("end_date", endDate.ToApiString());
-            if (reason != null)
-                parameters.Add("reason", reason.ToApiString());
-            if (comment != null)
-                parameters.Add("comment", comment);
-            if (commentVisible != null)
-                parameters.Add("comment_visible", commentVisible.ToApiString());
-
-            return _vkontakte.RequestAsync<int>("groups.banUser", parameters);
+            return _vkontakte.RequestAsync<BaseOkResponse>("groups.approveRequest", parameters);
         }
 
-        /// <summary>
-        /// Removes a user from a community blacklist.
-        /// Docs: <see href="https://vk.com/dev/groups.unbanUser">groups.unbanUser</see>
-        /// </summary>
-        /// <param name="groupId">Community ID.</param>
-        /// <param name="userId">User ID.</param>
-        public Task<int> UnbanUser(int? groupId = null, int? userId = null)
-        {
-            var parameters = new Dictionary<string, string>();
-
-            if (groupId != null)
-                parameters.Add("group_id", groupId.ToApiString());
-            if (userId != null)
-                parameters.Add("user_id", userId.ToApiString());
-
-            return _vkontakte.RequestAsync<int>("groups.unbanUser", parameters);
-        }
-
-        /// <summary>
-        /// Returns a list of users on a community blacklist.
-        /// Docs: <see href="https://vk.com/dev/groups.getBanned">groups.getBanned</see>
-        /// </summary>
-        /// <param name="groupId">Community ID.</param>
-        /// <param name="offset">Offset needed to return a specific subset of users.</param>
-        /// <param name="count">Number of users to return.</param>
-        /// <param name="fields"></param>
-        /// <param name="userId"></param>
-        public Task<ApiItemsResponse<UserXtrBanInfo>> GetBanned(int? groupId = null, int? offset = null,
-            int? count = null, IEnumerable<string> fields = null, int? userId = null)
-        {
-            var parameters = new Dictionary<string, string>();
-
-            if (groupId != null)
-                parameters.Add("group_id", groupId.ToApiString());
-            if (offset != null)
-                parameters.Add("offset", offset.ToApiString());
-            if (count != null)
-                parameters.Add("count", count.ToApiString());
-            if (fields != null)
-                parameters.Add("fields", fields.ToApiString());
-            if (userId != null)
-                parameters.Add("user_id", userId.ToApiString());
-
-            return _vkontakte.RequestAsync<ApiItemsResponse<UserXtrBanInfo>>("groups.getBanned", parameters);
-        }
-
-        /// <summary>
+        ///<summary>
         /// Creates a new community.
-        /// Docs: <see href="https://vk.com/dev/groups.create">groups.create</see>
-        /// </summary>
-        /// <param name="title">Community title.</param>
-        /// <param name="description">Community description (ignored for 'type' = 'public').</param>
-        /// <param name="type">Community type. Possible values:; *'group' – group;; *'event' – event;; *'public' – public page</param>
-        /// <param name="publicCategory">Category ID (for 'type' = 'public' only).</param>
-        /// <param name="subtype">
-        /// Public page subtype. Possible values:; *'1' – place or small business;; *'2' – company,
-        /// organization or website;; *'3' – famous person or group of people;; *'4' – product or work of art.
-        /// </param>
-        public Task<Group> Create(string title = null, string description = null, string type = null,
-            int? publicCategory = null, int? subtype = null)
+        ///</summary>
+        public Task<GroupsGroup> Create(String title = null, String description = null, String type = null, int? publicCategory = null, int? subtype = null)
         {
             var parameters = new Dictionary<string, string>();
-
             if (title != null)
-                parameters.Add("title", title);
+                parameters.Add("title", title.ToApiString());
             if (description != null)
-                parameters.Add("description", description);
+                parameters.Add("description", description.ToApiString());
             if (type != null)
-                parameters.Add("type", type);
+                parameters.Add("type", type.ToApiString());
             if (publicCategory != null)
                 parameters.Add("public_category", publicCategory.ToApiString());
             if (subtype != null)
                 parameters.Add("subtype", subtype.ToApiString());
-
-            return _vkontakte.RequestAsync<Group>("groups.create", parameters);
+            return _vkontakte.RequestAsync<GroupsGroup>("groups.create", parameters);
         }
 
-        /// <summary>
-        /// Edits a community.
-        /// Docs: <see href="https://vk.com/dev/groups.edit">groups.edit</see>
-        /// </summary>
-        /// <param name="groupId">Community ID.</param>
-        /// <param name="title">Community title.</param>
-        /// <param name="description">Community description.</param>
-        /// <param name="screenName">Community screen name.</param>
-        /// <param name="access">Community type. Possible values:; *'0' – open;; *'1' – closed;; *'2' – private.</param>
-        /// <param name="website">Website that will be displayed in the community information field.</param>
-        /// <param name="subject">
-        /// Community subject. Possible values: ; *'1' – auto/moto;; *'2' – activity holidays;; *'3' –
-        /// business;; *'4' – pets;; *'5' – health;; *'6' – dating and communication; ; *'7' – games;; *'8' – IT (computers and
-        /// software);; *'9' – cinema;; *'10' – beauty and fashion;; *'11' – cooking;; *'12' – art and culture;; *'13' –
-        /// literature;; *'14' – mobile services and internet;; *'15' – music;; *'16' – science and technology;; *'17' – real
-        /// estate;; *'18' – news and media;; *'19' – security;; *'20' – education;; *'21' – home and renovations;; *'22' –
-        /// politics;; *'23' – food;; *'24' – industry;; *'25' – travel;; *'26' – work;; *'27' – entertainment;; *'28' –
-        /// religion;; *'29' – family;; *'30' – sports;; *'31' – insurance;; *'32' – television;; *'33' – goods and services;;
-        /// *'34' – hobbies;; *'35' – finance;; *'36' – photo;; *'37' – esoterics;; *'38' – electronics and appliances;; *'39'
-        /// – erotic;; *'40' – humor;; *'41' – society, humanities;; *'42' – design and graphics.
-        /// </param>
-        /// <param name="email">Organizer email (for events).</param>
-        /// <param name="phone">Organizer phone number (for events).</param>
-        /// <param name="rss">
-        /// RSS feed address for import (available only to communities with special permission. Contact
-        /// vk.com/support to get it.
-        /// </param>
-        /// <param name="eventStartDate">Event start date in Unixtime format.</param>
-        /// <param name="eventFinishDate">Event finish date in Unixtime format.</param>
-        /// <param name="eventGroupId">Organizer community ID (for events only).</param>
-        /// <param name="publicCategory">Public page category ID.</param>
-        /// <param name="publicSubcategory">Public page subcategory ID.</param>
-        /// <param name="publicDate">Founding date of a company or organization owning the community in "dd.mm.YYYY" format.</param>
-        /// <param name="wall">
-        /// Wall settings. Possible values:; *'0' – disabled;; *'1' – open;; *'2' – limited (groups and events
-        /// only);; *'3' – closed (groups and events only).;
-        /// </param>
-        /// <param name="topics">
-        /// Board topics settings. Possbile values: ; *'0' – disabled;; *'1' – open;; *'2' – limited (for
-        /// groups and events only).;
-        /// </param>
-        /// <param name="photos">
-        /// Photos settings. Possible values:; *'0' – disabled;; *'1' – open;; *'2' – limited (for groups and
-        /// events only).;
-        /// </param>
-        /// <param name="video">
-        /// Video settings. Possible values:; *'0' – disabled;; *'1' – open;; *'2' – limited (for groups and
-        /// events only).
-        /// </param>
-        /// <param name="audio">
-        /// Audio settings. Possible values:; *'0' – disabled;; *'1' – open;; *'2' – limited (for groups and
-        /// events only).
-        /// </param>
-        /// <param name="links">Links settings (for public pages only). Possible values:; *'0' – disabled;; *'1' – enabled.;</param>
-        /// <param name="events">Events settings (for public pages only). Possible values:; *'0' – disabled;; *'1' – enabled.;</param>
-        /// <param name="places">Places settings (for public pages only). Possible values:; *'0' – disabled;; *'1' – enabled.;</param>
-        /// <param name="contacts">Contacts settings (for public pages only). Possible values:; *'0' – disabled;; *'1' – enabled.;</param>
-        /// <param name="docs">
-        /// Documents settings. Possible values:; *'0' – disabled;; *'1' – open;; *'2' – limited (for groups and
-        /// events only).
-        /// </param>
-        /// <param name="wiki">
-        /// Wiki pages settings. Possible values:; *'0' – disabled;; *'1' – open;; *'2' – limited (for groups
-        /// and events only).
-        /// </param>
-        /// <param name="messages">Community messages. Possible values:; *'0' — disabled;; *'1' — enabled.</param>
-        /// <param name="ageLimits">Community age limits. Possible values:; *'1' — no limits;; *'2' — 16+;; *'3' — 18+.</param>
-        /// <param name="market">Market settings. Possible values:; *'0' – disabled;; *'1' – enabled.</param>
-        /// <param name="marketComments">market comments settings. Possible values:; *'0' – disabled;; *'1' – enabled.</param>
-        /// <param name="marketCountry">Market delivery countries.</param>
-        /// <param name="marketCity">Market delivery cities (if only one country is specified).</param>
-        /// <param name="marketCurrency">
-        /// Market currency settings. Possbile values: ; *'643' – Russian rubles;; *'980' – Ukrainian
-        /// hryvnia;; *'398' – Kazakh tenge;; *'978' – Euro;; *'840' – US dollars
-        /// </param>
-        /// <param name="marketContact">Seller contact for market.; Set '0' for community messages.</param>
-        /// <param name="marketWiki">ID of a wiki page with market description.</param>
-        /// <param name="obsceneFilter">
-        /// Obscene expressions filter in comments. Possible values: ; *'0' – disabled;; *'1' –
-        /// enabled.
-        /// </param>
-        /// <param name="obsceneStopwords">Stopwords filter in comments. Possible values: ; *'0' – disabled;; *'1' – enabled.</param>
-        /// <param name="obsceneWords">Keywords for stopwords filter.</param>
-        public Task<int> Edit(int? groupId = null, string title = null, string description = null,
-            string screenName = null, int? access = null, string website = null, string subject = null,
-            string email = null, string phone = null, string rss = null, int? eventStartDate = null,
-            int? eventFinishDate = null, int? eventGroupId = null, int? publicCategory = null,
-            int? publicSubcategory = null, string publicDate = null, int? wall = null, int? topics = null,
-            int? photos = null, int? video = null, int? audio = null, bool? links = null, bool? events = null,
-            bool? places = null, bool? contacts = null, int? docs = null, int? wiki = null, bool? messages = null,
-            int? ageLimits = null, bool? market = null, bool? marketComments = null,
-            IEnumerable<int?> marketCountry = null, IEnumerable<int?> marketCity = null, int? marketCurrency = null,
-            int? marketContact = null, int? marketWiki = null, bool? obsceneFilter = null,
-            bool? obsceneStopwords = null, IEnumerable<string> obsceneWords = null)
+        ///<summary>
+        /// Allows to delete a link from the community.
+        ///</summary>
+        public Task<BaseOkResponse> DeleteLink(int? groupId = null, int? linkId = null)
         {
             var parameters = new Dictionary<string, string>();
+            if (groupId != null)
+                parameters.Add("group_id", groupId.ToApiString());
+            if (linkId != null)
+                parameters.Add("link_id", linkId.ToApiString());
+            return _vkontakte.RequestAsync<BaseOkResponse>("groups.deleteLink", parameters);
+        }
 
+        ///<summary>
+        /// Edits a community.
+        ///</summary>
+        public Task<BaseOkResponse> Edit(int? groupId = null, String title = null, String description = null, String screenName = null, int? access = null, String website = null, String subject = null, String email = null, String phone = null, String rss = null, int? eventStartDate = null, int? eventFinishDate = null, int? eventGroupId = null, int? publicCategory = null, int? publicSubcategory = null, String publicDate = null, int? wall = null, int? topics = null, int? photos = null, int? video = null, int? audio = null, Boolean? links = null, Boolean? events = null, Boolean? places = null, Boolean? contacts = null, int? docs = null, int? wiki = null, Boolean? messages = null, Boolean? articles = null, Boolean? addresses = null, int? ageLimits = null, Boolean? market = null, Boolean? marketComments = null, int[] marketCountry = null, int[] marketCity = null, int? marketCurrency = null, int? marketContact = null, int? marketWiki = null, Boolean? obsceneFilter = null, Boolean? obsceneStopwords = null, String[] obsceneWords = null, int? mainSection = null, int? secondarySection = null, int? country = null, int? city = null)
+        {
+            var parameters = new Dictionary<string, string>();
             if (groupId != null)
                 parameters.Add("group_id", groupId.ToApiString());
             if (title != null)
-                parameters.Add("title", title);
+                parameters.Add("title", title.ToApiString());
             if (description != null)
-                parameters.Add("description", description);
+                parameters.Add("description", description.ToApiString());
             if (screenName != null)
-                parameters.Add("screen_name", screenName);
+                parameters.Add("screen_name", screenName.ToApiString());
             if (access != null)
                 parameters.Add("access", access.ToApiString());
             if (website != null)
-                parameters.Add("website", website);
+                parameters.Add("website", website.ToApiString());
             if (subject != null)
-                parameters.Add("subject", subject);
+                parameters.Add("subject", subject.ToApiString());
             if (email != null)
-                parameters.Add("email", email);
+                parameters.Add("email", email.ToApiString());
             if (phone != null)
-                parameters.Add("phone", phone);
+                parameters.Add("phone", phone.ToApiString());
             if (rss != null)
-                parameters.Add("rss", rss);
+                parameters.Add("rss", rss.ToApiString());
             if (eventStartDate != null)
                 parameters.Add("event_start_date", eventStartDate.ToApiString());
             if (eventFinishDate != null)
@@ -562,7 +109,7 @@ namespace VkLibrary.Core.Methods
             if (publicSubcategory != null)
                 parameters.Add("public_subcategory", publicSubcategory.ToApiString());
             if (publicDate != null)
-                parameters.Add("public_date", publicDate);
+                parameters.Add("public_date", publicDate.ToApiString());
             if (wall != null)
                 parameters.Add("wall", wall.ToApiString());
             if (topics != null)
@@ -587,6 +134,10 @@ namespace VkLibrary.Core.Methods
                 parameters.Add("wiki", wiki.ToApiString());
             if (messages != null)
                 parameters.Add("messages", messages.ToApiString());
+            if (articles != null)
+                parameters.Add("articles", articles.ToApiString());
+            if (addresses != null)
+                parameters.Add("addresses", addresses.ToApiString());
             if (ageLimits != null)
                 parameters.Add("age_limits", ageLimits.ToApiString());
             if (market != null)
@@ -609,72 +160,105 @@ namespace VkLibrary.Core.Methods
                 parameters.Add("obscene_stopwords", obsceneStopwords.ToApiString());
             if (obsceneWords != null)
                 parameters.Add("obscene_words", obsceneWords.ToApiString());
-
-            return _vkontakte.RequestAsync<int>("groups.edit", parameters);
+            if (mainSection != null)
+                parameters.Add("main_section", mainSection.ToApiString());
+            if (secondarySection != null)
+                parameters.Add("secondary_section", secondarySection.ToApiString());
+            if (country != null)
+                parameters.Add("country", country.ToApiString());
+            if (city != null)
+                parameters.Add("city", city.ToApiString());
+            return _vkontakte.RequestAsync<BaseOkResponse>("groups.edit", parameters);
         }
 
-        /// <summary>
-        /// Edits the place in community.
-        /// Docs: <see href="https://vk.com/dev/groups.editPlace">groups.editPlace</see>
-        /// </summary>
-        /// <param name="groupId">Community ID.</param>
-        /// <param name="title">Place title.</param>
-        /// <param name="address">Place address.</param>
-        /// <param name="countryId">Country ID.</param>
-        /// <param name="cityId">City ID.</param>
-        /// <param name="latitude">Geographical latitude.</param>
-        /// <param name="longitude">Geographical longitude.</param>
-        public Task<EditPlaceResponse> EditPlace(int? groupId = null, string title = null, string address = null,
-            int? countryId = null, int? cityId = null, uint? latitude = null, uint? longitude = null)
+        ///<summary>
+        /// Allows to edit a link in the community.
+        ///</summary>
+        public Task<BaseOkResponse> EditLink(int? groupId = null, int? linkId = null, String text = null)
         {
             var parameters = new Dictionary<string, string>();
-
             if (groupId != null)
                 parameters.Add("group_id", groupId.ToApiString());
-            if (title != null)
-                parameters.Add("title", title);
-            if (address != null)
-                parameters.Add("address", address);
-            if (countryId != null)
-                parameters.Add("country_id", countryId.ToApiString());
-            if (cityId != null)
-                parameters.Add("city_id", cityId.ToApiString());
+            if (linkId != null)
+                parameters.Add("link_id", linkId.ToApiString());
+            if (text != null)
+                parameters.Add("text", text.ToApiString());
+            return _vkontakte.RequestAsync<BaseOkResponse>("groups.editLink", parameters);
+        }
+
+        ///<summary>
+        /// Allows to add, remove or edit the community manager.
+        ///</summary>
+        public Task<BaseOkResponse> EditManager(int? groupId = null, int? userId = null, String role = null, Boolean? isContact = null, String contactPosition = null, String contactPhone = null, String contactEmail = null)
+        {
+            var parameters = new Dictionary<string, string>();
+            if (groupId != null)
+                parameters.Add("group_id", groupId.ToApiString());
+            if (userId != null)
+                parameters.Add("user_id", userId.ToApiString());
+            if (role != null)
+                parameters.Add("role", role.ToApiString());
+            if (isContact != null)
+                parameters.Add("is_contact", isContact.ToApiString());
+            if (contactPosition != null)
+                parameters.Add("contact_position", contactPosition.ToApiString());
+            if (contactPhone != null)
+                parameters.Add("contact_phone", contactPhone.ToApiString());
+            if (contactEmail != null)
+                parameters.Add("contact_email", contactEmail.ToApiString());
+            return _vkontakte.RequestAsync<BaseOkResponse>("groups.editManager", parameters);
+        }
+
+        ///<summary>
+        /// Returns a list of the communities to which a user belongs.
+        ///</summary>
+        public Task<GroupsGetResponse> Get(int? userId = null, Boolean? extended = null, GroupsFilter[] filter = null, GroupsFields[] fields = null, int? offset = null, int? count = null)
+        {
+            var parameters = new Dictionary<string, string>();
+            if (userId != null)
+                parameters.Add("user_id", userId.ToApiString());
+            if (extended != null)
+                parameters.Add("extended", extended.ToApiString());
+            if (filter != null)
+                parameters.Add("filter", filter.ToApiString());
+            if (fields != null)
+                parameters.Add("fields", fields.ToApiString());
+            if (offset != null)
+                parameters.Add("offset", offset.ToApiString());
+            if (count != null)
+                parameters.Add("count", count.ToApiString());
+            return _vkontakte.RequestAsync<GroupsGetResponse>("groups.get", parameters);
+        }
+
+        ///<summary>
+        /// Returns a list of community addresses.
+        ///</summary>
+        public Task<GroupsGetAddressesResponse> GetAddresses(int? groupId = null, int[] addressIds = null, double? latitude = null, double? longitude = null, int? offset = null, int? count = null, AddressesFields[] fields = null)
+        {
+            var parameters = new Dictionary<string, string>();
+            if (groupId != null)
+                parameters.Add("group_id", groupId.ToApiString());
+            if (addressIds != null)
+                parameters.Add("address_ids", addressIds.ToApiString());
             if (latitude != null)
                 parameters.Add("latitude", latitude.ToApiString());
             if (longitude != null)
                 parameters.Add("longitude", longitude.ToApiString());
-
-            return _vkontakte.RequestAsync<EditPlaceResponse>("groups.editPlace", parameters);
+            if (offset != null)
+                parameters.Add("offset", offset.ToApiString());
+            if (count != null)
+                parameters.Add("count", count.ToApiString());
+            if (fields != null)
+                parameters.Add("fields", fields.ToApiString());
+            return _vkontakte.RequestAsync<GroupsGetAddressesResponse>("groups.getAddresses", parameters);
         }
 
-        /// <summary>
-        /// Returns community settings.
-        /// Docs: <see href="https://vk.com/dev/groups.getSettings">groups.getSettings</see>
-        /// </summary>
-        /// <param name="groupId">Community ID.</param>
-        public Task<GroupSettings> GetSettings(int? groupId = null)
+        ///<summary>
+        /// Returns a list of users on a community blacklist.
+        ///</summary>
+        public Task<GroupsGetBannedResponse> GetBanned(int? groupId = null, int? offset = null, int? count = null, BaseUserGroupFields[] fields = null, int? ownerId = null)
         {
             var parameters = new Dictionary<string, string>();
-
-            if (groupId != null)
-                parameters.Add("group_id", groupId.ToApiString());
-
-            return _vkontakte.RequestAsync<GroupSettings>("groups.getSettings", parameters);
-        }
-
-        /// <summary>
-        /// Returns a list of requests to the community.
-        /// Docs: <see href="https://vk.com/dev/groups.getRequests">groups.getRequests</see>
-        /// </summary>
-        /// <param name="groupId">Community ID.</param>
-        /// <param name="offset">Offset needed to return a specific subset of results.</param>
-        /// <param name="count">Number of results to return.</param>
-        /// <param name="fields">Profile fields to return.;</param>
-        public Task<ApiItemsResponse<int?>> GetRequests(int? groupId = null, int? offset = null,
-            int? count = null, IEnumerable<string> fields = null)
-        {
-            var parameters = new Dictionary<string, string>();
-
             if (groupId != null)
                 parameters.Add("group_id", groupId.ToApiString());
             if (offset != null)
@@ -683,304 +267,314 @@ namespace VkLibrary.Core.Methods
                 parameters.Add("count", count.ToApiString());
             if (fields != null)
                 parameters.Add("fields", fields.ToApiString());
-
-            return _vkontakte.RequestAsync<ApiItemsResponse<int?>>("groups.getRequests", parameters);
+            if (ownerId != null)
+                parameters.Add("owner_id", ownerId.ToApiString());
+            return _vkontakte.RequestAsync<GroupsGetBannedResponse>("groups.getBanned", parameters);
         }
 
-        /// <summary>
-        /// Allows to add, remove or edit the community manager.
-        /// Docs: <see href="https://vk.com/dev/groups.editManager">groups.editManager</see>
-        /// </summary>
-        /// <param name="groupId">Community ID.</param>
-        /// <param name="userId">User ID.</param>
-        /// <param name="role">Manager role. Possible values:; *'moderator';; *'editor';; *'administrator'.</param>
-        /// <param name="isContact">'1' — to show the manager in Contacts block of the community.</param>
-        /// <param name="contactPosition">Position to show in Contacts block.</param>
-        /// <param name="contactPhone">Contact phone.</param>
-        /// <param name="contactEmail">Contact e-mail.</param>
-        public Task<int> EditManager(int? groupId = null, int? userId = null, string role = null,
-            bool? isContact = null, string contactPosition = null, string contactPhone = null,
-            string contactEmail = null)
+        ///<summary>
+        /// Returns information about communities by their IDs.
+        ///</summary>
+        public Task<GroupsGroupFull[]> GetById(String[] groupIds = null, String groupId = null, GroupsFields[] fields = null)
         {
             var parameters = new Dictionary<string, string>();
-
+            if (groupIds != null)
+                parameters.Add("group_ids", groupIds.ToApiString());
             if (groupId != null)
                 parameters.Add("group_id", groupId.ToApiString());
-            if (userId != null)
-                parameters.Add("user_id", userId.ToApiString());
-            if (role != null)
-                parameters.Add("role", role);
-            if (isContact != null)
-                parameters.Add("is_contact", isContact.ToApiString());
-            if (contactPosition != null)
-                parameters.Add("contact_position", contactPosition);
-            if (contactPhone != null)
-                parameters.Add("contact_phone", contactPhone);
-            if (contactEmail != null)
-                parameters.Add("contact_email", contactEmail);
-
-            return _vkontakte.RequestAsync<int>("groups.editManager", parameters);
+            if (fields != null)
+                parameters.Add("fields", fields.ToApiString());
+            return _vkontakte.RequestAsync<GroupsGroupFull[]>("groups.getById", parameters);
         }
 
-        /// <summary>
+        ///<summary>
+        /// Returns Callback API confirmation code for the community.
+        ///</summary>
+        public Task<GroupsGetCallbackConfirmationCodeResponse> GetCallbackConfirmationCode(int? groupId = null)
+        {
+            var parameters = new Dictionary<string, string>();
+            if (groupId != null)
+                parameters.Add("group_id", groupId.ToApiString());
+            return _vkontakte.RequestAsync<GroupsGetCallbackConfirmationCodeResponse>("groups.getCallbackConfirmationCode", parameters);
+        }
+
+        ///<summary>
+        /// Returns [vk.com/dev/callback_api|Callback API] notifications settings.
+        ///</summary>
+        public Task<GroupsCallbackSettings> GetCallbackSettings(int? groupId = null, int? serverId = null)
+        {
+            var parameters = new Dictionary<string, string>();
+            if (groupId != null)
+                parameters.Add("group_id", groupId.ToApiString());
+            if (serverId != null)
+                parameters.Add("server_id", serverId.ToApiString());
+            return _vkontakte.RequestAsync<GroupsCallbackSettings>("groups.getCallbackSettings", parameters);
+        }
+
+        ///<summary>
+        /// Returns communities list for a catalog category.
+        ///</summary>
+        public Task<GroupsGetCatalogResponse> GetCatalog(int? categoryId = null, int? subcategoryId = null)
+        {
+            var parameters = new Dictionary<string, string>();
+            if (categoryId != null)
+                parameters.Add("category_id", categoryId.ToApiString());
+            if (subcategoryId != null)
+                parameters.Add("subcategory_id", subcategoryId.ToApiString());
+            return _vkontakte.RequestAsync<GroupsGetCatalogResponse>("groups.getCatalog", parameters);
+        }
+
+        ///<summary>
+        /// Returns categories list for communities catalog
+        ///</summary>
+        public Task<GroupsGetCatalogInfoResponse> GetCatalogInfo(Boolean? extended = null, Boolean? subcategories = null)
+        {
+            var parameters = new Dictionary<string, string>();
+            if (extended != null)
+                parameters.Add("extended", extended.ToApiString());
+            if (subcategories != null)
+                parameters.Add("subcategories", subcategories.ToApiString());
+            return _vkontakte.RequestAsync<GroupsGetCatalogInfoResponse>("groups.getCatalogInfo", parameters);
+        }
+
+        ///<summary>
+        /// Returns invited users list of a community
+        ///</summary>
+        public Task<GroupsGetInvitedUsersResponse> GetInvitedUsers(int? groupId = null, int? offset = null, int? count = null, UsersFields[] fields = null, String nameCase = null)
+        {
+            var parameters = new Dictionary<string, string>();
+            if (groupId != null)
+                parameters.Add("group_id", groupId.ToApiString());
+            if (offset != null)
+                parameters.Add("offset", offset.ToApiString());
+            if (count != null)
+                parameters.Add("count", count.ToApiString());
+            if (fields != null)
+                parameters.Add("fields", fields.ToApiString());
+            if (nameCase != null)
+                parameters.Add("name_case", nameCase.ToApiString());
+            return _vkontakte.RequestAsync<GroupsGetInvitedUsersResponse>("groups.getInvitedUsers", parameters);
+        }
+
+        ///<summary>
+        /// Returns a list of invitations to join communities and events.
+        ///</summary>
+        public Task<GroupsGetInvitesResponse> GetInvites(int? offset = null, int? count = null, Boolean? extended = null)
+        {
+            var parameters = new Dictionary<string, string>();
+            if (offset != null)
+                parameters.Add("offset", offset.ToApiString());
+            if (count != null)
+                parameters.Add("count", count.ToApiString());
+            if (extended != null)
+                parameters.Add("extended", extended.ToApiString());
+            return _vkontakte.RequestAsync<GroupsGetInvitesResponse>("groups.getInvites", parameters);
+        }
+
+        ///<summary>
+        /// Returns the data needed to query a Long Poll server for events
+        ///</summary>
+        public Task<GroupsLongPollServer> GetLongPollServer(int? groupId = null)
+        {
+            var parameters = new Dictionary<string, string>();
+            if (groupId != null)
+                parameters.Add("group_id", groupId.ToApiString());
+            return _vkontakte.RequestAsync<GroupsLongPollServer>("groups.getLongPollServer", parameters);
+        }
+
+        ///<summary>
+        /// Returns Long Poll notification settings
+        ///</summary>
+        public Task<GroupsLongPollSettings> GetLongPollSettings(int? groupId = null)
+        {
+            var parameters = new Dictionary<string, string>();
+            if (groupId != null)
+                parameters.Add("group_id", groupId.ToApiString());
+            return _vkontakte.RequestAsync<GroupsLongPollSettings>("groups.getLongPollSettings", parameters);
+        }
+
+        ///<summary>
+        /// Returns a list of community members.
+        ///</summary>
+        public Task<GroupsGetMembersResponse> GetMembers(String groupId = null, String sort = null, int? offset = null, int? count = null, UsersFields[] fields = null, String filter = null)
+        {
+            var parameters = new Dictionary<string, string>();
+            if (groupId != null)
+                parameters.Add("group_id", groupId.ToApiString());
+            if (sort != null)
+                parameters.Add("sort", sort.ToApiString());
+            if (offset != null)
+                parameters.Add("offset", offset.ToApiString());
+            if (count != null)
+                parameters.Add("count", count.ToApiString());
+            if (fields != null)
+                parameters.Add("fields", fields.ToApiString());
+            if (filter != null)
+                parameters.Add("filter", filter.ToApiString());
+            return _vkontakte.RequestAsync<GroupsGetMembersResponse>("groups.getMembers", parameters);
+        }
+
+        ///<summary>
+        /// Returns a list of requests to the community.
+        ///</summary>
+        public Task<GroupsGetRequestsResponse> GetRequests(int? groupId = null, int? offset = null, int? count = null, UsersFields[] fields = null)
+        {
+            var parameters = new Dictionary<string, string>();
+            if (groupId != null)
+                parameters.Add("group_id", groupId.ToApiString());
+            if (offset != null)
+                parameters.Add("offset", offset.ToApiString());
+            if (count != null)
+                parameters.Add("count", count.ToApiString());
+            if (fields != null)
+                parameters.Add("fields", fields.ToApiString());
+            return _vkontakte.RequestAsync<GroupsGetRequestsResponse>("groups.getRequests", parameters);
+        }
+
+        ///<summary>
+        /// Returns community settings.
+        ///</summary>
+        public Task<GroupsGroupSettings> GetSettings(int? groupId = null)
+        {
+            var parameters = new Dictionary<string, string>();
+            if (groupId != null)
+                parameters.Add("group_id", groupId.ToApiString());
+            return _vkontakte.RequestAsync<GroupsGroupSettings>("groups.getSettings", parameters);
+        }
+
+        ///<summary>
         /// Allows to invite friends to the community.
-        /// Docs: <see href="https://vk.com/dev/groups.invite">groups.invite</see>
-        /// </summary>
-        /// <param name="groupId">Community ID.</param>
-        /// <param name="userId">User ID.</param>
-        public Task<int> Invite(int? groupId = null, int? userId = null)
+        ///</summary>
+        public Task<BaseOkResponse> Invite(int? groupId = null, int? userId = null)
         {
             var parameters = new Dictionary<string, string>();
-
             if (groupId != null)
                 parameters.Add("group_id", groupId.ToApiString());
             if (userId != null)
                 parameters.Add("user_id", userId.ToApiString());
-
-            return _vkontakte.RequestAsync<int>("groups.invite", parameters);
+            return _vkontakte.RequestAsync<BaseOkResponse>("groups.invite", parameters);
         }
 
-        /// <summary>
-        /// Allows to add a link to the community.
-        /// Docs: <see href="https://vk.com/dev/groups.addLink">groups.addLink</see>
-        /// </summary>
-        /// <param name="groupId">Community ID.</param>
-        /// <param name="link">Link URL.</param>
-        /// <param name="text">Description text for the link.</param>
-        public Task<GroupLink> AddLink(int? groupId = null, string link = null, string text = null)
+        ///<summary>
+        /// Returns information specifying whether a user is a member of a community.
+        ///</summary>
+        public Task<int> IsMember(String groupId = null, int? userId = null, int[] userIds = null, Boolean? extended = null)
         {
             var parameters = new Dictionary<string, string>();
-
             if (groupId != null)
                 parameters.Add("group_id", groupId.ToApiString());
-            if (link != null)
-                parameters.Add("link", link);
-            if (text != null)
-                parameters.Add("text", text);
-
-            return _vkontakte.RequestAsync<GroupLink>("groups.addLink", parameters);
+            if (userId != null)
+                parameters.Add("user_id", userId.ToApiString());
+            if (userIds != null)
+                parameters.Add("user_ids", userIds.ToApiString());
+            if (extended != null)
+                parameters.Add("extended", extended.ToApiString());
+            return _vkontakte.RequestAsync<int>("groups.isMember", parameters);
         }
 
-        /// <summary>
-        /// Allows to delete a link from the community.
-        /// Docs: <see href="https://vk.com/dev/groups.deleteLink">groups.deleteLink</see>
-        /// </summary>
-        /// <param name="groupId">Community ID.</param>
-        /// <param name="linkId">Link ID.</param>
-        public Task<int> DeleteLink(int? groupId = null, int? linkId = null)
+        ///<summary>
+        /// With this method you can join the group or public page, and also confirm your participation in an event.
+        ///</summary>
+        public Task<BaseOkResponse> Join(int? groupId = null, String notSure = null)
         {
             var parameters = new Dictionary<string, string>();
-
             if (groupId != null)
                 parameters.Add("group_id", groupId.ToApiString());
-            if (linkId != null)
-                parameters.Add("link_id", linkId.ToApiString());
-
-            return _vkontakte.RequestAsync<int>("groups.deleteLink", parameters);
+            if (notSure != null)
+                parameters.Add("not_sure", notSure.ToApiString());
+            return _vkontakte.RequestAsync<BaseOkResponse>("groups.join", parameters);
         }
 
-        /// <summary>
-        /// Allows to edit a link in the community.
-        /// Docs: <see href="https://vk.com/dev/groups.editLink">groups.editLink</see>
-        /// </summary>
-        /// <param name="groupId">Community ID.</param>
-        /// <param name="linkId">Link ID.</param>
-        /// <param name="text">New description text for the link.</param>
-        public Task<int> EditLink(int? groupId = null, int? linkId = null, string text = null)
+        ///<summary>
+        /// With this method you can leave a group, public page, or event.
+        ///</summary>
+        public Task<BaseOkResponse> Leave(int? groupId = null)
         {
             var parameters = new Dictionary<string, string>();
-
             if (groupId != null)
                 parameters.Add("group_id", groupId.ToApiString());
-            if (linkId != null)
-                parameters.Add("link_id", linkId.ToApiString());
-            if (text != null)
-                parameters.Add("text", text);
-
-            return _vkontakte.RequestAsync<int>("groups.editLink", parameters);
+            return _vkontakte.RequestAsync<BaseOkResponse>("groups.leave", parameters);
         }
 
-        /// <summary>
+        ///<summary>
+        /// Removes a user from the community.
+        ///</summary>
+        public Task<BaseOkResponse> RemoveUser(int? groupId = null, int? userId = null)
+        {
+            var parameters = new Dictionary<string, string>();
+            if (groupId != null)
+                parameters.Add("group_id", groupId.ToApiString());
+            if (userId != null)
+                parameters.Add("user_id", userId.ToApiString());
+            return _vkontakte.RequestAsync<BaseOkResponse>("groups.removeUser", parameters);
+        }
+
+        ///<summary>
         /// Allows to reorder links in the community.
-        /// Docs: <see href="https://vk.com/dev/groups.reorderLink">groups.reorderLink</see>
-        /// </summary>
-        /// <param name="groupId">Community ID.</param>
-        /// <param name="linkId">Link ID.</param>
-        /// <param name="after">ID of the link after which to place the link with 'link_id'.</param>
-        public Task<int> ReorderLink(int? groupId = null, int? linkId = null, int? after = null)
+        ///</summary>
+        public Task<BaseOkResponse> ReorderLink(int? groupId = null, int? linkId = null, int? after = null)
         {
             var parameters = new Dictionary<string, string>();
-
             if (groupId != null)
                 parameters.Add("group_id", groupId.ToApiString());
             if (linkId != null)
                 parameters.Add("link_id", linkId.ToApiString());
             if (after != null)
                 parameters.Add("after", after.ToApiString());
-
-            return _vkontakte.RequestAsync<int>("groups.reorderLink", parameters);
+            return _vkontakte.RequestAsync<BaseOkResponse>("groups.reorderLink", parameters);
         }
 
-        /// <summary>
-        /// Removes a user from the community.
-        /// Docs: <see href="https://vk.com/dev/groups.removeUser">groups.removeUser</see>
-        /// </summary>
-        /// <param name="groupId">Community ID.</param>
-        /// <param name="userId">User ID.</param>
-        public Task<int> RemoveUser(int? groupId = null, int? userId = null)
+        ///<summary>
+        /// Returns a list of communities matching the search criteria.
+        ///</summary>
+        public Task<GroupsSearchResponse> Search(String q = null, String type = null, int? countryId = null, int? cityId = null, Boolean? future = null, Boolean? market = null, int? sort = null, int? offset = null, int? count = null)
         {
             var parameters = new Dictionary<string, string>();
-
-            if (groupId != null)
-                parameters.Add("group_id", groupId.ToApiString());
-            if (userId != null)
-                parameters.Add("user_id", userId.ToApiString());
-
-            return _vkontakte.RequestAsync<int>("groups.removeUser", parameters);
+            if (q != null)
+                parameters.Add("q", q.ToApiString());
+            if (type != null)
+                parameters.Add("type", type.ToApiString());
+            if (countryId != null)
+                parameters.Add("country_id", countryId.ToApiString());
+            if (cityId != null)
+                parameters.Add("city_id", cityId.ToApiString());
+            if (future != null)
+                parameters.Add("future", future.ToApiString());
+            if (market != null)
+                parameters.Add("market", market.ToApiString());
+            if (sort != null)
+                parameters.Add("sort", sort.ToApiString());
+            if (offset != null)
+                parameters.Add("offset", offset.ToApiString());
+            if (count != null)
+                parameters.Add("count", count.ToApiString());
+            return _vkontakte.RequestAsync<GroupsSearchResponse>("groups.search", parameters);
         }
 
-        /// <summary>
-        /// Allows to approve join request to the community.
-        /// Docs: <see href="https://vk.com/dev/groups.approveRequest">groups.approveRequest</see>
-        /// </summary>
-        /// <param name="groupId">Community ID.</param>
-        /// <param name="userId">User ID.</param>
-        public Task<int> ApproveRequest(int? groupId = null, int? userId = null)
-        {
-            var parameters = new Dictionary<string, string>();
-
-            if (groupId != null)
-                parameters.Add("group_id", groupId.ToApiString());
-            if (userId != null)
-                parameters.Add("user_id", userId.ToApiString());
-
-            return _vkontakte.RequestAsync<int>("groups.approveRequest", parameters);
-        }
-
-        /// <summary>
-        /// Returns Callback API confirmation code for the community.
-        /// Docs: <see href="https://vk.com/dev/groups.getCallbackConfirmationCode">groups.getCallbackConfirmationCode</see>
-        /// </summary>
-        /// <param name="groupId">Community ID.</param>
-        public Task<GetCallbackConfirmationCodeResponse> GetCallbackConfirmationCode(int? groupId = null)
-        {
-            var parameters = new Dictionary<string, string>();
-
-            if (groupId != null)
-                parameters.Add("group_id", groupId.ToApiString());
-
-            return _vkontakte.RequestAsync<GetCallbackConfirmationCodeResponse>("groups.getCallbackConfirmationCode",
-                parameters);
-        }
-
-        /// <summary>
-        /// Returns Callback API server settings for the community.
-        /// Docs: <see href="https://vk.com/dev/groups.getCallbackServerSettings">groups.getCallbackServerSettings</see>
-        /// </summary>
-        /// <param name="groupId">Community ID.</param>
-        public Task<GetCallbackServerSettingsResponse> GetCallbackServerSettings(int? groupId = null)
-        {
-            var parameters = new Dictionary<string, string>();
-
-            if (groupId != null)
-                parameters.Add("group_id", groupId.ToApiString());
-
-            return _vkontakte.RequestAsync<GetCallbackServerSettingsResponse>("groups.getCallbackServerSettings",
-                parameters);
-        }
-
-        /// <summary>
-        /// Returns Callback API notifications settings.
-        /// Docs: <see href="https://vk.com/dev/groups.getCallbackSettings">groups.getCallbackSettings</see>
-        /// </summary>
-        /// <param name="groupId">Community ID.</param>
-        public Task<GetCallbackSettingsResponse> GetCallbackSettings(int? groupId = null)
-        {
-            var parameters = new Dictionary<string, string>();
-
-            if (groupId != null)
-                parameters.Add("group_id", groupId.ToApiString());
-
-            return _vkontakte.RequestAsync<GetCallbackSettingsResponse>("groups.getCallbackSettings", parameters);
-        }
-
-        /// <summary>
-        /// Allow to set Callback API server URL for the community. ; ;
-        /// Docs: <see href="https://vk.com/dev/groups.setCallbackServer">groups.setCallbackServer</see>
-        /// </summary>
-        /// <param name="groupId">Community ID.</param>
-        /// <param name="serverUrl">Server URL.</param>
-        public Task<SetCallbackServerResponse> SetCallbackServer(int? groupId = null, string serverUrl = null)
-        {
-            var parameters = new Dictionary<string, string>();
-
-            if (groupId != null)
-                parameters.Add("group_id", groupId.ToApiString());
-            if (serverUrl != null)
-                parameters.Add("server_url", serverUrl);
-
-            return _vkontakte.RequestAsync<SetCallbackServerResponse>("groups.setCallbackServer", parameters);
-        }
-
-        /// <summary>
-        /// Allow to set Callback API server settings.
-        /// Docs: <see href="https://vk.com/dev/groups.setCallbackServerSettings">groups.setCallbackServerSettings</see>
-        /// </summary>
-        /// <param name="groupId">Community ID.</param>
-        /// <param name="secretKey">Callback API secret key.</param>
-        public Task<int> SetCallbackServerSettings(int? groupId = null, string secretKey = null)
-        {
-            var parameters = new Dictionary<string, string>();
-
-            if (groupId != null)
-                parameters.Add("group_id", groupId.ToApiString());
-            if (secretKey != null)
-                parameters.Add("secret_key", secretKey);
-
-            return _vkontakte.RequestAsync<int>("groups.setCallbackServerSettings", parameters);
-        }
-
-        /// <summary>
+        ///<summary>
         /// Allow to set notifications settings for group.
-        /// Docs: <see href="https://vk.com/dev/groups.setCallbackSettings">groups.setCallbackSettings</see>
-        /// </summary>
-        /// <param name="groupId">Community ID.</param>
-        /// <param name="messageNew">New messages notifications ('0' — disabled, '1' — enabled).</param>
-        /// <param name="messageAllow">Allowed messages notifications ('0' — disabled, '1' — enabled).</param>
-        /// <param name="messageDeny">Denied messages notifications ('0' — disabled, '1' — enabled).</param>
-        /// <param name="photoNew">New photos notifications ('0' — disabled, '1' — enabled).</param>
-        /// <param name="audioNew">New audios notifications ('0' — disabled, '1' — enabled).</param>
-        /// <param name="videoNew">New videos notifications ('0' — disabled, '1' — enabled).</param>
-        /// <param name="wallReplyNew">New wall replies notifications ('0' — disabled, '1' — enabled).</param>
-        /// <param name="wallReplyEdit">Wall replies edited notifications ('0' — disabled, '1' — enabled).</param>
-        /// <param name="wallPostNew">New wall posts notifications ('0' — disabled, '1' — enabled).</param>
-        /// <param name="boardPostNew">New board posts notifications ('0' — disabled, '1' — enabled).</param>
-        /// <param name="boardPostEdit">Board posts edited notifications ('0' — disabled, '1' — enabled).</param>
-        /// <param name="boardPostRestore">Board posts restored notifications ('0' — disabled, '1' — enabled).</param>
-        /// <param name="boardPostDelete">Board posts deleted notifications ('0' — disabled, '1' — enabled).</param>
-        /// <param name="photoCommentNew">New comment to photo notifications ('0' — disabled, '1' — enabled).</param>
-        /// <param name="videoCommentNew">New comment to video notifications ('0' — disabled, '1' — enabled).</param>
-        /// <param name="marketCommentNew">New comment to market item notifications ('0' — disabled, '1' — enabled).</param>
-        /// <param name="groupJoin">Joined community notifications ('0' — disabled, '1' — enabled).</param>
-        /// <param name="groupLeave">Left community notifications ('0' — disabled, '1' — enabled).</param>
-        public Task<int> SetCallbackSettings(int? groupId = null, bool? messageNew = null,
-            bool? messageAllow = null, bool? messageDeny = null, bool? photoNew = null, bool? audioNew = null,
-            bool? videoNew = null, bool? wallReplyNew = null, bool? wallReplyEdit = null,
-            bool? wallPostNew = null, bool? boardPostNew = null, bool? boardPostEdit = null,
-            bool? boardPostRestore = null, bool? boardPostDelete = null, bool? photoCommentNew = null,
-            bool? videoCommentNew = null, bool? marketCommentNew = null, bool? groupJoin = null,
-            bool? groupLeave = null)
+        ///</summary>
+        public Task<BaseOkResponse> SetCallbackSettings(int? groupId = null, int? serverId = null, String apiVersion = null, Boolean? messageNew = null, Boolean? messageReply = null, Boolean? messageAllow = null, Boolean? messageEdit = null, Boolean? messageDeny = null, Boolean? messageTypingState = null, Boolean? photoNew = null, Boolean? audioNew = null, Boolean? videoNew = null, Boolean? wallReplyNew = null, Boolean? wallReplyEdit = null, Boolean? wallReplyDelete = null, Boolean? wallReplyRestore = null, Boolean? wallPostNew = null, Boolean? wallRepost = null, Boolean? boardPostNew = null, Boolean? boardPostEdit = null, Boolean? boardPostRestore = null, Boolean? boardPostDelete = null, Boolean? photoCommentNew = null, Boolean? photoCommentEdit = null, Boolean? photoCommentDelete = null, Boolean? photoCommentRestore = null, Boolean? videoCommentNew = null, Boolean? videoCommentEdit = null, Boolean? videoCommentDelete = null, Boolean? videoCommentRestore = null, Boolean? marketCommentNew = null, Boolean? marketCommentEdit = null, Boolean? marketCommentDelete = null, Boolean? marketCommentRestore = null, Boolean? pollVoteNew = null, Boolean? groupJoin = null, Boolean? groupLeave = null, Boolean? groupChangeSettings = null, Boolean? groupChangePhoto = null, Boolean? groupOfficersEdit = null, Boolean? userBlock = null, Boolean? userUnblock = null, Boolean? leadFormsNew = null)
         {
             var parameters = new Dictionary<string, string>();
-
             if (groupId != null)
                 parameters.Add("group_id", groupId.ToApiString());
+            if (serverId != null)
+                parameters.Add("server_id", serverId.ToApiString());
+            if (apiVersion != null)
+                parameters.Add("api_version", apiVersion.ToApiString());
             if (messageNew != null)
                 parameters.Add("message_new", messageNew.ToApiString());
+            if (messageReply != null)
+                parameters.Add("message_reply", messageReply.ToApiString());
             if (messageAllow != null)
                 parameters.Add("message_allow", messageAllow.ToApiString());
+            if (messageEdit != null)
+                parameters.Add("message_edit", messageEdit.ToApiString());
             if (messageDeny != null)
                 parameters.Add("message_deny", messageDeny.ToApiString());
+            if (messageTypingState != null)
+                parameters.Add("message_typing_state", messageTypingState.ToApiString());
             if (photoNew != null)
                 parameters.Add("photo_new", photoNew.ToApiString());
             if (audioNew != null)
@@ -991,8 +585,14 @@ namespace VkLibrary.Core.Methods
                 parameters.Add("wall_reply_new", wallReplyNew.ToApiString());
             if (wallReplyEdit != null)
                 parameters.Add("wall_reply_edit", wallReplyEdit.ToApiString());
+            if (wallReplyDelete != null)
+                parameters.Add("wall_reply_delete", wallReplyDelete.ToApiString());
+            if (wallReplyRestore != null)
+                parameters.Add("wall_reply_restore", wallReplyRestore.ToApiString());
             if (wallPostNew != null)
                 parameters.Add("wall_post_new", wallPostNew.ToApiString());
+            if (wallRepost != null)
+                parameters.Add("wall_repost", wallRepost.ToApiString());
             if (boardPostNew != null)
                 parameters.Add("board_post_new", boardPostNew.ToApiString());
             if (boardPostEdit != null)
@@ -1003,16 +603,140 @@ namespace VkLibrary.Core.Methods
                 parameters.Add("board_post_delete", boardPostDelete.ToApiString());
             if (photoCommentNew != null)
                 parameters.Add("photo_comment_new", photoCommentNew.ToApiString());
+            if (photoCommentEdit != null)
+                parameters.Add("photo_comment_edit", photoCommentEdit.ToApiString());
+            if (photoCommentDelete != null)
+                parameters.Add("photo_comment_delete", photoCommentDelete.ToApiString());
+            if (photoCommentRestore != null)
+                parameters.Add("photo_comment_restore", photoCommentRestore.ToApiString());
             if (videoCommentNew != null)
                 parameters.Add("video_comment_new", videoCommentNew.ToApiString());
+            if (videoCommentEdit != null)
+                parameters.Add("video_comment_edit", videoCommentEdit.ToApiString());
+            if (videoCommentDelete != null)
+                parameters.Add("video_comment_delete", videoCommentDelete.ToApiString());
+            if (videoCommentRestore != null)
+                parameters.Add("video_comment_restore", videoCommentRestore.ToApiString());
             if (marketCommentNew != null)
                 parameters.Add("market_comment_new", marketCommentNew.ToApiString());
+            if (marketCommentEdit != null)
+                parameters.Add("market_comment_edit", marketCommentEdit.ToApiString());
+            if (marketCommentDelete != null)
+                parameters.Add("market_comment_delete", marketCommentDelete.ToApiString());
+            if (marketCommentRestore != null)
+                parameters.Add("market_comment_restore", marketCommentRestore.ToApiString());
+            if (pollVoteNew != null)
+                parameters.Add("poll_vote_new", pollVoteNew.ToApiString());
             if (groupJoin != null)
                 parameters.Add("group_join", groupJoin.ToApiString());
             if (groupLeave != null)
                 parameters.Add("group_leave", groupLeave.ToApiString());
+            if (groupChangeSettings != null)
+                parameters.Add("group_change_settings", groupChangeSettings.ToApiString());
+            if (groupChangePhoto != null)
+                parameters.Add("group_change_photo", groupChangePhoto.ToApiString());
+            if (groupOfficersEdit != null)
+                parameters.Add("group_officers_edit", groupOfficersEdit.ToApiString());
+            if (userBlock != null)
+                parameters.Add("user_block", userBlock.ToApiString());
+            if (userUnblock != null)
+                parameters.Add("user_unblock", userUnblock.ToApiString());
+            if (leadFormsNew != null)
+                parameters.Add("lead_forms_new", leadFormsNew.ToApiString());
+            return _vkontakte.RequestAsync<BaseOkResponse>("groups.setCallbackSettings", parameters);
+        }
 
-            return _vkontakte.RequestAsync<int>("groups.setCallbackSettings", parameters);
+        ///<summary>
+        /// Sets Long Poll notification settings
+        ///</summary>
+        public Task<BaseOkResponse> SetLongPollSettings(int? groupId = null, Boolean? enabled = null, String apiVersion = null, Boolean? messageNew = null, Boolean? messageReply = null, Boolean? messageAllow = null, Boolean? messageDeny = null, Boolean? messageEdit = null, Boolean? messageTypingState = null, Boolean? photoNew = null, Boolean? audioNew = null, Boolean? videoNew = null, Boolean? wallReplyNew = null, Boolean? wallReplyEdit = null, Boolean? wallReplyDelete = null, Boolean? wallReplyRestore = null, Boolean? wallPostNew = null, Boolean? wallRepost = null, Boolean? boardPostNew = null, Boolean? boardPostEdit = null, Boolean? boardPostRestore = null, Boolean? boardPostDelete = null, Boolean? photoCommentNew = null, Boolean? photoCommentEdit = null, Boolean? photoCommentDelete = null, Boolean? photoCommentRestore = null, Boolean? videoCommentNew = null, Boolean? videoCommentEdit = null, Boolean? videoCommentDelete = null, Boolean? videoCommentRestore = null, Boolean? marketCommentNew = null, Boolean? marketCommentEdit = null, Boolean? marketCommentDelete = null, Boolean? marketCommentRestore = null, Boolean? pollVoteNew = null, Boolean? groupJoin = null, Boolean? groupLeave = null, Boolean? groupChangeSettings = null, Boolean? groupChangePhoto = null, Boolean? groupOfficersEdit = null, Boolean? userBlock = null, Boolean? userUnblock = null)
+        {
+            var parameters = new Dictionary<string, string>();
+            if (groupId != null)
+                parameters.Add("group_id", groupId.ToApiString());
+            if (enabled != null)
+                parameters.Add("enabled", enabled.ToApiString());
+            if (apiVersion != null)
+                parameters.Add("api_version", apiVersion.ToApiString());
+            if (messageNew != null)
+                parameters.Add("message_new", messageNew.ToApiString());
+            if (messageReply != null)
+                parameters.Add("message_reply", messageReply.ToApiString());
+            if (messageAllow != null)
+                parameters.Add("message_allow", messageAllow.ToApiString());
+            if (messageDeny != null)
+                parameters.Add("message_deny", messageDeny.ToApiString());
+            if (messageEdit != null)
+                parameters.Add("message_edit", messageEdit.ToApiString());
+            if (messageTypingState != null)
+                parameters.Add("message_typing_state", messageTypingState.ToApiString());
+            if (photoNew != null)
+                parameters.Add("photo_new", photoNew.ToApiString());
+            if (audioNew != null)
+                parameters.Add("audio_new", audioNew.ToApiString());
+            if (videoNew != null)
+                parameters.Add("video_new", videoNew.ToApiString());
+            if (wallReplyNew != null)
+                parameters.Add("wall_reply_new", wallReplyNew.ToApiString());
+            if (wallReplyEdit != null)
+                parameters.Add("wall_reply_edit", wallReplyEdit.ToApiString());
+            if (wallReplyDelete != null)
+                parameters.Add("wall_reply_delete", wallReplyDelete.ToApiString());
+            if (wallReplyRestore != null)
+                parameters.Add("wall_reply_restore", wallReplyRestore.ToApiString());
+            if (wallPostNew != null)
+                parameters.Add("wall_post_new", wallPostNew.ToApiString());
+            if (wallRepost != null)
+                parameters.Add("wall_repost", wallRepost.ToApiString());
+            if (boardPostNew != null)
+                parameters.Add("board_post_new", boardPostNew.ToApiString());
+            if (boardPostEdit != null)
+                parameters.Add("board_post_edit", boardPostEdit.ToApiString());
+            if (boardPostRestore != null)
+                parameters.Add("board_post_restore", boardPostRestore.ToApiString());
+            if (boardPostDelete != null)
+                parameters.Add("board_post_delete", boardPostDelete.ToApiString());
+            if (photoCommentNew != null)
+                parameters.Add("photo_comment_new", photoCommentNew.ToApiString());
+            if (photoCommentEdit != null)
+                parameters.Add("photo_comment_edit", photoCommentEdit.ToApiString());
+            if (photoCommentDelete != null)
+                parameters.Add("photo_comment_delete", photoCommentDelete.ToApiString());
+            if (photoCommentRestore != null)
+                parameters.Add("photo_comment_restore", photoCommentRestore.ToApiString());
+            if (videoCommentNew != null)
+                parameters.Add("video_comment_new", videoCommentNew.ToApiString());
+            if (videoCommentEdit != null)
+                parameters.Add("video_comment_edit", videoCommentEdit.ToApiString());
+            if (videoCommentDelete != null)
+                parameters.Add("video_comment_delete", videoCommentDelete.ToApiString());
+            if (videoCommentRestore != null)
+                parameters.Add("video_comment_restore", videoCommentRestore.ToApiString());
+            if (marketCommentNew != null)
+                parameters.Add("market_comment_new", marketCommentNew.ToApiString());
+            if (marketCommentEdit != null)
+                parameters.Add("market_comment_edit", marketCommentEdit.ToApiString());
+            if (marketCommentDelete != null)
+                parameters.Add("market_comment_delete", marketCommentDelete.ToApiString());
+            if (marketCommentRestore != null)
+                parameters.Add("market_comment_restore", marketCommentRestore.ToApiString());
+            if (pollVoteNew != null)
+                parameters.Add("poll_vote_new", pollVoteNew.ToApiString());
+            if (groupJoin != null)
+                parameters.Add("group_join", groupJoin.ToApiString());
+            if (groupLeave != null)
+                parameters.Add("group_leave", groupLeave.ToApiString());
+            if (groupChangeSettings != null)
+                parameters.Add("group_change_settings", groupChangeSettings.ToApiString());
+            if (groupChangePhoto != null)
+                parameters.Add("group_change_photo", groupChangePhoto.ToApiString());
+            if (groupOfficersEdit != null)
+                parameters.Add("group_officers_edit", groupOfficersEdit.ToApiString());
+            if (userBlock != null)
+                parameters.Add("user_block", userBlock.ToApiString());
+            if (userUnblock != null)
+                parameters.Add("user_unblock", userUnblock.ToApiString());
+            return _vkontakte.RequestAsync<BaseOkResponse>("groups.setLongPollSettings", parameters);
         }
     }
 }
