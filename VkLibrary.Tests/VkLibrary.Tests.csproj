@@ -9,6 +9,6 @@
     <PackageReference Include="xunit.runner.visualstudio" Version="2.2.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\VkLibrary.Core\VkLibrary.Core.csproj" />
+    <ProjectReference Include="..\VkLibrary.Core\VkApi.Wrapper.csproj" />
   </ItemGroup>
 </Project>
