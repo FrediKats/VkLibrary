@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using VkApi.Wrapper.LongPolling.Bot;
 using VkLibrary.Core.Auth;
 using VkLibrary.Core.LongPolling;
 using VkLibrary.Core.Services;
@@ -249,6 +250,14 @@ namespace VkLibrary.Core
             int version = 1, int wait = 25, AnswerFlags mode = AnswerFlags.ReceiveAttachments)
         {
             var client = new LongPollClient(this);
+            await client.StartListener(server, key, ts, version, wait, mode);
+            return client;
+        }
+
+        public async Task<BotLongPollClient> StartBotLongPollClient(string server, string key, int ts,
+            int version = 1, int wait = 25, AnswerFlags mode = AnswerFlags.ReceiveAttachments)
+        {
+            var client = new BotLongPollClient(this);
             await client.StartListener(server, key, ts, version, wait, mode);
             return client;
         }

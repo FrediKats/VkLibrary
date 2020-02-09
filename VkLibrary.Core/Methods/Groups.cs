@@ -374,7 +374,7 @@ namespace VkLibrary.Core.Methods
         ///<summary>
         /// Returns the data needed to query a Long Poll server for events
         ///</summary>
-        public Task<GroupsLongPollServer> GetLongPollServer(int? groupId = null)
+        public Task<GroupsLongPollServer> GetLongPollServer(int groupId)
         {
             var parameters = new Dictionary<string, string>();
             if (groupId != null)
