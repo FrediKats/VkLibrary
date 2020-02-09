@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
+using VkApi.Wrapper.LongPolling.Bot.LongPollResponse;
 using VkLibrary.Core;
 using VkLibrary.Core.LongPolling;
 using VkLibrary.Core.Objects;
@@ -144,13 +145,84 @@ namespace VkApi.Wrapper.LongPolling.Bot
                 Log($"Received event with code: {eventCode}");
 
                 // Raise events.
+                //TODO: implement cases
                 switch (eventCode)
                 {
                     case BotLongPollMessageCodes.MessageNew:
-                        Call(MessageNewReceived, argumentObject);
+                        Call(OnMessageNew, argumentObject);
                         break;
                     case BotLongPollMessageCodes.MessageReply:
-                        Call(MessageNewReceived, argumentObject);
+                        Call(OnMessageReply, argumentObject);
+                        break;
+                    case BotLongPollMessageCodes.MessageAllow:
+                        break;
+                    case BotLongPollMessageCodes.MessageDeny:
+                        break;
+                    case BotLongPollMessageCodes.PhotoNew:
+                        break;
+                    case BotLongPollMessageCodes.PhotoCommentNew:
+                        break;
+                    case BotLongPollMessageCodes.PhotoCommentEdit:
+                        break;
+                    case BotLongPollMessageCodes.PhotoCommentRestore:
+                        break;
+                    case BotLongPollMessageCodes.PhotoCommentDelete:
+                        break;
+                    case BotLongPollMessageCodes.AudioNew:
+                        break;
+                    case BotLongPollMessageCodes.VideoNew:
+                        break;
+                    case BotLongPollMessageCodes.VideoCommentNew:
+                        break;
+                    case BotLongPollMessageCodes.VideoCommentEdit:
+                        break;
+                    case BotLongPollMessageCodes.VideoCommentRestore:
+                        break;
+                    case BotLongPollMessageCodes.VideoCommentDelete:
+                        break;
+                    case BotLongPollMessageCodes.WallPostNew:
+                        break;
+                    case BotLongPollMessageCodes.WallRepost:
+                        break;
+                    case BotLongPollMessageCodes.WallReplyNew:
+                        break;
+                    case BotLongPollMessageCodes.WallReplyEdit:
+                        break;
+                    case BotLongPollMessageCodes.WallReplyRestore:
+                        break;
+                    case BotLongPollMessageCodes.WallReplyDelete:
+                        break;
+                    case BotLongPollMessageCodes.BoardPostNew:
+                        break;
+                    case BotLongPollMessageCodes.BoardPostEdit:
+                        break;
+                    case BotLongPollMessageCodes.BoardPostRestore:
+                        break;
+                    case BotLongPollMessageCodes.BoardPostDelete:
+                        break;
+                    case BotLongPollMessageCodes.MarketCommentNew:
+                        break;
+                    case BotLongPollMessageCodes.MarketCommentEdit:
+                        break;
+                    case BotLongPollMessageCodes.MarketCommentRestore:
+                        break;
+                    case BotLongPollMessageCodes.MarketCommentDelete:
+                        break;
+                    case BotLongPollMessageCodes.GroupLeave:
+                        break;
+                    case BotLongPollMessageCodes.GroupJoin:
+                        break;
+                    case BotLongPollMessageCodes.UserBlock:
+                        break;
+                    case BotLongPollMessageCodes.UserUnblock:
+                        break;
+                    case BotLongPollMessageCodes.PollVoteNew:
+                        break;
+                    case BotLongPollMessageCodes.GroupOfficersEdit:
+                        break;
+                    case BotLongPollMessageCodes.GroupChangeSettings:
+                        break;
+                    case BotLongPollMessageCodes.GroupChangePhoto:
                         break;
                     default:
                         Log($"Don't add long poll handler for {eventCode}");
@@ -170,9 +242,53 @@ namespace VkApi.Wrapper.LongPolling.Bot
         /// </summary>
         public event EventHandler<JArray> ResponseReceived;
 
-        public event EventHandler<MessagesMessage> MessageNewReceived;
-        public event EventHandler<MessagesMessage> MessageReplyReceived;
+        public event EventHandler<MessagesMessage> OnMessageNew;
+        public event EventHandler<MessagesMessage> OnMessageReply;
+        public event EventHandler<CallbackMessageAllow> OnMessageAllow;
+        public event EventHandler<CallbackMessageDeny> OnMessageDeny;
 
+        public event EventHandler<PhotosPhoto> OnPhotoNew;
+        public event EventHandler<PhotoCommentResponse> OnPhotoCommentNew;
+        public event EventHandler<PhotoCommentResponse> OnPhotoCommentEdit;
+        public event EventHandler<PhotoCommentResponse> OnPhotoCommentRestore;
+        public event EventHandler<CallbackPhotoCommentDelete> OnPhotoCommentDelete;
+
+        //TODO: fix types
+        public event EventHandler<MessagesMessage> OnAudioNew;
+
+        public event EventHandler<MessagesMessage> OnVideoNew;
+        public event EventHandler<MessagesMessage> OnVideoCommentNew;
+        public event EventHandler<MessagesMessage> OnVideoCommentEdit;
+        public event EventHandler<MessagesMessage> OnVideoCommentRestore;
+        public event EventHandler<MessagesMessage> OnVideoCommentDelete;
+
+        public event EventHandler<MessagesMessage> OnWallPostNew;
+        public event EventHandler<MessagesMessage> OnWallRepost;
+
+        public event EventHandler<MessagesMessage> OnWallReplyNew;
+        public event EventHandler<MessagesMessage> OnWallReplyEdit;
+        public event EventHandler<MessagesMessage> OnWallReplyRestore;
+        public event EventHandler<MessagesMessage> OnWallReplyDelete;
+
+        public event EventHandler<MessagesMessage> OnBoardPostNew;
+        public event EventHandler<MessagesMessage> OnBoardPostEdit;
+        public event EventHandler<MessagesMessage> OnBoardPostRestore;
+        public event EventHandler<MessagesMessage> OnBoardPostDelete;
+
+        public event EventHandler<MessagesMessage> OnMarketCommentNew;
+        public event EventHandler<MessagesMessage> OnMarketCommentEdit;
+        public event EventHandler<MessagesMessage> OnMarketCommentRestore;
+        public event EventHandler<MessagesMessage> OnMarketCommentDelete;
+
+        public event EventHandler<MessagesMessage> OnGroupLeave;
+        public event EventHandler<MessagesMessage> OnGroupJoin;
+        public event EventHandler<MessagesMessage> OnUserBlock;
+        public event EventHandler<MessagesMessage> OnUserUnblock;
+
+        public event EventHandler<MessagesMessage> OnPollVoteNew;
+        public event EventHandler<MessagesMessage> OnGroupOfficersEdit;
+        public event EventHandler<MessagesMessage> OnGroupChangeSettings;
+        public event EventHandler<MessagesMessage> OnGroupChangePhoto;
 
         #endregion
 
