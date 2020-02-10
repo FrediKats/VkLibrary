@@ -4,13 +4,14 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using VkLibrary.Core;
 
-namespace VkLibrary.Core.LongPolling
+namespace VkApi.Wrapper.LongPolling.User
 {
     /// <summary>
     /// Represents long poll client.
     /// </summary>
-    public class LongPollClient
+    public class UserLongPollClient
     {
         private readonly HttpClient _httpClient = new HttpClient();
         private readonly Vkontakte _vkontakte;
@@ -18,9 +19,9 @@ namespace VkLibrary.Core.LongPolling
 
         #region Constructors and Listeners
 
-        /// <summary>Inits a LongPollClient using extended settings.</summary>
+        /// <summary>Inits a UserLongPollClient using extended settings.</summary>
         /// <param name="vkontakte">Library instance whose logger to use</param>
-        internal LongPollClient(Vkontakte vkontakte) => _vkontakte = vkontakte;
+        internal UserLongPollClient(Vkontakte vkontakte) => _vkontakte = vkontakte;
 
         /// <summary>Builds LongPollServer url.</summary>
         /// <param name="key">Secret session key.</param>
@@ -108,61 +109,61 @@ namespace VkLibrary.Core.LongPolling
             {
                 // Get basic event information.
                 var array = (JArray)jToken;
-                var eventCode = (LongPollMessageCodes)(int)array[0];
+                var eventCode = (UserLongPollMessageCodes)(int)array[0];
                 Log($"Received event with code: {eventCode}");
 
                 // Raise events.
                 switch (eventCode)
                 {
-                    case LongPollMessageCodes.ReplaceMessageFlags:
+                    case UserLongPollMessageCodes.ReplaceMessageFlags:
                         CallEx(ReplaceMessageFlagsEvent, array);
                         break;
-                    case LongPollMessageCodes.InstallMessageFlags:
+                    case UserLongPollMessageCodes.InstallMessageFlags:
                         CallEx(InstallMessageFlagsEvent, array);
                         break;
-                    case LongPollMessageCodes.ResetMessageFlags:
+                    case UserLongPollMessageCodes.ResetMessageFlags:
                         CallEx(ResetMessageFlagsEvent, array);
                         break;
-                    case LongPollMessageCodes.AddMessage:
+                    case UserLongPollMessageCodes.AddMessage:
                         CallEx(AddMessageEvent, array);
                         break;
-                    case LongPollMessageCodes.ReadAllIncomingMessages:
+                    case UserLongPollMessageCodes.ReadAllIncomingMessages:
                         Call(ReadAllIncomingMessagesEvent, array);
                         break;
-                    case LongPollMessageCodes.ReadAllOutgoingMessages:
+                    case UserLongPollMessageCodes.ReadAllOutgoingMessages:
                         Call(ReadAllOutgoingMessagesEvent, array);
                         break;
-                    case LongPollMessageCodes.FriendOnline:
+                    case UserLongPollMessageCodes.FriendOnline:
                         Call(FriendOnlineEvent, array);
                         break;
-                    case LongPollMessageCodes.FriendOffline:
+                    case UserLongPollMessageCodes.FriendOffline:
                         Call(FriendOfflineEvent, array);
                         break;
-                    case LongPollMessageCodes.ResetDialogFlags:
+                    case UserLongPollMessageCodes.ResetDialogFlags:
                         Call(ResetDialogFlagsEvent, array);
                         break;
-                    case LongPollMessageCodes.ReplaceDialogFlags:
+                    case UserLongPollMessageCodes.ReplaceDialogFlags:
                         Call(ReplaceDialogFlagsEvent, array);
                         break;
-                    case LongPollMessageCodes.InstallDialogFlags:
+                    case UserLongPollMessageCodes.InstallDialogFlags:
                         Call(InstallDialogFlagsEvent, array);
                         break;
-                    case LongPollMessageCodes.ConversationChanged:
+                    case UserLongPollMessageCodes.ConversationChanged:
                         Call(ConversationChangedEvent, array);
                         break;
-                    case LongPollMessageCodes.UserTypingInDialog:
+                    case UserLongPollMessageCodes.UserTypingInDialog:
                         Call(UserTypingInDialogEvent, array);
                         break;
-                    case LongPollMessageCodes.UserTypingInConversation:
+                    case UserLongPollMessageCodes.UserTypingInConversation:
                         Call(UserTypingInConversationEvent, array);
                         break;
-                    case LongPollMessageCodes.UserCall:
+                    case UserLongPollMessageCodes.UserCall:
                         Call(UserCallEvent, array);
                         break;
-                    case LongPollMessageCodes.CounterUpdate:
+                    case UserLongPollMessageCodes.CounterUpdate:
                         Call(CounterUpdateEvent, array);
                         break;
-                    case LongPollMessageCodes.NotificationSettingsChanged:
+                    case UserLongPollMessageCodes.NotificationSettingsChanged:
                         Call(NotificationSettingsChangedEvent, array);
                         break;
                     default: 

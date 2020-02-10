@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using VkLibrary.Core.Objects;
 
-namespace VkApi.Wrapper.LongPolling.Bot.LongPollResponse
+namespace VkApi.Wrapper.LongPolling.Bot.Responses
 {
     public class PhotoCommentResponse : PhotosPhoto
     {
