@@ -1,4 +1,4 @@
-﻿namespace VkLibrary.Core.LongPolling
+﻿namespace VkApi.Wrapper.LongPolling.User
 {
     /// <summary>
     /// Each element of the updates array represents its own an array
@@ -6,7 +6,7 @@
     /// set of fields with additional information depending
     /// on the type of event. 
     /// </summary>
-    public enum LongPollMessageCodes
+    public enum UserLongPollMessageCodes
     {
         /// <summary>
         /// Replace message flags (FLAGS:=$flags). 

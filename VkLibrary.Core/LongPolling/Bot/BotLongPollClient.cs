@@ -6,9 +6,8 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
-using VkApi.Wrapper.LongPolling.Bot.LongPollResponse;
+using VkApi.Wrapper.LongPolling.Bot.Responses;
 using VkLibrary.Core;
-using VkLibrary.Core.LongPolling;
 using VkLibrary.Core.Objects;
 
 namespace VkApi.Wrapper.LongPolling.Bot
@@ -43,14 +42,12 @@ namespace VkApi.Wrapper.LongPolling.Bot
         /// <returns>Built request url that can be used to retrieve data from vk long poll servers.</returns>
         /// ReSharper disable once MemberCanBePrivate.Global
         public Uri GetRequestUrl(string server,
-            string key, int ts, int version = 1, int wait = 25,
-            AnswerFlags mode = AnswerFlags.ReceiveAttachments)
+            string key, int ts, int version = 1, int wait = 25)
         {
             return _vkontakte.HttpService.BuildGetRequestUrl(server, new Dictionary<string, string>
             {
                 {"version", version.ToString()},
                 {"wait", wait.ToString()},
-                {"mode", ((int) mode).ToString()},
                 {"ts", ts.ToString()},
                 {"act", "a_check"},
                 {"key", key}
@@ -60,14 +57,14 @@ namespace VkApi.Wrapper.LongPolling.Bot
         /// <summary>
         /// Starts a long poll listener.
         /// </summary>
-        internal async Task StartListener(string server, string key, int ts, int version, int wait, AnswerFlags mode)
+        internal async Task StartListener(string server, string key, int ts, int version, int wait)
         {
             await Task.Factory.StartNew(async () =>
             {
                 while (!_stopped)
                 {
                     // Send request and receive data.
-                    var requestUrl = GetRequestUrl(server, key, ts, version, wait, mode);
+                    var requestUrl = GetRequestUrl(server, key, ts, version, wait);
                     var responseString = await _httpClient.GetStringAsync(requestUrl);
                     var responseToken = JsonConvert.DeserializeObject<JToken>(responseString);
 

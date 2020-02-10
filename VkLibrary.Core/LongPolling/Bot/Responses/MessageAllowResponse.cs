@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace VkApi.Wrapper.LongPolling.Bot.LongPollResponse
+namespace VkApi.Wrapper.LongPolling.Bot.Responses
 {
     public class MessageAllowResponse
     {

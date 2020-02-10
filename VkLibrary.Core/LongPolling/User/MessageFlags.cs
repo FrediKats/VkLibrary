@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace VkLibrary.Core.LongPolling
+namespace VkApi.Wrapper.LongPolling.User
 {
     /// <summary>
     /// Each message has a flag, which is a value received 
