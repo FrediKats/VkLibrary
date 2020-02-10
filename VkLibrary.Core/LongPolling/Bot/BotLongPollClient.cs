@@ -155,74 +155,109 @@ namespace VkApi.Wrapper.LongPolling.Bot
                         Call(OnMessageReply, argumentObject);
                         break;
                     case BotLongPollMessageCodes.MessageAllow:
+                        Call(OnMessageAllow, argumentObject);
                         break;
                     case BotLongPollMessageCodes.MessageDeny:
+                        Call(OnMessageDeny, argumentObject);
                         break;
                     case BotLongPollMessageCodes.PhotoNew:
+                        Call(OnPhotoNew, argumentObject);
                         break;
                     case BotLongPollMessageCodes.PhotoCommentNew:
+                        Call(OnPhotoCommentNew, argumentObject);
                         break;
                     case BotLongPollMessageCodes.PhotoCommentEdit:
+                        Call(OnPhotoCommentEdit, argumentObject);
                         break;
                     case BotLongPollMessageCodes.PhotoCommentRestore:
+                        Call(OnPhotoCommentRestore, argumentObject);
                         break;
                     case BotLongPollMessageCodes.PhotoCommentDelete:
+                        Call(OnPhotoCommentDelete, argumentObject);
                         break;
                     case BotLongPollMessageCodes.AudioNew:
+                        Call(OnAudioNew, argumentObject);
                         break;
                     case BotLongPollMessageCodes.VideoNew:
+                        Call(OnVideoNew, argumentObject);
                         break;
                     case BotLongPollMessageCodes.VideoCommentNew:
+                        Call(OnVideoCommentNew, argumentObject);
                         break;
                     case BotLongPollMessageCodes.VideoCommentEdit:
+                        Call(OnVideoCommentNew, argumentObject);
                         break;
                     case BotLongPollMessageCodes.VideoCommentRestore:
+                        Call(OnVideoCommentRestore, argumentObject);
                         break;
                     case BotLongPollMessageCodes.VideoCommentDelete:
+                        Call(OnVideoCommentDelete, argumentObject);
                         break;
                     case BotLongPollMessageCodes.WallPostNew:
+                        Call(OnWallPostNew, argumentObject);
                         break;
                     case BotLongPollMessageCodes.WallRepost:
+                        Call(OnWallRepost, argumentObject);
                         break;
                     case BotLongPollMessageCodes.WallReplyNew:
+                        Call(OnWallReplyNew, argumentObject);
                         break;
                     case BotLongPollMessageCodes.WallReplyEdit:
+                        Call(OnWallReplyEdit, argumentObject);
                         break;
                     case BotLongPollMessageCodes.WallReplyRestore:
+                        Call(OnWallReplyRestore, argumentObject);
                         break;
                     case BotLongPollMessageCodes.WallReplyDelete:
+                        Call(OnWallReplyDelete, argumentObject);
                         break;
                     case BotLongPollMessageCodes.BoardPostNew:
+                        Call(OnBoardPostNew, argumentObject);
                         break;
                     case BotLongPollMessageCodes.BoardPostEdit:
+                        Call(OnBoardPostEdit, argumentObject);
                         break;
                     case BotLongPollMessageCodes.BoardPostRestore:
+                        Call(OnBoardPostRestore, argumentObject);
                         break;
                     case BotLongPollMessageCodes.BoardPostDelete:
+                        Call(OnBoardPostDelete, argumentObject);
                         break;
                     case BotLongPollMessageCodes.MarketCommentNew:
+                        Call(OnMarketCommentNew, argumentObject);
                         break;
                     case BotLongPollMessageCodes.MarketCommentEdit:
+                        Call(OnMarketCommentEdit, argumentObject);
                         break;
                     case BotLongPollMessageCodes.MarketCommentRestore:
+                        Call(OnMarketCommentRestore, argumentObject);
                         break;
                     case BotLongPollMessageCodes.MarketCommentDelete:
+                        Call(OnMarketCommentDelete, argumentObject);
                         break;
                     case BotLongPollMessageCodes.GroupLeave:
+                        Call(OnGroupLeave, argumentObject);
                         break;
                     case BotLongPollMessageCodes.GroupJoin:
+                        Call(OnGroupJoin, argumentObject);
                         break;
                     case BotLongPollMessageCodes.UserBlock:
+                        Call(OnUserBlock, argumentObject);
                         break;
                     case BotLongPollMessageCodes.UserUnblock:
+                        Call(OnUserUnblock, argumentObject);
                         break;
                     case BotLongPollMessageCodes.PollVoteNew:
+                        Call(OnPollVoteNew, argumentObject);
                         break;
                     case BotLongPollMessageCodes.GroupOfficersEdit:
+                        Call(OnGroupOfficersEdit, argumentObject);
                         break;
                     case BotLongPollMessageCodes.GroupChangeSettings:
+                        Call(OnGroupChangeSettings, argumentObject);
                         break;
                     case BotLongPollMessageCodes.GroupChangePhoto:
+                        Call(OnGroupChangePhoto, argumentObject);
                         break;
                     default:
                         Log($"Don't add long poll handler for {eventCode}");
@@ -253,42 +288,41 @@ namespace VkApi.Wrapper.LongPolling.Bot
         public event EventHandler<PhotoCommentResponse> OnPhotoCommentRestore;
         public event EventHandler<CallbackPhotoCommentDelete> OnPhotoCommentDelete;
 
-        //TODO: fix types
-        public event EventHandler<MessagesMessage> OnAudioNew;
+        public event EventHandler<AudioAudio> OnAudioNew;
 
-        public event EventHandler<MessagesMessage> OnVideoNew;
-        public event EventHandler<MessagesMessage> OnVideoCommentNew;
-        public event EventHandler<MessagesMessage> OnVideoCommentEdit;
-        public event EventHandler<MessagesMessage> OnVideoCommentRestore;
-        public event EventHandler<MessagesMessage> OnVideoCommentDelete;
+        public event EventHandler<VideoVideo> OnVideoNew;
+        public event EventHandler<CallbackVideoComment> OnVideoCommentNew;
+        public event EventHandler<CallbackVideoComment> OnVideoCommentEdit;
+        public event EventHandler<CallbackVideoComment> OnVideoCommentRestore;
+        public event EventHandler<CallbackVideoCommentDelete> OnVideoCommentDelete;
 
-        public event EventHandler<MessagesMessage> OnWallPostNew;
-        public event EventHandler<MessagesMessage> OnWallRepost;
+        public event EventHandler<WallWallpost> OnWallPostNew;
+        public event EventHandler<WallWallpost> OnWallRepost;
 
-        public event EventHandler<MessagesMessage> OnWallReplyNew;
-        public event EventHandler<MessagesMessage> OnWallReplyEdit;
-        public event EventHandler<MessagesMessage> OnWallReplyRestore;
-        public event EventHandler<MessagesMessage> OnWallReplyDelete;
+        public event EventHandler<WallReplyResponse> OnWallReplyNew;
+        public event EventHandler<WallReplyResponse> OnWallReplyEdit;
+        public event EventHandler<WallReplyResponse> OnWallReplyRestore;
+        public event EventHandler<CallbackWallCommentDelete> OnWallReplyDelete;
 
-        public event EventHandler<MessagesMessage> OnBoardPostNew;
-        public event EventHandler<MessagesMessage> OnBoardPostEdit;
-        public event EventHandler<MessagesMessage> OnBoardPostRestore;
-        public event EventHandler<MessagesMessage> OnBoardPostDelete;
+        public event EventHandler<BoardTopicResponse> OnBoardPostNew;
+        public event EventHandler<BoardTopicResponse> OnBoardPostEdit;
+        public event EventHandler<BoardTopicResponse> OnBoardPostRestore;
+        public event EventHandler<CallbackBoardPostDelete> OnBoardPostDelete;
 
-        public event EventHandler<MessagesMessage> OnMarketCommentNew;
-        public event EventHandler<MessagesMessage> OnMarketCommentEdit;
-        public event EventHandler<MessagesMessage> OnMarketCommentRestore;
-        public event EventHandler<MessagesMessage> OnMarketCommentDelete;
+        public event EventHandler<CallbackMarketComment> OnMarketCommentNew;
+        public event EventHandler<CallbackMarketComment> OnMarketCommentEdit;
+        public event EventHandler<CallbackMarketComment> OnMarketCommentRestore;
+        public event EventHandler<CallbackMarketCommentDelete> OnMarketCommentDelete;
 
-        public event EventHandler<MessagesMessage> OnGroupLeave;
-        public event EventHandler<MessagesMessage> OnGroupJoin;
-        public event EventHandler<MessagesMessage> OnUserBlock;
-        public event EventHandler<MessagesMessage> OnUserUnblock;
+        public event EventHandler<CallbackGroupLeave> OnGroupLeave;
+        public event EventHandler<CallbackGroupJoin> OnGroupJoin;
+        public event EventHandler<CallbackUserBlock> OnUserBlock;
+        public event EventHandler<CallbackUserUnblock> OnUserUnblock;
 
-        public event EventHandler<MessagesMessage> OnPollVoteNew;
-        public event EventHandler<MessagesMessage> OnGroupOfficersEdit;
-        public event EventHandler<MessagesMessage> OnGroupChangeSettings;
-        public event EventHandler<MessagesMessage> OnGroupChangePhoto;
+        public event EventHandler<CallbackPollVoteNew> OnPollVoteNew;
+        public event EventHandler<CallbackGroupOfficersEdit> OnGroupOfficersEdit;
+        public event EventHandler<CallbackGroupChangeSettings> OnGroupChangeSettings;
+        public event EventHandler<CallbackGroupChangePhoto> OnGroupChangePhoto;
 
         #endregion
 
