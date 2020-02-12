@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using VkApi.Wrapper.LongPolling.User;
 using VkLibrary.Core;
 
 namespace VkApi.Wrapper.LongPolling
@@ -50,7 +51,7 @@ namespace VkApi.Wrapper.LongPolling
         /// <summary>
         /// Starts a long poll listener.
         /// </summary>
-        internal async Task StartListener(string server, string key, int ts, int version, int wait)
+        internal async Task StartListener(string server, string key, int ts, int version, int wait, AnswerFlags mode = AnswerFlags.ReceiveAttachments)
         {
             await Task.Factory.StartNew(async () =>
             {
