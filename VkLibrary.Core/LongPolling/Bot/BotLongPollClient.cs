@@ -18,7 +18,16 @@ namespace VkApi.Wrapper.LongPolling.Bot
         public override void Handle(JToken jToken)
         {
             JToken argumentObject = jToken["object"];
-            var eventCode = jToken["type"].ToObject<BotLongPollMessageCodes>();
+            BotLongPollMessageCodes eventCode;
+            try
+            {
+                eventCode = jToken["type"].ToObject<BotLongPollMessageCodes>();
+
+            }
+            catch
+            {
+                eventCode = BotLongPollMessageCodes.Unknown;
+            }
 
             switch (eventCode)
             {
@@ -134,7 +143,7 @@ namespace VkApi.Wrapper.LongPolling.Bot
                     Call(OnGroupChangePhoto, argumentObject);
                     break;
                 default:
-                    Log($"Don't add long poll handler for {eventCode}");
+                    Log($"Unexpected event type: {jToken["type"]}");
                     break;
             }
         }
@@ -145,8 +154,6 @@ namespace VkApi.Wrapper.LongPolling.Bot
         /// Invoked when VK's LongPoll server answers a query (each 25 seconds by default). 
         /// Arguments contain JSON array with updates codes.
         /// </summary>
-        public event EventHandler<JArray> ResponseReceived;
-
         public event EventHandler<MessagesMessage> OnMessageNew;
         public event EventHandler<MessagesMessage> OnMessageReply;
         public event EventHandler<CallbackMessageAllow> OnMessageAllow;
