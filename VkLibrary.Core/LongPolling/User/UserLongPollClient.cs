@@ -196,7 +196,5 @@ namespace VkApi.Wrapper.LongPolling.User
         /// Item1 is PeerId, Item2 is Sound, Item3 is DisabledUntil.
         /// </summary>
         public event EventHandler<Tuple<int, int, int>> NotificationSettingsChangedEvent;
-
-        #endregion
     }
 }
