@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace VkLibrary.Core
+namespace VkApi.Wrapper
 {
     /// <summary>
     /// API error class.

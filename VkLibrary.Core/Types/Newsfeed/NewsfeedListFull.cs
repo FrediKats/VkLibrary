@@ -1,8 +1,6 @@
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
 
-namespace VkLibrary.Core.Objects
+namespace VkApi.Wrapper.Types.Newsfeed
 {
     public class NewsfeedListFull
     {

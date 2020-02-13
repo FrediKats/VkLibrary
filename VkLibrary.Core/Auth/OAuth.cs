@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace VkLibrary.Core.Auth
+namespace VkApi.Wrapper.Auth
 {
     /// <summary>
     /// OAuth helpers.

@@ -1,11 +1,7 @@
 using Newtonsoft.Json;
-using VkLibrary.Core.Objects;
-using System;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
-using System.Threading.Tasks;
+using VkApi.Wrapper.Types.Photos;
 
-namespace VkLibrary.Core.Responses
+namespace VkApi.Wrapper.Responses.Photos
 {
     public class PhotosGetAllExtendedResponse
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace VkLibrary.Core.Auth
+namespace VkApi.Wrapper.Auth
 {
     /// <summary>
     /// VKontakte access scope settings.

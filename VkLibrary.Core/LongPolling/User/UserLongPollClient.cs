@@ -1,6 +1,5 @@
 ﻿using System;
 using Newtonsoft.Json.Linq;
-using VkLibrary.Core;
 
 namespace VkApi.Wrapper.LongPolling.User
 {

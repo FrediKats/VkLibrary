@@ -1,8 +1,11 @@
-using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
+using Newtonsoft.Json;
+using VkApi.Wrapper.Types.Base;
+using VkApi.Wrapper.Types.Market;
+using VkApi.Wrapper.Types.Video;
+using VkApi.Wrapper.Types.Wall;
 
-namespace VkLibrary.Core.Objects
+namespace VkApi.Wrapper.Types.Fave
 {
     public class FaveBookmark
     {

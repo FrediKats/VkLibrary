@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using VkApi.Wrapper.LongPolling.User;
-using VkLibrary.Core;
 
 namespace VkApi.Wrapper.LongPolling
 {

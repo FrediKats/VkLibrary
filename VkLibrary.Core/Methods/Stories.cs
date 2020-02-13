@@ -1,10 +1,11 @@
-using VkLibrary.Core.Objects;
-using VkLibrary.Core.Responses;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using VkApi.Wrapper.Responses.Stories;
+using VkApi.Wrapper.Types.Base;
+using VkApi.Wrapper.Types.Stories;
 
-namespace VkLibrary.Core.Methods
+namespace VkApi.Wrapper.Methods
 {
     public class Stories
     {

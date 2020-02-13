@@ -1,8 +1,14 @@
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
+using VkApi.Wrapper.Types.Audio;
+using VkApi.Wrapper.Types.Base;
+using VkApi.Wrapper.Types.Docs;
+using VkApi.Wrapper.Types.Gifts;
+using VkApi.Wrapper.Types.Market;
+using VkApi.Wrapper.Types.Photos;
+using VkApi.Wrapper.Types.Video;
+using VkApi.Wrapper.Types.Wall;
 
-namespace VkLibrary.Core.Objects
+namespace VkApi.Wrapper.Types.Messages
 {
     public class MessagesMessageAttachment
     {

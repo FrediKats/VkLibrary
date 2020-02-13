@@ -1,4 +1,4 @@
-﻿namespace VkLibrary.Core.Services
+﻿namespace VkApi.Wrapper.Services
 {
     /// <summary>
     /// Logger resonsible for logging every important event happend during VkLibrary.Core lifetime.

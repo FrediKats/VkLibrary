@@ -1,7 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 
-namespace VkLibrary.Core.Auth
+namespace VkApi.Wrapper.Auth
 {
     /// <summary>
     /// Access token.

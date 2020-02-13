@@ -1,10 +1,13 @@
-using VkLibrary.Core.Objects;
-using VkLibrary.Core.Responses;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using VkApi.Wrapper.Responses.Groups;
+using VkApi.Wrapper.Types.Addresses;
+using VkApi.Wrapper.Types.Base;
+using VkApi.Wrapper.Types.Groups;
+using VkApi.Wrapper.Types.Users;
 
-namespace VkLibrary.Core.Methods
+namespace VkApi.Wrapper.Methods
 {
     public class Groups
     {

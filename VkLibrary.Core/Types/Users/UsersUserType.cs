@@ -1,6 +1,6 @@
 using System.Runtime.Serialization;
 
-namespace VkLibrary.Core.Objects
+namespace VkApi.Wrapper.Types.Users
 {
     ///<summary>
     /// Object type

@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using VkApi.Wrapper.Auth;
 using VkApi.Wrapper.LongPolling.Bot;
 using VkApi.Wrapper.LongPolling.User;
-using VkLibrary.Core.Auth;
-using VkLibrary.Core.Services;
+using VkApi.Wrapper.Services;
 
-namespace VkLibrary.Core
+namespace VkApi.Wrapper
 {
     /// <summary>
     /// Vkontakte .NET API.

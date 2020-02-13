@@ -4,7 +4,7 @@ using System.IO;
 using FluentAssertions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using VkLibrary.Core.Services;
+using VkApi.Wrapper.Services;
 using VkLibrary.Tests.Helpers;
 using Xunit.Abstractions;
 using Xunit;

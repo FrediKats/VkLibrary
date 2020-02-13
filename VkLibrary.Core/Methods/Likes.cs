@@ -1,10 +1,9 @@
-using VkLibrary.Core.Objects;
-using VkLibrary.Core.Responses;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using VkApi.Wrapper.Responses.Likes;
 
-namespace VkLibrary.Core.Methods
+namespace VkApi.Wrapper.Methods
 {
     public class Likes
     {

@@ -1,8 +1,13 @@
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
+using VkApi.Wrapper.Types.Audio;
+using VkApi.Wrapper.Types.Base;
+using VkApi.Wrapper.Types.Docs;
+using VkApi.Wrapper.Types.Market;
+using VkApi.Wrapper.Types.Pages;
+using VkApi.Wrapper.Types.Photos;
+using VkApi.Wrapper.Types.Video;
 
-namespace VkLibrary.Core.Objects
+namespace VkApi.Wrapper.Types.Wall
 {
     public class WallCommentAttachment
     {
