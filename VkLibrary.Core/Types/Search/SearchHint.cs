@@ -1,8 +1,10 @@
-using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
+using Newtonsoft.Json;
+using VkApi.Wrapper.Types.Apps;
+using VkApi.Wrapper.Types.Groups;
+using VkApi.Wrapper.Types.Users;
 
-namespace VkLibrary.Core.Objects
+namespace VkApi.Wrapper.Types.Search
 {
     public class SearchHint
     {

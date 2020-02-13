@@ -1,10 +1,11 @@
-using VkLibrary.Core.Objects;
-using VkLibrary.Core.Responses;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using VkApi.Wrapper.Responses.Account;
+using VkApi.Wrapper.Types.Account;
+using VkApi.Wrapper.Types.Base;
 
-namespace VkLibrary.Core.Methods
+namespace VkApi.Wrapper.Methods
 {
     public class Account
     {

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace VkLibrary.Core
+namespace VkApi.Wrapper
 {
     /// <summary>
     /// API methods that help with photos / docs / audios uploading.

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace VkLibrary.Core
+namespace VkApi.Wrapper
 {
     /// <summary>
     /// Represents API exception - exception that holds

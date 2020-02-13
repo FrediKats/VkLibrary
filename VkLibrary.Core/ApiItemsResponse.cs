@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace VkLibrary.Core
+namespace VkApi.Wrapper
 {
     /// <summary>
     /// Extended collection response.

@@ -1,11 +1,9 @@
 using Newtonsoft.Json;
-using VkLibrary.Core.Objects;
-using System;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
-using System.Threading.Tasks;
+using VkApi.Wrapper.Types.Groups;
+using VkApi.Wrapper.Types.Messages;
+using VkApi.Wrapper.Types.Users;
 
-namespace VkLibrary.Core.Responses
+namespace VkApi.Wrapper.Responses.Messages
 {
     public class MessagesSearchConversationsResponse
     {

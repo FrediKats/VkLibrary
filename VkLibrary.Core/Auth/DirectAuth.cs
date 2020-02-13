@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace VkLibrary.Core.Auth
+namespace VkApi.Wrapper.Auth
 {
     /// <summary>
     /// Direct auth helpers.

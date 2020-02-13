@@ -1,8 +1,7 @@
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
+using VkApi.Wrapper.Types.Audio;
 
-namespace VkLibrary.Core.Objects
+namespace VkApi.Wrapper.Types.Newsfeed
 {
     public class NewsfeedItemAudioAudio
     {

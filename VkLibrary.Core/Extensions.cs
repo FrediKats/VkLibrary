@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Linq;
 
-namespace VkLibrary.Core
+namespace VkApi.Wrapper
 {
     /// <summary>
     /// Extension methods.

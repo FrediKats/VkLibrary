@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace VkLibrary.Core.LongPolling
+namespace VkApi.Wrapper.LongPolling.User
 {
     /// <summary>
     /// Additional answer options codes list. 
