@@ -1,6 +1,6 @@
 using System.Runtime.Serialization;
 
-namespace VkLibrary.Core.Objects
+namespace VkApi.Wrapper.Types.Base
 {
     ///<summary>
     /// Returns 1 if request has been processed successfully

@@ -1,11 +1,12 @@
-using Newtonsoft.Json;
-using VkLibrary.Core.Objects;
 using System;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
-using System.Threading.Tasks;
+using Newtonsoft.Json;
+using VkApi.Wrapper.Types.Apps;
+using VkApi.Wrapper.Types.Groups;
+using VkApi.Wrapper.Types.Photos;
+using VkApi.Wrapper.Types.Users;
+using VkApi.Wrapper.Types.Video;
 
-namespace VkLibrary.Core.Responses
+namespace VkApi.Wrapper.Responses.Notifications
 {
     public class NotificationsGetResponse
     {

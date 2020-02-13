@@ -1,6 +1,6 @@
-﻿using VkLibrary.Core;
-using VkLibrary.Core.Auth;
-using VkLibrary.Core.Services;
+﻿using VkApi.Wrapper;
+using VkApi.Wrapper.Auth;
+using VkApi.Wrapper.Services;
 using Xunit.Abstractions;
 
 namespace VkLibrary.Tests.Helpers

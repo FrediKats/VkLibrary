@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
-namespace VkLibrary.Core.Services
+namespace VkApi.Wrapper.Services
 {
     /// <summary>
     /// Default Vklibrary.Core HTTP service.

@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace VkLibrary.Core.Converters
+namespace VkApi.Wrapper.Converters
 {
     /// <summary>
     /// JSON converter used to ignore strange VK API behaviour

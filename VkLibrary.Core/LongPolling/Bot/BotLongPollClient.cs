@@ -1,8 +1,12 @@
 ﻿using System;
 using Newtonsoft.Json.Linq;
 using VkApi.Wrapper.LongPolling.Bot.Responses;
-using VkLibrary.Core;
-using VkLibrary.Core.Objects;
+using VkApi.Wrapper.Types.Audio;
+using VkApi.Wrapper.Types.Callback;
+using VkApi.Wrapper.Types.Messages;
+using VkApi.Wrapper.Types.Photos;
+using VkApi.Wrapper.Types.Video;
+using VkApi.Wrapper.Types.Wall;
 
 namespace VkApi.Wrapper.LongPolling.Bot
 {

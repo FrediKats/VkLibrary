@@ -1,8 +1,11 @@
-using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
+using Newtonsoft.Json;
+using VkApi.Wrapper.Types.Board;
+using VkApi.Wrapper.Types.Photos;
+using VkApi.Wrapper.Types.Video;
+using VkApi.Wrapper.Types.Wall;
 
-namespace VkLibrary.Core.Objects
+namespace VkApi.Wrapper.Types.Notifications
 {
     public class NotificationsNotificationsComment
     {
