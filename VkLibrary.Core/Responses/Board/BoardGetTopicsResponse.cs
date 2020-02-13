@@ -1,11 +1,7 @@
 using Newtonsoft.Json;
-using VkLibrary.Core.Objects;
-using System;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
-using System.Threading.Tasks;
+using VkApi.Wrapper.Types.Board;
 
-namespace VkLibrary.Core.Responses
+namespace VkApi.Wrapper.Responses.Board
 {
     public class BoardGetTopicsResponse
     {

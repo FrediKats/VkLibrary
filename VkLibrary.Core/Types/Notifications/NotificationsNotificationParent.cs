@@ -1,8 +1,4 @@
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-
-namespace VkLibrary.Core.Objects
+namespace VkApi.Wrapper.Types.Notifications
 {
     public class NotificationsNotificationParent
     {

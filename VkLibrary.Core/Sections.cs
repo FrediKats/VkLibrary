@@ -1,7 +1,7 @@
-﻿using VkLibrary.Core.Auth;
-using VkLibrary.Core.Methods;
+﻿using VkApi.Wrapper.Auth;
+using VkApi.Wrapper.Methods;
 
-namespace VkLibrary.Core
+namespace VkApi.Wrapper
 {
     public partial class Vkontakte
     {

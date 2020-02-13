@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace VkLibrary.Core
+namespace VkApi.Wrapper
 {
     /// <summary>
     /// Main API response object that helds all information.

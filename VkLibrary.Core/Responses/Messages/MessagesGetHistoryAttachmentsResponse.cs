@@ -1,11 +1,8 @@
-using Newtonsoft.Json;
-using VkLibrary.Core.Objects;
 using System;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
-using System.Threading.Tasks;
+using Newtonsoft.Json;
+using VkApi.Wrapper.Types.Messages;
 
-namespace VkLibrary.Core.Responses
+namespace VkApi.Wrapper.Responses.Messages
 {
     public class MessagesGetHistoryAttachmentsResponse
     {

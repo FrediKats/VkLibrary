@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using VkLibrary.Core.Auth;
-using VkLibrary.Core.LongPolling;
-using VkLibrary.Core.Services;
+using VkApi.Wrapper.Auth;
+using VkApi.Wrapper.LongPolling.Bot;
+using VkApi.Wrapper.LongPolling.User;
+using VkApi.Wrapper.Services;
 
-namespace VkLibrary.Core
+namespace VkApi.Wrapper
 {
     /// <summary>
     /// Vkontakte .NET API.
@@ -228,7 +229,7 @@ namespace VkLibrary.Core
             dateTime.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
 
         /// <summary>
-        /// Inits a LongPollClient using extended settings.
+        /// Inits a UserLongPollClient using extended settings.
         /// Docs: <see href="https://vk.com/dev/using_longpoll">Using LongPoll</see>
         /// </summary>
         /// <param name="key">Secret session key.</param>
@@ -245,11 +246,19 @@ namespace VkLibrary.Core
         /// we recommend indicating wait = 25). Maximum: 90. 
         /// </param>
         /// <returns>Running Long Poll Client instance.</returns>
-        public async Task<LongPollClient> StartLongPollClient(string server, string key, int ts, 
+        public async Task<UserLongPollClient> StartLongPollClient(string server, string key, int ts, 
             int version = 1, int wait = 25, AnswerFlags mode = AnswerFlags.ReceiveAttachments)
         {
-            var client = new LongPollClient(this);
+            var client = new UserLongPollClient(this);
             await client.StartListener(server, key, ts, version, wait, mode);
+            return client;
+        }
+
+        public async Task<BotLongPollClient> StartBotLongPollClient(string server, string key, int ts,
+            int version = 1, int wait = 25)
+        {
+            var client = new BotLongPollClient(this);
+            await client.StartListener(server, key, ts, version, wait);
             return client;
         }
 

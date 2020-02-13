@@ -1,8 +1,8 @@
-using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
+using Newtonsoft.Json;
+using VkApi.Wrapper.Types.Base;
 
-namespace VkLibrary.Core.Objects
+namespace VkApi.Wrapper.Types.Ads
 {
     public class AdsCategory
     {

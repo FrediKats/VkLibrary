@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using FluentAssertions;
-using VkLibrary.Core.Auth;
+using VkApi.Wrapper.Auth;
 using VkLibrary.Tests.Helpers;
 using Xunit;
 using Xunit.Abstractions;

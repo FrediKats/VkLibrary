@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace VkLibrary.Core.Services
+namespace VkApi.Wrapper.Services
 {
     /// <summary>
     /// Abstract HTTP service that can be used in VkLibrary.Core.

@@ -1,8 +1,7 @@
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
+using VkApi.Wrapper.Types.Users;
 
-namespace VkLibrary.Core.Objects
+namespace VkApi.Wrapper.Types.Groups
 {
     public class GroupsOwnerXtrBanInfo
     {

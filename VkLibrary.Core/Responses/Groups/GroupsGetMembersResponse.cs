@@ -1,11 +1,6 @@
 using Newtonsoft.Json;
-using VkLibrary.Core.Objects;
-using System;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
-using System.Threading.Tasks;
 
-namespace VkLibrary.Core.Responses
+namespace VkApi.Wrapper.Responses.Groups
 {
     public class GroupsGetMembersResponse
     {

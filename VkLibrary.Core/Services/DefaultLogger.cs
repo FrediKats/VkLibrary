@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace VkLibrary.Core.Services
+namespace VkApi.Wrapper.Services
 {
     /// <summary>
     /// Default logger that outputs info into Debug output.

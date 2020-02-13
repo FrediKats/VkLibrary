@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using FluentAssertions;
-using VkLibrary.Core;
+using VkApi.Wrapper;
 using VkLibrary.Tests.Helpers;
 using Xunit.Abstractions;
 using Xunit;
