@@ -1,5 +1,8 @@
 <a href="https://docs.microsoft.com/en-us/dotnet/standard/net-standard"><img src="https://img.shields.io/badge/.NET%20Standard-1.1-green.svg"></a> <a href="https://www.nuget.org/packages/VkApi.Wrapper/"><img src="https://img.shields.io/nuget/v/VkApi.Wrapper.svg"></a> <a href="https://www.nuget.org/packages/VkApi.Wrapper/"><img src="https://img.shields.io/nuget/dt/VkApi.Wrapper.svg"></a> <a href="https://github.com/inredikawb/VkLibrary/issues"><img src="https://img.shields.io/github/issues/Worldbeater/VkLibrary.svg"></a> <a href="https://github.com/inredikawb/VkLibrary/blob/master/LICENSE.md"><img src="https://img.shields.io/github/license/inredikawb/VkLibrary.svg"></a>
 
+## Readme на русском
+Можно посмотреть по ссылке: [RU](README_RU.md)
+
 # Installation
 The library is delivered via NuGet Package Manager:
 ```powershell
