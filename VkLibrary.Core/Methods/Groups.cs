@@ -1,11 +1,8 @@
+using VkApi.Wrapper.Objects;
+using VkApi.Wrapper.Responses;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using VkApi.Wrapper.Responses.Groups;
-using VkApi.Wrapper.Types.Addresses;
-using VkApi.Wrapper.Types.Base;
-using VkApi.Wrapper.Types.Groups;
-using VkApi.Wrapper.Types.Users;
 
 namespace VkApi.Wrapper.Methods
 {
@@ -377,7 +374,7 @@ namespace VkApi.Wrapper.Methods
         ///<summary>
         /// Returns the data needed to query a Long Poll server for events
         ///</summary>
-        public Task<GroupsLongPollServer> GetLongPollServer(int groupId)
+        public Task<GroupsLongPollServer> GetLongPollServer(int? groupId = null)
         {
             var parameters = new Dictionary<string, string>();
             if (groupId != null)
@@ -437,12 +434,12 @@ namespace VkApi.Wrapper.Methods
         ///<summary>
         /// Returns community settings.
         ///</summary>
-        public Task<GroupsGroupSettings> GetSettings(int? groupId = null)
+        public Task<GroupsGetSettingsResponse> GetSettings(int? groupId = null)
         {
             var parameters = new Dictionary<string, string>();
             if (groupId != null)
                 parameters.Add("group_id", groupId.ToApiString());
-            return _vkontakte.RequestAsync<GroupsGroupSettings>("groups.getSettings", parameters);
+            return _vkontakte.RequestAsync<GroupsGetSettingsResponse>("groups.getSettings", parameters);
         }
 
         ///<summary>

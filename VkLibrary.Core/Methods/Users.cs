@@ -1,9 +1,8 @@
+using VkApi.Wrapper.Objects;
+using VkApi.Wrapper.Responses;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using VkApi.Wrapper.Responses.Users;
-using VkApi.Wrapper.Types.Base;
-using VkApi.Wrapper.Types.Users;
 
 namespace VkApi.Wrapper.Methods
 {
@@ -67,17 +66,6 @@ namespace VkApi.Wrapper.Methods
         }
 
         ///<summary>
-        /// Returns information whether a user installed the application.
-        ///</summary>
-        public Task<int> IsAppUser(int? userId = null)
-        {
-            var parameters = new Dictionary<string, string>();
-            if (userId != null)
-                parameters.Add("user_id", userId.ToApiString());
-            return _vkontakte.RequestAsync<int>("users.isAppUser", parameters);
-        }
-
-        ///<summary>
         /// Reports (submits a complain about) a user.
         ///</summary>
         public Task<BaseOkResponse> Report(int? userId = null, String type = null, String comment = null)
@@ -95,7 +83,7 @@ namespace VkApi.Wrapper.Methods
         ///<summary>
         /// Returns a list of users matching the search criteria.
         ///</summary>
-        public Task<UsersSearchResponse> Search(String q = null, int? sort = null, int? offset = null, int? count = null, UsersFields[] fields = null, int? city = null, int? country = null, String hometown = null, int? universityCountry = null, int? university = null, int? universityYear = null, int? universityFaculty = null, int? universityChair = null, int? sex = null, int? status = null, int? ageFrom = null, int? ageTo = null, int? birthDay = null, int? birthMonth = null, int? birthYear = null, Boolean? online = null, Boolean? hasPhoto = null, int? schoolCountry = null, int? schoolCity = null, int? schoolClass = null, int? school = null, int? schoolYear = null, String religion = null, String interests = null, String company = null, String position = null, int? groupId = null, String[] fromList = null)
+        public Task<UsersSearchResponse> Search(String q = null, int? sort = null, int? offset = null, int? count = null, UsersFields[] fields = null, int? city = null, int? country = null, String hometown = null, int? universityCountry = null, int? university = null, int? universityYear = null, int? universityFaculty = null, int? universityChair = null, int? sex = null, int? status = null, int? ageFrom = null, int? ageTo = null, int? birthDay = null, int? birthMonth = null, int? birthYear = null, Boolean? online = null, Boolean? hasPhoto = null, int? schoolCountry = null, int? schoolCity = null, int? schoolClass = null, int? school = null, int? schoolYear = null, String religion = null, String company = null, String position = null, int? groupId = null, String[] fromList = null)
         {
             var parameters = new Dictionary<string, string>();
             if (q != null)
@@ -154,8 +142,6 @@ namespace VkApi.Wrapper.Methods
                 parameters.Add("school_year", schoolYear.ToApiString());
             if (religion != null)
                 parameters.Add("religion", religion.ToApiString());
-            if (interests != null)
-                parameters.Add("interests", interests.ToApiString());
             if (company != null)
                 parameters.Add("company", company.ToApiString());
             if (position != null)

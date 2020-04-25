@@ -1,12 +1,11 @@
-using System;
 using Newtonsoft.Json;
-using VkApi.Wrapper.Types.Apps;
-using VkApi.Wrapper.Types.Groups;
-using VkApi.Wrapper.Types.Photos;
-using VkApi.Wrapper.Types.Users;
-using VkApi.Wrapper.Types.Video;
+using VkApi.Wrapper.Objects;
+using System;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
+using System.Threading.Tasks;
 
-namespace VkApi.Wrapper.Responses.Notifications
+namespace VkApi.Wrapper.Responses
 {
     public class NotificationsGetResponse
     {
@@ -15,8 +14,9 @@ namespace VkApi.Wrapper.Responses.Notifications
         ///</summary>
         [JsonProperty("count")]
         public int Count { get; set; }
-        [JsonProperty("items")]
-        public object[] Items { get; set; }
+        //TODO: fix
+        //[JsonProperty("items")]
+        //public NotificationsNotificationItem[] Items { get; set; }
         [JsonProperty("profiles")]
         public UsersUser[] Profiles { get; set; }
         [JsonProperty("groups")]

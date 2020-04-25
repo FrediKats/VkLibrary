@@ -1,9 +1,8 @@
+using VkApi.Wrapper.Objects;
+using VkApi.Wrapper.Responses;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using VkApi.Wrapper.Responses.Notes;
-using VkApi.Wrapper.Types.Base;
-using VkApi.Wrapper.Types.Notes;
 
 namespace VkApi.Wrapper.Methods
 {

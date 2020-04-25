@@ -1,8 +1,8 @@
+using VkApi.Wrapper.Objects;
+using VkApi.Wrapper.Responses;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using VkApi.Wrapper.Responses.Leads;
-using VkApi.Wrapper.Types.Leads;
 
 namespace VkApi.Wrapper.Methods
 {

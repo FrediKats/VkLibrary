@@ -1,7 +1,8 @@
+using VkApi.Wrapper.Objects;
+using VkApi.Wrapper.Responses;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using VkApi.Wrapper.Types.Stats;
 
 namespace VkApi.Wrapper.Methods
 {
@@ -41,13 +42,13 @@ namespace VkApi.Wrapper.Methods
         ///<summary>
         /// Returns stats for a wall post.
         ///</summary>
-        public Task<StatsWallpostStat[]> GetPostReach(String ownerId = null, int? postId = null)
+        public Task<StatsWallpostStat[]> GetPostReach(String ownerId = null, int[] postIds = null)
         {
             var parameters = new Dictionary<string, string>();
             if (ownerId != null)
                 parameters.Add("owner_id", ownerId.ToApiString());
-            if (postId != null)
-                parameters.Add("post_id", postId.ToApiString());
+            if (postIds != null)
+                parameters.Add("post_ids", postIds.ToApiString());
             return _vkontakte.RequestAsync<StatsWallpostStat[]>("stats.getPostReach", parameters);
         }
     }

@@ -1,10 +1,11 @@
-using System;
 using Newtonsoft.Json;
-using VkApi.Wrapper.Types.Groups;
-using VkApi.Wrapper.Types.Users;
-using VkApi.Wrapper.Types.Wall;
+using VkApi.Wrapper.Objects;
+using System;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
+using System.Threading.Tasks;
 
-namespace VkApi.Wrapper.Responses.Wall
+namespace VkApi.Wrapper.Responses
 {
     public class WallGetCommentsExtendedResponse
     {

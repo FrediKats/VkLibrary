@@ -1,9 +1,8 @@
+using VkApi.Wrapper.Objects;
+using VkApi.Wrapper.Responses;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using VkApi.Wrapper.Responses.Wall;
-using VkApi.Wrapper.Types.Base;
-using VkApi.Wrapper.Types.Wall;
 
 namespace VkApi.Wrapper.Methods
 {
@@ -67,7 +66,7 @@ namespace VkApi.Wrapper.Methods
         ///<summary>
         /// Edits a post on a user wall or community wall.
         ///</summary>
-        public Task<WallEditResponse> Edit(int? ownerId = null, int? postId = null, Boolean? friendsOnly = null, String message = null, String[] attachments = null, String services = null, Boolean? signed = null, int? publishDate = null, double? lat = null, double? _long = null, int? placeId = null, Boolean? markAsAds = null, Boolean? closeComments = null, int? posterBkgId = null, int? posterBkgOwnerId = null, String posterBkgAccessHash = null)
+        public Task<WallEditResponse> Edit(int? ownerId = null, int? postId = null, Boolean? friendsOnly = null, String message = null, String[] attachments = null, String services = null, Boolean? signed = null, int? publishDate = null, double? lat = null, double? @long = null, int? placeId = null, Boolean? markAsAds = null, Boolean? closeComments = null, int? posterBkgId = null, int? posterBkgOwnerId = null, String posterBkgAccessHash = null, String copyright = null)
         {
             var parameters = new Dictionary<string, string>();
             if (ownerId != null)
@@ -88,8 +87,8 @@ namespace VkApi.Wrapper.Methods
                 parameters.Add("publish_date", publishDate.ToApiString());
             if (lat != null)
                 parameters.Add("lat", lat.ToApiString());
-            if (_long != null)
-                parameters.Add("long", _long.ToApiString());
+            if (@long != null)
+                parameters.Add("long", @long.ToApiString());
             if (placeId != null)
                 parameters.Add("place_id", placeId.ToApiString());
             if (markAsAds != null)
@@ -102,13 +101,15 @@ namespace VkApi.Wrapper.Methods
                 parameters.Add("poster_bkg_owner_id", posterBkgOwnerId.ToApiString());
             if (posterBkgAccessHash != null)
                 parameters.Add("poster_bkg_access_hash", posterBkgAccessHash.ToApiString());
+            if (copyright != null)
+                parameters.Add("copyright", copyright.ToApiString());
             return _vkontakte.RequestAsync<WallEditResponse>("wall.edit", parameters);
         }
 
         ///<summary>
         /// Allows to edit hidden post.
         ///</summary>
-        public Task<BaseOkResponse> EditAdsStealth(int? ownerId = null, int? postId = null, String message = null, String[] attachments = null, Boolean? signed = null, double? lat = null, double? _long = null, int? placeId = null, String linkButton = null, String linkTitle = null, String linkImage = null, String linkVideo = null)
+        public Task<BaseOkResponse> EditAdsStealth(int? ownerId = null, int? postId = null, String message = null, String[] attachments = null, Boolean? signed = null, double? lat = null, double? @long = null, int? placeId = null, String linkButton = null, String linkTitle = null, String linkImage = null, String linkVideo = null)
         {
             var parameters = new Dictionary<string, string>();
             if (ownerId != null)
@@ -123,8 +124,8 @@ namespace VkApi.Wrapper.Methods
                 parameters.Add("signed", signed.ToApiString());
             if (lat != null)
                 parameters.Add("lat", lat.ToApiString());
-            if (_long != null)
-                parameters.Add("long", _long.ToApiString());
+            if (@long != null)
+                parameters.Add("long", @long.ToApiString());
             if (placeId != null)
                 parameters.Add("place_id", placeId.ToApiString());
             if (linkButton != null)
@@ -196,6 +197,23 @@ namespace VkApi.Wrapper.Methods
         }
 
         ///<summary>
+        /// Returns a comment on a post on a user wall or community wall.
+        ///</summary>
+        public Task<WallGetCommentResponse> GetComment(int? ownerId = null, int? commentId = null, Boolean? extended = null, BaseUserGroupFields[] fields = null)
+        {
+            var parameters = new Dictionary<string, string>();
+            if (ownerId != null)
+                parameters.Add("owner_id", ownerId.ToApiString());
+            if (commentId != null)
+                parameters.Add("comment_id", commentId.ToApiString());
+            if (extended != null)
+                parameters.Add("extended", extended.ToApiString());
+            if (fields != null)
+                parameters.Add("fields", fields.ToApiString());
+            return _vkontakte.RequestAsync<WallGetCommentResponse>("wall.getComment", parameters);
+        }
+
+        ///<summary>
         /// Returns a list of comments on a post on a user wall or community wall.
         ///</summary>
         public Task<WallGetCommentsResponse> GetComments(int? ownerId = null, int? postId = null, Boolean? needLikes = null, int? startCommentId = null, int? offset = null, int? count = null, String sort = null, int? previewLength = null, Boolean? extended = null, BaseUserGroupFields[] fields = null, int? commentId = null, int? threadItemsCount = null)
@@ -261,7 +279,7 @@ namespace VkApi.Wrapper.Methods
         ///<summary>
         /// Adds a new post on a user wall or community wall. Can also be used to publish suggested or scheduled posts.
         ///</summary>
-        public Task<WallPostResponse> Post(int? ownerId = null, Boolean? friendsOnly = null, Boolean? fromGroup = null, String message = null, String[] attachments = null, String services = null, Boolean? signed = null, int? publishDate = null, double? lat = null, double? _long = null, int? placeId = null, int? postId = null, String guid = null, Boolean? markAsAds = null, Boolean? closeComments = null, Boolean? muteNotifications = null)
+        public Task<WallPostResponse> Post(int? ownerId = null, Boolean? friendsOnly = null, Boolean? fromGroup = null, String message = null, String[] attachments = null, String services = null, Boolean? signed = null, int? publishDate = null, double? lat = null, double? @long = null, int? placeId = null, int? postId = null, String guid = null, Boolean? markAsAds = null, Boolean? closeComments = null, Boolean? muteNotifications = null, String copyright = null)
         {
             var parameters = new Dictionary<string, string>();
             if (ownerId != null)
@@ -282,8 +300,8 @@ namespace VkApi.Wrapper.Methods
                 parameters.Add("publish_date", publishDate.ToApiString());
             if (lat != null)
                 parameters.Add("lat", lat.ToApiString());
-            if (_long != null)
-                parameters.Add("long", _long.ToApiString());
+            if (@long != null)
+                parameters.Add("long", @long.ToApiString());
             if (placeId != null)
                 parameters.Add("place_id", placeId.ToApiString());
             if (postId != null)
@@ -296,13 +314,15 @@ namespace VkApi.Wrapper.Methods
                 parameters.Add("close_comments", closeComments.ToApiString());
             if (muteNotifications != null)
                 parameters.Add("mute_notifications", muteNotifications.ToApiString());
+            if (copyright != null)
+                parameters.Add("copyright", copyright.ToApiString());
             return _vkontakte.RequestAsync<WallPostResponse>("wall.post", parameters);
         }
 
         ///<summary>
         /// Allows to create hidden post which will not be shown on the community's wall and can be used for creating an ad with type "Community post".
         ///</summary>
-        public Task<WallPostAdsStealthResponse> PostAdsStealth(int? ownerId = null, String message = null, String[] attachments = null, Boolean? signed = null, double? lat = null, double? _long = null, int? placeId = null, String guid = null, String linkButton = null, String linkTitle = null, String linkImage = null, String linkVideo = null)
+        public Task<WallPostAdsStealthResponse> PostAdsStealth(int? ownerId = null, String message = null, String[] attachments = null, Boolean? signed = null, double? lat = null, double? @long = null, int? placeId = null, String guid = null, String linkButton = null, String linkTitle = null, String linkImage = null, String linkVideo = null)
         {
             var parameters = new Dictionary<string, string>();
             if (ownerId != null)
@@ -315,8 +335,8 @@ namespace VkApi.Wrapper.Methods
                 parameters.Add("signed", signed.ToApiString());
             if (lat != null)
                 parameters.Add("lat", lat.ToApiString());
-            if (_long != null)
-                parameters.Add("long", _long.ToApiString());
+            if (@long != null)
+                parameters.Add("long", @long.ToApiString());
             if (placeId != null)
                 parameters.Add("place_id", placeId.ToApiString());
             if (guid != null)
@@ -365,11 +385,11 @@ namespace VkApi.Wrapper.Methods
         ///<summary>
         /// Reposts (copies) an object to a user wall or community wall.
         ///</summary>
-        public Task<WallRepostResponse> Repost(String _object = null, String message = null, int? groupId = null, Boolean? markAsAds = null, Boolean? muteNotifications = null)
+        public Task<WallRepostResponse> Repost(String @object = null, String message = null, int? groupId = null, Boolean? markAsAds = null, Boolean? muteNotifications = null)
         {
             var parameters = new Dictionary<string, string>();
-            if (_object != null)
-                parameters.Add("object", _object.ToApiString());
+            if (@object != null)
+                parameters.Add("object", @object.ToApiString());
             if (message != null)
                 parameters.Add("message", message.ToApiString());
             if (groupId != null)

@@ -1,10 +1,8 @@
+using VkApi.Wrapper.Objects;
+using VkApi.Wrapper.Responses;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using VkApi.Wrapper.Responses.Photos;
-using VkApi.Wrapper.Types.Base;
-using VkApi.Wrapper.Types.Photos;
-using VkApi.Wrapper.Types.Users;
 
 namespace VkApi.Wrapper.Methods
 {
@@ -804,15 +802,15 @@ namespace VkApi.Wrapper.Methods
         ///<summary>
         /// Returns a list of photos.
         ///</summary>
-        public Task<PhotosSearchResponse> Search(String q = null, double? lat = null, double? _long = null, int? startTime = null, int? endTime = null, int? sort = null, int? offset = null, int? count = null, int? radius = null)
+        public Task<PhotosSearchResponse> Search(String q = null, double? lat = null, double? @long = null, int? startTime = null, int? endTime = null, int? sort = null, int? offset = null, int? count = null, int? radius = null)
         {
             var parameters = new Dictionary<string, string>();
             if (q != null)
                 parameters.Add("q", q.ToApiString());
             if (lat != null)
                 parameters.Add("lat", lat.ToApiString());
-            if (_long != null)
-                parameters.Add("long", _long.ToApiString());
+            if (@long != null)
+                parameters.Add("long", @long.ToApiString());
             if (startTime != null)
                 parameters.Add("start_time", startTime.ToApiString());
             if (endTime != null)

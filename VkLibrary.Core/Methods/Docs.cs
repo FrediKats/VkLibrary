@@ -1,9 +1,8 @@
+using VkApi.Wrapper.Objects;
+using VkApi.Wrapper.Responses;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using VkApi.Wrapper.Responses.Docs;
-using VkApi.Wrapper.Types.Base;
-using VkApi.Wrapper.Types.Docs;
 
 namespace VkApi.Wrapper.Methods
 {
@@ -61,7 +60,7 @@ namespace VkApi.Wrapper.Methods
         ///<summary>
         /// Returns detailed information about user or community documents.
         ///</summary>
-        public Task<DocsGetResponse> Get(int? count = null, int? offset = null, int? type = null, int? ownerId = null)
+        public Task<DocsGetResponse> Get(int? count = null, int? offset = null, int? type = null, int? ownerId = null, Boolean? returnTags = null)
         {
             var parameters = new Dictionary<string, string>();
             if (count != null)
@@ -72,17 +71,21 @@ namespace VkApi.Wrapper.Methods
                 parameters.Add("type", type.ToApiString());
             if (ownerId != null)
                 parameters.Add("owner_id", ownerId.ToApiString());
+            if (returnTags != null)
+                parameters.Add("return_tags", returnTags.ToApiString());
             return _vkontakte.RequestAsync<DocsGetResponse>("docs.get", parameters);
         }
 
         ///<summary>
         /// Returns information about documents by their IDs.
         ///</summary>
-        public Task<DocsDoc[]> GetById(String[] docs = null)
+        public Task<DocsDoc[]> GetById(String[] docs = null, Boolean? returnTags = null)
         {
             var parameters = new Dictionary<string, string>();
             if (docs != null)
                 parameters.Add("docs", docs.ToApiString());
+            if (returnTags != null)
+                parameters.Add("return_tags", returnTags.ToApiString());
             return _vkontakte.RequestAsync<DocsDoc[]>("docs.getById", parameters);
         }
 
@@ -135,7 +138,7 @@ namespace VkApi.Wrapper.Methods
         ///<summary>
         /// Saves a document after [vk.com/dev/upload_files_2|uploading it to a server].
         ///</summary>
-        public Task<DocsSaveResponse> Save(String file = null, String title = null, String tags = null)
+        public Task<DocsSaveResponse> Save(String file = null, String title = null, String tags = null, Boolean? returnTags = null)
         {
             var parameters = new Dictionary<string, string>();
             if (file != null)
@@ -144,13 +147,15 @@ namespace VkApi.Wrapper.Methods
                 parameters.Add("title", title.ToApiString());
             if (tags != null)
                 parameters.Add("tags", tags.ToApiString());
+            if (returnTags != null)
+                parameters.Add("return_tags", returnTags.ToApiString());
             return _vkontakte.RequestAsync<DocsSaveResponse>("docs.save", parameters);
         }
 
         ///<summary>
         /// Returns a list of documents matching the search criteria.
         ///</summary>
-        public Task<DocsSearchResponse> Search(String q = null, Boolean? searchOwn = null, int? count = null, int? offset = null)
+        public Task<DocsSearchResponse> Search(String q = null, Boolean? searchOwn = null, int? count = null, int? offset = null, Boolean? returnTags = null)
         {
             var parameters = new Dictionary<string, string>();
             if (q != null)
@@ -161,6 +166,8 @@ namespace VkApi.Wrapper.Methods
                 parameters.Add("count", count.ToApiString());
             if (offset != null)
                 parameters.Add("offset", offset.ToApiString());
+            if (returnTags != null)
+                parameters.Add("return_tags", returnTags.ToApiString());
             return _vkontakte.RequestAsync<DocsSearchResponse>("docs.search", parameters);
         }
     }

@@ -1,9 +1,8 @@
+using VkApi.Wrapper.Objects;
+using VkApi.Wrapper.Responses;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using VkApi.Wrapper.Responses.Account;
-using VkApi.Wrapper.Types.Account;
-using VkApi.Wrapper.Types.Base;
 
 namespace VkApi.Wrapper.Methods
 {
@@ -43,17 +42,16 @@ namespace VkApi.Wrapper.Methods
             return _vkontakte.RequestAsync<AccountGetActiveOffersResponse>("account.getActiveOffers", parameters);
         }
 
-        //TODO: fix
-        /////<summary>
-        ///// Gets settings of the user in this application.
-        /////</summary>
-        //public Task<AccountGetAppPermissionsResponse> GetAppPermissions(int? userId = null)
-        //{
-        //    var parameters = new Dictionary<string, string>();
-        //    if (userId != null)
-        //        parameters.Add("user_id", userId.ToApiString());
-        //    return _vkontakte.RequestAsync<AccountGetAppPermissionsResponse>("account.getAppPermissions", parameters);
-        //}
+        ///<summary>
+        /// Gets settings of the user in this application.
+        ///</summary>
+        public Task<int> GetAppPermissions(int? userId = null)
+        {
+            var parameters = new Dictionary<string, string>();
+            if (userId != null)
+                parameters.Add("user_id", userId.ToApiString());
+            return _vkontakte.RequestAsync<int>("account.getAppPermissions", parameters);
+        }
 
         ///<summary>
         /// Returns a user's blacklist.

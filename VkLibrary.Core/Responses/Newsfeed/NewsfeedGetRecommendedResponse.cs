@@ -1,10 +1,11 @@
-using System;
 using Newtonsoft.Json;
-using VkApi.Wrapper.Types.Groups;
-using VkApi.Wrapper.Types.Newsfeed;
-using VkApi.Wrapper.Types.Users;
+using VkApi.Wrapper.Objects;
+using System;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
+using System.Threading.Tasks;
 
-namespace VkApi.Wrapper.Responses.Newsfeed
+namespace VkApi.Wrapper.Responses
 {
     public class NewsfeedGetRecommendedResponse
     {

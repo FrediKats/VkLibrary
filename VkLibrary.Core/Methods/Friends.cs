@@ -1,10 +1,8 @@
+using VkApi.Wrapper.Objects;
+using VkApi.Wrapper.Responses;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using VkApi.Wrapper.Responses.Friends;
-using VkApi.Wrapper.Types.Base;
-using VkApi.Wrapper.Types.Friends;
-using VkApi.Wrapper.Types.Users;
 
 namespace VkApi.Wrapper.Methods
 {
@@ -121,7 +119,7 @@ namespace VkApi.Wrapper.Methods
         ///<summary>
         /// Returns a list of user IDs or detailed information about a user's friends.
         ///</summary>
-        public Task<FriendsGetResponse> Get(int? userId = null, String order = null, int? listId = null, int? count = null, int? offset = null, UsersFields[] fields = null, String nameCase = null, String _ref = null)
+        public Task<FriendsGetResponse> Get(int? userId = null, String order = null, int? listId = null, int? count = null, int? offset = null, UsersFields[] fields = null, String nameCase = null, String @ref = null)
         {
             var parameters = new Dictionary<string, string>();
             if (userId != null)
@@ -138,8 +136,8 @@ namespace VkApi.Wrapper.Methods
                 parameters.Add("fields", fields.ToApiString());
             if (nameCase != null)
                 parameters.Add("name_case", nameCase.ToApiString());
-            if (_ref != null)
-                parameters.Add("ref", _ref.ToApiString());
+            if (@ref != null)
+                parameters.Add("ref", @ref.ToApiString());
             return _vkontakte.RequestAsync<FriendsGetResponse>("friends.get", parameters);
         }
 
@@ -234,7 +232,7 @@ namespace VkApi.Wrapper.Methods
         ///<summary>
         /// Returns information about the current user's incoming and outgoing friend requests.
         ///</summary>
-        public Task<FriendsGetRequestsResponse> GetRequests(int? offset = null, int? count = null, Boolean? extended = null, Boolean? needMutual = null, Boolean? _out = null, int? sort = null, Boolean? needViewed = null, Boolean? suggested = null, String _ref = null, UsersFields[] fields = null)
+        public Task<FriendsGetRequestsResponse> GetRequests(int? offset = null, int? count = null, Boolean? extended = null, Boolean? needMutual = null, Boolean? @out = null, int? sort = null, Boolean? needViewed = null, Boolean? suggested = null, String @ref = null, UsersFields[] fields = null)
         {
             var parameters = new Dictionary<string, string>();
             if (offset != null)
@@ -245,16 +243,16 @@ namespace VkApi.Wrapper.Methods
                 parameters.Add("extended", extended.ToApiString());
             if (needMutual != null)
                 parameters.Add("need_mutual", needMutual.ToApiString());
-            if (_out != null)
-                parameters.Add("out", _out.ToApiString());
+            if (@out != null)
+                parameters.Add("out", @out.ToApiString());
             if (sort != null)
                 parameters.Add("sort", sort.ToApiString());
             if (needViewed != null)
                 parameters.Add("need_viewed", needViewed.ToApiString());
             if (suggested != null)
                 parameters.Add("suggested", suggested.ToApiString());
-            if (_ref != null)
-                parameters.Add("ref", _ref.ToApiString());
+            if (@ref != null)
+                parameters.Add("ref", @ref.ToApiString());
             if (fields != null)
                 parameters.Add("fields", fields.ToApiString());
             return _vkontakte.RequestAsync<FriendsGetRequestsResponse>("friends.getRequests", parameters);
