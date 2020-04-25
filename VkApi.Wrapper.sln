@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29319.158
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VkApi.Wrapper", "VkLibrary.Core\VkApi.Wrapper.csproj", "{C4931882-0EF5-41B8-8ABB-795EED926394}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VkApi.Wrapper", "VkApi.Wrapper\VkApi.Wrapper.csproj", "{C4931882-0EF5-41B8-8ABB-795EED926394}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VkLibrary.Codegen", "VkLibrary.Codegen\VkLibrary.Codegen.csproj", "{F14D6AA9-E4E1-4D77-A554-3003ABC7FD43}"
 EndProject
