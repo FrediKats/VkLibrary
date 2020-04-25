@@ -46,8 +46,8 @@ namespace VkLibrary.Codegen.Types.TitleCase
 
             if (_isLower && keywords.Contains(_value.ToLower()))
             {
-                Log.Instance.Message($"Replace variable name: [{_value}] => [_{_value}]");
-                return $"_{_value}";
+                Log.Instance.Message($"Replace variable name: [{_value}] => [@{_value}]");
+                return $"@{_value}";
             }
 
             //TODO: hack
