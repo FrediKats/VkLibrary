@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using VkApi.Wrapper.Types.Base;
+using VkApi.Wrapper.Objects;
 using VkLibrary.Tests.Helpers;
 using Xunit;
 using Xunit.Abstractions;

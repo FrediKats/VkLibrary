@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using VkApi.Wrapper.Types.Board;
+using VkApi.Wrapper.Objects;
 
 namespace VkApi.Wrapper.LongPolling.Bot.Responses
 {

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -9,9 +9,9 @@ namespace VkLibrary.Codegen.Generators
 {
     public class CommonGenerator
     {
-        public const string ResponseNamespace = "VkLibrary.Core.Responses";
-        public const string ObjectNamespace = "VkLibrary.Core.Objects";
-        public const string MethodNamespace = "VkLibrary.Core.Methods";
+        public const string ResponseNamespace = "VkApi.Wrapper.Responses";
+        public const string ObjectNamespace = "VkApi.Wrapper.Objects";
+        public const string MethodNamespace = "VkApi.Wrapper.Methods";
 
 
         public static CompilationUnitSyntax CreateWithUsingAndNamespace(string namespaceIdentifier,
