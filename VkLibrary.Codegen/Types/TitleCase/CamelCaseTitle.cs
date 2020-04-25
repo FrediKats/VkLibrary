@@ -50,7 +50,6 @@ namespace VkLibrary.Codegen.Types.TitleCase
                 return $"@{_value}";
             }
 
-            //TODO: hack
             return _value;
         }
 
