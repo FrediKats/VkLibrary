@@ -22,6 +22,7 @@ namespace VkLibrary.Codegen
             _objectSchemaModel = JsonConvert
                 .DeserializeObject<JsonSchemaModel>(File.ReadAllText("Schemes/objects.json"))
                 .Definitions
+                .Where(pair => FilterUnsupportedObject(pair.Key))
                 .Select(pair => JsonSchemaItem.Create(pair.Key, pair.Value))
                 .ToList();
 
@@ -29,15 +30,7 @@ namespace VkLibrary.Codegen
                 .DeserializeObject<JsonSchemaModel>(File.ReadAllText("Schemes/responses.json"))
                 .Definitions;
 
-            // known problem: bug with parsing
-            Log.Instance.Message("Skip type parse for: messages_delete_response");
-            Log.Instance.Message("Skip type parse for: newsfeed_getSuggestedSources_response");
-            Log.Instance.Message("Skip type parse for: account_getAppPermissions_response is equals to int");
-            responseDefinition.Remove("messages_delete_response");
-            responseDefinition.Remove("newsfeed_getSuggestedSources_response");
-            responseDefinition.Remove("account_getAppPermissions_response");
-
-            _responseSchemaModel = responseDefinition
+            _responseSchemaModel = FilterUnsupportedResponses(responseDefinition)
                 .Select(pair => JsonSchemaItem.Create(pair.Key, pair.Value))
                 .ToList();
 
@@ -115,21 +108,27 @@ namespace VkLibrary.Codegen
                 .ToList();
         }
 
+        //TODO: Here is some unsupported types.
+        private bool FilterUnsupportedObject(string key)
+        {
+            if (key == "notifications_notification_item")
+                return false;
+
+            return true;
+        }
+
         private bool FilterUnsupportedMethods(MethodData methodData)
         {
-            bool result = methodData.Name switch
-            {
-                // known problem: bug with parsing
-                "storage.get" => false,
-                "messages.delete" => false,
-                "newsfeed.getSuggestedSources" => false,
-                _ => true
-            };
+            return true;
+        }
 
-            if (!result)
-                Log.Instance.Message($"Skip type parse for: {methodData.Name}");
-
-            return result;
+        private Dictionary<string, JObject> FilterUnsupportedResponses(Dictionary<string, JObject> responses)
+        {
+            Log.Instance.Message("Skip type parse for: messages_delete_response");
+            Log.Instance.Message("Skip type parse for: newsfeed_getSuggestedSources_response");
+            responses.Remove("messages_delete_response");
+            responses.Remove("newsfeed_getSuggestedSources_response");
+            return responses;
         }
     }
 }
