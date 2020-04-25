@@ -9,9 +9,9 @@ namespace VkLibrary.Codegen.Generators
 {
     public class CommonGenerator
     {
-        public const string ResponseNamespace = "VkLibrary.Core.Responses";
-        public const string ObjectNamespace = "VkLibrary.Core.Objects";
-        public const string MethodNamespace = "VkLibrary.Core.Methods";
+        public const string ResponseNamespace = "VkApi.Wrapper.Responses";
+        public const string ObjectNamespace = "VkApi.Wrapper.Objects";
+        public const string MethodNamespace = "VkApi.Wrapper.Methods";
 
 
         public static CompilationUnitSyntax CreateWithUsingAndNamespace(string namespaceIdentifier,
@@ -90,8 +90,8 @@ namespace VkLibrary.Codegen.Generators
                                                     TokenList(
                                                         XmlTextNewLine(
                                                             TriviaList(),
-                                                            "\n",
-                                                            "\n",
+                                                            Environment.NewLine,
+                                                            Environment.NewLine,
                                                             TriviaList()),
                                                         XmlTextLiteral(
                                                             TriviaList(
@@ -101,8 +101,8 @@ namespace VkLibrary.Codegen.Generators
                                                             TriviaList()),
                                                         XmlTextNewLine(
                                                             TriviaList(),
-                                                            "\n",
-                                                            "\n",
+                                                            Environment.NewLine,
+                                                            Environment.NewLine,
                                                             TriviaList())))))
                                     .WithStartTag(
                                         XmlElementStartTag(
@@ -129,8 +129,8 @@ namespace VkLibrary.Codegen.Generators
                                         TokenList(
                                             XmlTextNewLine(
                                                 TriviaList(),
-                                                "\n",
-                                                "\n",
+                                                Environment.NewLine,
+                                                Environment.NewLine,
                                                 TriviaList())))
                             }))));
         }
