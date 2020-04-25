@@ -4,7 +4,7 @@
     <TargetFramework>netstandard1.1</TargetFramework>
     <ApplicationIcon></ApplicationIcon>
     <RepositoryUrl>https://github.com/inredikawb/VkLibrary</RepositoryUrl>
-    <Version>1.1.0</Version>
+    <Version>1.2.0</Version>
     <Authors>Artyom G, Alexey I and Contributors</Authors>
     <Company>VkLibrary.Core</Company>
     <PackageLicenseUrl>https://github.com/worldbeater/VkLibrary/blob/master/LICENSE.md</PackageLicenseUrl>
@@ -13,8 +13,8 @@
     <PackageTags>vk vk.com vkontakte vkontakte.ru api sdk library</PackageTags>
     <Copyright>Copyright © 2020</Copyright>
     <PackageReleaseNotes>Add support for Bot long poll</PackageReleaseNotes>
-    <AssemblyVersion>1.1.0.0</AssemblyVersion>
-    <FileVersion>1.1.0.0</FileVersion>
+    <AssemblyVersion>1.2.0.0</AssemblyVersion>
+    <FileVersion>1.2.0.0</FileVersion>
     <AssemblyName>VkApi.Wrapper</AssemblyName>
     <RootNamespace>VkApi.Wrapper</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
