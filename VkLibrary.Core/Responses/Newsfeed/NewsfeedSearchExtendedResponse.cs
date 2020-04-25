@@ -1,10 +1,11 @@
-using System;
 using Newtonsoft.Json;
-using VkApi.Wrapper.Types.Groups;
-using VkApi.Wrapper.Types.Users;
-using VkApi.Wrapper.Types.Wall;
+using VkApi.Wrapper.Objects;
+using System;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
+using System.Threading.Tasks;
 
-namespace VkApi.Wrapper.Responses.Newsfeed
+namespace VkApi.Wrapper.Responses
 {
     public class NewsfeedSearchExtendedResponse
     {
@@ -14,6 +15,10 @@ namespace VkApi.Wrapper.Responses.Newsfeed
         public UsersUserFull[] Profiles { get; set; }
         [JsonProperty("groups")]
         public GroupsGroupFull[] Groups { get; set; }
+        [JsonProperty("suggested_queries")]
+        public String[] SuggestedQueries { get; set; }
+        [JsonProperty("next_from")]
+        public String NextFrom { get; set; }
 
         ///<summary>
         /// Filtered number
@@ -26,7 +31,5 @@ namespace VkApi.Wrapper.Responses.Newsfeed
         ///</summary>
         [JsonProperty("total_count")]
         public int TotalCount { get; set; }
-        [JsonProperty("next_from")]
-        public String NextFrom { get; set; }
     }
 }

@@ -1,6 +1,8 @@
+using VkApi.Wrapper.Objects;
+using VkApi.Wrapper.Responses;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using VkApi.Wrapper.Responses.Streaming;
 
 namespace VkApi.Wrapper.Methods
 {

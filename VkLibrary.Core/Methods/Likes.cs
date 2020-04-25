@@ -1,7 +1,8 @@
+using VkApi.Wrapper.Objects;
+using VkApi.Wrapper.Responses;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using VkApi.Wrapper.Responses.Likes;
 
 namespace VkApi.Wrapper.Methods
 {
@@ -31,7 +32,7 @@ namespace VkApi.Wrapper.Methods
         ///<summary>
         /// Deletes the specified object from the 'Likes' list of the current user.
         ///</summary>
-        public Task<LikesDeleteResponse> Delete(String type = null, int? ownerId = null, int? itemId = null)
+        public Task<LikesDeleteResponse> Delete(String type = null, int? ownerId = null, int? itemId = null, String accessKey = null)
         {
             var parameters = new Dictionary<string, string>();
             if (type != null)
@@ -40,6 +41,8 @@ namespace VkApi.Wrapper.Methods
                 parameters.Add("owner_id", ownerId.ToApiString());
             if (itemId != null)
                 parameters.Add("item_id", itemId.ToApiString());
+            if (accessKey != null)
+                parameters.Add("access_key", accessKey.ToApiString());
             return _vkontakte.RequestAsync<LikesDeleteResponse>("likes.delete", parameters);
         }
 

@@ -1,10 +1,8 @@
+using VkApi.Wrapper.Objects;
+using VkApi.Wrapper.Responses;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using VkApi.Wrapper.Responses.Messages;
-using VkApi.Wrapper.Types.Base;
-using VkApi.Wrapper.Types.Messages;
-using VkApi.Wrapper.Types.Users;
 
 namespace VkApi.Wrapper.Methods
 {
@@ -17,13 +15,15 @@ namespace VkApi.Wrapper.Methods
         ///<summary>
         /// Adds a new user to a chat.
         ///</summary>
-        public Task<BaseOkResponse> AddChatUser(int? chatId = null, int? userId = null)
+        public Task<BaseOkResponse> AddChatUser(int? chatId = null, int? userId = null, int? visibleMessagesCount = null)
         {
             var parameters = new Dictionary<string, string>();
             if (chatId != null)
                 parameters.Add("chat_id", chatId.ToApiString());
             if (userId != null)
                 parameters.Add("user_id", userId.ToApiString());
+            if (visibleMessagesCount != null)
+                parameters.Add("visible_messages_count", visibleMessagesCount.ToApiString());
             return _vkontakte.RequestAsync<BaseOkResponse>("messages.addChatUser", parameters);
         }
 
@@ -43,15 +43,35 @@ namespace VkApi.Wrapper.Methods
         ///<summary>
         /// Creates a chat with several participants.
         ///</summary>
-        public Task<int> CreateChat(int[] userIds = null, String title = null)
+        public Task<int> CreateChat(int[] userIds = null, String title = null, int? groupId = null)
         {
             var parameters = new Dictionary<string, string>();
             if (userIds != null)
                 parameters.Add("user_ids", userIds.ToApiString());
             if (title != null)
                 parameters.Add("title", title.ToApiString());
+            if (groupId != null)
+                parameters.Add("group_id", groupId.ToApiString());
             return _vkontakte.RequestAsync<int>("messages.createChat", parameters);
         }
+
+        //TODO: fix
+        /////<summary>
+        ///// Deletes one or more messages.
+        /////</summary>
+        //public Task<MessagesDeleteResponse> Delete(int[] messageIds = null, Boolean? spam = null, int? groupId = null, Boolean? deleteForAll = null)
+        //{
+        //    var parameters = new Dictionary<string, string>();
+        //    if (messageIds != null)
+        //        parameters.Add("message_ids", messageIds.ToApiString());
+        //    if (spam != null)
+        //        parameters.Add("spam", spam.ToApiString());
+        //    if (groupId != null)
+        //        parameters.Add("group_id", groupId.ToApiString());
+        //    if (deleteForAll != null)
+        //        parameters.Add("delete_for_all", deleteForAll.ToApiString());
+        //    return _vkontakte.RequestAsync<MessagesDeleteResponse>("messages.delete", parameters);
+        //}
 
         ///<summary>
         /// Deletes a chat's cover picture.
@@ -95,19 +115,17 @@ namespace VkApi.Wrapper.Methods
         ///<summary>
         /// Edits the message.
         ///</summary>
-        public Task<int> Edit(int? peerId = null, String message = null, int? messageId = null, double? lat = null, double? _long = null, String attachment = null, Boolean? keepForwardMessages = null, Boolean? keepSnippets = null, int? groupId = null, Boolean? dontParseLinks = null)
+        public Task<int> Edit(int? peerId = null, String message = null, double? lat = null, double? @long = null, String attachment = null, Boolean? keepForwardMessages = null, Boolean? keepSnippets = null, int? groupId = null, Boolean? dontParseLinks = null, int? messageId = null)
         {
             var parameters = new Dictionary<string, string>();
             if (peerId != null)
                 parameters.Add("peer_id", peerId.ToApiString());
             if (message != null)
                 parameters.Add("message", message.ToApiString());
-            if (messageId != null)
-                parameters.Add("message_id", messageId.ToApiString());
             if (lat != null)
                 parameters.Add("lat", lat.ToApiString());
-            if (_long != null)
-                parameters.Add("long", _long.ToApiString());
+            if (@long != null)
+                parameters.Add("long", @long.ToApiString());
             if (attachment != null)
                 parameters.Add("attachment", attachment.ToApiString());
             if (keepForwardMessages != null)
@@ -118,6 +136,8 @@ namespace VkApi.Wrapper.Methods
                 parameters.Add("group_id", groupId.ToApiString());
             if (dontParseLinks != null)
                 parameters.Add("dont_parse_links", dontParseLinks.ToApiString());
+            if (messageId != null)
+                parameters.Add("message_id", messageId.ToApiString());
             return _vkontakte.RequestAsync<int>("messages.edit", parameters);
         }
 
@@ -503,7 +523,7 @@ namespace VkApi.Wrapper.Methods
         ///<summary>
         /// Sends a message.
         ///</summary>
-        public Task<int> Send(int? userId = null, int? randomId = null, int? peerId = null, String domain = null, int? chatId = null, int[] userIds = null, String message = null, double? lat = null, double? _long = null, String attachment = null, int? replyTo = null, int[] forwardMessages = null, String forward = null, int? stickerId = null, int? groupId = null, String keyboard = null, String payload = null, Boolean? dontParseLinks = null, Boolean? disableMentions = null)
+        public Task<int> Send(int? userId = null, int? randomId = null, int? peerId = null, String domain = null, int? chatId = null, int[] userIds = null, String message = null, double? lat = null, double? @long = null, String attachment = null, int? replyTo = null, int[] forwardMessages = null, int? stickerId = null, int? groupId = null, String keyboard = null, String payload = null, Boolean? dontParseLinks = null, Boolean? disableMentions = null, String intent = null)
         {
             var parameters = new Dictionary<string, string>();
             if (userId != null)
@@ -522,16 +542,14 @@ namespace VkApi.Wrapper.Methods
                 parameters.Add("message", message.ToApiString());
             if (lat != null)
                 parameters.Add("lat", lat.ToApiString());
-            if (_long != null)
-                parameters.Add("long", _long.ToApiString());
+            if (@long != null)
+                parameters.Add("long", @long.ToApiString());
             if (attachment != null)
                 parameters.Add("attachment", attachment.ToApiString());
             if (replyTo != null)
                 parameters.Add("reply_to", replyTo.ToApiString());
             if (forwardMessages != null)
                 parameters.Add("forward_messages", forwardMessages.ToApiString());
-            if (forward != null)
-                parameters.Add("forward", forward.ToApiString());
             if (stickerId != null)
                 parameters.Add("sticker_id", stickerId.ToApiString());
             if (groupId != null)
@@ -544,6 +562,8 @@ namespace VkApi.Wrapper.Methods
                 parameters.Add("dont_parse_links", dontParseLinks.ToApiString());
             if (disableMentions != null)
                 parameters.Add("disable_mentions", disableMentions.ToApiString());
+            if (intent != null)
+                parameters.Add("intent", intent.ToApiString());
             return _vkontakte.RequestAsync<int>("messages.send", parameters);
         }
 

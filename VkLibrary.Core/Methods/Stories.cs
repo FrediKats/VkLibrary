@@ -1,9 +1,8 @@
+using VkApi.Wrapper.Objects;
+using VkApi.Wrapper.Responses;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using VkApi.Wrapper.Responses.Stories;
-using VkApi.Wrapper.Types.Base;
-using VkApi.Wrapper.Types.Stories;
 
 namespace VkApi.Wrapper.Methods
 {
@@ -40,14 +39,16 @@ namespace VkApi.Wrapper.Methods
         ///<summary>
         /// Returns stories available for current user.
         ///</summary>
-        public Task<StoriesGetResponse> Get(int? ownerId = null, Boolean? extended = null)
+        public Task<StoriesGetV5113Response> Get(int? ownerId = null, Boolean? extended = null, BaseUserGroupFields[] fields = null)
         {
             var parameters = new Dictionary<string, string>();
             if (ownerId != null)
                 parameters.Add("owner_id", ownerId.ToApiString());
             if (extended != null)
                 parameters.Add("extended", extended.ToApiString());
-            return _vkontakte.RequestAsync<StoriesGetResponse>("stories.get", parameters);
+            if (fields != null)
+                parameters.Add("fields", fields.ToApiString());
+            return _vkontakte.RequestAsync<StoriesGetV5113Response>("stories.get", parameters);
         }
 
         ///<summary>
@@ -81,7 +82,7 @@ namespace VkApi.Wrapper.Methods
         ///<summary>
         /// Returns URL for uploading a story with photo.
         ///</summary>
-        public Task<StoriesGetPhotoUploadServerResponse> GetPhotoUploadServer(Boolean? addToNews = null, int[] userIds = null, String replyToStory = null, String linkText = null, String linkUrl = null, int? groupId = null)
+        public Task<StoriesGetPhotoUploadServerResponse> GetPhotoUploadServer(Boolean? addToNews = null, int[] userIds = null, String replyToStory = null, String linkText = null, String linkUrl = null, int? groupId = null, String clickableStickers = null)
         {
             var parameters = new Dictionary<string, string>();
             if (addToNews != null)
@@ -96,13 +97,15 @@ namespace VkApi.Wrapper.Methods
                 parameters.Add("link_url", linkUrl.ToApiString());
             if (groupId != null)
                 parameters.Add("group_id", groupId.ToApiString());
+            if (clickableStickers != null)
+                parameters.Add("clickable_stickers", clickableStickers.ToApiString());
             return _vkontakte.RequestAsync<StoriesGetPhotoUploadServerResponse>("stories.getPhotoUploadServer", parameters);
         }
 
         ///<summary>
         /// Returns replies to the story.
         ///</summary>
-        public Task<StoriesGetRepliesResponse> GetReplies(int? ownerId = null, int? storyId = null, String accessKey = null, Boolean? extended = null, BaseUserGroupFields[] fields = null)
+        public Task<StoriesGetV5113Response> GetReplies(int? ownerId = null, int? storyId = null, String accessKey = null, Boolean? extended = null, BaseUserGroupFields[] fields = null)
         {
             var parameters = new Dictionary<string, string>();
             if (ownerId != null)
@@ -115,7 +118,7 @@ namespace VkApi.Wrapper.Methods
                 parameters.Add("extended", extended.ToApiString());
             if (fields != null)
                 parameters.Add("fields", fields.ToApiString());
-            return _vkontakte.RequestAsync<StoriesGetRepliesResponse>("stories.getReplies", parameters);
+            return _vkontakte.RequestAsync<StoriesGetV5113Response>("stories.getReplies", parameters);
         }
 
         ///<summary>
@@ -134,7 +137,7 @@ namespace VkApi.Wrapper.Methods
         ///<summary>
         /// Allows to receive URL for uploading story with video.
         ///</summary>
-        public Task<StoriesGetVideoUploadServerResponse> GetVideoUploadServer(Boolean? addToNews = null, int[] userIds = null, String replyToStory = null, String linkText = null, String linkUrl = null, int? groupId = null)
+        public Task<StoriesGetVideoUploadServerResponse> GetVideoUploadServer(Boolean? addToNews = null, int[] userIds = null, String replyToStory = null, String linkText = null, String linkUrl = null, int? groupId = null, String clickableStickers = null)
         {
             var parameters = new Dictionary<string, string>();
             if (addToNews != null)
@@ -149,13 +152,15 @@ namespace VkApi.Wrapper.Methods
                 parameters.Add("link_url", linkUrl.ToApiString());
             if (groupId != null)
                 parameters.Add("group_id", groupId.ToApiString());
+            if (clickableStickers != null)
+                parameters.Add("clickable_stickers", clickableStickers.ToApiString());
             return _vkontakte.RequestAsync<StoriesGetVideoUploadServerResponse>("stories.getVideoUploadServer", parameters);
         }
 
         ///<summary>
         /// Returns a list of story viewers.
         ///</summary>
-        public Task<StoriesGetViewersResponse> GetViewers(int? ownerId = null, int? storyId = null, int? count = null, int? offset = null, Boolean? extended = null)
+        public Task<StoriesGetViewersExtendedV5115Response> GetViewers(int? ownerId = null, int? storyId = null, int? count = null, int? offset = null, Boolean? extended = null)
         {
             var parameters = new Dictionary<string, string>();
             if (ownerId != null)
@@ -168,7 +173,7 @@ namespace VkApi.Wrapper.Methods
                 parameters.Add("offset", offset.ToApiString());
             if (extended != null)
                 parameters.Add("extended", extended.ToApiString());
-            return _vkontakte.RequestAsync<StoriesGetViewersResponse>("stories.getViewers", parameters);
+            return _vkontakte.RequestAsync<StoriesGetViewersExtendedV5115Response>("stories.getViewers", parameters);
         }
 
         ///<summary>

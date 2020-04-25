@@ -1,7 +1,11 @@
 using Newtonsoft.Json;
-using VkApi.Wrapper.Types.Video;
+using VkApi.Wrapper.Objects;
+using System;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
+using System.Threading.Tasks;
 
-namespace VkApi.Wrapper.Responses.Video
+namespace VkApi.Wrapper.Responses
 {
     public class VideoGetAlbumsByVideoExtendedResponse
     {

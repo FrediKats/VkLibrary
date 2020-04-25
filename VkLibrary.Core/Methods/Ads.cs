@@ -1,9 +1,8 @@
+using VkApi.Wrapper.Objects;
+using VkApi.Wrapper.Responses;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using VkApi.Wrapper.Responses.Ads;
-using VkApi.Wrapper.Types.Ads;
-using VkApi.Wrapper.Types.Base;
 
 namespace VkApi.Wrapper.Methods
 {
@@ -249,7 +248,7 @@ namespace VkApi.Wrapper.Methods
         ///<summary>
         /// Returns a list of campaigns in an advertising account.
         ///</summary>
-        public Task<AdsCampaign[]> GetCampaigns(int? accountId = null, int? clientId = null, Boolean? includeDeleted = null, String campaignIds = null)
+        public Task<AdsCampaign[]> GetCampaigns(int? accountId = null, int? clientId = null, Boolean? includeDeleted = null, String campaignIds = null, String[] fields = null)
         {
             var parameters = new Dictionary<string, string>();
             if (accountId != null)
@@ -260,6 +259,8 @@ namespace VkApi.Wrapper.Methods
                 parameters.Add("include_deleted", includeDeleted.ToApiString());
             if (campaignIds != null)
                 parameters.Add("campaign_ids", campaignIds.ToApiString());
+            if (fields != null)
+                parameters.Add("fields", fields.ToApiString());
             return _vkontakte.RequestAsync<AdsCampaign[]>("ads.getCampaigns", parameters);
         }
 
@@ -359,7 +360,7 @@ namespace VkApi.Wrapper.Methods
         ///<summary>
         /// Returns statistics of performance indicators for ads, campaigns, clients or the whole account.
         ///</summary>
-        public Task<AdsStats[]> GetStatistics(int? accountId = null, String idsType = null, String ids = null, String period = null, String dateFrom = null, String dateTo = null)
+        public Task<AdsStats[]> GetStatistics(int? accountId = null, String idsType = null, String ids = null, String period = null, String dateFrom = null, String dateTo = null, String[] statsFields = null)
         {
             var parameters = new Dictionary<string, string>();
             if (accountId != null)
@@ -374,6 +375,8 @@ namespace VkApi.Wrapper.Methods
                 parameters.Add("date_from", dateFrom.ToApiString());
             if (dateTo != null)
                 parameters.Add("date_to", dateTo.ToApiString());
+            if (statsFields != null)
+                parameters.Add("stats_fields", statsFields.ToApiString());
             return _vkontakte.RequestAsync<AdsStats[]>("ads.getStatistics", parameters);
         }
 

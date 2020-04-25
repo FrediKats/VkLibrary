@@ -1,10 +1,8 @@
+using VkApi.Wrapper.Objects;
+using VkApi.Wrapper.Responses;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using VkApi.Wrapper.Responses.Newsfeed;
-using VkApi.Wrapper.Types.Base;
-using VkApi.Wrapper.Types.Newsfeed;
-using VkApi.Wrapper.Types.Users;
 
 namespace VkApi.Wrapper.Methods
 {
@@ -161,6 +159,24 @@ namespace VkApi.Wrapper.Methods
                 parameters.Add("fields", fields.ToApiString());
             return _vkontakte.RequestAsync<NewsfeedGetRecommendedResponse>("newsfeed.getRecommended", parameters);
         }
+
+        //TODO: fix
+        /////<summary>
+        ///// Returns communities and users that current user is suggested to follow.
+        /////</summary>
+        //public Task<NewsfeedGetSuggestedSourcesResponse> GetSuggestedSources(int? offset = null, int? count = null, Boolean? shuffle = null, BaseUserGroupFields[] fields = null)
+        //{
+        //    var parameters = new Dictionary<string, string>();
+        //    if (offset != null)
+        //        parameters.Add("offset", offset.ToApiString());
+        //    if (count != null)
+        //        parameters.Add("count", count.ToApiString());
+        //    if (shuffle != null)
+        //        parameters.Add("shuffle", shuffle.ToApiString());
+        //    if (fields != null)
+        //        parameters.Add("fields", fields.ToApiString());
+        //    return _vkontakte.RequestAsync<NewsfeedGetSuggestedSourcesResponse>("newsfeed.getSuggestedSources", parameters);
+        //}
 
         ///<summary>
         /// Hides an item from the newsfeed.

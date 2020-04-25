@@ -1,7 +1,11 @@
 using Newtonsoft.Json;
-using VkApi.Wrapper.Types.Apps;
+using VkApi.Wrapper.Objects;
+using System;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
+using System.Threading.Tasks;
 
-namespace VkApi.Wrapper.Responses.Apps
+namespace VkApi.Wrapper.Responses
 {
     public class AppsGetCatalogResponse
     {

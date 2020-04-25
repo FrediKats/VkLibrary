@@ -1,9 +1,8 @@
+using VkApi.Wrapper.Objects;
+using VkApi.Wrapper.Responses;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using VkApi.Wrapper.Responses.Utils;
-using VkApi.Wrapper.Types.Base;
-using VkApi.Wrapper.Types.Utils;
 
 namespace VkApi.Wrapper.Methods
 {
@@ -81,13 +80,13 @@ namespace VkApi.Wrapper.Methods
         ///<summary>
         /// Allows to receive a link shortened via vk.cc.
         ///</summary>
-        public Task<UtilsShortLink> GetShortLink(String url = null, Boolean? _private = null)
+        public Task<UtilsShortLink> GetShortLink(String url = null, Boolean? @private = null)
         {
             var parameters = new Dictionary<string, string>();
             if (url != null)
                 parameters.Add("url", url.ToApiString());
-            if (_private != null)
-                parameters.Add("private", _private.ToApiString());
+            if (@private != null)
+                parameters.Add("private", @private.ToApiString());
             return _vkontakte.RequestAsync<UtilsShortLink>("utils.getShortLink", parameters);
         }
 
