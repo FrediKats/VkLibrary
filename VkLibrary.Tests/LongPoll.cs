@@ -19,7 +19,7 @@ namespace VkLibrary.Tests
             
             response.Key.Should().NotBeNullOrEmpty();
             response.Server.Should().NotBeNullOrEmpty();
-            response.Ts.Should().BeGreaterThan(0);
+            response.Ts.Should().NotBe("0");
         }
 
         [Fact]
@@ -27,7 +27,7 @@ namespace VkLibrary.Tests
         {
             var response = await Api.Messages.GetLongPollServer();
             var client = await Api.StartLongPollClient(
-                response.Server, response.Key, response.Ts);
+                response.Server, response.Key, int.Parse(response.Ts));
             
             var success = false;
             client.ResponseReceived += (sender, args) => success = true;
