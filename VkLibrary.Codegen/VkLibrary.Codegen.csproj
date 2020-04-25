@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -6,16 +6,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="..\vk-api-schema\methods.json" Link="Schema\methods.json">
+    <Content Include="..\vk-api-schema\methods.json" Link="Schemes\methods.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\vk-api-schema\objects.json" Link="Schema\objects.json">
+    <Content Include="..\vk-api-schema\objects.json" Link="Schemes\objects.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\vk-api-schema\responses.json" Link="Schema\responses.json">
+    <Content Include="..\vk-api-schema\responses.json" Link="Schemes\responses.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\vk-api-schema\schema.json" Link="Schema\schema.json">
+    <Content Include="..\vk-api-schema\schema.json" Link="Schemes\schema.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -26,10 +26,6 @@
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="3.3.1" />
     <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="3.3.1" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\VkLibrary.Core\VkApi.Wrapper.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -48,7 +44,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Schema\" />
+    <Folder Include="Schemes\" />
   </ItemGroup>
 
 </Project>
