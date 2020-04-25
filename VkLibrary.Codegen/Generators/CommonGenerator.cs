@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -90,8 +90,8 @@ namespace VkLibrary.Codegen.Generators
                                                     TokenList(
                                                         XmlTextNewLine(
                                                             TriviaList(),
-                                                            "\n",
-                                                            "\n",
+                                                            Environment.NewLine,
+                                                            Environment.NewLine,
                                                             TriviaList()),
                                                         XmlTextLiteral(
                                                             TriviaList(
@@ -101,8 +101,8 @@ namespace VkLibrary.Codegen.Generators
                                                             TriviaList()),
                                                         XmlTextNewLine(
                                                             TriviaList(),
-                                                            "\n",
-                                                            "\n",
+                                                            Environment.NewLine,
+                                                            Environment.NewLine,
                                                             TriviaList())))))
                                     .WithStartTag(
                                         XmlElementStartTag(
@@ -129,8 +129,8 @@ namespace VkLibrary.Codegen.Generators
                                         TokenList(
                                             XmlTextNewLine(
                                                 TriviaList(),
-                                                "\n",
-                                                "\n",
+                                                Environment.NewLine,
+                                                Environment.NewLine,
                                                 TriviaList())))
                             }))));
         }
