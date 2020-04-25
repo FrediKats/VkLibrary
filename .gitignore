@@ -52,11 +52,14 @@ Temporary Items
 .idea
 .vscode
 packages
-VkLibrary.*/obj
-VkLibrary.*/bin
-VkLibrary.*/.vs
-VkLibrary.Tests/Constants.fs
-VkLibrary.Tests/Helpers/Constants.fs
+*/obj
+*/bin
+*/.vs
+VkApi.Wrapper.Tests/Constants.fs
+VkApi.Wrapper.Tests/Helpers/Constants.fs
+VkApi.Wrapper.Tests/Constants.fs
+VkApi.Wrapper.Core/project.lock.json
+
 *.props
 *.targets
 *.user
@@ -65,7 +68,4 @@ VkLibrary.Tests/Helpers/Constants.fs
 *.nuspec
 *.nupkg
 *.suo
-.vs/VkLibrary/v15/sqlite3/storage.ide
 *.sqlite
-VkLibrary.Tests/Constants.fs
-VkLibrary.Core/project.lock.json
