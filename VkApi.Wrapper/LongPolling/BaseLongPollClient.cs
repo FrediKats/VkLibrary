@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -8,6 +8,9 @@ using VkApi.Wrapper.LongPolling.User;
 
 namespace VkApi.Wrapper.LongPolling
 {
+    /// <summary>
+    /// Shared logic for User and Bot long poll
+    /// </summary>
     public abstract class BaseLongPollClient
     {
         private readonly HttpClient _httpClient = new HttpClient();
