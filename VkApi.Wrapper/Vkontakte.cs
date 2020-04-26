@@ -15,6 +15,8 @@ namespace VkApi.Wrapper
     /// </summary>
     public partial class Vkontakte : IDisposable
     {
+        public const string CurrentSupportedApiVersion = "5.116";
+
         private const string MethodBase = "https://api.vk.com/method/";
         private readonly RequestMethod _requestMethod;
         private readonly ParseJson _parseJson;
@@ -31,7 +33,7 @@ namespace VkApi.Wrapper
         /// <param name="apiVersion">API version the library is going to use. Min: 5.63</param>
         /// <param name="requestMethod">GET or POST requests the library should use?</param>
         /// <param name="parseJson">Should the library log received JSONs or focus on performance?</param>
-        public Vkontakte(int appId, string appSecret = "", string apiVersion = "5.101",
+        public Vkontakte(int appId, string appSecret = "", string apiVersion = CurrentSupportedApiVersion,
             RequestMethod requestMethod = RequestMethod.Get, ParseJson parseJson = ParseJson.FromString)
         {
             AppId = appId;
@@ -52,7 +54,7 @@ namespace VkApi.Wrapper
         /// <param name="requestMethod">GET or POST requests the library should use?</param>
         /// <param name="parseJson">Should the library log received JSONs or focus on performance?</param>
         /// <param name="logger">Logger the library should use. By default is logs info into DEBUG output.</param>
-        public Vkontakte(int appId, ILogger logger, string appSecret = "", string apiVersion = "5.101",
+        public Vkontakte(int appId, ILogger logger, string appSecret = "", string apiVersion = CurrentSupportedApiVersion,
             RequestMethod requestMethod = RequestMethod.Get, ParseJson parseJson = ParseJson.FromString)
         {
             AppId = appId;
