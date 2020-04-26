@@ -4,9 +4,9 @@ namespace VkLibrary.Codegen
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            string outputPath = "";
+            string outputPath = "GeneratedModels";
             FileGenerator.Process(outputPath);
         }
     }

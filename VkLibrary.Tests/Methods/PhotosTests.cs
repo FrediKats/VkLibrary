@@ -1,9 +1,9 @@
-﻿using Xunit;
-using FluentAssertions;
+﻿using FluentAssertions;
 using VkLibrary.Tests.Helpers;
+using Xunit;
 using Xunit.Abstractions;
 
-namespace VkLibrary.Tests
+namespace VkLibrary.Tests.Methods
 {
     public class PhotosTests : ClassFixtureBase
     {

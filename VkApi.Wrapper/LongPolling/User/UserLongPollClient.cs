@@ -14,7 +14,7 @@ namespace VkApi.Wrapper.LongPolling.User
 
         #region Some kinds of events received
 
-        public override void Handle(JToken jToken)
+        protected override void Handle(JToken jToken)
         {
             // Get basic event information.
             var array = (JArray)jToken;
