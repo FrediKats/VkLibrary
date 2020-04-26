@@ -15,6 +15,9 @@ namespace VkApi.Wrapper
     /// </summary>
     public partial class Vkontakte : IDisposable
     {
+        /// <summary>
+        /// Methods and object was generated with json-scheme based on this version. Use this version to prevent unexpected errors.
+        /// </summary>
         public const string CurrentSupportedApiVersion = "5.116";
 
         private const string MethodBase = "https://api.vk.com/method/";
@@ -248,19 +251,30 @@ namespace VkApi.Wrapper
         /// we recommend indicating wait = 25). Maximum: 90. 
         /// </param>
         /// <returns>Running Long Poll Client instance.</returns>
-        public async Task<UserLongPollClient> StartLongPollClient(string server, string key, int ts, 
+        public async Task<UserLongPollClient> StartUserLongPollClient(string server, string key, int ts, 
             int version = 1, int wait = 25, AnswerFlags mode = AnswerFlags.ReceiveAttachments)
         {
             var client = new UserLongPollClient(this);
-            await client.StartListener(server, key, ts, version, wait, mode);
+            await client.StartListener(server, key, ts, wait, version, mode);
             return client;
         }
 
-        public async Task<BotLongPollClient> StartBotLongPollClient(string server, string key, int ts,
-            int version = 1, int wait = 25)
+        /// <summary>
+        /// Inits a BotLongPollClient using extended settings.
+        /// Docs: <see href="https://vk.com/dev/bots_longpoll">Using BotLongPoll</see>
+        /// </summary>
+        /// <param name="key">Secret session key.</param>
+        /// <param name="server">Server address to which you need to send the request</param>
+        /// <param name="ts">Number of the last event from which you want to receive data</param>
+        /// <param name="wait">
+        /// Waiting period (as most proxy servers terminate the connection after 30 seconds, 
+        /// we recommend indicating wait = 25). Maximum: 90. 
+        /// </param>
+        /// <returns>Running Bot Long Poll Client instance.</returns>
+        public async Task<BotLongPollClient> StartBotLongPollClient(string server, string key, int ts, int wait = 25)
         {
             var client = new BotLongPollClient(this);
-            await client.StartListener(server, key, ts, version, wait);
+            await client.StartListener(server, key, ts, wait);
             return client;
         }
 
