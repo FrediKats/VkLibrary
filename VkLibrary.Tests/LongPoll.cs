@@ -26,7 +26,7 @@ namespace VkLibrary.Tests
         public async void StartLongPollSever()
         {
             var response = await Api.Messages.GetLongPollServer();
-            var client = await Api.StartLongPollClient(
+            var client = await Api.StartUserLongPollClient(
                 response.Server, response.Key, int.Parse(response.Ts));
             
             var success = false;

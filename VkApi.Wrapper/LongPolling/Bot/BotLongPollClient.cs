@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Newtonsoft.Json.Linq;
 using VkApi.Wrapper.LongPolling.Bot.Responses;
 using VkApi.Wrapper.Objects;
@@ -14,7 +14,7 @@ namespace VkApi.Wrapper.LongPolling.Bot
         /// <param name="vkontakte">Library instance whose logger to use</param>
         internal BotLongPollClient(Vkontakte vkontakte) : base(vkontakte) { }
 
-        public override void Handle(JToken jToken)
+        protected override void Handle(JToken jToken)
         {
             JToken argumentObject = jToken["object"];
             BotLongPollMessageCodes eventCode;

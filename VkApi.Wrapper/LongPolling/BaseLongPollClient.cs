@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -104,7 +104,7 @@ namespace VkApi.Wrapper.LongPolling
             }
         }
 
-        public abstract void Handle(JToken jToken);
+        protected abstract void Handle(JToken jToken);
 
         protected void Call<TFirst>(EventHandler<TFirst> eventHandler, JToken value) =>
             eventHandler?.Invoke(this, value.ToObject<TFirst>());
