@@ -38,7 +38,7 @@ namespace VkApi.Wrapper.LongPolling
         /// <returns>Built request url that can be used to retrieve data from vk long poll servers.</returns>
         /// ReSharper disable once MemberCanBePrivate.Global
         public Uri GetRequestUrl(string server,
-            string key, int ts, int version = 1, int wait = 25)
+            string key, int ts, AnswerFlags mode = AnswerFlags.ReceiveAttachments, int version = 1, int wait = 25)
         {
             return _vkontakte.HttpService.BuildGetRequestUrl(server, new Dictionary<string, string>
             {
@@ -53,14 +53,14 @@ namespace VkApi.Wrapper.LongPolling
         /// <summary>
         /// Starts a long poll listener.
         /// </summary>
-        internal async Task StartListener(string server, string key, int ts, int version, int wait, AnswerFlags mode = AnswerFlags.ReceiveAttachments)
+        internal async Task StartListener(string server, string key, int ts, int wait, int version = 1, AnswerFlags mode = AnswerFlags.ReceiveAttachments)
         {
             await Task.Factory.StartNew(async () =>
             {
                 while (!_stopped)
                 {
                     // Send request and receive data.
-                    var requestUrl = GetRequestUrl(server, key, ts, version, wait);
+                    var requestUrl = GetRequestUrl(server, key, ts, mode, version, wait);
                     var responseString = await _httpClient.GetStringAsync(requestUrl);
                     var responseToken = JsonConvert.DeserializeObject<JToken>(responseString);
 
