@@ -150,54 +150,189 @@ namespace VkApi.Wrapper.LongPolling.Bot
         #region Events
 
         /// <summary>
-        /// Invoked when VK's LongPoll server answers a query (each 25 seconds by default). 
-        /// Arguments contain JSON array with updates codes.
+        /// MessageNew LongPoll event
         /// </summary>
         public event EventHandler<MessagesMessage> OnMessageNew;
+
+        /// <summary>
+        /// MessageReply LongPoll event
+        /// </summary>
         public event EventHandler<MessagesMessage> OnMessageReply;
+
+        /// <summary>
+        /// MessageAllow LongPoll event
+        /// </summary>
         public event EventHandler<CallbackMessageAllow> OnMessageAllow;
+        /// <summary>
+        /// MessageDeny LongPoll event
+        /// </summary>
         public event EventHandler<CallbackMessageDeny> OnMessageDeny;
 
+        /// <summary>
+        /// PhotoNew LongPoll event
+        /// </summary>
         public event EventHandler<PhotosPhoto> OnPhotoNew;
+
+        /// <summary>
+        /// PhotoCommentNew LongPoll event
+        /// </summary>
         public event EventHandler<PhotoCommentResponse> OnPhotoCommentNew;
+
+        /// <summary>
+        /// PhotoCommentEdit LongPoll event
+        /// </summary>
         public event EventHandler<PhotoCommentResponse> OnPhotoCommentEdit;
+
+        /// <summary>
+        /// PhotoCommentRestore LongPoll event
+        /// </summary>
         public event EventHandler<PhotoCommentResponse> OnPhotoCommentRestore;
+
+        /// <summary>
+        /// PhotoCommentDelete LongPoll event
+        /// </summary>
         public event EventHandler<CallbackPhotoCommentDelete> OnPhotoCommentDelete;
 
+
+        /// <summary>
+        /// AudioNew LongPoll event
+        /// </summary>
         public event EventHandler<AudioAudio> OnAudioNew;
 
+        /// <summary>
+        /// VideoNew LongPoll event
+        /// </summary>
         public event EventHandler<VideoVideo> OnVideoNew;
+
+        /// <summary>
+        /// VideoCommentNew LongPoll event
+        /// </summary>
         public event EventHandler<CallbackVideoComment> OnVideoCommentNew;
+
+        /// <summary>
+        /// VideoCommentEdit LongPoll event
+        /// </summary>
         public event EventHandler<CallbackVideoComment> OnVideoCommentEdit;
+
+        /// <summary>
+        /// VideoCommentRestore LongPoll event
+        /// </summary>
         public event EventHandler<CallbackVideoComment> OnVideoCommentRestore;
+
+        /// <summary>
+        /// VideoCommentDelete LongPoll event
+        /// </summary>
         public event EventHandler<CallbackVideoCommentDelete> OnVideoCommentDelete;
 
+        /// <summary>
+        /// WallPostNew LongPoll event
+        /// </summary>
         public event EventHandler<WallWallpost> OnWallPostNew;
+
+        /// <summary>
+        /// WallRepost LongPoll event
+        /// </summary>
         public event EventHandler<WallWallpost> OnWallRepost;
 
+
+        /// <summary>
+        /// WallReplyNew LongPoll event
+        /// </summary>
         public event EventHandler<WallReplyResponse> OnWallReplyNew;
+
+        /// <summary>
+        /// WallReplyEdit LongPoll event
+        /// </summary>
         public event EventHandler<WallReplyResponse> OnWallReplyEdit;
+
+        /// <summary>
+        /// WallReplyRestore LongPoll event
+        /// </summary>
         public event EventHandler<WallReplyResponse> OnWallReplyRestore;
+
+        /// <summary>
+        /// WallReplyDelete LongPoll event
+        /// </summary>
         public event EventHandler<CallbackWallCommentDelete> OnWallReplyDelete;
 
+        /// <summary>
+        /// BoardPostNew LongPoll event
+        /// </summary>
         public event EventHandler<BoardTopicResponse> OnBoardPostNew;
+
+        /// <summary>
+        /// BoardPostEdit LongPoll event
+        /// </summary>
         public event EventHandler<BoardTopicResponse> OnBoardPostEdit;
+
+        /// <summary>
+        /// BoardPostRestore LongPoll event
+        /// </summary>
         public event EventHandler<BoardTopicResponse> OnBoardPostRestore;
+
+        /// <summary>
+        /// BoardPostDelete LongPoll event
+        /// </summary>
         public event EventHandler<CallbackBoardPostDelete> OnBoardPostDelete;
 
+        /// <summary>
+        /// MarketCommentNew LongPoll event
+        /// </summary>
         public event EventHandler<CallbackMarketComment> OnMarketCommentNew;
+
+        /// <summary>
+        /// MarketCommentEdit LongPoll event
+        /// </summary>
         public event EventHandler<CallbackMarketComment> OnMarketCommentEdit;
+
+        /// <summary>
+        /// MarketCommentRestore LongPoll event
+        /// </summary>
         public event EventHandler<CallbackMarketComment> OnMarketCommentRestore;
+
+        /// <summary>
+        /// MarketCommentDelete LongPoll event
+        /// </summary>
         public event EventHandler<CallbackMarketCommentDelete> OnMarketCommentDelete;
 
+        /// <summary>
+        /// GroupLeave LongPoll event
+        /// </summary>
         public event EventHandler<CallbackGroupLeave> OnGroupLeave;
+
+        /// <summary>
+        /// GroupJoin LongPoll event
+        /// </summary>
         public event EventHandler<CallbackGroupJoin> OnGroupJoin;
+
+        /// <summary>
+        /// UserBlock LongPoll event
+        /// </summary>
         public event EventHandler<CallbackUserBlock> OnUserBlock;
+
+        /// <summary>
+        /// UserUnblock LongPoll event
+        /// </summary>
         public event EventHandler<CallbackUserUnblock> OnUserUnblock;
 
+        /// <summary>
+        /// PollVoteNew LongPoll event
+        /// </summary>
         public event EventHandler<CallbackPollVoteNew> OnPollVoteNew;
+
+        /// <summary>
+        /// GroupOfficersEdit LongPoll event
+        /// </summary>
         public event EventHandler<CallbackGroupOfficersEdit> OnGroupOfficersEdit;
+
+        /// <summary>
+        /// GroupChangeSettings LongPoll event
+        /// </summary>
         public event EventHandler<CallbackGroupChangeSettings> OnGroupChangeSettings;
+
+        /// <summary>
+        /// GroupChangePhoto LongPoll event
+        /// </summary>
         public event EventHandler<CallbackGroupChangePhoto> OnGroupChangePhoto;
 
         #endregion

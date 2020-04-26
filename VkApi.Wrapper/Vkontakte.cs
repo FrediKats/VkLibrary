@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -15,6 +15,9 @@ namespace VkApi.Wrapper
     /// </summary>
     public partial class Vkontakte : IDisposable
     {
+        /// <summary>
+        /// Methods and object was generated with json-scheme based on this version. Use this version to prevent unexpected errors.
+        /// </summary>
         public const string CurrentSupportedApiVersion = "5.116";
 
         private const string MethodBase = "https://api.vk.com/method/";
