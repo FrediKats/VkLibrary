@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Newtonsoft.Json.Linq;
 using VkApi.Wrapper.LongPolling.Bot.Responses;
 using VkApi.Wrapper.Objects;
@@ -67,7 +67,7 @@ namespace VkApi.Wrapper.LongPolling.Bot
                     Call(OnVideoCommentNew, argumentObject);
                     break;
                 case BotLongPollMessageCodes.VideoCommentEdit:
-                    Call(OnVideoCommentNew, argumentObject);
+                    Call(OnVideoCommentEdit, argumentObject);
                     break;
                 case BotLongPollMessageCodes.VideoCommentRestore:
                     Call(OnVideoCommentRestore, argumentObject);
