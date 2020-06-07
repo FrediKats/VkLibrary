@@ -82,7 +82,7 @@ namespace VkApi.Wrapper
         /// into the library if default one does not suite you for some reasons.
         /// </param>
         public Vkontakte(int appId, IHttpService httpService, string appSecret = "", 
-            string apiVersion = "5.101", RequestMethod requestMethod = RequestMethod.Get, 
+            string apiVersion = CurrentSupportedApiVersion, RequestMethod requestMethod = RequestMethod.Get, 
             ParseJson parseJson = ParseJson.FromString)
         {
             AppId = appId;
@@ -108,7 +108,7 @@ namespace VkApi.Wrapper
         /// into the library if default one does not suite you for some reasons.
         /// </param>
         public Vkontakte(int appId, ILogger logger, IHttpService httpService, string appSecret = "", 
-            string apiVersion = "5.101", RequestMethod requestMethod = RequestMethod.Get, 
+            string apiVersion = CurrentSupportedApiVersion, RequestMethod requestMethod = RequestMethod.Get, 
             ParseJson parseJson = ParseJson.FromString)
         {
             AppId = appId;
