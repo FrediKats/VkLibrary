@@ -1,4 +1,6 @@
-﻿namespace VkApi.Wrapper.Services
+﻿using System.Diagnostics;
+
+namespace VkApi.Wrapper.Services
 {
     /// <summary>
     /// Default logger that outputs info into Debug output.
