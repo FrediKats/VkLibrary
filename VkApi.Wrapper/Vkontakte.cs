@@ -255,6 +255,10 @@ namespace VkApi.Wrapper
             int version = 1, int wait = 25, AnswerFlags mode = AnswerFlags.ReceiveAttachments)
         {
             var client = new UserLongPollClient(this);
+            
+            if (!server.StartsWith("https"))
+                server = $"https://{server}";
+            
             await client.StartListener(server, key, ts, wait, version, mode);
             return client;
         }
