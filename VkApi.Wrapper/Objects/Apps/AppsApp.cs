@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace VkApi.Wrapper.Objects
 {
-    public class AppsApp
+    public class AppsApp : AppsAppMin
     {
         ///<summary>
         /// Application author's URL

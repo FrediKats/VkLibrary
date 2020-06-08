@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace VkApi.Wrapper.Objects
 {
-    public class MessagesUserXtrInvitedBy
+    public class MessagesUserXtrInvitedBy : UsersUserXtrType
     {
         ///<summary>
         /// ID of the inviter

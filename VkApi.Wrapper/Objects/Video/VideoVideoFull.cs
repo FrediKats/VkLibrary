@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace VkApi.Wrapper.Objects
 {
-    public class VideoVideoFull
+    public class VideoVideoFull : VideoVideo
     {
         [JsonProperty("files")]
         public VideoVideoFiles Files { get; set; }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace VkApi.Wrapper.Objects
 {
-    public class FriendsUserXtrPhone
+    public class FriendsUserXtrPhone : UsersUserFull
     {
         ///<summary>
         /// User phone

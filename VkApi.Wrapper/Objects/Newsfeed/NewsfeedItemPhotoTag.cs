@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace VkApi.Wrapper.Objects
 {
-    public class NewsfeedItemPhotoTag
+    public class NewsfeedItemPhotoTag : NewsfeedItemBase
     {
         [JsonProperty("photo_tags")]
         public NewsfeedItemPhotoTagPhotoTags PhotoTags { get; set; }

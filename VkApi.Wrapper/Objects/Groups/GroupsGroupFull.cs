@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace VkApi.Wrapper.Objects
 {
-    public class GroupsGroupFull
+    public class GroupsGroupFull : GroupsGroup
     {
         [JsonProperty("market")]
         public GroupsMarketInfo Market { get; set; }
