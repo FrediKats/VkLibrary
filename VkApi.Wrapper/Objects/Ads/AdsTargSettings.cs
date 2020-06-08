@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace VkApi.Wrapper.Objects
 {
-    public class AdsTargSettings
+    public class AdsTargSettings : AdsCriteria
     {
         ///<summary>
         /// Ad ID

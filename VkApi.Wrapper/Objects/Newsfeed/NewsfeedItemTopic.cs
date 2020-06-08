@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace VkApi.Wrapper.Objects
 {
-    public class NewsfeedItemTopic
+    public class NewsfeedItemTopic : NewsfeedItemBase
     {
         [JsonProperty("comments")]
         public BaseCommentsInfo Comments { get; set; }

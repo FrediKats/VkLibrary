@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace VkApi.Wrapper.Objects
 {
-    public class NewsfeedListFull
+    public class NewsfeedListFull : NewsfeedList
     {
         ///<summary>
         /// Information whether reposts hiding is enabled

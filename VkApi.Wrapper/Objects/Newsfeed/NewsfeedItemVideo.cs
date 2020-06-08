@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace VkApi.Wrapper.Objects
 {
-    public class NewsfeedItemVideo
+    public class NewsfeedItemVideo : NewsfeedItemBase
     {
         [JsonProperty("video")]
         public NewsfeedItemVideoVideo Video { get; set; }

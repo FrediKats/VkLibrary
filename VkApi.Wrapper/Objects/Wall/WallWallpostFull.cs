@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace VkApi.Wrapper.Objects
 {
-    public class WallWallpostFull
+    public class WallWallpostFull : WallWallpost
     {
         [JsonProperty("copy_history")]
         public WallWallpost[] CopyHistory { get; set; }

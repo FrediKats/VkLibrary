@@ -2,6 +2,7 @@
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using VkLibrary.Codegen.Models;
+using VkLibrary.Codegen.Tools;
 using VkLibrary.Codegen.Types;
 using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 
@@ -25,15 +26,29 @@ namespace VkLibrary.Codegen.Generators
                 .Select(GenerateProperties)
                 .ToArray();
 
+            var classDeclaration = ClassDeclaration(classDescriptor.Title.ToSharpString());
+
+            if (classDescriptor.BaseClasses.Any())
+            {
+                if (classDescriptor.BaseClasses.Count > 1)
+                {
+                    Log.Instance.Message($"Type {classDescriptor.Title.ToOriginalString()} has more than one base classes. Skip base declaration coz CSharp do not support this.");
+                }
+                else
+                {
+                    classDeclaration = classDeclaration.AddBaseListTypes(SimpleBaseType(IdentifierName(classDescriptor.BaseClasses.First().ToSharpString())));
+                }
+            }
+
             return
-                ClassDeclaration(classDescriptor.Title.ToSharpString())
+                classDeclaration
                     .AddModifiers(
-                            Token(
-                                CommonGenerator.AddComment(classDescriptor.Description),
-                                SyntaxKind.PublicKeyword,
-                                TriviaList()))
-                    .WithMembers(
-                        List(properties));
+                        Token(
+                            CommonGenerator.AddComment(classDescriptor.Description),
+                            SyntaxKind.PublicKeyword,
+                            TriviaList()))
+                    .WithMembers(List(properties));
+
         }
 
         private static MemberDeclarationSyntax GenerateProperties(PropertyDescriptor propertyDescriptor)

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace VkApi.Wrapper.Objects
 {
-    public class UsersUserFull
+    public class UsersUserFull : UsersUser
     {
         ///<summary>
         /// User's first name in nominative case

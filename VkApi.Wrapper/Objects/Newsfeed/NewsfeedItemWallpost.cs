@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace VkApi.Wrapper.Objects
 {
-    public class NewsfeedItemWallpost
+    public class NewsfeedItemWallpost : NewsfeedItemBase
     {
         [JsonProperty("activity")]
         public NewsfeedEventActivity Activity { get; set; }

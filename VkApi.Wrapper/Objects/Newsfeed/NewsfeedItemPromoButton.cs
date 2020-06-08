@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace VkApi.Wrapper.Objects
 {
-    public class NewsfeedItemPromoButton
+    public class NewsfeedItemPromoButton : NewsfeedItemBase
     {
         [JsonProperty("text")]
         public String Text { get; set; }

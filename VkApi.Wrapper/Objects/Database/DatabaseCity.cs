@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace VkApi.Wrapper.Objects
 {
-    public class DatabaseCity
+    public class DatabaseCity : BaseObject
     {
         ///<summary>
         /// Area title
