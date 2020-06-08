@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using System.Linq;
+using FluentAssertions;
 using VkApi.Wrapper.Objects;
 using VkLibrary.Tests.Helpers;
 using Xunit;
@@ -61,5 +62,10 @@ namespace VkLibrary.Tests
         public void NotesGet() => Api.Notes
             .Get().Result.Items
             .Should().NotBeNull();
+
+        [Fact]
+        public void UsersGet() => Api
+            .Users.Get(new[] { "1" }, new[]{ UsersFields.Photo200}).Result
+            .First().Photo200.Should().NotBeNull();
     }
 }

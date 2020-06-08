@@ -1,6 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Globalization;
 using System.Linq;
+using System.Reflection;
+using System.Runtime.Serialization;
 
 namespace VkApi.Wrapper
 {
@@ -30,8 +33,24 @@ namespace VkApi.Wrapper
                 return variable.ToString();
 
             // Check-convert.
-            var tempList = (from object o in enumerable select o).ToList();
+            var tempList = (from object o in enumerable select ElementToString(o)).ToList();
             return string.Join(",", tempList);
+        }
+
+        private static string ElementToString(object variable)
+        {
+            Type type = variable.GetType();
+            if (!type.GetTypeInfo().IsEnum)
+                return variable.ToString();
+
+            String attribute = type
+                .GetTypeInfo()
+                .DeclaredMembers
+                .SingleOrDefault(x => x.Name == variable.ToString())
+                ?.GetCustomAttribute<EnumMemberAttribute>(false)
+                ?.Value;
+
+            return attribute ?? variable.ToString();
         }
     }
 }
