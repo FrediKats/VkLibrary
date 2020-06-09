@@ -1,5 +1,8 @@
-﻿using System.Linq;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using FluentAssertions;
+using VkApi.Wrapper.CustomObjects;
 using VkApi.Wrapper.Objects;
 using VkLibrary.Tests.Helpers;
 using Xunit;
@@ -67,5 +70,10 @@ namespace VkLibrary.Tests
         public void UsersGet() => Api
             .Users.Get(new[] { "1" }, new[]{ UsersFields.Photo200}).Result
             .First().Photo200.Should().NotBeNull();
+
+        [Fact]
+        public void ConversationByIdHet() => Api
+            .Store.GetStickersKeywords().Result
+            .Dictionary.Should().NotBeNullOrEmpty();
     }
 }
