@@ -36,5 +36,8 @@ namespace VkApi.Wrapper.Objects
         public WallWallpostFull Wall { get; set; }
         [JsonProperty("wall_reply")]
         public WallWallComment WallReply { get; set; }
+
+        [JsonProperty("poll")]
+        public PollsPoll Poll { get; set; }
     }
 }
