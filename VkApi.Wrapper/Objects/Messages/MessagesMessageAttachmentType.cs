@@ -34,6 +34,9 @@ namespace VkApi.Wrapper.Objects
         [EnumMember(Value = "graffiti")]
         Graffiti,
         [EnumMember(Value = "audio_message")]
-        AudioMessage
+        AudioMessage,
+
+        [EnumMember(Value = "poll")]
+        Poll
     }
 }
