@@ -207,7 +207,7 @@ var response = await vk.UploadHelper.PostAsync<DocUploadResponse>(new Uri(url), 
 
 ## Понимание обработки исключений
 
-<b>VkLibrary</b> предоставляет способность обрабатывать ошибки, вызванные Captcha. Когда сервер ВКонтакте возвращает ошибку Captcha, VkLibrary кидает <a href="../api/VkLibrary.Core.ApiException.html">ApiException</a>. ApiException содержит <a href="../api/VkLibrary.Core.ApiError.html">ApiError</a>, объект, содержащий такие поля как <b>Code</b> и <b>ErrorMessage</b>. Так что, когда такой тип исколючения кинут, нам следует поймать его и проверить код <b>ApiError</b>. Если оно равно <b>14</b>, тогда нам потребуется обработать Captcha.
+<b>VkLibrary</b> предоставляет способность обрабатывать ошибки, вызванные Captcha. Когда сервер ВКонтакте возвращает ошибку Captcha, VkLibrary кидает <a href="VkApi.Wrapper/ApiException.cs">ApiException</a>. ApiException содержит <a href="VkApi.Wrapper/ApiException.cs">ApiError</a>, объект, содержащий такие поля как <b>Code</b> и <b>ErrorMessage</b>. Так что, когда такой тип исколючения кинут, нам следует поймать его и проверить код <b>ApiError</b>. Если оно равно <b>14</b>, тогда нам потребуется обработать Captcha.
 
 ```csharp
 try {
@@ -236,11 +236,11 @@ vk.SomeRequest.PerformAgain();
 
 Длинный запрос (Long Poll) - технология, позволяющая получение информации о новых событиях с помощью "Длинных запросов" (простите за тавтологию). Сервер получает запрос, но не отправляет ответ сразу после его получения, а только после того, как произойдёт какой-то событие (например получение нового сообщения) или пройдёт определённый период ожидания. Узнать больше о LongPoll серверах ВКонтакте вы можете на <a href="https://vk.com/dev/using_longpoll">странице документации</a>.
 
-VkLibrary предоставляет простой основанный на событиях враппер для более простой работы с LongPoll серверами. Этот враппер назван <a href="../api/VkLibrary.Core.LongPolling.LongPollClient.html">LongPollClient</a> и расположен в <a href="../api/VkLibrary.Core.LongPolling.html">пространстве имён VkLibrary.Core.LongPolling</a>. Давайте же узнаем как это работает.
+VkLibrary предоставляет простой основанный на событиях враппер для более простой работы с LongPoll серверами. Этот враппер назван <a href="VkApi.Wrapper/LongPolling/User/UserLongPollClient.cs">LongPollClient</a> и расположен в <a href="VkApi.Wrapper/LongPolling/User">пространстве имён VkLibrary.Core.LongPolling</a>. Давайте же узнаем как это работает.
 
 ## Запуск Long Poll клиента
 
-Сперва нам необходимо получить новые <a href="../api/VkLibrary.Core.Types.Messages.LongpollParams.html">параметры long poll сервера</a> из API. Затем нам нужно запустить <a href="../api/VkLibrary.Core.LongPolling.LongPollClient.html">long poll клиент</a> с которым мы будем работать.
+Сперва нам необходимо получить новые <a href="VkApi.Wrapper/Objects/Messages/MessagesLongpollParams.cs">параметры long poll сервера</a> из API. Затем нам нужно запустить <a href="VkApi.Wrapper/LongPolling/User/UserLongPollClient.cs">long poll клиент</a> с которым мы будем работать.
 
 ```csharp
 var longPollParams = await vk.Messages.GetLongPollServer();
@@ -261,7 +261,7 @@ longPollClient.FriendOnlineEvent += (sender, args) => Console.WriteLine(
 );
 ```
 
-Список всех доступных событий с описаниями может быть найден <a href="../api/VkLibrary.Core.LongPolling.LongPollClient.html">здесь</a>.
+Список всех доступных событий с описаниями может быть найден <a href="VkApi.Wrapper/LongPolling/User/UserLongPollClient.cs#L97-L197">здесь</a>.
 
 ## Остановка и избавление от клиента
 
