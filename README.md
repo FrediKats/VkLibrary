@@ -172,7 +172,7 @@ If any action (e.g. sending a message) is performed too frequently, an API reque
 <a href="https://vk.com/dev/captcha_error">See official docs for more detailed info</a>
 
 ## Understanding Exception Handling
-<b>VkLibrary</b> provides an ability to process API captcha errors. When VK servers return a captcha error, VkLibrary throws an <a href="../api/VkLibrary.Core.ApiException.html">ApiException</a>. ApiException holds an <a href="../api/VkLibrary.Core.ApiError.html">ApiError</a> object that contains such fields as <b>Code</b> and <b>ErrorMessage</b>. So, when this type of exception is thrown, we should catch it and check <b>ApiError</b> code. If it equals <b>14</b>, than we will need to process the captcha.
+<b>VkLibrary</b> provides an ability to process API captcha errors. When VK servers return a captcha error, VkLibrary throws an <a href="VkApi.Wrapper/ApiException.cs">ApiException</a>. ApiException holds an <a href="VkApi.Wrapper/ApiException.cs">ApiError</a> object that contains such fields as <b>Code</b> and <b>ErrorMessage</b>. So, when this type of exception is thrown, we should catch it and check <b>ApiError</b> code. If it equals <b>14</b>, than we will need to process the captcha.
 ```csharp
 try {
   // Invoke any library method
@@ -198,13 +198,14 @@ vk.SomeRequest.PerformAgain();
 
 Long polling is a technology that allows the receiving of information about new events with the help of "long requests". The server receives the request but it doesn't immediately send the answer but rather when some event will happen (for example, receiving a new incoming message), or waiting period is over. Learn more about how VK's LongPoll server works on it's <a href="https://vk.com/dev/using_longpoll">documentation page</a>.
 
-VkLibrary provides a simple event-based wrapper to work with the LongPoll server in an easy way. This wrapper is named <a href="../api/VkLibrary.Core.LongPolling.LongPollClient.html">LongPollClient</a> and is located in <a href="../api/VkLibrary.Core.LongPolling.html">VkLibrary.Core.LongPolling namespace</a>. Let's learn how it works.
+VkLibrary provides a simple event-based wrapper to work with the LongPoll server in an easy way. This wrapper is named <a href="VkApi.Wrapper/LongPolling/User/UserLongPollClient.cs">LongPollClient</a> and is located in <a href="VkApi.Wrapper/LongPolling/User">VkApi.Wrapper.LongPolling.User
+ namespace</a>. Let's learn how it works.
 
 ## Starting a Long Poll Client
-Firstly we need to get new <a href="../api/VkLibrary.Core.Types.Messages.LongpollParams.html">long poll server parameters</a> from API. Then we need to start a <a href="../api/VkLibrary.Core.LongPolling.LongPollClient.html">long poll client</a> to work with. 
+Firstly we need to get new <a href="VkApi.Wrapper/Objects/Messages/MessagesLongpollParams.cs">long poll server parameters</a> from API. Then we need to start a <a href="VkApi.Wrapper/LongPolling/User/UserLongPollClient.cs">long poll client</a> to work with. 
 ```csharp
 var longPollParams = await vk.Messages.GetLongPollServer();
-var longPollClient = vk.StartLongPollClient(
+var longPollClient = vk.StartUserLongPollClient(
   longPollParams.Server, // Server received on previous step
   longPollParams.Key,    // Secret session key
   longPollParams.Ts,     // Event number
@@ -212,7 +213,7 @@ var longPollClient = vk.StartLongPollClient(
 ```
 
 ## Working with Events
-Our long poll client is now ready to notify us when new vk events take place. A list of all available events can be found <a href="../api/VkLibrary.Core.LongPolling.LongPollClient.html">here</a>. Subscribing to events is easy and familiar. Let's subscribe to <b>FriendOnlineEvent</b> to be notified when friends launch vk applications:
+Our long poll client is now ready to notify us when new vk events take place. A list of all available events can be found <a href="VkApi.Wrapper/LongPolling/User/UserLongPollClient.cs#L97-L197">here</a>. Subscribing to events is easy and familiar. Let's subscribe to <b>FriendOnlineEvent</b> to be notified when friends launch vk applications:
 ```csharp
 longPollClient.FriendOnlineEvent += (sender, args) => Console.WriteLine(
   $"Friend with id {args.Item1} is now online! He uses {args.Item2} platform."
